@@ -1,6 +1,6 @@
 ---
-Title:	A New MultiMarkdown Document  
-Author: Fletcher T. Penney John Doe  
+Title:	PhysInfo  
+Author: David Latreyte  
 Date:	July 25, 2005  
 ---
 
