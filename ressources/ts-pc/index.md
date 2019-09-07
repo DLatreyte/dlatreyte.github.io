@@ -9,4 +9,4 @@ title: Terminale PC
 
 # Chapitres
 
-- <a href="http://dlatreyte.github.io/ressources/ts-pc/C2_caracteristiques_ondes/C2_1.html"> Chapitre 1 :</a> Éléments d'histoire de l'informatique, d'architecture des ordinateurs et présentation de différents langages de programmation.
+- <a href="http://dlatreyte.github.io/ressources/ts-pc/C2_caracteristiques_ondes/C2_1.html"> Chapitre 2,1 :</a> Quelques caractéristiques des ondes mécaniques.
