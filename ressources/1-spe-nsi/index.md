@@ -5,7 +5,7 @@ title: La NSI en classe de 1ère
 
 # Programme officiel
 
-- [Bulletin Officiel](https://cache.media.education.gouv.fr/file/SP1-MEN-22-1-2019/26/8/spe633_annexe_1063268.pdf)
+- <a href="https://cache.media.education.gouv.fr/file/SP1-MEN-22-1-2019/26/8/spe633_annexe_1063268.pdf">Bulletin Officiel</a>
 
 # Chapitres
 
