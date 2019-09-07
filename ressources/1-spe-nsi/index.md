@@ -1,6 +1,6 @@
 ---
 layout: page
-title: La NSI en classe de 1ère
+title: 1ére spécialité NSI
 ---
 
 # Programme officiel
@@ -10,5 +10,3 @@ title: La NSI en classe de 1ère
 # Chapitres
 
 - <a href="http://dlatreyte.github.io/ressources/1-spe-nsi/C1"> Chapitre 1 :</a> Éléments d'histoire de l'informatique, d'architecture des ordinateurs et présentation de différents langages de programmation.
-
-	L'objectif de ce chapitre est de rapidement présenter quelques uns des concepts qui seront étudiés plus longuement pendant l'année.
