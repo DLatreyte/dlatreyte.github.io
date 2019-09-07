@@ -9,4 +9,4 @@ title: 1ére spécialité NSI
 
 # Chapitres
 
-- <a href="http://dlatreyte.github.io/ressources/1-spe-nsi/C1"> Chapitre 1 :</a> Éléments d'histoire de l'informatique, d'architecture des ordinateurs et présentation de différents langages de programmation.
+- <a href="http://dlatreyte.github.io/ressources/1-spe-nsi/C1/lksslkd.md"> Chapitre 1 :</a> Éléments d'histoire de l'informatique, d'architecture des ordinateurs et présentation de différents langages de programmation.
