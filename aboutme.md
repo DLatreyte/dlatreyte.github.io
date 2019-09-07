@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Accueil
+title: Bienvenue
 subtitle: Que vas-tu trouver ici ?
 ---
 
