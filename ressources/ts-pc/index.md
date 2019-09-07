@@ -13,5 +13,5 @@ title: Terminale PC
 
 {% assign folder1 = site.pages | where_exp: "item" , "item.path contains 'folder1'"%} 
 {% for item in folder1 %} 
-{{item.title}} 
+- {{item.title}} 
 {% endfor %} 
