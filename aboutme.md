@@ -1,16 +1,10 @@
 ---
 layout: page
-title: About me
-subtitle: Why you'd want to go on a date with me
+title: Accueil
+subtitle: Que vas-tu trouver ici ?
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+Si tu es l'un de mes élèves au lycée français [Louis Massignon](http://llm.education) à Abu Dhabi, tu trouveras sur ce site l'intégralité des ressources que nous aurons travaillées en cours, agrémentées de quelques articles dans lesquels j'essaierai de te faire découvrir des notions pas toujours au programme qui développeront ta curiosité, je l'espère.
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+Bonne navigation !
 
-What else do you need?
-
-### my history
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
