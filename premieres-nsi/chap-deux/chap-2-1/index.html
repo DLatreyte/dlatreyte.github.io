@@ -65,7 +65,7 @@
   "headline": "Chap. 2,1 - Premiers pas en programmation",
   "description" : "On appelle informatique le traitement automatisé des informations par un ordinateur. Cette discipline s\x26rsquo;appuie sur la programmation, activité qui consiste à apprendre à un ordinateur à effectuer des tâches qu\x26rsquo;il n\x26rsquo;est pas capable d\x26rsquo;exécuter à sa conception. L\x26rsquo;écriture d\x26rsquo;un programme nécessite l\x26rsquo;utilisation d\x26rsquo;un langage de programmation. Dans ce cours nous utiliserons Python.\n1. À quoi a-t-on accès lorsqu\x26rsquo;on utilise un langage de programmation Un langage de programmation doit :",
   "inLanguage" : "fr",
-  "wordCount":  4431 ,
+  "wordCount":  4437 ,
   "datePublished" : "2019-09-14T21:37:45",
   "dateModified" : "2019-09-14T21:37:45",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -617,10 +617,10 @@ type !</em></p>
 <p>L&rsquo;utilisation d&rsquo;une fonction nécessite la description précise :</p>
 
 <ol>
-<li><p>*des conditions dans lesquelles elle peut être utilisée :
-c&rsquo;est le rôle de la <strong>signature</strong>.*</p></li>
+<li><p><em>des conditions dans lesquelles elle peut être utilisée :
+c&rsquo;est le rôle de la <strong>signature</strong>.</em></p></li>
 
-<li><p>*de la valeur qu&rsquo;elle retourne : c&rsquo;est le rôle de la <strong>documentation</strong>.*</p></li>
+<li><p><em>de la valeur qu&rsquo;elle retourne : c&rsquo;est le rôle de la <strong>documentation</strong>.</em></p></li>
 </ol>
 
 <p>Il est donc indispensable d&rsquo;établir <em>un contrat entre le concepteur de la fonction et son utilisateur</em>.</p>
@@ -640,37 +640,28 @@ c&rsquo;est le rôle de la <strong>signature</strong>.*</p></li>
 
 <p><strong>Remarque :</strong> Une spécification ne s&rsquo;intéresse pas au « comment » ! <br /> L&rsquo;utilisateur d&rsquo;une fonction n&rsquo;a pas besoin de connaître en détail toutes les étapes du traitement du problème par la fonction, il doit juste savoir <em>quelle valeur elle retourne et comment il faut l&rsquo;utiliser</em>.</p>
 
-<p>On peut écrire la spécification suivante pour la fonction qui élève au
-carré :</p>
+<p>On peut écrire la spécification suivante pour la fonction qui élève au carré :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+	<span class="s2">&#34;&#34;&#34; Retourne le carré du nombre x passé en argument. &#34;&#34;&#34;</span></code></pre></div>
+<p>En fait, la spécification est la seule contrainte qu&rsquo;est tenu de respecter le concepteur d&rsquo;une fonction. Il faut donc être capable de faire la distinction entre toutes les spécifications suivantes :</p>
 
-<p>{\pythoncode{def f(x: float) -&gt; float:</p>
+<ul>
+<li><p>Le programmeur ne s&rsquo;occupe pas vraiment des conditions d&rsquo;utilisation de la fonction. Il présuppose que tous les utilisateurs penseront à vérifier que l&rsquo;argument est bien positif lors de l&rsquo;appel de la fonction. <br />Dans ce cas de figure,<em>Il incombe à l&rsquo;utilisateur de bien utiliser la fonction.</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">racine_carree</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+	<span class="s2">&#34;&#34;&#34; Retourne la racine carrée du nombre x. &#34;&#34;&#34;</span></code></pre></div></li>
 
-<p>\ \ \ &ldquo;&rdquo;&rdquo; Retourne le carré du nombre x passé en argument. &ldquo;&rdquo;&ldquo;}}</p>
-
-<p>En fait, la spécification est la seule contrainte qu&rsquo;est tenu de respecter le
-concepteur d&rsquo;une fonction. Il faut donc faire la distinction entre toutes les
-spécifications suivantes :
-\begin{itemizeminus}
-  \item Le programmeur ne s&rsquo;occupe pas vraiment des conditions d&rsquo;utilisation
-  de la fonction. Il présuppose que tous les utilisateurs penseront à
-  vérifier que l&rsquo;argument est bien positif lors de l&rsquo;appel de la fonction.
-  {\tmem{Il incombe à l&rsquo;utilisateur de bien utiliser la fonction.}}</p>
-
-<p>{\pythoncode{def racine_carree(x: float) -&gt; float:</p>
-
-<p>\ \ \ &ldquo;&rdquo;&rdquo; Retourne la racine carrée du nombre x. &ldquo;&rdquo;&ldquo;}}</p>
-
-<p>\item Le programmeur avertit l&rsquo;utilisateur qu&rsquo;il existe une condition de
-  bonne utilisation de la fonction (l&rsquo;argument doit être positif ou nul) mais
-  n&rsquo;empêche pas l&rsquo;utilisateur d&rsquo;appeler la fonction avec un mauvais argument.
-  {\tmem{Ici aussi il incombe à l&rsquo;utilisateur de bien utiliser la fonction.}}</p>
-
-<p>{\pythoncode{def racine_carree(x: float) -&gt; float:</p>
-
-<p>\ \ \ &ldquo;&rdquo;&rdquo; Retourne la racine carrée du nombre x positif ou nul. &ldquo;&rdquo;&ldquo;}}</p>
-
-<p>\item Le programmeur prend en charge la bonne utilisation de la fonction.
-  {\tmem{Il prend en charge le bon fonctionnement de la fonction}}.</p>
+<li><p>Le programmeur avertit l&rsquo;utilisateur qu&rsquo;il existe une bonne utilisation de la fonction (l&rsquo;argument doit être positif ou nul) mais n&rsquo;empêche pas l&rsquo;utilisateur d&rsquo;appeler la fonction avec un mauvais argument.<br /> Ici aussi, il incombe à l&rsquo;utilisateur de bien utiliser la fonction.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">racine_carree</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+	<span class="s2">&#34;&#34;&#34; Retourne la racine carrée du nombre x positif ou nul. &#34;&#34;&#34;</span></code></pre></div>
+<ul>
+<li><p>Le programmeur prend en charge la bonne utilisation de la fonction.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">racine_carree</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+	<span class="s2">&#34;&#34;&#34;
+</span><span class="s2">	Retourne la racine carrée du nombre x si positif ou nul.
+</span><span class="s2">	Retourne une erreur si x négatif.
+</span><span class="s2">	&#34;&#34;&#34;</span></code></pre></div></li>
+</ul></li>
+</ul>
 
 <p>{\pythoncode{def racine_carree(x: float) -&gt; float:</p>
 
