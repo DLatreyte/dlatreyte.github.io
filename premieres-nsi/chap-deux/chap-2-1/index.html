@@ -65,7 +65,7 @@
   "headline": "Chap. 2,1 - Premiers pas en programmation",
   "description" : "On appelle informatique le traitement automatisé des informations par un ordinateur. Cette discipline s\x26rsquo;appuie sur la programmation, activité qui consiste à apprendre à un ordinateur à effectuer des tâches qu\x26rsquo;il n\x26rsquo;est pas capable d\x26rsquo;exécuter à sa conception. L\x26rsquo;écriture d\x26rsquo;un programme nécessite l\x26rsquo;utilisation d\x26rsquo;un langage de programmation. Dans ce cours nous utiliserons Python.\n1. À quoi a-t-on accès lorsqu\x26rsquo;on utilise un langage de programmation Un langage de programmation doit :",
   "inLanguage" : "fr",
-  "wordCount":  4438 ,
+  "wordCount":  4431 ,
   "datePublished" : "2019-09-14T21:37:45",
   "dateModified" : "2019-09-14T21:37:45",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -464,7 +464,7 @@ arithmétiques.</p>
 
 <hr />
 
-<p><strong>Exercice</strong></p>
+<p><strong>Exercice 1.</strong></p>
 
 <p>Utiliser l&rsquo;éditeur de texte Thonny pour visualiser toutes les étapes de l&rsquo;évaluation de l&rsquo;expression $2 \times (3 + 4, 3)^3 + 5 \times 6^2$.</p>
 
@@ -585,83 +585,60 @@ fonction et de son type.</li>
 </ul>
 </blockquote>
 
-<p>La connaissance de la signature d&rsquo;une fonction est fondamentale, ce n&rsquo;est pas
-parce qu&rsquo;une fonction se nomme {\python{sum}} qu&rsquo;elle est capable de faire la
-somme de deux nombres (cf. exercice 2) ! Le type de la fonction indique quels
-arguments elle accepte et donne une première (mais insuffisante !) indication
-sur la façon de l&rsquo;utiliser.</p>
+<p>La connaissance de la signature d&rsquo;une fonction est fondamentale, ce n&rsquo;est pas parce qu&rsquo;une fonction se nomme <code>sum</code> qu&rsquo;elle est capable de faire la somme de deux nombres (cf. exercice 2) ! Le type de la fonction indique quels sont les types des arguments elle accepte et donne une première (mais insuffisante !) indication sur la façon de l&rsquo;utiliser.</p>
 
-<p>\begin{remark<em>}
-  En informatique, on aura très souvent à utiliser des fonctions plus
-  complexes que celle présentée ici, en particulier, des fonctions à
-  plusieurs paramètres. Sans explication supplémentaire, il vous faudra
-  admettre qu&rsquo;une fonction nommée {\python{surface}} qui calcule la surface
-  d&rsquo;un rectangle de côtés $a$ et $b$ a pour définition
-  [ \begin{array}{cc}
+<p><strong>Remarque :</strong>  En informatique, on aura très souvent à utiliser des fonctions plus complexes que celle présentée ici, en particulier, des fonctions à plusieurs paramètres. Sans explication supplémentaire, il vous faudra admettre qu&rsquo;une fonction nommée <code>surface</code> qui calcule la surface d&rsquo;un rectangle de côtés $a$ et $b$ a pour définition
+$$
+ \begin{array}{cc}
        \tmop{surface} : &amp; \mathbb{R} \times \mathbb{R} \rightarrow
        \mathbb{R}<br />
        &amp; (a, b) \longmapsto a \times b
-     \end{array} ]
-\end{remark</em>}</p>
+     \end{array}
+$$</p>
 
-<p>\subsection{Définition d&rsquo;une fonction en Python}</p>
+<h3 id="définition-d-une-fonction-en-python">Définition d&rsquo;une fonction en Python</h3>
 
-<p>La syntaxe utilisée pour définir une fonction en Python est assez proche de
-celle des mathématiques :</p>
+<p>La syntaxe utilisée pour définir une fonction en Python est assez proche de celle des mathématiques :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+	<span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span></code></pre></div>
+<p>On reconnait tout de suite la signature de la fonction <code>def f(x:
+float) -&gt; float</code> qui indique bien que la fonction possède un paramètre <code>x</code> de type <code>float</code> et retourne une valeur de type <code>float</code>. <em>Chaque paramètre doit donc être accompagné de son
+type !</em></p>
 
-<p>{\pythoncode{def f(x: float) -&gt; float:</p>
+<p>Les deux points <code>:</code> servent à indiquer que le <em>bloc d&rsquo;instructions</em> qui suit la signature constitue <em>le corps de la fonction</em>, c&rsquo;est à dire l&rsquo;ensemble des étapes qui sont réalisées lorsqu&rsquo;on appelle la fonction. <em>Un bloc d&rsquo;instructions doit toujours être indenté par rapport à la marge !</em></p>
 
-<p>\ \ \ return x**2}}</p>
+<p>L&rsquo;instruction <code>return</code> <em>indique à la fonction de retourner la valeur qu&rsquo;elle vient de calculer</em>.</p>
 
-<p>On reconnait tout de suite la signature de la fonction {\python{def f(x:
-float) -&gt; float}} qui indique bien que la fonction possède un paramètre
-{\python{x}} de type {\python{float}} et retourne une valeur de type
-{\python{float}}. {\tmem{Chaque paramètre doit donc être accompagné de son
-type !}}</p>
+<p>La définition de la fonction <code>surface</code> est la suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">surface</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+	<span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span></code></pre></div>
+<h3 id="spécification-d-une-fonction">Spécification d&rsquo;une fonction</h3>
 
-<p>Les deux points {\python{:}} servent à indiquer que le {\tmem{bloc
-d&rsquo;instructions}} qui suit la signature constitue {\tmem{le corps de la
-fonction}}, c&rsquo;est à dire l&rsquo;ensemble des étapes qui sont réalisées
-lorsqu&rsquo;on appelle la fonction. {\tmem{Un bloc d&rsquo;instructions doit toujours
-être indenté par rapport à la marge !}}</p>
+<p>L&rsquo;utilisation d&rsquo;une fonction nécessite la description précise :</p>
 
-<p>L&rsquo;instruction {\python{return}} {\tmem{indique à la fonction de retourner la
-valeur qu&rsquo;elle vient de calculer}}.</p>
+<ol>
+<li><p>*des conditions dans lesquelles elle peut être utilisée :
+c&rsquo;est le rôle de la <strong>signature</strong>.*</p></li>
 
-<p>La définition de la fonction {\python{surface}} est la suivante :</p>
+<li><p>*de la valeur qu&rsquo;elle retourne : c&rsquo;est le rôle de la <strong>documentation</strong>.*</p></li>
+</ol>
 
-<p>{\pythoncode{def surface(a: float, b: float) -&gt; float:</p>
+<p>Il est donc indispensable d&rsquo;établir <em>un contrat entre le concepteur de la fonction et son utilisateur</em>.</p>
 
-<p>\ \ \ return a * b}}</p>
+<blockquote>
+<p>On appelle spécification l&rsquo;association de la <strong>signature</strong> et de
+  la <strong>documentation</strong> de la fonction.</p>
+</blockquote>
 
-<p>\subsection{Spécification d&rsquo;une fonction}</p>
-
-<p>L&rsquo;utilisation d&rsquo;une fonction nécessite la description précise :
-\begin{enumerate}
-  \item {\tmem{des conditions dans lesquelles elle peut être utilisée :
-  c&rsquo;est le rôle de la {\tmstrong{signature}}.}}</p>
-
-<p>\item {\tmem{de la valeur qu&rsquo;elle retourne : c&rsquo;est le rôle de la
-  {\tmstrong{documentation}}.}}
-\end{enumerate}
-Il est donc indispensable d&rsquo;établir {\tmem{un contrat entre le concepteur de
-la fonction et son utilisateur}}.</p>
-
-<p>\begin{definition<em>}
-  On appelle spécification l&rsquo;association de la {\tmstrong{signature}} et de
-  la {\tmstrong{documentation}} de la fonction.
-\end{definition</em>}
-[ \begin{array}{|c|}
+<p>$$
+ \begin{array}{|c|}
      \hline
      \text{Spécification = Signature + Commentaires}<br />
      \hline
-   \end{array} ]
-\begin{remark<em>}
-  {\tmem{Une spécification ne s&rsquo;intéresse pas au « comment » !}}
-  L&rsquo;utilisateur d&rsquo;une fonction n&rsquo;a pas besoin de connaître en détail toutes
-  les étapes du traitement du problème par la fonction, il doit juste savoir
-  {\tmem{quelle valeur elle retourne et comment il faut l&rsquo;utiliser}}.
-\end{remark</em>}</p>
+   \end{array}
+ $$</p>
+
+<p><strong>Remarque :</strong> Une spécification ne s&rsquo;intéresse pas au « comment » ! <br /> L&rsquo;utilisateur d&rsquo;une fonction n&rsquo;a pas besoin de connaître en détail toutes les étapes du traitement du problème par la fonction, il doit juste savoir <em>quelle valeur elle retourne et comment il faut l&rsquo;utiliser</em>.</p>
 
 <p>On peut écrire la spécification suivante pour la fonction qui élève au
 carré :</p>
