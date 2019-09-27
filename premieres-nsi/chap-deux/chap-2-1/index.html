@@ -63,7 +63,7 @@
   "headline": "Premiers pas en programmation... et en Python",
   "description" : "On appelle informatique le traitement automatisé des informations par un ordinateur. Cette discipline s\x26rsquo;appuie sur la programmation, activité qui consiste à apprendre à un ordinateur à effectuer des tâches qu\x26rsquo;il n\x26rsquo;est pas capable d\x26rsquo;exécuter à sa conception. L\x26rsquo;écriture d\x26rsquo;un programme nécessite l\x26rsquo;utilisation d\x26rsquo;un langage de programmation. Dans ce cours nous utiliserons Python.\n1. À quoi a-t-on accès lorsqu\x26rsquo;on utilise un langage de programmation ? Un langage de programmation doit :",
   "inLanguage" : "fr",
-  "wordCount":  4145 ,
+  "wordCount":  4159 ,
   "datePublished" : "2019-09-14T21:37:45",
   "dateModified" : "2019-09-14T21:37:45",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -313,8 +313,8 @@
 <li><a href="#5-définition-d-une-fonction">5. Définition d&rsquo;une fonction</a>
 <ul>
 <li><a href="#5-1-type-et-signature-d-une-fonction">5.1. Type et signature d&rsquo;une fonction</a></li>
-<li><a href="#définition-d-une-fonction-en-python">Définition d&rsquo;une fonction en Python</a></li>
-<li><a href="#spécification-d-une-fonction">Spécification d&rsquo;une fonction</a></li>
+<li><a href="#5-2-définition-d-une-fonction-en-python">5.2. Définition d&rsquo;une fonction en Python</a></li>
+<li><a href="#5-3-spécification-d-une-fonction">5.3. Spécification d&rsquo;une fonction</a></li>
 </ul></li>
 <li><a href="#6-exercices-du-chapitre">6. Exercices du chapitre</a></li>
 </ul></li>
@@ -591,44 +591,43 @@ fonction, on peut lui passser une expression. Par exemple l&rsquo;appel suivant 
 nombre réel de la sorte :</p>
 
 <p>$$
-\begin{array}{cc}
+\begin{aligned}
      f : &amp; \mathbb{R} \rightarrow \mathbb{R}<br />
      &amp; x \longmapsto x^2
-   \end{array}
+   \end{aligned}
  $$</p>
 
-<p>En informatique, on s&rsquo;appuie sur cette écriture, en la précisant un peu, on dit que la fonction possède un <strong>nom</strong>, un <strong>type</strong>, une
-<strong>signature</strong>.</p>
+<p>En informatique, on s&rsquo;appuie sur cette écriture, en la précisant un peu, on dit que la fonction possède un <strong>nom</strong>, un <strong>type</strong>, une <strong>signature</strong>.</p>
 
 <p>$$
-\begin{array}{cc}
+\begin{aligned}
      f : &amp; \mathbb{R} \rightarrow \mathbb{R}<br />
      \overset{\text{{\upbracefill}}}{\text{<em>{\quad Nom\quad}</em>}} &amp;
      \overset{\text{{\upbracefill}}}{\text{{<em>\quad Type\quad</em>}}}<br />
      \overset{\text{{\upbracefill}}}{\text{{*{\qquad Signature\qquad}}}}
-   \end{array}
+   \end{aligned}
   $$</p>
 
-<blockquote>
+<div class="note tip">
+  <blockquote>
 <ul>
-<li>Le type d&rsquo;une fonction est constitué par les types de ses  paramètres et par le type de la valeur qu&rsquo;elle retourne.</li>
-<li>La signature d&rsquo;une fonction est l&rsquo;association du nom de cette
-fonction et de son type.</li>
+<li>Le <strong>type</strong> d&rsquo;une fonction est constitué par les types de ses  paramètres et par le type de la valeur qu&rsquo;elle retourne.</li>
+<li>La <strong>signature</strong> d&rsquo;une fonction est l&rsquo;association du nom de cette fonction et de son type.</li>
 </ul>
 </blockquote>
+</div>
 
-<p>La connaissance de la signature d&rsquo;une fonction est fondamentale, ce n&rsquo;est pas parce qu&rsquo;une fonction se nomme <code>sum</code> qu&rsquo;elle est capable de faire la somme de deux nombres (cf. exercice 2) ! Le type de la fonction indique quels sont les types des arguments elle accepte et donne une première (mais insuffisante !) indication sur la façon de l&rsquo;utiliser.</p>
+<p>La connaissance de la signature d&rsquo;une fonction est fondamentale, ce n&rsquo;est pas parce qu&rsquo;une fonction se nomme <code>sum</code> qu&rsquo;elle est capable de faire la somme de deux nombres (cf. exercice 2) ! Le type de la fonction indique quels sont les types des arguments qu&rsquo;elle accepte et donne une première (mais insuffisante !) indication sur la façon de l&rsquo;utiliser.</p>
 
 <p><strong>Remarque :</strong>  En informatique, on aura très souvent à utiliser des fonctions plus complexes que celle présentée ici, en particulier, des fonctions à plusieurs paramètres. Sans explication supplémentaire, il vous faudra admettre qu&rsquo;une fonction nommée <code>surface</code> qui calcule la surface d&rsquo;un rectangle de côtés $a$ et $b$ a pour définition
 $$
- \begin{array}{cc}
-       \tmop{surface} : &amp; \mathbb{R} \times \mathbb{R} \rightarrow
-       \mathbb{R}<br />
-       &amp; (a, b) \longmapsto a \times b
-     \end{array}
+ \begin{aligned}
+       surface : &amp; \Bbb{R} \times \Bbb{R} \rightarrow \Bbb{R}<br />
+       &amp; (a, b) \longrightarrow a \times b
+     \end{aligned}
 $$</p>
 
-<h3 id="définition-d-une-fonction-en-python">Définition d&rsquo;une fonction en Python</h3>
+<h3 id="5-2-définition-d-une-fonction-en-python">5.2. Définition d&rsquo;une fonction en Python</h3>
 
 <p>La syntaxe utilisée pour définir une fonction en Python est assez proche de celle des mathématiques :</p>
 <div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -637,14 +636,16 @@ $$</p>
 float) -&gt; float</code> qui indique bien que la fonction possède un paramètre <code>x</code> de type <code>float</code> et retourne une valeur de type <code>float</code>. <em>Chaque paramètre doit donc être accompagné de son
 type !</em></p>
 
-<p>Les deux points <code>:</code> servent à indiquer que le <em>bloc d&rsquo;instructions</em> qui suit la signature constitue <em>le corps de la fonction</em>, c&rsquo;est à dire l&rsquo;ensemble des étapes qui sont réalisées lorsqu&rsquo;on appelle la fonction. <em>Un bloc d&rsquo;instructions doit toujours être indenté par rapport à la marge !</em></p>
+<ul>
+<li><p>Les deux points <code>:</code> à la fin de la ligne servent à indiquer que le <em>bloc d&rsquo;instructions</em> qui suit la signature constitue <em>le corps de la fonction</em>, c&rsquo;est à dire l&rsquo;ensemble des étapes qui sont réalisées lorsqu&rsquo;on appelle la fonction. <strong>Un bloc d&rsquo;instructions doit toujours être indenté par rapport à la marge !</strong></p></li>
 
-<p>L&rsquo;instruction <code>return</code> <em>indique à la fonction de retourner la valeur qu&rsquo;elle vient de calculer</em>.</p>
+<li><p>L&rsquo;instruction <code>return</code> <em>indique à la fonction de retourner la valeur qu&rsquo;elle vient de calculer</em>.</p></li>
+</ul>
 
-<p>La définition de la fonction <code>surface</code> est la suivante :</p>
+<p>La définition de la fonction <code>surface</code> définie plus à la section précédente est la suivante :</p>
 <div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">surface</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 	<span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span></code></pre></div>
-<h3 id="spécification-d-une-fonction">Spécification d&rsquo;une fonction</h3>
+<h3 id="5-3-spécification-d-une-fonction">5.3. Spécification d&rsquo;une fonction</h3>
 
 <p>L&rsquo;utilisation d&rsquo;une fonction nécessite la description précise :</p>
 
@@ -657,10 +658,9 @@ c&rsquo;est le rôle de la <strong>signature</strong>.</em></p></li>
 
 <p>Il est donc indispensable d&rsquo;établir <em>un contrat entre le concepteur de la fonction et son utilisateur</em>.</p>
 
-<blockquote>
-<p>On appelle spécification l&rsquo;association de la <strong>signature</strong> et de
-  la <strong>documentation</strong> de la fonction.</p>
-</blockquote>
+<div class="note tip">
+  On appelle spécification l&rsquo;association de la <strong>signature</strong> et de la <strong>documentation</strong> de la fonction.
+</div>
 
 <p>$$
  \begin{array}{|c|}
