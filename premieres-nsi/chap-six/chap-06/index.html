@@ -63,7 +63,7 @@
   "headline": "Contrôle du flot d’exécution d’un programme, les structures itératives",
   "description" : "Ce chapitre reprend l\x26rsquo;étude de structures de contrôles, c\x26rsquo;est à dire d\x26rsquo;instructions qui permettent de modifier le « flot d\x26rsquo;exécution implicite » d\x26rsquo;un programme.\nAprès les structures conditionnelles (ou alternatives), les structures itératives (ou boucles) sont introduites.\nStructures itératives Les boucles sont des instructions répétitives. Comme les tests conditionnels, elles nécessitent la définition de blocs d’instructions. Les instructions de ces blocs sont répétées tant qu\x26rsquo;une condition d’arrêt n\x26rsquo;est pas vérifiée.",
   "inLanguage" : "fr",
-  "wordCount":  608 ,
+  "wordCount":  1324 ,
   "datePublished" : "2019-09-28T17:41:06",
   "dateModified" : "2019-09-28T17:41:06",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -320,6 +320,10 @@
 <li>
 <ul>
 <li><a href="#exercice-1">Exercice 1</a></li>
+<li><a href="#exercice-2">Exercice 2</a></li>
+<li><a href="#exercice-3">Exercice 3</a></li>
+<li><a href="#exercice-4">Exercice 4</a></li>
+<li><a href="#exercice-5">Exercice 5</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -369,10 +373,10 @@ Chaque passage dans la boucle s&rsquo;appelle une <strong>itération</strong>.</
 
 <p><div class="splitbox"><div class="left">
 
-<img src="../../../premieres-nsi/chap-six/while-avec-compteur-autonome.svg" width="45%" />
+<img src="../../../premieres-nsi/chap-six/while-avec-compteur-autonome.svg" width="100%" />
 </div><div class="right">
 
-<img src="../../../premieres-nsi/chap-six/while-sans-compteur-autonome.svg" width="45%" />
+<img src="../../../premieres-nsi/chap-six/while-sans-compteur-autonome.svg" width="100%" />
 </div><div style="clear:both"></div></div>
 </p>
 
@@ -395,7 +399,7 @@ Chaque passage dans la boucle s&rsquo;appelle une <strong>itération</strong>.</
 
 <h4 id="exercice-1">Exercice 1</h4>
 
-<p>Soit le programme suivant :</p>
+<p>Soit la fonction suivante :</p>
 <div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">inconnue</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
     <span class="s2">&#34;&#34;&#34; Fonction dont il faut déterminer l&#39;action. &#34;&#34;&#34;</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span>
@@ -412,6 +416,148 @@ Chaque passage dans la boucle s&rsquo;appelle une <strong>itération</strong>.</
 <li>En supposant que la fonction soit appelée avec les valeurs 35 et 6, exécuter le programme à la main et déterminer la valeur retournée. Pour s&rsquo;aider, construire un tableau d&rsquo;évolution du contenu de chaque variable utilisée. <br /> Vérifier le résultat obtenu en exécutant le programme.</li>
 <li>Quel est le calcul réalisé par ce programme ?</li>
 </ol>
+
+<hr />
+
+<p><details><summary><strong>Solution</strong></summary></p>
+
+<ol>
+<li><div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">while</span> <span class="n">r</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">r</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span></code></pre></div>
+<p>Fin de boucle lorsque $r=0$.</p></li>
+
+<li><p>Instruction qui permet de modifier le résultat de l&rsquo;évaluation de l&rsquo;expression  booléenne : <code>r = a % b</code>.</p></li>
+
+<li><p>Valeur retournée : 6</p></li>
+
+<li><p>Touches <strong>Ctrl + F5</strong>.</p></li>
+
+<li><p>Valeur retournée : 1</p></li>
+
+<li><p>Cette fonction détermine le pgcd des deux nombres.</p></li>
+</ol>
+
+<p></details></p>
+
+<h4 id="exercice-2">Exercice 2</h4>
+
+<p>Soit la fonction suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">inconnue_deux</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34; Fonction dont il faut déterminer l&#39;action. &#34;&#34;&#34;</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="p">:</span>
+        <span class="n">b</span> <span class="o">*=</span> <span class="n">i</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">b</span></code></pre></div>
+<ol>
+<li>Examiner le code, repérer les instructions concernées par la boucle et déterminer l&rsquo;instruction de fin de boucle.</li>
+<li>Quelle est l&rsquo;instruction qui permet de modifier le résultat de l&rsquo;évaluation du test de sortie de boucle ?</li>
+<li>Quelle est la valeur initiale de la variable <code>i</code> et quelle est sa valeur en sortie de boucle ? Combien de tours sont réalisés ?</li>
+<li>En supposant que la fonction soit appelée avec la valeur 6, exécuter le programme à la main et déterminer la valeur retournée. Pour s&rsquo;aider, construire un tableau d&rsquo;évolution du contenu de chaque variable utilisée. <br /> Vérifier le résultat obtenu en exécutant le programme.</li>
+<li>Visualiser le fonctionnement de cette fonction à l&rsquo;aide du « débuggeur » intégré au logiciel Thonny.</li>
+<li>Quel est le calcul réalisé par ce programme ?</li>
+</ol>
+
+<hr />
+
+<p><details><summary><strong>Solution</strong></summary></p>
+
+<ol>
+<li><div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">*=</span> <span class="n">i</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span></code></pre></div>
+<p>Fin de boucle lorsque $i = a + 1$.</p></li>
+
+<li><p>Instruction qui permet de modifier le résultat de l&rsquo;évaluation de l&rsquo;expression  booléenne : <code>i += 1</code>.</p></li>
+
+<li><p>Valeur retournée : 720</p></li>
+
+<li><p>Touches <strong>Ctrl + F5</strong>.</p></li>
+
+<li><p>Cette fonction retourne le résultat du calcul : $1\times 2\times 3\times\ldots\times a$, c&rsquo;est à dire la factorielle de $a$, $a!$.</p></li>
+</ol>
+
+<p></details></p>
+
+<h4 id="exercice-3">Exercice 3</h4>
+
+<p>Écrire et exécuter une fonction qui retourne une chaîne de caractères formée par une suite de 12 nombres entiers dont chaque terme est égal au triple du terme précédent, à partir du premier entier a passé en argument.
+La spécification de la fonction est :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">triple_du_precedent</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne une chaîne de caractères formée par une suite de 12
+</span><span class="s2">    entiers dont chaque terme est égal au triple du précédent,
+</span><span class="s2">    à partir du premier entier a, positif,  passé en argument.
+</span><span class="s2">    
+</span><span class="s2">    &gt;&gt;&gt; triple_du_precedent(1)
+</span><span class="s2">    &#39;1 3 9 27 81 243 729 2187 6561 19683 59049 177147 &#39;
+</span><span class="s2">    &gt;&gt;&gt; triple_du_precedent(5)
+</span><span class="s2">    &#39;5 15 45 135 405 1215 3645 10935 32805 98415 295245 885735 &#39;
+</span><span class="s2">    &#34;&#34;&#34;</span></code></pre></div>
+<hr />
+
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">triple_du_precedent</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne une chaîne de caractères formée par une suite de 12
+</span><span class="s2">    entiers dont chaque terme est égal au triple du précédent,
+</span><span class="s2">    à partir du premier entier a, positif,  passé en argument.
+</span><span class="s2">    
+</span><span class="s2">    &gt;&gt;&gt; triple_du_precedent(1)
+</span><span class="s2">    &#39;1 3 9 27 81 243 729 2187 6561 19683 59049 177147 &#39;
+</span><span class="s2">    &gt;&gt;&gt; triple_du_precedent(5)
+</span><span class="s2">    &#39;5 15 45 135 405 1215 3645 10935 32805 98415 295245 885735 &#39;
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>    <span class="c1"># Initialisation de la chaîne à retourner</span>
+    <span class="n">compteur</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># Initialisation du compteur</span>
+    <span class="n">val_max_compteur</span> <span class="o">=</span> <span class="mi">12</span>   <span class="c1"># Valeur maximale pour le compteur</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="n">compteur</span> <span class="o">&lt;=</span> <span class="n">val_max_compteur</span><span class="p">):</span>
+        <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>  <span class="c1"># Ajout de chaque nombre à la chaîne</span>
+        <span class="n">a</span> <span class="o">*=</span> <span class="mi">3</span>
+        <span class="n">compteur</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
+<p></details></p>
+
+<h4 id="exercice-4">Exercice 4</h4>
+
+<p>Écrire et exécuter une fonction qui retourne une chaîne de caractères formée par une suite des 10 premiers termes de la table de multiplication par 7.
+La spécification de la fonction est :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">multiplication_par_sept</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne une chaîne de caractères formées des 10 premiers
+</span><span class="s2">    nombres de la table de multiplication de 7.
+</span><span class="s2">    
+</span><span class="s2">    &gt;&gt;&gt; multiplication_par_sept()
+</span><span class="s2">    &#39;7 14 21 28 35 42 49 56 63 70 &#39;
+</span><span class="s2">    &#34;&#34;&#34;</span></code></pre></div>
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">triple_du_precedent</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne une chaîne de caractères formée par une suite de 12
+</span><span class="s2">    entiers dont chaque terme est égal au triple du précédent,
+</span><span class="s2">    à partir du premier entier a, positif,  passé en argument.
+</span><span class="s2">    
+</span><span class="s2">    &gt;&gt;&gt; triple_du_precedent(1)
+</span><span class="s2">    &#39;1 3 9 27 81 243 729 2187 6561 19683 59049 177147 &#39;
+</span><span class="s2">    &gt;&gt;&gt; triple_du_precedent(5)
+</span><span class="s2">    &#39;5 15 45 135 405 1215 3645 10935 32805 98415 295245 885735 &#39;
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>    <span class="c1"># Initialisation de la chaîne à retourner</span>
+    <span class="n">compteur</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># Initialisation du compteur</span>
+    <span class="n">val_max_compteur</span> <span class="o">=</span> <span class="mi">12</span>   <span class="c1"># Valeur maximale pour le compteur</span>
+
+    <span class="k">while</span><span class="p">(</span><span class="n">compteur</span> <span class="o">&lt;=</span> <span class="n">val_max_compteur</span><span class="p">):</span>
+        <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>  <span class="c1"># Ajout de chaque nombre à la chaîne</span>
+        <span class="n">a</span> <span class="o">*=</span> <span class="mi">3</span>
+        <span class="n">compteur</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
+<p></details></p>
+
+<h4 id="exercice-5">Exercice 5</h4>
 
 
         
