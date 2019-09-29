@@ -63,7 +63,7 @@
   "headline": "Contrôle du flot d’exécution d’un programme, les structures itératives",
   "description" : "Ce chapitre reprend l\x26rsquo;étude de structures de contrôles, c\x26rsquo;est à dire d\x26rsquo;instructions qui permettent de modifier le « flot d\x26rsquo;exécution implicite » d\x26rsquo;un programme.\nAprès les structures conditionnelles (ou alternatives), les structures itératives (ou boucles) sont introduites.\nStructures itératives Les boucles sont des instructions répétitives. Comme les tests conditionnels, elles nécessitent la définition de blocs d’instructions. Les instructions de ces blocs sont répétées tant qu\x26rsquo;une condition d’arrêt n\x26rsquo;est pas vérifiée.",
   "inLanguage" : "fr",
-  "wordCount":  2509 ,
+  "wordCount":  2480 ,
   "datePublished" : "2019-09-28T17:41:06",
   "dateModified" : "2019-09-28T17:41:06",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -326,6 +326,12 @@
 <li><a href="#exercice-7">Exercice 7</a></li>
 <li><a href="#exercice-8">Exercice 8</a></li>
 <li><a href="#exercice-9">Exercice 9</a></li>
+<li><a href="#exercice-10">Exercice 10</a></li>
+</ul></li>
+<li><a href="#reprendre-l-exercice-précédent-mais-en-faisant-en-sorte-que-le-nombre-de-valeurs-demandées-à-l-utilisateur-soit-passé-en-argument-à-la-fonction">Reprendre l&rsquo;exercice précédent mais en faisant en sorte que le nombre de valeurs demandées à l&rsquo;utilisateur soit passé en argument à la fonction.</a>
+<ul>
+<li><a href="#exercice-11">Exercice 11</a></li>
+<li><a href="#exercice-12">Exercice 12</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -706,121 +712,112 @@ La spécification de la fonction est :</p>
 <p>Écrire et exécuter une fonction qui demande 10 nombres à l&rsquo;utilisateur et qui détermine lequel est le plus grand et lequel est le plus petit. Les deux résultats sont retournés au sein d&rsquo;une unique chaîne de caractères.</p>
 
 <p><strong>Remarque :</strong> la fonction qui permet de récupérer <em>du texte</em> entré au clavier est <code>input</code> :</p>
-<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez votre valeur : &#34;</span><span class="p">))</span>
-<span class="err">````</span>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez votre valeur : &#34;</span><span class="p">))</span></code></pre></div>
+<div class="note warning">
+  La fonction <code>input</code> retourne <strong>toujours</strong> une chaîne de caractères. Il est donc <em>nécessaire d&rsquo;effectuer une conversion</em> si ce que l&rsquo;utilisateur a entré est d&rsquo;un autre type.
+</div>
 
-<span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&#34;note warning&#34;</span><span class="o">&gt;</span>
-  <span class="n">La</span> <span class="n">fonction</span> <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="nb">input</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;</span> <span class="n">retourne</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">toujours</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span> <span class="n">une</span> <span class="n">chaîne</span> <span class="n">de</span> <span class="n">caractères</span><span class="o">.</span> <span class="n">Il</span> <span class="n">est</span> <span class="n">donc</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">nécessaire</span> <span class="n">d</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span><span class="n">effectuer</span> <span class="n">une</span> <span class="n">conversion</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span> <span class="n">si</span> <span class="n">ce</span> <span class="n">que</span> <span class="n">l</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span><span class="n">utilisateur</span> <span class="n">a</span> <span class="n">entré</span> <span class="n">est</span> <span class="n">d</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span><span class="n">un</span> <span class="n">autre</span> <span class="nb">type</span><span class="o">.</span>
-<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<p>La specification de la fonction est :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">plus_grand_plus_petit</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Demande à l&#39;utilisateur d&#39;entrer 10 valeurs et retourne une
+</span><span class="s2">    chaîne de caractères formée des deux valeurs max et min.
+</span><span class="s2">    &#34;&#34;&#34;</span></code></pre></div>
+<hr />
 
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">plus_grand_plus_petit</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Demande à l&#39;utilisateur d&#39;entrer 10 valeurs et retourne une
+</span><span class="s2">    chaîne de caractères formée des deux valeurs max et min.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la valeur 1 : &#34;</span><span class="p">))</span>
+    <span class="n">valeur_plus_grande</span> <span class="o">=</span> <span class="n">valeur</span>
+    <span class="n">valeur_plus_petite</span> <span class="o">=</span> <span class="n">valeur</span>
+    <span class="n">nbre_valeurs</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Compteur</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nbre_valeurs</span><span class="p">:</span>
+        <span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la valeur </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">valeur</span> <span class="o">&gt;</span> <span class="n">valeur_plus_grande</span><span class="p">:</span>
+            <span class="n">valeur_plus_grande</span> <span class="o">=</span> <span class="n">valeur</span>
+        <span class="k">elif</span> <span class="n">valeur</span> <span class="o">&lt;</span> <span class="n">valeur_plus_petite</span><span class="p">:</span>
+            <span class="n">valeur_plus_petite</span> <span class="o">=</span> <span class="n">valeur</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;max : </span><span class="si">{}</span><span class="s2">, min : </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">valeur_plus_grande</span><span class="p">,</span>
+                                          <span class="n">valeur_plus_petite</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
+<p></details></p>
 
-<span class="n">La</span> <span class="n">specification</span> <span class="n">de</span> <span class="n">la</span> <span class="n">fonction</span> <span class="n">est</span> <span class="p">:</span></code></pre></div>
-<p>python3
-def plus_grand_plus_petit() -&gt; str:
-    &ldquo;&rdquo;&rdquo;
-    Demande à l&rsquo;utilisateur d&rsquo;entrer 10 valeurs et retourne une
-    chaîne de caractères formée des deux valeurs max et min.
-    &ldquo;&rdquo;&rdquo;</p>
-<div class="highlight"><pre class="chroma">---
-&lt;details&gt;&lt;summary&gt;**Solution**&lt;/summary&gt;</pre></div>
-<p>python3
-def plus_grand_plus_petit() -&gt; str:
-    &ldquo;&rdquo;&rdquo;
-    Demande à l&rsquo;utilisateur d&rsquo;entrer 10 valeurs et retourne une
-    chaîne de caractères formée des deux valeurs max et min.
-    &ldquo;&rdquo;&rdquo;
-    valeur = float(input(&ldquo;Entrez la valeur 1 : &ldquo;))
-    valeur_plus_grande = valeur
-    valeur_plus_petite = valeur
-    nbre_valeurs = 10
-    i = 2  # Compteur
-    while i &lt;= nbre_valeurs:
-        valeur = float(input(&ldquo;Entrez la valeur {} : &ldquo;.format(i)))
-        if valeur &gt; valeur_plus_grande:
-            valeur_plus_grande = valeur
-        elif valeur &lt; valeur_plus_petite:
-            valeur_plus_petite = valeur
-        i += 1
-    reponse = &ldquo;max : {}, min : {}&ldquo;.format(valeur_plus_grande,
-                                          valeur_plus_petite)
-    return reponse</p>
-<div class="highlight"><pre class="chroma">&lt;/details&gt;
+<h3 id="exercice-10">Exercice 10</h3>
 
+<h2 id="reprendre-l-exercice-précédent-mais-en-faisant-en-sorte-que-le-nombre-de-valeurs-demandées-à-l-utilisateur-soit-passé-en-argument-à-la-fonction">Reprendre l&rsquo;exercice précédent mais en faisant en sorte que le nombre de valeurs demandées à l&rsquo;utilisateur soit passé en argument à la fonction.</h2>
 
-### Exercice 10 ###
-Reprendre l&#39;exercice précédent mais en faisant en sorte que le nombre de valeurs demandées à l&#39;utilisateur soit passé en argument à la fonction.
----
-&lt;details&gt;&lt;summary&gt;**Solution**&lt;/summary&gt;</pre></div>
-<p>python3
-def plus_grand_plus_petit(nbre_valeurs: int) -&gt; str:
-    &ldquo;&rdquo;&rdquo;
-    Demande à l&rsquo;utilisateur d&rsquo;entrer nbre_valeurs valeurs et retourne une
-    chaîne de caractères formée des deux valeurs max et min.
-    &ldquo;&rdquo;&rdquo;
-    valeur = float(input(&ldquo;Entrez la valeur 1 : &ldquo;))
-    valeur_plus_grande = valeur
-    valeur_plus_petite = valeur
-    i = 2  # Compteur
-    while i &lt;= nbre_valeurs:
-        valeur = float(input(&ldquo;Entrez la valeur {} : &ldquo;.format(i)))
-        if valeur &gt; valeur_plus_grande:
-            valeur_plus_grande = valeur
-        elif valeur &lt; valeur_plus_petite:
-            valeur_plus_petite = valeur
-        i += 1
-    reponse = &ldquo;max : {}, min : {}&ldquo;.format(valeur_plus_grande,
-                                          valeur_plus_petite)
-    return reponse</p>
-<div class="highlight"><pre class="chroma">&lt;/details&gt;
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">plus_grand_plus_petit</span><span class="p">(</span><span class="n">nbre_valeurs</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Demande à l&#39;utilisateur d&#39;entrer nbre_valeurs valeurs et retourne une
+</span><span class="s2">    chaîne de caractères formée des deux valeurs max et min.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la valeur 1 : &#34;</span><span class="p">))</span>
+    <span class="n">valeur_plus_grande</span> <span class="o">=</span> <span class="n">valeur</span>
+    <span class="n">valeur_plus_petite</span> <span class="o">=</span> <span class="n">valeur</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Compteur</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nbre_valeurs</span><span class="p">:</span>
+        <span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la valeur </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">valeur</span> <span class="o">&gt;</span> <span class="n">valeur_plus_grande</span><span class="p">:</span>
+            <span class="n">valeur_plus_grande</span> <span class="o">=</span> <span class="n">valeur</span>
+        <span class="k">elif</span> <span class="n">valeur</span> <span class="o">&lt;</span> <span class="n">valeur_plus_petite</span><span class="p">:</span>
+            <span class="n">valeur_plus_petite</span> <span class="o">=</span> <span class="n">valeur</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;max : </span><span class="si">{}</span><span class="s2">, min : </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">valeur_plus_grande</span><span class="p">,</span>
+                                          <span class="n">valeur_plus_petite</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
+<p></details></p>
 
+<h3 id="exercice-11">Exercice 11</h3>
 
-### Exercice 11 ###
-Écrire et exécuter une fonction qui demande à l&#39;utilisateur d&#39;entrer 10
-  notes et qui retourne la moyenne de ces notes. 
-La spécification de la fonction est :</pre></div>
-<p>python3
-def moyenne() -&gt; float:
-    &ldquo;&rdquo;&rdquo;
-    Demande 10 notes à l&rsquo;utilisateur et retourne la moyenne.
-    &ldquo;&rdquo;&rdquo;</p>
-<div class="highlight"><pre class="chroma">---
-&lt;details&gt;&lt;summary&gt;**Solution**&lt;/summary&gt;</pre></div>
-<p>python3
-def moyenne() -&gt; float:
-    &ldquo;&rdquo;&rdquo;
-    Demande 10 notes à l&rsquo;utilisateur et retourne la moyenne.
-    &ldquo;&rdquo;&rdquo;
-    somme = 0  # Initialisation de la somme
-    nbre_notes = 10
-    i = 1  # Compteur
-    while i &lt;= nbre_notes:
-        note = float(input(&ldquo;Entrez la note {} : &ldquo;.format(i)))
-        somme += note
-        i += 1
-    return somme / nbre_notes</p>
-<div class="highlight"><pre class="chroma">&lt;/details&gt;
+<p>Écrire et exécuter une fonction qui demande à l&rsquo;utilisateur d&rsquo;entrer 10
+  notes et qui retourne la moyenne de ces notes.
+La spécification de la fonction est :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">moyenne</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Demande 10 notes à l&#39;utilisateur et retourne la moyenne.
+</span><span class="s2">    &#34;&#34;&#34;</span></code></pre></div>
+<hr />
 
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">moyenne</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Demande 10 notes à l&#39;utilisateur et retourne la moyenne.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">somme</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initialisation de la somme</span>
+    <span class="n">nbre_notes</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Compteur</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nbre_notes</span><span class="p">:</span>
+        <span class="n">note</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la note </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+        <span class="n">somme</span> <span class="o">+=</span> <span class="n">note</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">somme</span> <span class="o">/</span> <span class="n">nbre_notes</span></code></pre></div>
+<p></details></p>
 
-### Exercice 12 ###
+<h3 id="exercice-12">Exercice 12</h3>
 
-Modifier le programme précédent de façon à ce que le nombre de notes à prendre en compte soit passé en argument de la fonction.
+<p>Modifier le programme précédent de façon à ce que le nombre de notes à prendre en compte soit passé en argument de la fonction.</p>
 
----
-&lt;details&gt;&lt;summary&gt;**Solution**&lt;/summary&gt;</pre></div>
-<p>python3
-def moyenne(nbre_notes: int) -&gt; float:
-    &ldquo;&rdquo;&rdquo;
-    Demande 10 notes à l&rsquo;utilisateur et retourne la moyenne.
-    &ldquo;&rdquo;&rdquo;
-    somme = 0  # Initialisation de la somme
-    i = 1  # Compteur
-    while i &lt;= nbre_notes:
-        note = float(input(&ldquo;Entrez la note {} : &ldquo;.format(i)))
-        somme += note
-        i += 1
-    return somme / nbre_notes
-```</p>
+<hr />
 
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">moyenne</span><span class="p">(</span><span class="n">nbre_notes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Demande 10 notes à l&#39;utilisateur et retourne la moyenne.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">somme</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initialisation de la somme</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Compteur</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nbre_notes</span><span class="p">:</span>
+        <span class="n">note</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la note </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+        <span class="n">somme</span> <span class="o">+=</span> <span class="n">note</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">somme</span> <span class="o">/</span> <span class="n">nbre_notes</span></code></pre></div>
 <p></details></p>
 
 
