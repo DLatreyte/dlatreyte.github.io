@@ -63,7 +63,7 @@
   "headline": "Contrôle du flot d’exécution d’un programme, les structures itératives",
   "description" : "Ce chapitre reprend l\x26rsquo;étude de structures de contrôles, c\x26rsquo;est à dire d\x26rsquo;instructions qui permettent de modifier le « flot d\x26rsquo;exécution implicite » d\x26rsquo;un programme.\nAprès les structures conditionnelles (ou alternatives), les structures itératives (ou boucles) sont introduites.\nStructures itératives Les boucles sont des instructions répétitives. Comme les tests conditionnels, elles nécessitent la définition de blocs d’instructions. Les instructions de ces blocs sont répétées tant qu\x26rsquo;une condition d’arrêt n\x26rsquo;est pas vérifiée.",
   "inLanguage" : "fr",
-  "wordCount":  2480 ,
+  "wordCount":  3184 ,
   "datePublished" : "2019-09-28T17:41:06",
   "dateModified" : "2019-09-28T17:41:06",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -329,6 +329,11 @@
 <li><a href="#exercice-10">Exercice 10</a></li>
 <li><a href="#exercice-11">Exercice 11</a></li>
 <li><a href="#exercice-12">Exercice 12</a></li>
+<li><a href="#exercice-13">Exercice 13</a></li>
+<li><a href="#exercice-14">Exercice 14</a></li>
+<li><a href="#exercice-15">Exercice 15</a></li>
+<li><a href="#exercice-16">Exercice 16</a></li>
+<li><a href="#exercice-17">Exercice 17</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -400,6 +405,8 @@ Chaque passage dans la boucle s&rsquo;appelle une <strong>itération</strong>.</
 <h3 id="continue"><strong>continue</strong></h3>
 
 <h2 id="exercices-du-chapitre">Exercices du chapitre</h2>
+
+<p><strong>Remarque.</strong> Dans cette première série d&rsquo;exercices n&rsquo;utiliser que la structure <strong>Tant que</strong>.</p>
 
 <h3 id="exercice-1">Exercice 1</h3>
 
@@ -808,7 +815,7 @@ La spécification de la fonction est :</p>
 <p><details><summary><strong>Solution</strong></summary></p>
 <div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">moyenne</span><span class="p">(</span><span class="n">nbre_notes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
     <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    Demande 10 notes à l&#39;utilisateur et retourne la moyenne.
+</span><span class="s2">    Demande nbre_notes notes à l&#39;utilisateur et retourne la moyenne.
 </span><span class="s2">    &#34;&#34;&#34;</span>
     <span class="n">somme</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initialisation de la somme</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Compteur</span>
@@ -818,6 +825,164 @@ La spécification de la fonction est :</p>
         <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">somme</span> <span class="o">/</span> <span class="n">nbre_notes</span></code></pre></div>
 <p></details></p>
+
+<h3 id="exercice-13">Exercice 13</h3>
+
+<p>Modifier le programme précédent de façon à ce que l&rsquo;utilisateur n&rsquo;ait pas à indiquer le nombre de notes qu&rsquo;il souhaite saisir. Une note négative terminer la saisie.</p>
+
+<p><strong>Remarque :</strong> la fonction doit afficher le nombre de notes saisies, elle retourne donc une chaîne de caractères.</p>
+
+<hr />
+
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">moyenne_ter</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Demande des notes à l&#39;utilisateur et retourne la moyenne. La saisie
+</span><span class="s2">    cesse lorsque la note entrée est négative.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">somme</span> <span class="o">=</span> <span class="mi">0</span>  
+    <span class="n">nbre_notes</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">note</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la note </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nbre_notes</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">note</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">somme</span> <span class="o">+=</span> <span class="n">note</span>
+        <span class="n">nbre_notes</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;Nbre de notes : </span><span class="si">{}</span><span class="s2">, moyenne : </span><span class="si">{:.2f}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nbre_notes</span><span class="p">,</span>
+                                                        <span class="n">somme</span> <span class="o">/</span> <span class="n">nbre_notes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
+<p></details></p>
+
+<h3 id="exercice-14">Exercice 14</h3>
+
+<p>Écrire et exécuter une fonction qui simule un tirage du Loto (s&rsquo;aider de l&rsquo;exercice 12 du chapitre 02).
+La spécification de la fonction est</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">loto_naif</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne 6 entiers sélectionnés aléatoirement dans l&#39;intervalle
+</span><span class="s2">    [1, 49].
+</span><span class="s2">    &#34;&#34;&#34;</span></code></pre></div>
+<p><strong>Remarque.</strong> Normalement, lorsqu&rsquo;un numéro est tiré, il ne peut pas apparaître à nouveau. On acceptera cependant qu&rsquo;un même numéro puisse apparaitre plusieurs fois puisqu&rsquo;on ne connaît pas encore de structure de contrôle qui permet de facilement « stocker » plusieurs valeurs.</p>
+
+<hr />
+
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">loto_naif</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne 6 entiers sélectionnés aléatoirement dans l&#39;intervalle
+</span><span class="s2">    [1, 49].
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="kn">import</span> <span class="nn">random</span>
+    
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>   <span class="c1"># Compteur</span>
+    <span class="n">nbre_boules</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># Valeur max du compteur</span>
+    
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nbre_boules</span><span class="p">:</span>
+        <span class="n">boule</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">49</span><span class="p">)</span>
+        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">boule</span><span class="p">)</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># Incrémentation du compteur</span>
+        
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
+<p></details></p>
+
+<h3 id="exercice-15">Exercice 15</h3>
+
+<p>Écrire et exécuter une fonction qui tire au hasard un nombre entier compris entre 1 et 50 et demande à l&rsquo;utilisateur de le deviner.</p>
+
+<p>Cette fonction doit indiquer à l&rsquo;utilisateur si sa tentative est trop grande ou trop petite et quitter dès l&rsquo;instant où il a deviné le nombre en indiquant le nombre de tentatives.</p>
+
+<p><strong>Remarque.</strong> La fonction ne doit rien retourner, elle doit utiliser la fonction <code>print</code> pour <em>afficher</em> à l&rsquo;écran les informations. Sa spécification est</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">devine</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Déterminer aléatoirement un nombre compris en 1 et 49 et demande à l&#39;utilisateur
+</span><span class="s2">    de le deviner.
+</span><span class="s2">    La fonction affiche des messages qui aident l&#39;utilisateur dans recherche et quitte
+</span><span class="s2">    dès que cette dernière est fructueuse.
+</span><span class="s2">    &#34;&#34;&#34;</span></code></pre></div>
+<hr />
+
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">devine</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Déterminer aléatoirement un nombre compris en 1 et 49 et demande à l&#39;utilisateur
+</span><span class="s2">    de le deviner.
+</span><span class="s2">    La fonction affiche des messages qui aident l&#39;utilisateur dans recherche et quitte
+</span><span class="s2">    dès que cette dernière est fructueuse.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="kn">import</span> <span class="nn">random</span>
+    <span class="n">nbre_a_deviner</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+    
+    <span class="n">nbre_tentatives</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">nbre</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Proposition n° </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nbre_tentatives</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+        <span class="n">nbre_tentatives</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="k">if</span> <span class="n">nbre</span> <span class="o">==</span> <span class="n">nbre_a_deviner</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Bravo, le nombre a été deviné en </span><span class="si">{}</span><span class="s2"> tentatives.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nbre_tentatives</span><span class="p">))</span>
+            <span class="k">break</span>
+        <span class="k">elif</span> <span class="n">nbre</span> <span class="o">&gt;</span> <span class="n">nbre_a_deviner</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Trop grand !&#34;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Trop petit ! &#34;</span><span class="p">)</span></code></pre></div>
+<p></details></p>
+
+<h3 id="exercice-16">Exercice 16</h3>
+
+<p>Écrire et exécuter une fonction qui affiche l&rsquo;alphabet à l&rsquo;endroit si elle reçoit l&rsquo;argument <code>&quot;croissant&quot;</code> ou à l&rsquo;envers si elle reçoit l&rsquo;argument <code>&quot;decroissant&quot;</code>.</p>
+
+<p><strong>Remarque.</strong> On peut obtenir le code décimal d&rsquo;un caractère à l&rsquo;aide de la fonction <code>ord</code>. À l&rsquo;opposé, le caractère correspondant à un entier naturel dans la table ASCII est obtenu (si possible) à l&rsquo;aide de la fonction <code>chr</code>.</p>
+
+<p>La spécification de la fonction est</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">alphabet</span><span class="p">(</span><span class="n">sens</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne les lettres de l&#39;alphabet en fonction de la chaîne de caractères
+</span><span class="s2">    passée en argument.
+</span><span class="s2">    Les valeurs possibles pour cet argument sont &#39;croissant&#39; ou &#39;decroissant&#39;.
+</span><span class="s2">    &#34;&#34;&#34;</span></code></pre></div>
+<hr />
+
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">alphabet</span><span class="p">(</span><span class="n">sens</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne les lettres de l&#39;alphabet en fonction de la chaîne de caractères
+</span><span class="s2">    passée en argument.
+</span><span class="s2">    Les valeurs possibles pour cet argument sont &#39;croissant&#39; ou &#39;decroissant&#39;.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">nbre_lettres</span> <span class="o">=</span> <span class="mi">26</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>   <span class="c1"># Compteur</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    
+    <span class="k">if</span> <span class="n">sens</span> <span class="o">==</span> <span class="s2">&#34;croissant&#34;</span><span class="p">:</span>
+        <span class="n">indice</span> <span class="o">=</span> <span class="mi">97</span>
+    <span class="k">elif</span> <span class="n">sens</span> <span class="o">==</span> <span class="s2">&#34;decroissant&#34;</span><span class="p">:</span>
+        <span class="n">indice</span> <span class="o">=</span> <span class="mi">122</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Il faut choisir &#39;croissant&#39; ou &#39;decroissant&#39;.&#34;</span><span class="p">)</span>
+                        
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nbre_lettres</span><span class="p">:</span>
+        <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">indice</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sens</span> <span class="o">==</span> <span class="s2">&#34;croissant&#34;</span><span class="p">:</span>
+            <span class="n">indice</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">indice</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
+<p></details></p>
+
+<h3 id="exercice-17">Exercice 17</h3>
+
+<p>Écrire et exécuter une fonction qui détermine les 15 premiers termes de
+  la « suite de Fibonacci » définie par :
+$$
+\begin{aligned}
+u_1 &amp;= 1\\ u_2 &amp;= 1\\ u<em>n &amp;= u</em>{n-1} + u_{n-2} \text{ pour } n &gt; 2
+\end{aligned}
+$$</p>
 
 
         
