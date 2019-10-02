@@ -63,7 +63,7 @@
   "headline": "Contrôle du flot d’exécution d’un programme, les structures itératives",
   "description" : "Ce chapitre reprend l\x26rsquo;étude de structures de contrôles, c\x26rsquo;est à dire d\x26rsquo;instructions qui permettent de modifier le « flot d\x26rsquo;exécution implicite » d\x26rsquo;un programme.\nAprès les structures conditionnelles (ou alternatives), les structures itératives (ou boucles) sont introduites.\nStructures itératives Les boucles sont des instructions répétitives. Comme les tests conditionnels, elles nécessitent la définition de blocs d’instructions. Les instructions de ces blocs sont répétées tant qu\x26rsquo;une condition d’arrêt n\x26rsquo;est pas vérifiée.",
   "inLanguage" : "fr",
-  "wordCount":  3882 ,
+  "wordCount":  4346 ,
   "datePublished" : "2019-09-28T17:41:06",
   "dateModified" : "2019-09-28T17:41:06",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -409,7 +409,65 @@ Chaque passage dans la boucle s&rsquo;appelle une <strong>itération</strong>.</
 
 <h3 id="break"><strong>break</strong></h3>
 
+<p>L&rsquo;instruction <code>break</code> <strong>met fin à la boucle courante et reprend l&rsquo;exécution à la première instruction qui suit la structure itérative</strong>. On l&rsquo;utilise généralement quand une condition externe est déclenchée (habituellement en testant avec une instruction <code>if</code>), exigeant une sortie immédiate de la boucle. Elle s&rsquo;utilise aussi bien dans les boucles <strong>Pour</strong> que dans les boucles <strong>Tant Que</strong>.</p>
+
+<p>L&rsquo;instruction <code>break</code> est très utile pour quitter des « <em>boucles infinies</em> », créées par exemple à l&rsquo;aide de l&rsquo;entête :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span></code></pre></div>
+<p><strong>Exemple.</strong> Les fonctions ci-dessous déterminent (par une méthode loin d&rsquo;être efficace) le plus grand diviseur d&rsquo;un nombre entré par l&rsquo;utilisateur (variable <code>nbre</code>). On teste tous les nombres qui pourraient être des diviseurs du nombre, en utilisant la variable <code>diviseur</code> et en la décrémentant d&rsquo;une unité pour chaque valeur qui ne divise pas le nombre. Le premier nombre qui divise exactement <code>nbre</code> est le plus grand diviseur. <em>Ce nombre trouvé, il est inutile de poursuivre la boucle</em>, on la quitte grâce à l&rsquo;instruction <code>break</code>.
+Les deux fonctions utilisent les deux structures de boucles implémentées en Python ; <code>break</code> peut donc être utilisée quelle que soit la boucle.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">plus_grand_diviseur</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">diviseur</span> <span class="o">=</span> <span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">diviseur</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">diviseur</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;Le plus grand diviseur de </span><span class="si">{}</span><span class="s2"> est </span><span class="si">{}</span><span class="s2">.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nbre</span><span class="p">,</span>
+                                                            <span class="n">diviseur</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">reponse</span>
+
+
+<span class="k">def</span> <span class="nf">plus_grand_diviseur_2</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">diviseur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;Le plus grand diviseur de </span><span class="si">{}</span><span class="s2"> est </span><span class="si">{}</span><span class="s2">.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nbre</span><span class="p">,</span>
+                                                            <span class="n">diviseur</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
 <h3 id="continue"><strong>continue</strong></h3>
+
+<p>L&rsquo;instruction <code>continue</code> <strong>termine ou ignore le reste des instructions de l&rsquo;itération courante</strong> et remonte au début : <em>le test pour une boucle non déterministe, l&rsquo;itération suivante (s&rsquo;il reste des itérations à parcourir) pour une boucle déterministe</em>.</p>
+
+<p><strong>Exemple.</strong> La fonction ci-dessous fournit une illustration (peut pertinente il est vrai !) de l&rsquo;utilisation de l&rsquo;instruction <code>continue</code> en retournant une chaîne de caractères constituée de tous les nombres qui ne divisent pas un nombre passé en argument.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">non_diviseur</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="n">diviseur</span> <span class="o">=</span> <span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">diviseur</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">diviseur</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diviseur</span><span class="p">)</span>
+        <span class="n">diviseur</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">reponse</span>
+
+
+<span class="k">def</span> <span class="nf">non_diviseur_2</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="k">for</span> <span class="n">diviseur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diviseur</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
+<ul>
+<li><p>Comme dit en introduction de ces codes, l&rsquo;exemple choisi n&rsquo;est pas très pertinent, on peut écrire plus clairement (sans utiliser <code>continue</code>):</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">non_diviseur_2</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="k">for</span> <span class="n">diviseur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diviseur</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">reponse</span></code></pre></div></li>
+
+<li><p>Les deux fonctions dans l&rsquo;exemple ci-dessus utilisent les deux structures de boucles implémentées en Python ; <code>continue</code> peut donc être utilisée quelle que soit la boucle.</p></li>
+</ul>
 
 <h2 id="exercices-du-chapitre-version-while">Exercices du chapitre (version <strong>while</strong>)</h2>
 
