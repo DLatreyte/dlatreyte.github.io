@@ -63,7 +63,7 @@
   "headline": "Contrôle du flot d’exécution d’un programme, les structures itératives",
   "description" : "Ce chapitre reprend l\x26rsquo;étude de structures de contrôles, c\x26rsquo;est à dire d\x26rsquo;instructions qui permettent de modifier le « flot d\x26rsquo;exécution implicite » d\x26rsquo;un programme.\nAprès les structures conditionnelles (ou alternatives), les structures itératives (ou boucles) sont introduites.\nStructures itératives Les boucles sont des instructions répétitives. Comme les tests conditionnels, elles nécessitent la définition de blocs d’instructions. Les instructions de ces blocs sont répétées tant qu\x26rsquo;une condition d’arrêt n\x26rsquo;est pas vérifiée.",
   "inLanguage" : "fr",
-  "wordCount":  3184 ,
+  "wordCount":  3320 ,
   "datePublished" : "2019-09-28T17:41:06",
   "dateModified" : "2019-09-28T17:41:06",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -976,13 +976,40 @@ La spécification de la fonction est</p>
 
 <h3 id="exercice-17">Exercice 17</h3>
 
-<p>Écrire et exécuter une fonction qui détermine les 15 premiers termes de
-  la « suite de Fibonacci » définie par :
+<p>Écrire et exécuter une fonction qui détermine les <em>n</em> premiers termes de la « suite de Fibonacci » définie par :
 $$
-\begin{aligned}
-u_1 &amp;= 1\\ u_2 &amp;= 1\\ u<em>n &amp;= u</em>{n-1} + u_{n-2} \text{ pour } n &gt; 2
-\end{aligned}
+\begin{aligned} u_1 &amp;= 1\\ u_2 &amp;= 1\\ u<em>n &amp;= u</em>{n-1} + u_{n-2} \text{ pour } n &gt; 2 \end{aligned}
 $$</p>
+
+<p>Cette fonction doit recevoir en argument la valeur de $n$ et retourner la suite de nombres sous forme de chaîne de caractères. Spécification de la fonction :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">fibo</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne les n premiers termes de la suite de Fibonacci.
+</span><span class="s2">    &#34;&#34;&#34;</span></code></pre></div>
+<hr />
+
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">fibo</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne les n premiers termes de la suite de Fibonacci.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;1&#34;</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;1 1&#34;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># u_{n-2}</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># u_{n-1}</span>
+        <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;1 1 &#34;</span>
+        <span class="n">rang</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">while</span> <span class="n">rang</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">v</span>  <span class="c1"># u_{n}</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">v</span>  <span class="c1"># Mise à jour de u_{n-2}</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">w</span>  <span class="c1"># Mise à jour de u_{n-1}</span>
+            <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>
+            <span class="n">rang</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
+<p></details></p>
 
 
         
