@@ -63,7 +63,7 @@
   "headline": "Contrôle du flot d’exécution d’un programme, les structures itératives",
   "description" : "Ce chapitre reprend l\x26rsquo;étude de structures de contrôles, c\x26rsquo;est à dire d\x26rsquo;instructions qui permettent de modifier le « flot d\x26rsquo;exécution implicite » d\x26rsquo;un programme.\nAprès les structures conditionnelles (ou alternatives), les structures itératives (ou boucles) sont introduites.\nStructures itératives Les boucles sont des instructions répétitives. Comme les tests conditionnels, elles nécessitent la définition de blocs d’instructions. Les instructions de ces blocs sont répétées tant qu\x26rsquo;une condition d’arrêt n\x26rsquo;est pas vérifiée.",
   "inLanguage" : "fr",
-  "wordCount":  4893 ,
+  "wordCount":  4440 ,
   "datePublished" : "2019-09-28T17:41:06",
   "dateModified" : "2019-09-28T17:41:06",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -312,9 +312,8 @@
 </ul></li>
 <li><a href="#les-instructions-break-et-continue">Les instructions <strong>break</strong> et <strong>continue</strong></a>
 <ul>
-<li><a href="#l-instruction-break">L&rsquo;instruction <strong>break</strong></a></li>
-<li><a href="#l-instruction-continue">L&rsquo;instruction <strong>continue</strong></a></li>
-<li><a href="#en-résumé">En résumé</a></li>
+<li><a href="#break"><strong>break</strong></a></li>
+<li><a href="#continue"><strong>continue</strong></a></li>
 </ul></li>
 <li><a href="#exercices-du-chapitre-version-while">Exercices du chapitre (version <strong>while</strong>)</a>
 <ul>
@@ -336,11 +335,11 @@
 <li><a href="#exercice-16">Exercice 16</a></li>
 <li><a href="#exercice-17">Exercice 17</a></li>
 </ul></li>
-<li><a href="#exercices-du-chapitre-version-for">Exercices du chapitre (version <strong>for</strong>)</a></li>
+<li><a href="#exerices-du-chapitre-version-for">Exerices du chapitre (version <strong>for</strong>)</a></li>
 <li><a href="#exercices-de-réflexion-du-chapitre">Exercices de réflexion du chapitre</a>
 <ul>
 <li><a href="#exercice-calendrier-très-difficile">Exercice  : Calendrier (très difficile)</a></li>
-<li><a href="#exercice-le-taxi-de-ramanujan-difficile">Exercice : Le taxi de Ramanujan (difficile)</a></li>
+<li><a href="#exercice-le-taxi-de-ramanujan">Exercice : Le taxi de Ramanujan</a></li>
 <li><a href="#exercice-code-isbn">Exercice : Code ISBN</a></li>
 </ul></li>
 </ul></li>
@@ -390,10 +389,10 @@ Chaque passage dans la boucle s&rsquo;appelle une <strong>itération</strong>.</
 
 <p><div class="splitbox"><div class="left">
 
-<img src="../../../premieres-nsi/chap-six/while-avec-compteur-autonome.svg" width="120%" />
+<img src="../../../premieres-nsi/chap-six/while-avec-compteur-autonome.svg" width="100%" />
 </div><div class="right">
 
-<img src="../../../premieres-nsi/chap-six/while-sans-compteur-autonome.svg" width="120%" />
+<img src="../../../premieres-nsi/chap-six/while-sans-compteur-autonome.svg" width="100%" />
 </div><div style="clear:both"></div></div>
 </p>
 
@@ -404,130 +403,13 @@ Chaque passage dans la boucle s&rsquo;appelle une <strong>itération</strong>.</
 
 <h3 id="présentation-1">Présentation</h3>
 
-<p>La boucle <strong>Pour Chaque</strong> s&rsquo;écrit <code>for</code> en Python. Cette structure de boucle n&rsquo;existe pas dans tous les langages. Dans la plupart des langages l&rsquo;instruction <code>for</code> implémente la  boucle  <strong>Pour</strong>.</p>
-
-<p>Les domaines d&rsquo;application de cette boucle sont, par exemple, <em>le parcours des tableaux</em>, puisqu&rsquo;on connaît le nombre de cases qui les constituent, ou les <em>traitements de</em> $N$ <em>données</em>, $N$ étant connu à l&rsquo;avance<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>.</p>
-
-<div class="note tip">
-  À l&rsquo;issue de chaque itération la valeur du compteur est incrémentée automatiquement.
-</div>
-
 <h3 id="syntaxe-en-python">Syntaxe en Python</h3>
 
-<p>La syntaxe de la boucle <strong>Pour chaque</strong> en Python est illustrée sur un exemple. La fonction ci-dessous retourne une chaîne de caractères formée de la liste des éléments de la table du nombre <code>n</code> passé en argument.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">table_de</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
-        <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">element</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>  <span class="c1"># Transformation d&#39;un nombre en chaîne </span>
-    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
-<div class="note warning">
-  La variable qui sert de compteur de boucle (<code>element</code> dans l&rsquo;exemple précédent) <strong>ne doit jamais être modifiée dans la boucle</strong>, ce qui exclut la possibilité de changer sa valeur par une affectation. <em>Dans le cas contraire, le comportement de la boucle est indéterminé</em> ; elle peut très bien s&rsquo;arrêter immédiatement, comme devenir infinie.
-</div>
-
-<div class="note tip">
-  <p>La boucle <code>for</code> <em>parcourt les éléments d&rsquo;un itérable</em> (comme une <strong>séquence</strong> ou un <strong>itérateur</strong>) et <em>se termine quand tous les éléments sont épuisés</em>. Sa syntaxe est :</p>
-<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">itérable</span><span class="p">:</span>
-    <span class="n">suite_à_répéter</span></code></pre></div>
-<p>À chaque itération, la <strong>variable d&rsquo;itération</strong> <code>element</code> <em>prend la valeur de l&rsquo;élément courant de l&rsquo;itérable</em> (séquence, itérateur ou tout objet supportant l&rsquo;itération) pour pouvoir l&rsquo;utiliser dans le bloc <code>suite_à_répéter</code>.</p>
-
-</div>
-
-<p>L&rsquo;itérateur <code>range</code> permet d&rsquo;utiliser l&rsquo;instruction <code>for</code> du langage Python d&rsquo;une façon comparable à celle des autres langages, c&rsquo;est à dire <em>en incrémentant une variable et en arrêtant une fois qu&rsquo;une valeur a été atteinte, ou qu&rsquo;une condition n&rsquo;est plus satisfaite</em>.</p>
-
-<p>L&rsquo;itérateur <code>range</code> génère à la volée, et selon le besoin, des nombres entiers compris entre une valeur de départ <code>début</code> et une valeur finale <code>fin</code>, par pas de <code>pas</code>. La syntaxe de ce <strong>générateur</strong> peut prendre trois formes :</p>
-<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="nb">range</span><span class="p">(</span><span class="n">debut</span><span class="p">,</span> <span class="n">fin</span><span class="p">,</span> <span class="n">pas</span><span class="p">)</span>
-<span class="nb">range</span><span class="p">(</span><span class="n">debut</span><span class="p">,</span> <span class="n">fin</span><span class="p">)</span>
-<span class="nb">range</span><span class="p">(</span><span class="n">fin</span><span class="p">)</span></code></pre></div>
-<p>**Comme pour tous les intervalles en Python, la borne supérieure est égale à <code>fin - 1</code>.</p>
-
-<p><strong>Exemples</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>    
-<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>             <span class="c1"># 10 ne fait pas parti des nombres générés</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>      
-<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>             <span class="c1"># un pas de 1 n&#39;a pas à être précisé</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>     
-<span class="mi">1</span> <span class="mi">4</span> <span class="mi">7</span>                         <span class="c1"># incrémentation par pas de 3</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>   <span class="c1"># si un seul argument, c&#39;est la limite supérieure             </span>
-<span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>           <span class="c1"># limite supérieure = nombre de termes ici</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>  
-<span class="mi">10</span> <span class="mi">9</span> <span class="mi">8</span> <span class="mi">7</span> <span class="mi">6</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span>            <span class="c1"># le pas peut être négatif (suite décroissante)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>   
-<span class="mi">10</span> <span class="mi">7</span> <span class="mi">4</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span><span class="mi">5</span> <span class="o">-</span><span class="mi">8</span> <span class="o">-</span><span class="mi">11</span> <span class="o">-</span><span class="mi">14</span>     <span class="c1"># nombres générés peuvent être négatifs</span></code></pre></div>
 <h2 id="les-instructions-break-et-continue">Les instructions <strong>break</strong> et <strong>continue</strong></h2>
 
-<h3 id="l-instruction-break">L&rsquo;instruction <strong>break</strong></h3>
+<h3 id="break"><strong>break</strong></h3>
 
-<p>L&rsquo;instruction <code>break</code> <strong>met fin à la boucle courante et reprend l&rsquo;exécution à la première instruction qui suit la structure itérative</strong>. On l&rsquo;utilise généralement quand une condition externe est déclenchée (habituellement en testant avec une instruction <code>if</code>), exigeant une sortie immédiate de la boucle. Elle s&rsquo;utilise aussi bien dans les boucles <strong>Pour</strong> que dans les boucles <strong>Tant Que</strong>.</p>
-
-<p>L&rsquo;instruction <code>break</code> est très utile pour quitter des « <em>boucles infinies</em> », créées par exemple à l&rsquo;aide de l&rsquo;entête : <code>while True:</code>.</p>
-
-<p><strong>Exemple.</strong>
-Les fonctions ci-dessous déterminent (par une méthode loin d&rsquo;être efficace) le plus grand diviseur d&rsquo;un nombre entré par l&rsquo;utilisateur (variable <code>nbre</code>). On teste tous les nombres qui pourraient être des diviseurs du nombre, en utilisant la variable <code>diviseur</code> et en la décrémentant d&rsquo;une unité pour chaque valeur qui ne divise pas le nombre. Le premier nombre qui divise exactement <code>nbre</code> est le plus grand diviseur. <em>Ce nombre trouvé, il est inutile de poursuivre la boucle</em>, on la quitte grâce à l&rsquo;instruction <code>break</code>.
-Les deux fonctions utilisent les deux structures de boucles implémentées en Python ; <code>break</code> peut donc être utilisée quelle que soit la boucle.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">plus_grand_diviseur</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="n">diviseur</span> <span class="o">=</span> <span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="n">diviseur</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">break</span>
-        <span class="n">diviseur</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;Le plus grand diviseur de </span><span class="si">{}</span><span class="s2"> est </span><span class="si">{}</span><span class="s2">.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nbre</span><span class="p">,</span>
-                                                            <span class="n">diviseur</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">reponse</span>
-
-
-<span class="k">def</span> <span class="nf">plus_grand_diviseur_2</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">diviseur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">break</span>
-    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;Le plus grand diviseur de </span><span class="si">{}</span><span class="s2"> est </span><span class="si">{}</span><span class="s2">.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nbre</span><span class="p">,</span>
-                                                            <span class="n">diviseur</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
-<h3 id="l-instruction-continue">L&rsquo;instruction <strong>continue</strong></h3>
-
-<p>L&rsquo;instruction <code>continue</code> <strong>termine ou ignore le reste des instructions de l&rsquo;itération courante</strong> et remonte au début : <em>le test pour une boucle non déterministe, l&rsquo;itération suivante (s&rsquo;il reste des itérations à parcourir) pour une boucle déterministe</em>.</p>
-
-<p><strong>Exemple.</strong>
-La fonction ci-dessous fournit une illustration (peut pertinente il est vrai !) de l&rsquo;utilisation de l&rsquo;instruction <code>continue</code> en retournant une chaîne de caractères constituée de tous les nombres qui ne divisent pas un nombre passé en argument.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">non_diviseur</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="n">diviseur</span> <span class="o">=</span> <span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="n">diviseur</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">diviseur</span> <span class="o">-=</span> <span class="mi">1</span>
-            <span class="k">continue</span>
-        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diviseur</span><span class="p">)</span>
-        <span class="n">diviseur</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">reponse</span>
-
-
-<span class="k">def</span> <span class="nf">non_diviseur_2</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="k">for</span> <span class="n">diviseur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diviseur</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
-<ul>
-<li><p>Comme dit en introduction de ces codes, l&rsquo;exemple choisi n&rsquo;est pas très pertinent, on peut écrire plus clairement (sans utiliser <code>continue</code>):</p>
-<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">non_diviseur_2</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-<span class="k">for</span> <span class="n">diviseur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diviseur</span><span class="p">)</span>
-<span class="k">return</span> <span class="n">reponse</span></code></pre></div></li>
-
-<li><p>Les deux fonctions dans l&rsquo;exemple ci-dessus utilisent les deux structures de boucles implémentées en Python ; <code>continue</code> peut donc être utilisée quelle que soit la boucle.</p></li>
-</ul>
-
-<h3 id="en-résumé">En résumé</h3>
-
-<p><img src="../../../premieres-nsi/chap-six/break-continue-autonome.svg" width="80%" /></p>
+<h3 id="continue"><strong>continue</strong></h3>
 
 <h2 id="exercices-du-chapitre-version-while">Exercices du chapitre (version <strong>while</strong>)</h2>
 
@@ -734,7 +616,7 @@ La spécification de la fonction est :</p>
 
 <h3 id="exercice-6">Exercice 6</h3>
 
-<p>Écrire et exécuter une fonction qui calcule les 50 premiers termes de la table de multiplication d&rsquo;un nombre <code>a</code> passé en argument mais qui retourne une chaîne de caractères formée seulement par ceux qui sont des multiples de 7.
+<p>Écrire et exécuter une fonction qui calcule les 50 premiers termes de la table de multiplication d&rsquo;un nombre a passé en argument mais qui retourne une chaîne de caractères formée seulement par ceux qui sont des multiples de 7.
 La spécification de la fonction est :</p>
 <div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">multiplication_multiple_sept</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="s2">&#34;&#34;&#34;
@@ -1103,9 +985,7 @@ La spécification de la fonction est</p>
 
 <p>Écrire et exécuter une fonction qui détermine les <em>n</em> premiers termes de la « suite de Fibonacci » définie par :
 $$
-\begin{array}{rcl}
-u_1 &amp;=&amp; 1\\ u_2 &amp;=&amp; 1\\ u_n &amp;=&amp; u_{n-1} + u_{n-2}  \text{ pour } n &gt; 2
-\end{array}
+\begin{aligned} u_1 &amp;= 1\\ u_2 &amp;= 1\\ u<em>n &amp;= u</em>{n-1} + u_{n-2} \text{ pour } n &gt; 2 \end{aligned}
 $$</p>
 
 <p>Cette fonction doit recevoir en argument la valeur de $n$ et retourner la suite de nombres sous forme de chaîne de caractères. Spécification de la fonction :</p>
@@ -1138,9 +1018,132 @@ $$</p>
     <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
 <p></details></p>
 
-<h2 id="exercices-du-chapitre-version-for">Exercices du chapitre (version <strong>for</strong>)</h2>
+<h2 id="exerices-du-chapitre-version-for">Exerices du chapitre (version <strong>for</strong>)</h2>
 
-<p>Reprendre les exercices 3, 4, 5, 6, 7, 9, 10, 11, 12, 14, 16 de la section précédente et les ré-écrire à l&rsquo;aide de l&rsquo;instruction <code>for</code>.</p>
+<p>Reprendre tous les exercices de la section précédente qui font en fait appel à des boucles déterministes et les ré-écrire à l&rsquo;aide de l&rsquo;instruction <code>for</code>.</p>
+
+<p><details><summary><strong>Solutions</strong></summary></p>
+
+<p>def triple_du_precedent(a: int) -&gt; str:
+    &ldquo;&rdquo;&rdquo;
+    Retourne une chaîne de caractères formée par une suite de 12
+    entiers dont chaque terme est égal au triple du précédent,
+    à partir du premier entier a, positif,  passé en argument.</p>
+<div class="highlight"><pre class="chroma">&gt;&gt;&gt; triple_du_precedent(1)
+&#39;1 3 9 27 81 243 729 2187 6561 19683 59049 177147 &#39;
+&gt;&gt;&gt; triple_du_precedent(5)
+&#39;5 15 45 135 405 1215 3645 10935 32805 98415 295245 885735 &#39;
+&#34;&#34;&#34;
+reponse = &#34;&#34;    # Initialisation de la chaîne à retourner
+val_max_compteur = 12   # Valeur maximale pour le compteur
+
+for i in range(1, val_max_compteur + 1):
+    reponse += &#34;{} &#34;.format(a)
+    a *= 3
+
+return reponse</pre></div>
+<p>def multiplication(a: int) -&gt; str:
+    &ldquo;&rdquo;&rdquo;
+    Retourne une chaîne de caractères formées des 10 premiers
+    nombres de la table de multiplication de a.</p>
+<div class="highlight"><pre class="chroma">&gt;&gt;&gt; multiplication(7)
+&#39;7 14 21 28 35 42 49 56 63 70 &#39;
+&#34;&#34;&#34;
+reponse = &#34;&#34;  # Initialisation de la chaîne à retourner
+val_max_compteur = 10
+
+for i in range(1, val_max_compteur + 1):
+    reponse += str(a * i) + &#34; &#34;
+
+return reponse</pre></div>
+<p>def multiplication_multiple_trois(a: int) -&gt; str:
+    &ldquo;&rdquo;&rdquo;
+    Retourne une chaîne de caractères formées des 10 premiers
+    nombres de la table de multiplication de a en signalant au
+    passage ceux qui sont des multiples de 3.</p>
+<div class="highlight"><pre class="chroma">&gt;&gt;&gt; multiplication_multiple_trois(2)
+&#39;2 4 6* 8 10 12* 14 16 18* 20 &#39;
+&gt;&gt;&gt; multiplication_multiple_trois(7)
+&#39;7 14 21* 28 35 42* 49 56 63* 70 &#39;
+&#34;&#34;&#34;
+reponse = &#34;&#34;  # Initialisation de la chaîne à retourner
+val_max_compteur = 10  
+
+for i in range(1, val_max_compteur + 1):
+    valeur = a * i
+    reponse += str(valeur)
+    if valeur % 3 == 0:  # si multiple de 3
+        reponse += &#34;*&#34;   # ajouter astérisque
+    reponse += &#34; &#34;  # pour séparer les valeurs
+
+return reponse</pre></div>
+<p>def multiplication_multiple_sept(a: int) -&gt; str:
+    &ldquo;&rdquo;&rdquo;
+    Calcule les 50 premiers termes de la table de a mais retourne
+    une chaîne de caractères contenant uniquement les multiples de 7.</p>
+<div class="highlight"><pre class="chroma">&gt;&gt;&gt; multiplication_multiple_sept(2)
+&#39;14 28 42 56 70 84 98 &#39;
+&gt;&gt;&gt; multiplication_multiple_sept(9)
+&#39;63 126 189 252 315 378 441 &#39;
+&#34;&#34;&#34;
+reponse = &#34;&#34;  # Initialisation de la chaîne à retourner
+val_max_compteur = 50
+
+for i in range(1, val_max_compteur + 1):
+    valeur = a * i
+    if valeur % 7 == 0:  # si multiple de 3
+        reponse += str(valeur) + &#34; &#34;   # ajouter valeur
+
+return reponse</pre></div>
+<p>def diviseurs(a: int) -&gt; str:
+    &ldquo;&rdquo;&rdquo;
+    Retourne une chaîne de caractères formée de la liste des diviseurs
+    de a.</p>
+<div class="highlight"><pre class="chroma">&gt;&gt;&gt; diviseurs(18)
+&#39;18 9 6 3 2 1 &#39;
+&#34;&#34;&#34;
+reponse = &#34;&#34;
+
+for n in range(a, 0, -1):
+    if a % n == 0:
+        reponse += str(n) + &#34; &#34;
+
+return reponse</pre></div>
+<p>def table_multiplication() -&gt; str:
+    &ldquo;&rdquo;&rdquo;
+    Retourne la table de multiplication des nombres de 1 à 10.
+    &ldquo;&rdquo;&rdquo;
+    reponse = &ldquo;&rdquo;
+    val_max = 10</p>
+<div class="highlight"><pre class="chroma">for i in range(1, val_max + 1):
+    for j in range(1, val_max + 1):
+        reponse += &#34;{} &#34;.format(i * j)
+    reponse += &#34;\n&#34;
+
+return reponse</pre></div>
+<p>def plus_grand_plus_petit(nbre_valeurs: int) -&gt; str:
+    &ldquo;&rdquo;&rdquo;
+    Demande à l&rsquo;utilisateur d&rsquo;entrer nbre_valeurs valeurs et retourne une
+    chaîne de caractères formée des deux valeurs max et min.
+    &ldquo;&rdquo;&rdquo;
+    valeur = float(input(&ldquo;Entrez la valeur 1 : &ldquo;))
+    valeur_plus_grande = valeur
+    valeur_plus_petite = valeur</p>
+<div class="highlight"><pre class="chroma">for i in range(2, nbre_valeurs + 1):
+    valeur = float(input(&#34;Entrez la valeur {} : &#34;.format(i)))
+    if valeur &gt; valeur_plus_grande:
+        valeur_plus_grande = valeur
+    elif valeur &lt; valeur_plus_petite:
+        valeur_plus_petite = valeur
+
+reponse = &#34;max : {}, min : {}&#34;.format(valeur_plus_grande,
+                                      valeur_plus_petite)
+return reponse</pre></div>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&ldquo;:
+    import doctest
+    doctest.testmod()</p>
+
+<p></details></p>
 
 <h2 id="exercices-de-réflexion-du-chapitre">Exercices de réflexion du chapitre</h2>
 
@@ -1148,23 +1151,25 @@ $$</p>
 
 <p>Écrire et exécuter une fonction qui affiche un calendrier qui va du 1er janvier 2001 au 31 décembre 3000.</p>
 
-<p><strong>Description</strong>
-- Les années multiples de quatre sont bissextiles, sauf les années multiples de cent qui ne le sont pas, à l&rsquo;exception des années multiples de quatre cents qui le sont. Ainsi, 2100, 2200, 2300, 2500, 2600, 2700, 2900 et 3000 ne sont pas bissextiles mais 2400 et 2800 le sont.</p>
+<p><strong>Description</strong></p>
 
 <ul>
+<li><p>Les années multiples de quatre sont bissextiles, sauf les années multiples de cent qui ne le sont pas, à l&rsquo;exception des années multiples de quatre cents qui le sont. Ainsi, 2100, 2200, 2300, 2500, 2600, 2700, 2900 et 3000 ne sont pas bissextiles mais 2400 et 2800 le sont.</p></li>
+
 <li><p>Ajouter à ce calendrier le nombre de jours écoulés depuis le début du calendrier.</p></li>
 
 <li><p>Ajouter à ce calendrier le jour de la semaine.</p></li>
 </ul>
 
-<p><strong>Exemple de sortie.</strong>
-1 lundi 1 janvier 2001
+<p><strong>Exemple de sortie.</strong></p>
+
+<p>1 lundi 1 janvier 2001
 2 mardi 2 janvier 2001
 &hellip;
 365241 mardi 30 décembre 3000
 365242 mercredi 31 décembre 3000</p>
 
-<h3 id="exercice-le-taxi-de-ramanujan-difficile">Exercice : Le taxi de Ramanujan (difficile)</h3>
+<h3 id="exercice-le-taxi-de-ramanujan">Exercice : Le taxi de Ramanujan</h3>
 
 <p>Srinivasa Ramanujan était un mathématicien indien célèbre pour son intuition dans la manipulation des nombres. Alors que le mathématicien anglais G. H. Hardy lui rendait visite, ce dernier remarqua que le numéro du taxi dans lequel ils se déplaçaient était 1729 : « <em>Voilà un nombre sans relief !</em> », déclara-t-il alors.  Ramanujan répondit aussitôt : « <em>Pas du tout Hardy ! Pas du tout ! C&rsquo;est au contraire un nombre très intéressant. C&rsquo;est le plus petit nombre que l&rsquo;on peut exprimer comme la somme de deux nombres au cube, et ce de deux façons différentes !</em> »</p>
 
@@ -1172,27 +1177,18 @@ $$</p>
 
 <p>En d&rsquo;autres termes, le problème consiste à trouver quatre entiers $a$, $b$, $c$ et $d$, plus petits que $N$, tels que $a^3 + b^3 = c^3 + d^3$.</p>
 
-<p><strong>Aide.</strong> Utiliser quatre boucles imbriquées et une chaîne de caractères pour retourner les valeurs.</p>
+<p><strong>Aide.</strong> Utiliser quatre boucles imbriquées.</p>
 
 <h3 id="exercice-code-isbn">Exercice : Code ISBN</h3>
 
-<p>L&rsquo;« International Standard Book Number » (ISBN) est un code à dix chiffres qui identifie de manière unique un livre. Le chiffre le plus à droite de ce code est « <em>la somme de contrôle</em> (<a href="http://fr.wikipedia.org/wiki/Somme_de_contrôle">Wikipedia</a>) : il est calculé, de manière unique, à partir des valeurs des neuf autres chiffres. Sa valeur est telle que $d_1 + 2 d_2 + 3 d_3 + \ldots + 10 d_{10}$ soit un multiple de 11 (ici $d_i$ représente la valeur du i<sup>ème</sup> chiffre du code, en partant de la droite).</p>
+<p>L&rsquo;« International Standard Book Number \fg» (ISBN) est un code à dix chiffres qui identifie de manière unique un livre. Le chiffre le plus à droite de ce code est « <em>la somme de contrôle</em> (<a href="http://fr.wikipedia.org/wiki/Somme_de_contrôle">Wikipedia</a>) : il est calculé, de manière unique, à partir des valeurs des neuf autres chiffres. Sa valeur est telle que $d_1 + 2 d_2 + 3 d<em>3 + \ldots + 10 d</em>{10}$ soit un multiple de 11 (ici $d_i$ représente la valeur du i<sub>ème</sub> chiffre du code, en partant de la droite).</p>
 
 <p><strong>Exemple.</strong> La « <em>la somme de contrôle</em> » du code commençant par 020131452 est 5 puisque 5 est la seule valeur de $x$ comprise entre 0 et 10 (exclu) telle que $$10 \cdot 0 + 9 \cdot 2 + 8 \cdot 0 + 7 \cdot 1 + 6 \cdot 3 + 5 \cdot 1 + 4 \cdot 4 + 3 \cdot 5+ 2 \cdot 2 + 1 \cdot x$$ soit un multiple de 11.</p>
 
 <p>Écrire une fonction qui demande à l&rsquo;utilisateur les 9 premiers chiffres d&rsquo;un code ISBN et qui détermine la somme de contrôle.
 La fonction doit finalement afficher le code ISBN à l&rsquo;écran.</p>
 
-<p><strong>Remarque.</strong> Utiliser une chaîne de caractères pour stocker et retourner les informations.</p>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:1">Pour être exact, le programmeur n&rsquo;a pas besoin de connaître la valeur de $N$ mais simplement de savoir qu&rsquo;il y aura un nombre $N$. Exemple, le nombre de notes entré par un professeur.
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
-</ol>
-</div>
+<p><strong>Remarque.</strong> Utiliser un tuple ou une liste pour stocker les informations.</p>
 
 
         
