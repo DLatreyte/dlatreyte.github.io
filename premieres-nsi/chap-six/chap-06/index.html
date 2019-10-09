@@ -63,7 +63,7 @@
   "headline": "Contrôle du flot d’exécution d’un programme, les structures itératives",
   "description" : "Ce chapitre reprend l\x26rsquo;étude de structures de contrôles, c\x26rsquo;est à dire d\x26rsquo;instructions qui permettent de modifier le « flot d\x26rsquo;exécution implicite » d\x26rsquo;un programme.\nAprès les structures conditionnelles (ou alternatives), les structures itératives (ou boucles) sont introduites.\nStructures itératives Les boucles sont des instructions répétitives. Comme les tests conditionnels, elles nécessitent la définition de blocs d’instructions. Les instructions de ces blocs sont répétées tant qu\x26rsquo;une condition d’arrêt n\x26rsquo;est pas vérifiée.",
   "inLanguage" : "fr",
-  "wordCount":  4694 ,
+  "wordCount":  5421 ,
   "datePublished" : "2019-09-28T17:41:06",
   "dateModified" : "2019-09-28T17:41:06",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -305,15 +305,17 @@
 <li><a href="#présentation">Présentation</a></li>
 <li><a href="#syntaxe-de-la-boucle-tant-que-en-python">Syntaxe de la boucle <strong>Tant que</strong> en Python</a></li>
 </ul></li>
-<li><a href="#la-boucle-pour">La boucle <strong>Pour</strong></a>
+<li><a href="#la-boucle-pour-en-fait-pour-chaque">La boucle <strong>Pour</strong> (en fait <strong>Pour Chaque</strong>)</a>
 <ul>
 <li><a href="#présentation-1">Présentation</a></li>
 <li><a href="#syntaxe-en-python">Syntaxe en Python</a></li>
+<li><a href="#l-itérateur-range">L&rsquo;itérateur <strong>range</strong></a></li>
 </ul></li>
 <li><a href="#les-instructions-break-et-continue">Les instructions <strong>break</strong> et <strong>continue</strong></a>
 <ul>
 <li><a href="#break"><strong>break</strong></a></li>
 <li><a href="#continue"><strong>continue</strong></a></li>
+<li><a href="#en-résumé">En résumé</a></li>
 </ul></li>
 <li><a href="#exercices-du-chapitre-version-while">Exercices du chapitre (version <strong>while</strong>)</a>
 <ul>
@@ -399,12 +401,67 @@ Chaque passage dans la boucle s&rsquo;appelle une <strong>itération</strong>.</
 <h3 id="syntaxe-de-la-boucle-tant-que-en-python">Syntaxe de la boucle <strong>Tant que</strong> en Python</h3>
 <div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">while</span> <span class="n">expression_booléenne</span><span class="p">:</span>
     <span class="n">instructions</span> <span class="n">à</span> <span class="n">répéter</span></code></pre></div>
-<h2 id="la-boucle-pour">La boucle <strong>Pour</strong></h2>
+<h2 id="la-boucle-pour-en-fait-pour-chaque">La boucle <strong>Pour</strong> (en fait <strong>Pour Chaque</strong>)</h2>
 
 <h3 id="présentation-1">Présentation</h3>
 
+<p>La boucle <strong>Pour Chaque</strong> s’écrit <code>for</code> en Python. Cette structure de boucle n’existe pas dans tous les langages. Dans la plupart des langages l’instruction <code>for</code> implémente la boucle <strong>Pour</strong>.</p>
+
+<p>Les domaines d’application de cette boucle sont, par exemple, <em>le parcours des tableaux</em>, puisqu’on connaît le nombre de cases qui les constituent, ou <em>les traitements de données</em>, leur nombre étant connu à l&rsquo;avance.</p>
+
+<div class="note tip">
+  À l’issue de chaque itération la valeur du compteur est incrémentée automatiquement.
+</div>
+
 <h3 id="syntaxe-en-python">Syntaxe en Python</h3>
 
+<p>La syntaxe de la boucle <strong>Pour chaque</strong> en Python est illustrée sur un exemple. La fonction ci-dessous retourne une chaîne de caractères formée de la liste des éléments de la table du nombre <code>n</code> passé en argument.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">table_de</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+        <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">element</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>  <span class="c1"># Transformation d&#39;un nombre en chaîne </span>
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
+<div class="note warning">
+  La variable qui sert de compteur de boucle (<code>element</code> dans l’exemple précédent) <strong>ne doit jamais être modifiée dans la boucle</strong>, ce qui exclut la possibilité de changer sa valeur par une affectation. <em>Dans le cas contraire, le comportement de la boucle est indéterminé ; elle peut très bien s’arrêter immédiatement, comme devenir infinie</em>.
+</div>
+
+<div class="note tip">
+  <p>a boucle <code>for</code> <em>parcourt les éléments d’un itérable (comme une séquence ou un itérateur) et se termine quand tous les éléments sont épuisés</em>. Sa syntaxe est :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">itérable</span><span class="p">:</span>
+    <span class="n">suite_à_répéter</span></code></pre></div>
+<p>À chaque itération, la variable d’itération <code>element</code> prend <em>la valeur de l’élément courant de l’itérable</em> (séquence, itérateur ou tout objet supportant l’itération) pour pouvoir l’utiliser dans le bloc <code>suite_à_répéter</code>.</p>
+
+</div>
+
+<h3 id="l-itérateur-range">L&rsquo;itérateur <strong>range</strong></h3>
+
+<p>L’itérateur <code>range</code> permet d’utiliser l’instruction <code>for</code> du langage Python d’une façon comparable à celle des autres langages, c’est à dire <strong>en incrémentant une variable et en arrêtant la boucle une fois qu’une valeur a été atteinte, ou qu’une condition n’est plus satisfaite</strong>.</p>
+
+<p>L’itérateur <code>range</code> génère à la volée, et selon le besoin, <strong>des nombres entiers compris entre une valeur de départ <code>début</code> et une valeur finale <code>fin</code>, par pas de <code>pas</code></strong>. La syntaxe de ce générateur peut prendre trois formes :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="nb">range</span><span class="p">(</span><span class="n">debut</span><span class="p">,</span> <span class="n">fin</span><span class="p">,</span> <span class="n">pas</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="nb">range</span><span class="p">(</span><span class="n">debut</span><span class="p">,</span> <span class="n">fin</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="nb">range</span><span class="p">(</span><span class="n">fin</span><span class="p">)</span></code></pre></div>
+<div class="note warning">
+  De façon générale, tous les intervalles, en Python, sont du type <strong>[debut, fin[</strong>.
+</div>
+
+<p>**Exemples. **</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>    
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>             <span class="c1"># 10 ne fait pas parti des nombres générés</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>      
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>             <span class="c1"># un pas de 1 n&#39;a pas à être précisé</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>     
+<span class="mi">1</span> <span class="mi">4</span> <span class="mi">7</span>                         <span class="c1"># incrémentation par pas de 3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>   <span class="c1"># si un seul argument, c&#39;est la limite supérieure             </span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>           <span class="c1"># limite supérieure = nombre de termes ici</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>  
+<span class="mi">10</span> <span class="mi">9</span> <span class="mi">8</span> <span class="mi">7</span> <span class="mi">6</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span>            <span class="c1"># le pas peut être négatif (suite décroissante)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>   
+<span class="mi">10</span> <span class="mi">7</span> <span class="mi">4</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span><span class="mi">5</span> <span class="o">-</span><span class="mi">8</span> <span class="o">-</span><span class="mi">11</span> <span class="o">-</span><span class="mi">14</span>     <span class="c1"># nombres générés peuvent être négatifs</span></code></pre></div>
 <h2 id="les-instructions-break-et-continue">Les instructions <strong>break</strong> et <strong>continue</strong></h2>
 
 <h3 id="break"><strong>break</strong></h3>
@@ -433,6 +490,41 @@ Chaque passage dans la boucle s&rsquo;appelle une <strong>itération</strong>.</
                                                             <span class="n">diviseur</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
 <h3 id="continue"><strong>continue</strong></h3>
+
+<p>L’instruction <code>continue</code> <strong>termine ou ignore le reste des instructions de l’itération courante</strong> et remonte au début : <em>le test pour une boucle non déterministe, l’itération suivante (s’il reste des itérations à parcourir) pour une boucle déterministe.</em></p>
+
+<p><strong>Exemple.</strong> La fonction ci-dessous fournit une illustration (peut pertinente il est vrai !) de l’utilisation de l’instruction <code>continue</code> en retournant une chaîne de caractères constituée de tous les nombres qui ne divisent pas un nombre passé en argument.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">non_diviseur</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="n">diviseur</span> <span class="o">=</span> <span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">diviseur</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">diviseur</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diviseur</span><span class="p">)</span>
+        <span class="n">diviseur</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">reponse</span>
+
+
+<span class="k">def</span> <span class="nf">non_diviseur_2</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="k">for</span> <span class="n">diviseur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diviseur</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
+<p><strong>Remarque.</strong> Comme dit en introduction de ces codes, l’exemple choisi n’est pas très pertinent, on peut écrire plus clairement (sans utiliser continue):</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">non_diviseur_2</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="k">for</span> <span class="n">diviseur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diviseur</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">reponse</span></code></pre></div>
+<p>Les deux fonctions dans l’exemple ci-dessus utilisent les deux structures de boucles implémentées en Python ; <code>continue</code> <em>peut donc être utilisée quelle que soit la boucle</em>.</p>
+
+<h3 id="en-résumé">En résumé</h3>
+
+<p><img src="../../../premieres-nsi/chap-six/break-continue-autonome.svg" width="90%" /></p>
 
 <h2 id="exercices-du-chapitre-version-while">Exercices du chapitre (version <strong>while</strong>)</h2>
 
