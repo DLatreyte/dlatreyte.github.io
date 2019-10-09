@@ -61,9 +61,9 @@
     "name" : "David Latreyte"
   },
   "headline": "Tester automatiquement ses fonctions avec doctest",
-  "description" : "",
+  "description" : "Rappel Au cours du chapitre 2, nous avons expliqué pourquoi la définition d\x26rsquo;une fonction doit toujours être accompagnée de l\x26rsquo;écriture de sa spécification. Cette dernière permet : - à tout utilisateur de la fonction de déterminer facilement - quel traitement celle-ci réalise ; - comment il faut l\x26rsquo;utiliser (nombre d\x26rsquo;arguments par exemple) ; - quelles conditions il est nécessaire de respecter pour l\x26rsquo;utiliser. - au programmeur de cette fonction de préciser - le nombre et le type de ses paramètres ; - le type de la valeur retournée ; - le traitement exécuté, accompagné de quelques exemples.",
   "inLanguage" : "fr",
-  "wordCount":  0 ,
+  "wordCount":  413 ,
   "datePublished" : "2019-09-28T17:40:56",
   "dateModified" : "2019-09-28T17:40:56",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -289,10 +289,125 @@
 
       <article role="main" class="blog-post">
           
+            <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#rappel">Rappel</a></li>
+<li><a href="#première-utilisation-du-module-doctest">Première utilisation du module <strong>doctest</strong></a>
+<ul>
+<li><a href="#à-quoi-sert-le-module-doctest">À quoi sert le module <strong>doctest</strong> ?</a></li>
+<li><a href="#comment-rendre-l-analyse-de-la-valeur-retournée-par-une-fonction-automatique">Comment rendre l&rsquo;analyse de la valeur retournée par une fonction automatique ?</a></li>
+<li><a href="#que-faire-lorsqu-on-souhaite-prendre-en-compte-la-mauvaise-utilisation-d-une-fonction">Que faire lorsqu&rsquo;on souhaite prendre en compte la mauvaise utilisation d&rsquo;une fonction ?</a></li>
+</ul></li>
+<li><a href="#à-retenir">À retenir</a></li>
+<li><a href="#exercices">Exercices</a>
+<ul>
+<li><a href="#exercice-1">Exercice 1</a></li>
+<li><a href="#exercice-2">Exercice 2</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+          
         
         <hr />
 
         
+
+<h2 id="rappel">Rappel</h2>
+
+<p>Au cours du chapitre 2, nous avons expliqué pourquoi <em>la définition d&rsquo;une fonction doit toujours être accompagnée de l&rsquo;écriture de sa spécification</em>. Cette dernière permet :
+- à tout utilisateur de la fonction de déterminer facilement
+    - quel traitement celle-ci réalise ;
+    - comment il faut l&rsquo;utiliser (nombre d&rsquo;arguments par exemple) ;
+    - quelles conditions il est nécessaire de respecter pour l&rsquo;utiliser.
+- au programmeur de cette fonction de préciser
+    - le nombre et le type de ses paramètres ;
+    - le type de la valeur retournée ;
+    - le traitement exécuté, accompagné de quelques exemples.</p>
+
+<div class="note tip">
+  Spécification = Signature + Documentation
+</div>
+
+<p><strong>Exemple.</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">kelvin_vers_celsius</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34; Convertit la température donnée en kelvin en une température θ 
+</span><span class="s2">    en degrés celsius. Relation : θ = t - 273.15.
+</span><span class="s2">    
+</span><span class="s2">    &gt;&gt;&gt; kelvin_vers_celsius(0) 
+</span><span class="s2">    -273.15
+</span><span class="s2">    &gt;&gt;&gt; kelvin_vers_celsius(273.15) 
+</span><span class="s2">    0.0 
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">offset</span> <span class="o">=</span> <span class="o">-</span><span class="mf">273.15</span> 
+    <span class="k">return</span> <span class="n">t</span> <span class="o">+</span> <span class="n">offset</span></code></pre></div>
+<p>La spécification d&rsquo;une fonction peut être obtenue à l&rsquo;aide de la fonction <code>help</code> :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="o">&gt;&gt;&gt;</span> <span class="n">help</span><span class="p">(</span><span class="n">kelvin_vers_celsius</span><span class="p">)</span>
+
+  <span class="n">Help</span> <span class="n">on</span> <span class="n">function</span> <span class="n">kelvin_vers_celsius</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">__main__</span><span class="p">:</span>
+  
+  <span class="n">kelvin_vers_celsius</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> 
+     <span class="n">Convertit</span> <span class="n">la</span> <span class="n">température</span> <span class="n">donnée</span> <span class="n">en</span> <span class="n">kelvin</span> <span class="n">en</span> <span class="n">une</span> <span class="n">température</span> <span class="n">θ</span>
+     <span class="n">en</span> <span class="n">degrés</span> <span class="n">celsius</span><span class="o">.</span> <span class="n">Relation</span> <span class="p">:</span> <span class="n">θ</span> <span class="o">=</span> <span class="n">t</span> <span class="o">-</span> <span class="mf">273.15</span><span class="o">.</span>
+     
+     <span class="o">&gt;&gt;&gt;</span> <span class="n">kelvin_vers_celsius</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> 
+     <span class="o">-</span><span class="mf">273.15</span>
+     <span class="o">&gt;&gt;&gt;</span> <span class="n">kelvin_vers_celsius</span><span class="p">(</span><span class="mf">273.15</span><span class="p">)</span> </code></pre></div>
+<blockquote>
+<p><em>L&rsquo;objectif de ce chapitre est de démontrer que l&rsquo;écriture d&rsquo;une spécification présente encore bien plus d&rsquo;avantages !</em></p>
+</blockquote>
+
+<h2 id="première-utilisation-du-module-doctest">Première utilisation du module <strong>doctest</strong></h2>
+
+<h3 id="à-quoi-sert-le-module-doctest">À quoi sert le module <strong>doctest</strong> ?</h3>
+
+<h3 id="comment-rendre-l-analyse-de-la-valeur-retournée-par-une-fonction-automatique">Comment rendre l&rsquo;analyse de la valeur retournée par une fonction automatique ?</h3>
+
+<h3 id="que-faire-lorsqu-on-souhaite-prendre-en-compte-la-mauvaise-utilisation-d-une-fonction">Que faire lorsqu&rsquo;on souhaite prendre en compte la mauvaise utilisation d&rsquo;une fonction ?</h3>
+
+<h2 id="à-retenir">À retenir</h2>
+
+<p>Pour chacune des fonctions, il faut
+1. Incorporer à sa documentation des exemples pertinents d&rsquo;utilisation de ces fonctions ;
+2. Ajouter le bloc d&rsquo;instruction suivant à la fin du fichier</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">doctest</span>
+    <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span></code></pre></div>
+<h2 id="exercices">Exercices</h2>
+
+<h3 id="exercice-1">Exercice 1</h3>
+
+<p>Définir le prédicat <code>est_egal</code> dont une partie de la spécification est :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">est_egal</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Teste l&#39;égalité de 2 floats a et b : abs(a - b) &lt;= epsilon avec
+</span><span class="s2">    epsilon = 1e-7
+</span><span class="s2">    
+</span><span class="s2">    &gt;&gt;&gt; est_egal(0, 0.0) 
+</span><span class="s2">    xxx 
+</span><span class="s2">    &gt;&gt;&gt; est_egal(1/49*49, 1) 
+</span><span class="s2">    xxx 
+</span><span class="s2">    &#34;&#34;&#34;</span></code></pre></div>
+<p>Remplacer les <em>xxx</em> de façon à ce que la fonction testmod accepte votre définition.</p>
+
+<h3 id="exercice-2">Exercice 2</h3>
+
+<p>Définir la fonction <code>inverse</code> dont une partie de la spécification est :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34; Retourne l&#39;inverse du nombre x.
+</span><span class="s2">    ERREUR si x est nul.
+</span><span class="s2">
+</span><span class="s2">    &gt;&gt;&gt; inverse(0) 
+</span><span class="s2">    Traceback (most recent call last):
+</span><span class="s2">    …
+</span><span class="s2">    ZeroDivisionError: Division par 0 !!!
+</span><span class="s2">    &gt;&gt;&gt; inverse(5) 
+</span><span class="s2">    xxx
+</span><span class="s2">    &#34;&#34;&#34;</span></code></pre></div>
+<p>Remplacer les <em>xxx</em> de façon à ce que la fonction testmod accepte votre définition.</p>
+
 
         
           <div class="blog-tags">
