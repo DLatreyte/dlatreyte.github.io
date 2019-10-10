@@ -63,7 +63,7 @@
   "headline": "Tester automatiquement ses fonctions avec doctest",
   "description" : "1. Rappel Au cours du chapitre 2, nous avons expliqué pourquoi la définition d\x26rsquo;une fonction doit toujours être accompagnée de l\x26rsquo;écriture de sa spécification. Cette dernière permet :\n à tout utilisateur de la fonction de déterminer facilement  quel traitement celle-ci réalise ; comment il faut l\x26rsquo;utiliser (nombre d\x26rsquo;arguments par exemple) ; quelles conditions il est nécessaire de respecter pour l\x26rsquo;utiliser.  au programmeur de cette fonction de préciser  le nombre et le type de ses paramètres ; le type de la valeur retournée ; le traitement exécuté, accompagné de quelques exemples.",
   "inLanguage" : "fr",
-  "wordCount":  769 ,
+  "wordCount":  948 ,
   "datePublished" : "2019-09-28T17:40:56",
   "dateModified" : "2019-09-28T17:40:56",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -304,7 +304,10 @@
 <ul>
 <li><a href="#à-faire-1">À faire</a></li>
 </ul></li>
-<li><a href="#2-3-que-faire-lorsqu-on-souhaite-prendre-en-compte-la-mauvaise-utilisation-d-une-fonction">2.3. Que faire lorsqu&rsquo;on souhaite prendre en compte la mauvaise utilisation d&rsquo;une fonction ?</a></li>
+<li><a href="#2-3-que-faire-lorsqu-on-souhaite-prendre-en-compte-la-mauvaise-utilisation-d-une-fonction">2.3. Que faire lorsqu&rsquo;on souhaite prendre en compte la mauvaise utilisation d&rsquo;une fonction ?</a>
+<ul>
+<li><a href="#à-faire-2">À faire</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#3-à-retenir">3. À retenir</a></li>
 <li><a href="#4-exercices">4. Exercices</a>
@@ -446,6 +449,53 @@ A-t-on la moindre indication que la fonction <code>testmod</code> a été lancé
 </ol>
 
 <h3 id="2-3-que-faire-lorsqu-on-souhaite-prendre-en-compte-la-mauvaise-utilisation-d-une-fonction">2.3. Que faire lorsqu&rsquo;on souhaite prendre en compte la mauvaise utilisation d&rsquo;une fonction ?</h3>
+
+<h4 id="à-faire-2">À faire</h4>
+
+<ol>
+<li><p>Remplacer la définition de la fonction <code>kelvin_vers_celsius</code> par celle-ci :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">kelvin_vers_celsius</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+
+<span class="s2">&#34;&#34;&#34; Convertit la température donnée en kelvin en une température θ 
+</span><span class="s2">en degrés celsius. Relation : θ = t - 273.15. ERREUR si t est négative.
+</span><span class="s2">    
+</span><span class="s2">&gt;&gt;&gt; kelvin_vers_celsius(0) 
+</span><span class="s2">-273.15
+</span><span class="s2">&gt;&gt;&gt; kelvin_vers_celsius(273.15) 
+</span><span class="s2">0.0 
+</span><span class="s2">&#34;&#34;&#34;</span> 
+<span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> 
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;Température en kelvin doit être positive !&#34;</span><span class="p">)</span>
+
+<span class="n">offset</span> <span class="o">=</span> <span class="o">-</span><span class="mf">273.15</span> 
+<span class="k">return</span> <span class="n">t</span> <span class="o">+</span> <span class="n">offset</span></code></pre></div></li>
+</ol>
+
+<p>Quelle est la différence dans le comportement de la fonction ce code introduit-il ?</p>
+
+<ol>
+<li><p>Pour l&rsquo;instant la documentation de la fonction ne comporte aucun exemple illustrant ce à quoi il faut s&rsquo;attendre si on appelle la fonction avec un nombre négatif.</p>
+
+<ol>
+<li><p>Charger le fichier dans l&rsquo;interpréteur (touche F5 du clavier).</p></li>
+
+<li><p>Écrire et exécuter l&rsquo;instruction</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="o">&gt;&gt;&gt;</span> <span class="n">kelvin_vers_celsius</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span></code></pre></div>
+<p>On obtient</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<span class="err">…</span>
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">Température</span> <span class="n">en</span> <span class="n">kelvin</span> <span class="n">doit</span> <span class="n">être</span> <span class="n">positive</span> <span class="err">!</span></code></pre></div></li>
+
+<li><p>Ce sont ces lignes qu&rsquo;il faut ajouter à la documentation de la fonction</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="o">&gt;&gt;&gt;</span> <span class="n">kelvin_vers_celsius</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span> 
+<span class="err">…</span>  
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">Température</span> <span class="n">en</span> <span class="n">kelvin</span> <span class="n">doit</span> <span class="n">être</span> <span class="n">positive</span> <span class="err">!</span></code></pre></div></li>
+</ol>
+
+<p>Compléter la documentation de la fonction et la tester.</p></li>
+</ol>
 
 <h2 id="3-à-retenir">3. À retenir</h2>
 
