@@ -63,7 +63,7 @@
   "headline": "Tester automatiquement ses fonctions avec doctest",
   "description" : "Rappel Au cours du chapitre 2, nous avons expliqué pourquoi la définition d\x26rsquo;une fonction doit toujours être accompagnée de l\x26rsquo;écriture de sa spécification. Cette dernière permet : - à tout utilisateur de la fonction de déterminer facilement - quel traitement celle-ci réalise ; - comment il faut l\x26rsquo;utiliser (nombre d\x26rsquo;arguments par exemple) ; - quelles conditions il est nécessaire de respecter pour l\x26rsquo;utiliser. - au programmeur de cette fonction de préciser - le nombre et le type de ses paramètres ; - le type de la valeur retournée ; - le traitement exécuté, accompagné de quelques exemples.",
   "inLanguage" : "fr",
-  "wordCount":  413 ,
+  "wordCount":  657 ,
   "datePublished" : "2019-09-28T17:40:56",
   "dateModified" : "2019-09-28T17:40:56",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -296,7 +296,10 @@
 <li><a href="#rappel">Rappel</a></li>
 <li><a href="#première-utilisation-du-module-doctest">Première utilisation du module <strong>doctest</strong></a>
 <ul>
-<li><a href="#à-quoi-sert-le-module-doctest">À quoi sert le module <strong>doctest</strong> ?</a></li>
+<li><a href="#à-quoi-sert-le-module-doctest">À quoi sert le module <strong>doctest</strong> ?</a>
+<ul>
+<li><a href="#à-faire">À faire</a></li>
+</ul></li>
 <li><a href="#comment-rendre-l-analyse-de-la-valeur-retournée-par-une-fonction-automatique">Comment rendre l&rsquo;analyse de la valeur retournée par une fonction automatique ?</a></li>
 <li><a href="#que-faire-lorsqu-on-souhaite-prendre-en-compte-la-mauvaise-utilisation-d-une-fonction">Que faire lorsqu&rsquo;on souhaite prendre en compte la mauvaise utilisation d&rsquo;une fonction ?</a></li>
 </ul></li>
@@ -362,6 +365,53 @@
 <h2 id="première-utilisation-du-module-doctest">Première utilisation du module <strong>doctest</strong></h2>
 
 <h3 id="à-quoi-sert-le-module-doctest">À quoi sert le module <strong>doctest</strong> ?</h3>
+
+<h4 id="à-faire">À faire</h4>
+
+<ol>
+<li><p>Taper le code complet de la définition de la fonction <code>kelvin_vers_celsius</code> dans la zone de définition des fonctions du logiciel Thonny.</p></li>
+
+<li><p>Déplacer le début du code précédent au niveau de la ligne 3 et écrire, à la ligne 1, l&rsquo;instruction :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="kn">import</span> <span class="nn">doctest</span></code></pre></div>
+<p>Enregistrer le fichier contenant le code précédent.</p></li>
+
+<li><p>Charger le fichier dans l&rsquo;interpréteur (touche <strong>F5</strong> du clavier). La fonction peut être appelée, rien de particulier n&rsquo;apparaît pour l&rsquo;instant.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="o">&gt;&gt;&gt;</span> <span class="n">kelvin_vers_celsius</span><span class="p">(</span><span class="mf">373.15</span><span class="p">)</span>
+<span class="mf">100.0</span></code></pre></div></li>
+
+<li><p>Entrer et exécuter l&rsquo;instruction suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="o">&gt;&gt;&gt;</span> <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span>
+<span class="n">TestResults</span><span class="p">(</span><span class="n">failed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">attempted</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></code></pre></div>
+<p>La fonction <code>testmod</code> du module <code>doctest</code> semble avoir effectué deux tests (<code>attempted=2</code>) sans avoir rencontré le moindre problème (<code>failed=0)</code>.
+Mais quels tests a-t-elle effectué ?</p></li>
+
+<li><p>Entrer et exécuter l&rsquo;instruction suivante :</p>
+<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="o">&gt;&gt;&gt;</span> <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">(</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">Trying</span><span class="p">:</span> 
+ <span class="n">kelvin_vers_celsius</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> 
+<span class="n">Expecting</span><span class="p">:</span> 
+  <span class="o">-</span><span class="mf">273.15</span> 
+<span class="n">ok</span> 
+<span class="n">Trying</span><span class="p">:</span> 
+  <span class="n">kelvin_vers_celsius</span><span class="p">(</span><span class="mf">273.15</span><span class="p">)</span> 
+<span class="n">Expecting</span><span class="p">:</span> 
+  <span class="mf">0.0</span> 
+<span class="n">ok</span> </code></pre></div>
+<p>La fonction testmod du module doctest a :</p>
+
+<ul>
+<li>lu la documentation de la fonction <code>kelvin_vers_celsius</code> à la recherche de lignes débutant par <code>&gt;&gt;&gt;</code> ;</li>
+<li>exécuté les instructions de ces lignes ;</li>
+<li>a vérifié que le résultat retourné correspond bien à ce qui est écrit dans cette documentation.</li>
+</ul></li>
+
+<li><p>Modifier maintenant, dans la définition de la fonction <code>kelvin_vers_celsius</code>, la valeur 0.0 par 1.0. Charger à nouveau le fichier dans l&rsquo;interpréteur (touche <strong>F5</strong> du clavier) et relancer la commande du point 5. ci-dessus.
+Que retourne la fonction <code>testmod</code> maintenant ? Ce message décrit-il précisément le problème ?</p></li>
+</ol>
+
+<div class="note tip">
+  La fonction testmod du module doctest analyse la valeur retournée par une fonction à partir d&rsquo;exemples données dans sa documentation.
+</div>
 
 <h3 id="comment-rendre-l-analyse-de-la-valeur-retournée-par-une-fonction-automatique">Comment rendre l&rsquo;analyse de la valeur retournée par une fonction automatique ?</h3>
 
