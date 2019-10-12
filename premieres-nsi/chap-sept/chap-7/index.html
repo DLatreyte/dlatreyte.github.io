@@ -63,7 +63,7 @@
   "headline": "Quelques dessins simples avec une tortue",
   "description" : "1. Présentation de la « tortue graphique » La « tortue graphique » a été inventée à la fin des années 60 par Seymour Papert et ses collègues du MIT (célèbre université américaine). , pour permettre de rendre l\x26rsquo;apprentissage de la programmation plus ludique. Elle faisait alors partie du langage Logo, spécifiquement développé pour être utilisé par de jeunes enfants.\nLe nom « tortue graphique » suggère la façon dont les figures géométriques vont être dessinées à l\x26rsquo;écran.",
   "inLanguage" : "fr",
-  "wordCount":  556 ,
+  "wordCount":  785 ,
   "datePublished" : "2019-10-12T18:10:22",
   "dateModified" : "2019-10-12T18:10:22",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -300,8 +300,10 @@
 <li>
 <ul>
 <li><a href="#exercice-1">Exercice 1</a></li>
+<li><a href="#exercice-2">Exercice 2</a></li>
 </ul></li>
 </ul></li>
+<li><a href="#4-liste-des-commandes-permettant-de-guider-la-tortue">4. Liste des commandes permettant de guider la tortue</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -367,10 +369,10 @@ Expérimentez ces deux commandes et notez leurs effets. Utilisez différents arg
 <p>Le programme suivant permet de tracer à l&rsquo;écran un rectangle. Écrire les instructions du corps de la fonction permettant d&rsquo;effectuer ce tracé.</p>
 
 <p><strong>Vous veillerez à utiliser le moins d&rsquo;instructions possible.</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="kn">import</span> <span class="nn">turtle</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">turtle</span>
 
 
-<span class="k">def</span> <span class="nf">trace_rectangle</span><span class="p">(</span><span class="n">tortue</span><span class="p">:</span> <span class="s2">&#34;Turtle&#34;</span><span class="p">,</span> <span class="n">longueur</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">largeur</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">trace_rectangle</span><span class="p">(</span><span class="n">tortue</span><span class="p">:</span> <span class="s2">&#34;Turtle&#34;</span><span class="p">,</span> <span class="n">longueur</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">largeur</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
     <span class="s2">&#34;&#34;&#34;
 </span><span class="s2">    Dessine à l&#39;écran à l&#39;aide de la tortue passée en argument
 </span><span class="s2">    un rectangle de longueur et largeurs passées en argument.
@@ -393,32 +395,98 @@ Expérimentez ces deux commandes et notez leurs effets. Utilisez différents arg
 <hr />
 
 <p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">turtle</span>
 
-<p>import turtle</p>
+<span class="k">def</span> <span class="nf">trace_rectangle</span><span class="p">(</span><span class="n">tortue</span><span class="p">:</span> <span class="s2">&#34;Turtle&#34;</span><span class="p">,</span> <span class="n">longueur</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">largeur</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Dessine à l&#39;écran à l&#39;aide de la tortue passée en argument
+</span><span class="s2">    un rectangle de longueur et largeurs passées en argument.
+</span><span class="s2">    Le dessin est effectué à partir de la position de la tortue
+</span><span class="s2">    lorsque la fonction est appelée.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">longueur</span><span class="p">)</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">largeur</span><span class="p">)</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+        
+<span class="n">tortue_1</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="n">longueur</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">largeur</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">trace_rectangle</span><span class="p">(</span><span class="n">tortue_1</span><span class="p">,</span> <span class="n">longueur</span><span class="p">,</span> <span class="n">largeur</span><span class="p">)</span>
 
-<p>def trace_rectangle(tortue: &ldquo;Turtle&rdquo;, longueur: int, largeur: int) -&gt; None:
-    &ldquo;&rdquo;&rdquo;
-    Dessine à l&rsquo;écran à l&rsquo;aide de la tortue passée en argument
-    un rectangle de longueur et largeurs passées en argument.
-    Le dessin est effectué à partir de la position de la tortue
-    lorsque la fonction est appelée.
-    &ldquo;&rdquo;&rdquo;
-    for i in range(2):
-        tortue.forward(longueur)
-        tortue.left(90)
-        tortue.forward(largeur)
-        tortue.left(90)</p>
-
-<p>tortue_1 = turtle.Turtle()
-longueur = 300
-largeur = 200
-trace_rectangle(tortue_1, longueur, largeur)</p>
-
-<p>turtle.exitonclick()  # Empêche la fenêtre de se fermer automatiquement à la fin du tracé</p>
-
+<span class="n">turtle</span><span class="o">.</span><span class="n">exitonclick</span><span class="p">()</span>  <span class="c1"># Empêche la fenêtre de se fermer automatiquement à la fin du tracé</span></code></pre></div>
 <p></details></p>
 
 <hr />
+
+<h4 id="exercice-2">Exercice 2</h4>
+
+<p>Modifier le programme suivant de façon à ce qu&rsquo;il trace à l&rsquo;écran les trois carrés.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">turtle</span>
+
+<span class="k">def</span> <span class="nf">trace_rectangle</span><span class="p">(</span><span class="n">tortue</span><span class="p">:</span> <span class="s2">&#34;Turtle&#34;</span><span class="p">,</span> <span class="n">longueur</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">largeur</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Dessine à l&#39;écran à l&#39;aide de la tortue passée en argument
+</span><span class="s2">    un rectangle de longueur et largeurs passées en argument.
+</span><span class="s2">    Le dessin est effectué à partir de la position de la tortue
+</span><span class="s2">    lorsque la fonction est appelée.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="o">.....................</span>
+    <span class="o">.....................</span>
+    <span class="o">.....................</span>
+    <span class="o">.....................</span>
+    <span class="o">.....................</span>
+        
+<span class="n">tortue_1</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="n">tortue_1</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="s2">&#34;turtle&#34;</span><span class="p">)</span>
+<span class="n">tortue_1</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s2">&#34;aquamarine4&#34;</span><span class="p">)</span>
+<span class="n">longueur</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">largeur</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">nbre_carres</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">angle_entre_carres</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="o">.....................</span> <span class="p">:</span>
+    <span class="o">.....................</span>
+    <span class="o">.....................</span>
+
+<span class="n">turtle</span><span class="o">.</span><span class="n">exitonclick</span><span class="p">()</span>  <span class="c1"># Empêche la fenêtre de se fermer automatiquement à la fin du tracé</span></code></pre></div>
+<hr />
+
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">turtle</span>
+
+<span class="k">def</span> <span class="nf">trace_rectangle</span><span class="p">(</span><span class="n">tortue</span><span class="p">:</span> <span class="s2">&#34;Turtle&#34;</span><span class="p">,</span> <span class="n">longueur</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">largeur</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Dessine à l&#39;écran à l&#39;aide de la tortue passée en argument
+</span><span class="s2">    un rectangle de longueur et largeurs passées en argument.
+</span><span class="s2">    Le dessin est effectué à partir de la position de la tortue
+</span><span class="s2">    lorsque la fonction est appelée.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">longueur</span><span class="p">)</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">largeur</span><span class="p">)</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+        
+<span class="n">tortue_1</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+<span class="n">tortue_1</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="s2">&#34;turtle&#34;</span><span class="p">)</span>
+<span class="n">tortue_1</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s2">&#34;aquamarine4&#34;</span><span class="p">)</span>
+<span class="n">longueur</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">largeur</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">nbre_carres</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">angle_entre_carres</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre_carres</span><span class="p">):</span>
+    <span class="n">trace_rectangle</span><span class="p">(</span><span class="n">tortue_1</span><span class="p">,</span> <span class="n">longueur</span><span class="p">,</span> <span class="n">largeur</span><span class="p">)</span>
+    <span class="n">tortue_1</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="n">angle_entre_carres</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="n">turtle</span><span class="o">.</span><span class="n">exitonclick</span><span class="p">()</span>  <span class="c1"># Empêche la fenêtre de se fermer automatiquement à la fin du tracé</span></code></pre></div>
+<p></details></p>
+
+<hr />
+
+<p><strong>Remarque.</strong> Consultez l&rsquo;adresse suivante pour découvrir les couleurs utilisables : <a href="http://www.tcl.tk/man/tcl8.5/TkCmd/colors.htm">http://www.tcl.tk/man/tcl8.5/TkCmd/colors.htm</a>.</p>
+
+<h2 id="4-liste-des-commandes-permettant-de-guider-la-tortue">4. Liste des commandes permettant de guider la tortue</h2>
 
 
         
