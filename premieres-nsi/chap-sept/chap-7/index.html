@@ -63,7 +63,7 @@
   "headline": "Quelques dessins simples avec une tortue",
   "description" : "1. Présentation de la « tortue graphique » La « tortue graphique » a été inventée à la fin des années 60 par Seymour Papert et ses collègues du MIT (célèbre université américaine). , pour permettre de rendre l\x26rsquo;apprentissage de la programmation plus ludique. Elle faisait alors partie du langage Logo, spécifiquement développé pour être utilisé par de jeunes enfants.\nLe nom « tortue graphique » suggère la façon dont les figures géométriques vont être dessinées à l\x26rsquo;écran.",
   "inLanguage" : "fr",
-  "wordCount":  1820 ,
+  "wordCount":  2092 ,
   "datePublished" : "2019-10-12T18:10:22",
   "dateModified" : "2019-10-12T18:10:22",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -315,7 +315,12 @@
 <ul>
 <li><a href="#exercice-3">Exercice 3</a></li>
 </ul></li>
-<li><a href="#exercice-4">Exercice 4</a></li>
+<li><a href="#exercice-4">Exercice 4</a>
+<ul>
+<li><a href="#exercice-5">Exercice 5</a></li>
+<li><a href="#exercice-6">Exercice 6</a></li>
+<li><a href="#exercice-7">Exercice 7</a></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -819,11 +824,130 @@ Expérimentez ces deux commandes et notez leurs effets. Utilisez différents arg
         
     <span class="n">turtle</span><span class="o">.</span><span class="n">exitonclick</span><span class="p">()</span>
 
-<span class="n">main</span><span class="p">()</span>
-        </code></pre></div>
+<span class="n">main</span><span class="p">()</span></code></pre></div>
 <p></details></p>
 
 <hr />
+
+<h4 id="exercice-5">Exercice 5</h4>
+
+<p>Sur le modèle de l&rsquo;exercice précédent, écrire un programme qui trave à l&rsquo;écran 200 carrés dont la position du coin inférieur gauche est aléatoire, tout comme l&rsquo;orientation et la largeur.</p>
+
+<hr />
+
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">turtle</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">trace_carre</span><span class="p">(</span><span class="n">tortue</span><span class="p">:</span> <span class="s2">&#34;Turtle&#34;</span><span class="p">,</span> <span class="n">largeur</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Trace un carré de largeur donnée dont l&#39;orientation dépend
+</span><span class="s2">    de l&#39;orientation de la tortue.
+</span><span class="s2">    À l&#39;issue du tracé, la tortue retrouve sa direction intiale.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">largeur</span><span class="p">)</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+        
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34; Fonction principale. &#34;&#34;&#34;</span>
+    <span class="n">tortue</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+    <span class="n">tortue</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="n">nbre_carres</span> <span class="o">=</span> <span class="mi">200</span>
+    
+    <span class="n">largeur_min</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">largeur_max</span> <span class="o">=</span> <span class="mi">25</span>
+    
+    <span class="n">angle_min</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">angle_max</span> <span class="o">=</span> <span class="mi">360</span>
+    
+    <span class="n">x_min</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200</span>
+    <span class="n">x_max</span> <span class="o">=</span> <span class="mi">200</span>
+    <span class="n">y_min</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200</span>
+    <span class="n">y_max</span> <span class="o">=</span> <span class="mi">200</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre_carres</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">)</span>
+        <span class="n">largeur</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">largeur_min</span><span class="p">,</span> <span class="n">largeur_max</span><span class="p">)</span>
+        <span class="n">angle</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">angle_min</span><span class="p">,</span> <span class="n">angle_max</span><span class="p">)</span>
+        
+        <span class="n">tortue</span><span class="o">.</span><span class="n">penup</span><span class="p">()</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">setposition</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">setheading</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">pendown</span><span class="p">()</span>
+        <span class="n">trace_carre</span><span class="p">(</span><span class="n">tortue</span><span class="p">,</span> <span class="n">largeur</span><span class="p">)</span>
+        
+    <span class="n">turtle</span><span class="o">.</span><span class="n">exitonclick</span><span class="p">()</span>
+
+
+<span class="n">main</span><span class="p">()</span></code></pre></div>
+<p></details></p>
+
+<hr />
+
+<h4 id="exercice-6">Exercice 6</h4>
+
+<p>Compléter le programme ci-dessous de façon à ce qu&rsquo;il trace à l&rsquo;écran une figure identique à celle présentée ci-dessous.</p>
+
+<p align="center">
+<img src="../../../premieres-nsi/chap-7/points.svg" widht="60" />
+</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">turtle</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">nbre_colonnes</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">nbre_rangees</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">rayon</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># espacement horizontal entre points</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># espacement vertical entre points</span>
+    
+    <span class="n">tortue</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+    <span class="n">tortue</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="o">.........................................</span>
+    <span class="o">.........................................</span>
+    <span class="o">.........................................</span>
+    <span class="o">.........................................</span>
+    <span class="o">.........................................</span>
+    <span class="o">.........................................</span>
+    <span class="o">.........................................</span>
+    
+    <span class="n">turtle</span><span class="o">.</span><span class="n">exitonclick</span><span class="p">()</span>
+    
+<span class="n">main</span><span class="p">()</span></code></pre></div>
+<hr />
+
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">turtle</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">nbre_colonnes</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">nbre_rangees</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">rayon</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># espacement horizontal entre points</span>
+    <span class="n">dy</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># espacement vertical entre points</span>
+    
+    <span class="n">tortue</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+    <span class="n">tortue</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre_rangees</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre_colonnes</span><span class="p">):</span>
+            <span class="n">tortue</span><span class="o">.</span><span class="n">penup</span><span class="p">()</span>
+            <span class="n">tortue</span><span class="o">.</span><span class="n">setposition</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">-</span> <span class="p">(</span><span class="n">nbre_rangees</span> <span class="o">*</span> <span class="n">dx</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span>
+                               <span class="n">j</span> <span class="o">*</span> <span class="n">dy</span> <span class="o">-</span> <span class="p">(</span><span class="n">nbre_colonnes</span> <span class="o">*</span> <span class="n">dy</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">tortue</span><span class="o">.</span><span class="n">pendown</span><span class="p">()</span>
+            <span class="n">tortue</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">rayon</span><span class="p">)</span>
+    
+    <span class="n">turtle</span><span class="o">.</span><span class="n">exitonclick</span><span class="p">()</span>
+    
+<span class="n">main</span><span class="p">()</span></code></pre></div>
+<p></details></p>
+
+<hr />
+
+<h4 id="exercice-7">Exercice 7</h4>
 
 
         
