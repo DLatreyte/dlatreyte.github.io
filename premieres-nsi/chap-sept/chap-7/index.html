@@ -63,7 +63,7 @@
   "headline": "Quelques dessins simples avec une tortue",
   "description" : "1. Présentation de la « tortue graphique » La « tortue graphique » a été inventée à la fin des années 60 par Seymour Papert et ses collègues du MIT (célèbre université américaine). , pour permettre de rendre l\x26rsquo;apprentissage de la programmation plus ludique. Elle faisait alors partie du langage Logo, spécifiquement développé pour être utilisé par de jeunes enfants.\nLe nom « tortue graphique » suggère la façon dont les figures géométriques vont être dessinées à l\x26rsquo;écran.",
   "inLanguage" : "fr",
-  "wordCount":  2405 ,
+  "wordCount":  2646 ,
   "datePublished" : "2019-10-12T18:10:22",
   "dateModified" : "2019-10-12T18:10:22",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -320,6 +320,7 @@
 <li><a href="#exercice-5">Exercice 5</a></li>
 <li><a href="#exercice-6">Exercice 6</a></li>
 <li><a href="#exercice-7">Exercice 7</a></li>
+<li><a href="#exercice-8">Exercice 8</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -959,7 +960,6 @@ Expérimentez ces deux commandes et notez leurs effets. Utilisez différents arg
 </span><span class="s2">&#34;&#34;&#34;</span>
 
 <span class="kn">import</span> <span class="nn">turtle</span>
-<span class="kn">import</span> <span class="nn">math</span> <span class="kn">as</span> <span class="nn">m</span>
     
 <span class="k">def</span> <span class="nf">trace_carres</span><span class="p">(</span><span class="n">tortue</span><span class="p">:</span> <span class="s2">&#34;Turtle&#34;</span><span class="p">,</span> <span class="n">largeur</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
                  <span class="n">largeur_min</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dl</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
@@ -1021,7 +1021,6 @@ Expérimentez ces deux commandes et notez leurs effets. Utilisez différents arg
 </span><span class="s2">&#34;&#34;&#34;</span>
 
 <span class="kn">import</span> <span class="nn">turtle</span>
-<span class="kn">import</span> <span class="nn">math</span> <span class="kn">as</span> <span class="nn">m</span>
     
 <span class="k">def</span> <span class="nf">trace_carres</span><span class="p">(</span><span class="n">tortue</span><span class="p">:</span> <span class="s2">&#34;Turtle&#34;</span><span class="p">,</span> <span class="n">largeur</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
                  <span class="n">largeur_min</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dl</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
@@ -1072,6 +1071,118 @@ Expérimentez ces deux commandes et notez leurs effets. Utilisez différents arg
     <span class="n">tortue</span><span class="o">.</span><span class="n">pensize</span><span class="p">(</span><span class="s2">&#34;3&#34;</span><span class="p">)</span>
     
     <span class="n">trace_carres</span><span class="p">(</span><span class="n">tortue</span><span class="p">,</span> <span class="n">largeur</span><span class="p">,</span> <span class="n">largeur_min</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">exitonclick</span><span class="p">()</span>
+
+<span class="n">main</span><span class="p">()</span></code></pre></div>
+<p></details></p>
+
+<hr />
+
+<h4 id="exercice-8">Exercice 8</h4>
+
+<p>Sur le modèle de l&rsquo;exercice précédent, compléter le code ci-dessous de façon à ce qu&rsquo;il trace à l&rsquo;écran des cercles concentriques, comme illustré sur la figure ci-dessous.</p>
+
+<p align="center">
+<img src="../../../premieres-nsi/chap-7/cercles_concentriques.svg" widht="60" />
+</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;&#34;
+</span><span class="s2">Tracés de cercles de différentes tailles.
+</span><span class="s2">&#34;&#34;&#34;</span>
+
+<span class="kn">import</span> <span class="nn">turtle</span>
+
+<span class="k">def</span> <span class="nf">draw_circles</span><span class="p">(</span><span class="n">tortue</span><span class="p">:</span> <span class="s2">&#34;Turtle&#34;</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                 <span class="n">r_min</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dr</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Dessine à l&#39;écran une série de cercles dont les rayons sont
+</span><span class="s2">    de plus en plus petits.
+</span><span class="s2">    Le processus itératif cesse dès que le rayon du cercle à tracer
+</span><span class="s2">    est inférieur au rayon minimal choisi.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="o">.......................</span>
+        <span class="o">.......................</span>
+        <span class="o">.......................</span>
+        <span class="o">.......................</span>
+        <span class="o">.......................</span>
+        
+        <span class="o">.......................</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Fonction principale, appelle toutes les autres fonctions.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="mi">700</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
+    
+    <span class="n">radius</span> <span class="o">=</span> <span class="mi">200</span>
+    <span class="n">radius_min</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">delta_r</span> <span class="o">=</span> <span class="mi">15</span>
+
+    <span class="n">window</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Screen</span><span class="p">()</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">bgcolor</span><span class="p">(</span><span class="s2">&#34;black&#34;</span><span class="p">)</span>
+
+    <span class="n">pen</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+    <span class="n">pen</span><span class="o">.</span><span class="n">hideturtle</span><span class="p">()</span>
+    <span class="n">pen</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s2">&#34;red&#34;</span><span class="p">)</span>
+    <span class="n">pen</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">pen</span><span class="o">.</span><span class="n">pensize</span><span class="p">(</span><span class="s2">&#34;3&#34;</span><span class="p">)</span>
+    
+    <span class="o">.......................</span>
+
+    <span class="n">window</span><span class="o">.</span><span class="n">exitonclick</span><span class="p">()</span>
+
+<span class="n">main</span><span class="p">()</span></code></pre></div>
+<hr />
+
+<p><details><summary><strong>Solution</strong></summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;&#34;
+</span><span class="s2">Tracés de cercles de différentes tailles.
+</span><span class="s2">&#34;&#34;&#34;</span>
+
+<span class="kn">import</span> <span class="nn">turtle</span>
+
+<span class="k">def</span> <span class="nf">draw_circles</span><span class="p">(</span><span class="n">tortue</span><span class="p">:</span> <span class="s2">&#34;Turtle&#34;</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                 <span class="n">r_min</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dr</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Dessine à l&#39;écran une série de cercles dont les rayons sont
+</span><span class="s2">    de plus en plus petits.
+</span><span class="s2">    Le processus itératif cesse dès que le rayon du cercle à tracer
+</span><span class="s2">    est inférieur au rayon minimal choisi.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">while</span> <span class="ow">not</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">r_min</span><span class="p">):</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">penup</span><span class="p">()</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">r</span><span class="p">)</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">pendown</span><span class="p">()</span>
+        <span class="n">tortue</span><span class="o">.</span><span class="n">circle</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        
+        <span class="n">r</span> <span class="o">-=</span> <span class="n">dr</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Fonction principale, appelle toutes les autres fonctions.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="mi">700</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">600</span>
+    
+    <span class="n">radius</span> <span class="o">=</span> <span class="mi">200</span>
+    <span class="n">radius_min</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">delta_r</span> <span class="o">=</span> <span class="mi">15</span>
+
+    <span class="n">window</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Screen</span><span class="p">()</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">bgcolor</span><span class="p">(</span><span class="s2">&#34;black&#34;</span><span class="p">)</span>
+
+    <span class="n">pen</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
+    <span class="n">pen</span><span class="o">.</span><span class="n">hideturtle</span><span class="p">()</span>
+    <span class="n">pen</span><span class="o">.</span><span class="n">color</span><span class="p">(</span><span class="s2">&#34;red&#34;</span><span class="p">)</span>
+    <span class="n">pen</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">pen</span><span class="o">.</span><span class="n">pensize</span><span class="p">(</span><span class="s2">&#34;3&#34;</span><span class="p">)</span>
+    
+    <span class="n">draw_circles</span><span class="p">(</span><span class="n">pen</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">radius_min</span><span class="p">,</span> <span class="n">delta_r</span><span class="p">)</span>
 
     <span class="n">window</span><span class="o">.</span><span class="n">exitonclick</span><span class="p">()</span>
 
