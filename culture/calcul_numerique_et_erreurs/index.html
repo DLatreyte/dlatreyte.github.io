@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Les différentes erreurs lorsqu&#39;on calcule à l&#39;aide d&#39;un ordinateur - Accueil</title>
+  <meta property="og:title" content="Les différentes erreurs lorsqu&#39;on calcule à l&#39;aide d&#39;un ordinateur" />
+  <meta name="twitter:title" content="Les différentes erreurs lorsqu&#39;on calcule à l&#39;aide d&#39;un ordinateur" />
+  <meta name="description" content="Derivation numérique">
+  <meta property="og:description" content="Derivation numérique">
+  <meta name="twitter:description" content="Derivation numérique">
+  <meta name="author" content="David Latreyte"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Accueil",
+    
+    "url": "https:\/\/dlatreyte.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/dlatreyte.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io\/culture\/calcul_numerique_et_erreurs\/",
+          "name": "Les différentes erreurs lorsqu\u0027on calcule à l\u0027aide d\u0027un ordinateur"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "David Latreyte"
+  },
+  "headline": "Les différentes erreurs lorsqu\u0027on calcule à l\u0027aide d\u0027un ordinateur",
+  "description" : "Dans ce document, on s\u0026rsquo;intéresse au différentes erreurs qui interviennent lorsqu\u0026rsquo;on effectue des calculs à l\u0026rsquo;aide d\u0026rsquo;un ordinateur. On prend pour exemple le calcul numérique de la dérivée d\u0026rsquo;une fonction, qu\u0026rsquo;elle soit définie analytiquement ou numériquement (par une table de valeurs).\n1. Dérivation d\u0026rsquo;une fonction analytique \u0026mdash; idée simple 1.1. Introduction Le nombre dérivé $f\u0026rsquo;(x)$ en un point $x \\in \\mathbb{R}$, d\u0026rsquo;une fonction1 : $$ \\begin{array}{l|rcl} f: \u0026amp; \\mathbb{R} \u0026amp; \\longrightarrow \u0026amp; \\mathbb{R} \\cr \u0026amp; x \u0026amp; \\longmapsto \u0026amp; f(x) \\end{array} $$",
+  "inLanguage" : "fr",
+  "wordCount":  1774 ,
+  "datePublished" : "2020-08-21T14:08:45",
+  "dateModified" : "2020-08-21T14:08:45",
+  "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+  "keywords" : [ "Analyse numérique, Informatique, Python" ],
+  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/culture\/calcul_numerique_et_erreurs\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/dlatreyte.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Les différentes erreurs lorsqu&#39;on calcule à l&#39;aide d&#39;un ordinateur" />
+<meta property="og:description" content="Derivation numérique">
+<meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
+<meta property="og:url" content="https://dlatreyte.github.io/culture/calcul_numerique_et_erreurs/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Accueil" />
+
+  <meta name="twitter:title" content="Les différentes erreurs lorsqu&#39;on calcule à l&#39;aide d&#39;un ordinateur" />
+  <meta name="twitter:description" content="Derivation numérique">
+  <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@@DLatreyte" />
+  <meta name="twitter:creator" content="@@DLatreyte" />
+  <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@@DLatreyte" />
+  <meta name="twitter:creator" content="@@DLatreyte" />
+  <meta property="og:url" content="https://dlatreyte.github.io/culture/calcul_numerique_et_erreurs/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Accueil" />
+
+  <meta name="generator" content="Hugo 0.74.3" />
+  <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha256-uXNHy6FK52Pb83SmU45mVAg7YECmr9Lwwu1zOz31j5c=" crossorigin="anonymous" />
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://dlatreyte.github.io">Accueil</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Infos" href="../../about/infos">Infos</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Blog" href="../../">Blog</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Cours</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../premieres-pc">1ère Spé. PC</a>
+                
+                  <a href="../../premieres-nsi">1ère Spé. NSI</a>
+                
+                  <a href="../../terminales-pc">Terminale Spé. PC</a>
+                
+                  <a href="../../terminales-nsi">Terminale Spé. NSI</a>
+                
+                  <a href="../../culture">Culture scientifique</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="../../tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Catégories" href="../../categories">Catégories</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Accueil" href="https://dlatreyte.github.io">
+            <img class="avatar-img" src="https://dlatreyte.github.io/first_page.jpg" alt="Accueil" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="culture-heading">
+              
+                <h1>Les différentes erreurs lorsqu&#39;on calcule à l&#39;aide d&#39;un ordinateur</h1>
+              
+              
+                <hr class="small">
+              
+              
+                
+                  <h2 class="culture-subheading">Derivation numérique</h2>
+                
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post">
+          
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-dérivation-dune-fonction-analytique-----idée-simple">1. Dérivation d&rsquo;une fonction analytique &mdash; idée simple</a>
+      <ul>
+        <li><a href="#11-introduction">1.1. Introduction</a></li>
+        <li><a href="#12-comment-évaluer-lapproximation-réalisée-">1.2. Comment évaluer l&rsquo;approximation réalisée ?</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-calcul-numérique-et-erreurs">2. Calcul numérique et erreurs</a>
+      <ul>
+        <li><a href="#21-erreur-darrondi">2.1. Erreur d&rsquo;arrondi</a></li>
+        <li><a href="#22-erreur-de-troncature">2.2. Erreur de troncature</a></li>
+        <li><a href="#23-erreur-de-méthode">2.3. Erreur de méthode</a></li>
+        <li><a href="#24-erreur-totale">2.4. Erreur totale</a></li>
+        <li><a href="#25-convergence-et-stabilité">2.5. Convergence et stabilité</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-dérivation-dune-fonction-analytique-les-différents-schémas">3. Dérivation d&rsquo;une fonction analytique, les différents schémas</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#4-dérivation-dune-fonction-numérique">4. Dérivation d&rsquo;une fonction numérique</a></li>
+    <li><a href="#5-dérivée-seconde-dune-fonction">5. Dérivée seconde d&rsquo;une fonction</a></li>
+  </ul>
+</nav>
+          
+        
+        <hr />
+
+        <p>Dans ce document, on s&rsquo;intéresse au différentes erreurs qui interviennent lorsqu&rsquo;on effectue des calculs à l&rsquo;aide d&rsquo;un ordinateur. On prend pour exemple le calcul numérique de la dérivée d&rsquo;une fonction, qu&rsquo;elle soit définie analytiquement ou numériquement (par une table de valeurs).</p>
+<h2 id="1-dérivation-dune-fonction-analytique-----idée-simple">1. Dérivation d&rsquo;une fonction analytique &mdash; idée simple</h2>
+<h3 id="11-introduction">1.1. Introduction</h3>
+<p>Le nombre dérivé $f&rsquo;(x)$ en un point $x \in \mathbb{R}$, d&rsquo;une fonction<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> :
+$$
+\begin{array}{l|rcl}
+f: &amp; \mathbb{R} &amp; \longrightarrow &amp; \mathbb{R} \cr
+&amp; x &amp; \longmapsto &amp; f(x)
+\end{array}
+$$</p>
+<p>est défini par :
+$$f^{\prime}(x) = \lim\limits_{h \to 0} \dfrac{f(x+h) - f(x)}{h}$$</p>
+<p>Un ordinateur ne pouvant manipuler qu&rsquo;un nombre limité de chiffres, tous les nombres envisageables en mathématique ne le sont pas en informatique. La notion de limite n&rsquo;a en particulier aucune signification en informatique ; on <em>recherche donc une valeur approchée de la dérivée</em> en $x$.</p>
+<div class="note tip">
+  Le procédé le plus simple consiste à considérer que si $h$ est suffisamment petit <em>il n&rsquo;est pas nécessaire de passer à la limite</em>. On considère alors que :
+$$ f^{\prime}(x) \cong \dfrac{f(x+h) - f(x)}{h} \qquad \qquad \text{(1.1.)}$$
+</div>
+<h3 id="12-comment-évaluer-lapproximation-réalisée-">1.2. Comment évaluer l&rsquo;approximation réalisée ?</h3>
+<p>L&rsquo;approximation (1.1.) s&rsquo;appuie sur la valeur du paramètre $h$. Il semble évident que cette valeur doit être la plus petite possible de façon à limiter le plus possible la non prise en compte de la limite dans la formule (1.1.). <em>Cette intuition est cependant fausse</em>, nous allons voir que :</p>
+<div class="note tip">
+  <ul>
+<li>
+<p>la valeur de $h$ ne doit pas être plus petite que le plus petit nombre représentable dans le langage choisi ;</p>
+</li>
+<li>
+<p>la valeur de $h$ doit être assez grande pour que $f(x)$ et $f(x+h)$ soient reconnues comme deux valeurs différentes, afin d&rsquo;être à l&rsquo;abri d&rsquo;<strong>erreurs d&rsquo;arrondi</strong> ;</p>
+</li>
+<li>
+<p>la valeur de $h$ doit être assez petite afin que les <strong>erreurs de troncature</strong> soient négligeables.</p>
+</li>
+</ul>
+</div>
+<p>En Python, on accède facilement à certaines de ces informations :
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py3" data-lang="py3"><span style="color:#666">&gt;&gt;&gt;</span> <span style="color:#008000;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">sys</span>
+
+<span style="color:#666">&gt;&gt;&gt;</span> sys<span style="color:#666">.</span>float_info
+sys<span style="color:#666">.</span>float_info(<span style="color:#008000">max</span><span style="color:#666">=</span><span style="color:#666">1.7976931348623157e+308</span>, max_exp<span style="color:#666">=</span><span style="color:#666">1024</span>, max_10_exp<span style="color:#666">=</span><span style="color:#666">308</span>, 
+<span style="color:#008000">min</span><span style="color:#666">=</span><span style="color:#666">2.2250738585072014e-308</span>, min_exp<span style="color:#666">=-</span><span style="color:#666">1021</span>, min_10_exp<span style="color:#666">=-</span><span style="color:#666">307</span>, dig<span style="color:#666">=</span><span style="color:#666">15</span>, 
+mant_dig<span style="color:#666">=</span><span style="color:#666">53</span>, epsilon<span style="color:#666">=</span><span style="color:#666">2.220446049250313e-16</span>, radix<span style="color:#666">=</span><span style="color:#666">2</span>, rounds<span style="color:#666">=</span><span style="color:#666">1</span>)
+
+<span style="color:#666">&gt;&gt;&gt;</span> sys<span style="color:#666">.</span>float_info<span style="color:#666">.</span>min        <span style="color:#408080;font-style:italic"># Plus petit float (positif) accessible</span>
+<span style="color:#666">2.2250738585072014e-308</span>
+
+<span style="color:#666">&gt;&gt;&gt;</span> <span style="color:#666">1.</span><span style="color:#666">/</span><span style="color:#666">1.2250738585072014e-308</span>
+<span style="color:#666">8.162773150824861e+307</span>
+
+<span style="color:#666">&gt;&gt;&gt;</span> sys<span style="color:#666">.</span>float_info<span style="color:#666">.</span>epsilon    <span style="color:#408080;font-style:italic"># plus petit intervalle entre deux float                                                                                          </span>
+<span style="color:#666">2.220446049250313e-16</span>
+<span style="color:#666">&gt;&gt;&gt;</span> <span style="color:#666">1.</span><span style="color:#666">/</span><span style="color:#666">1e-309</span>                 <span style="color:#408080;font-style:italic"># Nombre non représentable</span>
+inf                           <span style="color:#408080;font-style:italic"># Résultat d&#39;une division par 0</span></code></pre></div></p>
+<h2 id="2-calcul-numérique-et-erreurs">2. Calcul numérique et erreurs</h2>
+<div class="note warning">
+  Les <em>opérations numériques ne sont jamais exactes et toujours entachées d&rsquo;erreurs</em>. Ces erreurs sont généralement petites pour chaque opération mais, comme un ordinateur réalise un très grand nombre d&rsquo;opérations, leur accumulation peut conduire à des résultats complètement erronés.
+</div>
+<h3 id="21-erreur-darrondi">2.1. Erreur d&rsquo;arrondi</h3>
+<blockquote>
+<p>Les erreurs d&rsquo;arrondi sont liées à la représentation en mémoire des nombres : tout nombre réel n&rsquo;est connu qu&rsquo;avec une précision donnée de $n$ chiffres significatifs.</p>
+</blockquote>
+<p>Afin d&rsquo;illustrer la notion d&rsquo;erreur d&rsquo;arrondi, on suppose, dans cette partie, que les calculs sont effectués à l&rsquo;aide d&rsquo;un <em>calculateur à trois chiffres significatifs</em>.</p>
+<p>Si $f(x) = x^2$ on calcule que $f&rsquo;(7)=14,0$. L&rsquo;utilisation de l&rsquo;expression approchée (1.1.) donne :</p>
+<ul>
+<li>
+<p>avec $h=0,1$ :
+$$\dfrac{f(7,1)-f(7,0)}{0,1} = \dfrac{(7,1)^2-(7,0)^2}{0,1} = \dfrac{50,4 - 49,0}{0,1} = 14,0$$</p>
+<p>puisque $(7,1)^2 = 50,41$.</p>
+</li>
+<li>
+<p>avec $h=0,01$ :
+$$\dfrac{f(7,01)-f(7,00)}{0,01} = \dfrac{(7,01)^2-(7,00)^2}{0,01} = \dfrac{49,1 - 49,0}{0,01} = 10,0$$</p>
+<p>puisque $(7,01)^2 = 49,1401$.</p>
+</li>
+</ul>
+<blockquote>
+<p>Une petite perturbation sur la valeur de $f(x)$ (<strong>erreur d&rsquo;arrondi</strong>) peut induire une grande variation de $f&rsquo;(x)$.</p>
+</blockquote>
+<p>Si on note $\delta$ la précision relative de la machine (par exemple : 7 chiffres significatifs donnent $\delta = 10^{-7}$), l&rsquo;erreur absolue sur l&rsquo;évaluation d&rsquo;une fonction $f$ en un point $x$ est de l&rsquo;ordre de $\delta\ |f(x)|$. On peut donc <strong>estimer</strong> l&rsquo;erreur sur le numérateur de l&rsquo;expression (1.1.) par : $\delta\ |f(x+h)| + \delta\ |f(x)| \approx 2 \delta\ |f(x)|$.</p>
+<div class="note tip">
+  L&rsquo;erreur absolue sur l&rsquo;évaluation du nombre dérivé par l&rsquo;expression (1.1.) est donc :
+$$
+E_a = 2 \delta\ |\dfrac{f(x)}{h}|
+$$
+</div>
+<h4 id="retour-à-lexemple-delta--10-3-et-fxx2-">Retour à l&rsquo;exemple ($\delta = 10^{-3}$ et $f(x)=x^2$) :</h4>
+<ul>
+<li>
+<p>avec $h=0,1$ :
+$$ E_a = 2 \times 10^{-3} \times \dfrac{49}{0,1} \approx 1$$</p>
+</li>
+<li>
+<p>avec $h=0,01$ :
+$$ E_a = 2 \times 10^{-3} \times \dfrac{49}{0,01} \approx 10$$</p>
+</li>
+</ul>
+<div class="note warning">
+  Les <strong>erreurs d&rsquo;arrondi</strong> ont pour origine <em>la nature finie de la représentation des nombres</em> en mémoire. C&rsquo;est une <em>limite imposée par le calculateur</em>.
+</div>
+<h3 id="22-erreur-de-troncature">2.2. Erreur de troncature</h3>
+<h4 id="rappel--formule-de-taylor">Rappel : Formule de Taylor</h4>
+<p>Soit une fonction $f$ possédant $n+1$ dérivées continues sur l&rsquo;intervalle $[a,b]$ et soient $x$ et $x_0$ deux points de cet intervalle. On peut alors écrire :
+$$f(x) = p_n(x) + R_{n+1}(x)$$
+avec
+$$
+\begin{array}{rcl}
+p_n(x) &amp; = &amp; f(x_0) + \dfrac{x - x_0}{1!} f^{\prime}(x_0) + \ldots + \dfrac{(x - x_0)^n}{n!} f^{(n)}(x_0), \cr
+R_{n+1}(x) &amp; = &amp; \dfrac{1}{n!} \int_{x_0}^{x} (x-t)^n f^{(n+1)}(t) dt \cr
+&amp; = &amp; \dfrac{(x - x_0)^{(n+1)}}{(n+1)!} f^{(n+1)}(\epsilon), \hspace{0.5cm} x_0 \leqslant \epsilon \leqslant x. \cr
+\end{array}
+$$</p>
+<p>En limitant le développement de Taylor à l&rsquo;ordre 2, on peut écrire :
+$$f(x+h) = f(x) + f^{\prime}(x)h + f^{\prime\prime}(\epsilon)\dfrac{h^2}{2} \hspace{0.5cm} |x - \epsilon| &lt; |h|$$</p>
+<p>soit<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> :
+$$f^{\prime}(x) = \dfrac{f(x+h) - f(x)}{h} - f^{\prime\prime}(\epsilon)\dfrac{h}{2}$$.</p>
+<div class="note tip">
+  On appelle <strong>erreur de troncature</strong> :
+$$
+E_t = \dfrac{|h|}{2} |f^{\prime\prime}(\epsilon)|
+$$
+</div>
+<h4 id="retour-à-lexemple-delta--10-3-et-fx--x2-">Retour à l&rsquo;exemple ($\delta = 10^{-3}$) et $f(x) = x^2$ :</h4>
+<p>Si $f(x) = x^2$, $f^{\prime} = 2x$ et $f^{\prime\prime} = 2$. Donc,</p>
+<ul>
+<li>
+<p>avec $h=0,1$ :
+$$ E_t = \dfrac{0,1 \times 2}{2} \approx 0,1$$</p>
+</li>
+<li>
+<p>avec $h=0,01$ :
+$$ E_a = \dfrac{0,01 \times 2}{2} \approx 0,01$$</p>
+</li>
+</ul>
+<div class="note warning">
+  Les <strong>erreurs de troncature</strong> sont liées à <em>la précision de l&rsquo;algorithme utilisé</em>. Si, par exemple, une fonction est approchée par son développement de Taylor, l&rsquo;erreur de troncature sera obtenue par une évaluation du reste du développement. Son contrôle sera obtenu par une majoration de ce reste.
+</div>
+<h3 id="23-erreur-de-méthode">2.3. Erreur de méthode</h3>
+<div class="note warning">
+  Les <strong>erreurs de méthode</strong> interviennent lorsqu&rsquo;une expression est mal équilibrée et/ou mélange des valeurs très différentes. C&rsquo;est un problème qui engendre des <em>erreurs d&rsquo;arrondi</em>. <em>Dans la plupart des cas, une erreur de méthode impose de modifier l&rsquo;algorithme</em>.
+</div>
+<ul>
+<li><strong>Exemple 1.</strong> Détermination de la position du milieu d&rsquo;un segment.<br>
+Le calcul effectué spontanément : $$m = \dfrac{a+b}{2}$$ peut conduire à des erreurs si la somme $a+b$ dépasse les capacités de représentation des nombres du calculateur, <em>alors que la valeur de $m$ est représentable</em>. Le calcul à préférer est : $$m = a + \dfrac{b-a}{2}$$</li>
+</ul>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py3" data-lang="py3"><span style="color:#666">&gt;&gt;&gt;</span> a <span style="color:#666">=</span> <span style="color:#666">1e308</span>                                                                                                               
+<span style="color:#666">&gt;&gt;&gt;</span> b <span style="color:#666">=</span> <span style="color:#666">1.7e308</span>                                                                                                             
+
+<span style="color:#666">&gt;&gt;&gt;</span> (a <span style="color:#666">+</span> b) <span style="color:#666">/</span> <span style="color:#666">2</span>         <span style="color:#408080;font-style:italic"># a + b &gt; 1.7976931348623157e+308 (valeur maximale)                                                                                                  </span>
+inf                     <span style="color:#408080;font-style:italic"># on obtient une erreur</span>
+
+<span style="color:#666">&gt;&gt;&gt;</span> a <span style="color:#666">+</span> (b <span style="color:#666">-</span> a) <span style="color:#666">/</span> <span style="color:#666">2</span>     <span style="color:#408080;font-style:italic"># (b -a ) &lt; 1.7976931348623157e+308 (valeur maximale)                                                                                                 </span>
+<span style="color:#666">1.35e+308</span>               <span style="color:#408080;font-style:italic"># on obtient bien la moyenne </span></code></pre></div>
+<ul>
+<li><strong>Exemple 2.</strong> Détermination des racines du polynôme du second degré.<br>
+Par exemple, la recherche des racines du polynôme $10^{-8} x^2 - 0,8 x + 10^{-8}$, dont les deux racines sont $x_1 \cong 0.8\cdot 10^{8}$ et $x_2 \cong 1.25\cdot 10^{-8}$, nécessite le calcul du discriminant $\Delta = 0,64 - 4\cdot 10^{-16}$ dont le résultat n&rsquo;est pas toujours correct car $4\cdot 10^{-16}$ peut être considéré comme négligeable par certains calculateurs, comparé à 0,64.<br>
+Pour obtenir les racines, il est donc nécessaire de modifier l&rsquo;algorithme en considérant, par exemple, la somme et le produit des racines.
+\end{description}</li>
+</ul>
+<div class="highlight"><pre style=";-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py3" data-lang="py3"><span style="color:#666">&gt;&gt;&gt;</span> a <span style="color:#666">=</span> <span style="color:#666">1e-8</span>                                                                                                               
+<span style="color:#666">&gt;&gt;&gt;</span> b <span style="color:#666">=</span> <span style="color:#666">-</span><span style="color:#666">0.8</span>                                                                                                               
+<span style="color:#666">&gt;&gt;&gt;</span> c <span style="color:#666">=</span> <span style="color:#666">1E-8</span>                                                                                                               
+<span style="color:#666">&gt;&gt;&gt;</span> delta <span style="color:#666">=</span> b<span style="color:#666">**</span><span style="color:#666">2</span> <span style="color:#666">-</span> <span style="color:#666">4</span><span style="color:#666">*</span>a<span style="color:#666">*</span>c                                                                                                   
+<span style="color:#666">&gt;&gt;&gt;</span> <span style="color:#008000;font-weight:bold">from</span> <span style="color:#00f;font-weight:bold">math</span> <span style="color:#008000;font-weight:bold">import</span> sqrt                                                                                                  
+<span style="color:#666">&gt;&gt;&gt;</span> x1 <span style="color:#666">=</span> (<span style="color:#666">-</span>b <span style="color:#666">+</span> sqrt(delta)) <span style="color:#666">/</span> (<span style="color:#666">2</span><span style="color:#666">*</span>a)         <span style="color:#408080;font-style:italic"># Première racine </span>
+<span style="color:#666">&gt;&gt;&gt;</span> x1                                                                                       
+<span style="color:#666">79999999.99999999</span>
+<span style="color:#666">&gt;&gt;&gt;</span> x2 <span style="color:#666">=</span> (<span style="color:#666">-</span>b <span style="color:#666">-</span> sqrt(delta)) <span style="color:#666">/</span> (<span style="color:#666">2</span><span style="color:#666">*</span>a)         <span style="color:#408080;font-style:italic"># Deuxième racine                                                                                       </span>
+<span style="color:#666">&gt;&gt;&gt;</span> x2
+<span style="color:#666">1.1102230246251565e-08</span>
+<span style="color:#666">&gt;&gt;&gt;</span> somme_racines <span style="color:#666">=</span> somme_racines <span style="color:#666">=</span> <span style="color:#666">-</span>b <span style="color:#666">/</span> a  <span style="color:#408080;font-style:italic"># Ici on utilise les propriétés des racines, pas les calculs précédents</span>
+<span style="color:#666">&gt;&gt;&gt;</span> produit_racines <span style="color:#666">=</span> c <span style="color:#666">/</span> a                 <span style="color:#408080;font-style:italic"># Idem</span>
+<span style="color:#666">&gt;&gt;&gt;</span> x1 <span style="color:#666">+</span> x2, somme_racines                  <span style="color:#408080;font-style:italic"># Semble identiques                                                                              </span>
+(<span style="color:#666">80000000.0</span>, <span style="color:#666">80000000.0</span>)
+<span style="color:#666">&gt;&gt;&gt;</span> x1 <span style="color:#666">*</span> x2, produit_racines                                                                                               
+(<span style="color:#666">0.8881784197001251</span>, <span style="color:#666">1.0</span>)                   <span style="color:#408080;font-style:italic"># Problème !</span></code></pre></div>
+<h3 id="24-erreur-totale">2.4. Erreur totale</h3>
+<p>L&rsquo;erreur totale, dans l&rsquo;exemple étudié dans ce chapitre, est définie par :
+$$
+E = E_a + E_t
+$$</p>
+<p>Dans le cadre de cette étude<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>, l&rsquo;erreur totale a donc pour expression :
+$$ E = 2 \delta |\dfrac{f(x)}{h}| + \dfrac{|h|}{2} |f^{\prime\prime}(\epsilon)|$$</p>
+<p>Rechercher la valeur approchée la plus précise possible de l&rsquo;expression (1.1.) nécessite donc de minimiser $E$. $$E = 2 \delta |\dfrac{f(x)}{h}| + \dfrac{|h|}{2} |f^{\prime\prime}(\epsilon)|$$ est minimale pour $$|h| = 2 \sqrt{\delta |\dfrac{f(x)}{f^{\prime\prime}(\epsilon)}|}$$</p>
+<h4 id="démonstration-">Démonstration :</h4>
+<p>Soit $g(s) = \dfrac{a}{s} + bs$ avec $a = 2 \delta |f(x)|$ et $b = \dfrac{1}{2} |f^{\prime\prime}(\epsilon)|$. Puisque $a$ et $b$ sont positifs, $g^{\prime}(s) = 0 \Longleftrightarrow -\dfrac{a}{s^2} +b =0 \Longleftrightarrow s = \sqrt{\dfrac{a}{b}}$</p>
+<h4 id="retour-à-lexemple--fx--x2-et-delta--10-3">Retour à l&rsquo;exemple : $f(x) = x^2$ et $\delta = 10^{-3}$</h4>
+<p>$f^{\prime\prime}(x) = 2, h = \sqrt{2 \delta f(x)} = \sqrt{2\delta} |x|$. Pour $x=7$, $h$ a pour valeur : $h = 10\sqrt{\delta} \approx 0,3$.</p>
+<h3 id="25-convergence-et-stabilité">2.5. Convergence et stabilité</h3>
+<div class="note tip">
+  On dit qu&rsquo;un <em>algorithme est stable si le résultat des opérations est peu sensible à l&rsquo;accumulation des erreurs</em>.
+</div>
+<p>L&rsquo;étude de stabilité se fait par des méthodes expérimentales et parfois théoriques.</p>
+<h2 id="3-dérivation-dune-fonction-analytique-les-différents-schémas">3. Dérivation d&rsquo;une fonction analytique, les différents schémas</h2>
+<div class="note tip">
+  <p>L&rsquo;expression :
+$$f^{\prime}(x) = \dfrac{f(x+h) - f(x)}{h}$$
+est appelée <strong>différence finie à droite</strong>.</p>
+<p>On peut aussi choisir une <strong>différence finie à gauche</strong> :
+$$f^{\prime}(x) = \dfrac{f(x) - f(x-h)}{h}$$
+et une <strong>différence finie centrée autour de $x$</strong> :
+$$f^{\prime}(x) = \dfrac{f(x+h) - f(x-h)}{2h}$$</p>
+</div>
+<blockquote>
+<p>Dans toutes ces expressions l&rsquo;<strong>erreur d&rsquo;arrondi</strong> reste la même. Par contre, l&rsquo;<strong>erreur de troncature</strong> est modifiée dans la dernière expression.</p>
+</blockquote>
+<h4 id="démonstration--1">Démonstration :</h4>
+<p>À partir de la formule de Taylor,
+$$
+\begin{array}{rcl}
+f(x+h) &amp; = &amp; f(x) + hf^{\prime}(x) + \frac{h^2}{2}f^{\prime\prime}(x) + \frac{h^3}{6}f^{\prime\prime\prime}(\epsilon) \hspace{1cm} \text{où } \epsilon \in [x,x+h] \cr
+f(x-h) &amp; = &amp; f(x) - hf^{\prime}(x) + \frac{h^2}{2}f^{\prime\prime}(x) - \frac{h^3}{6}f^{\prime\prime\prime}(\eta) \hspace{1cm} \text{où } \eta \in [x-h,x] \cr
+\end{array}
+$$</p>
+<p>Donc $$f^{\prime}(x) - \dfrac{f(x+h) - f(x-h)}{2h} = -\dfrac{h^2}{12}[f^{\prime\prime\prime}(\epsilon) + f^{\prime\prime\prime}(\eta)]$$
+Finalement, <em>l&rsquo;erreur de troncature est diminuée lorsqu&rsquo;on utilise la différence finie centrée autour de $x$.</em></p>
+<h2 id="4-dérivation-dune-fonction-numérique">4. Dérivation d&rsquo;une fonction numérique</h2>
+<p>On peut être amené à calculer la dérivée d&rsquo;une fonction définie par une table de valeurs (résultat de mesures expérimentales, par exemple). Une bonne compréhension des résultats des formules précédentes (en particulier celle de la différence finie centrée autour de $x$) nécessite de prendre en compte :</p>
+<ul>
+<li>que le pas $h$ est maintenant imposé (et pas forcément constant) ;</li>
+<li>que les inévitables erreurs de mesure vont être « amplifiées » par la division par $h$ (qui est « petit »).</li>
+</ul>
+<p>Des méthodes existent pour l&rsquo;importance du second point, ci-dessus, mais elles ne seront pas abordées cette année.</p>
+<h2 id="5-dérivée-seconde-dune-fonction">5. Dérivée seconde d&rsquo;une fonction</h2>
+<p>Pour déterminer une expression de la dérivée seconde, on utilise à nouveau la formule de Taylor, en « poussant » à l&rsquo;ordre 4 le développement :
+$$
+\begin{array}{rcl}
+f(x+h) &amp; = &amp; f(x) + hf&rsquo;(x) + \frac{h^2}{2}f^{\prime\prime}(x) + \frac{h^3}{6}f^{\prime\prime\prime}(x) + \frac{h^4}{24}f^{\prime\prime\prime\prime}(\epsilon) \text{ où } \epsilon \in [x,x+h]\cr
+f(x-h) &amp; = &amp; f(x) - hf&rsquo;(x) + \frac{h^2}{2}f^{\prime\prime}(x) - \frac{h^3}{6}f^{\prime\prime\prime}(x) + \frac{h^4}{24}f^{\prime\prime\prime\prime}(\eta) \text{ où } \eta \in [x-h,x] \cr
+\end{array}
+$$</p>
+<p>Finalement,
+$$
+f^{\prime\prime}(x) = \dfrac{f(x+h)-2f(x)+f(x-h)}{h^2} - \dfrac{h^2}{12} [f^{\prime\prime\prime\prime}(\epsilon) + f^{4}(\eta)]
+$$</p>
+<p>L&rsquo;erreur de troncature est donc en $h^2$.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Les fonctions, dans ce chapitre, sont considérées continues et dérivables sur les intervalles sélectionnés. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Expression à rapprocher de (1.1.). <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Nous verrons qu&rsquo;il est possible de faire varier l&rsquo;erreur de troncature en choisissant d&rsquo;autres schémas. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://dlatreyte.github.io/tags/analyse-num%C3%A9rique/">Analyse numérique</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/informatique/">Informatique</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/python/">Python</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+              </div>
+            </section>
+        
+
+        
+          
+          
+          <h4 class="see-also">Voir également</h4>
+          <ul>
+          
+            <li><a href="../../premieres-nsi/chap-trois/chap-03/">Variables, affectations</a></li>
+          
+          </ul>
+          
+        
+      </article>
+
+
+      
+        <ul class="pager blog-pager">
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:david.latreyte@louismassignon.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DLatreyte" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/@DLatreyte" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/latreyte-david-917852b2" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/agdavgablou" title="Instagram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://dlatreyte.github.io">David Latreyte</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2020
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://dlatreyte.github.io">Accueil</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          Carbure avec <a href="http://gohugo.io">Hugo v0.74.3</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapté en <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://dlatreyte.github.io/js/main.js"></script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dlatreyte.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha256-34ADEQM6cIZ7chSRA07lN4aD5JM9IQoeIr2VamKDcT0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha256-HkMrKMLKQk4t1R2ofMAcLz72fWM2sshnx6215U+LgU0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/mhchem.min.js"></script>
+<script>
+  renderMathInElement(document.body,
+    {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+        ]
+    }
+  );
+
+  var inlineMathArray = document.querySelectorAll("script[type='math/tex']");
+  for (var i = 0; i < inlineMathArray.length; i++) {
+    var inlineMath = inlineMathArray[i];
+    var tex = inlineMath.innerText || inlineMath.textContent;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex, {displayMode: false});
+    inlineMath.parentNode.replaceChild(replaced, inlineMath);
+  }
+
+  var displayMathArray = document.querySelectorAll("script[type='math/tex; mode=display']");
+  for (var i = 0; i < displayMathArray.length; i++) {
+    var displayMath = displayMathArray[i];
+    var tex = displayMath.innerHTML;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex.replace(/%.*/g, ''), {displayMode: true});
+    displayMath.parentNode.replaceChild(replaced, displayMath);
+  }
+</script>
+
+  </body>
+</html>
+
