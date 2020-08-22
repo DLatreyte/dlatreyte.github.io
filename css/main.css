@@ -879,11 +879,29 @@ a.internal:active, a.internal:link, a.internal:visited, a.internal:hover {
 }
 
 /* Auto Numbering */
-body {counter-reset: section;}
-h2 {counter-reset: subsection;}
+body {
+  counter-reset: section;
+}
+h2 {
+  counter-reset: subsection;
+}
 
-article[auto_numbering] h2:before {counter-increment: section; content: counter(section) ". ";}
-article[auto_numbering] h3:before {counter-increment: subsection; content: counter(section) "." counter(subsection) ". ";}
+article[auto_numbering] h2:before {
+  counter-increment: section; 
+  content: counter(section) ". ";
+}
 
-article[auto_numbering] .toc__menu ul { counter-reset: item ;}
-article[auto_numbering] .toc__menu li a:before { content: counters(item, ".") ". "; counter-increment: item ;}
+article[auto_numbering] h3:before {
+  counter-increment: subsection; 
+  content: counter(section) "." counter(subsection) ". ";
+}
+
+article[auto_numbering] #TableOfContents ul { 
+  list-style-type: none;
+  counter-reset: item ;
+}
+
+article[auto_numbering] #TableOfContents li a:before { 
+  content: counters(item, ".") ". "; 
+  counter-increment: item ;
+}
