@@ -63,7 +63,7 @@
   "headline": "Récursivité sur les entiers",
   "description" : "La récurrence est un raisonnement mathématique courant et parmi les plus puissants pour démontrer des théorèmes ou construire des objets. Par exemple, on l\u0026rsquo;utilise dans un cours de mathématique de lycée pour montrer que :\n Pour tout entier $n \\geqslant 0$, on a : $1 \u002b 2 \u002b 3 \u002b \\ldots \u002b n = \\dfrac{n(n\u002b1)}{2}$ ; Un entier naturel n\u0026rsquo;est autre que 0 ou le successeur d\u0026rsquo;un entier naturel (0 est 0, 1 est le successeur de 0, 2 est le successeur de 1, \u0026hellip;).",
   "inLanguage" : "fr",
-  "wordCount":  2948 ,
+  "wordCount":  3725 ,
   "datePublished" : "2020-09-05T18:34:00",
   "dateModified" : "2020-09-05T18:34:00",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -658,10 +658,46 @@ Les <strong>langages fonctionnels</strong> modernes possèdent des compilateurs 
 </dl>
 </div>
 <h2 id="exercices-du-chapitre">Exercices du chapitre</h2>
+<p>Penser à écrire, pour chacune des fonctions ci-dessous, sa spécification ainsi qu&rsquo;un jeu de tests.</p>
+<p>Un corrigé partiel se trouve en ligne à cette adresse : 
+<a class="remote" href="https://repl.it/join/qaeylksn-dlatreyte" target="_blank">https://repl.it/join/qaeylksn-dlatreyte</a>
+
+. Ce corrigé comporte des exemples d&rsquo;utilisation de l&rsquo;instruction <code>assert</code>.</p>
 <div class="note exercise">
   <h4 id="exercice-1nbsp-factorielle">Exercice 1 : Factorielle</h4>
 <p>Écrire la définition itérative de la fonction factorielle.
 </div>
+<hr />
+<details>
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">factorielle_iter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Calcule la factorielle de n.
+</span><span style="color:#4e9a06">    Algortihme itératif.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    HYPOTHÈSE : n est un entier naturel
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#000">fact</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span>
+    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">):</span>
+        <span style="color:#000">fact</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fact</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">i</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">fact</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">factorielle_rec</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Calcule la factorielle de n.
+</span><span style="color:#4e9a06">    Algortihme récursif.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    HYPOTHÈSE : n est un entier naturel
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">1</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">factorielle_rec</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div></details>
+<hr />
 <div class="note exercise">
   <h4 id="exercice-2nbsp-compte-à-rebours">Exercice 2 : Compte à rebours</h4>
 <ul>
@@ -669,13 +705,74 @@ Les <strong>langages fonctionnels</strong> modernes possèdent des compilateurs 
 <li>En modifiant seulement la position de la fonction <code>print</code>, faire en sorte que le comptage se fasse dans l&rsquo;ordre croissant.</li>
 </ul>
 </div>
+<hr />
+<details>
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">compte_a_rebours</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Affiche un compte à rebours à l&#39;écran.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">None</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">end</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34; &#34;</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">compte_a_rebours</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">None</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">compte</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Affiche un comptage à l&#39;écran.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">end</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34; &#34;</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">None</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">compte</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">end</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34; &#34;</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">None</span>
+</code></pre></div></details>
+<hr />
 <div class="note exercise">
   <h4 id="exercice-3nbsp-somme-des-n-premiers-entiers">Exercice 3 : Somme des $N$ premiers entiers</h4>
 <p>Écrire les versions itérative et récursive d&rsquo;une fonction qui calcule la somme des $N$ premiers entiers. La tester pour $N = 15$.
 </div>
+<hr />
+<details>
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">somme_entiers_rec</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Calcule la somme des n premiers entiers.
+</span><span style="color:#4e9a06">    Algorithme récursif.
+</span><span style="color:#4e9a06">    
+</span><span style="color:#4e9a06">    HYPOTHÈSE : n entier naturel
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">somme_entiers_rec</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">somme_entiers_iter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Calcule la somme des n premiers entiers.
+</span><span style="color:#4e9a06">    Algorithme itératif.
+</span><span style="color:#4e9a06">    
+</span><span style="color:#4e9a06">    HYPOTHÈSE : n entier naturel
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#000">somme</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span>
+    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">):</span>
+        <span style="color:#000">somme</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">somme</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">i</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">somme</span>
+</code></pre></div></details>
+<hr />
 <div class="note exercise">
   <h4 id="exercice-4nbsp-multiplication-récursive">Exercice 4 : Multiplication récursive</h4>
-<p>Écrire une fonction récursive qui calcule le produit de deux nombres entiers positifs en utilisant des additions.</p>
+<p>Écrire une fonction récursive qui calcule le produit de deux nombres entiers positifs en utilisant des additions.</p>
 <p>Le principe est le suivant :
 [
 a \times b = \left\lbrace
@@ -685,16 +782,31 @@ a \times b = \left\lbrace
 \end{array}
 \right.
 ]</p>
-<p>Exécuter la fonction pour $a = 4$ et $b = 5$ (pour cela, présenter les appels récursifs successifs sous forme d&rsquo;un arbre), puis pour $a = 5$ et $b = 4$.<br>
+<p>Exécuter la fonction pour $a = 4$ et $b = 5$ (pour cela, présenter les appels récursifs successifs sous forme d&rsquo;un arbre), puis pour $a = 5$ et $b = 4$.<br>
 Pour quel appel l&rsquo;arbre est-il le plus grand ?<br>
-Noter sur quel argument porte la récursion.<br>
+Noter sur quel argument porte la récursion.<br>
 Que peut-on en conclure ?</p>
 </div>
+<hr />
+<details>
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">multiplication</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Réalise la multiplication de deux entiers naturels a et b.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">multiplication</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">b</span>
+</code></pre></div></details>
+<hr />
 <div class="note exercise">
   <h4 id="exercice-5nbsp-calculs-de-puissances">Exercice 5 : Calculs de puissances</h4>
 <ul>
 <li>
-<p>Écrire une fonction récursive qui calcule $x^n$ sachant que :
+<p>Écrire une fonction récursive qui calcule $x^n$ sachant que :
 [
 x^n = \left\lbrace
 \begin{array}{ll}
@@ -705,7 +817,7 @@ x^{n-1} \times x     &amp; \text{ si } n &gt; 0 \cr
 ]</p>
 </li>
 <li>
-<p>Écrire une fonction récursive qui calcule $x^n$ sachant que :
+<p>Écrire une fonction récursive qui calcule $x^n$ sachant que :
 [
 x^n = \left\lbrace
 \begin{array}{ll}
@@ -717,15 +829,50 @@ x^n = \left\lbrace
 ]</p>
 </li>
 <li>
-<p>Comparer les exécutions (avec arbre des appels) des deux fonctions ci-dessus pour $n = 11$ et $x = 2$. Quel est l&rsquo;arbre le plus court ? Que peut-on en conclure ?</p>
+<p>Comparer les exécutions (avec arbre des appels) des deux fonctions ci-dessus pour $n = 11$ et $x = 2$. Quel est l&rsquo;arbre le plus court ? Que peut-on en conclure ?</p>
 </li>
 </ul>
 </div>
+<hr />
+<details>
+    <summary>
+        <strong> Solutions</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">puissance_01</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Premier calcul de la puissance n du nombre x.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    HYPOTHÈSE : n entier naturel.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">1</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">puissance_01</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">x</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">puissance_02</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Second calcul de la puissance n du nombre x.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    HYPOTHÈSE : n entier naturel.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">1</span>
+    <span style="color:#204a87;font-weight:bold">elif</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">%</span> <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">inter</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">puissance_02</span><span style="color:#000;font-weight:bold">(</span>
+            <span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>  <span style="color:#8f5902;font-style:italic"># mise en mémoire du résultat de l&#39;appel récursif</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">inter</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">inter</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">inter</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">puissance_02</span><span style="color:#000;font-weight:bold">(</span>
+            <span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>  <span style="color:#8f5902;font-style:italic"># mise en mémoire du résultat de l&#39;appel récursif</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">inter</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">inter</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">x</span>
+</code></pre></div></details>
+<hr />
 <div class="note exercise">
   <h4 id="exercice-6nbsp-suite-de-fibonacci">Exercice 6 : Suite de Fibonacci</h4>
 <ul>
 <li>
-<p>Écrire une fonction récursive qui calcule le $n^{\text{ième}}$ terme de la « suite de Fibonacci » définie par :
+<p>Écrire une fonction récursive qui calcule le $n^{\text{ième}}$ terme de la « suite de Fibonacci » définie par :
 $$
 \begin{aligned}
 u_0 &amp; = 0 \cr
@@ -741,6 +888,25 @@ Exécuter la fonction pour $n = 5$</p>
 </ul>
 <p><img src="../../../terminales-nsi/chap-1/im-1-3.jpg" width="70%" alt="" /></p>
 </div>
+<hr />
+<details>
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">fibonacci</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Calcule le terme n de la suite de Fibonacci.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    HYPOTHÈSE : n entier naturel
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span>
+    <span style="color:#204a87;font-weight:bold">elif</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">1</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">fibonacci</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">fibonacci</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div></details>
+<hr />
 <div class="note exercise">
   <h4 id="exercice-7nbsp-formule-de-viète">Exercice 7 : Formule de Viète</h4>
 <p>On peut obtenir une valeur approchée du nombre $\pi$ grâce à la formule de Viète :
@@ -773,6 +939,25 @@ m                        &amp; \text{ si } n = 0\cr
 \right.
 ]
 </div>
+<hr />
+<details>
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">pgcd</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">m</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34; 
+</span><span style="color:#4e9a06">    Calcule le pgcd de m et n. La récursivité est terminale. 
+</span><span style="color:#4e9a06">    
+</span><span style="color:#4e9a06">    HYPOTHÈSE : n et m entiers naturels
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">m</span>
+    <span style="color:#204a87;font-weight:bold">elif</span> <span style="color:#000">m</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">pgcd</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">m</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">pgcd</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">m</span> <span style="color:#ce5c00;font-weight:bold">%</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div></details>
+<hr />
 <div class="note exercise">
   <h4 id="exercice-9nbsp-ackermann-péter">Exercice 9 : Ackermann-Péter</h4>
 <p>La fonction d&rsquo;Ackermann-Péter est définie récursivement comme suit :
@@ -792,6 +977,25 @@ A(m-1, A(m, n-1))  &amp; \text{ si } m &gt; 0 \text{ et } n &gt; 0\cr
 <li>La fonction d&rsquo;Ackermann demandant beaucoup de calculs même pour de petites entrées, elle est parfois utilisée comme programme de test d&rsquo;une implémentation d&rsquo;un langage de programmation : en particulier, elle utilise de façon très exigeante la récursivité (cf. <a href="http://fr.wikipedia.org/wiki/Fonction_d'Ackermann">Fonction d&rsquo;Ackermann, Wikipédia</a>).</li>
 </ul>
 </div>
+<hr />
+<details>
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">ackermann</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">m</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Définition de la fonction d&#39;Ackermann.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    HYPOTHÈSE : m, n entiers naturels
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">m</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span>
+    <span style="color:#204a87;font-weight:bold">elif</span> <span style="color:#000">m</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">ackermann</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">m</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">ackermann</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">m</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">ackermann</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">m</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">))</span>
+</code></pre></div></details>
+<hr />
 <div class="note exercise">
   <h4 id="exercice-10nbsp-récursivité-croisée">Exercice 10 : Récursivité croisée</h4>
 <p>On considère deux suites $u(n)$ et $v(n)$ définies, pour $n \geq 0$ par :
@@ -813,6 +1017,44 @@ Ces deux suites ont pour particularité que : $v(n) - u(n) = 1$ pour tout $n$.<
 </li>
 </ul>
 </div>
+<hr />
+<details>
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">u</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Calcul de la valeur de u(n).
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">1</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">3</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">u</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Calcul de la valeur de v(n)
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">2</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">u</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">3</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">():</span>
+
+    <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">input</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Entrer la valeur de n : &#34;</span><span style="color:#000;font-weight:bold">))</span>
+    <span style="color:#000">u_</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">u</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">v_</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">)</span>
+
+    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;u({}) = {}&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">u_</span><span style="color:#000;font-weight:bold">))</span>
+    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;v({}) = {}&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">v_</span><span style="color:#000;font-weight:bold">))</span>
+    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;v({}) - u({}) = {}&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">v_</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">u_</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">v_</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">u_</span><span style="color:#000;font-weight:bold">))</span>
+
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
+</code></pre></div></details>
+<hr />
 <div class="note exercise">
   <h4 id="exercice-10nbsp-fonctions-mutuellement-récursives">Exercice 10 : Fonctions mutuellement récursives</h4>
 <p>Le but de cet exercice consiste à écrire les fonctions récursives <code>est_pair</code> et <code>est_impair</code> <em>sans utiliser le modulo</em>.<br>
@@ -824,6 +1066,44 @@ La fonction <code>est_pair</code> (resp. <code>est_impair</code>) retourne <code
 <li>$0$ n&rsquo;est pas impair.</li>
 </ul>
 </div>
+<hr />
+<details>
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">est_pair</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">nbre</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Détermine si un nombre nbre est pair.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    HYPOTHÈSE : nbre entier naturel
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">nbre</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">True</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">est_impair</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">nbre</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">est_impair</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">nbre</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Détermine si un nombre nbre est impair.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    HYPOTHÈSE : nbre entier naturel
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">nbre</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">False</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">est_pair</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">nbre</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">():</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34; Fonction principale &#34;&#34;&#34;</span>
+    <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">input</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Entrer le nombre à tester : &#34;</span><span style="color:#000;font-weight:bold">))</span>
+    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Est-il pair ? {}&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">est_pair</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">)))</span>
+
+
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
+</code></pre></div></details>
+<hr />
 <div class="note exercise">
   <h4 id="exercice-11nbsp-conjecture-de-syracuse">Exercice 11 : Conjecture de Syracuse</h4>
 <p>On appelle <strong>suite de Syracuse</strong> une suite d&rsquo;entiers naturels définie de la manière suivante : <em>On part d&rsquo;un nombre entier plus grand que zéro. S&rsquo;il est pair, on le divise par 2 ; s&rsquo;il est impair, on le multiplie par 3 et on ajoute 1. En répétant l&rsquo;opération, on obtient une suite d&rsquo;entiers positifs dont chacun ne dépend que de son prédécesseur.</em></p>
@@ -835,6 +1115,24 @@ C&rsquo;est ce qu&rsquo;on appelle la suite de Syracuse du nombre 14. Une fois l
 <p>La <strong>conjecture de Syracuse</strong> (encore appelée conjecture de Collatz, ou conjecture d&rsquo;Ulam) est l&rsquo;hypothèse mathématique selon laquelle la suite de Syracuse de n&rsquo;importe quel entier strictement positif atteint 1.</p>
 <p>Écrire la fonction <code>syracuse</code> à un paramètre entier qui retourne la longueur de la suite de Syracuse de cet entier pour obtenir 1.</p>
 </div>
+<hr />
+<details>
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">syracuse_01</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34; Retourne la longueur de la suite de Syracuse, c&#39;est à
+</span><span style="color:#4e9a06">    dire le nombre de termes avant que la valeur soit égale à 1.
+</span><span style="color:#4e9a06">    Récursivité enveloppée.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">1</span>
+    <span style="color:#204a87;font-weight:bold">elif</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">%</span> <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">syracuse_01</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">syracuse_01</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#0000cf;font-weight:bold">3</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div></details>
+<hr />
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
@@ -886,6 +1184,10 @@ C&rsquo;est ce qu&rsquo;on appelle la suite de Syracuse du nombre 14. Une fois l
       
         <ul class="pager blog-pager">
           
+          
+            <li class="next">
+              <a href="https://dlatreyte.github.io/terminales-nsi/chap-1/1-2-recursivite-chaines-listes/" data-toggle="tooltip" data-placement="top" title="La récursivité appliquée aux chaînes de caractères et aux listes">Post suivant &rarr;</a>
+            </li>
           
         </ul>
       
