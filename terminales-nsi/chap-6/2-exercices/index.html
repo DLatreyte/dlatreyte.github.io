@@ -63,7 +63,7 @@
   "headline": "Exercices",
   "description" : "Itérer sur les éléments d\u0026rsquo;un dictionnaire Au zoo de Beauval, il y a 5 éléphants d\u0026rsquo;Asie, 17 écureuils d\u0026rsquo;Asie, 2 pandas d\u0026rsquo;Asie, etc. On représente cet inventaire à l\u0026rsquo;aide d\u0026rsquo;un dictionnaire, de façon suivante :\nzoo_Beauval={ \u0026#39;éléphant\u0026#39;: (\u0026#39;Asie\u0026#39;, 5), \u0026#39;écureuil\u0026#39;: (\u0026#39;Asie\u0026#39;, 17), \u0026#39;panda\u0026#39;: (\u0026#39;Asie\u0026#39;, 2), \u0026#39;hippopotame\u0026#39;: (\u0026#39;Afrique\u0026#39;, 7), \u0026#39;girafe\u0026#39;: (\u0026#39;Afrique\u0026#39;, 4) } On représente de la même façon le zoo de La Flèche :\nzoo_LaFleche = { \u0026#39;ours\u0026#39;: (\u0026#39;Europe\u0026#39;, 4), \u0026#39;tigre\u0026#39;: (\u0026#39;Asie\u0026#39;, 7), \u0026#39;girafe\u0026#39;: (\u0026#39;Afrique\u0026#39;, 11), \u0026#39;hippopotame\u0026#39;: (\u0026#39;Afrique\u0026#39;, 3) } On souhaite se doter d\u0026rsquo;une fonction plus_grand_nombre() qui prend un zoo en paramètre et qui renvoie le nom de l\u0026rsquo;animal le plus représenté dans ce zoo.",
   "inLanguage" : "fr",
-  "wordCount":  306 ,
+  "wordCount":  539 ,
   "datePublished" : "2020-10-13T05:08:27",
   "dateModified" : "2020-10-13T05:08:27",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -304,6 +304,12 @@
 
       <article role="main" class="blog-post" auto_numbering >
           
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#itérer-sur-les-éléments-dun-dictionnaire">Itérer sur les éléments d&rsquo;un dictionnaire</a></li>
+  </ul>
+</nav>
+          
         
         <hr />
 
@@ -378,6 +384,77 @@ Par exemple :</p>
 <p>Écrire le code de cette fonction.</p>
 </li>
 </ol>
+<hr />
+<details>
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">typing</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Dict</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Tuple</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">plus_grand_nombre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">dic</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Dict</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Tuple</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">]])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Prend un zoo en paramètre et qui renvoie le nom de l’animal le plus représenté dans ce zoo.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#000">v_max</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span>
+    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">cle</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">dic</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">keys</span><span style="color:#000;font-weight:bold">():</span>
+        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">dic</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">cle</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">v_max</span><span style="color:#000;font-weight:bold">:</span>
+            <span style="color:#000">v_max</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">dic</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">cle</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span>
+            <span style="color:#000">cle_max</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">cle</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">cle_max</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">nombre_total</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">dic</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Dict</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Tuple</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">]],</span> <span style="color:#000">continent</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Prend un zoo en paramètre ainsi que le nom d’un continent, et  renvoie le nombre d’animaux originaires de ce continent dans le zoo. 
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#000">nbre</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span>
+    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">cle</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">dic</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">keys</span><span style="color:#000;font-weight:bold">():</span>
+        <span style="color:#000">animal</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">dic</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">cle</span><span style="color:#000;font-weight:bold">]</span>  <span style="color:#8f5902;font-style:italic"># tuple(continent, nombre)</span>
+        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">animal</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">continent</span><span style="color:#000;font-weight:bold">:</span>  <span style="color:#8f5902;font-style:italic"># continent</span>
+            <span style="color:#000">nbre_animaux_dans_continent</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">dic</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">cle</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span>
+            <span style="color:#000">nbre</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">nbre</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">nbre_animaux_dans_continent</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">nbre</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">nombre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">dic</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Dict</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Tuple</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">]],</span> <span style="color:#000">animal</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Prend un zoo en paramètre ainsi que le nom d’un animal, et renvoie le nombre de représentants de cet animal dans le zoo.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">animal</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">dic</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">keys</span><span style="color:#000;font-weight:bold">():</span>
+        <span style="color:#000">nbre</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">dic</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">animal</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">nbre</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">nbre</span>
+
+
+<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">__name__</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">&#34;__main__&#34;</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#000">zoo_Beauval</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#4e9a06">&#39;éléphant&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Asie&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">),</span>
+        <span style="color:#4e9a06">&#39;écureuil&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Asie&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">17</span><span style="color:#000;font-weight:bold">),</span>
+        <span style="color:#4e9a06">&#39;panda&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Asie&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">),</span>
+        <span style="color:#4e9a06">&#39;hippopotame&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Afrique&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">7</span><span style="color:#000;font-weight:bold">),</span>
+        <span style="color:#4e9a06">&#39;girafe&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Afrique&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">4</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000;font-weight:bold">}</span>
+
+    <span style="color:#000">zoo_LaFleche</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#4e9a06">&#39;ours&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Europe&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">4</span><span style="color:#000;font-weight:bold">),</span>
+        <span style="color:#4e9a06">&#39;tigre&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Asie&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">7</span><span style="color:#000;font-weight:bold">),</span>
+        <span style="color:#4e9a06">&#39;girafe&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Afrique&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">11</span><span style="color:#000;font-weight:bold">),</span>
+        <span style="color:#4e9a06">&#39;hippopotame&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Afrique&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000;font-weight:bold">}</span>
+
+    <span style="color:#204a87;font-weight:bold">assert</span> <span style="color:#000">plus_grand_nombre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">zoo_LaFleche</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">&#39;girafe&#39;</span>
+    <span style="color:#204a87;font-weight:bold">assert</span> <span style="color:#000">plus_grand_nombre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">zoo_Beauval</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">&#39;écureuil&#39;</span>
+
+    <span style="color:#204a87;font-weight:bold">assert</span> <span style="color:#000">nombre_total</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">zoo_LaFleche</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;Afrique&#39;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">14</span>
+    <span style="color:#204a87;font-weight:bold">assert</span> <span style="color:#000">nombre_total</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">zoo_Beauval</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;Asie&#39;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">24</span>
+
+    <span style="color:#204a87;font-weight:bold">assert</span> <span style="color:#000">nombre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">zoo_LaFleche</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;panda&#39;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span>
+    <span style="color:#204a87;font-weight:bold">assert</span> <span style="color:#000">nombre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">zoo_Beauval</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;panda&#39;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">2</span>
+</code></pre></div><p>({% /solution %})</p>
+</details>
+<hr />
 
 
         
