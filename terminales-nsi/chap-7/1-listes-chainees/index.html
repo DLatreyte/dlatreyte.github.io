@@ -63,7 +63,7 @@
   "headline": "Listes Chaînées",
   "description" : "Un corrigé de la section 1 se trouve ici\n  Un corrigé des sections suivantes se trouve ici\n   Tableaux  Un tableau est une structure de données dans laquelle les éléments, de même type, occupent des positions contiguës en mémoire. Le nombre d\u0026rsquo;éléments qu\u0026rsquo;un tableau peut contenir est déterminé à la création d\u0026rsquo;un tableau.      Type Python Type abstrait Opération Exemple Complexité     N\u0026rsquo;existe pas Tableau Accès à un élément tab[i] $O(1)$     Modification d\u0026rsquo;un élément tab[i] = x $O(1)$     Effacement d\u0026rsquo;un élément retire(tab, i) $O(n)$     Insertion d\u0026rsquo;un élément insere(tab, x, i) $O(n)$     Recherche d\u0026rsquo;un élément est_dans(tab, x) $O(n)$     La structure de données appelée « liste » dans le langage Python est en fait un tableau dynamique.",
   "inLanguage" : "fr",
-  "wordCount":  1070 ,
+  "wordCount":  1490 ,
   "datePublished" : "2020-10-14T18:01:18",
   "dateModified" : "2020-10-14T18:01:18",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -322,8 +322,13 @@
     <li><a href="#quelques-opérations-sur-les-listes-chaînées">Quelques opérations sur les listes chaînées</a>
       <ul>
         <li><a href="#longueur-dune-liste-chaînée">Longueur d&rsquo;une liste chaînée</a></li>
+        <li><a href="#n-ième-élément-dune-liste">N-ième élément d&rsquo;une liste</a></li>
+        <li><a href="#concaténation-de-deux-listes">Concaténation de deux listes</a></li>
+        <li><a href="#renverser-une-liste">Renverser une liste</a></li>
+        <li><a href="#modification-dune-liste">Modification d&rsquo;une liste</a></li>
       </ul>
     </li>
+    <li><a href="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
           
@@ -615,14 +620,123 @@ Une liste chaînée est donc une <strong>structure récursive</strong>.</li>
     <summary>
         <strong> Réponse</strong>
     </summary>
+<p>On réalise autant d&rsquo;appels récursifs (ou de tours de boucles qu&rsquo;il y a d&rsquo;éléments dans la liste).<br>
+La complexité est donc en $O(N)$.</p>
 </details>
 <hr />
-<p>Points négatifs pour les listes chaînées :</p>
+<h3 id="n-ième-élément-dune-liste">N-ième élément d&rsquo;une liste</h3>
+<ol start="14">
+<li>Écrire la fonction <code>n_ieme_element</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">n_ieme_element</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">lst</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Cellule</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">i</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Retourne le n-ième élément de la liste. La convention
+</span><span style="color:#4e9a06">    suivie est celle de Python, le premier élément ayant
+</span><span style="color:#4e9a06">    l&#39;indice i = 0.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    Algorithme récursif.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    Lève une exception si l&#39;indice de la liste est trop grand.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+</code></pre></div><ol start="15">
+<li>Écrire la fonction <code>n_ieme_element_iter</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">n_ieme_element_iter</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">lst</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Cellule</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">i</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Retourne le n-ième élément de la liste. La convention
+</span><span style="color:#4e9a06">    suivie est celle de Python, le premier élément ayant
+</span><span style="color:#4e9a06">    l&#39;indice i = 0.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    Algorithme itératif.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    Lève une exception si l&#39;indice de la liste est trop grand.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+</code></pre></div><ol start="16">
+<li>Déterminer la complexité de la recherche du n-ième élément d&rsquo;une liste.</li>
+</ol>
+<hr />
+<details>
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
 <ul>
-<li>Pas d&rsquo;accès aléatoire possible. Toute la liste doit être parcourue lorsqu&rsquo;on cherche un élément, depuis le premier. Il est donc impossible d&rsquo;appliquer l&rsquo;algorithme de recherche dichotomique sur les listes chaînées.</li>
-<li>Chaque cellule occupe en mémoire une taille supérieure à la taille de la valeur seule puisqu&rsquo;il faut stocker aussi l&rsquo;adresse de la cellule suivante.</li>
-<li>Au niveau matériel les tableaux peuvent être optimisés et sont donc plus performants.</li>
+<li>Si l&rsquo;élément dont on cherche la valeur est le dernier de la liste il est nécessaire de faire $N$ appels récursifs (ou tours de boucles).</li>
+<li>Si l&rsquo;indice est hors des limites, il est ici aussi nécessaire de parcourir toute la liste avant de s&rsquo;en rendre compte.
+L&rsquo;algorithm est donc en $O(N)$.</li>
 </ul>
+</details>
+<hr />
+<h3 id="concaténation-de-deux-listes">Concaténation de deux listes</h3>
+<div class="note tip">
+  On appelle <strong>concaténation</strong> de deux listes l&rsquo;opération consistant à mettre bout à bout les deux listes.
+</div>
+<ol start="17">
+<li>Écrire la fonction <code>concatener</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">concatener</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">lst1</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Cellule</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">lst2</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Cellule</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">Cellule</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Concatène les listes lst1 et lst2. Une nouvelle liste est
+</span><span style="color:#4e9a06">    créée et retournée.
+</span><span style="color:#4e9a06">    Les éléments de la première liste sont copiés alors que ceux 
+</span><span style="color:#4e9a06">    de la deuxième sont insérés. lst1 et lst2 ne sont donc pas modifiées.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    ATTENTION : tout élément de lst partagé avec lst2 modifié l&#39;est aussi 
+</span><span style="color:#4e9a06">    dans lst2.
+</span><span style="color:#4e9a06">    
+</span><span style="color:#4e9a06">    Algorithme récursif.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+</code></pre></div><p><img src="../../../terminales-nsi/chap-7/chap-7-1-3.png" alt="" width="100%" /></p>
+<ol start="18">
+<li>Écrire la fonction <code>copie</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">copie</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">lst</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Cellule</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">Cellule</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Réalise une nouvelle copie de la liste lst.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    Algorithme récursif.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+</code></pre></div><p><img src="../../../terminales-nsi/chap-7/chap-7-1-4.png" alt="" width="75%" /></p>
+<ol start="19">
+<li>Se servir de la fonction <code>copie</code> pour écrire la fonction <code>concatener_avec_copie_integrale</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">concatener_avec_copie_integrale</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">lst1</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Cellule</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">lst2</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Cellule</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">Cellule</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Concatène les listes lst1 et lst2. Les éléments des listes lst1 et lst2
+</span><span style="color:#4e9a06">    sont recopiés pour former une nouvelle liste.
+</span><span style="color:#4e9a06">    
+</span><span style="color:#4e9a06">    Algorithme récursif.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+</code></pre></div><p><img src="../../../terminales-nsi/chap-7/chap-7-1-5.png" alt="" width="100%" /></p>
+<ol start="20">
+<li>Quelle est la complexité de la fonction <code>concatener</code> ? Même question pour la fonction <code>concatener_avec_copie_integrale</code>.</li>
+</ol>
+<hr />
+<details>
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<ul>
+<li>Dans le premier cas, il est nécessaire de recopier tous les éléments de <code>lst1</code>. La complexité est donc linéaire et dépend du nombre d&rsquo;élements de <code>lst1</code>.</li>
+<li>Dans le second cas, on recopie tous les éléments de <code>lst1</code> et de <code>lst2</code>. La complexité est donc linéaire et est la somme du nombre d&rsquo;éléments de <code>lst1</code> et de <code>lst2</code>.</li>
+</ul>
+</details>
+<hr />
+<h3 id="renverser-une-liste">Renverser une liste</h3>
+<ol start="21">
+<li>Écrire la fonction <code>renverser</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">renverser</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">lst</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Cellule</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">Cellule</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Retourne une nouvelle liste formée des éléments de lst à l&#39;envers. 
+</span><span style="color:#4e9a06">    Les éléments peuvent avoir été recopiés ou pas.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    Algorithme récursif.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+</code></pre></div><p><strong>Remarque.</strong> Cette fonction doit s&rsquo;appuyer sur les fonctions <code>concatener</code> ou <code>concatener_avec_copie_integrale</code>.</p>
+<p><img src="../../../terminales-nsi/chap-7/chap-7-1-6.png" alt="" width="85%" /></p>
+<p><strong>Remarque.</strong> Cet algorithme est particulièrement inefficace.</p>
+<h3 id="modification-dune-liste">Modification d&rsquo;une liste</h3>
+<h2 id="conclusion">Conclusion</h2>
 
 
         
