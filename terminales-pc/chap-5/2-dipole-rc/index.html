@@ -63,7 +63,7 @@
   "headline": "Le dipôle (R,C)",
   "description" : "Les premiers condensateurs sont apparus vers 1745. Il s\u0026rsquo;agissait en fait d\u0026rsquo;une bouteille de Leyde : une fiole à moitié remplie d\u0026rsquo;eau dont l\u0026rsquo;ouverture était obturée par un bouchon de liège percé d\u0026rsquo;une tige métallique trempant dans l\u0026rsquo;eau.\nLa première application de ce condensateur était de donner des commotions (chocs électriques ou électrisations) au public dans les foires. Par exemple, à Versailles, on présenta au roi Louis XV l\u0026rsquo;expérience de la décharge d\u0026rsquo;une grosse bouteille de Leyde à travers le circuit formé de plus de deux cents courtisans.",
   "inLanguage" : "fr",
-  "wordCount":  1766 ,
+  "wordCount":  1919 ,
   "datePublished" : "2020-10-30T20:15:29",
   "dateModified" : "2020-10-30T20:15:29",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -551,8 +551,8 @@ On bascule le commutateur en position 2 et on enregistre les tensions $u_{DA}$ e
         <strong> Réponse</strong>
     </summary>
 <ul>
-<li>$[R] = \dfrac{U}{I}$ (tension sur intensité);</li>
-<li>$[C] = \dfrac{[Q]}{U}$ (charge sur tension). Or $[Q] = I \cdot T$ (intensité fois temps). Donc $[C] = \dfrac{I \cdot T}{U}$.</li>
+<li>$[R] = \dfrac{U}{I}$ (une résistance est une tension sur une intensité);</li>
+<li>$[C] = \dfrac{[Q]}{U}$ (une capacité est une charge sur tension). Or $[Q] = I \cdot T$ (intensité fois temps). Donc $[C] = \dfrac{I \cdot T}{U}$.</li>
 <li>Finalement $[R\cdot C] = \dfrac{U}{I} \times \dfrac{I \cdot T}{U} = T$.</li>
 </ul>
 </details>
@@ -650,7 +650,7 @@ $$\dfrac{\mathrm{d}u_{AB}}{\mathrm{dt}} + \dfrac{u_{AB}}{RC} = \dfrac{E}{RC}$$</
 <hr />
 <h4 id="solution-de-léquation-différentielle">Solution de l&rsquo;équation différentielle</h4>
 <p>On montre, en mathématiques, qu&rsquo;une famille de solutions de cette équation différentielle est :
-$$u_{AB} = A + B e^{-t/\tau}$$
+$$u_{AB}(t) = A + B e^{-t/\tau}$$
 où $A$, $B$ et $\tau$ sont des constantes.</p>
 <ol start="13">
 <li>Montrer que la famille de solutions donnée vérifie bien l&rsquo;équation différentielle et en déduire l&rsquo;expression de $\tau$.</li>
@@ -660,21 +660,39 @@ où $A$, $B$ et $\tau$ sont des constantes.</p>
     <summary>
         <strong> Réponse</strong>
     </summary>
-<p>On substitue $u_{AB}$ par la famille de solution dans l&rsquo;équation différentielle.<br>
-Puisque $\dfrac{\mathrm{d}u_{AB}}{\mathrm{dt}} = \dfrac{\mathrm{d}(A + B e^{-t/\tau})}{\mathrm{dt}} = -\dfrac{B}{\tau} \, e^{-t/\tau}$ alors $-\dfrac{B}{\tau} \, e^{-t/\tau} + \dfrac{A}{RC} + \dfrac{B}{RC} e^{-t/\tau} = E$.</p>
+<p>On substitue $u_{AB}$ par la famille de solution dans l&rsquo;équation différentielle.</p>
+<p>Puisque $\dfrac{\mathrm{d}u_{AB}}{\mathrm{dt}} = \dfrac{\mathrm{d}(A + B e^{-t/\tau})}{\mathrm{dt}} = -\dfrac{B}{\tau} \, e^{-t/\tau}$ l&rsquo;équation devient $-\dfrac{B}{\tau} \, e^{-t/\tau} + \dfrac{A}{RC} + \dfrac{B}{RC} e^{-t/\tau} = \dfrac{E}{RC} \iff \left( \dfrac{1}{\tau} + \dfrac{1}{RC} \right)\, B e^{-t/\tau} + \dfrac{A}{RC} = \dfrac{E}{RC}$.</p>
+<ul>
+<li>
+<p>Le terme à droite de l&rsquo;égalité, $\dfrac{E}{RC}$ ne dépend pas du temps. Celui à gauche de cette même égalité ne peut donc pas dépendre du temps. Ceci n&rsquo;est possible que si $\dfrac{1}{\tau} + \dfrac{1}{RC} = 0 \iff \boxed{\tau = RC}$.</p>
+</li>
+<li>
+<p>On en déduit que $\boxed{A = E}$</p>
+</li>
+</ul>
+<p>Finalement, la famille de solutions convient à la condition qu&rsquo;elle s&rsquo;écrive $$\boxed{u_{AB}(t) = E + B e^{-t/\tau} }$$ avec $\tau = RC$.</p>
 </details>
 <hr />
 <ol start="14">
-<li>À partir des conditions initiales, déterminer la fonction solution du problème.</li>
+<li>À partir des conditions initiales &mdash; le condensateur est initialement déchargé &mdash;, déterminer la fonction solution du problème.</li>
 </ol>
 <hr />
 <details>
     <summary>
         <strong> Réponse</strong>
     </summary>
+<ul>
+<li>$u_{AB}(0) = 0 = E + B e^{-0/\tau}= E + B \iff \boxed{B = -E}$</li>
+</ul>
+<p>Finalement
+$$\boxed{u_{AB}(t) = E (1 - e^{-t/\tau}) }$$ avec $\tau = RC$.<br>
+On retrouve donc bien le comportement de l&rsquo;étude expérimentale. En particulier, **la fonction est bien continue** en $t=0$.</p>
 </details>
 <hr />
 <h4 id="signification-physique-de-tau">Signification physique de $\tau$</h4>
+<ol start="15">
+<li>Donner l&rsquo;expression de la tension $u_{AB}$ à la date $t=\tau$.</li>
+</ol>
 <h4 id="expression-de-lintensité-du-courant-électrique">Expression de l&rsquo;intensité du courant électrique</h4>
 
 
