@@ -63,7 +63,7 @@
   "headline": "Les arbres binaires",
   "description" : "Le corrigé de l\u0026rsquo;activité se trouve ici  Arbres binaires Définition   Un arbre binaire est un arbre de degré 2 (dont les nœuds sont au plus de degré 2).\n  Les enfants d’un nœud sont lus de gauche à droite et sont appelés : fils gauche et fils droit.\n   Pour simplifier la présentation, on va considérer que chaque nœud possède exactement deux fils mais que ceux-ci peuvent être vides (None par exemple).",
   "inLanguage" : "fr",
-  "wordCount":  881 ,
+  "wordCount":  939 ,
   "datePublished" : "2020-11-05T03:38:41",
   "dateModified" : "2020-11-05T03:38:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -318,9 +318,9 @@
       <ul>
         <li><a href="#algorithmes-récursifs">Algorithmes récursifs</a></li>
         <li><a href="#parcours-en-profondeur-dun-arbre">Parcours en profondeur d&rsquo;un arbre</a></li>
+        <li><a href="#parcours-en-largeur-dun-arbre">Parcours en largeur d&rsquo;un arbre</a></li>
       </ul>
     </li>
-    <li><a href="#à-retenir">À retenir</a></li>
   </ul>
 </nav>
           
@@ -516,7 +516,7 @@ graph TD
 </details>
 <hr />
 <h3 id="parcours-en-profondeur-dun-arbre">Parcours en profondeur d&rsquo;un arbre</h3>
-<h4 id="récursif">Récursif</h4>
+<h4 id="récursifs">Récursifs</h4>
 <p>Les fonction écrites jusqu&rsquo;à présent parcourent en profondeur tous les nœuds des arbres sans que l&rsquo;ordre dans lequel ce parcourt est effectué ait la moindre importance.</p>
 <p>Si on souhaite donner un affichage de l&rsquo;arbre, la façon dont on le parcourt prend alors une grande importance. On peut :</p>
 <ul>
@@ -527,12 +527,46 @@ graph TD
 <ol start="14">
 <li>Écrire les spécifications et le code des fonctions <code>affiche_infixe</code>, <code>affiche_prefixe</code> et <code>affiche_suffixe</code>.</li>
 </ol>
-<h2 id="à-retenir">À retenir</h2>
-<div class="note tip">
-  Un <strong>arbre binaire</strong> est une ensemble fini de nœuds, qui est soit <strong>vide</strong>, soit structuré à partir d&rsquo;un nœud particulier, appelé <strong>racine</strong> de l&rsquo;arbre, et de deux sous-ensembles de nœuds formant récursivement un <strong>sous-arbre gauche</strong> et un <strong>sous-arbre droit</strong>.<br>
-Un arbre peut-être implémenté en Python avec un objet par nœud, d&rsquo;une <strong>classe</strong> qui possède trois attributs : la valeur (ou étiquette) du nœud, le sous-arbre gauche et le sous-arbre droit. La valeur <code>None</code> est utilisée pour représenter l&rsquo;arbre vide.
-</div>
+<h4 id="itératifs">Itératifs</h4>
+<h3 id="parcours-en-largeur-dun-arbre">Parcours en largeur d&rsquo;un arbre</h3>
+<ol start="15">
+<li>Décrire le fonctionnement de l&rsquo;algorithme suivant</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">Fonction<span style="color:#ce5c00;font-weight:bold">(</span>noeud racine<span style="color:#ce5c00;font-weight:bold">)</span>:
+    File <span style="color:#000">f</span> <span style="color:#ce5c00;font-weight:bold">=</span> newFile<span style="color:#ce5c00;font-weight:bold">()</span>
+    enfiler<span style="color:#ce5c00;font-weight:bold">(</span>f, racine<span style="color:#ce5c00;font-weight:bold">)</span>
+    Noeud <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">=</span> newNoeud<span style="color:#ce5c00;font-weight:bold">()</span>
+    TantQue non est_vide<span style="color:#ce5c00;font-weight:bold">(</span>f<span style="color:#ce5c00;font-weight:bold">)</span>:
+        <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">=</span> f.contenu
+        print<span style="color:#ce5c00;font-weight:bold">(</span>f.defiler<span style="color:#ce5c00;font-weight:bold">())</span>
+        Si non est_vide<span style="color:#ce5c00;font-weight:bold">(</span>n.filsG<span style="color:#ce5c00;font-weight:bold">)</span>:
+            enfiler<span style="color:#ce5c00;font-weight:bold">(</span>n.filsG<span style="color:#ce5c00;font-weight:bold">)</span>
+        FinSi
+        Si non est_vide<span style="color:#ce5c00;font-weight:bold">(</span>n.filsD<span style="color:#ce5c00;font-weight:bold">)</span>:
+            enfiler<span style="color:#ce5c00;font-weight:bold">(</span>n.filsD<span style="color:#ce5c00;font-weight:bold">)</span>
+        FinSi
+    FinTantQue
+FinFonction
+</code></pre></div><ol start="16">
+<li>Implémenter en Python l&rsquo;algorithme précédent.</li>
+</ol>
+<h4 id="parcours-en-profondeur-dun-arbre-1">Parcours en profondeur d&rsquo;un arbre</h4>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
 
+
+
+## À retenir 
+
+&lt;div class=&#34;note tip&#34;&gt;
+  Un &lt;strong&gt;arbre binaire&lt;/strong&gt; est une ensemble fini de nœuds, qui est soit &lt;strong&gt;vide&lt;/strong&gt;, soit structuré à partir d&amp;rsquo;un nœud particulier, appelé &lt;strong&gt;racine&lt;/strong&gt; de l&amp;rsquo;arbre, et de deux sous-ensembles de nœuds formant récursivement un &lt;strong&gt;sous-arbre gauche&lt;/strong&gt; et un &lt;strong&gt;sous-arbre droit&lt;/strong&gt;.&lt;br&gt;
+Un arbre peut-être implémenté en Python avec un objet par nœud, d&amp;rsquo;une &lt;strong&gt;classe&lt;/strong&gt; qui possède trois attributs : la valeur (ou étiquette) du nœud, le sous-arbre gauche et le sous-arbre droit. La valeur &lt;code&gt;None&lt;/code&gt; est utilisée pour représenter l&amp;rsquo;arbre vide.
+&lt;/div&gt;
+
+
+
+
+
+</code></pre></div>
 
         
           <div class="blog-tags">
