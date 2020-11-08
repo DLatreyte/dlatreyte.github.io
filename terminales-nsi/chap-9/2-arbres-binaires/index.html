@@ -61,9 +61,9 @@
     "name" : "David Latreyte"
   },
   "headline": "Les arbres binaires",
-  "description" : "Définition   Un arbre binaire est un arbre de degré 2 (dont les nœuds sont au plus de degré 2).\n  Les enfants d’un nœud sont lus de gauche à droite et sont appelés : fils gauche et fils droit.\n   Remarque : Pour simplifier la présentation, on considère souvent que chaque nœud possède exactement deux fils mais que ceux-ci peuvent être vides (None par exemple).",
+  "description" : "Le corrigé de l\u0026rsquo;activité se trouve ici  Arbres binaires Définition   Un arbre binaire est un arbre de degré 2 (dont les nœuds sont au plus de degré 2).\n  Les enfants d’un nœud sont lus de gauche à droite et sont appelés : fils gauche et fils droit.\n   Pour simplifier la présentation, on va considérer que chaque nœud possède exactement deux fils mais que ceux-ci peuvent être vides (None par exemple).",
   "inLanguage" : "fr",
-  "wordCount":  580 ,
+  "wordCount":  881 ,
   "datePublished" : "2020-11-05T03:38:41",
   "dateModified" : "2020-11-05T03:38:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -306,16 +306,33 @@
           
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#définition">Définition</a></li>
+    <li><a href="#arbres-binaires">Arbres binaires</a>
+      <ul>
+        <li><a href="#définition">Définition</a></li>
+        <li><a href="#relation-entre-nombre-de-nœuds-et-hauteur-dans-le-cas-des-arbres-binaires">Relation entre nombre de nœuds et hauteur dans le cas des arbres binaires</a></li>
+      </ul>
+    </li>
     <li><a href="#spécification-des-arbres-binaires">Spécification des arbres binaires</a></li>
     <li><a href="#implémentation-de-la-spécification-en-python">Implémentation de la spécification en Python</a></li>
+    <li><a href="#algorithmique-des-arbres-binaires">Algorithmique des arbres binaires</a>
+      <ul>
+        <li><a href="#algorithmes-récursifs">Algorithmes récursifs</a></li>
+        <li><a href="#parcours-en-profondeur-dun-arbre">Parcours en profondeur d&rsquo;un arbre</a></li>
+      </ul>
+    </li>
+    <li><a href="#à-retenir">À retenir</a></li>
   </ul>
 </nav>
           
         
         <hr />
 
-        <h2 id="définition">Définition</h2>
+        <div class="note normal">
+  Le corrigé de l&rsquo;activité se trouve
+<a class="remote" href="https://repl.it/@dlatreyte/arbres" target="_blank">ici</a>
+</div>
+<h2 id="arbres-binaires">Arbres binaires</h2>
+<h3 id="définition">Définition</h3>
 <div class="note tip">
   <ul>
 <li>
@@ -326,7 +343,9 @@
 </li>
 </ul>
 </div>
-<p><strong>Remarque :</strong> Pour simplifier la présentation, on considère souvent que chaque nœud possède exactement deux fils mais que <strong>ceux-ci peuvent être vides</strong> (<code>None</code> par exemple).</p>
+<div class="note warning">
+  Pour simplifier la présentation, on va considérer que chaque nœud possède exactement deux fils mais que <strong>ceux-ci peuvent être vides</strong> (<code>None</code> par exemple).
+</div>
 <div class="note normal">
   <p>Les arbres binaires forment une <em>structure de données abstraite qui peut se définir de façon récursive</em>.</p>
 <p>Un arbre binaire est :</p>
@@ -335,6 +354,33 @@
 <li>Soit composé d’une racine portant une étiquette (valeur) et d’une paire d’arbres binaires, appelés sous-arbres gauche et droit.</li>
 </ul>
 </div>
+<h3 id="relation-entre-nombre-de-nœuds-et-hauteur-dans-le-cas-des-arbres-binaires">Relation entre nombre de nœuds et hauteur dans le cas des arbres binaires</h3>
+<div class="note tip">
+  Si $N$ désigne la taille d&rsquo;un arbre binaire &mdash; c&rsquo;est à dire son nombre de nœuds non vides &mdash; et $h$ sa hauteur, alors
+$$h \leqslant N \leqslant 2^h - 1$$
+</div>
+<ol>
+<li>Dans quel cas a-t-on $N = h$ ?</li>
+</ol>
+<hr />
+<details>
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>On a $N = h$ lorsque chaque nœud ne possède qu&rsquo;un seul nœud fils. Il s&rsquo;agit donc d&rsquo;une structure linéaire (liste).</p>
+</details>
+<hr />
+<ol start="2">
+<li>Dans quel cas a-t-on $N = 2^h - 1$ ?</li>
+</ol>
+<hr />
+<details>
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>On a $N = 2^h - 1$ lorsque l&rsquo;arbre binaire est parfait, c&rsquo;est à dire lorsque toutes les feuilles ont la même profondeur.</p>
+</details>
+<hr />
 <h2 id="spécification-des-arbres-binaires">Spécification des arbres binaires</h2>
 <div class="note tip">
   <ul>
@@ -388,7 +434,7 @@
 </div>
 <h2 id="implémentation-de-la-spécification-en-python">Implémentation de la spécification en Python</h2>
 <p>Il existe de nombreuses façons de d&rsquo;implémenter la structure d&rsquo;arbre en Python. Dans cette partie on va utiliser une classe.</p>
-<ol>
+<ol start="2">
 <li>
 <p>Écrire le code de la classe <code>Noeud</code> respectant la spécification. Les trois attributs seront nommés <code>valeur</code>, <code>gauche</code>, <code>droit</code>.</p>
 </li>
@@ -413,6 +459,23 @@ graph TD
 </p>
 </li>
 <li>
+<p>Quel arbre correspond à ce code ?</p>
+</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;r&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;a&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;c&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;h&#39;</span><span style="color:#000;font-weight:bold">)),</span> <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;d&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;i&#39;</span><span style="color:#000;font-weight:bold">),</span>
+ <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;j&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;m&#39;</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">))),</span> <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;b&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;e&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;k&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">),</span>
+  <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;f&#39;</span><span style="color:#000;font-weight:bold">)))</span>
+</code></pre></div><hr />
+<details>
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p><img src="../../../terminales-nsi/chap-9/chap-9-2-1.svg" alt="" width="100%" />
+<img src="../../../terminales-nsi/chap-9/chap-9-2-2.png" alt="" width="100%" /></p>
+</details>
+<hr />
+<ol start="5">
+<li>
 <p>Écrire la spécification et le code de la fonction <code>est_vide</code> qui teste si un arbre est vide.</p>
 </li>
 <li>
@@ -427,30 +490,47 @@ graph TD
 <li>
 <p>Écrire la spécification et le code de la fonction <code>nbre_fils</code> qui compte le nombre de fils que le nœud passé en argument possède.</p>
 </li>
+</ol>
+<h2 id="algorithmique-des-arbres-binaires">Algorithmique des arbres binaires</h2>
+<h3 id="algorithmes-récursifs">Algorithmes récursifs</h3>
+<ol start="10">
 <li>
 <p>Écrire la spécification et le code de la fonction <code>taille</code> qui détermine la taille de l&rsquo;arbre passé en argument.</p>
 </li>
+<li>
+<p>Écrire la spécification et le code de la fonction <code>profondeur</code> qui détermine la profondeur de l&rsquo;arbre passé en argument.</p>
+</li>
+<li>
+<p>Écrire la spécification et le code de la fonction <code>nbre_feuilles</code> qui détermine le nombre de feuilles de l&rsquo;arbre passé en argument.</p>
+</li>
+<li>
+<p>Quelles sont les complexités des algorithmes implémentés dans cette section ?</p>
+</li>
 </ol>
-<div class="note normal">
-  <p>L’idée est la suivante :</p>
+<hr />
+<details>
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Les algorithmes parcourent une fois chaque nœud de l&rsquo;arbre. La complexité est donc proportionnelle au nombre de nœuds.</p>
+</details>
+<hr />
+<h3 id="parcours-en-profondeur-dun-arbre">Parcours en profondeur d&rsquo;un arbre</h3>
+<h4 id="récursif">Récursif</h4>
+<p>Les fonction écrites jusqu&rsquo;à présent parcourent en profondeur tous les nœuds des arbres sans que l&rsquo;ordre dans lequel ce parcourt est effectué ait la moindre importance.</p>
+<p>Si on souhaite donner un affichage de l&rsquo;arbre, la façon dont on le parcourt prend alors une grande importance. On peut :</p>
 <ul>
-<li>Si l&rsquo;arbre est vide : renvoyer 0</li>
-<li>Sinon renvoyer 1 plus la somme du nombre de nœuds des sous arbres.</li>
-<li>Ces sous-arbres sont eux mêmes des arbres dont il faut calculer la hauteur.</li>
+<li>Parcourir le sous-arbre gauche, afficher la valeur du nœud puis enfin parcourir le sous-arbre droit. On parle d&rsquo;un <strong>parcours infixe</strong>.</li>
+<li>Afficher la valeur de chaque nœud avant de parcourir les sous-arbres. On parle d&rsquo;un <strong>parcours préfixe</strong>.</li>
+<li>Parcourir les sous-arbres puis afficher les valeurs. On parle d&rsquo;un <strong>parcours suffixe</strong>.</li>
 </ul>
-<p>L&rsquo;algorithme est donc récursif.</p>
-</div>
-<ol start="9">
-<li>Écrire la spécification et le code de la fonction <code>profondeur</code> qui détermine la profondeur de l&rsquo;arbre passé en argument.</li>
+<ol start="14">
+<li>Écrire les spécifications et le code des fonctions <code>affiche_infixe</code>, <code>affiche_prefixe</code> et <code>affiche_suffixe</code>.</li>
 </ol>
-<div class="note normal">
-  <p>L’idée est la suivante :</p>
-<ul>
-<li>Si l’arbre est vide la hauteur vaut 0.</li>
-<li>Sinon la hauteur vaut 1 auquel il faut ajouter le maximum entre les hauteurs des sous-arbres gauche et droit.</li>
-<li>Ces sous-arbres sont eux mêmes des arbres dont il faut calculer la hauteur.</li>
-</ul>
-<p>L&rsquo;algorithme est donc récursif.</p>
+<h2 id="à-retenir">À retenir</h2>
+<div class="note tip">
+  Un <strong>arbre binaire</strong> est une ensemble fini de nœuds, qui est soit <strong>vide</strong>, soit structuré à partir d&rsquo;un nœud particulier, appelé <strong>racine</strong> de l&rsquo;arbre, et de deux sous-ensembles de nœuds formant récursivement un <strong>sous-arbre gauche</strong> et un <strong>sous-arbre droit</strong>.<br>
+Un arbre peut-être implémenté en Python avec un objet par nœud, d&rsquo;une <strong>classe</strong> qui possède trois attributs : la valeur (ou étiquette) du nœud, le sous-arbre gauche et le sous-arbre droit. La valeur <code>None</code> est utilisée pour représenter l&rsquo;arbre vide.
 </div>
 
 
