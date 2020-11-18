@@ -63,7 +63,7 @@
   "headline": "Le tri fusion",
   "description" : "La méthode « Diviser pour régner » La méthode « Diviser pour régner » est une méthode de résolution de problèmes qui consiste à décomposer le problème en trois étapes :\n  Diviser : Si la taille de l\u0026rsquo;ensemble des données à traiter est inférieure à une certaine limite (un ou deux éléments typiquement) résoudre le problème. Si la taille de l\u0026rsquo;ensemble de données à traiter est supérieur à la limite fixée, diviser cet ensemble en deux sous-ensembles (de tailles inférieures).",
   "inLanguage" : "fr",
-  "wordCount":  114 ,
+  "wordCount":  2184 ,
   "datePublished" : "2020-11-18T17:12:24",
   "dateModified" : "2020-11-18T17:12:24",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -306,6 +306,19 @@
 
       <article role="main" class="blog-post" auto_numbering >
           
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#la-méthode--diviser-pour-régner-">La méthode « Diviser pour régner »</a></li>
+    <li><a href="#le-tri-fusion">Le tri fusion</a>
+      <ul>
+        <li><a href="#description-du-tri">Description du tri</a></li>
+        <li><a href="#décomposition-de-lexécution-de-lalgorithme">Décomposition de l&rsquo;exécution de l&rsquo;algorithme</a></li>
+      </ul>
+    </li>
+    <li><a href="#implémentation-du-tri-fusion-pour-un-tableau">Implémentation du tri fusion pour un tableau</a></li>
+  </ul>
+</nav>
+          
         
         <hr />
 
@@ -320,12 +333,562 @@
 <p><strong>Régner :</strong> Résoudre récursivement le problème pour les deux sous-ensembles de données.</p>
 </li>
 <li>
-<p><strong>Combiner :</strong> Fusionner les solutions des sous-problèmes afin de construire la solution du problème original.</p>
+<p><strong>Fusionner :</strong> Combiner les solutions des sous-problèmes afin de construire la solution du problème original.</p>
 </li>
 </ol>
 </div>
 <h2 id="le-tri-fusion">Le tri fusion</h2>
-<p>Dans cette première partie</p>
+<h3 id="description-du-tri">Description du tri</h3>
+<p>Dans cette partie, nous allons essayer de comprendre les principes sur lesquels s&rsquo;appuie ce tri. Son implémentation, pour des tableaux ou des listes chaînées, sera développée dans les prochaines sections.</p>
+<p>Le tri fusion s&rsquo;appuie sur la méthode <strong>Diviser pour régner</strong> pour trier les $n$ éléments d&rsquo;une séquence $S$ :</p>
+<ol>
+<li>
+<p><strong>Diviser :</strong> Si la séquence $S$ est composée de 0 ou un élément, retourner $S$ immédiatement ; cette séquence est déjà triée. Si la séquence $S$ est composée de plus de deux éléments, la diviser en deux sous-séquences $S_1$ et $S_2$ contenant chacune environ la moitié des éléments de $S$ ; donc $S_1$ est formée des $\left\lfloor \dfrac{n}{2} \right\rfloor$ premiers éléments de $S$ contient les $\left\lceil \dfrac{n}{2} \right\rceil$ derniers éléments de $S$.</p>
+</li>
+<li>
+<p><strong>Régner :</strong> Trier récursivement $S_1$ et $S_2$.</p>
+</li>
+<li>
+<p><strong>Fusionner :</strong> Reformer la séquence $S$ en combinant, dans l&rsquo;ordre, les éléments des séquences triées $S_1$ et $S_2$.</p>
+</li>
+</ol>
+<div class="note normal">
+  <ul>
+<li>$\left\lfloor \dfrac{n}{2} \right\rfloor$ est la notation mathématique pour l&rsquo;opération en Python <code>n // 2</code>, c&rsquo;est à dire <em>le plus grand entier inférieur au résultat de la division de</em> $n$ <em>par 2</em>.</li>
+<li>$\left\lceil \dfrac{n}{2} \right\rceil$ est la notation mathématique pour l&rsquo;opération en Python <code>n // 2 + 1</code>, c&rsquo;est à dire pour <em>le plus petit entier supérieur au résultat de la division de</em> $n$ <em>par 2</em>.</li>
+</ul>
+</div>
+<p>Pour bien comprendre la méthode employée, le plus simple est de construire un arbre binaire dans lequel chaque nœud est le résultat d&rsquo;un appel récursif.</p>
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("85 &nbsp;&nbsp; 24  &nbsp;&nbsp;  63  &nbsp;&nbsp;  45  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") --> S1("85  &nbsp;&nbsp;  24  &nbsp;&nbsp;  63  &nbsp;&nbsp;  45")
+    S --> S2("17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50")
+    S1 --> S11("85  &nbsp;&nbsp;  24")
+    S1 --> S12("63  &nbsp;&nbsp;  45")
+    S11 --> S111(("85"))
+    S11 --> S112(("24"))
+    S12 --> S121(("63"))
+    S12 --> S122(("45"))
+    S2 --> S21("17  &nbsp;&nbsp;  31")
+    S21 --> S211((17))
+    S21 --> S212((31))
+    S2 --> S22("96  &nbsp;&nbsp; 50")
+    S22 --> S221((96))
+    S22 --> S222((50))
+
+</div>
+
+
+<blockquote>
+<p>Résultats des différents appels récursifs (Partie <strong>Diviser</strong>).</p>
+</blockquote>
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart BT
+    S111((85)) --> S11("24 &nbsp;&nbsp; 85")
+    S112((24)) --> S11
+    S121((63)) --> S12("45 &nbsp;&nbsp; 63")
+    S122((45)) --> S12
+    S11 --> S1("24 &nbsp;&nbsp; 45 &nbsp;&nbsp; 63 &nbsp;&nbsp; 85")
+    S12 --> S1
+    S1 --> S("17 &nbsp;&nbsp; 24 &nbsp;&nbsp; 31 &nbsp;&nbsp; 45 &nbsp;&nbsp; 50 &nbsp;&nbsp; 63 &nbsp;&nbsp; 85 &nbsp;&nbsp; 96")
+    S211((17)) --> S21("17 &nbsp;&nbsp; 31")
+    S212((31)) --> S21
+    S221((96)) --> S22("50 &nbsp;&nbsp; 96")
+    S222((50)) --> S22
+    S21 --> S2("17 &nbsp;&nbsp; 31 &nbsp;&nbsp; 50 &nbsp;&nbsp; 96")
+    S22 --> S2
+    S2 --> S
+
+</div>
+
+
+<blockquote>
+<p>Résultats progressifs après les étapes <strong>Régner</strong> et <strong>Fusionner</strong>.</p>
+</blockquote>
+<h3 id="décomposition-de-lexécution-de-lalgorithme">Décomposition de l&rsquo;exécution de l&rsquo;algorithme</h3>
+<hr>
+<h4 id="légende">Légende</h4>
+<ul>
+<li><em>Chaque nœud représente un appel récursif</em> ;</li>
+<li><strong>Nœud avec une bordure en pointilles :</strong> <em>appels récursifs non encore effectués</em> ;</li>
+<li><strong>Nœud avec une bordure en gras :</strong> <em>appel récursif en cours</em> ;</li>
+<li><strong>Nœud vide avec une bordure :</strong> <em>partie déjà traitée</em> ;</li>
+<li><strong>Nœud en partie vide (contenant tout de même des valeurs) :</strong> <em>appels récursifs en attente</em>.</li>
+</ul>
+<hr>
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("85 &nbsp;&nbsp; 24  &nbsp;&nbsp;  63  &nbsp;&nbsp;  45  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") -.- S1("—  &nbsp;&nbsp;  —  &nbsp;&nbsp; — &nbsp;&nbsp;  —")
+    S -.- S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 -.- S11("—  &nbsp;&nbsp;  —")
+    S1 -.- S12("—  &nbsp;&nbsp;  —")
+    S11 -.- S111(("—"))
+    S11 -.- S112(("—"))
+    S12 -.- S121(("—"))
+    S12 -.- S122(("—"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S1,S2,S11,S12,S21,S22,S111,S112,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("— &nbsp;&nbsp; —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") --> S1("85  &nbsp;&nbsp;  24  &nbsp;&nbsp; 63 &nbsp;&nbsp;  45")
+    S -.- S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 -.- S11("—  &nbsp;&nbsp;  —")
+    S1 -.- S12("—  &nbsp;&nbsp;  —")
+    S11 -.- S111(("—"))
+    S11 -.- S112(("—"))
+    S12 -.- S121(("—"))
+    S12 -.- S122(("—"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S11,S12,S21,S22,S111,S112,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S1 gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("— &nbsp;&nbsp; —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") --> S1("—  &nbsp;&nbsp;  —  &nbsp;&nbsp; 63 &nbsp;&nbsp;  45")
+    S -.- S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 --> S11("85  &nbsp;&nbsp;  24")
+    S1 -.- S12("—  &nbsp;&nbsp;  —")
+    S11 -.- S111(("—"))
+    S11 -.- S112(("—"))
+    S12 -.- S121(("—"))
+    S12 -.- S122(("—"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S12,S21,S22,S111,S112,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S11 gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("— &nbsp;&nbsp; —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") --> S1("—  &nbsp;&nbsp;  —  &nbsp;&nbsp; 63 &nbsp;&nbsp;  45")
+    S -.- S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 --> S11("—  &nbsp;&nbsp;  24")
+    S1 -.- S12("—  &nbsp;&nbsp;  —")
+    S11 --> S111(("85"))
+    S11 -.- S112(("—"))
+    S12 -.- S121(("—"))
+    S12 -.- S122(("—"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S12,S21,S22,S112,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S111 gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("— &nbsp;&nbsp; —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") --> S1("—  &nbsp;&nbsp;  —  &nbsp;&nbsp; 63 &nbsp;&nbsp;  45")
+    S -.- S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 --> S11("85  &nbsp;&nbsp;  —")
+    S1 -.- S12("—  &nbsp;&nbsp;  —")
+    S11 <--> S111(("—"))
+    S11 --> S112(("24"))
+    S12 -.- S121(("—"))
+    S12 -.- S122(("—"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S12,S21,S22,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S112 gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("— &nbsp;&nbsp; —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") --> S1("—  &nbsp;&nbsp;  —  &nbsp;&nbsp; 63 &nbsp;&nbsp;  45")
+    S -.- S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 --> S11("24 &nbsp;&nbsp;  85")
+    S1 -.- S12("—  &nbsp;&nbsp;  —")
+    S11 <--> S111(("—"))
+    S11 <--> S112(("—"))
+    S12 -.- S121(("—"))
+    S12 -.- S122(("—"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S12,S21,S22,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S11 gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("— &nbsp;&nbsp; —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") --> S1("24  &nbsp;&nbsp;  85  &nbsp;&nbsp; 63 &nbsp;&nbsp;  45")
+    S -.- S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 <--> S11("— &nbsp;&nbsp;  —")
+    S1 -.- S12("—  &nbsp;&nbsp;  —")
+    S11 <--> S111(("—"))
+    S11 <--> S112(("—"))
+    S12 -.- S121(("—"))
+    S12 -.- S122(("—"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S12,S21,S22,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S1 gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("— &nbsp;&nbsp; —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") --> S1("24  &nbsp;&nbsp;  85  &nbsp;&nbsp; — &nbsp;&nbsp;  —")
+    S -.- S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 <--> S11("— &nbsp;&nbsp;  —")
+    S1 --> S12("63  &nbsp;&nbsp;  45")
+    S11 <--> S111(("—"))
+    S11 <--> S112(("—"))
+    S12 -.- S121(("—"))
+    S12 -.- S122(("—"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S21,S22,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S12 gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("— &nbsp;&nbsp; —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") --> S1("24  &nbsp;&nbsp;  85  &nbsp;&nbsp; — &nbsp;&nbsp;  —")
+    S -.- S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 <--> S11("— &nbsp;&nbsp;  —")
+    S1 --> S12("—  &nbsp;&nbsp;  45")
+    S11 <--> S111(("—"))
+    S11 <--> S112(("—"))
+    S12 --> S121(("63"))
+    S12 -.- S122(("—"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S21,S22,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S121 gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("— &nbsp;&nbsp; —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") --> S1("24  &nbsp;&nbsp;  85  &nbsp;&nbsp; — &nbsp;&nbsp;  —")
+    S -.- S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 <--> S11("— &nbsp;&nbsp;  —")
+    S1 --> S12("63  &nbsp;&nbsp; —")
+    S11 <--> S111(("—"))
+    S11 <--> S112(("—"))
+    S12 <--> S121(("—"))
+    S12 --> S122(("45"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S21,S22,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S122 gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("— &nbsp;&nbsp; —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") --> S1("24  &nbsp;&nbsp;  85  &nbsp;&nbsp; — &nbsp;&nbsp;  —")
+    S -.- S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 <--> S11("— &nbsp;&nbsp;  —")
+    S1 --> S12("45  &nbsp;&nbsp; 63")
+    S11 <--> S111(("—"))
+    S11 <--> S112(("—"))
+    S12 <--> S121(("—"))
+    S12 <--> S122(("—"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S21,S22,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S12 gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("— &nbsp;&nbsp; —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50") --> S1("24  &nbsp;&nbsp;  45  &nbsp;&nbsp; 63 &nbsp;&nbsp;  85")
+    S -.- S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 <--> S11("— &nbsp;&nbsp;  —")
+    S1 <--> S12("—  &nbsp;&nbsp; —")
+    S11 <--> S111(("—"))
+    S11 <--> S112(("—"))
+    S12 <--> S121(("—"))
+    S12 <--> S122(("—"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S21,S22,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S1 gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("24 &nbsp;&nbsp; 45  &nbsp;&nbsp;  63  &nbsp;&nbsp;  85  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —") <--> S1("—  &nbsp;&nbsp;  —  &nbsp;&nbsp; — &nbsp;&nbsp;  —")
+    S --> S2("17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  96  &nbsp;&nbsp;  50")
+    S1 <--> S11("— &nbsp;&nbsp;  —")
+    S1 <--> S12("—  &nbsp;&nbsp; —")
+    S11 <--> S111(("—"))
+    S11 <--> S112(("—"))
+    S12 <--> S121(("—"))
+    S12 <--> S122(("—"))
+    S2 -.- S21("—  &nbsp;&nbsp;  —")
+    S21 -.- S211(("—"))
+    S21 -.- S212(("—"))
+    S2 -.- S22("—  &nbsp;&nbsp; —")
+    S22 -.- S221(("—"))
+    S22 -.- S222(("—"))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S21,S22,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S2 gras;
+
+</div>
+
+
+<center>
+<strong>... et après quelques appels supplémentaires...</strong>
+</center>
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("24 &nbsp;&nbsp; 45  &nbsp;&nbsp;  63  &nbsp;&nbsp;  85  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —") <--> S1("—  &nbsp;&nbsp;  —  &nbsp;&nbsp; — &nbsp;&nbsp;  —")
+    S --> S2("17  &nbsp;&nbsp;  31  &nbsp;&nbsp;  50  &nbsp;&nbsp;  96")
+    S1 <--> S11("— &nbsp;&nbsp;  —")
+    S1 <--> S12("—  &nbsp;&nbsp; —")
+    S11 <--> S111(("—"))
+    S11 <--> S112(("—"))
+    S12 <--> S121(("—"))
+    S12 <--> S122(("—"))
+    S2 <--> S21("—  &nbsp;&nbsp;  —")
+    S21 <--> S211(("—"))
+    S21 <--> S212(("—"))
+    S2 <--> S22("—  &nbsp;&nbsp; —")
+    S22 <--> S221(("—"))
+    S22 <--> S222(("—"))
+    
+    classDef gras stroke-width:3px;
+    class S2 gras;
+
+</div>
+
+
+<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
+<div class="mermaid" align="center" >
+    
+flowchart TD
+    S("17 &nbsp;&nbsp; 24  &nbsp;&nbsp;  31  &nbsp;&nbsp;  45  &nbsp;&nbsp;  50  &nbsp;&nbsp;  63  &nbsp;&nbsp;  85  &nbsp;&nbsp;  96") <--> S1("—  &nbsp;&nbsp;  —  &nbsp;&nbsp; — &nbsp;&nbsp;  —")
+    S <--> S2("—  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —  &nbsp;&nbsp;  —")
+    S1 <--> S11("— &nbsp;&nbsp;  —")
+    S1 <--> S12("—  &nbsp;&nbsp; —")
+    S11 <--> S111(("—"))
+    S11 <--> S112(("—"))
+    S12 <--> S121(("—"))
+    S12 <--> S122(("—"))
+    S2 <--> S21("—  &nbsp;&nbsp;  —")
+    S21 <--> S211(("—"))
+    S21 <--> S212(("—"))
+    S2 <--> S22("—  &nbsp;&nbsp; —")
+    S22 <--> S221(("—"))
+    S22 <--> S222(("—"))
+    
+    classDef gras stroke-width:3px;
+    class S gras;
+
+</div>
+
+
+<div class="note normal">
+  On peut montrer que la <em>hauteur de l&rsquo;arbre des appels récursifs</em> est voisine (en fonction de la définition choisie pour la hauteur) de $\log_2 (n)$ où $n$ est le nombre d&rsquo;éléments dans la séquence.
+</div>
+<h2 id="implémentation-du-tri-fusion-pour-un-tableau">Implémentation du tri fusion pour un tableau</h2>
+<ol>
+<li>Étudier le code suivant et remplacer les &hellip; pour chaque numéro.</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">tri_fusion</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">S</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Implémentation du tri fusion.
+</span><span style="color:#4e9a06">    La liste S est modifiée en place.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">S</span><span style="color:#000;font-weight:bold">)</span>  <span style="color:#8f5902;font-style:italic"># ... (0)</span>
+
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">None</span>  <span style="color:#8f5902;font-style:italic"># ... (1)</span>
+
+    <span style="color:#8f5902;font-style:italic"># Diviser, Régner, Combiner ? ... (2)</span>
+    <span style="color:#000">milieu</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">//</span> <span style="color:#0000cf;font-weight:bold">2</span>
+    <span style="color:#000">S1</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">S</span><span style="color:#000;font-weight:bold">[:</span><span style="color:#000">milieu</span><span style="color:#000;font-weight:bold">]</span>  <span style="color:#8f5902;font-style:italic"># .... (3)</span>
+    <span style="color:#000">S2</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">S</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">milieu</span><span style="color:#000;font-weight:bold">:]</span>  <span style="color:#8f5902;font-style:italic"># .... (4)</span>
+
+    <span style="color:#8f5902;font-style:italic"># Diviser, Régner, Combiner ? ... (5)</span>
+    <span style="color:#000">tri_fusion</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">S1</span><span style="color:#000;font-weight:bold">)</span>  <span style="color:#8f5902;font-style:italic"># ... (6)</span>
+    <span style="color:#000">tri_fusion</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">S2</span><span style="color:#000;font-weight:bold">)</span>  <span style="color:#8f5902;font-style:italic"># ... (7)</span>
+
+    <span style="color:#8f5902;font-style:italic"># Diviser, Régner, Combiner ? ... (8)</span>
+    <span style="color:#000">fusion</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">S1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">S2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">S</span><span style="color:#000;font-weight:bold">)</span>  <span style="color:#8f5902;font-style:italic"># ... (9)</span>
+</code></pre></div><ol start="2">
+<li>Étudier le code suivant et expliquer comment s&rsquo;effectue la fusion.</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">fusion</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">S1</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">S2</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">S</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Combine les éléments des deux listes S1 et S2 dans la liste S (en place).
+</span><span style="color:#4e9a06">    i est le nombre d&#39;élément(s) de S1 copié(s) dans S1. 
+</span><span style="color:#4e9a06">    j est le nombre d&#39;élément(s) de S2 copié(s) dans S2. 
+</span><span style="color:#4e9a06">    On doit donc avoir i + j &lt;= len(S).
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span>
+    <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span>
+
+    <span style="color:#204a87;font-weight:bold">while</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">S</span><span style="color:#000;font-weight:bold">):</span>
+        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">S2</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">or</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">S1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">and</span> <span style="color:#000">S1</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">S2</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">]):</span>
+            <span style="color:#000">S</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">S1</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]</span>
+            <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span>
+        <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+            <span style="color:#000">S</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">S2</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">]</span>
+            <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span>
+</code></pre></div><ol start="3">
+<li>Étudier le comportement du programme complet à l&rsquo;aide de pythontutor.<br>
+Construire la liste à l&rsquo;aide de l&rsquo;instruction :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">liste</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">randint</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">400</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">)]</span>
+</code></pre></div><ol start="4">
+<li>
+<p>Quelle est la complexité de la fonction <code>fusion</code> ?</p>
+</li>
+<li>
+<p>Essayer d&rsquo;évaluer la complexité de l&rsquo;algorithme sans faire de calcul.</p>
+</li>
+</ol>
 
 
         
