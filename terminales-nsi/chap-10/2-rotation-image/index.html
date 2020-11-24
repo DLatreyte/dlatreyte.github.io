@@ -63,11 +63,11 @@
   "headline": "Rotation d\u0027une image bitmap d\u0027un quart de tour",
   "description" : "L\u0026rsquo;objectif de cette activité est l\u0026rsquo;écriture d\u0026rsquo;une fonction qui effectue la rotation d\u0026rsquo;une image bitmap de 90 degrés en utilisant le principe « Diviser pour régner ».\nOn peut manipuler des images en Python à l\u0026rsquo;aide du module PIL (Python Image Library). Une première partie de l\u0026rsquo;activité est consacrée à la prise en main de ce module. Dans un second temps, la fonction de manipulation des bits est développée.\nImages numériques Définition L\u0026rsquo;image matricielle Une image matricielle, ou « carte de points » (de l\u0026rsquo;anglais « bitmap »), est une image constituée d\u0026rsquo;une matrice de points colorés, c\u0026rsquo;est-à-dire, constituée d\u0026rsquo;un tableau, d\u0026rsquo;une grille, où chaque case possède une couleur qui lui est propre et est considérée comme un point.",
   "inLanguage" : "fr",
-  "wordCount":  1720 ,
+  "wordCount":  1862 ,
   "datePublished" : "2020-11-18T17:12:52",
   "dateModified" : "2020-11-18T17:12:52",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
-  "keywords" : [ "" ],
+  "keywords" : [ "Diviser pour régner, Récursivité, Traitement images" ],
   "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/terminales-nsi\/chap-10\/2-rotation-image\/",
   "publisher" : {
     "@type": "Organization",
@@ -562,9 +562,14 @@ Il présente une profondeur de 8 bpp ou 16 bpp.</li>
 </ol>
 <h2 id="rotation-dune-image-dun-quart-de-tour">Rotation d&rsquo;une image d&rsquo;un quart de tour</h2>
 <p>Dans la suite de cette activité on suppose que l&rsquo;image est carrée et que sa dimension est une puissance de 2, par exemple $256 \times 256$.</p>
+<p>Une solution se trouve à 
+<a class="remote" href="https://repl.it/@dlatreyte/rotation-image" target="_blank">cette adresse</a>
+
+</p>
 <div class="note normal">
   L&rsquo;idée de l&rsquo;algorithme consiste à découper l&rsquo;image en quatre, à effectuer la rotation de 90 degrés de chacun des quatre morceaux, puis de les déplacer vers leur position finale.
 </div>
+<p><img src="../../../terminales-nsi/chap-10/chap-10-2-3.png" alt="" width="60%" /></p>
 <ul>
 <li>
 
@@ -591,17 +596,51 @@ Il présente une profondeur de 8 bpp ou 16 bpp.</li>
 
 </li>
 </ul>
-<ol start="17">
+<p>Afin de pouvoir procéder récursivement, définir la fonction (et sa spécification !) <code>rotation_aux(px, x, y, t)</code> qui effectue la rotation de la portion carrée de l&rsquo;image comprise entre les pixels $(x,y)$ et $(x+t, y+t)$. Cette fonction ne renvoie rien, elle modifie le tableau <code>px</code> pour effectuer la rotation de cette portion de l&rsquo;image, au même endroit. On suppose que <code>t</code> est une puissance de 2.    <br>
+Le code de cette fonction est :</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">rotation_aux</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span>
+
+    <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">//</span> <span style="color:#0000cf;font-weight:bold">2</span>
+    <span style="color:#000">rotation_aux</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">rotation_aux</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">rotation_aux</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">rotation_aux</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">)</span>
+
+    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">):</span>
+        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">j</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">):</span>
+            <span style="color:#8f5902;font-style:italic">#print(x, y)</span>
+            <span style="color:#000">t_1</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">))</span>
+            <span style="color:#000">t_2</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">))</span>
+            <span style="color:#000">t_3</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">))</span>
+            <span style="color:#000">t_4</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">))</span>
+
+            <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">putpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">t_4</span><span style="color:#000;font-weight:bold">)</span>
+            <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">putpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">t_3</span><span style="color:#000;font-weight:bold">)</span>
+            <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">putpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">t_2</span><span style="color:#000;font-weight:bold">)</span>
+            <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">putpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">t_1</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div><ol start="17">
 <li>
-<p>Afin de pouvoir procéder récursivement, définir la fonction (et sa spécification !) <code>rotation_aux(px, x, y, t)</code> qui effectue la rotation de la portion carrée de l&rsquo;image comprise entre les pixels $(x,y)$ et $(x+t, y+t)$. Cette fonction ne renvoie rien, elle modifie le tableau <code>px</code> pour effectuer la rotation de cette portion de l&rsquo;image, au même endroit. On suppose que <code>t</code> est une puissance de 2.</p>
+<p>Étudier ce code afin de bien le comprendre. En particulier, faire fonctionner à la main la fonction pour une image de définition $8 \times 8$.</p>
 </li>
 <li>
-<p>En déduire la fonction <code>rotation(px, taille)</code> qui effectue une rotation de l&rsquo;image toute entière, sa dimension étant donnée par le paramètre <code>taille</code>.  <br>
+<p>En déduire la fonction <code>rotation(px)</code> qui effectue une rotation de l&rsquo;image toute entière, sa dimension étant donnée par le paramètre <code>taille</code>.  <br>
 Une fois la rotation effectuée, on pourra sauvegarder le résultat dans un autre fichier avec l&rsquo;instruction <code>im.save(&quot;Apres_rotation.png&quot;)</code>.</p>
 </li>
 </ol>
 
 
+        
+          <div class="blog-tags">
+            
+              <a href="https://dlatreyte.github.io/tags/diviser-pour-r%C3%A9gner/">Diviser pour régner</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/r%C3%A9cursivit%C3%A9/">Récursivité</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/traitement-images/">Traitement images</a>&nbsp;
+            
+          </div>
         
 
         
@@ -616,6 +655,17 @@ Une fois la rotation effectuée, on pourra sauvegarder le résultat dans un autr
         
           
           
+          <h4 class="see-also">Voir également</h4>
+          <ul>
+          
+            <li><a href="../../../terminales-nsi/chap-10/1-tri-fusion/">Le tri fusion</a></li>
+          
+            <li><a href="../../../terminales-nsi/chap-5/2-tri-insertion/">Tri par insertion</a></li>
+          
+            <li><a href="../../../terminales-nsi/chap-5/1-programmation-fonctionnelle/">Programmation Fonctionnelle</a></li>
+          
+          </ul>
+          
         
       </article>
 
@@ -627,6 +677,10 @@ Une fois la rotation effectuée, on pourra sauvegarder le résultat dans un autr
               <a href="https://dlatreyte.github.io/terminales-nsi/chap-10/1-tri-fusion/" data-toggle="tooltip" data-placement="top" title="Le tri fusion">&larr; Post précédent</a>
             </li>
           
+          
+            <li class="next">
+              <a href="https://dlatreyte.github.io/terminales-nsi/chap-10/3-tour-hanoi/" data-toggle="tooltip" data-placement="top" title="Les tours de Hanoï">Post suivant &rarr;</a>
+            </li>
           
         </ul>
       
