@@ -63,7 +63,7 @@
   "headline": "Le routage entre réseaux IP",
   "description" : "Routeurs et objectif du routage ? La responsabilité d’un protocole de routage est de fournir l’information nécessaire pour effectuer un routage, c’est-à-dire la détermination d’un chemin entre une machine émettrice et une machine réceptrice, toutes deux identifiées par leur adresse IP sur des sous-réseaux différents.  Un routeur est un ordinateur possédant au moins deux interfaces réseaux situées sur des sous-réseaux IP différents.  Il faut être capable de distinguer une carte réseau d\u0026rsquo;une interface réseau.",
   "inLanguage" : "fr",
-  "wordCount":  1528 ,
+  "wordCount":  2088 ,
   "datePublished" : "2021-01-02T15:51:33",
   "dateModified" : "2021-01-02T15:51:33",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -366,13 +366,37 @@ La plupart du temps, cependant, on n&rsquo;attache qu&rsquo;une seule interface 
 <p>On utilise la commande <code>route</code> dans le terminal et on obtient le résultat suivant :
 <img src="../../../terminales-nsi/chap-11/chap-11-5/chap-11-5-2.png" alt="" width="" /></p>
 <ol>
-<li>
-<p>Décrire le plus précisément possible cet affichage.</p>
-</li>
-<li>
-<p>Quelle est l&rsquo;adresse du routeur avec lequel cet ordinateur peut directement dialoguer ?</p>
-</li>
+<li>Décrire le plus précisément possible cet affichage.</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<dl>
+<dt>Ligne 1</dt>
+<dd>La machine a pour adresse IP <code>172.12.0.2</code> (on le sait grâce au masque de sous-réseau <code>255.255.255.255</code> qui est le masque d&rsquo;un hôte). Tout paquet destiné à cet ordinateur émis depuis cet ordinateur doit passer par l&rsquo;interface de loopback.</dd>
+<dt>Ligne 2</dt>
+<dd>Tout paquet à destination du sous-réseau <code>172.12.0.0</code>, sous-réseau auquel appartient l&rsquo;ordinateur doit transiter par l&rsquo;interface attachée à cet ordinateur d&rsquo;adresse <code>172.12.0.2</code>.<br>
+<strong>Rappel :</strong> Un ordinateur n&rsquo;a pas besoin d&rsquo;un routeur pour dialoguer avec un autre ordinateur appartenant au même réseau. **Les routeurs ne sont obligatoires que lorsqu&rsquo;il s&rsquo;agit de faire dialoguer des ordinateurs appartenant à des réseaux différents.</dd>
+<dt>Ligne 3</dt>
+<dd>Tout paquet à destination du réseau de loopback doit transiter par l&rsquo;adresse de loopback.</dd>
+<dt>Ligne 4</dt>
+<dd>(<strong>Route par défaut</strong>) Tout paquet destiné à un ordinateur pour lequel aucune des décisions de routage précédentes ne convient (donc tous les paquets qui ne sont destinés ni à l&rsquo;ordinateur, ni au sous-réseau auquel l&rsquo;ordinateur appartient) doit transiter par l&rsquo;interface d&rsquo;adresse <code>172.12.0.2</code> et être adressé à l&rsquo;ordinateur d&rsquo;adresse <code>172.12.255.254</code> ; c&rsquo;est le <strong>routeur</strong>.</dd>
+</dl>
+</details>
+<hr />
+<ol start="2">
+<li>Quelle est l&rsquo;adresse du routeur avec lequel cet ordinateur peut directement dialoguer ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Le routeur de ce sous-réseau a donc pour adresse <code>172.12.255.254</code>.</p>
+</details>
+<hr />
 <p>On simule le réseau suivant (
 <a class="remote" href="../../../terminales-nsi/chap-11/chap-11-5/chap-11-5-3.fls" target="_blank">Fichier simulation à télécharger</a>
 
@@ -389,18 +413,60 @@ La plupart du temps, cependant, on n&rsquo;attache qu&rsquo;une seule interface 
 <li>
 <p>Cette machine est-elle capable d&rsquo;envoyer un paquet vers la machine d&rsquo;adresse <code>192.168.3.11</code> ? Justifier la réponse à partir de l&rsquo;étude de la table de routage.</p>
 </li>
-<li>
-<p>Même question pour l&rsquo;envoi d&rsquo;un paquet vers la machine d&rsquo;adresse <code>192.168.1.10</code>.</p>
-</li>
-<li>
-<p>Se connecter l&rsquo;ordinateur d&rsquo;adresse IP <code>192.168.0.11</code>. Est-il capable d&rsquo;envoyer un paquet vers la machine d&rsquo;adresse IP <code>192.168.3.11</code> ? Justifier la réponse à partir de l&rsquo;étude de la table de routage.</p>
-</li>
-<li>
-<p>Corriger la configuration réseau de l&rsquo;ordinateur d&rsquo;adresse IP <code>192.168.0.11</code> de façon à ce qu&rsquo;il puisse envoyer un paquet à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code>.</p>
-</li>
-<li>
-<p>L&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code> peut-il répondre à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.0.10</code> ? Justifier la réponse à partir de l&rsquo;étude de la table de routage.</p>
-</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>L&rsquo;ordinateur peut tout à fait envoyer un paquet vers l&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code> puisqu&rsquo;il possède une route par défaut qui passe par le routeur R2, route qui mène au sous-réseau d&rsquo;adresse <code>192.168.3.0</code>.</p>
+</details>
+<hr />
+<ol start="5">
+<li>Même question pour l&rsquo;envoi d&rsquo;un paquet vers la machine d&rsquo;adresse <code>192.168.1.10</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Lorsqu&rsquo;on affiche la table de routage de cet ordinateur on constate qu&rsquo;aucune entrée ne lui permet d&rsquo;envoyer un paquet vers le réseau d&rsquo;adresse <code>192.168.1.0/24</code> puisque ce réseau n&rsquo;est pas le sien et que le routeur R2, passerelle par défaut pour cet ordinateur, n&rsquo;a aucune connaissance de ce réseau.</p>
+</details>
+<hr />
+<ol start="6">
+<li>Se connecter l&rsquo;ordinateur d&rsquo;adresse IP <code>192.168.0.11</code>. Est-il capable d&rsquo;envoyer un paquet vers la machine d&rsquo;adresse IP <code>192.168.3.11</code> ? Justifier la réponse à partir de l&rsquo;étude de la table de routage.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Lorsqu&rsquo;on affiche la table de routage de cet ordinateur on constate qu&rsquo;aucune entrée ne lui permet d&rsquo;envoyer un paquet hors de son réseau (ou de son adresse loopback). Il ne sait donc pas comment envoyer un message à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code>.</p>
+</details>
+<hr />
+<ol start="7">
+<li>Corriger la configuration réseau de l&rsquo;ordinateur d&rsquo;adresse IP <code>192.168.0.11</code> de façon à ce qu&rsquo;il puisse envoyer un paquet à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Il faut configurer la passerelle par défaut en lui attribuant l&rsquo;adresse du routeur : <code>192.168.1.253</code>.</p>
+</details>
+<hr />
+<ol start="8">
+<li>L&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code> peut-il répondre à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.0.10</code> ? Justifier la réponse à partir de l&rsquo;étude de la table de routage.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La route par défaut, dans la table de routage passe par le routeur R4 qui, sauf configuration particulière non prise en compte dans cette partie, ne sait pas comment atteindre le réseau <code>192.168.0.0</code>. L&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code> ne peut donc pas répondre à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.0.10</code>.</p>
+</details>
+<hr />
+<ol start="9">
 <li>
 <p>Utiliser la commande <code>ping</code> pour confirmer l&rsquo;étude menée jusqu&rsquo;à présent.</p>
 </li>
@@ -428,6 +494,33 @@ La plupart du temps, cependant, on n&rsquo;attache qu&rsquo;une seule interface 
 </tbody>
 </table>
 </center>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">192.168.1.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">192.168.1.254</td>
+<td style="text-align:center">192.168.0.10</td>
+</tr>
+</tbody>
+</table>
+</center>
+</details>
+<hr />
 <h3 id="comment-une-décision-de-routage-est-elle-prise-par-un-routeur-">Comment une décision de routage est-elle prise par un routeur ?</h3>
 <div class="note normal">
   <h4 id="algorithme-de-prise-de-décision">Algorithme de prise de décision</h4>
@@ -452,25 +545,66 @@ Si cette adresse MAC n&rsquo;est pas celle du routeur, la trame est rejetée. Si
 </ul>
 </div>
 <ol start="11">
-<li>
-<p>Quelle couche du modèle OSI est concernée par l&rsquo;émission ou la réception de signaux physiques ?</p>
-</li>
-<li>
-<p>À quelle couche appartiennent les protocoles qui définissent la structure d&rsquo;une trame et qui se basent sur les adresses MAC ?</p>
-</li>
-<li>
-<p>Au niveau de quelle couche parle-t-on de paquets et d&rsquo;adresses IP ?</p>
-</li>
-<li>
-<p>Combien de sauts retourne la commande <code>traceroute 192.168.3.11</code> lancée depuis la machine d&rsquo;adresse <code>192.168.0.10</code> ?</p>
-</li>
-<li>
-<p>Combien de sauts retourne la commande <code>traceroute 192.168.0.10</code> lancée depuis la machine d&rsquo;adresse <code>192.168.3.11</code> ? Expliquer l&rsquo;origine de la différence.</p>
-</li>
-<li>
-<p>Compléter la table de routage du routeur R3 de façon à ce que n&rsquo;importe quel ordinateur puisse communiquer avec n&rsquo;importe quel autre ordinateur.
-Ajouter aussi la passerelle par défaut, R4</p>
-</li>
+<li>Quelle couche du modèle OSI est concernée par l&rsquo;émission ou la réception de signaux physiques ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>L&rsquo;émission ou la réception des signaux physiques sont définies par des protocoles de la <strong>couche physique</strong> (ou couche 1).</p>
+</details>
+<hr />
+<ol start="12">
+<li>À quelle couche appartiennent les protocoles qui définissent la structure d&rsquo;une trame et qui se basent sur les adresses MAC ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La structure d&rsquo;une trame est définie au niveau de la <strong>couche de liaison</strong> (couche 2).</p>
+</details>
+<hr />
+<ol start="13">
+<li>Au niveau de quelle couche parle-t-on de paquets et d&rsquo;adresses IP ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Les structure des paquets est définie au niveau de la <strong>courche réseau</strong> (couche 3).</p>
+</details>
+<hr />
+<ol start="14">
+<li>Combien de sauts retourne la commande <code>traceroute 192.168.3.11</code> lancée depuis la machine d&rsquo;adresse <code>192.168.0.10</code> ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Le signal parvient à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code> en 3 sauts : <code>192.168.0.253</code>, <code>192.168.2.2</code>, <code>192.168.3.11</code>.<br>
+Ce sont toutes les interfaces d&rsquo;entrées des différentes trames.</p>
+</details>
+<hr />
+<ol start="15">
+<li>Combien de sauts retourne la commande <code>traceroute 192.168.0.10</code> lancée depuis la machine d&rsquo;adresse <code>192.168.3.11</code> ? Expliquer l&rsquo;origine de la différence.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Le signal parvient à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.0.10</code> en 4 sauts : <code>192.168.3.254</code>, <code>192.168.3.253</code>, <code>192.168.2.1</code>, <code>192.168.0.10</code>.<br>
+Ce sont toutes les interfaces d&rsquo;entrées des différentes trames.<br>
+On compte dans ce sens un saut de plus car l&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code> ne sait pas s&rsquo;adresser directement au routeur <code>192.168.3.253</code>.</p>
+</details>
+<hr />
+<ol start="16">
+<li>Compléter la table de routage du routeur R3 de façon à ce que n&rsquo;importe quel ordinateur puisse communiquer avec n&rsquo;importe quel autre ordinateur.
+Ajouter aussi la passerelle par défaut, R4</li>
 </ol>
 <center>
 <table>
@@ -516,6 +650,45 @@ Ajouter aussi la passerelle par défaut, R4</p>
 </tbody>
 </table>
 </center>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">192.168.0.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">192.168.2.1</td>
+<td style="text-align:center">192.168.2.2</td>
+</tr>
+<tr>
+<td style="text-align:center">192.168.1.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">192.168.2.1</td>
+<td style="text-align:center">192.168.2.2</td>
+</tr>
+<tr>
+<td style="text-align:center">0.0.0.0</td>
+<td style="text-align:center">0.0.0.0</td>
+<td style="text-align:center">192.168.3.254</td>
+<td style="text-align:center">192.168.3.253</td>
+</tr>
+</tbody>
+</table>
+</center>
+</details>
+<hr />
 <ol start="17">
 <li>On donne ci-dessous la table de routage de base du routeur R1. Cette table doit-elle être complétée de façon à ce que tous les ordinateurs puissent communiquer avec tous les ordinateurs sur le réseau ?</li>
 </ol>
@@ -569,6 +742,14 @@ Ajouter aussi la passerelle par défaut, R4</p>
 </tbody>
 </table>
 </center>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Cette table de routage est complète, il n&rsquo;est pas nécessaire d&rsquo;ajouter quoi que ce soit. Tout paquet destiné à un réseau non présent dans cette table est envoyé à la passerelle par défaut qui s&rsquo;occupe de le router au-delà du périmètre d&rsquo;influence de R1.</p>
+</details>
+<hr />
 <h2 id="types-de-routage">Types de routage</h2>
 <p>Si le réseau n&rsquo;est pas trop étendu, il est possible de créer manuellement les tables de routage de chaque routeur. Cependant, cette méthode n&rsquo;est pas applicable sur des grands réseaux : les routeurs doivent alors mettre en œuvre des protocoles leurs permettant de construire et de partager automatiquement les tables de routage ; on parle de <strong>routage dynamique</strong>.</p>
 <h3 id="intérêt-dun-routage-automatique">Intérêt d&rsquo;un routage automatique</h3>
