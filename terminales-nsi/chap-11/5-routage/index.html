@@ -63,7 +63,7 @@
   "headline": "Le routage entre réseaux IP",
   "description" : "Routeurs et objectif du routage ? La responsabilité d’un protocole de routage est de fournir l’information nécessaire pour effectuer un routage, c’est-à-dire la détermination d’un chemin entre une machine émettrice et une machine réceptrice, toutes deux identifiées par leur adresse IP sur des sous-réseaux différents.  Un routeur est un ordinateur possédant au moins deux interfaces réseaux situées sur des sous-réseaux IP différents.  Il faut être capable de distinguer une carte réseau d\u0026rsquo;une interface réseau.",
   "inLanguage" : "fr",
-  "wordCount":  2088 ,
+  "wordCount":  2714 ,
   "datePublished" : "2021-01-02T15:51:33",
   "dateModified" : "2021-01-02T15:51:33",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -766,42 +766,59 @@ Ajouter aussi la passerelle par défaut, R4</li>
 </li>
 </ul>
 </div>
+<p>On laisse donc les routeurs mettre eux-mêmes à jour leur table de routage grâce à la mise en œuvre de <em>protocoles de routage</em>.</p>
+<div class="note normal">
+  Initialement, les informations dont dispose un routeur sont celles sur ces voisins immédiats ainsi que les sous-réseaux auxquels il est connecté. En envoyant régulièrement des messages à ses voisins, et en évaluant le temps de réponse, il peut déterminer si un routeur fonctionne ou pas et en déduire si une liaison existe toujours ou est rompue. Il peut ensuite propager cette information à ses voisins qui peuvent eux-mêmes les transmettre à leurs voisins. <em>Ainsi, <strong>de proche en proche</strong>, tous les routeurs finissent par partager les mêmes connaissances sur la topologie du réseau</em>.
+</div>
 <h3 id="routing-information-protocol-rip--algorithme-à-vecteur-de-distances">Routing Information Protocol (RIP) : algorithme à vecteur de distances</h3>
 <ul>
 <li>RIP est historiquement le premier algorithme de routage.</li>
 </ul>
 <div class="note tip">
-  RIP recherche <strong>le plus court chemin</strong> selon un <em>critère de coût simple</em> : <strong>le nombre de routeurs traversés (hop)</strong>.<br>
+  RIP recherche <strong>le plus court chemin</strong> selon un <em>critère de coût simple</em> : <strong>le nombre de routeurs à traverser (hop)</strong>.<br>
 Cela revient à affecter un <strong>coût unitaire à la traversée de chaque routeur</strong>.<br>
-RIP appartient à la famille des <strong>protocoles à vecteurs de distance</strong>, <em>puisqu’il calcule la distance, en nombre de routeurs traversés, entre origine et destination</em>.
+RIP appartient à la famille des <strong>protocoles à vecteurs de distance</strong>, <em>puisque les informations contenues dans la table de routage sont du type <strong>(adresse, distance)</strong>.</em>
+$$ \text{adresse} + \text{distance} = \text{vecteur} $$
 </div>
-<div class="note normal">
-  <ul>
+<h4 id="algorithme-général-de-rip">Algorithme général de RIP</h4>
+<ul>
 <li>
-<p>Chaque routeur a d’abord dans sa table les réseaux directement accessibles sans passer par un autre routeur (donc à une distance 0).</p>
+<p>Lors de l'<strong>initialisation du routeur</strong>, celui-ci détermine l&rsquo;adresse réseau de ses interfaces puis <em>envoie sur chacune une demande d&rsquo;informations (table RIP complète) aux routeurs voisins</em>.</p>
 </li>
 <li>
-<p>Ensuite, périodiquement (toutes les 30 s), <strong>chaque machine écoute les annonces des passerelles</strong> publiant leurs tables : <em>elle met ainsi à jour ses propres tables si des chemins plus courts ou de nouvelles destinations apparaissent</em>. Les distances sont mises à jour ainsi que le nom du premier routeur qu’il faut joindre pour accéder au réseau :
-$$
-\text{distance} + \text{direction} = \text{vecteur}
-$$</p>
+<p>Lors de la <strong>réception d&rsquo;une demande</strong>, un <em>routeur envoie sa table complète ou partielle</em> suivant la nature de cette demande.</p>
 </li>
 <li>
-<p>Si un réseau n’apparaît plus dans les annonces, au bout d’un certain temps (3 minutes) il est supprimé des tables.</p>
+<p>Lors de la <strong>réception d&rsquo;une réponse</strong>, il met à jour sa table si besoin. Trois cas peuvent se présenter :</p>
+<ul>
+<li>pour une <strong>nouvelle route</strong>, il <em>incrémente la distance</em>, <em>vérifie que celle-ci est strictement inférieure à 15</em> et diffuse immédiatement le vecteur de distance correspondant ;</li>
+<li>pour une <strong>route existante, mais avec une distance plus faible</strong>, la table est mise à jour. La nouvelle distance et, éventuellement, l&rsquo;adresse du routeur si elle diffère sont intégrées à la table ;</li>
+<li>pour une route existante, mais avec une distance plus importante, la table est mise à jour si la nouvelle distance est émise par le même routeur voisin que précédemment.</li>
+</ul>
+<p>Bien sûr, si l'<em>appareil reçoit une route dont la distance est supérieure à celle déjà connue d&rsquo;un autre voisin, RIP l&rsquo;ignore</em>.</p>
+</li>
+<li>
+<p>À intervalles réguliers (toutes les 30 secondes), la <em>table RIP est diffusée qu&rsquo;il y ait ou non des modifications.</em></p>
+</li>
+<li>
+<p>Des routes doivent être retirées de la table gérée par RIP dans deux situations :</p>
+<ul>
+<li>en premier lieu, si un <strong>réseau immédiatement connecté devient inaccessible</strong> (panne de l&rsquo;interface, de la ligne, modification de la topologie par l&rsquo;administrateur, etc.), les routeurs RIP reliés à ce réseau affectent dans leur table une <em>distance « infinie »</em> (16 comme indiqué plus haut) à cette route. Elle est conservée pendant la durée d&rsquo;un temporisateur de « maintien » (garbage collect) de 120 secondes puis est supprimée. Immédiatement après, le vecteur avec une distance « infinie » est diffusé. Un routeur qui reçoit un vecteur avec une distance de 16 comprend : « il faut que tu retires cette route de ta table, car elle est devenue invalide ! » De proche en proche, cette information se propage ;</li>
+<li>en second lieu, <strong>un routeur du réseau tombe en panne</strong>. Cela veut peut-être dire que les réseaux situés derrière cet appareil sont devenus inaccessibles. Mais comment savoir si un routeur est en panne ? RIP considère qu&rsquo;un routeur qui <em>n&rsquo;a pas donné de nouvelles depuis trois minutes</em> est hors service. Pour gérer cette situation, il attribue à toutes les routes dynamiques un temporisateur initialisé à 180 secondes par défaut. À chaque réception d&rsquo;un vecteur de distance déjà présent dans la table, le compteur est réinitialisé. Mais si jamais ce compteur atteint zéro, la route est considérée comme invalide. On se retrouve alors dans la situation précédente (distance infinie, temporisateur de maintien, diffusion de l&rsquo;information puis suppression de la route). Maintenant, si un autre routeur connaît une route menant vers un des réseaux que l&rsquo;on vient de retirer, c&rsquo;est parfait ! Notre routeur intègrera cette nouvelle route dans sa table. De cette façon, RIP permet la tolérance aux pannes.</li>
+</ul>
 </li>
 </ul>
+<div style="text-align: right;">
+<a href="https://inetdoc.developpez.com/tutoriels/routage-dynamique-protocole-rip/#L3-1" target="_blank"> https://inetdoc.developpez.com/tutoriels/routage-dynamique-protocole-rip/#L3-1 </a>
 </div>
 <div class="note tip">
   <p>Les trois caractéristiques principales qui distinguent l’algorithme RIP de l’algorithme OSPF sont :</p>
 <ul>
 <li>
-<p><em>La distance est mesurée en nombre de sauts</em>.</p>
+<p><em>La distance est mesurée en nombre de routeurs à traverser</em>.</p>
 </li>
 <li>
-<p>Chaque routeur n’a d’information que sur ses voisins (en terme de saut : <strong>next hop</strong>) donc n’a <em>pas de vision globale du réseau</em>.</p>
-</li>
-<li>
-<p>Le protocole est <em>limité aux réseaux dont le plus long chemin implique quinze routeurs au maximum</em>.</p>
+<p>Le protocole est <em>limité aux réseaux dont le plus long chemin implique quinze routeurs au maximum car la convergence des informations est très lente</em>.</p>
 </li>
 </ul>
 </div>
@@ -809,6 +826,57 @@ $$</p>
 <dt>Remarque</dt>
 <dd>Les situations où les routes doivent être choisies en fonction de paramètres mesurés en temps réel comme un <strong>délai</strong>, une <strong>fiabilité</strong> ou une <strong>charge</strong>, se prêtent donc mal à ce type de traitement.</dd>
 </dl>
+<div class="note exercise">
+  <p><img src="../../../terminales-nsi/chap-11/chap-11-5/chap-11-5-5.png" alt="" width="" /></p>
+<ol>
+<li>
+<p>Pour chaque sous-réseau situé entre deux routeurs, donner la première adresse utilisable pour adresser une machine et la dernière.</p>
+</li>
+<li>
+<p>Attribuer aux différentes interfaces des routeurs des adresses.</p>
+</li>
+<li>
+<p>Donner la table de routage du routeur $R_1$ à son initialisation. Ajouter une colonne distance.</p>
+</li>
+</ol>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</center>
+<p><strong>Remarque :</strong> Pour simplifier la lecture, ne rien écrire dans la colonne Passerelle si celle-ci est le routeur lui-même.</p>
+<ol start="4">
+<li>
+<p>Même question pour le routeur $R_3$ et le routeur $R_2$.</p>
+</li>
+<li>
+<p>Donner la table de routage du routeur $R_1$ si on imagine qu&rsquo;il a d&rsquo;abord échangé une demande RIP avec le routeur $R_3$.</p>
+</li>
+<li>
+<p>Donner la table de routage du routeur $R_1$ si on imagine qu&rsquo;il a ensuite échangé une demande RIP avec le routeur $R_2$.</p>
+</li>
+<li>
+<p>Quelle est la table de routage finale pour le routeur $R_1$.</p>
+</li>
+</ol>
+</div>
 <h3 id="open-shortest-path-first-ospf--algorithm-à-état-de-liaison">Open Shortest Path First (OSPF) : algorithm à état de liaison</h3>
 <div class="note tip">
   <ul>
