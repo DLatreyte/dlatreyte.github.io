@@ -63,7 +63,7 @@
   "headline": "Le routage entre réseaux IP",
   "description" : "Routeurs et objectif du routage ? La responsabilité d’un protocole de routage est de fournir l’information nécessaire pour effectuer un routage, c’est-à-dire la détermination d’un chemin entre une machine émettrice et une machine réceptrice, toutes deux identifiées par leur adresse IP sur des sous-réseaux différents.  Un routeur est un ordinateur possédant au moins deux interfaces réseaux situées sur des sous-réseaux IP différents.  Il faut être capable de distinguer une carte réseau d\u0026rsquo;une interface réseau.",
   "inLanguage" : "fr",
-  "wordCount":  3087 ,
+  "wordCount":  3161 ,
   "datePublished" : "2021-01-02T15:51:33",
   "dateModified" : "2021-01-02T15:51:33",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -811,11 +811,17 @@ $$ \text{adresse} + \text{distance} = \text{vecteur} $$
 <div style="text-align: right;">
 <a href="https://inetdoc.developpez.com/tutoriels/routage-dynamique-protocole-rip/#L3-1" target="_blank"> https://inetdoc.developpez.com/tutoriels/routage-dynamique-protocole-rip/#L3-1 </a>
 </div>
+<div class="note normal">
+  Un routeur garde donc en mémoire, pour chaque réseau IP connu, l&rsquo;adresse du routeur voisin dont la distance (on dit aussi <strong>métrique</strong>) est la plus petite.
+</div>
 <div class="note tip">
   <p>Les trois caractéristiques principales qui distinguent l’algorithme RIP de l’algorithme OSPF sont :</p>
 <ul>
 <li>
 <p><em>La distance est mesurée en nombre de routeurs à traverser</em>.</p>
+</li>
+<li>
+<p><em>Aucun routeur n&rsquo;a une vision globale du réseau</em>. Les routes sont connues de proche en proche.</p>
 </li>
 <li>
 <p>Le protocole est <em>limité aux réseaux dont le plus long chemin implique quinze routeurs au maximum car la convergence des informations est très lente</em>.</p>
@@ -825,6 +831,8 @@ $$ \text{adresse} + \text{distance} = \text{vecteur} $$
 <dl>
 <dt>Remarque</dt>
 <dd>Les situations où les routes doivent être choisies en fonction de paramètres mesurés en temps réel comme un <strong>délai</strong>, une <strong>fiabilité</strong> ou une <strong>charge</strong>, se prêtent donc mal à ce type de traitement.</dd>
+<dt>Remarque</dt>
+<dd>Pour déterminer quelle est la meilleure route, le protocole RIP s&rsquo;appuie sur l&rsquo;algorithme de Bellman et Ford qui sera étudié un peu plus tard dans l&rsquo;année.</dd>
 </dl>
 <div class="note exercise">
   <p><img src="../../../terminales-nsi/chap-11/chap-11-5/chap-11-5-5.png" alt="" width="" /></p>
@@ -1262,7 +1270,7 @@ $$ \text{adresse} + \text{distance} = \text{vecteur} $$
 </div>
 <dl>
 <dt>Remarque</dt>
-<dd>L&rsquo;algorithme utilisé par le protocole SPF est l’<strong>algorithme de Dijkstra</strong> (cf. cours sur les graphes) pour obtenir les routes les moins coûteuses et sans cycle. <em>Chaque routeur devient alors la racine d’un arbre qui contient les meilleures routes</em>.</dd>
+<dd>L&rsquo;algorithme utilisé par le protocole SPF est l’<strong>algorithme de Dijkstra</strong> (cet algorithme sera étudié un peu plus tard dans l&rsquo;année) pour obtenir les routes les moins coûteuses et sans cycle. <em>Chaque routeur devient alors la racine d’un arbre qui contient les meilleures routes</em>.</dd>
 </dl>
 <div class="note exercise">
   Reprendre l&rsquo;exercice précédent en prenant en compte que les débits des liaisons éthernet sont très supérieurs aux débits des liasons séries. Le protocole OSPF conduit-il selon vous à la même conclusion que le protocole RIP quant au chemin le plus court pour se déplacer de PC1 à PC2 ?
