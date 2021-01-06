@@ -63,7 +63,7 @@
   "headline": "Le routage entre réseaux IP",
   "description" : "Routeurs et objectif du routage ? La responsabilité d’un protocole de routage est de fournir l’information nécessaire pour effectuer un routage, c’est-à-dire la détermination d’un chemin entre une machine émettrice et une machine réceptrice, toutes deux identifiées par leur adresse IP sur des sous-réseaux différents.  Un routeur est un ordinateur possédant au moins deux interfaces réseaux situées sur des sous-réseaux IP différents.  Il faut être capable de distinguer une carte réseau d\u0026rsquo;une interface réseau.",
   "inLanguage" : "fr",
-  "wordCount":  3195 ,
+  "wordCount":  3671 ,
   "datePublished" : "2021-01-02T15:51:33",
   "dateModified" : "2021-01-02T15:51:33",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -321,6 +321,7 @@
         <li><a href="#open-shortest-path-first-ospf--algorithme-à-état-de-liaison">Open Shortest Path First (OSPF) : algorithme à état de liaison</a></li>
       </ul>
     </li>
+    <li><a href="#exercice">Exercice</a></li>
   </ul>
 </nav>
           
@@ -1273,14 +1274,277 @@ $$ \text{adresse} + \text{distance} = \text{vecteur} $$
 <dd>L&rsquo;algorithme utilisé par le protocole SPF est l’<strong>algorithme de Dijkstra</strong> (cet algorithme sera étudié un peu plus tard dans l&rsquo;année) pour obtenir les routes les moins coûteuses et sans cycle. <em>Chaque routeur devient alors la racine d’un arbre qui contient les meilleures routes</em>.</dd>
 </dl>
 <div class="note exercise">
-  Reprendre l&rsquo;exercice précédent en prenant en compte que les débits des liaisons éthernet sont très supérieurs aux débits des liasons séries. Le protocole OSPF conduit-il selon vous à la même conclusion que le protocole RIP quant au chemin le plus court pour se déplacer de PC1 à PC2 ?
+  Reprendre l&rsquo;exercice précédent en prenant en compte que les débits des liaisons éthernet sont très supérieurs aux débits des liaisons séries. Le protocole OSPF conduit-il selon vous à la même conclusion que le protocole RIP quant au chemin le plus court pour se déplacer de PC1 à PC2 ?
 </div>
 <hr />
 <details style="background-color: #f2f2f2;">
     <summary>
         <strong> Réponse</strong>
     </summary>
-<p>Les débits de transmission sur les liasons séries sont bien plus petits que ceux sur les liaisons éthernet. Si le protocole OSPF est utilisé la meilleure route annoncée sera donc $R_1 \Lightarrow R_2$</p>
+<p>Les débits de transmission sur les liaisons séries sont bien plus petits que ceux sur les liaisons éthernet. Si le protocole OSPF est utilisé la meilleure route annoncée sera donc $R_1 \longrightarrow R_2 \longrightarrow R_3 \longrightarrow R_4 \longrightarrow R_5$.</p>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Technologie</th>
+<th style="text-align:center">BP descendante</th>
+<th style="text-align:center">BP montante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Modem</td>
+<td style="text-align:center">$\pu{56 kbit/s}$</td>
+<td style="text-align:center">$\pu{48 kbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Bluetooth</td>
+<td style="text-align:center">$\pu{3 Mbit/s}$</td>
+<td style="text-align:center">$\pu{3 Mbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Ethernet</td>
+<td style="text-align:center">$\pu{10 Mbit/s}$</td>
+<td style="text-align:center">$\pu{10 Mbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Wi-Fi</td>
+<td style="text-align:center">$\pu{11 Mbit/s}$ à $\pu{10 Gbit/s}$</td>
+<td style="text-align:center">$\pu{11 Mbit/s}$ à $\pu{10 Gbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">ADSL</td>
+<td style="text-align:center">$\pu{13 Mbit/s}$</td>
+<td style="text-align:center">$\pu{1 Mbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">4G</td>
+<td style="text-align:center">$\pu{100 Mbit/s}$</td>
+<td style="text-align:center">$\pu{50 Mbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Satellite</td>
+<td style="text-align:center">$\pu{50 Mbit/s}$</td>
+<td style="text-align:center">$\pu{1 Mbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">FastEthernet</td>
+<td style="text-align:center">$\pu{100 Mbit/s}$</td>
+<td style="text-align:center">$\pu{100 Mbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">FFTH (fibre optique)</td>
+<td style="text-align:center">$\pu{10 Gbit/s}$</td>
+<td style="text-align:center">$\pu{10 Gbit/s}$</td>
+</tr>
+</tbody>
+</table>
+</center>
+</details>
+<hr />
+<div class="note tip">
+  <h4 id="notion-de-coût-dune-liaison">Notion de coût d&rsquo;une liaison</h4>
+<p>La notion de coût est directement liée au <strong>débit des liaisons</strong> entre les routeurs. Le <strong>débit</strong> correspond au <em>nombre de bits de données qu&rsquo;il est possible de faire passer dans un réseau par seconde</em>. Le débit est donc donné en bits par seconde (bps) ou dans l&rsquo;une des unités multiples.<br>
+Connaissant le débit d&rsquo;une liaison, il est possible de calculer le coût d&rsquo;une liaison à l&rsquo;aide de la formule suivante :
+$$
+\text{Coût} = \dfrac{10^8}{\text{Débit}}
+$$
+avec le débit en bits par seconde.
+</div>
+<dl>
+<dt>Remarque</dt>
+<dd>Pour obtenir la métrique d&rsquo;une route, il suffit d&rsquo;additionner les coûts de chaque liaison.</dd>
+</dl>
+<h2 id="exercice">Exercice</h2>
+<p>Soit le réseau dont la topologie est la suivante :
+<img src="../../../terminales-nsi/chap-11/chap-11-5/chap-11-5-6.png" alt="" width="" /></p>
+<p>Les adresses IP des routeurs sont les suivantes :</p>
+<ul>
+<li>$A$ :
+<ul>
+<li>eth0 : <code>172.18.255.254</code></li>
+<li>eth1 : <code>192.168.1.1</code></li>
+<li>eth2 : <code>192.168.2.1</code></li>
+</ul>
+</li>
+<li>$B$ :
+<ul>
+<li>eth0 : <code>192.168.1.2</code></li>
+<li>eth1 : <code>192.168.3.1</code></li>
+<li>eth2 : <code>172.16.255.254</code></li>
+</ul>
+</li>
+<li>$C$ :
+<ul>
+<li>eth0 : <code>192.168.2.2</code></li>
+<li>eth1 : <code>192.168.3.2</code></li>
+<li>eth2 : <code>172.17.255.254</code></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Établir la table de routage du routeur $A$ si on suppose que le protocole RIP est utilisé.<br>
+Utiliser le nom des interfaces (eth0, eth1, eth2) à la place des adresses IP dans la table de routage.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>172.18.0.0</code></td>
+<td style="text-align:center"><code>255.255.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">eth0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.1.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">eth1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.2.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">eth2</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>172.17.0.0</code></td>
+<td style="text-align:center"><code>255.255.0.0</code></td>
+<td style="text-align:center"><code>192.168.2.2</code></td>
+<td style="text-align:center">eth2</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.3.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"><code>192.168.1.2</code></td>
+<td style="text-align:center">eth1</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>172.16.0.0</code></td>
+<td style="text-align:center"><code>255.255.0.0</code></td>
+<td style="text-align:center"><code>192.168.1.2</code></td>
+<td style="text-align:center">eth1</td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+</center>
+</details>
+<hr />
+<ol start="2">
+<li>Quel est, d&rsquo;après la table de routage ci-dessus, le chemin qui sera emprunté par un paquet pour aller d&rsquo;une machine ayant pour adresse IP <code>172.18.1.1/16</code> à une machine ayant pour adresse IP <code>172.16.5.3/16</code> ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La route que suivront les paquets est : $A \longrightarrow B$.</p>
+</details>
+<hr />
+<ol start="3">
+<li>Établir la table de routage du routeur $A$ si on suppose que le protocole OSPF est utilisé.<br>
+On donne les débits suivants :
+<ul>
+<li>Liaison routeur $A$ - routeur $B$ : 1 Mbps ;</li>
+<li>Liaison routeur $A$ - routeur $C$ : 10 Mbps ;</li>
+<li>Liaison routeur $C$ - routeur $B$ : 10 Mbps ;</li>
+<li>Liaisons routeurs - switch : 10 Mbps.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>172.18.0.0</code></td>
+<td style="text-align:center"><code>255.255.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">eth0</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.1.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">eth1</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.2.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">eth2</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>172.17.0.0</code></td>
+<td style="text-align:center"><code>255.255.0.0</code></td>
+<td style="text-align:center"><code>192.168.2.2</code></td>
+<td style="text-align:center">eth2</td>
+<td style="text-align:center">20</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.3.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"><code>192.168.2.2</code></td>
+<td style="text-align:center">eth2</td>
+<td style="text-align:center">20</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>172.16.0.0</code></td>
+<td style="text-align:center"><code>255.255.0.0</code></td>
+<td style="text-align:center"><code>192.168.2.2</code></td>
+<td style="text-align:center">eth2</td>
+<td style="text-align:center">30</td>
+</tr>
+</tbody>
+</table>
+</center>
+</details>
+<hr />
+<ol start="4">
+<li>Quel est, d&rsquo;après la table de routage ci-dessus, le chemin qui sera emprunté par un paquet pour aller d&rsquo;une machine ayant pour adresse IP <code>172.18.1.1/16</code> à une machine ayant pour adresse IP <code>172.16.5.3/16</code> ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La route que suivront les paquets est : $A \longrightarrow C \longrightarrow B$.</p>
 </details>
 <hr />
 
@@ -1446,35 +1710,42 @@ $$ \text{adresse} + \text{distance} = \text{vecteur} $$
 
 
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/copy-tex.min.js" integrity="sha512-DJT2Gf9zoglFWNuxgFcMZ3zi9Ra9GPDxpw9/8kyQ6cji+SOaLlV1A49Its53eLZlGfb4WjwRCptEUdNju6Wxgw==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/mathtex-script-type.min.js" integrity="sha512-2c9WyrhBiLmhhuJeAEmai4Uh9O+bjCRVsKaFkbj2vCLsJ3aTI0Bx2r0+gRPiqjnmNKATzzsjQGgmQXXEOERmmQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/mhchem.min.js" integrity="sha512-ndr34OWlb/uvrgXcrqKXv4YUB42kRFQi9cJ+s+alNEvNBKYyIlO970xmSWYV3vNKsrT1rwW/leiBEaZxcCwjwA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/render-a11y-string.min.js" integrity="sha512-SqjsWHpIJhclCK0YMrCV7qCKarjj6qF9ViYOldWgdJtELSOG+Jth6iKNhdMSwRAPNzKgGsU7jiE1B6YdK967tw==" crossorigin="anonymous"></script>
 <script>
-  MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['$$', '$$'], ['\\[', '\\]']],
-      processEscapes: true,      
-      processEnvironments: true, 
-      processRefs: true,         
-      digits: /^(?:[0-9]+(?:\{,\}[0-9]{3})*(?:\.[0-9]*)?|\.[0-9]+)/,
-                               
-      tags: 'ams',              
-      tagSide: 'right',          
-      tagIndent: '0.8em',        
-      useLabelIds: true,         
-      multlineWidth: '85%',      
-      maxMacros: 1000,           
-      maxBuffer: 10 * 1024,       
-      formatError:               
-          (jax, err) => jax.formatError(err)
-    },
-    showProcessingMessages: true,
-    svg: {
-      fontCache: 'global'
+  renderMathInElement(document.body,
+    {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+        ]
     }
-  };
-  </script>
-  <script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-  </script>
+  );
+
+  var inlineMathArray = document.querySelectorAll("script[type='math/tex']");
+  for (var i = 0; i < inlineMathArray.length; i++) {
+    var inlineMath = inlineMathArray[i];
+    var tex = inlineMath.innerText || inlineMath.textContent;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex, {displayMode: false});
+    inlineMath.parentNode.replaceChild(replaced, inlineMath);
+  }
+
+  var displayMathArray = document.querySelectorAll("script[type='math/tex; mode=display']");
+  for (var i = 0; i < displayMathArray.length; i++) {
+    var displayMath = displayMathArray[i];
+    var tex = displayMath.innerHTML;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex.replace(/%.*/g, ''), {displayMode: true});
+    displayMath.parentNode.replaceChild(replaced, displayMath);
+  }
+
+</script>
 
 
   </body>
