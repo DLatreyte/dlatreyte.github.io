@@ -63,7 +63,7 @@
   "headline": "Gestion des processus et des ressources",
   "description" : "L\u0026rsquo;objectif de ce document est d\u0026rsquo;essayer de faire comprendre les idées mises en œuvre lors de l\u0026rsquo;écriture des système d\u0026rsquo;exploitation afin qu\u0027un nombre de programmes plus important que le nombre de processeurs puisse fonctionner « simultanément ».\n L\u0026rsquo;ordonnanceur Rappel sur l\u0026rsquo;exécution d\u0026rsquo;un programme   Un programme est un fichier contenant une suite d\u0026rsquo;instructions écrites en langage machine. C\u0026rsquo;est une suite d\u0026rsquo;octets que le processeur que le processeur est capable de décoder et d\u0026rsquo;exécuter.",
   "inLanguage" : "fr",
-  "wordCount":  1684 ,
+  "wordCount":  3201 ,
   "datePublished" : "2021-01-10T05:10:07",
   "dateModified" : "2021-01-10T05:10:07",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -315,10 +315,18 @@
         <li><a href="#vocabulaire">Vocabulaire</a></li>
         <li><a href="#ordonnanceur-du-système-dexploitation">Ordonnanceur du système d&rsquo;exploitation</a></li>
         <li><a href="#états-dun-processus">États d&rsquo;un processus</a></li>
+        <li><a href="#lordonnancement">L&rsquo;ordonnancement</a></li>
       </ul>
     </li>
-    <li><a href="#commandes-unix-de-gestion-des-processus">Commandes Unix de gestion des processus.</a></li>
-    <li><a href="#illustration-de-lordonnancement-aléatoire-des-tâches">Illustration de l&rsquo;ordonnancement aléatoire des tâches</a></li>
+    <li><a href="#commandes-unix-de-gestion-des-processus">Commandes Unix de gestion des processus</a></li>
+    <li><a href="#programmation-concurrente">Programmation concurrente</a>
+      <ul>
+        <li><a href="#processus-concurrents">Processus concurrents</a></li>
+        <li><a href="#interblocage">Interblocage</a></li>
+        <li><a href="#illustration-dune-situation-dinterblocage-en-python">Illustration d&rsquo;une situation d&rsquo;interblocage en Python</a></li>
+      </ul>
+    </li>
+    <li><a href="#à-retenir">À retenir</a></li>
   </ul>
 </nav>
           
@@ -500,15 +508,41 @@ Afin de pouvoir décider à quel processus donner la main, l&rsquo;ordonnanceur 
 <blockquote>
 <p>Cycle de vie d&rsquo;un processus</p>
 </blockquote>
-<div class="note tip">
+<div class="note normal">
   Les états <strong>Nouveau</strong> et <strong>Terminé</strong> sont temporaires. Normalement l&rsquo;état d&rsquo;un processus varie entre <strong>Prêt</strong>, <strong>En attente</strong> et <strong>En exécution</strong>.
 </div>
-<h2 id="commandes-unix-de-gestion-des-processus">Commandes Unix de gestion des processus.</h2>
+<h3 id="lordonnancement">L&rsquo;ordonnancement</h3>
+<p>Plusieurs processus peuvent donc être dans l’état prêt : <em>comment choisir celui qui sera élu ?</em></p>
+<div class="note tip">
+  L’<strong>ordonnanceur</strong> (<strong>scheduler</strong>) classe les processus prêts dans une file et le <strong>répartiteur</strong> (<strong>dispatcher</strong>) alloue quant à lui un processeur à l’élu dans le cas d’une architecture multiprocesseur.
+</div>
+<div class="note normal">
+  <p>Il existe plusieurs <strong>politiques d’ordonnancement</strong> dont le choix va dépendre des objectifs du système.<br>
+Quelques exemples :</p>
+<ul>
+<li>
+<p><strong>Premier arrivé, premier servi :</strong> simple, mais peu adapté à la plupart des situations.</p>
+</li>
+<li>
+<p><strong>Plus court d’abord :</strong> très efficace, mais il est la plupart du temps impossible de connaître à l’avance le temps d’exécution d’un processus.</p>
+</li>
+<li>
+<p><strong>Priorité :</strong> le système alloue un niveau de priorité aux processus (SCHED_FIFO sur Linux). Cependant des processus de faible priorité peuvent ne jamais être élus.</p>
+</li>
+<li>
+<p><strong>Tourniquet :</strong> un quantum de temps est alloué à chaque processus (SCHED_RRsous Linux). Si le processus n’est pas terminé au bout de ce temps, il est mis en bout de file en état prêt.</p>
+</li>
+<li>
+<p><strong>Un système hybride entre tourniquet et priorité</strong> qu’on retrouve dans les systèmes Unix.</p>
+</li>
+</ul>
+</div>
+<h2 id="commandes-unix-de-gestion-des-processus">Commandes Unix de gestion des processus</h2>
 <div class="note normal">
   <code>ps</code> (<em>process status</em>) est la commande de base pour lister tous les processus en cours. Options utiles :
-- <code>-a</code>: tous les processus ;
-- <code>-u</code> : nom des utilisateurs qui ont lancé le processus ;
-- <code>-x</code> : fait aussi apparaître les processus qui n&rsquo;ont pas été lancés depuis la ligne de commande.
+- <code>a</code>: tous les processus ;
+- <code>u</code> : nom des utilisateurs qui ont lancé le processus ;
+- <code>x</code> : fait aussi apparaître les processus qui n&rsquo;ont pas été lancés depuis la ligne de commande.
 </div>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ubuntu@serveur-ubuntu:~$ ps aux
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
@@ -580,50 +614,326 @@ systemd─┬─accounts-daemon───2*<span style="color:#ce5c00;font-weight
   <code>kill</code> envoie un signal de terminaison aux processus dont le PID est passé en argument.
 </div>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ubuntu@serveur-ubuntu:~$ <span style="color:#204a87">kill</span> <span style="color:#0000cf;font-weight:bold">8419</span>
-</code></pre></div><h2 id="illustration-de-lordonnancement-aléatoire-des-tâches">Illustration de l&rsquo;ordonnancement aléatoire des tâches</h2>
+</code></pre></div><h2 id="programmation-concurrente">Programmation concurrente</h2>
+<h3 id="processus-concurrents">Processus concurrents</h3>
+<p><strong>Remarque :</strong> cette partie nécessite une bonne compréhension des sections 1.4, 1.5 et 1.6 de ce document.</p>
 <ol>
-<li>Écrire le programme bash suivant (nomme le fichier <code>pere_parallele.sh</code>)</li>
+<li>Écrire le programme Python suivant :</li>
 </ol>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic">#!/usr/bin/bash
-</span><span style="color:#8f5902;font-style:italic"></span>
-<span style="color:#8f5902;font-style:italic">### Illustration de l&#39;ordonnancement aléatoire des taches</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">os</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">getpid</span>
 
-
-<span style="color:#000">nbre_tours</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">10000</span>
-
-<span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Père lance les fils et se met au travail...&#34;</span>
-
-<span style="color:#204a87;font-weight:bold">for</span> i in <span style="color:#204a87;font-weight:bold">$(</span> seq <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#0000cf;font-weight:bold">10</span> <span style="color:#204a87;font-weight:bold">)</span>
-<span style="color:#204a87;font-weight:bold">do</span>
-	./fils_parallele.sh <span style="color:#000">$i</span> <span style="color:#000">$nbre_tours</span> <span style="color:#000;font-weight:bold">&amp;</span>
-<span style="color:#204a87;font-weight:bold">done</span>
-
-<span style="color:#204a87;font-weight:bold">for</span> i in <span style="color:#204a87;font-weight:bold">$(</span> seq <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#0000cf;font-weight:bold">20</span> <span style="color:#204a87;font-weight:bold">)</span>
-<span style="color:#204a87;font-weight:bold">do</span>
-	<span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Père travaille...&#34;</span>
-<span style="color:#204a87;font-weight:bold">done</span>
-
-<span style="color:#204a87">exit</span> <span style="color:#0000cf;font-weight:bold">0</span>
+<span style="color:#000">pid</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">getpid</span><span style="color:#000;font-weight:bold">())</span>
+<span style="color:#204a87;font-weight:bold">with</span> <span style="color:#204a87">open</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;test.txt&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;w&#34;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">fichier</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1000</span><span style="color:#000;font-weight:bold">):</span>
+        <span style="color:#000">fichier</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">write</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;{} : {}</span><span style="color:#4e9a06">\n</span><span style="color:#4e9a06">&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pid</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">i</span><span style="color:#000;font-weight:bold">))</span>
+        <span style="color:#000">fichier</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">flush</span><span style="color:#000;font-weight:bold">()</span>
 </code></pre></div><ol start="2">
-<li>Écrire le programme bash suivant (nommer le fichier <code>fils_parallele.sh</code>) :</li>
+<li>À quoi sert la fonction <code>getpid</code> ?</li>
 </ol>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic">#!/usr/bin/bash
-</span><span style="color:#8f5902;font-style:italic"></span>
-<span style="color:#8f5902;font-style:italic">### Exécution des fils</span>
-
-
-<span style="color:#204a87;font-weight:bold">for</span> i in <span style="color:#204a87;font-weight:bold">$(</span> seq <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#000">$2</span> <span style="color:#204a87;font-weight:bold">)</span>
-<span style="color:#204a87;font-weight:bold">do</span>
-	<span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;Fils </span><span style="color:#000">$1</span><span style="color:#4e9a06"> travaille...&#34;</span>
-<span style="color:#204a87;font-weight:bold">done</span>
-</code></pre></div><ol start="3">
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La fonction <code>getpid</code> retourne le PID du processus qui la lance.</p>
+</details>
+<hr />
+<ol start="3">
+<li>À quoi sert la fonction <code>flush()</code> ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La fonction <code>flush</code> donne un ordre d&rsquo;écriture immédiate des caractères dans le fichier.</p>
+</details>
+<hr />
+<ol start="4">
+<li>Prévoir ce que doit contenir le fichier.<br>
+Lancer le programme et vérifier la correction de la prédiction.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Le fichier est constitué de 1000 lignes de la forme <code>PID : i</code>.<br>
+La première ligne est par exemple <code>418 : 0</code><br>
+La dernière ligne du même fichier est alors <code>418 : 999</code>.</p>
+</details>
+<hr />
+<ol start="5">
+<li>Depuis la console (shell), lancer trois fois le programme en une commande, en plaçant l&rsquo;exécution de ces programmes en arrière plan (c&rsquo;est le rôle de l&rsquo;esperluette <code>&amp;</code>).</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python nom_prog.py <span style="color:#000;font-weight:bold">&amp;</span> python nom_prog.py <span style="color:#000;font-weight:bold">&amp;</span> python nom_prog.py <span style="color:#000;font-weight:bold">&amp;</span>
+</code></pre></div><p>Relever les PID des processus.</p>
+<ol start="6">
+<li>Examiner le contenu du fichier <code>test.txt</code> et recommencer plusieurs fois l&rsquo;opération. Quelles remarques peut-on faire ? Essayer de justifier ce comportement.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<ul>
 <li>
-<p>En ligne de commande rendre les programmes exécutables.</p>
+<p>On a l&rsquo;impression que certaines lignes n&rsquo;ont été écrites que par certains des processus et le choix du processus qui a écrit la ligne en question semble être aléatoire. Ils semblent s&rsquo;être réparti les travaux d&rsquo;écriture alors qu&rsquo;ils fonctionnent indépendamment les uns des autres !!!</p>
 </li>
 <li>
-<p>Lancer le programme <code>pere_parallele.sh</code> et examiner la sortie.</p>
+<p><strong>Justification.</strong> Chaque processus, lors de l&rsquo;ouverture du fichier, enregistre la position du curseur d&rsquo;écriture. À chaque écriture de caractères, ce curseur est avancé du nombre de caractères (octets en fait) correspondant.<br>
+Chaque fois qu&rsquo;un processus est interrompu par l&rsquo;ordonnanceur, il conserve en mémoire son état, en particulier la position du curseur au moment de l&rsquo;interruption. Lorsqu&rsquo;il est à nouveau appelé par la suite il reprend donc depuis cette position&hellip; et peut donc écraser les entrées des autres processus si ces derniers étaient plus avancés.</p>
+</li>
+</ul>
+</details>
+<hr />
+<div class="note tip">
+  Le fonctionnement multitâches d&rsquo;un système d&rsquo;exploitation est un avantage la plupart du temps mais <strong>soulève des problèmes lorsque des processus partagent des ressources</strong> <em>car un processus ne sait pas qu&rsquo;il est interrompu et reprend son travail dans l&rsquo;état même dans son état au moment de l&rsquo;interruption</em> sans prendre en compte ce l&rsquo;action des autres processus sur la ressource partagée.
+</div>
+<h3 id="interblocage">Interblocage</h3>
+<div class="note exercise">
+  <h4 id="exemple-1">Exemple 1</h4>
+<p>Trois élèves doivent réaliser lors d&rsquo;un cours de math un travail à l&rsquo;aide d&rsquo;une règle et d&rsquo;une équerre. Le premier élève n&rsquo;a apporté qu&rsquo;une règle, le deuxième qu&rsquo;une équerre et le troisième a oublié toutes ses affaires.</p>
+<ol>
+<li>
+<p>Que devront-ils faire pour réaliser le travail demandé par le professeur ?</p>
+</li>
+<li>
+<p>Des processus peuvent-ils procéder de la sorte (s&rsquo;il n&rsquo;ont pas été programmés pour) ?</p>
 </li>
 </ol>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponses</strong>
+    </summary>
+<ol>
+<li>
+<p>Les élèves doivent discuter et se mettre d&rsquo;accord sur une stratégie d&rsquo;utilisation du matériel.</p>
+</li>
+<li>
+<p>Un processus d&rsquo;enregistrement du son qui utilise une carte fonctionne de façon indépendante d&rsquo;un processus qui diffuse du son à travers cette même carte réseau. Aucun dialogue n&rsquo;existe entre les deux.</p>
+</li>
+</ol>
+</details>
+<hr />
+<div class="note exercise">
+  <h4 id="exemple-2">Exemple 2</h4>
+<p>Sur une route à deux sens, des travaux occupent la moitié de la route. Des véhicules roulant dans les deux sens se sont engagés simultanément et se retrouvent face à face. Plusieurs véhicules les ont suivis ; plus personne ne peut reculer. Le véhicule venant de la gauche occupe la partie de la route dont l&rsquo;accès serait nécessaire au véhicule venant de la droite et inversement.
+</div>
+<div class="note exercise">
+  <h4 id="exercice-3">Exercice 3</h4>
+<p>Le même blocage peut intervenir dans un rond-point lorsque le traffic est dense si personne ne souhaite sortir à la première sortie mais plutôt à la sortie en face de l&rsquo;entrée.
+</div>
+<div class="note tip">
+  <em>On appelle <strong>interblocage</strong> (<strong>deadlock</strong>) la situation dans laquelle deux processus se bloquent mutuellement : le premier attend l&rsquo;accès à une ressource mobilisée par le second qui lui-même attend l&rsquo;accès à une ressource mobilisée par le premier</em>.<br>
+L&rsquo;origine de l&rsquo;interblocage est l&rsquo;accès exclusif à certaines ressources.
+</div>
+<div class="note normal">
+  <h4 id="exemple-dinterblocage">Exemple d&rsquo;interblocage</h4>
+<ul>
+<li>
+<p>Un processus $p_1$ possède un accès exclusif à la ressource $R_1$ alors qu&rsquo;un processus $p_2$ possède un accès exclusif à une ressource $R_2$.</p>
+</li>
+<li>
+<p>Le processus $p_1$ a alors besoin d&rsquo;un accès à la ressource $R_2$ avant de pouvoir libérer $R_1$. Comme la ressource $R_2$ est occupée, ce processus est placé dans l&rsquo;état <strong>En attente</strong>.</p>
+</li>
+<li>
+<p>Le processus $p_2$ passe dans l&rsquo;état <strong>En exécution</strong> et essaie d&rsquo;accéder à la ressource $R_1$, sans avoir encore libéré $R_2$. Comme $R_1$ n&rsquo;a pas encore été libéré par $p_1$, la ressource n&rsquo;est pas accessible et $p_2$ est placé <strong>En attente</strong>.</p>
+</li>
+<li>
+<p>Le processus $p_1$ passe dans l&rsquo;état <strong>En exécution</strong> et essaie d&rsquo;accéder à la ressource $R_2$. cette dernière n&rsquo;est pas accessible et $p_1$ est placé <strong>En attente</strong>.</p>
+</li>
+<li>
+<p>Le processus $p_2$ passe dans l&rsquo;état <strong>En exécution</strong> et essaie d&rsquo;accéder à la ressource $R_2$. cette dernière n&rsquo;est pas accessible et $p_2$ est placé <strong>En attente</strong>.</p>
+</li>
+<li>
+<p>&hellip;.</p>
+</li>
+</ul>
+</div>
+<h3 id="illustration-dune-situation-dinterblocage-en-python">Illustration d&rsquo;une situation d&rsquo;interblocage en Python</h3>
+<ol>
+<li>Écrire le programme suivant :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">threading</span>
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">hello</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">):</span>
+        <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Je suis le thread {} et ma valeur est {}&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">i</span><span style="color:#000;font-weight:bold">))</span>
+    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Fin du Thread {}&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">))</span>
+
+<span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">n</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">4</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">threading</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Thread</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">target</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">hello</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">args</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">])</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">start</span><span style="color:#000;font-weight:bold">()</span>
+</code></pre></div><ol start="2">
+<li>Étudier le programme. Expliquer le rôle des deux dernières lignes.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Ce programme utilise des threads pour réaliser l&rsquo;exécution en parallèle de la fonction <code>hello</code>.</p>
+</details>
+<hr />
+<ol start="3">
+<li>Exécuter le programme. L&rsquo;affichage est-il surprenant ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Comme pour les processus, les threads alternent leur exécution en fonction des commutations de contexte. L&rsquo;ordre dans lequel sont démarrés les threads ne donne aucune indication sur l&rsquo;ordre dans lequel ils peuvent se terminer.</p>
+</details>
+<hr />
+<ol start="4">
+<li>Écrire le programme suivant :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">threading</span>
+<span style="color:#000">COMPTEUR</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span>
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">incr</span><span style="color:#000;font-weight:bold">():</span>
+    <span style="color:#204a87;font-weight:bold">global</span> <span style="color:#000">COMPTEUR</span>
+    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">c</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">100000</span><span style="color:#000;font-weight:bold">):</span>
+        <span style="color:#000">v</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">COMPTEUR</span>
+        <span style="color:#000">COMPTEUR</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">v</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span>
+
+<span style="color:#000">th</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[]</span>
+<span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">n</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">4</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">threading</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Thread</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">target</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">incr</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">args</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">[])</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">start</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">th</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">)</span>
+
+<span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">t</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">th</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">join</span><span style="color:#000;font-weight:bold">()</span>
+<span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Valeur finale : {}&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">COMPTEUR</span><span style="color:#000;font-weight:bold">))</span>
+</code></pre></div><ol start="5">
+<li>Expliquer le rôle de l&rsquo;instruction <code>global COMPTEUR</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p><code>COMPTEUR</code> est une variable globale, accessible depuis une fonction mais non modifiable.<br>
+Pour outrepasser ce comportement, il faut utiliser le mot clé <code>globla</code>. On peut alors modifier la valeur de la variable depuis la fonction.</p>
+</details>
+<hr />
+<ol start="6">
+<li>Expliquer le rôle de l&rsquo;instruction <code>t.join()</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Attend que le fil d&rsquo;exécution se termine. Ceci bloque le fil appelant jusqu&rsquo;à ce que le fil dont la méthode <code>join</code> est appelée se termine – soit normalement, soit par une exception non gérée – ou jusqu&rsquo;à ce que le délai optionnel timeout soit atteint.</p>
+</details>
+<hr />
+<ol start="7">
+<li>Exécuter le programme. L&rsquo;affichage est-il surprenant ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Comme on a démarré 4 threads et que chacun d&rsquo;eux effectue 100 000 tours de boucles, on pouvait s&rsquo;attendre à ce que la valeur finale soit égale à 400 000. Ce n&rsquo;est pas le cas.</p>
+</details>
+<hr />
+<ol start="8">
+<li>Expliquer la valeur finale obtenue.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p><strong>Lorsqu&rsquo;un thread est interrompu par la commutation de contexte, son état est conservé</strong>. Lorsque ce thread reprend son travail, il utilise la valeur de <code>COMPTEUR</code> lors de son arrêt et ne prend pas en compte les incrémentations réalisées par les autres threads alors qu&rsquo;il était dans l&rsquo;état <strong>En attente</strong>.</p>
+</details>
+<hr />
+<div class="note normal">
+  Un <strong>verrou</strong> est un objet que l&rsquo;on peut essayer d&rsquo;acquérir. Si on est le premier à faire cette demande, on acquiert le verrou. On peut le rendre à tout moment. Si en revanche quelqu&rsquo;un d&rsquo;autre détient le verrou, on est bloqué jusqu&rsquo;à ce que ce verrou soit libéré.
+</div>
+<ol start="9">
+<li>Écrire le programme suivant :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">threading</span>
+<span style="color:#000">verrou</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">threading</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Lock</span><span style="color:#000;font-weight:bold">()</span>
+<span style="color:#000">COMPTEUR</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span>
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">incr</span><span style="color:#000;font-weight:bold">():</span>
+    <span style="color:#204a87;font-weight:bold">global</span> <span style="color:#000">COMPTEUR</span>
+    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">c</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">100000</span><span style="color:#000;font-weight:bold">):</span>
+        <span style="color:#000">verrou</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">acquire</span><span style="color:#000;font-weight:bold">()</span>
+        <span style="color:#000">v</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">COMPTEUR</span>
+        <span style="color:#000">COMPTEUR</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">v</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span>
+        <span style="color:#000">verrou</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">release</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#000">th</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[]</span>
+<span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">n</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">4</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">threading</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Thread</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">target</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">incr</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">args</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">[])</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">start</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">th</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">)</span>
+
+<span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">t</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">th</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">join</span><span style="color:#000;font-weight:bold">()</span>
+<span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Valeur finale : {}&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">COMPTEUR</span><span style="color:#000;font-weight:bold">))</span>
+</code></pre></div><ol start="10">
+<li>
+<p>Expliquer pourquoi on obtient bien maintenant la valeur 400000.</p>
+</li>
+<li>
+<p>Écrire le programme suivant :</p>
+</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">threading</span>
+
+<span style="color:#000">verrou1</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">threading</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Lock</span><span style="color:#000;font-weight:bold">()</span>
+<span style="color:#000">verrou2</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">threading</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Lock</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">f1</span><span style="color:#000;font-weight:bold">():</span>
+    <span style="color:#000">verrou1</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">acquire</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Section critique 1.1&#34;</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">verrou2</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">acquire</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Section critique 1.2&#34;</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">verrou2</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">release</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">verrou1</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">release</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">f2</span><span style="color:#000;font-weight:bold">():</span>
+    <span style="color:#000">verrou2</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">acquire</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Section critique 2.1&#34;</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">verrou1</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">acquire</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#204a87;font-weight:bold">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Section critique 2.2&#34;</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">verrou1</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">release</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">verrou2</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">release</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#000">t1</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">threading</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Thread</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">target</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">f1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">args</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">[])</span>
+<span style="color:#000">t2</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">threading</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Thread</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">target</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">f2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">args</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000;font-weight:bold">[])</span>
+<span style="color:#000">t1</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">start</span><span style="color:#000;font-weight:bold">()</span>
+<span style="color:#000">t2</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">start</span><span style="color:#000;font-weight:bold">()</span>
+</code></pre></div><ol start="12">
+<li>
+<p>Quelle situation essaie-t-il d&rsquo;illustrer ? Justifier la réponse.</p>
+</li>
+<li>
+<p>Exécuter le programme plusieurs fois. La situation prévue à la question précédente intervient-elle vraiment ? Pourquoi ?</p>
+</li>
+<li>
+<p>Ajouter les lignes</p>
+</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">100000</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#204a87;font-weight:bold">continue</span>
+</code></pre></div><p>au dessous de l&rsquo;instruction <code>print(&quot;Section critique 1.1&quot;)</code>.<br>
+Expliquer pourquoi le comportement du programme a été modifié.</p>
+<h2 id="à-retenir">À retenir</h2>
+<div class="note tip">
+  Les systèmes d&rsquo;exploitation multitâches sont la norme. Ils permettent d&rsquo;exécuter de façon <strong>concurrente</strong> plusieurs programmes. L&rsquo;exécution d&rsquo;un programme s&rsquo;appelle un <strong>processus</strong>. C&rsquo;est le système d&rsquo;exploitation, et en particulier l'<strong>ordonnanceur</strong>, qui determine quel processus s&rsquo;exécute à un instant donné. Le fait pour un processus d&rsquo;être interrompu s&rsquo;appelle une <strong>commutation de contexte</strong>. Plusieurs processus s&rsquo;exécutant de façon concurrente peuvent s'<strong>interbloquer</strong> s&rsquo;ils attendent un accès à une même ensemble de <strong>ressources en accès exclusif</strong>. Les <strong>threads</strong> ou <strong>processus légers</strong> sont des « sous-processus » s&rsquo;exécutant de manière concurrente. L&rsquo;accès à des ressources par plusieurs threads peut être protégé par des <strong>verrous</strong>.
+</div>
 
 
         
