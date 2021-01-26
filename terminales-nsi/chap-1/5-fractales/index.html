@@ -59,11 +59,11 @@
   "headline": "Dessin de figures fractales",
   "description" : "Le mot fractale vient du latin fractus qui signifie brisé. En effet, une figure fractale est un objet géométrique infiniment morcelé des détails sont observables à une échelle arbitrairement choisie.\nEn zoomant sur une partie de la figure, on peut retrouver toute la figure, on dit qu\u0026rsquo;elle est auto similaire.\nhttp:\/\/www.maths-et-tiques.fr\/index.php\/detentes\/les-fractales\nhttp:\/\/fr.wikipedia.org\/wiki\/Fractalehttp:\/\/fr.wikipedia.org\/wiki\/Fractale\n Introduction Dans le code suivant (qu\u0026rsquo;il faudra étudier et exécuter) :\n  Quel est le cas de base de l\u0026rsquo;algorithme récursif ?",
   "inLanguage" : "fr",
-  "wordCount":  934 ,
+  "wordCount":  1356 ,
   "datePublished" : "2021-01-26T06:16:46",
   "dateModified" : "2021-01-26T06:16:46",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
-  "keywords" : [ "" ],
+  "keywords" : [ "Fractales, Récursivité, Turtle" ],
   "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/terminales-nsi\/chap-1\/5-fractales\/",
   "publisher" : {
     "@type": "Organization",
@@ -478,6 +478,99 @@ un flocon de von Koch, d&rsquo;ordre $n$ et dont chaque segment à une
 longueur $l$.</p>
 </li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">Tracé du flocon de Von Koch
+</span><span style="color:#4e9a06">&#34;&#34;&#34;</span>
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">turtle</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">koch_0</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    koch_0 : Objet[turtle] * Entier/&gt;0/ -&gt; None
+</span><span style="color:#4e9a06">    koch_0(t, l) trace à l&#39;écran un segment de longueur l.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#000;font-weight:bold">)</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">koch_1</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    koch_1: Objet[turtle] * Entier/&gt;0/ -&gt; None
+</span><span style="color:#4e9a06">    koch_1(t, l) dessine une branche de longueur l du flocon de Von Koch à
+</span><span style="color:#4e9a06">    l&#39;ordre 1.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">60</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">120</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">60</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    koch : Objet[turtle] * Entier/&gt;0/ * Entier/&gt;0/ -&gt; None
+</span><span style="color:#4e9a06">    koch(t, n, l) dessine une branche du flocon de Von Koch à
+</span><span style="color:#4e9a06">    l&#39;ordre n.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">60</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">120</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">60</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">dessine_flocon</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    dessine_flocon : Objet[turtle] * Entier/&gt;0/ * Entier/&gt;0/
+</span><span style="color:#4e9a06">                     -&gt; None
+</span><span style="color:#4e9a06">    dessine_flocon(t, n, l) dessine un flocon de Von Koch à
+</span><span style="color:#4e9a06">    l&#39;ordre n.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">isdown</span><span style="color:#000;font-weight:bold">():</span>
+        <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pendown</span><span style="color:#000;font-weight:bold">()</span>
+
+    <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">120</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">120</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">120</span><span style="color:#000;font-weight:bold">)</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">():</span>
+    <span style="color:#000">fen</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">turtle</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Screen</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">fen</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">bgcolor</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;black&#34;</span><span style="color:#000;font-weight:bold">)</span>
+
+    <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">turtle</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Turtle</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">color</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;white&#34;</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">speed</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">hideturtle</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">penup</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">goto</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">150</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">150</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pendown</span><span style="color:#000;font-weight:bold">()</span>
+
+    <span style="color:#000">dessine_flocon</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">400</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#8f5902;font-style:italic">#koch(t, 4, 300)</span>
+
+    <span style="color:#8f5902;font-style:italic">#koch_1(t, 200)</span>
+
+    <span style="color:#000">fen</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">exitonclick</span><span style="color:#000;font-weight:bold">()</span>
+
+
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
+</code></pre></div></details>
+<hr />
 <h2 id="arbre-fractal">Arbre fractal</h2>
 <p>On peut appliquer le même principe pour construire d&rsquo;autre fractales
 visuellement différentes, mais construites sur le même principe.</p>
@@ -521,8 +614,111 @@ comportement de la fonction à différents ordres. Cette fois-ci, une
 profondeur 10 ou 11 donne un résultat assez joli.</p>
 </li>
 </ul>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">Tracé du flocon de Von Koch
+</span><span style="color:#4e9a06">&#34;&#34;&#34;</span>
+<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">turtle</span>
 
 
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">koch_0</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    koch_0 : Objet[turtle] * Entier/&gt;0/ -&gt; None
+</span><span style="color:#4e9a06">    koch_0(t, l) trace à l&#39;écran un segment de longueur l.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#000;font-weight:bold">)</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">koch_1</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    koch_1: Objet[turtle] * Entier/&gt;0/ -&gt; None
+</span><span style="color:#4e9a06">    koch_1(t, l) dessine une branche de longueur l du flocon de Von Koch à
+</span><span style="color:#4e9a06">    l&#39;ordre 1.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">60</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">120</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">60</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    koch : Objet[turtle] * Entier/&gt;0/ * Entier/&gt;0/ -&gt; None
+</span><span style="color:#4e9a06">    koch(t, n, l) dessine une branche du flocon de Von Koch à
+</span><span style="color:#4e9a06">    l&#39;ordre n.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">60</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">120</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">60</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">dessine_flocon</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    dessine_flocon : Objet[turtle] * Entier/&gt;0/ * Entier/&gt;0/
+</span><span style="color:#4e9a06">                     -&gt; None
+</span><span style="color:#4e9a06">    dessine_flocon(t, n, l) dessine un flocon de Von Koch à
+</span><span style="color:#4e9a06">    l&#39;ordre n.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">isdown</span><span style="color:#000;font-weight:bold">():</span>
+        <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pendown</span><span style="color:#000;font-weight:bold">()</span>
+
+    <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">120</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">120</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">koch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">120</span><span style="color:#000;font-weight:bold">)</span>
+
+
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">():</span>
+    <span style="color:#000">fen</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">turtle</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Screen</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">fen</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">bgcolor</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;black&#34;</span><span style="color:#000;font-weight:bold">)</span>
+
+    <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">turtle</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Turtle</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">color</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;white&#34;</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">speed</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">hideturtle</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">penup</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">goto</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">150</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">150</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pendown</span><span style="color:#000;font-weight:bold">()</span>
+
+    <span style="color:#000">dessine_flocon</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">400</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#8f5902;font-style:italic">#koch(t, 4, 300)</span>
+
+    <span style="color:#8f5902;font-style:italic">#koch_1(t, 200)</span>
+
+    <span style="color:#000">fen</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">exitonclick</span><span style="color:#000;font-weight:bold">()</span>
+
+
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
+</code></pre></div></details>
+<hr />
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://dlatreyte.github.io/tags/fractales/">Fractales</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/r%C3%A9cursivit%C3%A9/">Récursivité</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/turtle/">Turtle</a>&nbsp;
+            
+          </div>
         
 
         
@@ -536,6 +732,17 @@ profondeur 10 ou 11 donne un résultat assez joli.</p>
 
         
           
+          
+          <h4 class="see-also">Voir également</h4>
+          <ul>
+          
+            <li><a href="../../../terminales-nsi/chap-10/3-tour-hanoi/">Les tours de Hanoï</a></li>
+          
+            <li><a href="../../../terminales-nsi/chap-10/2-rotation-image/">Rotation d&#39;une image bitmap d&#39;un quart de tour</a></li>
+          
+            <li><a href="../../../terminales-nsi/chap-5/2-tri-insertion/">Tri par insertion</a></li>
+          
+          </ul>
           
         
       </article>
