@@ -59,7 +59,7 @@
   "headline": "Le langage SQL : Le langage de manipulation de données (LMD)",
   "description" : "Introduction Le langage SQL est composé de différents sous-ensembles :\n LMD : Langage de Manipulation des données (DML, Data Manipulation Language) Permet la manipulation et la mise à jour des tables, composé de quatre ordres fondamentaux : SELECT, UPDATE, INSERT, DELETE. LDD : Langage de Définition des Données (DDL, Data Definition Language) Permet la définition et la mise à jour du schéma relationnel de la base de données (mode administration).",
   "inLanguage" : "fr",
-  "wordCount":  1422 ,
+  "wordCount":  2316 ,
   "datePublished" : "2021-02-04T04:29:53",
   "dateModified" : "2021-02-04T04:29:53",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -309,6 +309,17 @@
       <ul>
         <li><a href="#les-sportifs-stars">Les sportifs stars</a></li>
         <li><a href="#instagram">Instagram</a></li>
+      </ul>
+    </li>
+    <li><a href="#première-requêtes--ordres-sql">Première requêtes : Ordres SQL</a></li>
+    <li><a href="#première-requêtes--recherche-de-motifs-lors-dune-sélection">Première requêtes : recherche de motifs lors d&rsquo;une sélection</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#modification-des-entrées-dune-base-de-données">Modification des entrées d&rsquo;une base de données</a>
+      <ul>
+        <li></li>
       </ul>
     </li>
   </ul>
@@ -689,6 +700,291 @@ résultat d&rsquo;une sélection est une relation de <strong>même degré</stron
 <li>Afficher toutes les informations pour les comptes qui correspondent à des chanteurs et qui ont plus de 200 millions de followers.</li>
 <li>Afficher toutes les informations pour les comptes qui correspondent à des footballeurs ou qui ont moins de 150 millions de followers.</li>
 </ol>
+<h2 id="première-requêtes--ordres-sql">Première requêtes : Ordres SQL</h2>
+<div class="note tip">
+  L&rsquo;ordre <code>ORDER BY</code> est utilisé pour <em>trier le résultat d&rsquo;une projection</em>. Par défaut ce tri s&rsquo;effectue par <em>ordre croissant</em> (lexicographique ou numérique). Pour trier par ordre décroissant, il faut ajouter le mot clé <code>DESC</code>.
+</div>
+<ol start="22">
+<li>Rechercher toutes les informations sur les acteurs, triées par age croissant.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span> <span style="color:#ce5c00;font-weight:bold">*</span>
+<span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">ORDER</span> <span style="color:#204a87;font-weight:bold">BY</span> <span style="color:#000">Age</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<ol start="23">
+<li>Rechercher toutes les informations sur les acteurs, triées par pays d&rsquo;origine (par ordre décroissant).</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span> <span style="color:#ce5c00;font-weight:bold">*</span>
+<span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">ORDER</span> <span style="color:#204a87;font-weight:bold">BY</span> <span style="color:#000">Pays</span> <span style="color:#204a87;font-weight:bold">DESC</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<ol start="24">
+<li>Rechercher les noms et prénoms des acteurs triés par age et nom croissants.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span> <span style="color:#000">Nom</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Prénom</span>
+<span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">ORDER</span> <span style="color:#204a87;font-weight:bold">BY</span> <span style="color:#000">Age</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Nom</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<ol start="25">
+<li>Rechercher les noms et prénoms des acteurs triés par age décroissant et nom croissant.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span> <span style="color:#000">Nom</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Prénom</span>
+<span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">ORDER</span> <span style="color:#204a87;font-weight:bold">BY</span> <span style="color:#000">Age</span> <span style="color:#204a87;font-weight:bold">DESC</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Nom</span> <span style="color:#204a87;font-weight:bold">ASC</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<ol start="26">
+<li>Rechercher les ages et sexes des acteurs, triés par age croissant.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span> <span style="color:#000">Age</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Sexe</span>
+<span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">ORDER</span> <span style="color:#204a87;font-weight:bold">BY</span> <span style="color:#000">Age</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<h2 id="première-requêtes--recherche-de-motifs-lors-dune-sélection">Première requêtes : recherche de motifs lors d&rsquo;une sélection</h2>
+<div class="note tip">
+  L&rsquo;opérateur <code>LIKE</code> permet de rechercher un motif lors d&rsquo;une sélection.
+</div>
+<ol start="27">
+<li>Rechercher les prénoms des acteurs dont le nom commence par la lettre <code>j</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span> <span style="color:#000">Prenom</span>
+<span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">WHERE</span> <span style="color:#000">Nom</span> <span style="color:#204a87;font-weight:bold">LIKE</span> <span style="color:#4e9a06">&#39;J%&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<ol start="28">
+<li>Rechercher les noms et prénoms des acteurs dont le sexe commence par la lettre <code>h</code>, trié par nom croissant.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span> <span style="color:#000">Nom</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Prenom</span>
+<span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">WHERE</span> <span style="color:#000">Sexe</span> <span style="color:#204a87;font-weight:bold">LIKE</span> <span style="color:#4e9a06">&#39;h%&#39;</span>
+<span style="color:#204a87;font-weight:bold">ORDER</span> <span style="color:#204a87;font-weight:bold">BY</span> <span style="color:#000">Nom</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<ol start="29">
+<li>Rechercher les noms et prénoms des acteurs dont le prénom se termine par la lettre <code>t</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span> <span style="color:#000">Nom</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Prenom</span>
+<span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">WHERE</span> <span style="color:#000">Prenom</span> <span style="color:#204a87;font-weight:bold">LIKE</span> <span style="color:#4e9a06">&#39;%t&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<ol start="30">
+<li>Rechercher les noms et prénoms des acteurs dont le prénom contient la lettre <code>a</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span> <span style="color:#000">Nom</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Prenom</span>
+<span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">WHERE</span> <span style="color:#000">Prenom</span> <span style="color:#204a87;font-weight:bold">LIKE</span> <span style="color:#4e9a06">&#39;%a%&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<ol start="31">
+<li>Rechercher les noms et prénoms des acteurs dont le pays d&rsquo;origine commence par un <code>a</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span> <span style="color:#000">Nom</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Prenom</span>
+<span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">WHERE</span> <span style="color:#000">Pays</span> <span style="color:#204a87;font-weight:bold">LIKE</span> <span style="color:#4e9a06">&#39;a%&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<ol start="32">
+<li>Rechercher les noms et prénoms des acteurs dont le pays d&rsquo;origine se termine par un <code>l</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span> <span style="color:#000">Nom</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Prenom</span>
+<span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">WHERE</span> <span style="color:#000">Pays</span> <span style="color:#204a87;font-weight:bold">LIKE</span> <span style="color:#4e9a06">&#39;%l&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<ol start="33">
+<li>Rechercher les noms et prénoms des acteurs dont le pays d&rsquo;origine comporte un <code>a</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span> <span style="color:#000">Nom</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Prenom</span>
+<span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">WHERE</span> <span style="color:#000">Pays</span> <span style="color:#204a87;font-weight:bold">LIKE</span> <span style="color:#4e9a06">&#39;%a%&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<h4 id="exercice-dapplication">Exercice d&rsquo;application</h4>
+<p>Écrire toutes les commandes correspondant au requêtes ci-dessous pour la base de donnée se trouvant à 
+<a class="remote" href="https://repl.it/@dlatreyte/Animaux" target="_blank">cette adresse</a>
+
+</p>
+<ol>
+<li>
+<p>Rechercher toutes les informations sur les animaux dont le nom commence par la lettre <code>p</code>.</p>
+</li>
+<li>
+<p>Rechercher toutes les informations sur les animaux dont le nom se termine par la lettre <code>e</code> et qui sont En danger.</p>
+</li>
+<li>
+<p>Rechercher toutes les informations sur les animaux dont le nom comporte la lettre <code>a</code> et qui sont Vulnérable. Le résultat doit être trié par nom (ascendant).</p>
+</li>
+<li>
+<p>Afficher le nom de tous les animaux et leur état de préservation.</p>
+</li>
+<li>
+<p>Afficher le nom de tous les animaux vulnérables par ordre décroissant de la vitesse de déplacement.</p>
+</li>
+<li>
+<p>Afficher le nom et la durée de vie moyenne des animaux dont le nom comporte un <code>e</code>. L&rsquo;affichage doit être effectué par durée de vie moyenne croissante.</p>
+</li>
+<li>
+<p>Afficher les nom, durée de vie moyenne et vitesse de déplacement des animaux dont le nom comporte un <code>o</code>, par vitesse de déplacement décroissante.</p>
+</li>
+</ol>
+<h2 id="modification-des-entrées-dune-base-de-données">Modification des entrées d&rsquo;une base de données</h2>
+<div class="note tip">
+  L&rsquo;ordre <code>UPDATE</code> permet de modifier un enregistrement dans une table. La clause <code>WHERE</code> est utilisée pour sélectionner l&rsquo;enregistrement.
+</div>
+<ol start="34">
+<li>Faire en sorte que l&rsquo;age de l&rsquo;actrice Margot Robbie soit égal à 29 ans.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">UPDATE</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">SET</span> <span style="color:#000">Age</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">29</span>
+<span style="color:#204a87;font-weight:bold">WHERE</span> <span style="color:#000">Nom</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;Robbie&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<p>Vérifier que la modification a bien été effectuée.</p>
+<ol start="35">
+<li>
+<p>Modifier le fichier contenant la base de données de façon à ce que la modification, uniquement effectuée en mémoire vive pour l&rsquo;instant, soit enregistrée de façon permanente.</p>
+</li>
+<li>
+<p>Le vrai nom de Tom Cruise est Thomas Cruise Mapother IV. Modifier l&rsquo;entrée dans la base de données.</p>
+</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">UPDATE</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">SET</span> <span style="color:#000">Nom</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;Cruise Mapother IV&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">prenom</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;Thomas&#34;</span>
+<span style="color:#204a87;font-weight:bold">WHERE</span> <span style="color:#000">Nom</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;Cruise&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<div class="note tip">
+  L&rsquo;ordre <code>DELETE</code> permet de supprimer un enregistrement d&rsquo;une table. Si aucune clause <code>WHERE</code> n&rsquo;est utilisée, <em>tous les enregistrements de la table sont supprimés</em>.
+</div>
+<ol start="37">
+<li>Supprimer l&rsquo;acteur Tom Holland de la table Celebrites.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">DELETE</span> <span style="color:#204a87;font-weight:bold">FROM</span> <span style="color:#000">Celebrites</span>
+<span style="color:#204a87;font-weight:bold">WHERE</span> <span style="color:#000">Nom</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;Holland&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></details>
+<hr />
+<h4 id="exercice-dapplication-1">Exercice d&rsquo;application</h4>
+<p>Écrire toutes les commandes correspondant au requêtes ci-dessous pour la base de donnée se trouvant à 
+<a class="remote" href="https://repl.it/@dlatreyte/Superheroes-and-Villains" target="_blank">cette adresse</a>
+
+</p>
+<ol>
+<li>
+<p>Écrire une requête qui affiche tous les enregistrements de la table « Superheroes and Villains ».</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche la structure de la table « Superheroes and Villains ».</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche les noms des superheroes femmes.</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche les noms et types (gentil ou méchant) des films X-Men ou Guardians of the Galaxy.
+Write a query to show all the names from the Superheroes and Villain table in alphabetical order (A to Z).</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche tous les noms des personnages par ordre alphabétique.</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche les types des personnages et leurs noms par ordre alphabétique croissant pour les types mais ordre alphabétique décroissant pour les noms.</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche les noms des personnages commençant par la lettre <code>M</code>.</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche les noms des personnages se terminant par la lettre <code>N</code>.</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche les noms des personnages contenant la lettre <code>I</code>.</p>
+</li>
+<li>
+<p>Écrire une requête qui modifie le nom du personnage Groot. Le nouveau nom est Baby Groot. Afficher le résultat de cette requête.</p>
+</li>
+<li>
+<p>Écrire une requête qui supprime l&rsquo;enregistrement dont le nom est Queen of Hearts. Afficher la table pour vérifier le résultat de la requête.</p>
+</li>
+</ol>
 
 
         
@@ -716,6 +1012,10 @@ résultat d&rsquo;une sélection est une relation de <strong>même degré</stron
               <a href="https://dlatreyte.github.io/terminales-nsi/chap-13/2-entite-association/" data-toggle="tooltip" data-placement="top" title="Le modèle Entités/Associations">&larr; Post précédent</a>
             </li>
           
+          
+            <li class="next">
+              <a href="https://dlatreyte.github.io/terminales-nsi/chap-13/5-murder-mystery/" data-toggle="tooltip" data-placement="top" title="SQL Murder Mystery">Post suivant &rarr;</a>
+            </li>
           
         </ul>
       
