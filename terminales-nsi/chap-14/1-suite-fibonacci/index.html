@@ -59,7 +59,7 @@
   "headline": "Autour de la suite de Fibonacci",
   "description" : "Rappel : récursivité terminale La définition de la fonction factorielle est $$ n! = \\begin{cases} 0 \u0026amp; \\text{if } n = 0 \\cr n \\times (n-1)! \u0026amp; \\text{sinon} \\end{cases} $$\n Définir la fonction fact_env qui calcule la factorielle d\u0026rsquo;un entier naturel $n$, sans oublier le jeu de tests.\nLa définition de la fonction est : def fact_env(n: int) -\u0026gt; int   En informatique, la récursion terminale, aussi appelée, récursion finale, est un cas particulier de récursivité assimilée à une itération.",
   "inLanguage" : "fr",
-  "wordCount":  1179 ,
+  "wordCount":  1425 ,
   "datePublished" : "2021-02-25T04:49:20",
   "dateModified" : "2021-02-25T04:49:20",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -303,6 +303,7 @@
         <li><a href="#résolutions-du-problème-à-laide-de-la-programmation-dynamique">Résolutions du problème à l&rsquo;aide de la programmation dynamique</a></li>
       </ul>
     </li>
+    <li><a href="#application">Application</a></li>
   </ul>
 </nav>
           
@@ -424,6 +425,91 @@ La dernière étape est utile pour calculer une <strong>solution optimale</stron
 <p>Définir la fonction <code>fibo_up</code> qui calcule le terme de rang $n$ de la suite de Fibonacci, <em>sans oublier le jeu de tests</em>. Le raisonnement doit mettre en œuvre la méthode ascendante du problème.</p>
 </li>
 </ol>
+<h2 id="application">Application</h2>
+<p>On définit la suite de Tribonacci par la relation de récurrence : 
+$$
+u_n =
+\begin{cases}
+u_O &amp;= u_1 = 0 \cr
+u_2 &amp;= 1\cr
+u_{n+3} &amp;= u_{n+2} + u_{n+1} + u_{n}
+\end{cases}
+$$</p>
+<ol>
+<li>Quel est l’écueil à éviter lorsqu’on programme le calcul du n-ième terme de la suite de Tribonacci de manière récursive ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Il faut éviter que les appels récursifs calculent plusieurs fois les mêmes valeurs.</p>
+</details>
+<hr />
+<ol start="2">
+<li>Proposer une version itérative du calcul de $u_n$.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">tribo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#000">u</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">w</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span> 
+    
+    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">):</span> 
+        <span style="color:#000">u</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">w</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">w</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">u</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">v</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">w</span> 
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">w</span>
+</code></pre></div><p>ou, si on n&rsquo;utilise pas Python,</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">tribo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#000">u</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">w</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span> 
+    
+    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">):</span>
+        <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">=</span>  <span style="color:#000">u</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">v</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">w</span>
+        <span style="color:#000">u</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">v</span>
+        <span style="color:#000">v</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">w</span>
+        <span style="color:#000">w</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">x</span>  
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">w</span>
+</code></pre></div></details>
+<hr />
+<ol start="3">
+<li>Proposer une version récursive du calcul de $u_n$.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">tribo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">:</span> 
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span> 
+    <span style="color:#204a87;font-weight:bold">elif</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">1</span>
+    
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">tribo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">tribo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">tribo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div></details>
+<hr />
+<ol start="3">
+<li>Proposer une version récursive efficace du calcul de $u_n$ qui utilise la mémoïsation.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">tribo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span> 
+    <span style="color:#000">memo_tribo</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">}</span> 
+    
+    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">_tribo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span> 
+        <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">n</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">memo_tribo</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">keys</span><span style="color:#000;font-weight:bold">():</span> 
+            <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">memo_tribo</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">]</span> 
+        <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span> 
+            <span style="color:#000">memo_tribo</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">_tribo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">_tribo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">_tribo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span> 
+        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">memo_tribo</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">]</span> 
+        
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">_tribo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div></details>
+<hr />
 
 
         
