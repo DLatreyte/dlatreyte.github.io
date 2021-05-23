@@ -59,7 +59,7 @@
   "headline": "Parcours en profondeur : écriture du code en Python",
   "description" : "Écriture d\u0026rsquo;une classe Graphe L\u0026rsquo;objectif de cette partie est l\u0026rsquo;écriture du code modélisant un graphe orienté. La représentation choisie est celle d\u0026rsquo;un dictionnaire de successeurs (en cours et dans le document 15,2 on a étudié les représentations par des matrice et liste de successeurs).\nLa représentation par un dictionnaire de successeurs présente de nombreux avantages. Par exemple,\n les sommets peuvent être des entiers ou des chaînes de caractères quelconques ; La complexité de la liste des successeurs est directement proportionnelle au nombre de successeurs pour un sommet donné.",
   "inLanguage" : "fr",
-  "wordCount":  744 ,
+  "wordCount":  1055 ,
   "datePublished" : "2021-05-06T06:46:05",
   "dateModified" : "2021-05-06T06:46:05",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -319,12 +319,24 @@ La représentation par un dictionnaire de successeurs présente de nombreux avan
 <h4 id="remarque">Remarque</h4>
 <p>Contrairement à ce qui a été fait dans le <a href="https://dlatreyte.github.io/terminales-nsi/chap-15/2-representation-graphe/">document 15,2</a>, la classe qui va être implémentée ici permettra d&rsquo;initialiser un graphe vide, puis de le constituer progressivement.</p>
 <ol>
-<li>
-<p>Initialiser la classe <code>Graphe</code>. La méthode <code>__init__</code> a pour seule fonction l&rsquo;affectation d&rsquo;un dictionnaire vide à l&rsquo;attribut <code>succ</code>.</p>
-</li>
-<li>
-<p>Créer la méthode <code>ajouter_sommet</code> dont la spécification est :</p>
-</li>
+<li>Initialiser la classe <code>Graphe</code>. La méthode <code>__init__</code> a pour seule fonction l&rsquo;affectation d&rsquo;un dictionnaire vide à l&rsquo;attribut <code>succ</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">__future__</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">annotations</span>
+<span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">typing</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Union</span>
+
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">:</span>
+
+    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">succ</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{}</span>
+</code></pre></div></details>
+<hr />
+<ol start="2">
+<li>Créer la méthode <code>ajouter_sommet</code> dont la spécification est :</li>
 </ol>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">ajouter_sommet</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">:</span>
     <span style="color:#4e9a06">&#34;&#34;&#34;
@@ -333,7 +345,23 @@ La représentation par un dictionnaire de successeurs présente de nombreux avan
 </span><span style="color:#4e9a06">    s est une clé du dictionnaire succ. Sa valeur associée par défaut 
 </span><span style="color:#4e9a06">    est une liste vide.
 </span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol start="3">
+</code></pre></div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">ajouter_sommet</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Ajoute le sommet s (entier ou chaîne de caractères) au graphe
+</span><span style="color:#4e9a06">    s&#39;il n&#39;est pas déjà présent.
+</span><span style="color:#4e9a06">    s est une clé du dictionnaire succ. Sa valeur associée par défaut 
+</span><span style="color:#4e9a06">    est une liste vide.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">s</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">succ</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">keys</span><span style="color:#000;font-weight:bold">():</span>
+        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">succ</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[]</span>
+</code></pre></div></details>
+<hr />
+<ol start="3">
 <li>Créer la méthode <code>ajouter_arc</code> dont la spécification est :</li>
 </ol>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">ajouter_arc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s1</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">s2</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">:</span>
@@ -341,21 +369,61 @@ La représentation par un dictionnaire de successeurs présente de nombreux avan
 </span><span style="color:#4e9a06">    Ajoute s2 à la liste des successeurs de s1. Si s1 et s2 n&#39;existent pas, ils sont
 </span><span style="color:#4e9a06">    créés en utilisant la méthode ajouter_sommet.
 </span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol start="4">
+</code></pre></div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">ajouter_arc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s1</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">s2</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Ajoute s2 à la liste des successeurs de s1. Si s1 et s2 n&#39;existent pas, ils sont
+</span><span style="color:#4e9a06">    créés en utilisant la méthode ajouter_sommet.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">ajouter_sommet</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s1</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">ajouter_sommet</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s2</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">s2</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">succ</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">s1</span><span style="color:#000;font-weight:bold">]:</span>
+        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">succ</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">s1</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s2</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div></details>
+<hr />
+<ol start="4">
 <li>Créer la méthode <code>existe_arc</code> dont la spécification est :</li>
 </ol>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">existe_arc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s1</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">s2</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">:</span>
     <span style="color:#4e9a06">&#34;&#34;&#34;
 </span><span style="color:#4e9a06">    Retourne True si l&#39;arc s1 -&gt; s2 existe.
 </span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol start="5">
+</code></pre></div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">existe_arc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s1</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">s2</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Retourne True si l&#39;arc s1 -&gt; s2 existe.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">s2</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">succ</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">s1</span><span style="color:#000;font-weight:bold">]</span>
+</code></pre></div></details>
+<hr />
+<ol start="5">
 <li>Créer la méthode <code>liste_sommets</code> dont la spécification est :</li>
 </ol>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">liste_sommets</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">]]:</span>
     <span style="color:#4e9a06">&#34;&#34;&#34;
 </span><span style="color:#4e9a06">    Retourne la liste des sommets du graphe.
 </span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol start="6">
+</code></pre></div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">liste_sommets</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">]]:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Retourne la liste des sommets du graphe.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">list</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">succ</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">keys</span><span style="color:#000;font-weight:bold">())</span>
+</code></pre></div></details>
+<hr />
+<ol start="6">
 <li>Créer la méthode <code>nbre_sommets</code> dont la spécification est :</li>
 </ol>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">nbre_sommets</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
@@ -363,14 +431,39 @@ La représentation par un dictionnaire de successeurs présente de nombreux avan
 </span><span style="color:#4e9a06">    Retourne le nombre de sommets du graphe.
 </span><span style="color:#4e9a06">    Utilise la méthode liste_sommets.
 </span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol start="7">
+</code></pre></div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">nbre_sommets</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Retourne le nombre de sommets du graphe.
+</span><span style="color:#4e9a06">    Utilise la méthode liste_sommets.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">liste_sommets</span><span style="color:#000;font-weight:bold">())</span>
+</code></pre></div></details>
+<hr />
+<ol start="7">
 <li>Créer la méthode <code>liste_successeurs</code> dont la spécification est :</li>
 </ol>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">liste_successeurs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">]]:</span>
     <span style="color:#4e9a06">&#34;&#34;&#34;
 </span><span style="color:#4e9a06">    Retourne la liste des successeurs du sommet s1.
 </span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol start="8">
+</code></pre></div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">liste_successeurs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">]]:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Retourne la liste des successeurs du sommet s1.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">succ</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">s1</span><span style="color:#000;font-weight:bold">]</span>
+</code></pre></div></details>
+<hr />
+<ol start="8">
 <li>Dans la partie principale du programme, entrer les instructions qui permettent de coder le graphe suivant :
 <link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
@@ -386,6 +479,18 @@ graph TD
 
 </li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">g</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">()</span>
+<span style="color:#000">g</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">ajouter_arc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#000">g</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">ajouter_arc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#000">g</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">ajouter_arc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#000">g</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">ajouter_arc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">,</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div></details>
+<hr />
 <h2 id="parcours-en-profondeur-basé-sur-la-récursivité">Parcours en profondeur basé sur la récursivité</h2>
 <ol start="9">
 <li>Reprendre la fonction <code>parcours_profondeur</code> proposée dans le <a href="https://dlatreyte.github.io/terminales-nsi/chap-15/3-parcours-graphes/">document 15,3</a> et la transformer en méthode de la classe <code>Graphe</code>. Sa nouvelle spécification est alors :</li>
@@ -401,6 +506,24 @@ graph TD
 <dt>Remarque.</dt>
 <dd>Attention, j&rsquo;ai modifié le nom d&rsquo;une méthode : <code>voisins</code> s&rsquo;appelle désormais <code>liste_successeurs</code>.</dd>
 </dl>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">parcours_profondeur</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">vus</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">]],</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#3465a4">None</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Parcours en profondeur depuis le sommet s.
+</span><span style="color:#4e9a06">    Cette méthode prend en argument la liste des sommets déjà visités. Lors du premier appel
+</span><span style="color:#4e9a06">    cette liste doit être vide.
+</span><span style="color:#4e9a06">    Le parcours est accessible par lecture de la liste vus.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">s</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">vus</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">vus</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">v</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">liste_successeurs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">):</span>
+            <span style="color:#000">parcours_profondeur</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">vus</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div></details>
+<hr />
 <ol start="10">
 <li>Créer la méthode <code>existe_chemin</code> dont la spécification est :</li>
 </ol>
@@ -408,7 +531,21 @@ graph TD
     <span style="color:#4e9a06">&#34;&#34;&#34;
 </span><span style="color:#4e9a06">    Retourne True s&#39;il existe un chemin depuis s1 jusqu&#39;à s2.
 </span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol start="11">
+</code></pre></div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">existe_chemin</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Graphe</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s1</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">s2</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Union</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Retourne True s&#39;il existe un chemin depuis s1 jusqu&#39;à s2.
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#000">vus</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[]</span>
+    <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">parcours_profondeur</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">vus</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">s1</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">s2</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">vus</span>
+</code></pre></div></details>
+<hr />
+<ol start="11">
 <li>Vérifier le code précédent en utilisant le graphe proposé à la question 8.</li>
 </ol>
 <p>Comment construire le chemin entre <code>s1</code> et <code>s2</code> ?\</p>
