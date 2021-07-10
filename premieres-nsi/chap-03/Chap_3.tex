@@ -1,0 +1,643 @@
+\documentclass{article}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{alltt,theorem}
+\usepackage[tikz]{mdframed}
+
+%%%%%%%%%% Start TeXmacs macros
+\catcode`\<=\active \def<{
+\fontencoding{T1}\selectfont\symbol{60}\fontencoding{\encodingdefault}}
+\catcode`\>=\active \def>{
+\fontencoding{T1}\selectfont\symbol{62}\fontencoding{\encodingdefault}}
+\newcommand{\tmem}[1]{{\em #1\/}}
+\newcommand{\tmfolded}[2]{\trivlist{\item[$\bullet$]\mbox{}#1}}
+\newcommand{\tmstrong}[1]{\textbf{#1}}
+\newcommand{\tmsubtitle}[1]{\thanks{\textit{Subtitle:} #1}}
+\newcommand{\tmtextbf}[1]{{\bfseries{#1}}}
+\newcommand{\tmtexttt}[1]{{\ttfamily{#1}}}
+\newenvironment{itemizeminus}{\begin{itemize} \renewcommand{\labelitemi}{$-$}\renewcommand{\labelitemii}{$-$}\renewcommand{\labelitemiii}{$-$}\renewcommand{\labelitemiv}{$-$}}{\end{itemize}}
+\newenvironment{tmcode}[1][]{\begin{alltt} }{\end{alltt}}
+{\theorembodyfont{\rmfamily\small}\newtheorem{exercise}{Exercise}}
+\mdfsetup{linecolor=black,linewidth=0.5pt,skipabove=0.5em,skipbelow=0.5em,hidealllines=true,
+innerleftmargin=0pt,innerrightmargin=0pt,innertopmargin=0pt,innerbottommargin=0pt}
+\newcounter{nnremark}
+\def\thennremark{\unskip}
+{\theorembodyfont{\rmfamily}\newtheorem{remark*}[nnremark]{Remark}}
+{\theorembodyfont{\rmfamily\small}\newtheorem{solution}{Solution}}
+\newmdenv[hidealllines=false,innertopmargin=1ex,innerbottommargin=1ex,innerleftmargin=1ex,innerrightmargin=1ex]{tmornamented}
+%%%%%%%%%% End TeXmacs macros
+
+\begin{document}
+
+{\setthispageheader{}}\title{
+  Variables, affectations
+  \tmsubtitle{Chap. 3}
+}
+
+\maketitle
+
+\hrulefill
+
+{\tableofcontents}
+
+\hrulefill
+
+\section{Variables}
+
+\begin{tmornamented}[roundcorner=1.7ex]
+  Une variable est une zone de la mémoire repérée par un
+  {\tmstrong{identificateur}}. Cet identificateur permet de {\tmem{modifier ou
+  de faire appel au contenu de cette zone de la mémoire}} lors du
+  déroulement du programme.
+\end{tmornamented}
+
+\begin{remark*}
+  Le langage Python est {\tmem{sensible à la casse}}.
+  {\python{ma\_variable}}, {\python{maVariable}} et {\python{mavariable}} sont
+  donc {\tmem{trois identificateurs différents}} (préférer la première
+  écriture).
+\end{remark*}
+
+\paragraph{Convention.}
+
+\begin{itemizeminus}
+  \item Le premier caractère de l'identificateur doit être une lettre ou un
+  blanc souligné ({\hspace{0.17em}}\_{\hspace{0.17em}}).
+  
+  \item Les caractères suivant peut être alphanumériques ou des blanc
+  soulignés ({\hspace{0.17em}}\_{\hspace{0.17em}}).
+  
+  \item Les majuscules et les minuscules ne sont pas confondues.
+  
+  \item Le tableau \ref{table:02}, contient les mots-clés du langage Python.
+  {\tmem{Il est impossible de choisir un identificateur correspondant à l'un
+  de ces mots-clés}}.
+\end{itemizeminus}
+\begin{table}[h]
+  \begin{center}
+    \begin{tabular}{ccccccccc}
+      \hline
+      and & as & assert & break & class & continue & def & del & elif\\
+      \hline
+      else & except & exec & finally & for & from & global & if & import\\
+      \hline
+      in & is & lambda & nonlocal & not & or & pass & print & raise\\
+      \hline
+      return & try & while & with & yield & None & True & False & \\
+      \hline
+    \end{tabular} 
+  \end{center}
+  \caption{Mots-clés réservés en Python\label{table:02}}
+\end{table}
+
+\section{Déclaration et affectation des variables}
+
+\subsection{Vocabulaire}
+
+\begin{tmornamented}[roundcorner=1.7ex]
+  La \tmtextbf{déclaration} d'une variable consiste à réserver un
+  emplacement dans la mémoire pour une utilisation ultérieure.
+\end{tmornamented}
+
+\paragraph{Note.} La déclaration d'une variable doit donc précéder son
+utilisation.
+
+\begin{tmornamented}[roundcorner=1.7ex]
+  L'\tmtextbf{affectation} est une opération au cours de laquelle on copie
+  dans une variable une {\tmem{valeur littérale}}, le {\tmem{contenu d'une
+  autre variable}} ou le {\tmem{résultat d'un calcul}}.
+\end{tmornamented}
+
+\subsection{Affectation d'une valeur à une variable}
+
+\subsubsection{Affectation simple}
+
+\begin{tmornamented}[roundcorner=1.7ex]
+  En Python, il est impossible de déclarer une variable sans l'utiliser.
+  {\tmem{La variable est créée lorsqu'on lui affecte une donnée}}. On
+  utilise à cet effet l'opérateur {\python{=}}.
+  
+  Python est un {\tmstrong{langage à typage dynamique}} : {\tmem{il n'est pas
+  nécessaire de déclarer le type de la valeur référencée par la
+  variable}}.
+\end{tmornamented}
+
+\begin{widetabular}
+  {\tmstrong{En Python}}
+  
+  {\pythoncode{a = 3}} & {\tmstrong{En Java, C, C++, etc.}}
+  
+  \begin{tmcode}[cpp]
+  int a;
+a = 3;
+  \end{tmcode}
+\end{widetabular}
+
+\paragraph{Remarque.} On peut noter dès à présent qu'une {\tmem{affectation
+en Python ne consiste pas au stockage d'une valeur dans une variable}},
+contrairement à ce qui se passe dans d'autres langages de programmation. En
+Python, les objets (entiers, flottants, chaînes de caractères, ...) sont
+\tmtextbf{référencés} : {\tmem{lors d'une affectation, c'est une
+référence à un objet (et non une valeur) qui est définie}}, que l'objet
+vienne d'être créé ou qu'il s'agisse d'un objet préexistant.
+
+\begin{center}
+  {\tmstrong{Une variable est, en Python, une étiquette qui permet d'accéder
+  à une valeur.}}
+\end{center}
+
+{\pythoncode{>>> un\_entier = 12
+
+>>> une\_chaine = 'cartable'
+
+>>> un\_flottant = -2 + 3.12 + 17}}
+
+\subsubsection{Affectations multiples}
+
+{\pythoncode{>>> x = y = z = 1
+
+>>> x
+
+1
+
+>>> y
+
+1
+
+>>> z
+
+1}}
+
+\paragraph{Remarque.} Pour bien comprendre comment fonctionne l'affectation
+multiple, ci-dessus, {\tmstrong{lire l'instruction de la droite vers la
+gauche}}. Ainsi, on affecte à la variable {\python{z}} l'entier 1, à la
+variable {\python{y}} la valeur référencée par la variable {\python{z}}, à
+la variable {\python{x}} la valeur référencée par la variable {\python{y}}.
+L'instruction précédente est donc équivalente à l'enchaînement :
+
+{\pythoncode{>>> z = 1
+
+>>> y = z
+
+>>> x = y}}
+
+\subsubsection{Affectation de « tuples»}
+
+{\pythoncode{>>> a, b, c = 1, 2, 3
+
+>>> a
+
+1
+
+>>> b
+
+2
+
+>>> c
+
+3}}
+
+\paragraph{Remarque.} Le fonctionnement de cette affectation sera détaillé
+dans un prochain chapitre.
+
+\subsection{Opérateurs d'affectation}
+
+Le langage Python possède un certain nombre de raccourcis permettant de très
+rapidement écrire la mise à jour de la valeur d'une variable à partir d'une
+expression faisant elle même référence au contenu de la variable.
+{\tmem{Ici aussi, il est nécessaire de lire l'instruction de la droite vers
+la gauche.}}
+
+\begin{table}[h]
+  \begin{center}
+    \begin{tabular}{c|l|l}
+      \hline
+      \tmtextbf{Opérateur} & \tmtextbf{Expression} & \tmtextbf{Description}\\
+      \hline
+      {\python{=}} & {\python{variable = expression}} & \\
+      {\python{+=}} & {\python{variable += expression}} & {\python{variable =
+      variable + expression}}\\
+      {\python{-=}} & {\python{variable -= expression}} & {\python{variable =
+      variable - expression}}\\
+      {\python{*=}} & {\python{variable *= expression}} & {\python{variable =
+      variable * expression}}\\
+      {\python{/=}} & {\python{variable /= expression}} & {\python{variable =
+      variable / expression}}\\
+      {\python{//=}} & {\python{variable //= expression}} & {\python{variable
+      = variable // expression}}\\
+      {\python{\%=}} & {\python{variable \%= expression}} & {\python{variable
+      = variable \% expression}}\\
+      \hline
+    \end{tabular} 
+  \end{center}
+  \caption{Opérateurs d'affectation}
+\end{table}
+
+\section{Formatage des chaînes de caractères}
+
+Comme nous l'avons vu dans le chapitre 2, une chaîne de caractère est un
+type pré-défini incontournable du langage Python.
+
+{\pythoncode{>>> type("abcd")
+
+<class 'str'>
+
+>>> type('abcd')
+
+<class 'str'>
+
+>>> type("Python, c'est super !")
+
+<class 'str'>
+
+>>> type('Python, c'est super !')
+
+\ \ \ File "<pyshell>", line 1
+
+\ \ \ \ \ \ type('Python, c'est super !')
+
+\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \^{}
+
+\ \ \ \ SyntaxError: invalid syntax
+
+>>> type("2")
+
+<class 'str'>
+
+>>> type("a")
+
+<class 'str'>
+
+>>> type('-2.3')
+
+<class 'str'>}}
+
+Il faut donc être capable de manipuler ces chaînes de caractères, et en
+particulier d'y incorporer le résultat de l'évalution
+d'expressions\footnote{Nous en apprendrons bien plus sur les chaînes de
+caractères dans un futur chapitre.}.
+
+\begin{tmornamented}[roundcorner=1.7ex]
+  La méthode {\python{chaine.format()}} permet d'insérer u{\tmem{n littéral
+  ou le résultat de l'évaluation d'une expression}} dans une chaîne de
+  caractères.
+  
+  Le type du littéral ou du résultat de l'évaluation est déterminé
+  automatiquement ; la conversion vers le type {\python{str}} est alors
+  effectuée.
+\end{tmornamented}
+
+{\pythoncode{>>> '\{\}, \{\}, \{\}'.format('a', 'b', 'c')
+
+' a, b, c'
+
+>>> '\{0\}, \{1\}, \{2\}'.format('a', 'b', 'c')
+
+' a, b, c'
+
+>>> "La somme de 1 + 2 est \{\}".format(1 + 2)
+
+' La somme de 1 + 2 est 3'
+
+>>> "La somme de \{1\} + \{2\} est \{0\}".format(2 + 3, 2, 3)
+
+' La somme de 2 + 3 est 5'
+
+>>> '\{0\}\{1\}\{0\}'.format('abra', 'cad')
+
+' abracadabra'
+
+>>> '\{:f\}; \{:f\}'.format(3.14, -3.14) \# :f est un marqueur
+
+'3.140000; -3.140000'}}
+
+Certaines mises en forme nécessitent de préciser le type de la donnée et la
+façon de l'afficher. Le \tmtextbf{marqueur de formatage \tmtexttt{:}} permet
+d'introduire des \tmtextbf{drapeaux} :
+\begin{itemizeminus}
+  \item \tmtexttt{s} indique que la donnée à insérer est une chaîne.
+  {\tmem{C'est le drapeau implicite et il est inutile de le préciser}} ;
+  
+  \item le drapeau \tmtexttt{d} attend un nombre et le convertit en entier ;
+  
+  \item les drapeaux \tmtexttt{f}, \tmtexttt{g} et \tmtexttt{e} attendent des
+  flottants. \tmtexttt{g} est le plus général, il correspond à \tmtexttt{f}
+  si le nombre n'est pas trop grand, à la notation avec puissances de 10
+  \tmtexttt{e}, si l'écriture du nombre prend beaucoup de place ;
+  
+  \item ...
+\end{itemizeminus}
+Pour finir, il est possible d'indiquer {\tmem{le nombre minimal de chiffres à
+utiliser (ils n'ont pas besoin d'être visibles, seule la place nécessaire
+pour le affichage compte) et le nombre de chiffres après la virgule à
+afficher}}.
+
+{\pythoncode{>>> "avant\{0:2f\}".format(3333.3333) \# au moins 2 chiffres
+avant la virgule
+
+' avant3333.333300' \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \# notation décimale
+
+>>> "avant\{0:20f\}".format(3333.3333) \# au moins 20 chiffres avant la
+virgule
+
+' avant 3333.333300'
+
+>>> "avant\{0:2.2f\}".format(3333.3333) \# au moins 2 chiffres avant et 2
+chiffres après
+
+' avant3333.33'
+
+>>> "avant\{0:2.2f\}".format(3333.3383) \# au moins 2 chiffres avant et 2
+chiffres après
+
+' avant3333.34'
+
+>>> "avant\{0:2.2e\}".format(3333.3333) \# au moins 2 chiffres avant et 2
+chiffres après
+
+'avant3.33e+03' \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \# notation
+scientifique}}
+
+\section{Exercices du chapitre}
+
+\tmfolded{\begin{exercise}
+  {\tmstrong{Variables}}
+  
+  Quelles sont les valeurs des nombres contenus dans les variables
+  {\python{prix}}, {\python{tva}} et {\python{total}} après exécution de
+  chacune des instructions suivantes ?
+  
+  {\pythoncode{>>> prix = 20
+  
+  >>> tva = 18.6
+  
+  >>> total = prix + prix * tva /100}}
+\end{exercise}}{\begin{solution}
+  \
+  
+  {\pythoncode{>>> prix
+  
+  20
+  
+  >>> tva
+  
+  18.6
+  
+  >>> total
+  
+  23.72}}
+\end{solution}}
+
+\tmfolded{\begin{exercise}
+  {\tmstrong{Variables}}
+  
+  Quelles sont les valeurs des nombres contenus dans les variables
+  {\python{prix}}, {\python{tva}} après exécution de chacune des
+  instructions suivantes ?
+  
+  {\pythoncode{>>> prix = 20
+  
+  >>> tva = 18.6
+  
+  >>> prix = prix + prix * tva /100}}
+\end{exercise}}{\begin{solution}
+  \
+  
+  {\pythoncode{>>> prix
+  
+  23.72
+  
+  >>> tva
+  
+  18.6}}
+\end{solution}}
+
+\tmfolded{\begin{exercise}
+  \
+  
+  Dans chacun des cas, quelles sont les valeurs des variables {\python{a}} et
+  {\python{b}} après l'exécution de chacune des instructions suivantes ?
+  
+  \begin{widetabular}
+    {\pythoncode{>>> a = 5
+    
+    >>> b = 7
+    
+    >>> b = a
+    
+    >>> a = b}} & {\pythoncode{>>> a = 5
+    
+    >>> b = 7
+    
+    >>> a = b
+    
+    >>> b = a}}
+  \end{widetabular}
+\end{exercise}}{\begin{solution}
+  
+  \begin{itemizeminus}
+    \item Premier cas : {\python{a = 5}} et {\python{b = 5}}.
+    
+    \item Second cas : {\python{a = 7}} et {\python{b = 7}}
+  \end{itemizeminus}
+\end{solution}}
+
+\tmfolded{\begin{exercise}
+  {\tmstrong{Échange de valeurs}}
+  
+  Laquelle des instructions suivantes permet d'échanger les valeurs des deux
+  variables {\python{a}} et {\python{b}} ?
+  
+  \begin{widetabular}
+    {\pythoncode{>>> a = b
+    
+    >>> b = a}} & {\pythoncode{>>> t = a
+    
+    >>> a = b
+    
+    >>> b = t}} & {\pythoncode{>>> t = a
+    
+    >>> b = a
+    
+    >>> t = b}}
+  \end{widetabular}
+\end{exercise}}{\begin{solution}
+  
+  \begin{itemizeminus}
+    \item Premier cas : {\python{a}} et {\python{b}} ont la valeur de
+    {\python{b}}.
+    
+    \item Deuxième cas : {\python{a}} a la valeur de {\python{b}},
+    {\python{b}} celle de {\python{a}}. C'est la bonne méthode !
+    
+    \item Troisième cas : {\python{a}}, {\python{b}} et {\python{t}} ont la
+    valeur de a.
+  \end{itemizeminus}
+\end{solution}}
+
+\tmfolded{\begin{exercise}
+  {\tmstrong{Échange de valeurs}}
+  
+  Soit trois variables {\python{a}}, {\python{b}} et {\python{c}}. Écrire
+  les instructions permutant les valeurs, de sorte que la valeur de
+  {\python{a}} passe dans {\python{b}}, celle de {\python{b}} dans
+  {\python{c}} et celle de {\python{c}} dans {\python{a}}. N'utiliser qu'une
+  (et une seule) variable entière supplémentaire, nommée {\python{tmp}}.
+\end{exercise}}{\begin{solution}
+  \
+  
+  {\pythoncode{tmp = a
+  
+  a = c
+  
+  c = b
+  
+  b = a}}
+\end{solution}}
+
+\tmfolded{\begin{exercise}
+  {\tmstrong{Conversion francs euros}}
+  
+  Écrire une fonction qui convertit des francs en euros (1 euro correspond à
+  6,55957 francs).
+  
+  La spécification de la fonction est :
+  
+  {\pythoncode{def conversion\_franc\_euro(francs: float) -> str:
+  
+  \ \ \ """ Conversion d'une somme en francs en euros.
+  
+  \ \ \ Le message retourné donne les deux valeurs.
+  
+  \ \ \
+  
+  \ \ \ >>> conversion\_franc\_euro(100)
+  
+  \ \ \ '100 francs correspondent à 15.244901723741037 euros.'
+  
+  \ \ \ """}}
+\end{exercise}}{\begin{solution}
+  \
+  
+  {\pythoncode{def conversion\_franc\_euro(francs: float) -> str:
+  
+  \ \ \ """ Conversion d'une somme en francs en euros.
+  
+  \ \ \ Le message retourné donne les deux valeurs.
+  
+  \ \ \
+  
+  \ \ \ >>> conversion\_franc\_euro(100)
+  
+  \ \ \ '100 francs correspondent à 15.244901723741037 euros.'
+  
+  \ \ \ """
+  
+  \ \ \ change = 6.55957
+  
+  \ \ \ euros = francs / change
+  
+  \ \ \ return "\{\} francs correspondent à \{\} euros.".format(francs,
+  euros)}}
+\end{solution}}
+
+\tmfolded{\begin{exercise}
+  {\tmstrong{Message d'accueil}}
+  
+  Écrire une fonction qui, à partir d'un nom, d'un prénom et d'une date de
+  naissance retourne un message d'accueil incluant l'age de la personne.
+  
+  La spécification de la fonction est :
+  
+  {\pythoncode{def salutation(nom: str, prenom: str, naissance: int) -> str:
+  
+  \ \ \ """ À partir des nom, prénom et date de naissance, retourne un
+  
+  \ \ \ message d'accueil indiquant l'âge.
+  
+  \
+  
+  \ \ \ >>> salutation("Dupond", "Patrick", 1961)
+  
+  \ \ \ 'Bonjour Patrick Dupond, vous avez 58 ans.'
+  
+  \ \ \ """}}
+\end{exercise}}{\begin{solution}
+  \
+  
+  {\pythoncode{def salutation(nom: str, prenom: str, naissance: int) -> str:
+  
+  \ \ \ """ À partir des nom, prénom et date de naissance, retourne un
+  
+  \ \ \ message d'accueil indiquant l'âge.
+  
+  \ \ \
+  
+  \ \ \ >>> salutation("Dupond", "Patrick", 1961)
+  
+  \ \ \ 'Bonjour Patrick Dupond, vous avez 58 ans.'
+  
+  \ \ \ """
+  
+  \ \ \ annee\_en\_cours = 2019
+  
+  \ \ \ message = "Bonjour \{0\} \{1\}, vous avez \{2\} ans.".format(prenom,
+  
+  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nom,
+  
+  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+  \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ annee\_en\_cours - naissance)
+  
+  \ \ \ return message}}
+\end{solution}}
+
+\tmfolded{\begin{exercise}
+  {\tmstrong{Nombre aléatoire}}
+  
+  Écrire une fonction qui, à partir de deux ages limites, retourne une
+  chaîne de caractères indiquant l'age de la personne qui appelle cette
+  fonction, choisi aléatoirement.
+  
+  La spécification de la fonction est :
+  
+  {\pythoncode{def age\_aleatoire(age\_min: int, age\_max: int) -> str:
+  
+  \ \ \ """ À partir de deux ages limites, retourne un message contenant
+  
+  \ \ \ un age déterminé aléatoirement.
+  
+  \ \ \
+  
+  \ \ \ >>> age\_aleatoire(20, 100)
+  
+  \ \ \ 'Votre age est : 85 ans !'
+  
+  \ \ \ """}}
+\end{exercise}}{\begin{solution}
+  \
+  
+  {\pythoncode{import random
+  
+  \
+  
+  def age\_aleatoire(age\_min: int, age\_max: int) -> str:
+  
+  \ \ \ """ À partir de deux ages limites, retourne un message contenant
+  
+  \ \ \ un age déterminé aléatoirement.
+  
+  \ \ \
+  
+  \ \ \ >>> age\_aleatoire(20, 100)
+  
+  \ \ \ 'Votre age est : 85 ans !'
+  
+  \ \ \ """
+  
+  \ \ \ age = random.randint(age\_min, age\_max)
+  
+  \ \ \ return "Votre age est : \{\} ans !".format(age)}}
+\end{solution}}
+
+\end{document}
