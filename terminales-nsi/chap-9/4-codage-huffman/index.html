@@ -59,7 +59,7 @@
   "headline": "Le codage d\u0027Huffman",
   "description" : "Cette séance a pour objet l\u0026rsquo;étude d\u0026rsquo;une méthode de compression de données inventée par David Albert Huffman en 1952. Cette méthode permet de réduire la longueur du codage d’un alphabet et repose sur la création d’un arbre binaire.\n Différents types de codages On appelle alphabet l’ensemble des symboles (caractères) composant la donnée de départ à compresser.  Dans la suite, nous utiliserons un alphabet composé seulement des 8 lettres A, B, C, D, E, F, G et H.",
   "inLanguage" : "fr",
-  "wordCount":  1020 ,
+  "wordCount":  1085 ,
   "datePublished" : "2020-11-16T16:11:14",
   "dateModified" : "2020-11-16T16:11:14",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -416,10 +416,20 @@
 <li>Pour déterminer le code optimal, on considère 8 arbres, chacun réduit à une racine, contenant le symbole et son nombre d’apparitions.</li>
 </ul>
 </div>
-<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
-<div class="mermaid" align="center" >
-    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    mermaid.initialize({    
+        theme: 'default',
+        themeCSS: '',
+        cloneCssStyles: false,
+        useMaxWidth: true,
+        htmlLabels: false,
+        flowchart: { 
+                curve: 'basis' 
+        }
+    });
+</script>
+<pre class="mermaid" align="center">
 graph TD
     A("A | 240")
     B("B | 140")
@@ -429,19 +439,27 @@ graph TD
     F("F | 49")
     G("G | 45")
     H("H | 35")
-
-</div>
-
+</pre>
 
 <div class="note normal">
   <ul>
 <li>On fusionne ensuite les deux arbres contenant les plus petits nombres d’apparitions (valeur inscrite sur la racine), et on affecte à ce nouvel arbre la somme des nombres d’apparitions de ses deux sous-arbres. Lors de la fusion des deux arbres, le choix de mettre l’un ou l’autre à gauche n’a pas d’importance. Nous choisissons ici de mettre le plus fréquent à gauche (s’il y a un cas d’égalité, nous faisons un choix arbitraire).</li>
 </ul>
 </div>
-<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
-<div class="mermaid" align="center" >
-    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    mermaid.initialize({    
+        theme: 'default',
+        themeCSS: '',
+        cloneCssStyles: false,
+        useMaxWidth: true,
+        htmlLabels: false,
+        flowchart: { 
+                curve: 'basis' 
+        }
+    });
+</script>
+<pre class="mermaid" align="center">
 graph TD
     A("A | 240")
     B("B | 140")
@@ -453,9 +471,7 @@ graph TD
     I("80") --> H
     G("G | 45")
     H("H | 35")
-
-</div>
-
+</pre>
 
 <div class="note normal">
   <ul>
@@ -473,18 +489,26 @@ graph TD
 <div class="note normal">
   Le code à affecter à chaque lettre est déterminé par sa position dans l’arbre. Précisément, le code d’un symbole de l’alphabet décrit le chemin de la racine à la feuille qui le contient : <em>un 0 indique qu’on descend par le fils gauche et un 1 indique qu’on descend par le fils droit</em>.
 </div>
-<link href="../../../css/mermaid.css" type="text/css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
-<div class="mermaid" align="center" >
-    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    mermaid.initialize({    
+        theme: 'default',
+        themeCSS: '',
+        cloneCssStyles: false,
+        useMaxWidth: true,
+        htmlLabels: false,
+        flowchart: { 
+                curve: 'basis' 
+        }
+    });
+</script>
+<pre class="mermaid" align="center">
 graph TD
     A(" ") --> B(" ")
     B --> X("X")
     B --> Y("Y")
     A --> Z("Z")
-
-</div>
-
+</pre>
 
 <p>Dans le cas de l’arbre ci-dessus le code de X est 00 (deux fois à gauche), le code de Y est 01, et celui de Z est 1.</p>
 <ol start="11">
@@ -501,12 +525,23 @@ graph TD
 <li>Écrire le code (et la spécification !) de la classe <code>Noeud</code>, nœud d&rsquo;un arbre binaire.<br>
 Par rapport à l&rsquo;implémentation réalisée lors des TP précédenrs, ajouter le champ <code>lettre</code> initialisé à la chaîne de caractères vide et la méthode suivante :</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__lt__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">):</span>
-        <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">        Comparaison de deux noeuds = comparaison des valeurs
-</span><span style="color:#4e9a06">        &#34;&#34;&#34;</span>
-        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">valeur</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">n</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">valeur</span>
-</code></pre></div><ol start="14">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">):</span>
+        <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">        Comparaison de deux noeuds = comparaison des valeurs
+</span><span class="s2">        &#34;&#34;&#34;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">valeur</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">.</span><span class="n">valeur</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="14">
 <li>
 <p>Écrire les codes (et la spécification !) des fonctions <code>est_vide</code>, <code>est_feuille</code>, <code>parcours_prefixe</code> qui, respectivement  teste si un nœud est vide, teste si un nœud est une feuille et finalement affiche l&rsquo;arbre.</p>
 </li>
@@ -514,24 +549,51 @@ Par rapport à l&rsquo;implémentation réalisée lors des TP précédenrs, ajou
 <p>Écrire le code de la fonction <code>creation_table_frequences</code> dont la spécification est</p>
 </li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">creation_table_frequences</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">message</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">Dict</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">]:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Établit la table des fréquences des caractères dans message.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><p>Tester la fonction avec l&rsquo;instruction :</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">assert</span> <span style="color:#000">creation_table_frequences</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;ABRACADABRA&#34;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#39;A&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;B&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;R&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;C&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;D&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><ol start="16">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">creation_table_frequences</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Établit la table des fréquences des caractères dans message.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Tester la fonction avec l&rsquo;instruction :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">assert</span> <span class="n">creation_table_frequences</span><span class="p">(</span><span class="s2">&#34;ABRACADABRA&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="16">
 <li>Lire le document sur 
 <a class="remote" href="http://pascal.ortiz.free.fr/contents/python/structures_de_donnees/les_files_de_priorite.html" target="_blank">les files de priorité</a>
 
 <br>
 Écrire le code de la fonction <code>construction_arbre_huffman</code> dont la spécification est</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">construction_arbre_huffman</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">dic_frequences</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Dict</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">Noeud</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Construction de l&#39;arbre de Huffman.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><p>et l&rsquo;algorithme (cf. Cormen, <em>Algorithmes</em>)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">construction_arbre_huffman</span><span class="p">(</span><span class="n">dic_frequences</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Noeud</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Construction de l&#39;arbre de Huffman.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>et l&rsquo;algorithme (cf. Cormen, <em>Algorithmes</em>)
 <img src="../../../terminales-nsi/chap-9/chap-9-4-1.png" alt="" width="70%" /></p>
 <div class="note warning">
   Cet algorithm est un exemple d'<strong>algorithme glouton</strong> dans lequel on prend la décision qui semble la meilleure à un instant donné.

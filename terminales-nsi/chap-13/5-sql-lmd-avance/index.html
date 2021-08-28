@@ -59,7 +59,7 @@
   "headline": "Le langage SQL : Le langage de manipulation de données (LMD), Compléments",
   "description" : "Notion de clé d\u0026rsquo;une relation et dépendance fonctionnelle Lorsqu\u0026rsquo;on utilise une base de données, il est nécessaire d\u0026rsquo;accéder à un enregistrement par le contenu d\u0026rsquo;un ou de plusieurs champs. On nomme clé d\u0026rsquo;une relation un champ, ou un ensemble de champs, qui permet d\u0027identifier précisément un enregistrement. Une relation peut comprendre plusieurs clés possibles ; ce sont les clés candidates.\nOn appelle clé primaire d\u0026rsquo;une relation la clé minimale parmi toutes les clés candidates de la relation.",
   "inLanguage" : "fr",
-  "wordCount":  1125 ,
+  "wordCount":  1142 ,
   "datePublished" : "2021-02-09T08:37:37",
   "dateModified" : "2021-02-09T08:37:37",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -670,23 +670,58 @@ l&rsquo;identique.</p>
 peut être considérée comme une sélection sur le produit
 cartésien des deux relations</em> :</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#f8f8f8;text-decoration:underline"> 
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">FROM</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Lecteur_bis</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Etablissement</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">WHERE</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Lecteur_bis</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Num_Etablissement</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Etablissement</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Num_Etablissement</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p><em>Avec une projection :</em></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Lecteur_bis</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Numero_carte</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">Lecteur_bis</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Nom</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">Etablissement</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Ville</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Etablissement</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Nom_Etablissement</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">FROM</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Lecteur_bis</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">Etablissement</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">WHERE</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Lecteur_bis</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Num_Etablissement</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Etablissement</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Num_Etablissement</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> 
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">,</span><span class="w"> </span><span class="n">Etablissement</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><em>Avec une projection :</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Numero_carte</span><span class="p">,</span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Nom</span><span class="p">,</span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Ville</span><span class="p">,</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Nom_Etablissement</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">,</span><span class="n">Etablissement</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>la seconde méthode utilise l&rsquo;opérateur de jointure  :</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">FROM</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Lecteur_bis</span><span style="color:#f8f8f8;text-decoration:underline"> 
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">JOIN</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Etablissement</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">ON</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Lecteur_bis</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Num_Etablissement</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Etablissement</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Num_Etablissement</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p><em>Avec une projection :</em></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Lecteur_bis</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Numero_carte</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Lecteur_bis</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Nom</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Etablissement</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Ville</span><span style="color:#000;font-weight:bold">,</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Etablissement</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Nom_Etablissement</span><span style="color:#f8f8f8;text-decoration:underline">
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">FROM</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Lecteur_bis</span><span style="color:#f8f8f8;text-decoration:underline"> 
-</span><span style="color:#f8f8f8;text-decoration:underline"></span><span style="color:#204a87;font-weight:bold">JOIN</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Etablissement</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">ON</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Lecteur_bis</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Num_Etablissement</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Etablissement</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Num_Etablissement</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><div class="note warning">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="w"> 
+</span><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">Etablissement</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p><em>Avec une projection :</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Numero_carte</span><span class="p">,</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Ville</span><span class="p">,</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Nom_Etablissement</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="w"> 
+</span><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">Etablissement</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="note warning">
   On remarque qu'<em>un champ est défini de façon unique grâce à la concaténation du nom de la relation et de celui du champ</em>. Si les champs portent des noms différents, il n&rsquo;est pas nécessaire de préciser de quelle relation ils sont issus.
 </div>
 <h2 id="fonctions-de-calculs">Fonctions de calculs</h2>
@@ -734,12 +769,26 @@ d&rsquo;un langage de programmation comme Python).</p>
 <ul>
 <li>Détermination de l&rsquo;age moyen des lecteurs</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">SELECT</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">AVG</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Age</span><span style="color:#000;font-weight:bold">)</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">AS</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Age_Moyen</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">FROM</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">lecteur</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Age</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Age_Moyen</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">lecteur</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>Comptage du nombre de lecteurs</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#204a87;font-weight:bold">SELECT</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">COUNT</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000;font-weight:bold">)</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">AS</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">Nombre_Lecteurs</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#204a87;font-weight:bold">FROM</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000">lecteur</span><span style="color:#f8f8f8;text-decoration:underline"> </span><span style="color:#000;font-weight:bold">;</span><span style="color:#f8f8f8;text-decoration:underline">
-</span></code></pre></div><p>Dans le cas de la fonction , il n&rsquo;est pas nécessaire de préciser le champ puisque cette fonction s&rsquo;applique à la relation toute entière.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Nombre_Lecteurs</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">lecteur</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>Dans le cas de la fonction , il n&rsquo;est pas nécessaire de préciser le champ puisque cette fonction s&rsquo;applique à la relation toute entière.</p>
 
 
         

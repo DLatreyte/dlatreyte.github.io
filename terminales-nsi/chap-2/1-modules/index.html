@@ -59,7 +59,7 @@
   "headline": "Modules et exceptions",
   "description" : "Ce chapitre se concentre sur les modules de Python et sur les modalités d\u0026rsquo;importation des données des modules dans l\u0026rsquo;environnement de travail.\nL\u0026rsquo;objectif de ce document est de souligner l\u0026rsquo;importance d\u0026rsquo;un code modulaire, c\u0026rsquo;est à dire d\u0026rsquo;un code qui :\n puisse être utilisé dans plusieurs programmes ; puisse être documenté précisément ; soit suffisamment compact pour être étudié avec soin et en particulier testé.   Qu\u0026rsquo;est-ce qu\u0026rsquo;un module ?",
   "inLanguage" : "fr",
-  "wordCount":  1866 ,
+  "wordCount":  2015 ,
   "datePublished" : "2020-09-15T05:06:32",
   "dateModified" : "2020-09-15T05:06:32",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -357,28 +357,61 @@ auquel on ajoute l&rsquo;extension</em> <code>.py</code>.</p>
 <p>L&rsquo;importation de modules requiert un processus nommé <em>chemin de recherche</em> .
 C&rsquo;est une procédure de recherche dans un <em>ensemble de répertoires (dossiers) du système
 de fichiers</em> &mdash; le résultat de cette recherche dépend donc de l&rsquo;installation de Python et du système d&rsquo;exploitation utilisé &mdash; pour trouver le fichier module:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">sys</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sys</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">path</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;/Users/mats/anaconda/lib/python35.zip&#39;</span><span style="color:#000;font-weight:bold">,</span> 
-<span style="color:#4e9a06">&#39;/Users/mats/anaconda/lib/python3.5&#39;</span><span style="color:#000;font-weight:bold">,</span> 
-<span style="color:#4e9a06">&#39;/Users/mats/anaconda/lib/python3.5/plat-darwin&#39;</span><span style="color:#000;font-weight:bold">,</span> 
-<span style="color:#4e9a06">&#39;/Users/mats/anaconda/lib/python3.5/lib-dynload&#39;</span><span style="color:#000;font-weight:bold">,</span> 
-<span style="color:#4e9a06">&#39;/Users/mats/anaconda/lib/python3.5/site-packages&#39;</span><span style="color:#000;font-weight:bold">,</span> 
-<span style="color:#4e9a06">&#39;/Users/mats/anaconda/lib/python3.5/site-packages/Sphinx-1.3.1-py3.5.egg&#39;</span><span style="color:#000;font-weight:bold">,</span> 
-<span style="color:#4e9a06">&#39;/Users/mats/anaconda/lib/python3.5/site-packages/aeosa&#39;</span><span style="color:#000;font-weight:bold">,</span> 
-<span style="color:#4e9a06">&#39;/Users/mats/anaconda/lib/python3.5/site-packages/setuptools-19.4-py3.5.egg&#39;</span><span style="color:#000;font-weight:bold">]</span>
-</code></pre></div><p>Dans le cas où la recherche d&rsquo;un module échoue, une exception est levée par
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+<span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;/Users/mats/anaconda/lib/python35.zip&#39;</span><span class="p">,</span> 
+<span class="s1">&#39;/Users/mats/anaconda/lib/python3.5&#39;</span><span class="p">,</span> 
+<span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/plat-darwin&#39;</span><span class="p">,</span> 
+<span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/lib-dynload&#39;</span><span class="p">,</span> 
+<span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/site-packages&#39;</span><span class="p">,</span> 
+<span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/site-packages/Sphinx-1.3.1-py3.5.egg&#39;</span><span class="p">,</span> 
+<span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/site-packages/aeosa&#39;</span><span class="p">,</span> 
+<span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/site-packages/setuptools-19.4-py3.5.egg&#39;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Dans le cas où la recherche d&rsquo;un module échoue, une exception est levée par
 l&rsquo;interpréteur :</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">xxx</span>
-<span style="color:#000">Traceback</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">most</span> <span style="color:#000">recent</span> <span style="color:#000">call</span> <span style="color:#000">last</span><span style="color:#000;font-weight:bold">):</span>
-  <span style="color:#000">File</span> <span style="color:#4e9a06">&#34;&lt;stdin&gt;&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">line</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">&gt;</span>
-<span style="color:#c00;font-weight:bold">ImportError</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">No</span> <span style="color:#000">module</span> <span style="color:#000">named</span> <span style="color:#4e9a06">&#39;xxx&#39;</span>
-</code></pre></div><p>Puisque le <em>chemin de recherche</em> consiste à construire une liste de
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">xxx</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">ImportError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;xxx&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Puisque le <em>chemin de recherche</em> consiste à construire une liste de
 répertoires (dossiers), il est possible de la modifier. La méthode de liste <code>append()</code>
 permet d&rsquo;importer un module situé dans un répertoire absent du chemin de
 recherche:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">sys</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">path</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">append</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;/home/utilisateur/dossier-modules&#39;</span><span style="color:#000;font-weight:bold">)</span>
-</code></pre></div><div class="note warning">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;/home/utilisateur/dossier-modules&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="note warning">
   Il n&rsquo;est pas nécessaire de modifier le <em>chemin de recherche</em> si le <strong>fichier
 module</strong> se trouve <em>dans le même répertoire</em> que le fichier source
 contenant le code qui importe le module.
@@ -398,17 +431,33 @@ pile</strong> dans lequel elles résident, <em>sont temporaires et ne
 «  vivent » que le temps pendant lequel les fonctions dans
 lesquelles elles sont définies sont actives</em>.
 </div>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">chaine_globale</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;Salut&#34;</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">bonjour</span><span style="color:#000;font-weight:bold">():</span>
-<span style="color:#a40000">…</span>     <span style="color:#000">chaine_locale</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;la planète&#34;</span>
-<span style="color:#a40000">…</span>     <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">chaine_globale</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">chaine_locale</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">bonjour</span><span style="color:#000;font-weight:bold">()</span>
-<span style="color:#000">Salut</span> <span style="color:#000">la</span> <span style="color:#000">planète</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">chaine_locale</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000">Traceback</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">most</span> <span style="color:#000">recent</span> <span style="color:#000">call</span> <span style="color:#000">last</span><span style="color:#000;font-weight:bold">):</span>
-  <span style="color:#000">File</span> <span style="color:#4e9a06">&#34;&lt;stdin&gt;&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">line</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">module</span><span style="color:#ce5c00;font-weight:bold">&gt;</span>
-<span style="color:#c00;font-weight:bold">NameError</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">name</span> <span style="color:#4e9a06">&#39;chaine_locale&#39;</span> <span style="color:#204a87;font-weight:bold">is</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#000">defined</span>
-</code></pre></div><p><img src="../../../terminales-nsi/chap-2/fig-2-1-1.jpg" alt="" width="80%" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">chaine_globale</span> <span class="o">=</span> <span class="s2">&#34;Salut&#34;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">bonjour</span><span class="p">():</span>
+<span class="err">…</span>     <span class="n">chaine_locale</span> <span class="o">=</span> <span class="s2">&#34;la planète&#34;</span>
+<span class="err">…</span>     <span class="nb">print</span><span class="p">(</span><span class="n">chaine_globale</span> <span class="o">+</span> <span class="n">chaine_locale</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">()</span>
+<span class="n">Salut</span> <span class="n">la</span> <span class="n">planète</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">chaine_locale</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;chaine_locale&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="../../../terminales-nsi/chap-2/fig-2-1-1.jpg" alt="" width="80%" /></p>
 <blockquote>
 <p>Durée de vie des variables locales et globales.</p>
 </blockquote>
@@ -417,13 +466,25 @@ lesquelles elles sont définies sont actives</em>.
 globale, c&rsquo;est la variable locale qui est utilisée. <em>Python cherche d&rsquo;abord
 dans l&rsquo;espace de nom local avant de chercher dans l&rsquo;espace de nom global.</em>
 </div>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">chaine</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;Bonjour&#34;</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">au_revoir</span><span style="color:#000;font-weight:bold">():</span>
-<span style="color:#a40000">…</span>     <span style="color:#000">chaine</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;Au revoir&#34;</span>
-<span style="color:#a40000">…</span>     <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">chaine</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">au_revoir</span><span style="color:#000;font-weight:bold">()</span>
-<span style="color:#000">Au</span> <span style="color:#000">revoir</span>
-</code></pre></div><p>Il est donc possible de «  masquer » une variable globale, en utilisant une
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">chaine</span> <span class="o">=</span> <span class="s2">&#34;Bonjour&#34;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">au_revoir</span><span class="p">():</span>
+<span class="err">…</span>     <span class="n">chaine</span> <span class="o">=</span> <span class="s2">&#34;Au revoir&#34;</span>
+<span class="err">…</span>     <span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">au_revoir</span><span class="p">()</span>
+<span class="n">Au</span> <span class="n">revoir</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Il est donc possible de «  masquer » une variable globale, en utilisant une
 variable locale de même nom.</p>
 <div class="note normal">
   <em>Lorsque l&rsquo;interpréteur Python importe un module, les règles de portée
@@ -435,13 +496,28 @@ s&rsquo;il se situe dans une fonction, sa portée est locale</em>.
 <div class="note tip">
   <p>L&rsquo;import d&rsquo;un module nécessite l&rsquo;emploi de l&rsquo;instruction <code>import</code>. La syntaxe
 est la suivante :</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">os</span>
-</code></pre></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p>Il est possible d&rsquo;importer plusieurs modules :</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">os</span>
-<span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">sys</span>
-</code></pre></div><p>Lorsque l&rsquo;interpréteur rencontre un <code>import</code>, le chemin de recherche est
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Lorsque l&rsquo;interpréteur rencontre un <code>import</code>, le chemin de recherche est
 utilisé pour accéder au module. Si celui-ci est trouvé, il est importé. Comme annoncé ci-dessus, les
 règles de portée s&rsquo;appliquent : <em>si l&rsquo;import se situe au niveau du module, sa
 portée est <strong>globale</strong>, s&rsquo;il se situe dans une fonction, sa portée est <strong>locale</strong>.</em></p>
@@ -449,57 +525,122 @@ portée est <strong>globale</strong>, s&rsquo;il se situe dans une fonction, sa 
   L&rsquo;appel import amène le module dans l&rsquo;espace de nom, pas les objets qu&rsquo;il
 contient. La notation <code>.</code> doit être utilisée afin d&rsquo;utiliser ces objets.
 </div>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">os</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">name</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000">Traceback</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">most</span> <span style="color:#000">recent</span> <span style="color:#000">call</span> <span style="color:#000">last</span><span style="color:#000;font-weight:bold">):</span>
-<span style="color:#c00;font-weight:bold">NameError</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">name</span> <span style="color:#4e9a06">&#39;name&#39;</span> <span style="color:#204a87;font-weight:bold">is</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#000">defined</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">os</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">name</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000">posix</span>
-</code></pre></div><div class="note tip">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;name&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="n">posix</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="note tip">
   <h4 id="comment-accéder-à-la-liste-des-objets-contenus-dans-un-modulenbsp">Comment accéder à la liste des objets contenus dans un module ?</h4>
 <p>On peut utiliser la fonction <code>dir</code> :</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">os</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87">dir</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">os</span><span style="color:#000;font-weight:bold">)</span>
-</code></pre></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">(</span><span class="n">os</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <div class="note tip">
   <h4 id="comment-obtenir-laide-dun-modulenbsp">Comment obtenir l&rsquo;aide d&rsquo;un module ?</h4>
 <p>On peut utiliser la fonction <code>help</code> :</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">os</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">help</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">os</span><span style="color:#000;font-weight:bold">)</span>
-</code></pre></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">help</span><span class="p">(</span><span class="n">os</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <p><img src="../../../terminales-nsi/chap-2/fig-2-1-2.jpg" alt="" width="80%" /></p>
 <blockquote>
 <p>Résultat de l&rsquo;importation du module <code>os</code>. Aucune référence à l&rsquo;attribut <code>name</code> n&rsquo;existe dans l&rsquo;espace de nom global.</p>
 </blockquote>
 <h4 id="comment-obtenir-la-liste-de-tous-les-modules-importés-par-un-programmenbsp">Comment obtenir la liste de tous les modules importés par un programme ?</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87">dir</span><span style="color:#000;font-weight:bold">()</span>
-</code></pre></div><h3 id="lexpression-from--import-">L&rsquo;expression from &hellip; import &hellip;</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="lexpression-from--import-">L&rsquo;expression from &hellip; import &hellip;</h3>
 <div class="note tip">
   <p>Il est possible d&rsquo;importer des objets particuliers d&rsquo;un module dans le
 programme. <strong>L&rsquo;objet appartient alors réellement à l&rsquo;espace de nom du
 programme</strong>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">os</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">name</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">name</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000">posix</span>
-</code></pre></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">name</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="n">posix</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 </div>
 <h4 id="remarque">Remarque</h4>
 <p>Ce type d&rsquo;import peut présenter de réels dangers dans un programme dont le nombre de lignes est important et dont le développement s&rsquo;effectue sur une longue durée. <em>Que se passe-t-il si, dans le programme principal, un attribut ou
 une fonction portent le même nom que l&rsquo;élément importé ?</em></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">sinc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">):</span>
-<span style="color:#ce5c00;font-weight:bold">...</span>     <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">&#39;coucou&#39;</span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">x</span>
-<span style="color:#ce5c00;font-weight:bold">...</span> 
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">sinc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#4e9a06">&#39;coucoucoucoucoucou&#39;</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">pylab</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">sinc</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">sinc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">3.8981718325193755e-17</span>
-</code></pre></div><h4 id="remarque-1">Remarque</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">sinc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="o">...</span>     <span class="k">return</span> <span class="s1">&#39;coucou&#39;</span><span class="o">*</span><span class="n">x</span>
+<span class="o">...</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sinc</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="s1">&#39;coucoucoucoucoucou&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="n">sinc</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sinc</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">-</span><span class="mf">3.8981718325193755e-17</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="remarque-1">Remarque</h4>
 <p>Il existe une façon encore plus dangereuse d&rsquo;utiliser l&rsquo;expression <code>from ... import ...</code> :</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">os</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#ce5c00;font-weight:bold">*</span>
-</code></pre></div><p><em>Tous les objets contenus dans le module sont alors ajoutés à l&rsquo;espace de nom
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="o">*</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>Tous les objets contenus dans le module sont alors ajoutés à l&rsquo;espace de nom
 globale du programme.</em></p>
 <div class="note warning">
   Éviter le plus possible la forme d&rsquo;importation : <code>from nom_module import *</code> !
@@ -509,9 +650,17 @@ globale du programme.</em></p>
 portant un nom déjà employé dans l&rsquo;application, ou que ce nom ne convienne
 pas parce qu&rsquo;il est trop long. On peut changer le nom lié localement du module
 et procéder ensuite comme avec le nom complet :</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">matplotlib.pyplot</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">plt</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">plt</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">plot</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">)</span>
-</code></pre></div><h3 id="import-vs-chargement">Import vs chargement</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="import-vs-chargement">Import vs chargement</h3>
 <div class="note tip">
   Un module n&rsquo;est <em>incorporé dans l&rsquo;espace de nom global</em> qu&rsquo;une seule fois, quel que soit le nombre de fois
 où il est <em>importé</em>.
@@ -520,60 +669,123 @@ où il est <em>importé</em>.
 <ol>
 <li>Dans le fichier <code>demo.py</code> :</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">Un module de démonstration.
-</span><span style="color:#4e9a06">&#34;&#34;&#34;</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;&#34;
+</span><span class="s2">Un module de démonstration.
+</span><span class="s2">&#34;&#34;&#34;</span>
 
-<span style="color:#8f5902;font-style:italic"># Fonctions du module</span>
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Affiche b.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;&#34;</span>
-    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">&#34;b&#34;</span>
+<span class="c1"># Fonctions du module</span>
+<span class="k">def</span> <span class="nf">b</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Affiche b.
+</span><span class="s2">    &#34;&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="s2">&#34;b&#34;</span>
 
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">str</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;Affiche a.&#34;&#34;&#34;</span>
-    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#4e9a06">&#34;a&#34;</span>
+<span class="k">def</span> <span class="nf">a</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;Affiche a.&#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="s2">&#34;a&#34;</span>
 
-<span style="color:#8f5902;font-style:italic"># Attributs (variables) du module</span>
-<span style="color:#000">c</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">2</span>
-<span style="color:#000">d</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">2</span>
+<span class="c1"># Attributs (variables) du module</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">2</span>
 
-<span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">__name__</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">&#34;__main__&#34;</span><span style="color:#000;font-weight:bold">:</span>              <span style="color:#8f5902;font-style:italic"># test des fonctions du module</span>
-    <span style="color:#204a87;font-weight:bold">assert</span>  <span style="color:#000">b</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">&#34;b&#34;</span>                  <span style="color:#8f5902;font-style:italic"># place des assert</span>
-</code></pre></div><ol start="2">
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>              <span class="c1"># test des fonctions du module</span>
+    <span class="k">assert</span>  <span class="n">b</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&#34;b&#34;</span>                  <span class="c1"># place des assert</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
 <li>Dans l&rsquo;interpréteur intéractif, lancé depuis le dossier dans lequel on a enregistré le module <code>demo.py</code> :</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">demo</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">demo</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">b</span><span style="color:#000;font-weight:bold">())</span>
-<span style="color:#4e9a06">&#34;b&#34;</span>
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">demo</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">c</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#0000cf;font-weight:bold">2</span>
-</code></pre></div><h2 id="mécanisme-de-gestion-des-exceptions">Mécanisme de gestion des exceptions</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">demo</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">b</span><span class="p">())</span>
+<span class="s2">&#34;b&#34;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
+<span class="mi">2</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="mécanisme-de-gestion-des-exceptions">Mécanisme de gestion des exceptions</h2>
 <p>Lorsqu&rsquo;un problème intervient lors de l&rsquo;exécution d&rsquo;un programme (division
 par zéro, tentative d&rsquo;ouverture d&rsquo;un fichier qui n&rsquo;existe pas, erreur de
 syntaxe, etc.), l&rsquo;interpréteur passe dans un mode particulier dans lequel
 il stoppe l&rsquo;exécution du programme en cours et affiche une erreur :</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">7</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">0</span>
-<span style="color:#000">Traceback</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">most</span> <span style="color:#000">recent</span> <span style="color:#000">call</span> <span style="color:#000">last</span><span style="color:#000;font-weight:bold">):</span>
-<span style="color:#c00;font-weight:bold">ZeroDivisionError</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">integer</span> <span style="color:#000">division</span> <span style="color:#204a87;font-weight:bold">or</span> <span style="color:#000">modulo</span> <span style="color:#000">by</span> <span style="color:#000">zero</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="mi">7</span> <span class="o">/</span> <span class="mi">0</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">integer</span> <span class="n">division</span> <span class="ow">or</span> <span class="n">modulo</span> <span class="n">by</span> <span class="n">zero</span>
 
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">f</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">open</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;monfichier.txt&#39;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#4e9a06">&#39;r&#39;</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000">Traceback</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">most</span> <span style="color:#000">recent</span> <span style="color:#000">call</span> <span style="color:#000">last</span><span style="color:#000;font-weight:bold">):</span>
-<span style="color:#c00;font-weight:bold">IOError</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">Errno</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#000">No</span> <span style="color:#000">such</span> <span style="color:#000">file</span> <span style="color:#204a87;font-weight:bold">or</span> <span style="color:#000">directory</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;monfichier.txt&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;monfichier.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<span class="ne">IOError</span><span class="p">:</span> <span class="p">[</span><span class="n">Errno</span> <span class="mi">2</span><span class="p">]</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span><span class="p">:</span> <span class="s1">&#39;monfichier.txt&#39;</span>
 
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">3</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">message</span>
-<span style="color:#000">Traceback</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">most</span> <span style="color:#000">recent</span> <span style="color:#000">call</span> <span style="color:#000">last</span><span style="color:#000;font-weight:bold">):</span>
-<span style="color:#c00;font-weight:bold">NameError</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">name</span> <span style="color:#4e9a06">&#39;message&#39;</span> <span style="color:#204a87;font-weight:bold">is</span> <span style="color:#204a87;font-weight:bold">not</span> <span style="color:#000">defined</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">message</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;message&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
 
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">while</span> <span style="color:#204a87;font-weight:bold">True</span> <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Coucou !&#39;</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000">Traceback</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">most</span> <span style="color:#000">recent</span> <span style="color:#000">call</span> <span style="color:#000">last</span><span style="color:#000;font-weight:bold">):</span>
-<span style="color:#000">File</span> <span style="color:#4e9a06">&#34;tm_python&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">line</span> <span style="color:#0000cf;font-weight:bold">1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="kc">True</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coucou !&#39;</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<span class="n">File</span> <span class="s2">&#34;tm_python&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
 
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">while</span> <span style="color:#204a87;font-weight:bold">True</span> <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;Coucou !&#39;</span><span style="color:#000;font-weight:bold">)</span>
-                   <span style="color:#ce5c00;font-weight:bold">^</span>
-<span style="color:#c00;font-weight:bold">SyntaxError</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">invalid</span> <span style="color:#000">syntax</span>
-</code></pre></div><div class="note tip">
+<span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="kc">True</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coucou !&#39;</span><span class="p">)</span>
+                   <span class="o">^</span>
+<span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">syntax</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="note tip">
   <h4 id="message-derreur">Message d&rsquo;erreur</h4>
 <p>Le message affiché contient le <code>traceback</code>, c&rsquo;est à dire la pile d&rsquo;appel &mdash; le chemin parcouru par l&rsquo;interpréteur pour atteindre l&rsquo;erreur (soit la liste des fonctions traversées pour atteindre l&rsquo;erreur).<br>
 Ce message comporte le <strong>type d&rsquo;exception</strong> levée (<code>ZeroDivisionError</code>, <code>IOError</code>, <code>NameError</code>, <code>SyntaxError</code>, etc.)  et un <strong>message</strong> qui décrit le problème rencontré.
@@ -588,13 +800,25 @@ termine sans que la raison n&rsquo;en soit explicite, il est conseillé de <stro
 les exceptions</strong>.
 </div>
 <h4 id="exemplenbsp-gestion-des-entrées-du-clavier">Exemple : Gestion des entrées du clavier</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">while</span> <span style="color:#204a87;font-weight:bold">True</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">input</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Entrer un nombre entier :&#34;</span><span style="color:#000;font-weight:bold">))</span>
-        <span style="color:#204a87;font-weight:bold">break</span>
-    <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Oups ! Ce n&#39;est pas un nombre. Nouvelle tentative&#34;</span><span style="color:#000;font-weight:bold">)</span>
-</code></pre></div><div class="note tip">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrer un nombre entier :&#34;</span><span class="p">))</span>
+        <span class="k">break</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Oups ! Ce n&#39;est pas un nombre. Nouvelle tentative&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="note tip">
   <p>Le gestion des exceptions repose sur quelques mots clés : <code>try</code>, <code>except</code>, <code>else</code>
 et <code>finally</code> et sur une liste de types d&rsquo;exceptions dont la liste peut être
 consultée dans la <a href="https://docs.python.org/3.8/library/exceptions.html#bltin-exceptions">documentation en ligne de Python</a> :</p>
@@ -618,54 +842,117 @@ arrive.</li>
 </ul>
 </div>
 <h4 id="exemplenbsp-prise-en-compte-de-plusieurs-erreurs">Exemple : Prise en compte de plusieurs erreurs</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#000">f</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">open</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;fichier.txt&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;r&#39;</span><span style="color:#000;font-weight:bold">)</span>
-        <span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">f</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">readline</span><span style="color:#000;font-weight:bold">()</span>
-        <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">strip</span><span style="color:#000;font-weight:bold">())</span>
-    <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">IOError</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">err</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;I/O Erreur : </span><span style="color:#4e9a06">{0}</span><span style="color:#4e9a06">&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">err</span><span style="color:#000;font-weight:bold">))</span>
-    <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Je ne suis pas parvenu à convertir en entier la donnée.&#34;</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#204a87;font-weight:bold">finally</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#000">f</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">close</span><span style="color:#000;font-weight:bold">()</span>
-</code></pre></div><h4 id="utilisation-de-else">Utilisation de else.</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#000">f</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">open</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;fichier.txt&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#4e9a06">&#39;r&#39;</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">IOError</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">nbsp</span><span style="color:#000;font-weight:bold">;:</span>
-        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Je ne parviens pas à lire le fichier.&#34;</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">f</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">readlines</span><span style="color:#000;font-weight:bold">()</span>
-        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Le fichier comporte </span><span style="color:#4e9a06">{0}</span><span style="color:#4e9a06"> lignes.&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">))</span>
-    <span style="color:#204a87;font-weight:bold">finally</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#000">f</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">close</span><span style="color:#000;font-weight:bold">()</span>
-</code></pre></div><h4 id="les-exceptions-dans-la-définition-dune-fonction">Les exceptions dans la définition d&rsquo;une fonction.</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">division</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">):</span>
-    <span style="color:#204a87;font-weight:bold">try</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#000">resultat</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#000">y</span>
-    <span style="color:#204a87;font-weight:bold">except</span> <span style="color:#c00;font-weight:bold">ZeroDivisionError</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Division par zero !&#34;</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#204a87;font-weight:bold">else</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Le resultat est </span><span style="color:#4e9a06">{0}</span><span style="color:#4e9a06">&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">resultat</span><span style="color:#000;font-weight:bold">))</span>
-    <span style="color:#204a87;font-weight:bold">finally</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Je suis toujours présent !&#34;</span><span style="color:#000;font-weight:bold">)</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="k">try</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;fichier.txt&#34;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I/O Erreur : </span><span class="si">{0}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je ne suis pas parvenu à convertir en entier la donnée.&#34;</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="utilisation-de-else">Utilisation de else.</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="k">try</span><span class="p">:</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;fichier.txt&#34;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IOError</span><span class="o">&amp;</span><span class="n">nbsp</span><span class="p">;:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je ne parviens pas à lire le fichier.&#34;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Le fichier comporte </span><span class="si">{0}</span><span class="s2"> lignes.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="les-exceptions-dans-la-définition-dune-fonction">Les exceptions dans la définition d&rsquo;une fonction.</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">division</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">resultat</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
+    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Division par zero !&#34;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Le resultat est </span><span class="si">{0}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resultat</span><span class="p">))</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je suis toujours présent !&#34;</span><span class="p">)</span>
 
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">division</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000">Le</span> <span style="color:#000">resultat</span> <span style="color:#000">est</span> <span style="color:#0000cf;font-weight:bold">2</span>
-<span style="color:#000">Je</span> <span style="color:#000">suis</span> <span style="color:#000">toujours</span> <span style="color:#000">présent</span> <span style="color:#a40000">!</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">division</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">Le</span> <span class="n">resultat</span> <span class="n">est</span> <span class="mi">2</span>
+<span class="n">Je</span> <span class="n">suis</span> <span class="n">toujours</span> <span class="n">présent</span> <span class="err">!</span>
 
-<span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">division</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000">Division</span> <span style="color:#000">par</span> <span style="color:#000">zero</span> <span style="color:#a40000">!</span>
-<span style="color:#000">Je</span> <span style="color:#000">suis</span> <span style="color:#000">toujours</span> <span style="color:#000">présent</span> <span style="color:#a40000">!</span>
-</code></pre></div><p>Tout fichier manipulé doit être correctement fermé. Il n&rsquo;est donc pas
+<span class="o">&gt;&gt;&gt;</span> <span class="n">division</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">Division</span> <span class="n">par</span> <span class="n">zero</span> <span class="err">!</span>
+<span class="n">Je</span> <span class="n">suis</span> <span class="n">toujours</span> <span class="n">présent</span> <span class="err">!</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Tout fichier manipulé doit être correctement fermé. Il n&rsquo;est donc pas
 envisageable d&rsquo;utiliser la fonction <code>open</code> sans gérer les exceptions. Utiliser
 les instructions <code>try</code>, <code>except</code> et <code>finally</code> peut cependant apparaître
 contre-productif (cela fait beaucoup de code pour une action courante). <code>with</code>
 permet de manipuler les fichiers en étant certain qu&rsquo;ils seront fermés
 correctement, <em>quoi qu&rsquo;il arrive</em>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#204a87;font-weight:bold">with</span> <span style="color:#204a87">open</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;fichier.txt&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#4e9a06">&#39;r&#39;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">ligne</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">:</span>
-            <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">ligne</span><span style="color:#000;font-weight:bold">)</span>
-</code></pre></div><h2 id="application">Application</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;fichier.txt&#34;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">ligne</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="application">Application</h2>
 <div class="note exercise">
   <ol>
 <li>
