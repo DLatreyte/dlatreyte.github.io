@@ -59,7 +59,7 @@
   "headline": "Résoudre un problème grâce aux paradigmes objet et fonctionnel",
   "description" : "L\u0026rsquo;objectif de ce document est d\u0026rsquo;illustrer une fois encore l\u0026rsquo;intérêt des différents paradigmes de programmation.\nCas d\u0026rsquo;étude : fonction avec paramètres On considère l\u0026rsquo;équation qui traduit le mouvement d\u0026rsquo;une balle lancée verticalement vers le haut avec une vitesse $\\vec{v}_0$ depuis l\u0026rsquo;origine des altitudes telle que l\u0026rsquo;écrit un physicien : $$y(t) = -\\dfrac{1}{2}g\\, t^2 \u002b v_0\\, t$$ Ce physicien a donc tendance à considérer que $y$ est une fonction de la variable $t$ et que cette fonction dépend des paramètres $v_0$ et $g$.",
   "inLanguage" : "fr",
-  "wordCount":  1431 ,
+  "wordCount":  1545 ,
   "datePublished" : "2020-10-01T04:21:17",
   "dateModified" : "2020-10-01T04:21:17",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -324,15 +324,29 @@ Ce physicien a donc tendance à considérer que $y$ est une fonction de la varia
     <summary>
         <strong> Réponse</strong>
     </summary>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">v0</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Calcule l&#39;altitude d&#39;une balle lancée vers le haut verticalement avec la vitesse v0 au cours du temps depuis l&#39;origine des altitudes.
-</span><span style="color:#4e9a06">
-</span><span style="color:#4e9a06">    REMARQUE : la fonction définit un paramètre constant g = 9.81
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-    <span style="color:#000">g</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">9.81</span>
-    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">0.5</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">g</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">**</span><span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">v0</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">t</span>
-</code></pre></div></details>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">v0</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Calcule l&#39;altitude d&#39;une balle lancée vers le haut verticalement avec la vitesse v0 au cours du temps depuis l&#39;origine des altitudes.
+</span><span class="s2">
+</span><span class="s2">    REMARQUE : la fonction définit un paramètre constant g = 9.81
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">g</span> <span class="o">*</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">v0</span> <span class="o">*</span><span class="n">t</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
 <hr />
 <h2 id="problème">Problème</h2>
 <p>Le physicien qui vient de définir la fonction de la question 1. peut vouloir utiliser les fonctions que certains modules, tels que les modules <code>math</code>, <code>numpy</code> ou <code>scipy</code>, proposent. Ces fonctions étant les plus générales possibles, elles implémentent le point de vue du physicien, $y$ est une fonction de $t$, plutôt que celui de l&rsquo;informaticien, $y$ est une fonction de $t$ et de $v_0$.<br>
@@ -345,25 +359,50 @@ $$ f\rq (x_0) \approx \dfrac{f(x_0 + h) - f(x_0)}{h}$$</p>
 <ol start="2">
 <li>Définir la fonction <code>diff</code> dont la spécification est :</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">diff</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Callable</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x0</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">h</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">1E-7</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Calcule la dérivée de la fonction f au point d&#39;abscisse x0.
-</span><span style="color:#4e9a06">
-</span><span style="color:#4e9a06">    REMARQUE : le paramètre h est fixé à h = 1e-7 par défaut.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><hr />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">diff</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">x0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">h</span><span class="p">:</span> <span class="nb">float</span><span class="o">=</span><span class="mf">1E-7</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Calcule la dérivée de la fonction f au point d&#39;abscisse x0.
+</span><span class="s2">
+</span><span class="s2">    REMARQUE : le paramètre h est fixé à h = 1e-7 par défaut.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr />
 <details style="background-color: #f2f2f2;">
     <summary>
         <strong> Réponse</strong>
     </summary>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">diff</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Callable</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x0</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">h</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1E-7</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Calcule la dérivée de la fonction f au point d&#39;abscisse x0.
-</span><span style="color:#4e9a06">
-</span><span style="color:#4e9a06">    REMARQUE : le paramètre h est fixé à h = 1e-5 par défaut.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x0</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">h</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x0</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#000">h</span>
-</code></pre></div></details>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">diff</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">x0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">h</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1E-7</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Calcule la dérivée de la fonction f au point d&#39;abscisse x0.
+</span><span class="s2">
+</span><span class="s2">    REMARQUE : le paramètre h est fixé à h = 1e-5 par défaut.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x0</span> <span class="o">+</span> <span class="n">h</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">))</span> <span class="o">/</span> <span class="n">h</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
 <hr />
 <ol start="3">
 <li>Tester cette fonction en calculant la dérivée de $\cos(x)$ au point $x=0$.<br>
@@ -374,9 +413,17 @@ $$ f\rq (x_0) \approx \dfrac{f(x_0 + h) - f(x_0)}{h}$$</p>
     <summary>
         <strong> Réponse</strong>
     </summary>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">math</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">m</span>
-<span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">diff</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">m</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">cos</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">))</span>
-</code></pre></div></details>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">math</span> <span class="k">as</span> <span class="nn">m</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">cos</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
 <hr />
 <ol start="4">
 <li>La fonction <code>diff</code> peut-elle être utilisée pour déterminer la dérivée de la fonction <code>y</code> ?</li>
@@ -393,15 +440,29 @@ $$ f\rq (x_0) \approx \dfrac{f(x_0 + h) - f(x_0)}{h}$$</p>
 <ol start="5">
 <li>Écrire la fonction <code>y1</code> dont la spécification est</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">y1</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Calcule l&#39;altitude d&#39;une balle lancée vers le haut verticalement avec la vitesse v0 au cours du temps depuis l&#39;origine des altitudes.
-</span><span style="color:#4e9a06">
-</span><span style="color:#4e9a06">    REMARQUE : la fonction définit un paramètre constant g = 9.81
-</span><span style="color:#4e9a06">
-</span><span style="color:#4e9a06">    REMARQUE : la fonction utilise la variable globale v0.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol start="6">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">y1</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Calcule l&#39;altitude d&#39;une balle lancée vers le haut verticalement avec la vitesse v0 au cours du temps depuis l&#39;origine des altitudes.
+</span><span class="s2">
+</span><span class="s2">    REMARQUE : la fonction définit un paramètre constant g = 9.81
+</span><span class="s2">
+</span><span class="s2">    REMARQUE : la fonction utilise la variable globale v0.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="6">
 <li>Déterminer la valeur de la vitesse de la balle à la date $t=\pu{0,1 s}$ en utilisant la fonction <code>y1</code>.<br>
 <strong>Remarque :</strong> $v0 = \pu{3 m/s}$ et la réponse attendue est $v_y = \pu{2,02 m/s}$.</li>
 </ol>
@@ -410,10 +471,19 @@ $$ f\rq (x_0) \approx \dfrac{f(x_0 + h) - f(x_0)}{h}$$</p>
     <summary>
         <strong> Réponse</strong>
     </summary>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">v0</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">3</span>
-<span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0.1</span>
-<span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">diff</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">y1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">))</span>
-</code></pre></div></details>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">v0</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">t</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
 <hr />
 <ol start="7">
 <li>Pourquoi est-ce une mauvaise idée que d&rsquo;utiliser des variables globales ?</li>
@@ -434,53 +504,106 @@ $$ f\rq (x_0) \approx \dfrac{f(x_0 + h) - f(x_0)}{h}$$</p>
 <ol start="8">
 <li>Définir la classe <code>Y1</code> dont la spécification est</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Y1</span><span style="color:#000;font-weight:bold">():</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Classe représentant la fonction mathématique y.
-</span><span style="color:#4e9a06">    
-</span><span style="color:#4e9a06">    Attributs
-</span><span style="color:#4e9a06">    ---------
-</span><span style="color:#4e9a06">    g : float
-</span><span style="color:#4e9a06">        Paramètre g dont la valeur est fixée à l&#39;initialisation de l&#39;objet.
-</span><span style="color:#4e9a06">    v0 : float
-</span><span style="color:#4e9a06">        Paramètre v0 dont la valeur est récupérée à l&#39;initialisation de l&#39;objet.
-</span><span style="color:#4e9a06">        
-</span><span style="color:#4e9a06">    Méthode
-</span><span style="color:#4e9a06">    -------
-</span><span style="color:#4e9a06">    valeur(self, t: float) -&gt; float
-</span><span style="color:#4e9a06">        Retourne la valeur de y à la date t passée en argument.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><hr />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Y1</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Classe représentant la fonction mathématique y.
+</span><span class="s2">    
+</span><span class="s2">    Attributs
+</span><span class="s2">    ---------
+</span><span class="s2">    g : float
+</span><span class="s2">        Paramètre g dont la valeur est fixée à l&#39;initialisation de l&#39;objet.
+</span><span class="s2">    v0 : float
+</span><span class="s2">        Paramètre v0 dont la valeur est récupérée à l&#39;initialisation de l&#39;objet.
+</span><span class="s2">        
+</span><span class="s2">    Méthode
+</span><span class="s2">    -------
+</span><span class="s2">    valeur(self, t: float) -&gt; float
+</span><span class="s2">        Retourne la valeur de y à la date t passée en argument.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr />
 <details style="background-color: #f2f2f2;">
     <summary>
         <strong> Réponse</strong>
     </summary>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Y1</span><span style="color:#000;font-weight:bold">():</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Classe représentant la fonction mathématique y.
-</span><span style="color:#4e9a06">    
-</span><span style="color:#4e9a06">    Attributs
-</span><span style="color:#4e9a06">    ---------
-</span><span style="color:#4e9a06">    g : float
-</span><span style="color:#4e9a06">        Paramètre g dont la valeur est fixée à l&#39;initialisation de l&#39;objet.
-</span><span style="color:#4e9a06">    v0 : float
-</span><span style="color:#4e9a06">        Paramètre v0 dont la valeur est récupérée à l&#39;initialisation de l&#39;objet.
-</span><span style="color:#4e9a06">        
-</span><span style="color:#4e9a06">    Méthode
-</span><span style="color:#4e9a06">    -------
-</span><span style="color:#4e9a06">    valeur(self, t: float) -&gt; float
-</span><span style="color:#4e9a06">        Retourne la valeur de y à la date t passée en argument.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">v0</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">9.81</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">None</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">v0</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">v0</span>
-        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">g</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">g</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Y1</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Classe représentant la fonction mathématique y.
+</span><span class="s2">    
+</span><span class="s2">    Attributs
+</span><span class="s2">    ---------
+</span><span class="s2">    g : float
+</span><span class="s2">        Paramètre g dont la valeur est fixée à l&#39;initialisation de l&#39;objet.
+</span><span class="s2">    v0 : float
+</span><span class="s2">        Paramètre v0 dont la valeur est récupérée à l&#39;initialisation de l&#39;objet.
+</span><span class="s2">        
+</span><span class="s2">    Méthode
+</span><span class="s2">    -------
+</span><span class="s2">    valeur(self, t: float) -&gt; float
+</span><span class="s2">        Retourne la valeur de y à la date t passée en argument.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">9.81</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v0</span> <span class="o">=</span> <span class="n">v0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">g</span>
 
-    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">valeur</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">        Retourne la valeur de y à la date t passée en argument.
-</span><span style="color:#4e9a06">        &#34;&#34;&#34;</span>
-        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">0.5</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">g</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">**</span><span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">v0</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">t</span>
-</code></pre></div></details>
+    <span class="k">def</span> <span class="nf">valeur</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">        Retourne la valeur de y à la date t passée en argument.
+</span><span class="s2">        &#34;&#34;&#34;</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">*</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">v0</span> <span class="o">*</span> <span class="n">t</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
 <hr />
 <ol start="9">
 <li>Créer un objet de type <code>Y1</code> et vérifier que la valeur de la fonction $y$ à la date $t=\pu{0,1 s}$, lorsque $v_0=\pu{3 m/s}$ est $\pu{0,25 m}$.</li>
@@ -490,9 +613,17 @@ $$ f\rq (x_0) \approx \dfrac{f(x_0 + h) - f(x_0)}{h}$$</p>
     <summary>
         <strong> Réponse</strong>
     </summary>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">yo</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Y1</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">yo</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">valeur</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0.1</span><span style="color:#000;font-weight:bold">))</span>  <span style="color:#8f5902;font-style:italic"># ou assert yo.valeur(0.1) == y(0.1, 3)</span>
-</code></pre></div></details>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">yo</span> <span class="o">=</span> <span class="n">Y1</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">yo</span><span class="o">.</span><span class="n">valeur</span><span class="p">(</span><span class="mf">0.1</span><span class="p">))</span>  <span class="c1"># ou assert yo.valeur(0.1) == y(0.1, 3)</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
 <hr />
 <ol start="10">
 <li>Déterminer la vitesse de la balle à cet instant.</li>
@@ -502,9 +633,17 @@ $$ f\rq (x_0) \approx \dfrac{f(x_0 + h) - f(x_0)}{h}$$</p>
     <summary>
         <strong> Réponse</strong>
     </summary>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">yo</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Y1</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">diff</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">yo</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">valeur</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0.1</span><span style="color:#000;font-weight:bold">))</span>
-</code></pre></div></details>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">yo</span> <span class="o">=</span> <span class="n">Y1</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">yo</span><span class="o">.</span><span class="n">valeur</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
 <hr />
 <h3 id="en-utilisant-une-méthode-spéciale">En utilisant une méthode spéciale</h3>
 <p>On peut penser que la définition de la classe <code>Y1</code> fait trop apparaître le concept d&rsquo;objet au détriment de celui de fonction. En particulier, l&rsquo;appel <code>yo.valeur(0.1)</code> n&rsquo;est pas aussi clair que <code>yo(0.1)</code>.<br>
@@ -517,28 +656,55 @@ Les classes possèdent cependant, en Python, une méthode spéciale nommée <cod
     <summary>
         <strong> Réponse</strong>
     </summary>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Y2</span><span style="color:#000;font-weight:bold">():</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Classe représentant la fonction mathématique y.
-</span><span style="color:#4e9a06">    
-</span><span style="color:#4e9a06">    Attributs
-</span><span style="color:#4e9a06">    ---------
-</span><span style="color:#4e9a06">    g : float
-</span><span style="color:#4e9a06">        Paramètre g dont la valeur est fixée à l&#39;initialisation de l&#39;objet.
-</span><span style="color:#4e9a06">    v0 : float
-</span><span style="color:#4e9a06">        Paramètre v0 dont la valeur est récupérée à l&#39;initialisation de l&#39;objet.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Y2</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Classe représentant la fonction mathématique y.
+</span><span class="s2">    
+</span><span class="s2">    Attributs
+</span><span class="s2">    ---------
+</span><span class="s2">    g : float
+</span><span class="s2">        Paramètre g dont la valeur est fixée à l&#39;initialisation de l&#39;objet.
+</span><span class="s2">    v0 : float
+</span><span class="s2">        Paramètre v0 dont la valeur est récupérée à l&#39;initialisation de l&#39;objet.
+</span><span class="s2">    &#34;&#34;&#34;</span>
 
-    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__init__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">v0</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">9.81</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">None</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">v0</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">v0</span>
-        <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">g</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">g</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">9.81</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">v0</span> <span class="o">=</span> <span class="n">v0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">g</span>
 
-    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">__call__</span><span style="color:#000;font-weight:bold">(</span><span style="color:#3465a4">self</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">        Retourne la valeur de y à la date t passée en argument.
-</span><span style="color:#4e9a06">        &#34;&#34;&#34;</span>
-        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">0.5</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">g</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">**</span><span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#3465a4">self</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">v0</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">t</span>
-</code></pre></div></details>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">        Retourne la valeur de y à la date t passée en argument.
+</span><span class="s2">        &#34;&#34;&#34;</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">g</span> <span class="o">*</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">v0</span> <span class="o">*</span> <span class="n">t</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
 <hr />
 <ol start="12">
 <li>Déterminer la vitesse de la balle à dans les mêmes conditions qu&rsquo;à la question 10.</li>
@@ -548,26 +714,50 @@ Les classes possèdent cependant, en Python, une méthode spéciale nommée <cod
     <summary>
         <strong> Réponse</strong>
     </summary>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">yo</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Y2</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span> <span style="color:#000">yo</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0.1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">)</span>
-</code></pre></div></details>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">yo</span> <span class="o">=</span> <span class="n">Y2</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">yo</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span> <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
 <hr />
 <h2 id="troisième-méthodenbsp-premiers-pas-dans-le-monde-fonctionnel">Troisième méthode : premiers pas dans le monde fonctionnel</h2>
 <div class="note tip">
   En <strong>programmation fonctionnelle</strong>, <em>les fonctions sont des objets de première classe</em> : <em>une fonction peut être <strong>passée comme argument</strong> à une autre fonction</em>, <em>une fonction peut <strong>retourner une fonction</strong></em>.
 </div>
 <p>Étudier le code suivant</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">fixe_param</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">v0</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">Callable</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#000">g</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">9.81</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fixe_param</span><span class="p">(</span><span class="n">v0</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span>
 
-    <span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">calcule_y</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">0.5</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">g</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">**</span><span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">v0</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">t</span>
+    <span class="k">def</span> <span class="nf">calcule_y</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">g</span> <span class="o">*</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">v0</span> <span class="o">*</span> <span class="n">t</span>
 
-    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">calcule_y</span>
+    <span class="k">return</span> <span class="n">calcule_y</span>
 
-<span style="color:#000">y3</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fixe_param</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span> <span style="color:#000">y3</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0.1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">)</span>
-</code></pre></div><ol start="13">
+<span class="n">y3</span> <span class="o">=</span> <span class="n">fixe_param</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">y3</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span> <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="13">
 <li>Qu&rsquo;attend comme argument la fonction <code>fixe_param</code> ?</li>
 </ol>
 <hr />
@@ -622,9 +812,17 @@ Les classes possèdent cependant, en Python, une méthode spéciale nommée <cod
     <summary>
         <strong> Réponse</strong>
     </summary>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">y5</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fixe_param</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span> <span style="color:#000">y5</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0.1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">)</span>
-</code></pre></div></details>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">y5</span> <span class="o">=</span> <span class="n">fixe_param</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">y5</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span> <span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
 <hr />
 <ol start="18">
 <li>Quel est le rôle de la fonction <code>fixe_param</code> ?</li>

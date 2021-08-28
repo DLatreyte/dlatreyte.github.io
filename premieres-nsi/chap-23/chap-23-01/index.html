@@ -59,7 +59,7 @@
   "headline": "Algorithmes gloutons, problème du rendu de monnaie",
   "description" : "Au programme Algorithmique    Contenus Capacités attendues Commentaires     Algorithmes gloutons Résoudre un problème grâce à un algorithme glouton. Exemples : problèmes du sac à dos ou du rendu de monnaie. Les algorithmes gloutons constituent une méthode algorithmique parmi d’autres qui seront vues en terminale.    Introduction Les algorithmes gloutons forment une catégorie d\u0026rsquo;algorithmes permettant de parvenir à une solution pour un problème d\u0026rsquo;optimisation qui vise à maximiser\/minimiser une quantité (plus court chemin (GPS), plus petite durée d\u0026rsquo;exécution, meilleure organisation d\u0026rsquo;un emploi du temps, etc.",
   "inLanguage" : "fr",
-  "wordCount":  1268 ,
+  "wordCount":  1336 ,
   "datePublished" : "2020-08-23T23:00:09",
   "dateModified" : "2020-08-23T23:00:09",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -390,43 +390,94 @@ algorithmes gloutons</em> .</p>
 <ol>
 <li>Importer le module typing au début du fichier :</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">typing</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">List</span>
-</code></pre></div><ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
 <li>Préparer la fonction <code>main</code>  suivante et étudier sa structure :</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">():</span>
-    <span style="color:#8f5902;font-style:italic"># valeurs des pièces</span>
-    <span style="color:#000">pieces</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">10</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">20</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">50</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">100</span><span style="color:#000;font-weight:bold">]</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># valeurs des pièces</span>
+    <span class="n">pieces</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
 
-    <span style="color:#000">prix</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">input</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Quel est le prix ? &#34;</span><span style="color:#000;font-weight:bold">))</span>
-    <span style="color:#000">client</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">input</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Combien le client donne-t-il ? &#34;</span><span style="color:#000;font-weight:bold">))</span>
+    <span class="n">prix</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Quel est le prix ? &#34;</span><span class="p">))</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Combien le client donne-t-il ? &#34;</span><span class="p">))</span>
 
-    <span style="color:#000">a_rendre</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">somme_a_rendre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">prix</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">client</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#000">comment</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">pieces_a_rendre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a_rendre</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">)</span>
+    <span class="n">a_rendre</span> <span class="o">=</span> <span class="n">somme_a_rendre</span><span class="p">(</span><span class="n">prix</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+    <span class="n">comment</span> <span class="o">=</span> <span class="n">pieces_a_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">,</span> <span class="n">pieces</span><span class="p">)</span>
 
-    <span style="color:#000">reponse</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06"> piece(s) de </span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06">&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">comment</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> 
-   <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">))]</span>
-    <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Je dois rendre : </span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06">&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a_rendre</span><span style="color:#000;font-weight:bold">))</span>
-    <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Je donne donc : </span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06">&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">reponse</span><span style="color:#000;font-weight:bold">))</span>
-</code></pre></div><ol>
+    <span class="n">reponse</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> piece(s) de </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">comment</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> 
+   <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">))]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je dois rendre : </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je donne donc : </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">reponse</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
 <li>Définir la fonction <code>somme_a_rendre</code>  dont la spécification est :</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">somme_a_rendre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">prix</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">montant_client</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Détermine la somme à rendre à partir du prix et du montant donné par
-</span><span style="color:#4e9a06">    le client.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">somme_a_rendre</span><span class="p">(</span><span class="n">prix</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">montant_client</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Détermine la somme à rendre à partir du prix et du montant donné par
+</span><span class="s2">    le client.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
 <li>Définir la fonction <code>pieces_a_rendre</code>  dont la spécification est :</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">pieces_a_rendre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">somme</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">]:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Détermine les pièces (et leur nombre) à choisir pour rendre la somme
-</span><span style="color:#4e9a06">    passée en argument.
-</span><span style="color:#4e9a06">    Utilise la division euclidienne et le modulo de façon à pouvoir
-</span><span style="color:#4e9a06">    traiter tous les cas.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">pieces_a_rendre</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Détermine les pièces (et leur nombre) à choisir pour rendre la somme
+</span><span class="s2">    passée en argument.
+</span><span class="s2">    Utilise la division euclidienne et le modulo de façon à pouvoir
+</span><span class="s2">    traiter tous les cas.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol>
 <li>Appeler la fonction <code>main</code>.</li>
 </ol>
 <h2 id="un-algorithme-glouton-conduit-il-toujours-à-la-solution-optimale-">Un algorithme glouton conduit-il toujours à la solution optimale ?</h2>
@@ -542,45 +593,92 @@ $O (n) = 2^n$). De tels algorithmes sont très souvent inexploitables.</p>
     <summary>
         <strong> Code Python</strong>
     </summary>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-py3" data-lang="py3"><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">&gt;&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#000">Mise</span> <span style="color:#000">en</span> <span style="color:#000">œuvre</span> <span style="color:#000">de</span> <span style="color:#000">la</span> <span style="color:#000">stratégie</span> <span style="color:#000">gloutonne</span> <span style="color:#000">pour</span> <span style="color:#000">le</span>
-<span style="color:#000">problème</span> <span style="color:#000">du</span> <span style="color:#000">rendu</span> <span style="color:#000">de</span> <span style="color:#000">monnaie</span><span style="color:#ce5c00;font-weight:bold">.</span>
-<span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">typing</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">List</span><span style="color:#ce5c00;font-weight:bold">&lt;/</span><span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">&gt;</span>
-<span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">&gt;</span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">somme_a_rendre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">prix</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">client</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&amp;</span><span style="color:#000">gt</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
-<span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#000">Détermine</span> <span style="color:#000">la</span> <span style="color:#000">somme</span> <span style="color:#000">à</span> <span style="color:#000">rendre</span> <span style="color:#000">à</span> <span style="color:#000">partir</span> <span style="color:#000">du</span> <span style="color:#000">prix</span> <span style="color:#000">et</span> <span style="color:#000">du</span> <span style="color:#000">montant</span> <span style="color:#000">donné</span> <span style="color:#000">par</span>
-<span style="color:#000">le</span> <span style="color:#000">client</span><span style="color:#ce5c00;font-weight:bold">.</span>
-<span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">client</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">prix</span><span style="color:#ce5c00;font-weight:bold">&lt;/</span><span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">&gt;</span>
-<span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">&gt;</span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">pieces_a_rendre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">somme</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&amp;</span><span style="color:#000">gt</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">]:</span>
-<span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#000">Détermine</span> <span style="color:#000">les</span> <span style="color:#000">pièces</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">et</span> <span style="color:#000">leur</span> <span style="color:#000">nombre</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">à</span> <span style="color:#000">choisir</span> <span style="color:#000">pour</span> <span style="color:#000">rendre</span> <span style="color:#000">la</span> <span style="color:#000">somme</span>
-<span style="color:#000">passée</span> <span style="color:#000">en</span> <span style="color:#000">argument</span><span style="color:#ce5c00;font-weight:bold">.</span>
-<span style="color:#000">Utilise</span> <span style="color:#000">la</span> <span style="color:#000">division</span> <span style="color:#000">euclidienne</span> <span style="color:#000">et</span> <span style="color:#000">le</span> <span style="color:#000">modulo</span> <span style="color:#000">de</span> <span style="color:#000">façon</span> <span style="color:#000">à</span> <span style="color:#000">pouvoir</span>
-<span style="color:#000">traiter</span> <span style="color:#000">tous</span> <span style="color:#000">les</span> <span style="color:#000">cas</span><span style="color:#ce5c00;font-weight:bold">.</span>
-<span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#000">a_rendre</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[]</span>
-<span style="color:#000">indice_piece</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span>
-<span style="color:#204a87;font-weight:bold">while</span> <span style="color:#000">indice_piece</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">gt</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span>
-<span style="color:#000">rendu</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">somme</span> <span style="color:#ce5c00;font-weight:bold">//</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">indice_piece</span><span style="color:#000;font-weight:bold">]</span>
-<span style="color:#000">encore_a_rendre</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">somme</span> <span style="color:#ce5c00;font-weight:bold">%</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">indice_piece</span><span style="color:#000;font-weight:bold">]</span>
-<span style="color:#000">a_rendre</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">insert</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">rendu</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000">somme</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">encore_a_rendre</span>
-<span style="color:#000">indice_piece</span> <span style="color:#ce5c00;font-weight:bold">-=</span> <span style="color:#0000cf;font-weight:bold">1</span>
-<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">a_rendre</span><span style="color:#ce5c00;font-weight:bold">&lt;/</span><span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">&gt;</span>
-<span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">&gt;</span><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">():</span>
-<span style="color:#8f5902;font-style:italic"># valeurs des pièces</span>
-<span style="color:#000">pieces</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">10</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">20</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">50</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">100</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">&lt;/</span><span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">&gt;</span>
-<span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">pre</span><span style="color:#ce5c00;font-weight:bold">&gt;&lt;</span><span style="color:#000">code</span><span style="color:#ce5c00;font-weight:bold">&gt;</span><span style="color:#000">prix</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">input</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#000">Quel</span> <span style="color:#000">est</span> <span style="color:#000">le</span> <span style="color:#000">prix</span> <span style="color:#a40000">?</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;))</span>
-<span style="color:#000">client</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">input</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#000">Combien</span> <span style="color:#000">le</span> <span style="color:#000">client</span> <span style="color:#000">donne</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">t</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">il</span> <span style="color:#a40000">?</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;))</span>
-<p><span style="color:#000">a_rendre</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">somme_a_rendre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">prix</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">client</span><span style="color:#000;font-weight:bold">)</span>
-<span style="color:#000">comment</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">pieces_a_rendre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a_rendre</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">)</span></p>
-<p><span style="color:#000">reponse</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;{}</span> <span style="color:#000">piece</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">de</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">comment</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">))]</span>
-<span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#000">Je</span> <span style="color:#000">dois</span> <span style="color:#000">rendre</span> <span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a_rendre</span><span style="color:#000;font-weight:bold">))</span>
-<span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#000">Je</span> <span style="color:#000">donne</span> <span style="color:#000">donc</span> <span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{}</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">quot</span><span style="color:#000;font-weight:bold">;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">reponse</span><span style="color:#000;font-weight:bold">))</span>
-<span style="color:#ce5c00;font-weight:bold">&lt;/</span><span style="color:#000">code</span><span style="color:#ce5c00;font-weight:bold">&gt;&lt;/</span><span style="color:#000">pre</span><span style="color:#ce5c00;font-weight:bold">&gt;</span>
-<span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">&gt;</span><span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">&lt;/</span><span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">&gt;</span></code></pre></div></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py3" data-lang="py3"><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
+<span class="n">Mise</span> <span class="n">en</span> <span class="n">œuvre</span> <span class="n">de</span> <span class="n">la</span> <span class="n">stratégie</span> <span class="n">gloutonne</span> <span class="n">pour</span> <span class="n">le</span>
+<span class="n">problème</span> <span class="n">du</span> <span class="n">rendu</span> <span class="n">de</span> <span class="n">monnaie</span><span class="o">.</span>
+<span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">somme_a_rendre</span><span class="p">(</span><span class="n">prix</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
+<span class="n">Détermine</span> <span class="n">la</span> <span class="n">somme</span> <span class="n">à</span> <span class="n">rendre</span> <span class="n">à</span> <span class="n">partir</span> <span class="n">du</span> <span class="n">prix</span> <span class="n">et</span> <span class="n">du</span> <span class="n">montant</span> <span class="n">donné</span> <span class="n">par</span>
+<span class="n">le</span> <span class="n">client</span><span class="o">.</span>
+<span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
+<span class="k">return</span> <span class="n">client</span> <span class="o">-</span> <span class="n">prix</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">pieces_a_rendre</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
+<span class="n">Détermine</span> <span class="n">les</span> <span class="n">pièces</span> <span class="p">(</span><span class="n">et</span> <span class="n">leur</span> <span class="n">nombre</span><span class="p">)</span> <span class="n">à</span> <span class="n">choisir</span> <span class="n">pour</span> <span class="n">rendre</span> <span class="n">la</span> <span class="n">somme</span>
+<span class="n">passée</span> <span class="n">en</span> <span class="n">argument</span><span class="o">.</span>
+<span class="n">Utilise</span> <span class="n">la</span> <span class="n">division</span> <span class="n">euclidienne</span> <span class="n">et</span> <span class="n">le</span> <span class="n">modulo</span> <span class="n">de</span> <span class="n">façon</span> <span class="n">à</span> <span class="n">pouvoir</span>
+<span class="n">traiter</span> <span class="n">tous</span> <span class="n">les</span> <span class="n">cas</span><span class="o">.</span>
+<span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
+<span class="n">a_rendre</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">indice_piece</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">indice_piece</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="n">rendu</span> <span class="o">=</span> <span class="n">somme</span> <span class="o">//</span> <span class="n">pieces</span><span class="p">[</span><span class="n">indice_piece</span><span class="p">]</span>
+<span class="n">encore_a_rendre</span> <span class="o">=</span> <span class="n">somme</span> <span class="o">%</span> <span class="n">pieces</span><span class="p">[</span><span class="n">indice_piece</span><span class="p">]</span>
+<span class="n">a_rendre</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">rendu</span><span class="p">)</span>
+<span class="n">somme</span> <span class="o">=</span> <span class="n">encore_a_rendre</span>
+<span class="n">indice_piece</span> <span class="o">-=</span> <span class="mi">1</span>
+<span class="k">return</span> <span class="n">a_rendre</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="c1"># valeurs des pièces</span>
+<span class="n">pieces</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">prix</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Quel</span> <span class="n">est</span> <span class="n">le</span> <span class="n">prix</span> <span class="err">?</span> <span class="o">&amp;</span><span class="n">quot</span><span class="p">;))</span>
+<span class="n">client</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Combien</span> <span class="n">le</span> <span class="n">client</span> <span class="n">donne</span><span class="o">-</span><span class="n">t</span><span class="o">-</span><span class="n">il</span> <span class="err">?</span> <span class="o">&amp;</span><span class="n">quot</span><span class="p">;))</span>
+<p><span class="n">a_rendre</span> <span class="o">=</span> <span class="n">somme_a_rendre</span><span class="p">(</span><span class="n">prix</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+<span class="n">comment</span> <span class="o">=</span> <span class="n">pieces_a_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">,</span> <span class="n">pieces</span><span class="p">)</span></p>
+<p><span class="n">reponse</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;{}</span> <span class="n">piece</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">de</span> <span class="p">{}</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">comment</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">))]</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Je</span> <span class="n">dois</span> <span class="n">rendre</span> <span class="p">:</span> <span class="p">{}</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="n">Je</span> <span class="n">donne</span> <span class="n">donc</span> <span class="p">:</span> <span class="p">{}</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">reponse</span><span class="p">))</span>
+<span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">main</span><span class="p">()</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span></code></pre></td></tr></table></p>
+</div>
+</div>
 </details>
 <hr />
 <section class="footnotes" role="doc-endnotes">

@@ -59,7 +59,7 @@
   "headline": "Problème du rendu de monnaie",
   "description" : "Énoncé du problème Un commerçant cherche à rendre la monnaie à ses clients de façon optimale, c\u0026rsquo;est-à-dire avec le nombre minimal de pièces et de billets.\nDans ce problème,\n On suppose que les clients ne donnent que des sommes entières en euros (pas de centimes pour simplifier) ; Les valeurs des pièces et billets à disposition sont : 1, 2, 5, 10, 20, 50, 100, 200 et 500. On suppose que l\u0026rsquo;on a autant d\u0026rsquo;exemplaires que nécessaire de chaque pièce et billet ; Dans la suite, afin de simplifier, on désigne par « pièces » à la fois les pièces et les billets.",
   "inLanguage" : "fr",
-  "wordCount":  640 ,
+  "wordCount":  675 ,
   "datePublished" : "2021-02-28T05:28:54",
   "dateModified" : "2021-02-28T05:28:54",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -329,42 +329,92 @@
 <ol>
 <li>Importer le module typing au début du fichier :</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">typing</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">List</span>
-</code></pre></div><ol start="2">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
 <li>Préparer la fonction main suivante et étudier sa structure :</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">():</span>
-    <span style="color:#8f5902;font-style:italic"># valeurs des pièces</span>
-    <span style="color:#000">pieces</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">10</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">20</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">50</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">100</span><span style="color:#000;font-weight:bold">]</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># valeurs des pièces</span>
+    <span class="n">pieces</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
 
-    <span style="color:#000">prix</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">input</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Quel est le prix ? &#34;</span><span style="color:#000;font-weight:bold">))</span>
-    <span style="color:#000">client</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">input</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Combien le client donne-t-il ? &#34;</span><span style="color:#000;font-weight:bold">))</span>
+    <span class="n">prix</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Quel est le prix ? &#34;</span><span class="p">))</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Combien le client donne-t-il ? &#34;</span><span class="p">))</span>
 
-    <span style="color:#000">a_rendre</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">somme_a_rendre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">prix</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">client</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#000">comment</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">pieces_a_rendre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a_rendre</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">)</span>
+    <span class="n">a_rendre</span> <span class="o">=</span> <span class="n">somme_a_rendre</span><span class="p">(</span><span class="n">prix</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+    <span class="n">comment</span> <span class="o">=</span> <span class="n">pieces_a_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">,</span> <span class="n">pieces</span><span class="p">)</span>
 
-    <span style="color:#000">reponse</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06"> piece(s) de </span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06">&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">comment</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">len</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">))]</span>
-    <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Je dois rendre : </span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06">&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a_rendre</span><span style="color:#000;font-weight:bold">))</span>
-    <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Je donne donc : </span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06">&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">reponse</span><span style="color:#000;font-weight:bold">))</span>
-</code></pre></div><ol start="3">
+    <span class="n">reponse</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> piece(s) de </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">comment</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">))]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je dois rendre : </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je donne donc : </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">reponse</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
 <li>Définir la fonction somme_a_rendre dont la spécification est :</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">somme_a_rendre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">prix</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">montant_client</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Détermine la somme à rendre à partir du prix et du montant donné par
-</span><span style="color:#4e9a06">    le client.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol start="4">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">somme_a_rendre</span><span class="p">(</span><span class="n">prix</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">montant_client</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Détermine la somme à rendre à partir du prix et du montant donné par
+</span><span class="s2">    le client.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
 <li>Définir la fonction pieces_a_rendre dont la spécification est :</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">pieces_a_rendre</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">somme</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">]:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Détermine les pièces (et leur nombre) à choisir pour rendre la somme
-</span><span style="color:#4e9a06">    passée en argument.
-</span><span style="color:#4e9a06">    Utilise la division euclidienne et le modulo de façon à pouvoir
-</span><span style="color:#4e9a06">    traiter tous les cas.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol start="5">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">pieces_a_rendre</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Détermine les pièces (et leur nombre) à choisir pour rendre la somme
+</span><span class="s2">    passée en argument.
+</span><span class="s2">    Utilise la division euclidienne et le modulo de façon à pouvoir
+</span><span class="s2">    traiter tous les cas.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="5">
 <li>Appeler la fonction <code>main</code>.</li>
 </ol>
 <h2 id="programmation-dynamique">Programmation dynamique</h2>
@@ -396,11 +446,21 @@ $$</p>
 <p>Écrire le code de la fonction <code>sol_dynamique</code> dont la spécification est :</p>
 </li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">construction_S</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">somme</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">]]:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Construit le tableau dynamique S définit par la relation de récurrence donnée.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div><ol start="11">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">construction_S</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Construit le tableau dynamique S définit par la relation de récurrence donnée.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="11">
 <li>
 <p>Quelle est la complexité de cet algorithme ?</p>
 </li>
@@ -411,12 +471,23 @@ $$</p>
 <p>Écrire la fonction <code>recherche_sol</code> dont la spécification est :</p>
 </li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">recherche_sol</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">somme</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">pieces</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">S</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">List</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">]])</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#000">Tuple</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">Dict</span><span style="color:#000;font-weight:bold">[</span><span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">]]:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Recherche la solution et toutes les pièces à rendre pour cette solution.
-</span><span style="color:#4e9a06">    La valeur retournée a pour forme (somme, {piece: nombre})
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-</code></pre></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">recherche_sol</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">S</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">:</span> <span class="nb">int</span><span class="p">]]:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Recherche la solution et toutes les pièces à rendre pour cette solution.
+</span><span class="s2">    La valeur retournée a pour forme (somme, {piece: nombre})
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 
         
 

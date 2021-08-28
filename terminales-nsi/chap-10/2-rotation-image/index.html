@@ -59,7 +59,7 @@
   "headline": "Rotation d\u0027une image bitmap d\u0027un quart de tour",
   "description" : "L\u0026rsquo;objectif de cette activité est l\u0026rsquo;écriture d\u0026rsquo;une fonction qui effectue la rotation d\u0026rsquo;une image bitmap de 90 degrés en utilisant le principe « Diviser pour régner ».\nOn peut manipuler des images en Python à l\u0026rsquo;aide du module PIL (Python Image Library). Une première partie de l\u0026rsquo;activité est consacrée à la prise en main de ce module. Dans un second temps, la fonction de manipulation des bits est développée.\nImages numériques Définition L\u0026rsquo;image matricielle Une image matricielle, ou « carte de points » (de l\u0026rsquo;anglais « bitmap »), est une image constituée d\u0026rsquo;une matrice de points colorés, c\u0026rsquo;est-à-dire, constituée d\u0027un tableau, d\u0026rsquo;une grille, où chaque case possède une couleur qui lui est propre et est considérée comme un point.",
   "inLanguage" : "fr",
-  "wordCount":  1861 ,
+  "wordCount":  1992 ,
   "datePublished" : "2020-11-18T17:12:52",
   "dateModified" : "2020-11-18T17:12:52",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -389,48 +389,95 @@ Il présente une profondeur de 8 bpp ou 16 bpp.</li>
 <ol start="7">
 <li>Étudier le code suivant, essayer de déterminer quel traitement effectue la fonction <code>mystere</code> et le tester.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">PIL.Image</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">pi</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">PIL.Image</span> <span class="k">as</span> <span class="nn">pi</span>
 
 
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">mystere</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">):</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Cette fonction réalise un traitement qu&#39;il faut deviner, sur
-</span><span style="color:#4e9a06">    l&#39;image dont l&#39;objet qui la représente est passé en argument.
-</span><span style="color:#4e9a06">
-</span><span style="color:#4e9a06">    Paramètre
-</span><span style="color:#4e9a06">    ---------
-</span><span style="color:#4e9a06">    im: PIL.Image.Image
-</span><span style="color:#4e9a06">        Objet image
-</span><span style="color:#4e9a06">
-</span><span style="color:#4e9a06">    Retour
-</span><span style="color:#4e9a06">    ------
-</span><span style="color:#4e9a06">    None
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-    <span style="color:#000;font-weight:bold">(</span><span style="color:#000">largeur</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">hauteur</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">width</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">height</span><span style="color:#000;font-weight:bold">)</span>
+<span class="k">def</span> <span class="nf">mystere</span><span class="p">(</span><span class="n">im</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Cette fonction réalise un traitement qu&#39;il faut deviner, sur
+</span><span class="s2">    l&#39;image dont l&#39;objet qui la représente est passé en argument.
+</span><span class="s2">
+</span><span class="s2">    Paramètre
+</span><span class="s2">    ---------
+</span><span class="s2">    im: PIL.Image.Image
+</span><span class="s2">        Objet image
+</span><span class="s2">
+</span><span class="s2">    Retour
+</span><span class="s2">    ------
+</span><span class="s2">    None
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="p">(</span><span class="n">largeur</span><span class="p">,</span> <span class="n">hauteur</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
 
-    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">y</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">hauteur</span><span style="color:#000;font-weight:bold">):</span>
-        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">x</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">largeur</span><span style="color:#000;font-weight:bold">):</span>
-            <span style="color:#000">niveau</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">))</span>
-            <span style="color:#000">niveau</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">255</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">niveau</span>
-            <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">putpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">niveau</span><span style="color:#000;font-weight:bold">)</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hauteur</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">largeur</span><span class="p">):</span>
+            <span class="n">niveau</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+            <span class="n">niveau</span> <span class="o">=</span> <span class="mi">255</span> <span class="o">-</span> <span class="n">niveau</span>
+            <span class="n">im</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">niveau</span><span class="p">)</span>
 
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">():</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34; Fonction principale &#34;&#34;&#34;</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34; Fonction principale &#34;&#34;&#34;</span>
 
-    <span style="color:#8f5902;font-style:italic"># Chemin de l&#39;image</span>
-    <span style="color:#000">image</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;tigrenb.png&#34;</span>
-    <span style="color:#8f5902;font-style:italic"># Création de l&#39;objet image</span>
-    <span style="color:#000">im_nb</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">pi</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">open</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">image</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#8f5902;font-style:italic"># Visualisation du fichier</span>
-    <span style="color:#000">im_nb</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">show</span><span style="color:#000;font-weight:bold">()</span>
+    <span class="c1"># Chemin de l&#39;image</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="s2">&#34;tigrenb.png&#34;</span>
+    <span class="c1"># Création de l&#39;objet image</span>
+    <span class="n">im_nb</span> <span class="o">=</span> <span class="n">pi</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="c1"># Visualisation du fichier</span>
+    <span class="n">im_nb</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-    <span style="color:#8f5902;font-style:italic"># Modification du fichier</span>
-    <span style="color:#000">mystere</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im_nb</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#8f5902;font-style:italic"># Visualisation des modifications</span>
-    <span style="color:#000">im_nb</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">show</span><span style="color:#000;font-weight:bold">()</span>
+    <span class="c1"># Modification du fichier</span>
+    <span class="n">mystere</span><span class="p">(</span><span class="n">im_nb</span><span class="p">)</span>
+    <span class="c1"># Visualisation des modifications</span>
+    <span class="n">im_nb</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
-</code></pre></div><ul>
+<span class="n">main</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>
 <a class="remote" href="../../../terminales-nsi/chap-10/tigrenb.png" target="_blank">Fichier image tigrenb.png</a>
 
@@ -459,75 +506,149 @@ Il présente une profondeur de 8 bpp ou 16 bpp.</li>
 <ol start="13">
 <li>Étudier le code suivant.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">PIL</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Image</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 
 
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">recuperation_niveaux</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Image</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">pt</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">tuple</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">None</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Récupère la couleur du pixel pt.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-    <span style="color:#8f5902;font-style:italic"># On vérifie que le point est dans l&#39;image</span>
-    <span style="color:#000;font-weight:bold">(</span><span style="color:#000">largeur</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">hauteur</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">width</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">height</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">pt</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">largeur</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">or</span> <span style="color:#000">pt</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#204a87;font-weight:bold">or</span> <span style="color:#000">pt</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#204a87;font-weight:bold">or</span> <span style="color:#000">pt</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">hauteur</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">):</span>
-        <span style="color:#204a87;font-weight:bold">raise</span> <span style="color:#c00;font-weight:bold">Exception</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Le point indiqué n&#39;est pas dans l&#39;image.&#34;</span><span style="color:#000;font-weight:bold">)</span>
+<span class="k">def</span> <span class="nf">recuperation_niveaux</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">Image</span><span class="p">,</span> <span class="n">pt</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Récupère la couleur du pixel pt.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># On vérifie que le point est dans l&#39;image</span>
+    <span class="p">(</span><span class="n">largeur</span><span class="p">,</span> <span class="n">hauteur</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">largeur</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">hauteur</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Le point indiqué n&#39;est pas dans l&#39;image.&#34;</span><span class="p">)</span>
 
-    <span style="color:#8f5902;font-style:italic"># Récupération des niveaux de couleur</span>
-    <span style="color:#000">triplet</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getpixel</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pt</span><span style="color:#000;font-weight:bold">)</span>
+    <span class="c1"># Récupération des niveaux de couleur</span>
+    <span class="n">triplet</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">getpixel</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span>
 
-    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">triplet</span>
-
-
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">modification_couleur</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Image</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">pt</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">tuple</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">triplet</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">tuple</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">None</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34; 
-</span><span style="color:#4e9a06">    Attribue la couleur (triplet) au pixel pt.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-
-    <span style="color:#8f5902;font-style:italic"># On vérifie que le point est dans l&#39;image</span>
-    <span style="color:#000;font-weight:bold">(</span><span style="color:#000">largeur</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">hauteur</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">width</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">height</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">pt</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">largeur</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">or</span> <span style="color:#000">pt</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#204a87;font-weight:bold">or</span> <span style="color:#000">pt</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#204a87;font-weight:bold">or</span> <span style="color:#000">pt</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">hauteur</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">):</span>
-        <span style="color:#204a87;font-weight:bold">raise</span> <span style="color:#c00;font-weight:bold">Exception</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Le point indiqué n&#39;est pas dans l&#39;image.&#34;</span><span style="color:#000;font-weight:bold">)</span>
-
-    <span style="color:#8f5902;font-style:italic"># Modification de la couleur</span>
-    <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">putpixel</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pt</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">triplet</span><span style="color:#000;font-weight:bold">)</span>
+    <span class="k">return</span> <span class="n">triplet</span>
 
 
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">grille</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Image</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">pas</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">triplet</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">tuple</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">None</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Trace une grille à l&#39;écran, de pas &#39;pas&#39; dont la couleur 
-</span><span style="color:#4e9a06">    est donnée par le triplet triplet.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-    <span style="color:#204a87;font-weight:bold">pass</span>
+<span class="k">def</span> <span class="nf">modification_couleur</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">Image</span><span class="p">,</span> <span class="n">pt</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">triplet</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34; 
+</span><span class="s2">    Attribue la couleur (triplet) au pixel pt.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="c1"># On vérifie que le point est dans l&#39;image</span>
+    <span class="p">(</span><span class="n">largeur</span><span class="p">,</span> <span class="n">hauteur</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">largeur</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">hauteur</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Le point indiqué n&#39;est pas dans l&#39;image.&#34;</span><span class="p">)</span>
+
+    <span class="c1"># Modification de la couleur</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">putpixel</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">triplet</span><span class="p">)</span>
 
 
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">augmentation_contraste</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Image</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">offset</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">None</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34;
-</span><span style="color:#4e9a06">    Augmente le contraste de l&#39;image d&#39;une valeur offset.
-</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
-    <span style="color:#204a87;font-weight:bold">pass</span>
+<span class="k">def</span> <span class="nf">grille</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">Image</span><span class="p">,</span> <span class="n">pas</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">triplet</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Trace une grille à l&#39;écran, de pas &#39;pas&#39; dont la couleur 
+</span><span class="s2">    est donnée par le triplet triplet.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">pass</span>
 
 
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">teinte_plus_chaude</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Image</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">offset</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">None</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#204a87;font-weight:bold">pass</span>
+<span class="k">def</span> <span class="nf">augmentation_contraste</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">Image</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Augmente le contraste de l&#39;image d&#39;une valeur offset.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">pass</span>
 
 
-<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">():</span>
-    <span style="color:#4e9a06">&#34;&#34;&#34; Fonction principale. &#34;&#34;&#34;</span>
-    <span style="color:#000">nom_image</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;tigre.jpg&#34;</span>
-
-    <span style="color:#8f5902;font-style:italic"># Création de l&#39;objet image</span>
-    <span style="color:#000">im</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Image</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">open</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">nom_image</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">show</span><span style="color:#000;font-weight:bold">()</span>
-
-    <span style="color:#8f5902;font-style:italic"># Récupération des niveaux de couleur</span>
-    <span style="color:#000">pt</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">600</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">250</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#000;font-weight:bold">(</span><span style="color:#000">rouge</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">vert</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">bleu</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">recuperation_niveaux</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">pt</span><span style="color:#000;font-weight:bold">)</span>
-
-    <span style="color:#8f5902;font-style:italic"># Affichage du résultat</span>
-    <span style="color:#204a87">print</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Au point </span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06"> : R : </span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06">, V : </span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06">, B : </span><span style="color:#4e9a06">{}</span><span style="color:#4e9a06">&#34;</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">format</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pt</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">rouge</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">vert</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">bleu</span><span style="color:#000;font-weight:bold">))</span>
+<span class="k">def</span> <span class="nf">teinte_plus_chaude</span><span class="p">(</span><span class="n">im</span><span class="p">:</span> <span class="n">Image</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
 
 
-<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
-</code></pre></div><ul>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34; Fonction principale. &#34;&#34;&#34;</span>
+    <span class="n">nom_image</span> <span class="o">=</span> <span class="s2">&#34;tigre.jpg&#34;</span>
+
+    <span class="c1"># Création de l&#39;objet image</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">nom_image</span><span class="p">)</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># Récupération des niveaux de couleur</span>
+    <span class="n">pt</span> <span class="o">=</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">rouge</span><span class="p">,</span> <span class="n">vert</span><span class="p">,</span> <span class="n">bleu</span><span class="p">)</span> <span class="o">=</span> <span class="n">recuperation_niveaux</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">pt</span><span class="p">)</span>
+
+    <span class="c1"># Affichage du résultat</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Au point </span><span class="si">{}</span><span class="s2"> : R : </span><span class="si">{}</span><span class="s2">, V : </span><span class="si">{}</span><span class="s2">, B : </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">rouge</span><span class="p">,</span> <span class="n">vert</span><span class="p">,</span> <span class="n">bleu</span><span class="p">))</span>
+
+
+<span class="n">main</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
 <li>
 <a class="remote" href="../../../terminales-nsi/chap-10/tigre.jpg" target="_blank">Fichier image tigre.jpg</a>
 
@@ -585,29 +706,57 @@ Il présente une profondeur de 8 bpp ou 16 bpp.</li>
 </ul>
 <p>Afin de pouvoir procéder récursivement, définir la fonction (et sa spécification !) <code>rotation_aux(px, x, y, t)</code> qui effectue la rotation de la portion carrée de l&rsquo;image comprise entre les pixels $(x,y)$ et $(x+t, y+t)$. Cette fonction ne renvoie rien, elle modifie le tableau <code>px</code> pour effectuer la rotation de cette portion de l&rsquo;image, au même endroit. On suppose que <code>t</code> est une puissance de 2.    <br>
 Le code de cette fonction est :</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">rotation_aux</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">int</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">None</span><span style="color:#000;font-weight:bold">:</span>
-    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">:</span>
-        <span style="color:#204a87;font-weight:bold">return</span>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">rotation_aux</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span>
 
-    <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">//</span> <span style="color:#0000cf;font-weight:bold">2</span>
-    <span style="color:#000">rotation_aux</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#000">rotation_aux</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#000">rotation_aux</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">)</span>
-    <span style="color:#000">rotation_aux</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">im</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">t</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">rotation_aux</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">rotation_aux</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">rotation_aux</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">rotation_aux</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 
-    <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">i</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">):</span>
-        <span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000">j</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#204a87">range</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">):</span>
-            <span style="color:#8f5902;font-style:italic">#print(x, y)</span>
-            <span style="color:#000">t_1</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">))</span>
-            <span style="color:#000">t_2</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">))</span>
-            <span style="color:#000">t_3</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">))</span>
-            <span style="color:#000">t_4</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">getpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">t</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">t</span><span class="p">):</span>
+            <span class="c1">#print(x, y)</span>
+            <span class="n">t_1</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+            <span class="n">t_2</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="n">t</span><span class="p">))</span>
+            <span class="n">t_3</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="n">t</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="n">t</span><span class="p">))</span>
+            <span class="n">t_4</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="n">t</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
 
-            <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">putpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">t_4</span><span style="color:#000;font-weight:bold">)</span>
-            <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">putpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">t_3</span><span style="color:#000;font-weight:bold">)</span>
-            <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">putpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">t_2</span><span style="color:#000;font-weight:bold">)</span>
-            <span style="color:#000">im</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">putpixel</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">t_1</span><span style="color:#000;font-weight:bold">)</span>
-</code></pre></div><ol start="17">
+            <span class="n">im</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">t_4</span><span class="p">)</span>
+            <span class="n">im</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="n">t</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">t_3</span><span class="p">)</span>
+            <span class="n">im</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="n">t</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="n">t</span><span class="p">),</span> <span class="n">t_2</span><span class="p">)</span>
+            <span class="n">im</span><span class="o">.</span><span class="n">putpixel</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="n">t</span><span class="p">),</span> <span class="n">t_1</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="17">
 <li>
 <p>Étudier ce code afin de bien le comprendre. En particulier, faire fonctionner à la main la fonction pour une image de définition $8 \times 8$.</p>
 </li>
