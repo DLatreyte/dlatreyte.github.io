@@ -59,7 +59,7 @@
   "headline": "Contrôle du flot d\u0027exécution d\u0027un programme : l\u0027alternative",
   "description" : "Booléens et expressions booléennes Une grandeur booléenne est une grandeur qui ne peut prendre que deux valeurs : Vrai ou Faux, ou 0 ou 1, ou …).   Dans le langage Python, les valeurs booléennes s\u0026rsquo;écrivent True et False. La fonction bool transforme n\u0026rsquo;importe quel argument en valeur booléenne — tout argument à valeur nulle (entier 0, flottant 0.0, chaîne de caractères \u0026quot;\u0026quot;, liste vide list(), etc.) est converti en valeur False, toute autre valeur pour l\u0026rsquo;argument devient la valeur True.",
   "inLanguage" : "fr",
-  "wordCount":  2524 ,
+  "wordCount":  2729 ,
   "datePublished" : "2021-08-27T16:34:09",
   "dateModified" : "2021-08-27T16:34:09",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -560,7 +560,28 @@ On appelle l&rsquo;enchaînement des instructions « le flot d&rsquo;exécution 
   L'<strong>alternative simple</strong> <code>SI – ALORS</code>  est une structure de contrôle qui permet de ne faire exécuter certaines instructions que <strong>si une expression booléenne a pour valeur « Vrai »</strong>. Si l&rsquo;expression booléenne a pour valeur « Faux », le flot d&rsquo;exécution n&rsquo;est pas modifié.
 </div>
 
-<p><img src="../../../premieres-nsi/chap-04/alternative_simple.png" alt="alternative_simple" width=70% /></p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    mermaid.initialize({    
+        theme: 'default',
+        themeCSS: '',
+        cloneCssStyles: false,
+        useMaxWidth: true,
+        htmlLabels: true,
+        flowchart: { 
+                curve: 'basis' 
+        }
+    });
+</script>
+<pre class="mermaid" align="center">
+graph TD
+    A[Début du programme] -->|Évolution séquentielle| B(Instruction juste avant l'alternative)
+    B --> C{Expression booléenne}
+    C -->|Valeur : Vrai| D(Instructions exécutées si Vrai)
+    C -->|Valeur : Faux| E(Instruction après l'alternative)
+    D --> E
+    E --> |Évolution séquentielle| F[Fin du programme]
+</pre>
 <h4 id="écriture-en-pseudo-code">Écriture en pseudo-code</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -597,7 +618,29 @@ FIN SI
   L&rsquo;alternative <code>SI – ALORS – SINON</code> est une structure de contrôle qui permet de <em>faire exécuter par le programme deux jeux d&rsquo;instructions différents selon qu&rsquo;une expression booléenne a pour valeur « Vrai » ou « Faux »</em>.
 </div>
 
-<p><img src="../../../premieres-nsi/chap-04/alternative-0161897.png" alt="alternative" width=90% /></p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    mermaid.initialize({    
+        theme: 'default',
+        themeCSS: '',
+        cloneCssStyles: false,
+        useMaxWidth: true,
+        htmlLabels: true,
+        flowchart: { 
+                curve: 'basis' 
+        }
+    });
+</script>
+<pre class="mermaid" align="center">
+graph TD
+    A[Début du programme] -->|Évolution séquentielle| B(Instruction juste avant l'alternative)
+    B --> C{Expression booléenne}
+    C -->|Valeur : Vrai| D(Instructions exécutées si Vrai)
+    C -->|Valeur : Faux| G(Instructions exécutées si Faux)
+    D --> E(Instruction après l'alternative)
+    G --> E
+    E --> |Évolution séquentielle| F[Fin du programme]
+</pre>
 <h4 id="écriture-en-pseudo-code-1">Écriture en pseudo-code</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -637,7 +680,32 @@ FIN SI
   L&rsquo;alternative <code>SI – SINON SI – … (– SINON)</code> est une structure de contrôle qui <em>permet de faire exécuter des jeux d&rsquo;instructions à un programme selon les valeurs de plusieurs expressions booléennes (examinés les unes à la suite des autres)</em>.
 </div>
 
-<p><img src="../../../premieres-nsi/chap-04/alternative_complexe.png" alt="alternative_complexe" width=90% /></p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    mermaid.initialize({    
+        theme: 'default',
+        themeCSS: '',
+        cloneCssStyles: false,
+        useMaxWidth: true,
+        htmlLabels: true,
+        flowchart: { 
+                curve: 'basis' 
+        }
+    });
+</script>
+<pre class="mermaid" align="center">
+graph TD
+    A[Début du programme] -->|Évolution séquentielle| B(Instruction juste avant l'alternative)
+    B --> C{Expression booléenne 1}
+    C -->|Valeur : Vrai| D(Instructions exécutées 1 Vrai)
+    C -->|Valeur : Faux| G{Expression booléenne 2}
+    G -->|Valeur : Vrai| H(Instructions exécutées si 2 Vrai)
+    G -->|Valeur : Faux| I(Instructions exécutées si 2 Faux)
+    D --> E(Instruction après les alternatives)
+    H --> E
+    I --> E
+    E --> |Évolution séquentielle| F[Fin du programme]
+</pre>
 <h4 id="écriture-en-pseudo-code-2">Écriture en pseudo-code</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1155,6 +1223,10 @@ $$
       
         <ul class="pager blog-pager">
           
+          
+            <li class="next">
+              <a href="https://dlatreyte.github.io/premieres-nsi/chap-04/2-structures-iteratives/" data-toggle="tooltip" data-placement="top" title="Contrôle du flot d&#39;exécution d&#39;un programme : structures iteratives">Post suivant &rarr;</a>
+            </li>
           
         </ul>
       
