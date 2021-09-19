@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Tester automatiquement ses fonctions avec doctest - Accueil</title>
+  <meta property="og:title" content="Tester automatiquement ses fonctions avec doctest" />
+  <meta name="twitter:title" content="Tester automatiquement ses fonctions avec doctest" />
+  <meta name="description" content="Chapitre 5">
+  <meta property="og:description" content="Chapitre 5">
+  <meta name="twitter:description" content="Chapitre 5">
+  <meta name="author" content="David Latreyte"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Accueil",
+    
+    "url": "https:\/\/dlatreyte.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/dlatreyte.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io\/premieres-nsi\/chap-cinq\/chap-05\/",
+          "name": "Tester automatiquement ses fonctions avec doctest"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "David Latreyte"
+  },
+  "headline": "Tester automatiquement ses fonctions avec doctest",
+  "description" : "1. Rappel Au cours du chapitre 2, nous avons expliqué pourquoi la définition d\u0026rsquo;une fonction doit toujours être accompagnée de l\u0026rsquo;écriture de sa spécification. Cette dernière permet :\n à tout utilisateur de la fonction de déterminer facilement  quel traitement celle-ci réalise ; comment il faut l\u0026rsquo;utiliser (nombre d\u0026rsquo;arguments par exemple) ; quelles conditions il est nécessaire de respecter pour l\u0026rsquo;utiliser.   au programmeur de cette fonction de préciser  le nombre et le type de ses paramètres ; le type de la valeur retournée ; le traitement exécuté, accompagné de quelques exemples.",
+  "inLanguage" : "fr",
+  "wordCount":  949 ,
+  "datePublished" : "2019-09-28T17:40:56",
+  "dateModified" : "2019-09-28T17:40:56",
+  "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+  "keywords" : [ "Spécification, doctest" ],
+  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/premieres-nsi\/chap-cinq\/chap-05\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/dlatreyte.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Tester automatiquement ses fonctions avec doctest" />
+<meta property="og:description" content="Chapitre 5">
+<meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
+<meta property="og:url" content="https://dlatreyte.github.io/premieres-nsi/chap-cinq/chap-05/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Accueil" />
+
+  <meta name="twitter:title" content="Tester automatiquement ses fonctions avec doctest" />
+  <meta name="twitter:description" content="Chapitre 5">
+  <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@@DLatreyte" />
+  <meta name="twitter:creator" content="@@DLatreyte" />
+  <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@@DLatreyte" />
+  <meta name="twitter:creator" content="@@DLatreyte" />
+  <meta property="og:url" content="https://dlatreyte.github.io/premieres-nsi/chap-cinq/chap-05/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Accueil" />
+
+  <meta name="generator" content="Hugo 0.74.3" />
+  <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" integrity="sha256-uXNHy6FK52Pb83SmU45mVAg7YECmr9Lwwu1zOz31j5c=" crossorigin="anonymous" />
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://dlatreyte.github.io">Accueil</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Infos" href="../../../about/infos">Infos</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Blog" href="../../../">Blog</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Cours</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../premieres-pc">1ère Spé. PC</a>
+                
+                  <a href="../../../premieres-nsi">1ère Spé. NSI</a>
+                
+                  <a href="../../../terminales-pc">Terminale Spé. PC</a>
+                
+                  <a href="../../../terminales-nsi">Terminale Spé. NSI</a>
+                
+                  <a href="../../../culture">Culture scientifique</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="../../../tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Catégories" href="../../../categories">Catégories</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Accueil" href="https://dlatreyte.github.io">
+            <img class="avatar-img" src="https://dlatreyte.github.io/first_page.jpg" alt="Accueil" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="premieres-nsi-heading">
+              
+                <h1>Tester automatiquement ses fonctions avec doctest</h1>
+              
+              
+                <hr class="small">
+              
+              
+                
+                  <h2 class="premieres-nsi-subheading">Chapitre 5</h2>
+                
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post" >
+          
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-rappel">1. Rappel</a></li>
+    <li><a href="#2-première-utilisation-du-module-doctest">2. Première utilisation du module <strong>doctest</strong></a>
+      <ul>
+        <li><a href="#21-à-quoi-sert-le-module-doctest-">2.1. À quoi sert le module <strong>doctest</strong> ?</a></li>
+        <li><a href="#22-comment-rendre-lanalyse-de-la-valeur-retournée-par-une-fonction-automatique-">2.2. Comment rendre l&rsquo;analyse de la valeur retournée par une fonction automatique ?</a></li>
+        <li><a href="#23-que-faire-lorsquon-souhaite-prendre-en-compte-la-mauvaise-utilisation-dune-fonction-">2.3. Que faire lorsqu&rsquo;on souhaite prendre en compte la mauvaise utilisation d&rsquo;une fonction ?</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-à-retenir">3. À retenir</a></li>
+    <li><a href="#4-exercices">4. Exercices</a>
+      <ul>
+        <li><a href="#exercice-1">Exercice 1</a></li>
+        <li><a href="#exercice-2">Exercice 2</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+          
+        
+        <hr />
+
+        <h2 id="1-rappel">1. Rappel</h2>
+<p>Au cours du chapitre 2, nous avons expliqué pourquoi <em>la définition d&rsquo;une fonction doit toujours être accompagnée de l&rsquo;écriture de sa spécification</em>. Cette dernière permet :</p>
+<ul>
+<li>à tout utilisateur de la fonction de déterminer facilement
+<ul>
+<li>quel traitement celle-ci réalise ;</li>
+<li>comment il faut l&rsquo;utiliser (nombre d&rsquo;arguments par exemple) ;</li>
+<li>quelles conditions il est nécessaire de respecter pour l&rsquo;utiliser.</li>
+</ul>
+</li>
+<li>au programmeur de cette fonction de préciser
+<ul>
+<li>le nombre et le type de ses paramètres ;</li>
+<li>le type de la valeur retournée ;</li>
+<li>le traitement exécuté, accompagné de quelques exemples.</li>
+</ul>
+</li>
+</ul>
+<div class="note tip">
+  Spécification = Signature + Documentation
+</div>
+<p><strong>Exemple.</strong></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">kelvin_vers_celsius</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34; Convertit la température donnée en kelvin en une température θ 
+</span><span style="color:#4e9a06">    en degrés celsius. Relation : θ = t - 273.15.
+</span><span style="color:#4e9a06">    
+</span><span style="color:#4e9a06">    &gt;&gt;&gt; kelvin_vers_celsius(0) 
+</span><span style="color:#4e9a06">    -273.15
+</span><span style="color:#4e9a06">    &gt;&gt;&gt; kelvin_vers_celsius(273.15) 
+</span><span style="color:#4e9a06">    0.0 
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+    <span style="color:#000">offset</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">273.15</span> 
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">offset</span>
+</code></pre></div><p>La spécification d&rsquo;une fonction peut être obtenue à l&rsquo;aide de la fonction <code>help</code> :</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">help</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">kelvin_vers_celsius</span><span style="color:#000;font-weight:bold">)</span>
+
+  <span style="color:#000">Help</span> <span style="color:#000">on</span> <span style="color:#000">function</span> <span style="color:#000">kelvin_vers_celsius</span> <span style="color:#204a87;font-weight:bold">in</span> <span style="color:#000">module</span> <span style="color:#000">__main__</span><span style="color:#000;font-weight:bold">:</span>
+  
+  <span style="color:#000">kelvin_vers_celsius</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span> 
+     <span style="color:#000">Convertit</span> <span style="color:#000">la</span> <span style="color:#000">température</span> <span style="color:#000">donnée</span> <span style="color:#000">en</span> <span style="color:#000">kelvin</span> <span style="color:#000">en</span> <span style="color:#000">une</span> <span style="color:#000">température</span> <span style="color:#000">θ</span>
+     <span style="color:#000">en</span> <span style="color:#000">degrés</span> <span style="color:#000">celsius</span><span style="color:#ce5c00;font-weight:bold">.</span> <span style="color:#000">Relation</span> <span style="color:#000;font-weight:bold">:</span> <span style="color:#000">θ</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">273.15</span><span style="color:#ce5c00;font-weight:bold">.</span>
+     
+     <span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">kelvin_vers_celsius</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">)</span> 
+     <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">273.15</span>
+     <span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">kelvin_vers_celsius</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">273.15</span><span style="color:#000;font-weight:bold">)</span> 
+</code></pre></div><blockquote>
+<p><em>L&rsquo;objectif de ce chapitre est de démontrer que l&rsquo;écriture d&rsquo;une spécification présente encore bien plus d&rsquo;avantages !</em></p>
+</blockquote>
+<h2 id="2-première-utilisation-du-module-doctest">2. Première utilisation du module <strong>doctest</strong></h2>
+<h3 id="21-à-quoi-sert-le-module-doctest-">2.1. À quoi sert le module <strong>doctest</strong> ?</h3>
+<h4 id="à-faire">À faire</h4>
+<ol>
+<li>
+<p>Taper le code complet de la définition de la fonction <code>kelvin_vers_celsius</code> dans la zone de définition des fonctions du logiciel Thonny.</p>
+</li>
+<li>
+<p>Déplacer le début du code précédent au niveau de la ligne 3 et écrire, à la ligne 1, l&rsquo;instruction :</p>
+</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">doctest</span>
+</code></pre></div><p>Enregistrer le fichier contenant le code précédent.</p>
+<ol start="3">
+<li>Charger le fichier dans l&rsquo;interpréteur (touche <strong>F5</strong> du clavier). La fonction peut être appelée, rien de particulier n&rsquo;apparaît pour l&rsquo;instant.</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">kelvin_vers_celsius</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">373.15</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#0000cf;font-weight:bold">100.0</span>
+</code></pre></div><ol start="4">
+<li>Entrer et exécuter l&rsquo;instruction suivante :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">doctest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">testmod</span><span style="color:#000;font-weight:bold">()</span>
+<span style="color:#000">TestResults</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">failed</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">attempted</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div><p>La fonction <code>testmod</code> du module <code>doctest</code> semble avoir effectué deux tests (<code>attempted=2</code>) sans avoir rencontré le moindre problème (<code>failed=0)</code>.
+Mais quels tests a-t-elle effectué ?</p>
+<ol start="5">
+<li>Entrer et exécuter l&rsquo;instruction suivante :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">doctest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">testmod</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">verbose</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">True</span><span style="color:#000;font-weight:bold">)</span>
+   <span style="color:#000">Trying</span><span style="color:#000;font-weight:bold">:</span> 
+     <span style="color:#000">kelvin_vers_celsius</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">)</span> 
+   <span style="color:#000">Expecting</span><span style="color:#000;font-weight:bold">:</span> 
+      <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">273.15</span> 
+   <span style="color:#000">ok</span> 
+   <span style="color:#000">Trying</span><span style="color:#000;font-weight:bold">:</span> 
+      <span style="color:#000">kelvin_vers_celsius</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">273.15</span><span style="color:#000;font-weight:bold">)</span> 
+   <span style="color:#000">Expecting</span><span style="color:#000;font-weight:bold">:</span> 
+      <span style="color:#0000cf;font-weight:bold">0.0</span> 
+   <span style="color:#000">ok</span> 
+</code></pre></div><p>La fonction testmod du module doctest a :</p>
+<pre><code>- lu la documentation de la fonction `kelvin_vers_celsius` à la recherche de lignes débutant par `&gt;&gt;&gt;` ;
+- exécuté les instructions de ces lignes ;
+- a vérifié que le résultat retourné correspond bien à ce qui est écrit dans cette documentation.
+</code></pre>
+<ol start="6">
+<li>Modifier maintenant, dans la définition de la fonction <code>kelvin_vers_celsius</code>, la valeur 0.0 par 1.0. Charger à nouveau le fichier dans l&rsquo;interpréteur (touche <strong>F5</strong> du clavier) et relancer la commande du point 5. ci-dessus.
+Que retourne la fonction <code>testmod</code> maintenant ? Ce message décrit-il précisément le problème ?</li>
+</ol>
+<div class="note tip">
+  La fonction testmod du module doctest analyse la valeur retournée par une fonction à partir d&rsquo;exemples données dans sa documentation.
+</div>
+<h3 id="22-comment-rendre-lanalyse-de-la-valeur-retournée-par-une-fonction-automatique-">2.2. Comment rendre l&rsquo;analyse de la valeur retournée par une fonction automatique ?</h3>
+<h4 id="à-faire-1">À faire</h4>
+<ol>
+<li>
+<p>Effacer l&rsquo;instruction <code>import doctest</code> de la ligne 1 de la zone de définition des fonctions du logiciel Thonny.</p>
+</li>
+<li>
+<p>Inclure, à la fin de cette zone (<strong>après la définition de toutes les fonctions</strong>), le bloc d&rsquo;instructions suivant :</p>
+</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">__name__</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">&#34;__main__&#34;</span><span style="color:#000;font-weight:bold">:</span>
+
+    <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">doctest</span> 
+<span style="color:#000">doctest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">testmod</span><span style="color:#000;font-weight:bold">()</span>
+</code></pre></div><ol start="3">
+<li>
+<p>Charger à nouveau le fichier dans l&rsquo;interpréteur (touche <strong>F5</strong> du clavier).
+La fonction <code>testmod</code> est lancée automatiquement et retourne la même erreur qu&rsquo;au point 6 de la section 2.1 ci-dessus.</p>
+</li>
+<li>
+<p>Modifier maintenant, dans la documentation de la fonction <code>kelvin_vers_celsius</code>, la valeur 1.0 par 0.0. Charger à nouveau le fichier dans l&rsquo;interpréteur (touche <strong>F5</strong> du clavier).</p>
+</li>
+</ol>
+<p>A-t-on la moindre indication que la fonction <code>testmod</code> a été lancée ?</p>
+<h3 id="23-que-faire-lorsquon-souhaite-prendre-en-compte-la-mauvaise-utilisation-dune-fonction-">2.3. Que faire lorsqu&rsquo;on souhaite prendre en compte la mauvaise utilisation d&rsquo;une fonction ?</h3>
+<h4 id="à-faire-2">À faire</h4>
+<ol>
+<li>Remplacer la définition de la fonction <code>kelvin_vers_celsius</code> par celle-ci :</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">kelvin_vers_celsius</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+
+    <span style="color:#4e9a06">&#34;&#34;&#34; Convertit la température donnée en kelvin en une température θ 
+</span><span style="color:#4e9a06">    en degrés celsius. Relation : θ = t - 273.15. ERREUR si t est négative.
+</span><span style="color:#4e9a06">    
+</span><span style="color:#4e9a06">    &gt;&gt;&gt; kelvin_vers_celsius(0) 
+</span><span style="color:#4e9a06">    -273.15
+</span><span style="color:#4e9a06">    &gt;&gt;&gt; kelvin_vers_celsius(273.15) 
+</span><span style="color:#4e9a06">    0.0 
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span> 
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">:</span> 
+        <span style="color:#204a87;font-weight:bold">raise</span> <span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Température en kelvin doit être positive !&#34;</span><span style="color:#000;font-weight:bold">)</span>
+
+    <span style="color:#000">offset</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">273.15</span> 
+<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">offset</span>
+</code></pre></div><p>Quelle est la différence dans le comportement de la fonction ce code introduit-il ?</p>
+<ol start="2">
+<li>
+<p>Pour l&rsquo;instant la documentation de la fonction ne comporte aucun exemple illustrant ce à quoi il faut s&rsquo;attendre si on appelle la fonction avec un nombre négatif.</p>
+<ol>
+<li>
+<p>Charger le fichier dans l&rsquo;interpréteur (touche F5 du clavier).</p>
+</li>
+<li>
+<p>Écrire et exécuter l&rsquo;instruction</p>
+</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">kelvin_vers_celsius</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div><p>On obtient</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#000">Traceback</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">most</span> <span style="color:#000">recent</span> <span style="color:#000">call</span> <span style="color:#000">last</span><span style="color:#000;font-weight:bold">):</span>
+<span style="color:#a40000">…</span>
+<span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Température</span> <span style="color:#000">en</span> <span style="color:#000">kelvin</span> <span style="color:#000">doit</span> <span style="color:#000">être</span> <span style="color:#000">positive</span> <span style="color:#a40000">!</span>
+</code></pre></div><ol start="3">
+<li>Ce sont ces lignes qu&rsquo;il faut ajouter à la documentation de la fonction</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#ce5c00;font-weight:bold">&gt;&gt;&gt;</span> <span style="color:#000">kelvin_vers_celsius</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">5</span><span style="color:#000;font-weight:bold">)</span>
+
+<span style="color:#000">Traceback</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">most</span> <span style="color:#000">recent</span> <span style="color:#000">call</span> <span style="color:#000">last</span><span style="color:#000;font-weight:bold">):</span> 
+<span style="color:#a40000">…</span>  
+<span style="color:#c00;font-weight:bold">ValueError</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">Température</span> <span style="color:#000">en</span> <span style="color:#000">kelvin</span> <span style="color:#000">doit</span> <span style="color:#000">être</span> <span style="color:#000">positive</span> <span style="color:#a40000">!</span>
+</code></pre></div><p>Compléter la documentation de la fonction et la tester.</p>
+</li>
+</ol>
+<h2 id="3-à-retenir">3. À retenir</h2>
+<p>Pour chacune des fonctions, il faut</p>
+<ol>
+<li>Incorporer à sa documentation des exemples pertinents d&rsquo;utilisation de ces fonctions ;</li>
+<li>Ajouter le bloc d&rsquo;instruction suivant à la fin du fichier</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">__name__</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">&#34;__main__&#34;</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">doctest</span>
+    <span style="color:#000">doctest</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">testmod</span><span style="color:#000;font-weight:bold">()</span>
+</code></pre></div><h2 id="4-exercices">4. Exercices</h2>
+<h3 id="exercice-1">Exercice 1</h3>
+<p>Définir le prédicat <code>est_egal</code> dont une partie de la spécification est :</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">est_egal</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">bool</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34;
+</span><span style="color:#4e9a06">    Teste l&#39;égalité de 2 floats a et b : abs(a - b) &lt;= epsilon avec
+</span><span style="color:#4e9a06">    epsilon = 1e-7
+</span><span style="color:#4e9a06">    
+</span><span style="color:#4e9a06">    &gt;&gt;&gt; est_egal(0, 0.0) 
+</span><span style="color:#4e9a06">    xxx 
+</span><span style="color:#4e9a06">    &gt;&gt;&gt; est_egal(1/49*49, 1) 
+</span><span style="color:#4e9a06">    xxx 
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+</code></pre></div><p>Remplacer les <em>xxx</em> de façon à ce que la fonction testmod accepte votre définition.</p>
+<h3 id="exercice-2">Exercice 2</h3>
+<p>Définir la fonction <code>inverse</code> dont une partie de la spécification est :</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">inverse</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-&gt;</span> <span style="color:#204a87">float</span><span style="color:#000;font-weight:bold">:</span>
+    <span style="color:#4e9a06">&#34;&#34;&#34; Retourne l&#39;inverse du nombre x.
+</span><span style="color:#4e9a06">    ERREUR si x est nul.
+</span><span style="color:#4e9a06">
+</span><span style="color:#4e9a06">    &gt;&gt;&gt; inverse(0) 
+</span><span style="color:#4e9a06">    Traceback (most recent call last):
+</span><span style="color:#4e9a06">    …
+</span><span style="color:#4e9a06">    ZeroDivisionError: Division par 0 !!!
+</span><span style="color:#4e9a06">    &gt;&gt;&gt; inverse(5) 
+</span><span style="color:#4e9a06">    xxx
+</span><span style="color:#4e9a06">    &#34;&#34;&#34;</span>
+</code></pre></div><p>Remplacer les <em>xxx</em> de façon à ce que la fonction testmod accepte votre définition.</p>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://dlatreyte.github.io/tags/sp%C3%A9cification/">Spécification</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/doctest/">doctest</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+              </div>
+            </section>
+        
+
+        
+          
+          
+        
+      </article>
+
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://dlatreyte.github.io/premieres-nsi/chap-quatre/chap-04/" data-toggle="tooltip" data-placement="top" title="Contrôle du flot d’exécution d’un programme, les structures conditionnelles">&larr; Post précédent</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://dlatreyte.github.io/premieres-nsi/chap-six/chap-06/" data-toggle="tooltip" data-placement="top" title="Contrôle du flot d’exécution d’un programme, les structures itératives">Post suivant &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:david.latreyte@louismassignon.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DLatreyte" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/@DLatreyte" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/latreyte-david-917852b2" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/agdavgablou" title="Instagram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://dlatreyte.github.io">David Latreyte</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2020
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://dlatreyte.github.io">Accueil</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          Carbure avec <a href="http://gohugo.io">Hugo v0.74.3</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapté en <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://dlatreyte.github.io/js/main.js"></script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dlatreyte.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha256-34ADEQM6cIZ7chSRA07lN4aD5JM9IQoeIr2VamKDcT0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha256-HkMrKMLKQk4t1R2ofMAcLz72fWM2sshnx6215U+LgU0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/contrib/mhchem.min.js"></script>
+<script>
+  renderMathInElement(document.body,
+    {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false},
+        ]
+    }
+  );
+
+  var inlineMathArray = document.querySelectorAll("script[type='math/tex']");
+  for (var i = 0; i < inlineMathArray.length; i++) {
+    var inlineMath = inlineMathArray[i];
+    var tex = inlineMath.innerText || inlineMath.textContent;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex, {displayMode: false});
+    inlineMath.parentNode.replaceChild(replaced, inlineMath);
+  }
+
+  var displayMathArray = document.querySelectorAll("script[type='math/tex; mode=display']");
+  for (var i = 0; i < displayMathArray.length; i++) {
+    var displayMath = displayMathArray[i];
+    var tex = displayMath.innerHTML;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex.replace(/%.*/g, ''), {displayMode: true});
+    displayMath.parentNode.replaceChild(replaced, displayMath);
+  }
+</script>
+
+  </body>
+</html>
+
