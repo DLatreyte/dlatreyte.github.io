@@ -59,7 +59,7 @@
   "headline": "Méthodes spéciales",
   "description" : "Définit une classe nommée Fraction pour représenter les nombres rationnels. Cette classe doit posséder deux attributs num et denom, de type entier, qui représentent respectivement le numérateur et le dénominateur du nombre rationnel.\nOn demande que le dénominateur soit un entier positif.\nUn corrigé de cette activité se trouve à cette adresse : https:\/\/repl.it\/@dlatreyte\/fraction   Écrire le constructeur de cette classe. Une exception de type ValueError doit être levée si le dénominateur n\u0026rsquo;est pas un nombre entier positif.",
   "inLanguage" : "fr",
-  "wordCount":  171 ,
+  "wordCount":  306 ,
   "datePublished" : "2020-09-29T09:51:52",
   "dateModified" : "2020-09-29T09:51:52",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -319,7 +319,64 @@ On demande que le dénominateur soit un entier positif.</p>
 <div class="note warning">
   S&rsquo;assurer que les fractions sont toujours sous forme réduite.
 </div>
+<h4 id="remarque--jeu-de-tests-possibles">Remarque : jeu de tests possibles</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">f1</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span>
 
+<span class="n">f2</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f2</span><span class="p">)</span>
+
+<span class="c1"># Addition de nombres rationnels</span>
+<span class="n">f3</span> <span class="o">=</span> <span class="n">f1</span> <span class="o">+</span> <span class="n">f2</span>
+<span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">f3</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;53 / 9&#34;</span>
+<span class="c1"># Multiplication de nombres rationnels</span>
+<span class="n">f4</span> <span class="o">=</span> <span class="n">f1</span> <span class="o">*</span> <span class="n">f2</span>
+<span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">f4</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;70 / 9&#34;</span>
+<span class="c1"># Test de l&#39;égalité de deux nombres rationnels</span>
+<span class="n">f5</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">assert</span> <span class="p">(</span><span class="n">f1</span> <span class="o">==</span> <span class="n">f2</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span>
+<span class="k">assert</span> <span class="p">(</span><span class="n">f5</span> <span class="o">==</span> <span class="n">f1</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="c1"># Teste si un nombre rationnel est plus petit qu&#39;un autre</span>
+<span class="k">assert</span> <span class="p">(</span><span class="n">f1</span> <span class="o">&lt;</span> <span class="n">f2</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="k">assert</span> <span class="p">(</span><span class="n">f1</span> <span class="o">&lt;</span> <span class="n">f5</span><span class="p">)</span> <span class="o">==</span> <span class="kc">True</span>
+
+<span class="c1"># Test si réduction fonctionne</span>
+<span class="n">f6</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f6</span><span class="p">)</span>
+<span class="n">f7</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">39</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f7</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 
         
           <div class="blog-tags">
