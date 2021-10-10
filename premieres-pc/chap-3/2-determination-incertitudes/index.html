@@ -59,7 +59,7 @@
   "headline": "Détermination pratique des incertitudes",
   "description" : "Avertissement. Aucune des formules présentées dans ce document ne doit être apprise par cœur car elles seront systématiquement données si nécessaire.\nEn revanche, il faudra être capable de choisir la formule à utiliser et il sera impératif de savoir l\u0026rsquo;utiliser.\n Le résultat d\u0026rsquo;une mesure n\u0026rsquo;est pas une valeur mais un intervalle de valeurs, que l\u0026rsquo;on note $\\pu{m±U(m)}$1, dans lequel on peut considérer, avec un certain niveau de confiance, que la « valeur vraie » se trouve.",
   "inLanguage" : "fr",
-  "wordCount":  1727 ,
+  "wordCount":  2188 ,
   "datePublished" : "2020-10-07T07:51:11",
   "dateModified" : "2020-10-07T07:51:11",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -379,10 +379,36 @@ obtenus, exprimés en seconde, sont les suivants&nbsp;:
 2. Exécuter le programme de façon à connaître la moyenne de l'ensemble des valeurs. Noter cette valeur.
 
 
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Résultat</strong>
+    </summary>
+    
+La valeur de la moyenne est $\Delta t\_{m} = \pu{1,4225 s}$.
+
+</details>
+<hr />
+
 
 
 3. À quoi servent les instructions du programme qui s'étendent de la ligne 6 à 
 la ligne 8&nbsp;?
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Résultat</strong>
+    </summary>
+    
+Les instructions réalisent le calcul de la somme de tous les éléments de la 
+liste de valeurs passée en argument. La variable `somme` contient tout 
+d'abord l'élément neutre de l'addition. À chaque tour de boucle on 
+récupère une nouvelle valeur dans la liste et on l'ajoute à la valeur 
+référencée par la variable `somme`.
+
+</details>
+<hr />
 
 
 
@@ -406,6 +432,19 @@ la ligne 8&nbsp;?
 4. Modifier l'instruction `moyenne = calcul_moyenne(valeurs)` de façon à ce 
 qu'elle ne calcule la moyenne que des 6 première valeurs. Noter cette valeur.
 
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+`moyenne = calcul_moyenne(valeurs[:6])`.
+
+La valeur de la moyenne est $\Delta t\_{m} = \pu{1,4216666666666666 s}$.
+
+</details>
+<hr />
 
 
 
@@ -439,11 +478,34 @@ inférieure, ouvert pour la borne supérieure) :</p>
 sont-elles pas égales&nbsp;?
 
 
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+On a calculé des moyennes de séries différentes, il est donc normal que ces 
+moyennes soient différentes.
+
+</details>
+<hr />
+
 
 
 6. Comment faire en sorte que la valeur moyenne caractérise au mieux «&nbsp;la chute 
 de l'objet depuis la fenêtre&nbsp;»&nbsp;?
 
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+Il faut réaliser le plus grand nombre d'expériences possible.
+
+</details>
+<hr />
 
 
 
@@ -486,11 +548,40 @@ $$ U (m) = k \hspace{0.17em} \dfrac{\sigma _{n - 1}}{\sqrt{n}} $$</p>
 7. Pour un *même nombre de mesures*, comment évolue $k$ avec le niveau de confiance&nbsp;? Qu'est-ce que cette évolution traduit&nbsp;?
 
 
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+Pour un même nombre de mesures, $k\_{95 \, \text{\%}} < k\_{99 \, 
+\text{\%}}$. Plus grande est l'incertitude $U (m)$, plus grande est la 
+probabilité que la «&nbsp;valeur vraie&nbsp;» se trouve dans l'intervalle 
+$\overline{m} \pm U (m)$.
+
+</details>
+<hr />
+
 
 
 8. Pour un *même niveau de confiance* , comment évolue $k$ avec le nombre de 
 mesures réalisées&nbsp;? Qu'est-ce que cette évolution traduit&nbsp;?
 
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+$k$ diminue lorsque le nombre de mesures augmente. Plus le nombre de mesures 
+est grand, plus la valeur moyenne de la série est représentative de la valeur 
+mesurée et plus petit peut donc être l'intervalle autour de cette valeur 
+moyenne. On retrouve l'idée qu'il est préférable de faire un grand nombre de 
+mesures.
+
+</details>
+<hr />
 
 
 
@@ -507,12 +598,44 @@ $$ \sum\_{k = 1}^n (m\_{k} - \overline{m}) $$
 9. Faire en sorte que le programme appelle la fonction `calcul_ecarts_a_moyenne` (prendre les lignes 60 et 61 comme exemple) et calcule ainsi la somme des écarts à la moyenne. Que penser de la valeur obtenue&nbsp;? Était-ce prévisible&nbsp;?
 
 
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+```python
+ecart = calcul_ecarts_a_moyenne(valeurs)
+print("Écart à la valeur moyenne&nbsp;: {}".format(ecart))
+```
+La valeur obtenue est $\pu{-2,6645352591003757e{- 15}}$, soit 0. 
+C'était tout à fait prévisible puisque la valeur moyenne est le point 
+d'équilibre de la série de valeurs&nbsp;: *les écarts positifs sont donc compensés par les écarts négatifs.*
+
+</details>
+<hr />
+
 
 
 10. L'écart-type ne considère pas les écarts à la valeur moyenne mais les 
 carrés de ces écarts (cf. formule ci-dessus). Ils ne peuvent donc pas se 
 compenser. Après analyse du code de la fonction `calcul_ecarts_a_moyenne`, compléter le code de la fonction `calcul_ecart_type`.
 
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+```python
+somme = 0
+for valeur in liste_valeurs:
+    somme = somme + (valeur - moyenne)**2
+```
+
+</details>
+<hr />
 
 
 
@@ -526,11 +649,37 @@ compenser. Après analyse du code de la fonction `calcul_ecarts_a_moyenne`, comp
 qu'il affiche cette valeur. La noter.
 
 
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+```python
+ecart_type = calcul_ecart_type(valeurs)
+print("Écart type&nbsp;: {}".format(ecart_type))
+```
+$\sigma \_{n - 1} = \pu{0,030000000000000023 s}$.
+
+</details>
+<hr />
+
 
 
 12. Compléter le code de la fonction `calcul_incertitude` à partir de la 
 formule de l'incertitude donnée ci-dessus.
 
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+`incertitude = k * ecart_type / m.sqrt(n)`
+
+</details>
+<hr />
 
 
 
@@ -556,16 +705,57 @@ faut précéder ce nom par celui du module :</p>
 13. Faire en sorte que le programme appelle la fonction `calcul_incertitude` (prendre les lignes 60 et 61 comme exemple), avec la valeur de $k$ correspondant à un niveau de confiance de 95&nbsp;%, et qu'il affiche cette valeur. La noter.
 
 
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+```python
+incertitude_95 = calcul_incertitude(valeurs, 2.13)
+print("Incertitude à 95 %&nbsp;: {}".format(incertitude_95))
+```
+$U (\Delta t) = \pu{0,01597500000000001 s}$.
+
+</details>
+<hr />
+
 
 
 14. Faire en sorte que le programme appelle la fonction `calcul_incertitude`, avec la valeur de $k$ correspondant à un niveau de confiance de 99&nbsp;%, et qu'il affiche cette valeur. La noter.
 
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+```python
+incertitude_99 = calcul_incertitude(valeurs, 2.95)
+print("Incertitude à 99 %&nbsp;: {}".format(incertitude_99))
+```
+$U (\Delta t) = 0 {,} 02212500000000002 \text{s}$
+
+</details>
+<hr />
 
 
 
 15. Écrire le résultat de la mesure de la chute de l'objet depuis la fenêtre, 
 avec un niveau de confiance à 95 % puis avec un niveau de confiance à 99 %.
 
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+$\Delta t\_{95} = \pu{(1,43 \pm 0,02)  s}$ et $\Delta t\_{99} = \pu{(1,43 \pm 0,03) s}$.
+
+</details>
+<hr />
 
 
 -->
@@ -588,6 +778,14 @@ $$
 <li>Une balance numérique au 1/100 de gramme affiche une masse $m = \pu{38,45 g}$.
 Déterminer la valeur de l&rsquo;incertitude $U(m)$ et écrire le résultat de la pesée.</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Cette balance étant graduée à $\pu{0,01 g}$ près, $U = \dfrac{2\times \pu{0,01 g}}{\sqrt{12}} = \pu{0,00577 g}$ et le résultat de la mesure s&rsquo;écrit $m = \pu{(38,450 \pm 0,006) g}$.</p>
+</details>
+<hr />
 <div class="note tip">
   <h4 id="cas-dune-double-lecture-sur-une-échelle-graduée">Cas d&rsquo;une double lecture sur une échelle graduée</h4>
 <p><a href="" id="double_mesure"> </a>
@@ -597,15 +795,30 @@ U_{\text{double lecture}} = \sqrt{2\, \left(\dfrac{2\times \text{Valeur Plus Pet
 $$
 </div>
 <ol start="17">
-<li>
-<p>La mesure de la distance séparant deux récepteurs à ultrason nécessite de repérer par rapport à une règle graduée jusqu&rsquo;au millimètre les positions de ces deux dispositifs : c&rsquo;est une <strong>double mesure</strong>.<br>
-Déterminer l&rsquo;incertitude associée à toute mesure utilisant une règle graduée jusqu&rsquo;au millimètre.</p>
-</li>
-<li>
-<p>La mesure de la période $f$ d&rsquo;un signal périodique affiché sur l&rsquo;écran d&rsquo;un oscilloscope nécessite de repérer deux points de la courbe et de lire leurs abscisses : c&rsquo;est une <strong>double mesure</strong>.<br>
-La plus petite graduation, sur l&rsquo;écran de l&rsquo;oscilloscope, étant égale à $\pu{0,2 division}$, déterminer l&rsquo;incertitude associée à toute mesure à l&rsquo;écran d&rsquo;un oscilloscope.</p>
-</li>
+<li>La mesure de la distance séparant deux récepteurs à ultrason nécessite de repérer par rapport à une règle graduée jusqu&rsquo;au millimètre les positions de ces deux dispositifs : c&rsquo;est une <strong>double mesure</strong>.<br>
+Déterminer l&rsquo;incertitude associée à toute mesure utilisant une règle graduée jusqu&rsquo;au millimètre.</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La règle étant graduée au millimètre, $U = \sqrt{2}\times\dfrac{2\times \pu{1 mm}}{\sqrt{12}} = \pu{0,82 mm}$.<br>
+<strong>Remarque :</strong> En pratique, on peut arrondir cette incertitude à $U = \pu{1 mm}$.</p>
+</details>
+<hr />
+<ol start="18">
+<li>La mesure de la période $f$ d&rsquo;un signal périodique affiché sur l&rsquo;écran d&rsquo;un oscilloscope nécessite de repérer deux points de la courbe et de lire leurs abscisses : c&rsquo;est une <strong>double mesure</strong>.<br>
+La plus petite graduation, sur l&rsquo;écran de l&rsquo;oscilloscope, étant égale à $\pu{0,2 division}$, déterminer l&rsquo;incertitude associée à toute mesure à l&rsquo;écran d&rsquo;un oscilloscope.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>$U = \sqrt{2}\;\times\dfrac{2\times \pu{0,2 division}}{\sqrt{12}} = \pu{0,163 division}$. <em>Pour obtenir l&rsquo;incertitude en secondes, il ne reste plus alors qu&rsquo;à multiplier par la base de temps</em>.</p>
+</details>
+<hr />
 <h3 id="utilisation-dun-appareil-dont-le-constructeur-a-indiqué-la-tolérance">Utilisation d&rsquo;un appareil dont le constructeur a indiqué la tolérance</h3>
  <div class="note tip">
   <h4 id="cas-dune-mesure-obtenue-avec-un-appareil-de-tolérance-connue">Cas d&rsquo;une mesure obtenue avec un appareil de tolérance connue</h4>
@@ -615,15 +828,29 @@ U = \dfrac{2\, t}{\sqrt{3}}
 $$
 </div>
 <ol start="19">
-<li>
-<p>En chimie, les fabricants indiquent toujours la tolérance sur la verrerie jaugée. Par exemple, la tolérance d&rsquo;une pipette jaugée de $\pu{10 mL}$, de <strong>classe A</strong>, est égale à $\pu{\pm 0,02 mL}$.<br>
-Déterminer l&rsquo;incertitude sur la mesure d&rsquo;un volume à l&rsquo;aide d&rsquo;une pipette jaugée de $\pu{10 mL}$.</p>
-</li>
-<li>
-<p>Un élève mesure un volume d’eau de $\pu{40,0 mL}$ avec une burette graduée de $\pu{50 mL}$ de classe A (tolérance $\pu{\pm 0,05 mL}$).<br>
-Déterminer l&rsquo;incertitude sur la mesure du volume d&rsquo;eau.</p>
-</li>
+<li>En chimie, les fabricants indiquent toujours la tolérance sur la verrerie jaugée. Par exemple, la tolérance d&rsquo;une pipette jaugée de $\pu{10 mL}$, de <strong>classe A</strong>, est égale à $\pu{\pm 0,02 mL}$.<br>
+Déterminer l&rsquo;incertitude sur la mesure d&rsquo;un volume à l&rsquo;aide d&rsquo;une pipette jaugée de $\pu{10 mL}$.</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>L&rsquo;incertitude sur la mesure du volume lors de l&rsquo;utilisation de cette pipette jaugée vaut donc $U =  \dfrac{2 \times \pu{0,02 mL}}{\sqrt{3}} = \pu{0,023 mL}$ et le volume prélevé est égal à $\pu{(10,00 \pm 0,03) mL}$.</p>
+</details>
+<hr />
+<ol start="20">
+<li>Un élève mesure un volume d’eau de $\pu{40,0 mL}$ avec une burette graduée de $\pu{50 mL}$ de classe A (tolérance $\pu{\pm 0,05 mL}$).<br>
+Déterminer l&rsquo;incertitude sur la mesure du volume d&rsquo;eau.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>L&rsquo;incertitude $U$ vaut donc $U = \dfrac{2 \times \pu{0,05 mL}}{\sqrt{3}} = \pu{0,0577 mL}$ et le volume mesuré est $\pu{(40,00 \pm 0,06) mL}$.</p>
+</details>
+<hr />
 <section class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
