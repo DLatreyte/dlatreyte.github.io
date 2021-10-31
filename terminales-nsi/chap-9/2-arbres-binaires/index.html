@@ -59,7 +59,7 @@
   "headline": "Les arbres binaires",
   "description" : "Le corrigé de l\u0026rsquo;activité se trouve ici  Arbres binaires Définition   Un arbre binaire est un arbre de degré 2 (dont les nœuds sont au plus de degré 2).\n  Les enfants d’un nœud sont lus de gauche à droite et sont appelés : fils gauche et fils droit.\n   Pour simplifier la présentation, on va considérer que chaque nœud possède exactement deux fils mais que ceux-ci peuvent être vides (None par exemple).",
   "inLanguage" : "fr",
-  "wordCount":  1046 ,
+  "wordCount":  1282 ,
   "datePublished" : "2020-11-05T03:38:41",
   "dateModified" : "2020-11-05T03:38:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -523,6 +523,145 @@ graph TD
 <p>Écrire la spécification et le code de la fonction <code>nbre_fils</code> qui compte le nombre de fils que le nœud passé en argument possède.</p>
 </li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponses aux questions précédentes</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+
+<span class="k">class</span> <span class="nc">Noeud</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Implémentation d&#39;un noeud.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span>
+                 <span class="n">valeur</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">gauche</span><span class="p">:</span> <span class="n">Noeud</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">droit</span><span class="p">:</span> <span class="n">Noeud</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">valeur</span> <span class="o">=</span> <span class="n">valeur</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gauche</span> <span class="o">=</span> <span class="n">gauche</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">droit</span> <span class="o">=</span> <span class="n">droit</span>
+
+
+<span class="k">def</span> <span class="nf">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Teste si un arbre est vide.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="ow">is</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">ajoute_filsG</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">valeur</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Ajoute un noeud d&#39;étiquette valeur comme fils gauche. 
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">):</span>
+        <span class="n">new_n</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="n">valeur</span><span class="p">)</span>
+        <span class="n">n</span><span class="o">.</span><span class="n">gauche</span> <span class="o">=</span> <span class="n">new_n</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Noeud possède déjà un fils à gauche.&#34;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">ajoute_filsD</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">valeur</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Ajoute un noeud d&#39;étiquette valeur comme fils droit. 
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">):</span>
+        <span class="n">new_n</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="n">valeur</span><span class="p">)</span>
+        <span class="n">n</span><span class="o">.</span><span class="n">droit</span> <span class="o">=</span> <span class="n">new_n</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Noeud possède déjà un fils à droite.&#34;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">est_feuille</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Teste si un noeud est une feuille
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">return</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span> <span class="ow">and</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">nbre_fils</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Détermine le nombre de fils d&#39;un noeud.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">nbre</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">nbre</span><span class="o">.</span><span class="n">gauche</span><span class="p">):</span>
+        <span class="n">nbre</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">nbre</span><span class="o">.</span><span class="n">droit</span><span class="p">):</span>
+        <span class="n">nbre</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">nbre</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
 <h2 id="algorithmique-des-arbres-binaires">Algorithmique des arbres binaires</h2>
 <h3 id="algorithmes-récursifs">Algorithmes récursifs</h3>
 <ol start="10">
