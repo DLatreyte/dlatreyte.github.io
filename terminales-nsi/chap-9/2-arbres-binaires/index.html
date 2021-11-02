@@ -59,7 +59,7 @@
   "headline": "Les arbres binaires",
   "description" : "Le corrigé de l\u0026rsquo;activité se trouve ici  Arbres binaires Définition   Un arbre binaire est un arbre de degré 2 (dont les nœuds sont au plus de degré 2).\n  Les enfants d’un nœud sont lus de gauche à droite et sont appelés : fils gauche et fils droit.\n   Pour simplifier la présentation, on va considérer que chaque nœud possède exactement deux fils mais que ceux-ci peuvent être vides (None par exemple).",
   "inLanguage" : "fr",
-  "wordCount":  1307 ,
+  "wordCount":  1480 ,
   "datePublished" : "2020-11-05T03:38:41",
   "dateModified" : "2020-11-05T03:38:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -303,15 +303,16 @@
     </li>
     <li><a href="#spécification-des-arbres-binaires">Spécification des arbres binaires</a></li>
     <li><a href="#implémentation-de-la-spécification-en-python">Implémentation de la spécification en Python</a></li>
-    <li><a href="#algorithmique-des-arbres-binaires">Algorithmique des arbres binaires</a>
+    <li><a href="#quelques-algorithmes-de-manipulation-des-arbres-binaires">Quelques algorithmes de manipulation des arbres binaires</a>
       <ul>
         <li><a href="#algorithmes-récursifs">Algorithmes récursifs</a></li>
-        <li><a href="#parcours-en-profondeur-dun-arbre">Parcours en profondeur d&rsquo;un arbre</a></li>
+        <li><a href="#algorithmes-itératifs">Algorithmes itératifs</a></li>
       </ul>
     </li>
-    <li><a href="#algorithmes-itératifs">Algorithmes itératifs</a>
+    <li><a href="#parcours-dun-arbre-à-laide-dune-file-ou-dune-pile">Parcours d&rsquo;un arbre à l&rsquo;aide d&rsquo;une file ou d&rsquo;une pile</a>
       <ul>
         <li><a href="#parcours-en-largeur-dun-arbre">Parcours en largeur d&rsquo;un arbre</a></li>
+        <li><a href="#parcours-en-profondeur-dun-arbre-1">Parcours en profondeur d&rsquo;un arbre</a></li>
       </ul>
     </li>
     <li><a href="#à-retenir">À retenir</a></li>
@@ -698,15 +699,73 @@ graph TD
 </div>
 </div></details>
 <hr />
-<h2 id="algorithmique-des-arbres-binaires">Algorithmique des arbres binaires</h2>
+<h2 id="quelques-algorithmes-de-manipulation-des-arbres-binaires">Quelques algorithmes de manipulation des arbres binaires</h2>
 <h3 id="algorithmes-récursifs">Algorithmes récursifs</h3>
 <ol start="10">
-<li>
-<p>Écrire la spécification et le code de la fonction <code>taille</code> qui détermine la taille de l&rsquo;arbre passé en argument.</p>
-</li>
-<li>
-<p>Écrire la spécification et le code de la fonction <code>profondeur</code> qui détermine la profondeur de l&rsquo;arbre passé en argument.</p>
-</li>
+<li>Écrire la spécification et le code de la fonction <code>taille</code> qui détermine la taille de l&rsquo;arbre passé en argument.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">taille</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne le nombre de noeud dans l&#39;arbre depuis le noeud n
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">taille</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span> <span class="o">+</span> <span class="n">taille</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="11">
+<li>Écrire la spécification et le code de la fonction <code>profondeur</code> qui détermine la profondeur de l&rsquo;arbre passé en argument.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">profondeur</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne la profondeur de l&#39;arbre 
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">profondeur</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">),</span> <span class="n">profondeur</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="12">
 <li>
 <p>Écrire la spécification et le code de la fonction <code>nbre_feuilles</code> qui détermine le nombre de feuilles de l&rsquo;arbre passé en argument.</p>
 </li>
@@ -722,25 +781,27 @@ graph TD
 <p>Les algorithmes parcourent une fois chaque nœud de l&rsquo;arbre. La complexité est donc proportionnelle au nombre de nœuds.</p>
 </details>
 <hr />
-<h3 id="parcours-en-profondeur-dun-arbre">Parcours en profondeur d&rsquo;un arbre</h3>
-<h4 id="récursifs">Récursifs</h4>
+<h4 id="parcours-en-profondeur-dun-arbre">Parcours en profondeur d&rsquo;un arbre</h4>
 <p>Les fonction écrites jusqu&rsquo;à présent parcourent en profondeur tous les nœuds des arbres sans que l&rsquo;ordre dans lequel ce parcourt est effectué ait la moindre importance.</p>
-<p>Si on souhaite donner un affichage de l&rsquo;arbre, la façon dont on le parcourt prend alors une grande importance. On peut :</p>
+<div class="note tip">
+  <p>Si on souhaite donner un affichage de l&rsquo;arbre, la façon dont on le parcourt prend alors une grande importance. On peut :</p>
 <ul>
 <li>Parcourir le sous-arbre gauche, afficher la valeur du nœud puis enfin parcourir le sous-arbre droit. On parle d&rsquo;un <strong>parcours infixe</strong>.</li>
 <li>Afficher la valeur de chaque nœud avant de parcourir les sous-arbres. On parle d&rsquo;un <strong>parcours préfixe</strong>.</li>
 <li>Parcourir les sous-arbres puis afficher les valeurs. On parle d&rsquo;un <strong>parcours suffixe</strong>.</li>
 </ul>
+</div>
 <ol start="14">
 <li>Écrire les spécifications et le code des fonctions <code>affiche_infixe</code>, <code>affiche_prefixe</code> et <code>affiche_suffixe</code>.</li>
 </ol>
-<h2 id="algorithmes-itératifs">Algorithmes itératifs</h2>
+<h3 id="algorithmes-itératifs">Algorithmes itératifs</h3>
 <ol start="15">
 <li>Reprendre les questions précédentes en utilisant des algorithmes itératifs.</li>
 </ol>
+<h2 id="parcours-dun-arbre-à-laide-dune-file-ou-dune-pile">Parcours d&rsquo;un arbre à l&rsquo;aide d&rsquo;une file ou d&rsquo;une pile</h2>
 <h3 id="parcours-en-largeur-dun-arbre">Parcours en largeur d&rsquo;un arbre</h3>
 <ol start="16">
-<li>Décrire le fonctionnement de l&rsquo;algorithme suivant</li>
+<li>Décrire le fonctionnement de l&rsquo;algorithme suivant et montrer qu&rsquo;il réalise un parcours en largeur d&rsquo;un arbre.</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -766,7 +827,7 @@ graph TD
     enfiler<span class="o">(</span>f, racine<span class="o">)</span>
     Noeud <span class="nv">n</span> <span class="o">=</span> newNoeud<span class="o">()</span>
     TantQue non est_vide<span class="o">(</span>f<span class="o">)</span>:
-        <span class="nv">n</span> <span class="o">=</span> f.contenu
+        <span class="nv">n</span> <span class="o">=</span> f.valeur
         print<span class="o">(</span>f.defiler<span class="o">())</span>
         Si non est_vide<span class="o">(</span>n.filsG<span class="o">)</span>:
             enfiler<span class="o">(</span>n.filsG<span class="o">)</span>
@@ -781,9 +842,53 @@ FinFonction
 </div><ol start="17">
 <li>Implémenter en Python l&rsquo;algorithme précédent.</li>
 </ol>
+<h3 id="parcours-en-profondeur-dun-arbre-1">Parcours en profondeur d&rsquo;un arbre</h3>
+<ol start="18">
+<li>Décrire le fonctionnement de l&rsquo;algorithme suivant et montrer qu&rsquo;il réalise un parcours en profondeur d&rsquo;un arbre.<br>
+De quel type de parcours en profondeur s&rsquo;agit-il ?</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">Fonction parcours_profondeur<span class="o">(</span>noeud racine<span class="o">)</span>:
+    Pile <span class="nv">p</span> <span class="o">=</span> newPile<span class="o">()</span>
+    empiler<span class="o">(</span>p, racine<span class="o">)</span>
+    Noeud <span class="nv">n</span> <span class="o">=</span> newNoeud<span class="o">()</span>
+    TantQue non est_vide<span class="o">(</span>p<span class="o">)</span>:
+        <span class="nv">n</span> <span class="o">=</span> p.valeur
+        print<span class="o">(</span>p.depiler<span class="o">())</span>
+        Si non est_vide<span class="o">(</span>n.filsG<span class="o">)</span>:
+            empiler<span class="o">(</span>n.filsG<span class="o">)</span>
+        FinSi
+        Si non est_vide<span class="o">(</span>n.filsD<span class="o">)</span>:
+            empiler<span class="o">(</span>n.filsD<span class="o">)</span>
+        FinSi
+    FinTantQue
+FinFonction
+</code></pre></td></tr></table>
+</div>
+</div><ol start="19">
+<li>Implémenter en Python l&rsquo;algorithme précédent.</li>
+</ol>
 <h2 id="à-retenir">À retenir</h2>
 <div class="note tip">
-  Un <strong>arbre binaire</strong> est une ensemble fini de nœuds, qui est soit <strong>vide</strong>, soit structuré à partir d&rsquo;un nœud particulier, appelé <strong>racine</strong> de l&rsquo;arbre, et de deux sous-ensembles de nœuds formant récursivement un <strong>sous-arbre gauche</strong> et un <strong>sous-arbre droit</strong>.<br>
+  Un <strong>arbre binaire</strong> est un ensemble fini de nœuds, qui est soit <strong>vide</strong>, soit structuré à partir d&rsquo;un nœud particulier, appelé <strong>racine</strong> de l&rsquo;arbre, et de deux sous-ensembles de nœuds formant récursivement un <strong>sous-arbre gauche</strong> et un <strong>sous-arbre droit</strong>.<br>
 Un arbre peut-être implémenté en Python avec un objet par nœud, d&rsquo;une <strong>classe</strong> qui possède trois attributs : la valeur (ou étiquette) du nœud, le sous-arbre gauche et le sous-arbre droit. La valeur <code>None</code> est utilisée pour représenter l&rsquo;arbre vide.
 </div>
 
