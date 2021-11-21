@@ -44,7 +44,7 @@
         "@type": "ListItem",
         "position": 3,
         "item": {
-          "@id": "https:\/\/dlatreyte.github.io\/terminales-nsi\/ece\/sujet_9\/",
+          "@id": "https:\/\/dlatreyte.github.io\/terminales-nsi\/ece\/sujet_21\/",
           "name": "Numerique et sciences informatiques"
         }
     }]
@@ -57,14 +57,14 @@
     "name" : "David Latreyte"
   },
   "headline": "NUMERIQUE et SCIENCES INFORMATIQUES",
-  "description" : "Exercice 1 (50% des points) Soit le couple (note, coefficient) :\n note est un nombre de type flottant (float) compris entre 0 et 20 ; coefficient est un nombre entier positif.  Les résultats aux évaluations d\u0026rsquo;un élève sont regroupés dans une liste composée de couples (note,coefficient). Écrire une fonction moyenne (accompagnée de sa spécification) qui renvoie la moyenne pondérée de cette liste donnée en paramètre. Par exemple, l’expression moyenne([(15, 2), (9, 1), (12, 3)]) devra renvoyer le résultat du calcul suivant : $$ \\dfrac{2 \\times 15 \u002b 1 \\times 9 \u002b 3 \\times 12}{2 \u002b 1 \u002b 3} = \\pu{12,5} $$",
+  "description" : "Exercice 1 (50% des points) Écrire une fonction python appelée nb_repetitions qui prend en paramètres un élément elt et une liste tab et renvoie le nombre de fois où l’élément apparaît dans la liste.\nJeu de tests 1 2 3 4  if __name__ == \u0026#34;__main__\u0026#34;: assert nb_repetitions(5, [2, 5, 3, 5, 6, 9, 5]) == 3 assert nb_repetitions(\u0026#39;A\u0026#39;, [\u0026#39;B\u0026#39;, \u0026#39;A\u0026#39;, \u0026#39;B\u0026#39;, \u0026#39;A\u0026#39;, \u0026#39;R\u0026#39;]) == 2 assert nb_repetitions(12, [1, \u0026#39;! \u0026#39;, 7, 21, 36, 44]) == 0   Exercice 2 (50% des points) Pour rappel, la conversion d’un nombre entier positif en binaire peut s’effectuer à l’aide des divisions successives comme illustré ici :",
   "inLanguage" : "fr",
-  "wordCount":  351 ,
-  "datePublished" : "2021-11-07T04:57:44",
-  "dateModified" : "2021-11-07T04:57:44",
+  "wordCount":  192 ,
+  "datePublished" : "2021-11-21T05:54:29",
+  "dateModified" : "2021-11-21T05:54:29",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
   "keywords" : [ "" ],
-  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/terminales-nsi\/ece\/sujet_9\/",
+  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/terminales-nsi\/ece\/sujet_21\/",
   "publisher" : {
     "@type": "Organization",
     "name" : "https:\/\/dlatreyte.github.io",
@@ -81,7 +81,7 @@
 <meta property="og:title" content="NUMERIQUE et SCIENCES INFORMATIQUES" />
 <meta property="og:description" content="Partie pratique">
 <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
-<meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/ece/sujet_9/" />
+<meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/ece/sujet_21/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Accueil" />
 
@@ -297,80 +297,63 @@
         <hr />
 
         <h2 id="exercice-1-50-des-points">Exercice 1 (50% des points)</h2>
-<p>Soit le couple <code>(note, coefficient)</code> :</p>
-<ul>
-<li><code>note</code> est un nombre de type flottant (<code>float</code>) compris entre 0 et 20 ;</li>
-<li><code>coefficient</code> est un nombre entier positif.</li>
-</ul>
-<p>Les résultats aux évaluations d&rsquo;un élève sont regroupés dans une liste composée de
-couples <code>(note,coefficient)</code>.    <br>
-Écrire une fonction <code>moyenne</code> (<em>accompagnée de sa spécification</em>) qui renvoie la moyenne pondérée de cette liste donnée en paramètre.  <br>
-Par exemple, l’expression <code>moyenne([(15, 2), (9, 1), (12, 3)])</code> devra renvoyer le résultat du calcul suivant :
-$$
-\dfrac{2 \times 15 + 1 \times 9 + 3 \times 12}{2 + 1 + 3} = \pu{12,5}
-$$</p>
-<h4 id="test-possible">Test possible</h4>
+<p>Écrire une fonction python appelée <code>nb_repetitions</code> qui prend en paramètres un élément <code>elt</code> et une liste <code>tab</code> et renvoie le nombre de fois où l’élément apparaît dans la liste.</p>
+<h4 id="jeu-de-tests">Jeu de tests</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="n">notes</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
-    <span class="k">assert</span> <span class="n">moyenne</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span> <span class="o">==</span> <span class="mf">12.5</span>
+    <span class="k">assert</span> <span class="n">nb_repetitions</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="mi">3</span>
+    <span class="k">assert</span> <span class="n">nb_repetitions</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="n">nb_repetitions</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;! &#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">44</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="exercice-2-50-des-points">Exercice 2 (50% des points)</h2>
-<p>On cherche à déterminer les valeurs du triangle de Pascal. Dans ce tableau de forme triangulaire, chaque ligne commence et se termine par le nombre 1. Par ailleurs, la valeur qui occupe une case située à l’intérieur du tableau s’obtient en ajoutant les valeurs des deux cases situées juste au-dessus, comme l’indique la figure suivante :</p>
-<img src="../../../terminales-nsi/ece/sujet_9.png" alt="" width="70%" />
-<p>Compléter la fonction <code>pascal</code> ci-après. Elle doit renvoyer une liste correspondant au triangle de Pascal de la ligne 1 à la ligne $n$ où $n$ est un nombre entier supérieur ou égal à 2 (le tableau sera contenu dans la variable <code>C</code>). La variable <code>Ck</code> doit, quant à elle, contenir, à l’étape numéro $k$, la $k$-ième ligne du tableau.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
-
-<span class="k">def</span> <span class="nf">pascal</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
-    <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    Détermine les valeurs du triangle de Pascal. 
-</span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="n">C</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">]]</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">.....</span><span class="p">):</span>
-        <span class="n">Ck</span> <span class="o">=</span> <span class="p">[</span><span class="o">.....</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-            <span class="n">Ck</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="o">.....</span><span class="p">][</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">C</span><span class="p">[</span><span class="o">.....</span><span class="p">][</span><span class="o">.....</span><span class="p">])</span>
-        <span class="n">Ck</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">.....</span><span class="p">)</span>
-        <span class="n">C</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Ck</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">C</span>
-</code></pre></td></tr></table>
-</div>
-</div><h4 id="tests-possibles">Tests possibles</h4>
+<p>Pour rappel, la conversion d’un nombre entier positif en binaire peut s’effectuer à l’aide des divisions successives comme illustré ici :</p>
+<img src="../../../terminales-nsi/ece/sujet_21.png" alt="" width="45%" />
+<p>Voici une fonction python basée sur la méthode des divisions successives permettant de convertir un nombre entier positif en binaire :</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">binaire</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">bin_a</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">...</span> <span class="mi">2</span>
+    <span class="k">while</span> <span class="n">a</span> <span class="o">...</span> <span class="p">:</span>
+        <span class="n">bin_a</span> <span class="o">=</span> <span class="o">...</span><span class="p">(</span><span class="n">a</span> <span class="o">...</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="o">...</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="o">...</span>
+    <span class="k">return</span> <span class="n">bin_a</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="jeu-de-tests-1">Jeu de tests</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-    <span class="k">assert</span> <span class="n">pascal</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
-    <span class="k">assert</span> <span class="n">pascal</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+    <span class="k">assert</span> <span class="n">binaire</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span>
+    <span class="k">assert</span> <span class="n">binaire</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span>
+    <span class="k">assert</span> <span class="n">binaire</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;10&#39;</span>
+    <span class="k">assert</span> <span class="n">binaire</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;100&#39;</span>
+    <span class="k">assert</span> <span class="n">binaire</span><span class="p">(</span><span class="mi">77</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;1001101&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div>
@@ -397,13 +380,9 @@ $$</p>
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://dlatreyte.github.io/terminales-nsi/ece/sujet_10/" data-toggle="tooltip" data-placement="top" title="NUMERIQUE et SCIENCES INFORMATIQUES">&larr; Post précédent</a>
+              <a href="https://dlatreyte.github.io/terminales-nsi/ece/sujet_9/" data-toggle="tooltip" data-placement="top" title="NUMERIQUE et SCIENCES INFORMATIQUES">&larr; Post précédent</a>
             </li>
           
-          
-            <li class="next">
-              <a href="https://dlatreyte.github.io/terminales-nsi/ece/sujet_21/" data-toggle="tooltip" data-placement="top" title="NUMERIQUE et SCIENCES INFORMATIQUES">Post suivant &rarr;</a>
-            </li>
           
         </ul>
       
