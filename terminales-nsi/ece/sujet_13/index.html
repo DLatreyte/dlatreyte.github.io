@@ -59,7 +59,7 @@
   "headline": "NUMERIQUE et SCIENCES INFORMATIQUES",
   "description" : "Exercice 1 (50% des points) Écrire une fonction tri_selection qui prend en paramètre une liste tab de nombres entiers et qui renvoie le tableau trié par ordre croissant.\nOn utilisera l’algorithme suivant :\n on recherche le plus petit élément du tableau, et on l\u0026rsquo;échange avec l\u0026rsquo;élément d\u0026rsquo;indice 0 ; on recherche le second plus petit élément du tableau, et on l\u0026rsquo;échange avec l\u0026rsquo;élément d\u0026rsquo;indice 1 ; on continue de cette façon jusqu\u0026rsquo;à ce que le tableau soit entièrement trié.",
   "inLanguage" : "fr",
-  "wordCount":  362 ,
+  "wordCount":  572 ,
   "datePublished" : "2022-01-12T07:34:41",
   "dateModified" : "2022-01-12T07:34:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -293,6 +293,17 @@
 
       <article role="main" class="blog-post" auto_numbering >
           
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#exercice-1-50-des-points">Exercice 1 (50% des points)</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#exercice-2-50-des-points">Exercice 2 (50% des points)</a></li>
+  </ul>
+</nav>
+          
         
         <hr />
 
@@ -313,7 +324,72 @@
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">assert</span> <span class="n">tri_selection</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span> <span class="o">==</span> <span class="p">[</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">52</span><span class="p">]</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="exercice-2-50-des-points">Exercice 2 (50% des points)</h2>
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Corrigé</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+
+<span class="k">def</span> <span class="nf">tri_selection</span><span class="p">(</span><span class="n">tab</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Tri sélection avec l&#39;algorithme imposé 
+</span><span class="s2">    par l&#39;énoncé.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">val_min</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">val_min</span><span class="p">:</span>
+                <span class="n">val_min</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>  <span class="c1"># valeur minimale</span>
+                <span class="n">i_min</span> <span class="o">=</span> <span class="n">j</span>  <span class="c1"># indice du minimum</span>
+        <span class="k">if</span> <span class="n">val_min</span> <span class="o">!=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">tab</span><span class="p">[</span><span class="n">i_min</span><span class="p">]</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val_min</span>
+
+    <span class="k">return</span> <span class="n">tab</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">tri_selection</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span> <span class="o">==</span> <span class="p">[</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">52</span><span class="p">]</span>
+
+
+<span class="n">main</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<h2 id="exercice-2-50-des-points">Exercice 2 (50% des points)</h2>
 <p>Le jeu du « plus ou moins » consiste à deviner un nombre entier choisi entre 1 et 99.</p>
 <p>Un élève de NSI décide de le coder en langage Python de la manière suivante :</p>
 <ul>
@@ -371,7 +447,60 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Perdu ! Le nombre était &#34;</span><span class="p">,</span> <span class="o">....</span><span class="p">)</span>
 </code></pre></td></tr></table>
 </div>
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Corrigé</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+
+
+<span class="k">def</span> <span class="nf">plus_ou_moins</span><span class="p">():</span>
+    <span class="n">nb_mystere</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+    <span class="n">nb_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Proposez un nombre entre 1 et 99 : &#34;</span><span class="p">))</span>
+    <span class="n">compteur</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">while</span> <span class="n">nb_mystere</span> <span class="o">!=</span> <span class="n">nb_test</span> <span class="ow">and</span> <span class="n">compteur</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="n">compteur</span> <span class="o">=</span> <span class="n">compteur</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">nb_mystere</span> <span class="o">&gt;</span> <span class="n">nb_test</span><span class="p">:</span>
+            <span class="n">nb_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Trop petit ! Testez encore : &#34;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nb_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Trop grand ! Testez encore : &#34;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">nb_mystere</span> <span class="o">==</span> <span class="n">nb_test</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Bravo ! Le nombre était &#34;</span><span class="p">,</span> <span class="n">nb_mystere</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Nombre d&#39;essais: &#34;</span><span class="p">,</span> <span class="n">compteur</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Perdu ! Le nombre était &#34;</span><span class="p">,</span> <span class="n">nb_mystere</span><span class="p">)</span>
+</code></pre></td></tr></table>
 </div>
+</div></details>
+<hr />
+
 
         
 
