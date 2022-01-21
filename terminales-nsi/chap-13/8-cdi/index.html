@@ -59,7 +59,7 @@
   "headline": "Emprunt de livres dans un CDI",
   "description" : "Le fichier de travail se trouve à cette adresse.  La base de données correspond à la modélisation d’emprunt de livres dans un CDI :\n  Chaque élève d’un lycée peut emprunter des livres au CDI, les données concernants ces livres et les emprunts en cours sont stockés dans une base de données.\n  Les auteurs ainsi que les éditeurs figurent également dans cette base.\n  Travail préalable Déterminer la structure de la base de données et indiquer son schéma relationnel.",
   "inLanguage" : "fr",
-  "wordCount":  506 ,
+  "wordCount":  516 ,
   "datePublished" : "2022-01-19T04:45:20",
   "dateModified" : "2022-01-19T04:45:20",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -771,11 +771,11 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">livres</span><span class="p">.</span><span class="n">titre</span><span class="w"> 
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span><span class="w"> </span><span class="n">titre</span><span class="w"> 
 </span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">livres</span><span class="w">
 </span><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">ecrire</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">livres</span><span class="p">.</span><span class="n">isbn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ecrire</span><span class="p">.</span><span class="n">isbn</span><span class="w">
 </span><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">auteurs</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">ecrire</span><span class="p">.</span><span class="n">a_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auteurs</span><span class="p">.</span><span class="n">a_id</span><span class="w">
-</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">auteurs</span><span class="p">.</span><span class="n">nom</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%Boulle%&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">auteurs</span><span class="p">.</span><span class="n">nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Pierre Boulle&#39;</span><span class="p">;</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -797,11 +797,26 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">ecrire</span><span class="p">.</span><span class="n">isbn</span><span class="p">)</span><span class="w"> 
-</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">livres</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">livres</span><span class="p">.</span><span class="n">isbn</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">livres</span><span class="w"> 
 </span><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">ecrire</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">livres</span><span class="p">.</span><span class="n">isbn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ecrire</span><span class="p">.</span><span class="n">isbn</span><span class="w">
 </span><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">auteurs</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">ecrire</span><span class="p">.</span><span class="n">a_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auteurs</span><span class="p">.</span><span class="n">a_id</span><span class="w">
-</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">auteurs</span><span class="p">.</span><span class="n">nom</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%Asimov%&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">auteurs</span><span class="p">.</span><span class="n">nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Isaac Asimov&#34;</span><span class="p">;</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>ou, meilleurs,</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">isbn</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">ecrire</span><span class="w">
+</span><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">auteurs</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">ecrire</span><span class="p">.</span><span class="n">a_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auteurs</span><span class="p">.</span><span class="n">a_id</span><span class="w">
+</span><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">auteurs</span><span class="p">.</span><span class="n">nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Isaac Asimov&#34;</span><span class="p">;</span><span class="w">
 </span></code></pre></td></tr></table>
 </div>
 </div></details>
