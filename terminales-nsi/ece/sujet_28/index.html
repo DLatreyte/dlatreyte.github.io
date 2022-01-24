@@ -59,7 +59,7 @@
   "headline": "NUMERIQUE et SCIENCES INFORMATIQUES",
   "description" : "Exercice 1 (50% des points) Dans cet exercice, un arbre binaire de caractères est stocké sous la forme d’un dictionnaire où les clefs sont les caractères des nœuds de l’arbre et les valeurs, pour chaque clef, la liste des caractères des fils gauche et droit du nœud.\nPar exemple, l’arbre\n mermaid.initialize({ theme: \u0027default\u0027, themeCSS: \u0027\u0027, cloneCssStyles: false, useMaxWidth: true, htmlLabels: true, flowchart: { curve: \u0027basis\u0027 } });  graph TD F((F)) -- B((B)) F((F)) -- G((G)) B((B)) -- A((A)) B((B)) -- D((D)) G((G)) -- I((I)) D((D)) -- C((C)) D((D)) -- E((E)) I((I)) -- H((H))  est stocké dans",
   "inLanguage" : "fr",
-  "wordCount":  429 ,
+  "wordCount":  560 ,
   "datePublished" : "2022-01-16T23:13:15",
   "dateModified" : "2022-01-16T23:13:15",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -359,7 +359,44 @@ On pourra distinguer les 4 cas où les deux « fils » du nœud sont <code>''</c
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">assert</span> <span class="n">taille</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="exercice-2-50-des-points">Exercice 2 (50% des points)</h2>
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Corrigé</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">taille</span><span class="p">(</span><span class="n">arbre</span><span class="p">,</span><span class="n">lettre</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">arbre</span><span class="p">[</span><span class="n">lettre</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&#34;&#34;</span> <span class="ow">and</span> <span class="n">arbre</span><span class="p">[</span><span class="n">lettre</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&#34;&#34;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">taille</span><span class="p">(</span><span class="n">arbre</span><span class="p">,</span> <span class="n">arbre</span><span class="p">[</span><span class="n">lettre</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">taille</span><span class="p">(</span><span class="n">arbre</span><span class="p">,</span> <span class="n">arbre</span><span class="p">[</span><span class="n">lettre</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">arbre</span><span class="p">[</span><span class="n">lettre</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span> <span class="ow">and</span> <span class="n">arbre</span><span class="p">[</span><span class="n">lettre</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&#34;&#34;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">taille</span><span class="p">(</span><span class="n">arbre</span><span class="p">,</span> <span class="n">arbre</span><span class="p">[</span><span class="n">lettre</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">arbre</span><span class="p">[</span><span class="n">lettre</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&#34;&#34;</span> <span class="ow">and</span> <span class="n">arbre</span><span class="p">[</span><span class="n">lettre</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">taille</span><span class="p">(</span><span class="n">arbre</span><span class="p">,</span> <span class="n">arbre</span><span class="p">[</span><span class="n">lettre</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">else</span> <span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+
+<span class="n">a</span><span class="o">=</span> <span class="p">{</span><span class="s1">&#39;F&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;G&#39;</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">],</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">],</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">],</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">],</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">],</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;I&#39;</span><span class="p">],</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;H&#39;</span><span class="p">],</span><span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">]}</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<h2 id="exercice-2-50-des-points">Exercice 2 (50% des points)</h2>
 <p>On considère l&rsquo;algorithme de tri de tableau suivant : « à chaque étape, on parcourt depuis le début du tableau tous les éléments non rangés et on place en dernière position le plus grand élément ».</p>
 <p>Exemple avec le tableau :</p>
 <div class="highlight"><div class="chroma">
@@ -442,6 +479,37 @@ trouvé avec l&rsquo;avant dernier. Le tableau devient :</dd>
 </div>
 </div><p>échange les contenus de <code>a</code> et de <code>b</code>.</p>
 </div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Corrigé</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">tri_iteratif</span><span class="p">(</span><span class="n">tab</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span> <span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">imax</span> <span class="o">=</span> <span class="n">k</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span> <span class="p">,</span> <span class="n">k</span> <span class="p">):</span>
+            <span class="k">if</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">tab</span><span class="p">[</span><span class="n">imax</span><span class="p">]</span> <span class="p">:</span>
+                <span class="n">imax</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">if</span> <span class="n">tab</span><span class="p">[</span><span class="n">imax</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">tab</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="p">:</span>
+            <span class="n">tab</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="p">,</span> <span class="n">tab</span><span class="p">[</span><span class="n">imax</span><span class="p">]</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">imax</span><span class="p">]</span> <span class="p">,</span> <span class="n">tab</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">tab</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
 
 
         
