@@ -59,7 +59,7 @@
   "headline": "Les tours de Hanoï",
   "description" : "Le problème mathématique des tours de Hanoï a été inventé par Édouard Lucas. Paru d\u0026rsquo;abord en fascicule en 1889 , il est publié ensuite dans le tome 3 de ses « Récréations mathématiques », parues à titre posthume en 1892. Il annonce que ce problème est dû à un de ses amis, N. Claus de Siam (anagramme de Lucas d\u0026rsquo;Amiens, Amiens étant sa ville de naissance), prétendument professeur au collège de Li-Sou-Stian (anagramme de Saint Louis, le lycée où Lucas enseignait).",
   "inLanguage" : "fr",
-  "wordCount":  651 ,
+  "wordCount":  716 ,
   "datePublished" : "2020-11-24T04:54:14",
   "dateModified" : "2020-11-24T04:54:14",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -293,7 +293,15 @@
 
       <article role="main" class="blog-post" auto_numbering >
           
-            <nav id="TableOfContents"></nav>
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
           
         
         <hr />
@@ -326,8 +334,8 @@
     <summary>
         <strong> Réponse</strong>
     </summary>
-<p>Pour pouvoir déplacer le dernier disque (celui du dessous), il est nécessaire de déplacer les $n − 1$ disques qui le couvrent sur la tige centrale. Une fois ces déplacements effectués, on peut le déplacer sur la troisième tige. Il reste alors à déplacer les $n − 1$ autres disques vers la troisième tige.
-<img src="../../../terminales-nsi/chap-10/chap-10-3-2.png" alt="" width="" /></p>
+<p>Pour pouvoir déplacer le dernier disque (celui du dessous), il est nécessaire de déplacer les $n − 1$ disques qui le couvrent sur la tige centrale. Une fois ces déplacements effectués, on peut le déplacer sur la troisième tige. Il reste alors à déplacer les $n − 1$ autres disques vers la troisième tige.</p>
+<img src="../../../terminales-nsi/chap-10/chap-10-3-2.png" alt="" width="" />
 </details>
 <hr />
 <ol start="3">
@@ -394,7 +402,7 @@
 <ul>
 <li><code>hanoi(0, &quot;C&quot;, &quot;B&quot;, &quot;A&quot;)</code></li>
 <li>Affichage : 1 de C à B</li>
-<li><code>hanoi(0, &quot;A&quot;, &quot;C&quot;, &quot;A&quot;)</code></li>
+<li><code>hanoi(0, &quot;A&quot;, &quot;C&quot;, &quot;B&quot;)</code></li>
 </ul>
 </li>
 </ul>
@@ -409,11 +417,11 @@
 <li><code>hanoi(0, &quot;C&quot;, &quot;B&quot;, &quot;A&quot;)</code></li>
 </ul>
 </li>
-<li>Affichage : 2 de B à C<br>
--<code>hanoi(1, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;)</code>
+<li>Affichage : 2 de B à C</li>
+<li><code>hanoi(1, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;)</code>
 <ul>
 <li><code>hanoi(0, &quot;A&quot;, &quot;C&quot;, &quot;B&quot;)</code></li>
-<li>Affichage 1 de A vers C</li>
+<li>Affichage : 1 de A vers C</li>
 <li><code>hanoi(0, &quot;B&quot;, &quot;A&quot;, &quot;C&quot;)</code></li>
 </ul>
 </li>
@@ -422,6 +430,29 @@
 </ul>
 </li>
 </ul>
+</details>
+<hr />
+<ol start="5">
+<li>Quelle est la complexité de la fonction ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<h4 id="récurrence-">Récurrence :</h4>
+<p>Si on note $x_n$ le nombre de mouvement pour déplacer $n$ disques, on obtient la relation de récurrence :
+$$
+\begin{aligned}
+x_0 &amp;= 0\cr
+x_n &amp;= 2 x_{n-1} + 1 \text{ si } n \ge 1\cr
+\end{aligned}</p>
+<p>$$</p>
+<p>ce qui donne
+$$
+x_n = 2^n - 1
+$$</p>
+<p>La complexité est en $O(2^n)$.</p>
 </details>
 <hr />
 <ul>
