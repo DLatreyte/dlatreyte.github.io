@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Les tours de Hanoï - Accueil</title>
-  <meta name="description" content="Chapitre 13,3">
+  <title>Recherche numérique de zéros de fonctions - Accueil</title>
+  <meta name="description" content="Chapitre 13,5">
   <meta name="author" content="David Latreyte"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -44,8 +44,8 @@
         "@type": "ListItem",
         "position": 3,
         "item": {
-          "@id": "https:\/\/dlatreyte.github.io\/terminales-nsi\/chap-10\/3-tour-hanoi\/",
-          "name": "Les tours de hanoi"
+          "@id": "https:\/\/dlatreyte.github.io\/terminales-nsi\/chap-10\/5-recherche-zero\/",
+          "name": "Recherche numérique de zéros de fonctions"
         }
     }]
 }
@@ -56,15 +56,15 @@
   "author": {
     "name" : "David Latreyte"
   },
-  "headline": "Les tours de Hanoï",
-  "description" : "Le problème mathématique des tours de Hanoï a été inventé par Édouard Lucas. Paru d\u0026rsquo;abord en fascicule en 1889 , il est publié ensuite dans le tome 3 de ses « Récréations mathématiques », parues à titre posthume en 1892. Il annonce que ce problème est dû à un de ses amis, N. Claus de Siam (anagramme de Lucas d\u0026rsquo;Amiens, Amiens étant sa ville de naissance), prétendument professeur au collège de Li-Sou-Stian (anagramme de Saint Louis, le lycée où Lucas enseignait).",
+  "headline": "Recherche numérique de zéros de fonctions",
+  "description" : "Dans ce document on introduit une méthode permettant d\u0026rsquo;évaluer numériquement une solution de l\u0026rsquo;équation $f (x) = 0$, avec $f$ une fonction de $\\mathbb{R}$ dans $\\mathbb{R}$ (lorsque la solution existe, bien sur) : la méthode de dichotomie.\n La méthode de dichotomie est efficace et converge relativement vite. De plus, les conditions de son utilisation sont assez simples : la fonction $f$ doit seulement être continue et changer de signe sur l\u0026rsquo;intervalle choisi ; La méthode de Newton converge étonnement vite !",
   "inLanguage" : "fr",
-  "wordCount":  716 ,
-  "datePublished" : "2020-11-24T04:54:14",
-  "dateModified" : "2020-11-24T04:54:14",
+  "wordCount":  1216 ,
+  "datePublished" : "2022-02-03T21:28:05",
+  "dateModified" : "2022-02-03T21:28:05",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
-  "keywords" : [ "Diviser pour régner, Récursivité" ],
-  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/terminales-nsi\/chap-10\/3-tour-hanoi\/",
+  "keywords" : [ "Méthode de Newton, Dichotomie" ],
+  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/terminales-nsi\/chap-10\/5-recherche-zero\/",
   "publisher" : {
     "@type": "Organization",
     "name" : "https:\/\/dlatreyte.github.io",
@@ -78,15 +78,15 @@
 }
 </script>
 
-<meta property="og:title" content="Les tours de Hanoï" />
-<meta property="og:description" content="Chapitre 13,3">
+<meta property="og:title" content="Recherche numérique de zéros de fonctions" />
+<meta property="og:description" content="Chapitre 13,5">
 <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
-<meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/chap-10/3-tour-hanoi/" />
+<meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/chap-10/5-recherche-zero/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Accueil" />
 
-  <meta name="twitter:title" content="Les tours de Hanoï" />
-  <meta name="twitter:description" content="Chapitre 13,3">
+  <meta name="twitter:title" content="Recherche numérique de zéros de fonctions" />
+  <meta name="twitter:description" content="Chapitre 13,5">
   <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@@DLatreyte" />
@@ -267,14 +267,14 @@
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="terminales-nsi-heading">
               
-                <h1>Les tours de Hanoï</h1>
+                <h1>Recherche numérique de zéros de fonctions</h1>
               
               
                 <hr class="small">
               
               
                 
-                  <h2 class="terminales-nsi-subheading">Chapitre 13,3</h2>
+                  <h2 class="terminales-nsi-subheading">Chapitre 13,5</h2>
                 
               
               
@@ -295,180 +295,219 @@
           
             <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#méthode-de-la-dichotomie">Méthode de la dichotomie</a></li>
+    <li><a href="#principe-de-résolution-du-problème">Principe de résolution du problème</a></li>
+    <li><a href="#la-méthode-converge-t-elle-réellement-">La méthode converge-t-elle réellement ?</a>
       <ul>
         <li></li>
       </ul>
     </li>
+    <li><a href="#exemple--approximation-de-sqrt10">Exemple : Approximation de $\sqrt{10}$</a></li>
+    <li><a href="#nombre-ditérations-nécessaires-pour-atteindre-un-résultat">Nombre d&rsquo;itérations nécessaires pour atteindre un résultat</a></li>
+    <li><a href="#implémentation-en-python-de-lalgorithme">Implémentation en Python de l&rsquo;algorithme</a></li>
   </ul>
 </nav>
           
         
         <hr />
 
-        <div class="note normal">
-  <p>Le problème mathématique des tours de Hanoï a été inventé par Édouard Lucas. Paru d&rsquo;abord en fascicule en 1889 , il est publié ensuite dans le tome 3 de ses « Récréations mathématiques », parues à titre posthume en 1892. Il annonce que ce problème est dû à un de ses amis, N. Claus de Siam (anagramme de Lucas d&rsquo;Amiens, Amiens étant sa ville de naissance), prétendument professeur au collège de Li-Sou-Stian (anagramme de Saint Louis, le lycée où Lucas enseignait).</p>
-<p>Sous le titre « Les brahmes tombent », Lucas relate que « <em>N. Claus de Siam a vu, dans ses voyages pour la publication des écrits de l&rsquo;illustre Fer-Fer-Tam-Tam, dans le grand temple de Bénarès, au-dessous du dôme qui marque le centre du monde, trois aiguilles de diamant, plantées dans une dalle d&rsquo;airain, hautes d&rsquo;une coudée et grosses comme le corps d&rsquo;une abeille.</em> <em>Sur une de ces aiguilles, Dieu enfila au commencement des siècles, 64 disques d&rsquo;or pur, le plus large reposant sur l&rsquo;airain, et les autres, de plus en plus étroits, superposés jusqu&rsquo;au sommet. C&rsquo;est la tour sacrée du Brahmâ.</em> <em>Nuit et jour, les prêtres se succèdent sur les marches de l&rsquo;autel, occupés à transporter la tour de la première aiguille sur la troisième, sans s&rsquo;écarter des règles fixes que nous venons d&rsquo;indiquer, et qui ont été imposées par Brahma.</em> <em>Quand tout sera fini, la tour et les brahmes tomberont, et ce sera la fin des mondes !</em> ».</p>
-<div style="text-align: right;">
-<a href="https://fr.wikipedia.org/wiki/Tours_de_Hanoï" target="_blank">Wikipedia</a>
-</div>
-</div>
-<div class="note normal">
-  <p>Au début du jeu, les disques sont tous positionnés sur la première tige (du plus grand au plus petit) et <em>l’objectif est de déplacer tous ces disques sur la troisième tige</em>, en respectant les règles suivantes :</p>
+        <p>Dans ce document on introduit une méthode permettant d&rsquo;évaluer numériquement une solution de l&rsquo;équation $f (x) = 0$, avec $f$ une fonction de $\mathbb{R}$ dans $\mathbb{R}$ (lorsque la solution existe, bien sur) : la <strong>méthode de dichotomie</strong>.</p>
 <ul>
-<li><em>Un seul disque peut être déplacé à la fois ;</em></li>
-<li><em>On ne peut jamais poser un disque sur un disque de diamètre inférieur.</em></li>
+<li>La <strong>méthode de dichotomie</strong> est <em>efficace et converge relativement vite</em>. De plus, les conditions de son utilisation sont assez simples : la fonction $f$ doit seulement être <strong>continue</strong> et <strong>changer de signe sur l&rsquo;intervalle choisi</strong> ;</li>
+<li>La <strong>méthode de Newton</strong> <em>converge étonnement vite</em> ! Les conditions de son utilisation sont cependant plus contraignantes : la fonction $f$ <strong>doit être dérivable</strong>.</li>
 </ul>
+<h2 id="méthode-de-la-dichotomie">Méthode de la dichotomie</h2>
+<p>Le raisonnement à mettre en œuvre s&rsquo;appuie sur le théorème des valeurs intermédiaires.</p>
+<div class="note normal">
+  <h4 id="théorème-des-valeurs-intermédiaires">Théorème des valeurs intermédiaires</h4>
+<p>Soit $f: [a,b] \to \mathbb{R}$ une fonction continue sur un segment. Si $f(a) \cdot f(b) \leqslant 0$, alors il existe $\ell \in [a, b]$ tel que $f(\ell)=0$.
 </div>
-<img src="../../../terminales-nsi/chap-10/chap-10-3-1.png" alt="" width="80%" />
+<img src="../../../terminales-nsi/chap-10/chap-10-5/chap-10-5-1.png" alt="" width=100% />
+<h2 id="principe-de-résolution-du-problème">Principe de résolution du problème</h2>
+<div class="note normal">
+  <ol>
+<li>
+<p>On choisit un intervalle $[a, b]$ dans lequel on pense que la fonction $f$ s&rsquo;annule <em>une seule fois</em> (il peut donc être nécessaire de limiter la largeur de cet intervalle).</p>
+</li>
+<li>
+<p><strong>Étape 1.</strong> On détermine les coordonnées du <em>point milieu de l&rsquo;intervalle</em> : $\dfrac{a + b}{2}$</p>
+<ul>
+<li>Si $f(a) \cdot f \left( \dfrac{a + b}{2} \right) \leqslant 0$, le théorème des valeurs intermédiaires permet de conclure qu&rsquo;il existe un point $c \in \left[a, \dfrac{a + b}{2} \right]$ tel que $f(c) = 0$.</li>
+<li>Si $f(a) \cdot f \left( \dfrac{a + b}{2} \right) \geqslant 0$, le théorème des valeurs intermédiaires permet de conclure qu&rsquo;il existe un point $c \in \left[ \dfrac{a + b}{2}, b \right]$ tel que $f(c) = 0$.
+On est donc parvenu, à l&rsquo;issu de cette étape, à définir un intervalle dans lequel $f(x) = 0$, de longueur moitié par rapport à l&rsquo;intervalle initial.</li>
+</ul>
+</li>
+<li>
+<p><strong>Étape suivante.</strong> On répète le processus mis en œuvre dans l'<strong>Étape 1</strong> pour l&rsquo;intervalle $\left[a, \dfrac{a + b}{2} \right]$ ou $\left[ \dfrac{a + b}{2}, b \right]$.</p>
+</li>
+<li>
+<p><strong>Étapes suivantes.</strong> On continue à répéter le processus jusqu&rsquo;à ce que l&rsquo;intervalle soit de longueur inférieure à une longueur choisie (arbitrairement).</p>
+</li>
+</ol>
+</div>
+<img src="../../../terminales-nsi/chap-10/chap-10-5/chap-10-5-2.png" alt="" width=100% />
+<h2 id="la-méthode-converge-t-elle-réellement-">La méthode converge-t-elle réellement ?</h2>
 <ol>
 <li>
-<p>Numéroter chaque disque pour un empilement à 4 disques et écrire l&rsquo;enchaînement des étapes nécessaires à la réalisation de la tâche.</p>
+<p>On construit deux suites $(a_n)$ et $(b_n)$ qui évoluent comme les bornes de l&rsquo;intervalle, et la suite $(x_n)$, zéro de $f$ pour chaque intervalle.</p>
+<ul>
+<li>
+<p><strong>Au rang 0.</strong> On pose $a_0 = a$, $b_0 = b$. Comme $f (a) \cdot f (b) \leqslant 0$, il existe une solution, notée $x_0$, de l&rsquo;équation $f (x) = 0$ dans l&rsquo;intervalle $[a_0, b_0]$.</p>
 </li>
 <li>
-<p>Faire émerger le raisonnement récursif qui permet de résoudre le problème.</p>
+<p><strong>Au rang 1.</strong> Si $f (a_0) \cdot f \left( \dfrac{a_0 + b_0}{2} \right) \leqslant 0$, alors on pose $a_1 = a_0$ et $b_1 = \dfrac{a_0 + b_0}{2}$, sinon on pose $a_1 = \dfrac{a_0 + b_0}{2}$ et $b_1 = b_0$.  <br>
+Comme $f (a_1) \cdot f (b_1) \leqslant 0$, il existe une solution, notée $x_1$, de l&rsquo;équation $f (x) = 0$ dans l&rsquo;intervalle $[a_1, b_1]$.</p>
+</li>
+<li>
+<p><strong>Au rang $n$.</strong> On suppose construit un intervalle $[a_n, b_n]$, de longueur $\dfrac{b_n - a_n}{2^n}$, contenant une solution $x_n$ de l&rsquo;équation $f (x) = 0$. <br>
+Si $f (a_n) \cdot f \left( \dfrac{a_n + b_n}{2} \right) \leqslant 0$, alors on pose $a_{n + 1} = a_n$ et $b_{n + 1} = \dfrac{a_n + b_n}{2}$, sinon on pose $a_{n + 1} = \dfrac{a_n + b_n}{2}$ et $b_{n + 1} = b_n$. Comme $f (a_{n + 1}) \cdot f (b_{n + 1}) \leqslant 0$, il existe une solution, notée $x_{n + 1}$, de l&rsquo;équation $f (x) = 0$ dans l&rsquo;intervalle $[a_{n + 1}, b_{n + 1}]$.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><em>Étude des suites construites</em> <br>
+Par construction : <br>
+- $a_n \leqslant x_n \leqslant b_n$  <br>
+- $(a_n)$ est une suite croissante, $(b_n)$ une suite décroissante. <br>
+La limite de $(b_n - a_n)$ tend donc vers 0 lorsque $n$ tend vers $+ \infty$ : $$\lim (b_n - a_n) \xrightarrow [n \rightarrow + \infty]{} 0$$ Les suites $(a_n)$ et $(b_n)$ sont adjacentes. Elles admettent donc une même limite, $\ell$.</p>
+<p>Par application du théorème des gendarmes, on peut aussi en conclure que $$\lim (x_n) \xrightarrow[n \rightarrow + \infty] \ \ell$$ et, comme $f$ est une fonction continue, $$f (\ell) = \lim_{n \rightarrow + \infty} f (x_n) = \lim_{n \rightarrow + \infty} 0 = 0$$
+En conclusion, les suites $(a_n)$ et $(b_n)$ tendent vers la valeur $\ell$, solution de $f (x) = 0$.</p>
 </li>
 </ol>
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-<p>Pour pouvoir déplacer le dernier disque (celui du dessous), il est nécessaire de déplacer les $n − 1$ disques qui le couvrent sur la tige centrale. Une fois ces déplacements effectués, on peut le déplacer sur la troisième tige. Il reste alors à déplacer les $n − 1$ autres disques vers la troisième tige.</p>
-<img src="../../../terminales-nsi/chap-10/chap-10-3-2.png" alt="" width="" />
-</details>
-<hr />
-<ol start="3">
-<li>Écrire le code de la fonction dont la spécification est</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">hanoi</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">debut</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">milieu</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">fin</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    Fonction qui déplace récursivement les disques selon les règles des tours de Hanoï. 
-</span><span class="s2">    &#34;&#34;&#34;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>Tester cette fonction.</p>
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Aide</strong>
-    </summary>
-<div class="note normal">
-  <p>L&rsquo;algorithme est le suivant :</p>
+<h4 id="remarque">Remarque.</h4>
+<p>En pratique, on arrête le processus dès que $b_n - a_n = \dfrac{b - a}{2^n}$
+est inférieur à la précision souhaitée.</p>
+<h2 id="exemple--approximation-de-sqrt10">Exemple : Approximation de $\sqrt{10}$</h2>
 <ul>
-<li>Si le nombre de disques est égal à 0, afficher &ldquo;Aucun disque à déplacer&rdquo; ;</li>
-<li>Si le nombre de disques est égal à 1, déplacer directement le disque du piquet $A$ au piquet $C$ ;</li>
-<li>Si le nombre de disques est supérieur ou égal à 2, enchaîner les étapes suivante :
+<li>
+<p>On définit la fonction $f$ définie par $f (x) = x^2 - 10$. $f$ est
+une fonction continue sur $\mathbb{R}$ qui s&rsquo;annule en $\sqrt{10}$ et $-\sqrt{10}$.</p>
+</li>
+<li>
+<p>On limite l&rsquo;étude à l&rsquo;intervalle $[3 ; 4]$ puisque : $f (3) = 3^2 -
+10 = - 1 &lt; 0$ et $f (4) = 4^2 - 10 = 6 &gt; 0$ entraîne $\sqrt{10} \in [3 ; 4]$.</p>
+</li>
+<li>
+<p>On écrit le processus itératif :</p>
 <ul>
-<li>Déplacer $n-1$ disques du piquet $A$ jusqu&rsquo;au piquet $B$ ;</li>
-<li>Déplacer le disque qui reste du piquet $A$ au piquet $C$ ;</li>
-<li>Déplacer $n-1$ disques du piquet $B$ au piquet $C$.</li>
-</ul>
+<li>
+<p>On pose $a_0 = 3$ et $b_0 = 4$. $f (a_0) \leqslant 0$ et $f (b_0)
+\geqslant 0$. <br>
+$\dfrac{a_0 + b_0}{2} = \pu{3,5}$ donc $f \left( \dfrac{a_0 + b_0}{2}
+\right) = f (\pu{3,5}) = \pu{3,5}^2 - 10 = \pu{2,25} \geqslant 0$. <br>
+$f (a_0) \cdot f \left( \dfrac{a_0 + b_0}{2} \right) \leqslant 0$, on en
+déduit que $\sqrt{10}$ est dans l&rsquo;intervalle $[3 ; \pu{3,5}]$.</p>
+</li>
+<li>
+<p>On pose $a_1 = 3$ et $b_1 = \text{3,5}$.  <br>
+$\dfrac{a_1 + b_1}{2} = \pu{3,25}$ donc $f \left( \dfrac{a_1 + b_1}{2}
+\right) = f (\pu{3,25}) = \pu{0,5625} \geqslant 0$.   <br>
+$f (a_1) \cdot f \left( \dfrac{a_1 + b_1}{2} \right) \leqslant 0$, on en
+déduit que $\sqrt{10}$ est dans l&rsquo;intervalle $[3 ; \pu{3,25}]$.</p>
+</li>
+<li>
+<p>On pose $a_2 = 3$ et $b_2 = \pu{3,25}$.  <br>
+$\dfrac{a_2 + b_2}{2} = \pu{3,125}$ donc $f \left( \dfrac{a_2 + b_2}{2}
+\right) = f (\pu{3,125}) = - \pu{0,23&hellip;} \leqslant 0$.   <br>
+$f (b_2) \geqslant 0$, $f$ s&rsquo;annule sur l&rsquo;intervalle $[\text{3,125} ; \pu{3,25}]$.</p>
 </li>
 </ul>
-</div>
-</details>
-<hr />
-<ol start="4">
-<li>Indiquer tous les appels de fonctions et toutes les instructions exécutées pour $n=3$.</li>
-</ol>
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-<ul>
-<li><code>hanoi(3, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;)</code>
-<ul>
-<li><code>hanoi(2, &quot;A&quot;, &quot;C&quot;, &quot;B&quot;)</code>
-<ul>
-<li><code>hanoi(1, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;)</code>
-<ul>
-<li><code>hanoi(0, &quot;A&quot;, &quot;C&quot;, &quot;B&quot;)</code></li>
-<li>Affichage : 1 de A à C</li>
-<li><code>hanoi(0, &quot;B&quot;, &quot;A&quot;, &quot;C&quot;)</code></li>
-</ul>
-</li>
-<li>Affichage : 2 de A à B</li>
-<li><code>hanoi(1, &quot;C&quot;, &quot;A&quot;, &quot;B&quot;)</code>
-<ul>
-<li><code>hanoi(0, &quot;C&quot;, &quot;B&quot;, &quot;A&quot;)</code></li>
-<li>Affichage : 1 de C à B</li>
-<li><code>hanoi(0, &quot;A&quot;, &quot;C&quot;, &quot;B&quot;)</code></li>
-</ul>
+<p>À ce stade, on a donc démontré que : $\pu{3,125} \leqslant \sqrt{10} \leqslant \pu{3,25}$.</p>
 </li>
 </ul>
-</li>
-<li>Affichage : 3 de A à C</li>
-<li><code>hanoi(2, &quot;B&quot;, &quot;A&quot;, &quot;C&quot;)</code>
-<ul>
-<li><code>hanoi(1, &quot;B&quot;, &quot;C&quot;, &quot;A&quot;)</code>
-<ul>
-<li><code>hanoi(0, &quot;B&quot;, &quot;A&quot;, &quot;C&quot;)</code></li>
-<li>Affichage : 1 de B à A</li>
-<li><code>hanoi(0, &quot;C&quot;, &quot;B&quot;, &quot;A&quot;)</code></li>
-</ul>
-</li>
-<li>Affichage : 2 de B à C</li>
-<li><code>hanoi(1, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;)</code>
-<ul>
-<li><code>hanoi(0, &quot;A&quot;, &quot;C&quot;, &quot;B&quot;)</code></li>
-<li>Affichage : 1 de A vers C</li>
-<li><code>hanoi(0, &quot;B&quot;, &quot;A&quot;, &quot;C&quot;)</code></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</details>
-<hr />
-<ol start="5">
-<li>Quelle est la complexité de la fonction ?</li>
-</ol>
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-<h4 id="récurrence-">Récurrence :</h4>
-<p>Si on note $x_n$ le nombre de mouvement pour déplacer $n$ disques, on obtient la relation de récurrence :
-$$
-\begin{aligned}
-x_0 &amp;= 0\cr
-x_n &amp;= 2 x_{n-1} + 1 \text{ si } n \ge 1\cr
-\end{aligned}</p>
-<p>$$</p>
-<p>ce qui donne
-$$
-x_n = 2^n - 1
+<p>Avec quelques étapes de plus, on obtient :</p>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">$a_0=3$</td>
+<td style="text-align:left">$b_0=4$</td>
+</tr>
+<tr>
+<td style="text-align:left">$a_1=3$</td>
+<td style="text-align:left">$b_1=\pu{3,5}$</td>
+</tr>
+<tr>
+<td style="text-align:left">$a_2=3$</td>
+<td style="text-align:left">$b_2=\pu{3,25}$</td>
+</tr>
+<tr>
+<td style="text-align:left">$a_3=\pu{3,125}$</td>
+<td style="text-align:left">$b_3=\pu{3,25}$</td>
+</tr>
+<tr>
+<td style="text-align:left">$a_4=\pu{3,125}$</td>
+<td style="text-align:left">$b_4=\pu{3,1875}$</td>
+</tr>
+<tr>
+<td style="text-align:left">$a_5=\pu{3,15625}$</td>
+<td style="text-align:left">$b_5=\pu{3,1875}$</td>
+</tr>
+<tr>
+<td style="text-align:left">$a_6=\pu{3,15625}$</td>
+<td style="text-align:left">$b_6=\pu{3,171875}$</td>
+</tr>
+<tr>
+<td style="text-align:left">$a_7=\pu{3,15625}$</td>
+<td style="text-align:left">$b_7=\pu{3,164062}$</td>
+</tr>
+<tr>
+<td style="text-align:left">$a_8=\pu{3,16015}$</td>
+<td style="text-align:left">$b_8=\pu{3,164062}$</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>En 8 étapes, on obtient donc l&rsquo;encadrement : $$\pu{3,160} \leqslant \sqrt{10} \leqslant \pu{3,165}$$ ce qui donne les deux premières décimales du résultat.</p>
+<h2 id="nombre-ditérations-nécessaires-pour-atteindre-un-résultat">Nombre d&rsquo;itérations nécessaires pour atteindre un résultat</h2>
+<p>La longueur de l&rsquo;intervalle $[a_n, b_n]$ est $\dfrac{b - a}{2^n}$ puisqu&rsquo;il a
+été nécessaire de découper $n$ fois l&rsquo;intervalle de départ en deux pour
+parvenir à cet intervalle.</p>
+<p>On peut alors rechercher <em>le nombre d&rsquo;itérations nécessaires pour
+atteindre une précision choisie</em> lors de la phase préliminaire de l&rsquo;étude ; il suffit de rechercher le nombre $n$ tel que $\dfrac{b - a}{2^n} \leqslant
+10^{- N}$ :</p>
+<p>$$
+(b - a) 10^N \leqslant 2^n
 $$</p>
-<p>La complexité est en $O(2^n)$.</p>
-</details>
-<hr />
+<p>$$
+\log (b - a) + \log (10^N) \leqslant \log (2^n)
+$$</p>
+<p>$$
+\log (b - a) + N \leqslant n \log (2)
+$$</p>
+<p>$$
+n \geqslant \dfrac{\log (b - a) + N}{\log (2)}
+$$</p>
+<p><strong>Exemple.</strong> $\log (2) \simeq \pu{0,3} \iff \dfrac{1}{\log (2)} = \pu{3,3}$ donc si $\log (b - a) \leqslant 1$, une précision de :</p>
 <ul>
 <li>
-<a class="remote" href="https://replit.com/@dlatreyte/hanoi" target="_blank">Accès au corrigé</a>
-
+<p>$10^{- 10}$ ($\thicksim$ 10 décimales) nécessite 34 itérations ;</p>
+</li>
+<li>
+<p>$10^{- 100}$ ($\thicksim$ 100 décimales) nécessite 333 itérations ;</p>
+</li>
+<li>
+<p>$10^{- 1000}$ ($\thicksim$ 1000 décimales) nécessite 3322 itérations.</p>
 </li>
 </ul>
+<p><em>Ajouter une décimale nécessite donc 3 ou 4 itérations supplémentaires.</em></p>
+<h2 id="implémentation-en-python-de-lalgorithme">Implémentation en Python de l&rsquo;algorithme</h2>
+<p>L&rsquo;objectif de cette partie pratique est de mettre en œuvre la méthode de dichotomie en Python pour rechercher la racine carré de 10.</p>
+<p>Utiliser un algorithme itératif puis un algorithme récursif.</p>
 
 
         
           <div class="blog-tags">
             
-              <a href="https://dlatreyte.github.io/tags/diviser-pour-r%C3%A9gner/">Diviser pour régner</a>&nbsp;
+              <a href="https://dlatreyte.github.io/tags/m%C3%A9thode-de-newton/">Méthode de Newton</a>&nbsp;
             
-              <a href="https://dlatreyte.github.io/tags/r%C3%A9cursivit%C3%A9/">Récursivité</a>&nbsp;
+              <a href="https://dlatreyte.github.io/tags/dichotomie/">Dichotomie</a>&nbsp;
             
           </div>
         
@@ -485,17 +524,6 @@ $$</p>
         
           
           
-          <h4 class="see-also">Voir également</h4>
-          <ul>
-          
-            <li><a href="../../../terminales-nsi/chap-10/6-rotation-image/">Rotation d&#39;une image bitmap d&#39;un quart de tour</a></li>
-          
-            <li><a href="../../../terminales-nsi/chap-10/1-tri-fusion/">Le tri fusion</a></li>
-          
-            <li><a href="../../../terminales-nsi/chap-5/2-tri-insertion/">Tri par insertion</a></li>
-          
-          </ul>
-          
         
       </article>
 
@@ -504,13 +532,9 @@ $$</p>
         <ul class="pager blog-pager">
           
             <li class="previous">
-              <a href="https://dlatreyte.github.io/terminales-nsi/chap-10/6-rotation-image/" data-toggle="tooltip" data-placement="top" title="Rotation d&#39;une image bitmap d&#39;un quart de tour">&larr; Post précédent</a>
+              <a href="https://dlatreyte.github.io/terminales-nsi/chap-10/4-max-somme-sous-tableau/" data-toggle="tooltip" data-placement="top" title="Problème de la sous-séquence de somme maximale">&larr; Post précédent</a>
             </li>
           
-          
-            <li class="next">
-              <a href="https://dlatreyte.github.io/terminales-nsi/chap-10/2-minmax/" data-toggle="tooltip" data-placement="top" title="Recherche des plus grand et petit éléments dans un tableau">Post suivant &rarr;</a>
-            </li>
           
         </ul>
       
