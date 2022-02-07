@@ -57,9 +57,9 @@
     "name" : "David Latreyte"
   },
   "headline": "Autour de la suite de Fibonacci",
-  "description" : "Rappel : récursivité terminale La définition de la fonction factorielle est $$ n! = \\begin{cases} 0 \u0026amp; \\text{if } n = 0 \\cr n \\times (n-1)! \u0026amp; \\text{sinon} \\end{cases} $$\n Définir la fonction fact_env qui calcule la factorielle d\u0026rsquo;un entier naturel $n$, sans oublier le jeu de tests.\nLa définition de la fonction est : 1  def fact_env(n: int) -\u0026gt; int     En informatique, la récursion terminale, aussi appelée, récursion finale, est un cas particulier de récursivité assimilée à une itération.",
+  "description" : "Rappel : récursivité terminale La définition de la fonction factorielle est $$ n! = \\begin{cases} 0 \u0026amp; \\text{if } n = 0 \\cr n \\times (n-1)! \u0026amp; \\text{sinon} \\end{cases} $$\n Définir la fonction fact_env qui calcule la factorielle d\u0026rsquo;un entier naturel $n$, sans oublier le jeu de tests.\nLa spécification de la fonction est : 1 2 3 4 5 6  def fact_env(n: int) -\u0026gt; int: \u0026#34;\u0026#34;\u0026#34; Retourne la factorielle de n.",
   "inLanguage" : "fr",
-  "wordCount":  1465 ,
+  "wordCount":  2131 ,
   "datePublished" : "2021-02-25T04:49:20",
   "dateModified" : "2021-02-25T04:49:20",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -321,17 +321,74 @@ n \times (n-1)! &amp; \text{sinon}
 $$</p>
 <ol>
 <li>Définir la fonction <code>fact_env</code> qui calcule la factorielle d&rsquo;un entier naturel $n$, <em>sans oublier le jeu de tests</em>.<br>
-La définition de la fonction est :
+La spécification de la fonction est :
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fact_env</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fact_env</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne la factorielle de n.
+</span><span class="s2">
+</span><span class="s2">    Algorithme : récursivité enveloppée
+</span><span class="s2">    &#34;&#34;&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fact_env</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne la factorielle de n.
+</span><span class="s2">
+</span><span class="s2">    Algorithme : récursivité enveloppée
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fact_env</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">fact_env</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">fact_env</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">fact_env</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">120</span>
+    <span class="k">assert</span> <span class="n">fact_env</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">==</span> <span class="mi">40320</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
 <div class="note normal">
   <p>En informatique, la <strong>récursion terminale</strong>, aussi appelée, récursion finale, est un <em>cas particulier de récursivité assimilée à une itération</em>.<br>
 Une fonction à récursivité terminale (dite tail-recursive en anglais) est une fonction où l'<strong>appel récursif est la dernière instruction à être évaluée</strong>. Cette instruction est alors nécessairement « pure », c&rsquo;est-à-dire qu&rsquo;elle consiste en un simple appel à la fonction, et jamais à un calcul ou une composition.<br>
@@ -343,26 +400,101 @@ Cette réorganisation économise de l&rsquo;espace mémoire car aucun état, sau
 </div>
 <ol start="2">
 <li>Définir la fonction <code>fact_term</code> qui calcule la factorielle d&rsquo;un entier naturel $n$, <em>sans oublier le jeu de tests</em>.<br>
-La définition de la fonction est :
+La spécification de la fonction est :
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fact_term</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fact_term</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne la factorielle de n.
+</span><span class="s2">
+</span><span class="s2">    Algorithme : récursivité terminale
+</span><span class="s2">    &#34;&#34;&#34;</span>
 </code></pre></td></tr></table>
 </div>
-</div>La fonction <code>fact_term</code> est en fait une fonction enveloppe de la fonction <code>_fact</code> dont la définition est :
+</div>La fonction <code>fact_term</code> est en fait une fonction enveloppe de la fonction <code>_fact</code> dont la spécification est :
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">_fact</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">acc</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">_fact</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">acc</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Fonction qui effectue réellement le calcul récursif.
+</span><span class="s2">    &#34;&#34;&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div>La fonction <code>_fact</code> met en œuvre un raisonnement basé sur la récursivité terminale.</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fact_term</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne la factorielle de n.
+</span><span class="s2">
+</span><span class="s2">    Algorithme : récursivité terminale
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">def</span> <span class="nf">_fact</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">acc</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">        Fonction qui effectue réellement le calcul récursif.
+</span><span class="s2">        &#34;&#34;&#34;</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">acc</span>
+
+        <span class="k">return</span> <span class="n">_fact</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">acc</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">_fact</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">fact_term</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">fact_term</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">fact_term</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">120</span>
+    <span class="k">assert</span> <span class="n">fact_term</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">==</span> <span class="mi">40320</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
 <h2 id="autour-de-la-suite-de-fibonacci">Autour de la suite de Fibonacci</h2>
 <p>En mathématiques, la suite de Fibonacci est une suite d&rsquo;entiers dans laquelle chaque terme est la somme des deux termes qui le précèdent. Elle commence par les termes 0 et 1 si on part de l&rsquo;indice 0, ou par 1 et 1 si on part de l&rsquo;indice 1.
 $$
@@ -375,62 +507,305 @@ F_n = F_{n-1} + F_{n-2}
 $$</p>
 <h3 id="résolutions-du-problème-sans-programmation-dynamique">Résolutions du problème sans programmation dynamique</h3>
 <ol start="3">
-<li>
-<p>Définir la fonction <code>fibo_iter</code> qui calcule le terme de rang $n$ de la suite de Fibonacci, <em>sans oublier le jeu de tests</em>. Le raisonnement mis en œuvre doit être itératif.<br>
-La définition de la fonction est :</p>
+<li>Définir la fonction <code>fibo_iter</code> qui calcule le terme de rang $n$ de la suite de Fibonacci, <em>sans oublier le jeu de tests</em>. Le raisonnement mis en œuvre doit être itératif.<br>
+La spécification de la fonction est :
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fibo_iter</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="s2">&#34;&#34;&#34;
+</span><span class="s2">Retourne le terme de rang n de la suite de Fibonacci.
+</span><span class="s2">
+</span><span class="s2">Algorithme : itératif
+</span><span class="s2">&#34;&#34;&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div></li>
-<li>
-<p>Quelle est la complexité de l&rsquo;algorithme itératif ?</p>
-</li>
-<li>
-<p>Définir la fonction <code>fibo_rec</code> qui calcule le terme de rang $n$ de la suite de Fibonacci, <em>sans oublier le jeu de tests</em>. Le raisonnement mis en œuvre doit être récursif.<br>
-La définition de la fonction est :</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fibo_rec</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>Écrire l&rsquo;arbre des appels récursifs pour $n=5$. En déduire la complexité de l&rsquo;algorithme récursif.<br>
-Quelle est la raison d&rsquo;une telle complexité ?</p>
-</li>
-<li>
-<p>En prenant pour exemple la définition de la fonction à la question 2. et l&rsquo;algorithm itératif, à la question 3., définir la fonction <code>fib_recT</code> qui calcule le terme de rang $n$ de la suite de Fibonacci à l&rsquo;aide d&rsquo;un algorithme récursif terminal.<br>
-La définition de la fonction <code>fib_recT</code> est :</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fib_recT</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>La fonction <code>fib_recT</code> est en fait une fonction enveloppe de la fonction <code>_fibo</code> dont la définition est :</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">_fibo</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>Quelle est la complexité de cet algorithme ?</p>
-</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fibo_iter</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne le terme de rang n de la suite de Fibonacci.
+</span><span class="s2">
+</span><span class="s2">    Algorithme : itératif
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">v</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">w</span>
+
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">v</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+
+    <span class="c1"># fibo_iter</span>
+    <span class="k">assert</span> <span class="n">fibo_iter</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="n">fibo_iter</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">fibo_iter</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mi">55</span>
+    <span class="k">assert</span> <span class="n">fibo_iter</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mi">987</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="4">
+<li>Quelle est la complexité de l&rsquo;algorithme itératif ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>L&rsquo;algorithme comporte une boucle, la complexité est donc en $O(n)$.</p>
+</details>
+<hr />
+<ol start="5">
+<li>Définir la fonction <code>fibo_head</code> qui calcule le terme de rang $n$ de la suite de Fibonacci, <em>sans oublier le jeu de tests</em>. Le raisonnement mis en œuvre doit être récursif.<br>
+La spécification de la fonction est :
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fibo_head</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="s2">&#34;&#34;&#34;
+</span><span class="s2">Retourne le terme de rang n de la suite de Fibonacci.
+</span><span class="s2">
+</span><span class="s2">Algorithme : récursif (enveloppé)
+</span><span class="s2">&#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fibo_head</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne le terme de rang n de la suite de Fibonacci.
+</span><span class="s2">
+</span><span class="s2">    Algorithme : récursif (enveloppé)
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+    <span class="n">fibo1</span> <span class="o">=</span> <span class="n">fibo_head</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">fibo2</span> <span class="o">=</span> <span class="n">fibo_head</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fibo1</span> <span class="o">+</span> <span class="n">fibo2</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">fibo_head</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="n">fibo_head</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">fibo_head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mi">55</span>
+    <span class="k">assert</span> <span class="n">fibo_head</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mi">987</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="6">
+<li>Écrire l&rsquo;arbre des appels récursifs pour $n=5$. En déduire la complexité de l&rsquo;algorithme récursif.<br>
+Quelle est la raison d&rsquo;une telle complexité ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<ul>
+<li>Les mêmes calculs sont effectués plusieurs fois.</li>
+<li>La hauteur de l&rsquo;arbre des appels est égale à $n-1$.</li>
+<li>Si chaque étape est en $O(1)$, le nombre de calculs effectués est donc $2^0 + 2^1 + 2^2 + 2^3 + \ldots + 2^{n-1} = 2^n$.</li>
+</ul>
+<p>La complexité est donc en $O(2^n)$.</p>
+</details>
+<hr />
+<ol start="7">
+<li>En prenant pour exemple la définition de la fonction à la question 2. et l&rsquo;algorithm itératif, à la question 3., définir la fonction <code>fib_tail</code> qui calcule le terme de rang $n$ de la suite de Fibonacci à l&rsquo;aide d&rsquo;un algorithme récursif terminal.<br>
+La spécification de la fonction <code>fib_tail</code> est :
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fibo_tail</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne le terme de rang n de la suite de Fibonacci.
+</span><span class="s2">
+</span><span class="s2">    Algorithme : récursif (terminale)
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div>La fonction <code>fib_tail</code> est en fait une fonction enveloppe de la fonction <code>_fibo</code> dont la spécification est :
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">_fibo</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Fonction qui effectue réellement le calcul récursif.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">fibo_tail</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Retourne le terme de rang n de la suite de Fibonacci.
+</span><span class="s2">
+</span><span class="s2">    Algorithme : récursif (terminale)
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">def</span> <span class="nf">_fibo_tail</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">a</span>
+        <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">b</span>
+
+        <span class="k">return</span> <span class="n">_fibo_tail</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">_fibo_tail</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">fibo_tail</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="k">assert</span> <span class="n">fibo_tail</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">fibo_tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mi">55</span>
+    <span class="k">assert</span> <span class="n">fibo_tail</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mi">987</span>
+</code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="8">
+<li>Quelle est la complexité de cet algorithme ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La complexité de l’algorithme récursif terminal, en nombre d’additions, est donnée par la récurrence $T(n) = 1+T(n−1)$. On a donc $T(n) = n−1$ pour <code>_fibo_tail</code>, et par extension pour <code>fibo_tail</code>.</p>
+</details>
+<hr />
 <h3 id="programmation-dynamique">Programmation dynamique</h3>
 <div class="note tip">
   <p>En informatique, la <strong>programmation dynamique</strong> est une méthode algorithmique pour résoudre des <strong>problèmes d&rsquo;optimisation</strong>. Le concept a été introduit au début des années 1950 par Richard Bellman.</p>
