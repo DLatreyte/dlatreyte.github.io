@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Simulation d&#39;un titrage conductimétrique - Accueil</title>
+  <meta name="description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171  &#34;&#34;&#34; Simulation du suivi conductimétrique pour le titrage du sérum physiologique.">
+  <meta name="author" content="David Latreyte"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Accueil",
+    
+    "url": "https:\/\/dlatreyte.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/dlatreyte.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io\/programmation\/simulation-titrage-conductimetrique\/",
+          "name": "Simulation d\u0027un titrage conductimétrique"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "David Latreyte"
+  },
+  "headline": "Simulation d\u0027un titrage conductimétrique",
+  "description" : "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171  \u0026#34;\u0026#34;\u0026#34; Simulation du suivi conductimétrique pour le titrage du sérum physiologique.",
+  "inLanguage" : "fr",
+  "wordCount":  738 ,
+  "datePublished" : "2020-10-11T20:53:53",
+  "dateModified" : "2020-10-11T20:53:53",
+  "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+  "keywords" : [ "" ],
+  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/programmation\/simulation-titrage-conductimetrique\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/dlatreyte.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Simulation d&#39;un titrage conductimétrique" />
+<meta property="og:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171  &#34;&#34;&#34; Simulation du suivi conductimétrique pour le titrage du sérum physiologique.">
+<meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
+<meta property="og:url" content="https://dlatreyte.github.io/programmation/simulation-titrage-conductimetrique/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Accueil" />
+
+  <meta name="twitter:title" content="Simulation d&#39;un titrage conductimétrique" />
+  <meta name="twitter:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 …">
+  <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@@DLatreyte" />
+  <meta name="twitter:creator" content="@@DLatreyte" />
+  <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.92.2" />
+  <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://dlatreyte.github.io">Accueil</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Infos" href="../../about/infos">Infos</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Blog" href="../../">Blog</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Cours</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../premieres-pc">1ère Spé. PC</a>
+                
+                  <a href="../../premieres-nsi">1ère Spé. NSI</a>
+                
+                  <a href="../../terminales-pc">Terminale Spé. PC</a>
+                
+                  <a href="../../terminales-nsi">Terminale Spé. NSI</a>
+                
+                  <a href="../../terminales-es">Terminale Ens. Scientifique</a>
+                
+                  <a href="../../superieur">... dans le supérieur</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Culture</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../culture">Articles</a>
+                
+                  <a href="../../programmation">Programmation</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Catégories" href="../../categories">Catégories</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="../../tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Accueil" href="https://dlatreyte.github.io">
+            <img class="avatar-img" src="https://dlatreyte.github.io/first_page.jpg" alt="Accueil" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="programmation-heading">
+              
+                <h1>Simulation d&#39;un titrage conductimétrique</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post" auto_numbering >
+          
+            <nav id="TableOfContents"></nav>
+          
+        
+        <hr />
+
+        <div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;&#34;
+</span><span class="s2">Simulation du suivi conductimétrique pour le titrage
+</span><span class="s2">du sérum physiologique.
+</span><span class="s2">&#34;&#34;&#34;</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">linregress</span>
+
+
+<span class="k">class</span> <span class="nc">Ion</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Définition d&#39;un ion à prendre en compte dans le
+</span><span class="s2">    calcul de la conductivité d&#39;une solution.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nom</span><span class="p">,</span> <span class="n">conduc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nom</span> <span class="o">=</span> <span class="n">nom</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">charge</span> <span class="o">=</span> <span class="n">charge</span>        <span class="c1"># Charge électrique (multiple de e)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conductivite</span> <span class="o">=</span> <span class="n">conduc</span>  <span class="c1"># Conductivité molaire ionique</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quantite</span> <span class="o">=</span> <span class="n">n</span>           <span class="c1"># Quantité de matière (moles)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">quantite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_quantite</span>
+
+    <span class="nd">@quantite</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">quantite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_quantite</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_quantite</span> <span class="o">=</span> <span class="n">n</span>
+
+    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chaine</span> <span class="o">=</span> <span class="s2">&#34;Nom : </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nom</span><span class="p">)</span>
+        <span class="n">chaine</span> <span class="o">+=</span> <span class="s2">&#34;Charge électrique : </span><span class="si">{}</span><span class="s2">e</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">)</span>
+        <span class="n">chaine</span> <span class="o">+=</span> <span class="s2">&#34;Quantité de matière : </span><span class="si">{}</span><span class="s2"> mol</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">quantite</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">chaine</span>
+
+
+<span class="k">class</span> <span class="nc">Solution</span><span class="p">():</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Définition d&#39;une solution ionique.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">liste_ions</span><span class="o">=</span><span class="p">[],</span> <span class="n">volume</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ions</span> <span class="o">=</span> <span class="n">liste_ions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="n">volume</span>
+
+    <span class="k">def</span> <span class="nf">conductivite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">conduc</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">ion</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ions</span><span class="p">:</span>
+            <span class="n">contrib</span> <span class="o">=</span> <span class="n">ion</span><span class="o">.</span><span class="n">conductivite</span> <span class="o">*</span> <span class="n">ion</span><span class="o">.</span><span class="n">quantite</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span>
+            <span class="n">conduc</span> <span class="o">+=</span> <span class="n">contrib</span>
+        <span class="k">return</span> <span class="n">conduc</span>
+
+
+<span class="k">def</span> <span class="nf">creation_fichier_resultat</span><span class="p">(</span><span class="n">nom_fichier</span><span class="p">,</span> <span class="n">entete_x</span><span class="p">,</span> <span class="n">entete_y</span><span class="p">,</span>
+                              <span class="n">list_x</span><span class="p">,</span> <span class="n">list_y</span><span class="p">):</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">nom_fichier</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fichier</span><span class="p">:</span>
+        <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">fichier</span><span class="p">,</span> <span class="n">dialect</span><span class="o">=</span><span class="s1">&#39;excel&#39;</span><span class="p">)</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">entete_x</span><span class="p">,</span> <span class="n">entete_y</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_x</span><span class="p">)):</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">((</span><span class="n">list_x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">list_y</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+
+<span class="k">def</span> <span class="nf">affichage</span><span class="p">(</span><span class="n">list_v</span><span class="p">,</span> <span class="n">list_conduc</span><span class="p">,</span> <span class="n">list_regres</span><span class="p">):</span>
+    <span class="c1"># Création d&#39;une figure</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="c1"># Création d&#39;une sous-figure</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+    <span class="c1"># Affichage des données</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">list_v</span><span class="p">,</span> <span class="n">list_conduc</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">list_v</span><span class="p">,</span> <span class="n">list_regres</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">)</span>
+    <span class="c1"># Limites pour l&#39;axe des abscisses</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">list_v</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1E-3</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">list_v</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1E-3</span><span class="p">)</span>
+    <span class="c1"># Utilisation de l&#39;écriture scientifique pour les valeurs</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;sci&#39;</span><span class="p">,</span> <span class="n">scilimits</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="c1"># Label de l&#39;axe des abscisses</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$V_2$ (L)&#39;</span><span class="p">)</span>
+    <span class="c1"># Label de l&#39;axe des ordonnées</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$ ($\mathrm</span><span class="si">{S}</span><span class="s1">\cdot\mathrm</span><span class="si">{m}</span><span class="s1">^{-1}$)&#39;</span><span class="p">)</span>
+    <span class="c1"># Affichage de la grille</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="c1"># Légende</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Suivi conductimétrique sans effet de dilution&#39;</span><span class="p">)</span>
+    <span class="c1"># Sauvegarde de la figure</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&#34;conductimetrie_01.pdf&#34;</span><span class="p">)</span>
+    <span class="c1"># Affichage de la figure</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">determination_intervalles</span><span class="p">(</span><span class="n">liste1</span><span class="p">,</span> <span class="n">liste2</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    Fonction qui, à partir de la liste liste1, possédant des valeurs
+</span><span class="s2">    décroissantes puis croissantes, retourne un tuple constitué de quatre
+</span><span class="s2">    listes ; la première ne contenant que les valeurs décroissantes, la
+</span><span class="s2">    deuxième les valeurs croissantes de la liste 1. Les deux autres listes
+</span><span class="s2">    correspondent aux parties correspondantes de la liste 2.
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">indice_du_min</span> <span class="o">=</span> <span class="n">liste1</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">liste1</span><span class="p">))</span>
+    <span class="n">liste1_1</span> <span class="o">=</span> <span class="n">liste1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">indice_du_min</span><span class="p">]</span>
+    <span class="n">liste1_2</span> <span class="o">=</span> <span class="n">liste1</span><span class="p">[</span><span class="n">indice_du_min</span><span class="p">:]</span>
+
+    <span class="n">liste2_1</span> <span class="o">=</span> <span class="n">liste2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">indice_du_min</span><span class="p">]</span>
+    <span class="n">liste2_2</span> <span class="o">=</span> <span class="n">liste2</span><span class="p">[</span><span class="n">indice_du_min</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">liste2_1</span><span class="p">,</span> <span class="n">liste1_1</span><span class="p">,</span> <span class="n">liste2_2</span><span class="p">,</span> <span class="n">liste1_2</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">regression_lineaire</span><span class="p">(</span><span class="n">vol_1</span><span class="p">,</span> <span class="n">conduc_1</span><span class="p">,</span> <span class="n">vol_2</span><span class="p">,</span> <span class="n">conduc_2</span><span class="p">):</span>
+    <span class="n">lr1</span> <span class="o">=</span> <span class="n">linregress</span><span class="p">(</span><span class="n">vol_1</span><span class="p">,</span> <span class="n">conduc_1</span><span class="p">)</span>
+    <span class="n">lr2</span> <span class="o">=</span> <span class="n">linregress</span><span class="p">(</span><span class="n">vol_2</span><span class="p">,</span> <span class="n">conduc_2</span><span class="p">)</span>
+
+    <span class="n">drl</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">vol</span> <span class="ow">in</span> <span class="n">vol_1</span><span class="p">:</span>
+        <span class="n">drl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lr1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">vol</span> <span class="o">+</span> <span class="n">lr1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">vol</span> <span class="ow">in</span> <span class="n">vol_2</span><span class="p">:</span>
+        <span class="n">drl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lr2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">vol</span> <span class="o">+</span> <span class="n">lr2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">drl</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="mf">3.2E-2</span>   <span class="c1"># Concentration des ions chlorure</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="mf">10E-3</span>    <span class="c1"># Volume de sérum physiologique</span>
+    <span class="n">C2</span> <span class="o">=</span> <span class="mf">2E-2</span>    <span class="c1"># Concentration des ions argent</span>
+    <span class="n">V2_max</span> <span class="o">=</span> <span class="mi">24</span>  <span class="c1"># Volume maximal de titrant versé (en mL)</span>
+    <span class="n">V_eau</span> <span class="o">=</span> <span class="mf">0.100</span>   <span class="c1"># Volume d&#39;eau ajouté</span>
+    <span class="n">xE</span> <span class="o">=</span> <span class="n">C</span> <span class="o">*</span> <span class="n">V</span>   <span class="c1"># Avancement à l&#39;équivalence</span>
+
+    <span class="n">ion_argent</span> <span class="o">=</span> <span class="n">Ion</span><span class="p">(</span><span class="s2">&#34;ion argent&#34;</span><span class="p">,</span> <span class="mf">6.2E-3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ion_chlorure</span> <span class="o">=</span> <span class="n">Ion</span><span class="p">(</span><span class="s2">&#34;ion chlorure&#34;</span><span class="p">,</span> <span class="mf">7.6E-3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ion_sodium</span> <span class="o">=</span> <span class="n">Ion</span><span class="p">(</span><span class="s2">&#34;ion sodium&#34;</span><span class="p">,</span> <span class="mf">5.0E-3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">C</span> <span class="o">*</span> <span class="n">V</span><span class="p">)</span>
+    <span class="n">ion_nitrate</span> <span class="o">=</span> <span class="n">Ion</span><span class="p">(</span><span class="s2">&#34;ion nitrate&#34;</span><span class="p">,</span> <span class="mf">7.1E-3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">Solution</span><span class="p">([</span><span class="n">ion_argent</span><span class="p">,</span> <span class="n">ion_chlorure</span><span class="p">,</span> <span class="n">ion_sodium</span><span class="p">,</span> <span class="n">ion_nitrate</span><span class="p">])</span>
+
+    <span class="c1"># Volumes de titrant versés</span>
+    <span class="n">volumes</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mf">1E-3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V2_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="n">conduc</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># valeurs des conductivités dans la solution</span>
+
+    <span class="k">for</span> <span class="n">V2</span> <span class="ow">in</span> <span class="n">volumes</span><span class="p">:</span>
+        <span class="n">n2</span> <span class="o">=</span> <span class="n">C2</span> <span class="o">*</span> <span class="n">V2</span>
+        <span class="n">ion_argent</span><span class="o">.</span><span class="n">quantite</span> <span class="o">=</span> <span class="n">n2</span> <span class="o">-</span> <span class="n">xE</span>
+        <span class="n">ion_chlorure</span><span class="o">.</span><span class="n">quantite</span> <span class="o">=</span> <span class="n">C</span> <span class="o">*</span> <span class="n">V</span> <span class="o">-</span> <span class="n">n2</span>
+        <span class="n">ion_nitrate</span><span class="o">.</span><span class="n">quantite</span> <span class="o">=</span> <span class="n">n2</span>
+        <span class="c1"># Partie à adapter si on veut montrer l&#39;effet de la dilution</span>
+        <span class="n">sol</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="n">V_eau</span> <span class="o">+</span> <span class="n">V</span> <span class="o">+</span> <span class="n">V2</span>
+        <span class="n">conduc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">conductivite</span><span class="p">())</span>
+
+    <span class="n">creation_fichier_resultat</span><span class="p">(</span><span class="s2">&#34;valeurs.csv&#34;</span><span class="p">,</span>
+                              <span class="s2">&#34;Volumes (L)&#34;</span><span class="p">,</span>
+                              <span class="s2">&#34;Conductivité (S.m^-1)&#34;</span><span class="p">,</span>
+                              <span class="n">volumes</span><span class="p">,</span>
+                              <span class="n">conduc</span><span class="p">)</span>
+
+    <span class="n">vol_1</span><span class="p">,</span> <span class="n">conduc_1</span><span class="p">,</span> <span class="n">vol_2</span><span class="p">,</span> <span class="n">conduc_2</span> <span class="o">=</span> <span class="n">determination_intervalles</span><span class="p">(</span><span class="n">conduc</span><span class="p">,</span>
+                                                                 <span class="n">volumes</span><span class="p">)</span>
+    <span class="n">droites_regression</span> <span class="o">=</span> <span class="n">regression_lineaire</span><span class="p">(</span><span class="n">vol_1</span><span class="p">,</span> <span class="n">conduc_1</span><span class="p">,</span> <span class="n">vol_2</span><span class="p">,</span>
+                                             <span class="n">conduc_2</span><span class="p">)</span>
+
+    <span class="n">affichage</span><span class="p">(</span><span class="n">volumes</span><span class="p">,</span> <span class="n">conduc</span><span class="p">,</span> <span class="n">droites_regression</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">volumes</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">vol_1</span><span class="p">,</span> <span class="n">vol_2</span><span class="p">)</span>
+
+
+<span class="n">main</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+              </div>
+            </section>
+        
+
+        
+          
+          
+        
+      </article>
+
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://dlatreyte.github.io/programmation/schemas_derivation/" data-toggle="tooltip" data-placement="top" title="Illustration des différents schemas pour la dérivation numérique">&larr; Post précédent</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://dlatreyte.github.io/programmation/numpy-vecteur/" data-toggle="tooltip" data-placement="top" title="Utilisation de numpy pour créer et gérer des vecteurs">Post suivant &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:david.latreyte@louismassignon.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DLatreyte" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/@DLatreyte" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/latreyte-david-917852b2" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/agdavgablou" title="Instagram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://dlatreyte.github.io">David Latreyte</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://dlatreyte.github.io">Accueil</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          Carbure avec <a href="https://gohugo.io">Hugo v0.92.2</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://dlatreyte.github.io/js/main.js"></script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dlatreyte.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/copy-tex.min.js" integrity="sha512-DJT2Gf9zoglFWNuxgFcMZ3zi9Ra9GPDxpw9/8kyQ6cji+SOaLlV1A49Its53eLZlGfb4WjwRCptEUdNju6Wxgw==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/mathtex-script-type.min.js" integrity="sha512-2c9WyrhBiLmhhuJeAEmai4Uh9O+bjCRVsKaFkbj2vCLsJ3aTI0Bx2r0+gRPiqjnmNKATzzsjQGgmQXXEOERmmQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/mhchem.min.js" integrity="sha512-ndr34OWlb/uvrgXcrqKXv4YUB42kRFQi9cJ+s+alNEvNBKYyIlO970xmSWYV3vNKsrT1rwW/leiBEaZxcCwjwA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/render-a11y-string.min.js" integrity="sha512-SqjsWHpIJhclCK0YMrCV7qCKarjj6qF9ViYOldWgdJtELSOG+Jth6iKNhdMSwRAPNzKgGsU7jiE1B6YdK967tw==" crossorigin="anonymous"></script>
+<script>
+  renderMathInElement(document.body,
+    {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+        ]
+    }
+  );
+
+  var inlineMathArray = document.querySelectorAll("script[type='math/tex']");
+  for (var i = 0; i < inlineMathArray.length; i++) {
+      var inlineMath = inlineMathArray[i];
+      var tex = inlineMath.innerText || inlineMath.textContent;
+      var replaced = document.createElement("span");
+      replaced.innerHTML = katex.renderToString(tex, {displayMode: false});
+      inlineMath.parentNode.replaceChild(replaced, inlineMath);
+  }
+
+  var displayMathArray = document.querySelectorAll("script[type='math/tex; mode=display']");
+  for (var i = 0; i < displayMathArray.length; i++) {
+      var displayMath = displayMathArray[i];
+      var tex = displayMath.innerHTML;
+      var replaced = document.createElement("span");
+      replaced.innerHTML = katex.renderToString(tex.replace(/%.*/g, ''), {displayMode: true});
+      displayMath.parentNode.replaceChild(replaced, displayMath);
+  }
+
+</script>
+
+
+    
+  </body>
+</html>
+
