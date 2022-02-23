@@ -1,6 +1,6 @@
 ---
 title: "Les interactions qui gouvernent l'Univers"
-subtitle: "Chapitre 8,1"
+subtitle: "Chapitre 7,1"
 author: ""
 type: ""
 date: 2021-01-27T08:46:53+04:00
@@ -552,3 +552,4 @@ Une décharge électrique est donc possible ; c'est l'éclair.
 {{% solution "Solution" %}}
 {{< remote "Corrigés des exercices au format pdf" "/premieres-pc/chap-8/chap-8-1/chap-8-1-15.pdf" >}}
 {{% /solution %}}
+

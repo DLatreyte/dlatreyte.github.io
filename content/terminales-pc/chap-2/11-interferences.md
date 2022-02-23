@@ -1,6 +1,6 @@
 ---
 title: "Conditions d’interférence de deux ondes sinusoïdales"
-subtitle: "Chapitre 2,3,3"
+subtitle: "Chapitre 3,3,3"
 author: ""
 type: ""
 date: 2020-09-21T21:13:09+04:00
@@ -11,6 +11,7 @@ categories: ["Physique", "Terminale Spé PC"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
+mathjax: true
 ---
 [^1]: Comprendre : *les rayonnements ne sont pas identiques, même si émis par le même atome*.
 [^2]: Comprendre : *les rayonnements ne sont pas identiques, même si émis par le même élément chimique*.

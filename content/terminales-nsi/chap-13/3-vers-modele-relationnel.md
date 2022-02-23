@@ -1,6 +1,6 @@
 ---
 title: "Du schéma entités/associations au schéma relationnel"
-subtitle: "Chapitre 13,3"
+subtitle: "Chapitre 12,3"
 author: ""
 type: ""
 date: 2021-02-02T04:31:48+04:00

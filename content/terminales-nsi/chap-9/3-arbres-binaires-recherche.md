@@ -16,24 +16,66 @@ auto_numbering: true
 
 ## Introduction
 
-Une utilisation particulière des arbres binaires est la notion d’arbre binaire de recherche. On suppose que les valeurs des nœuds sont des objets comparables entre eux : pour fixer les idées, on considère n’avoir que des entiers.
+{{% note normal %}}
+
+Quelle structure de données permet :
+- d'organiser les données selon un ordre donné (numérique, lexicographique, etc.)&nbsp;;
+- d'effectuer des recherches le plus efficacement possible&nbsp;;
+- d'accéder à, d'insérer ou de supprimer les données le plus efficacement possible.
+
+{{% /note %}}
+
+#### Tableaux 
+
+{{% solution "Propriétés" %}}
+
+- On peut ordonner des données dans un tableau mais l'algorithme de tri le plus rapide est en $O(n \\; \log n)$&nbsp;;
+- On peut accéder à une donnée en $O(1)$&nbsp;;
+- On peut rechercher une valeur efficacement en utilisant la dichotomie : $O(\log n)$&nbsp;;
+- Supprimer ou insérer une valeur n'est pas très efficace : $O(n)$.
+
+{{% /solution %}}
+
+#### Dictionnaires
+
+{{% solution "Propriétés" %}}
+
+- Accéder à, supprimer et insérer une valeur se fait très efficacement : $O(1)$&nbsp;;
+- *Les données ne sont pas ordonnées*.
+
+{{% /solution %}}
+
+
+Remarque
+: Dans la suite de ce document, on considérera que les valeurs des nœuds sont des entiers.
+
 
 {{% note tip %}}
-Un **arbre binaire de recherche**, ou **ABR**, est un arbre binaire avec la propriété suivante : pour tout nœud $x$, tous les nœuds situés dans le sous-arbre gauche de $x$ ont une valeur $\leqslant val(x)$, et tous ceux situés dans son sous-arbre droit ont une valeur $\geqslant val(x)$.
+Un **arbre binaire de recherche**, ou **ABR**, est un arbre binaire avec la propriété suivante : quel que soit le nœud $x$, **tous les nœuds situés dans le sous-arbre gauche** de $x$ ont une **valeur inférieure à la valeur** du nœud $x$, et **tous ceux situés dans son sous-arbre droit** ont une **valeur supérieure à la valeur** du nœud $x$.
+
+Remarque
+: La définition précédente est **récursive**.
 {{% /note %}}
 
 {{% note normal %}}
-Les ABR servent à maintenir un ensemble de valeurs ordonnées, avec une meilleure complexité qu’une liste chaînée par exemple. On commence par la recherche d’un élément. La structure de l’ABR permet d’éviter de le parcourir en entier.
+Les ABR servent à maintenir un ensemble de valeurs ordonnées, avec une meilleure complexité qu’une liste chaînée par exemple. On commence par la recherche d’un élément. La structure de l’ABR permet d’éviter de le parcourir en entier.
 {{% /note %}}
 
 ## Un ABR est un arbre
 
 1. Pour représenter un ABR, on va à nouveau utiliser la classe `Noeud`. Écrire à nouveau le code de cette classe.  
-Les contraintes sur les valeurs des nœuds ne sont pas codées dans la classe.
+**Les contraintes sur les valeurs des nœuds ne sont pas codées dans la classe**.
 
 2. Écrire à nouveau les spécifications des fonctions `taille`, `hauteur` et `parcours_infixe`.
 
 3. Vérifier que la fonction `parcours_infixe` affiche les valeurs dans l'ordre croissant.
+
+{{% note warning %}}
+
+Rappel
+: *On peut voir le **parcours infixe** comme la *projection de l'arbre sur une droite*.*
+
+{{% /note %}}
 
 ## Recherche dans un ABR
 
@@ -74,7 +116,7 @@ def ajoute_copie(n: Noeud, x: int) -> Noeud:
 
 ## Utiliser un arbre binaire de recherche
 
-10. Créer la fonction qui `plus_petit_element` dont la spécification est 
+10. Créer la fonction `plus_petit_element` dont la spécification est 
 ```python
 def plus_petit_element(a: Noeud) -> int:
     """
@@ -84,7 +126,7 @@ def plus_petit_element(a: Noeud) -> int:
     """
 ```
 
-11. Créer la fonction qui `plus_grand_element` dont la spécification est 
+11. Créer la fonction `plus_grand_element` dont la spécification est 
 ```python
 def plus_grand_element(a: Noeud) -> int:
     """
@@ -94,7 +136,7 @@ def plus_grand_element(a: Noeud) -> int:
     """
 ```
 
-12. Créer la fonction qui `est_abr` dont la spécification est 
+12. Créer la fonction `est_abr` dont la spécification est 
 ```python
 def est_abr(a: Noeud) -> bool:
     """

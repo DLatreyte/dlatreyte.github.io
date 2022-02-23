@@ -1,6 +1,6 @@
 ---
 title: "Les différentes raisons pour lesquelles un système chimique n'évolue pas"
-subtitle: "Chapitre 9,6"
+subtitle: "Chapitre 10,6"
 author: ""
 type: ""
 date: 2021-01-15T15:34:21+04:00

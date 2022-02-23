@@ -62,7 +62,7 @@ Le transporteur devra donc effectuer au moins deux livraisons.
 
 8. Quelle masse maximale de papier est transportée lors de chacune des livraisons&nbsp;?
 {{% solution "Réponse" %}}
-- Dans un premier temps, il est **pratique** de déterminer la masse d'une «&nbsp;rame de papier&nbsp;»&nbsp;: $M(1 \text{ rame}) = \pu{80 g/cm2} \times (\pu{210e-3 m} \times \pu{297e-3 m}) \times 500 =  \pu{2,5e3 g} = \pu{2,5 kg}$.
+- Dans un premier temps, il est **pratique** de déterminer la masse d'une «&nbsp;rame de papier&nbsp;»&nbsp;: $M(1 \text{ rame}) = \pu{80 g/m2} \times (\pu{210e-3 m} \times \pu{297e-3 m}) \times 500 =  \pu{2,5e3 g} = \pu{2,5 kg}$.
 - Au cours d'une livraison le transporteur peut livrer au maximum 2812 rames, donc $m_{\text{max}} = 2812 \times \pu{2,5 kg} = \pu{7,3e3 kg}$.
 {{% /solution %}}
 

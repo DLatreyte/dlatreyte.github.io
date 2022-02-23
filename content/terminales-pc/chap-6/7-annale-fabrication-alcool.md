@@ -1,6 +1,6 @@
 ---
 title: "Annale : Fabrication d'un alcool"
-subtitle: "Chapitre 6,7"
+subtitle: "Chapitre 7,7"
 author: ""
 type: ""
 date: 2020-11-21T14:54:39+04:00
@@ -9,7 +9,7 @@ toc: true
 tags: ["Tableau d'avancement", "Vitesse volumique", "Temps de demi-réaction", "Conductivité", "Facteurs cinétiques"]
 categories: ["Chimie", "Terminale Spé PC"]
 image: ""
-solution_est_visible: true
+solution_est_visible: false
 auto_numbering: true
 ---
 
@@ -51,7 +51,7 @@ La courbe ci-dessous montre les variations de la concentration en ion chlorure $
 
 6. Justifier d’après les valeurs du graphique que l'état final de la transformation est atteint après 20 minutes.
 
-7. On note $V$, le volume total de la solution. Écrire l’expression de la vitesse volumique d’apparition des ions chlorure puis évaluer graphiquement la valeur de cette vitesse à $t = \pu{0 s}$.
+7. On note $V$, le volume total de la solution. Écrire l’expression de la vitesse volumique de formation des ions chlorure puis évaluer graphiquement la valeur de cette vitesse à $t = \pu{0 s}$.
 
 8. À l’aide de la courbe, indiquer comment évolue cette vitesse au cours du temps.
 

@@ -1,6 +1,6 @@
 ---
 title: "Évolution temporelle dans un circuit capacitif"
-subtitle: "Chapitre 5"
+subtitle: "Chapitre 6"
 author: ""
 type: ""
 date: 2020-10-26T18:04:53+04:00
@@ -26,16 +26,16 @@ layout: "single"
 - {{< remote "Chapitre du Livre Scolaire" "http://LLS.fr/PCTP549" >}}
 ----
 
-- **Chap. 5,1 :** [*Électrocinétique*](1-electrocinetique)
+- **Chap. 6,1 :** [*Électrocinétique*](1-electrocinetique)
 
-- **Chap. 5,2 :** [*Le dipôle (R,C)*](2-dipole-rc)
+- **Chap. 6,2 :** [*Le dipôle (R,C)*](2-dipole-rc)
 
-- **Chap. 5,3 :** [*Annale : Le super condensateur prêt à sortir de l'ombre*](3-annale-1) 
+- **Chap. 6,3 :** [*Annale : Le super condensateur prêt à sortir de l'ombre*](3-annale-1) 
 
-- **Chap. 5,4 :** [*Annale : Airbag et condensateur, quel rapport&nbsp;?*](4-annale-2)
+- **Chap. 6,4 :** [*Annale : Airbag et condensateur, quel rapport&nbsp;?*](4-annale-2)
 
-- **Chap. 5,5 :** [*Annale : Condensateur et éclairage d'un train miniature*](5-annale-3)
+- **Chap. 6,5 :** [*Annale : Condensateur et éclairage d'un train miniature*](5-annale-3)
 
-- **Chap. 5,6 :** [*Annale : Condensateur d'un flash*](6-annale-4)
+- **Chap. 6,6 :** [*Annale : Condensateur d'un flash*](6-annale-4)
 
 

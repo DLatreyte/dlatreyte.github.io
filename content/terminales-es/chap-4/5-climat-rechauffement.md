@@ -1,13 +1,13 @@
 ---
 title: "Climat : l’objectif des 2 °C appartient, hélas, au passé"
-subtitle: "Chapitre 4,5"
+subtitle: "Chapitre 5,3"
 author: ""
 type: ""
 date: 2020-11-19T06:42:19+04:00
 draft: false
 toc: true
 tags: []
-categories: []
+categories: ["Terminale Enseignement Scientifique"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
@@ -48,4 +48,4 @@ Jacques Treiner<br />
 
 ## Travail à effectuer
 
-Par groupe, effectuer une synthèse du document dans laquelle vous expliquerez le point de vue de l'auteur.
+Par groupe, effectuer une synthèse du document dans laquelle vous expliquerez **dans une vidéo** le point de vue de l'auteur.

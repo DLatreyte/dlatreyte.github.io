@@ -1,6 +1,6 @@
 ---
 title: "Une transformation chimique n'est pas toujours totale"
-subtitle: "Chapitre 7,5"
+subtitle: "Chapitre 6,5"
 author: ""
 type: ""
 date: 2021-01-09T21:55:40+04:00

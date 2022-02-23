@@ -1,6 +1,6 @@
 ---
 title: "Dosage par étalonnage d'un sérum physiologique"
-subtitle: "Chapitre 4,4"
+subtitle: "Chapitre 5,4"
 author: ""
 type: ""
 date: 2020-10-10T21:24:38+04:00
@@ -64,10 +64,26 @@ $C_0 = \pu{1e-2 mol.L^-1}$ ;
 
 ### Résultats expérimentaux
 
-- Conductivité d'une solution de sérum physiologique dilué 20 fois :   
-$\sigma = \pu{0,971 mS·cm-1}$.
+- Conductivité d'une solution de sérum physiologique dilué 20 fois : $\sigma = \ldots$
+{{% solution "Résultat expérimental" %}}
+
+$\sigma = \pu{0,971 mS·cm-1}$
+
+{{% /solution %}}
+
 
 - Conductivités des solutions étalons
+
+<center>
+
+| Solution | $S_0$ | $S_1$ | $S_2$ | $S_3$ | $S_4$ |
+| :----: | :----: | :----: | :----: | :----: | :----: |
+**Concentration**<br />($\pu{mol.L-1}$) | $\pu{1,0e-2}$ | $\pu{7,5e-3}$ | $\pu{5,0e-3}$ | $\pu{2,5e-3}$ | $\pu{1,0e-3}$ |
+**Conductivité**<br />($\pu{mS.cm-1}$) |   |   |   |   |   |
+
+</center>
+
+{{% solution "Résultats expérimentaux" %}}
 
 <center>
 
@@ -77,6 +93,8 @@ $\sigma = \pu{0,971 mS·cm-1}$.
 **Conductivité**<br />($\pu{mS.cm-1}$) | $\pu{1,264}$ | $\pu{0,948}$ | $\pu{0,632}$ | $\pu{0,316}$ | $\pu{0,126}$ |
 
 </center>
+
+{{% /solution %}}
 
 - L'exploitation des résultats expérimentaux nécessite le téléchargement du logiciel {{< remote "Graphical Analysis" "https://www.vernier.com/product/graphical-analysis-4/" >}}.
 
@@ -104,3 +122,13 @@ Le document 1 nous apprend que la concentration en chlorure de sodium $\ce{NaCl}
 
 {{% /solution %}}
 
+## Exploitation des données avec Python
+
+{{% note normal %}}
+
+- Un code Python incomplet se trouve à [cette adresse](https://replit.com/join/nmnrhpqzrn-dlatreyte).
+- Un corrigé se trouve à [cette adresse](https://replit.com/join/rufhkoxaau-dlatreyte)
+
+{{% /note %}}
+
+Remplacer les .......... dans le code source de façon à déterminer la concentration en chlorure de sodium dans le sérum physiologique.

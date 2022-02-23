@@ -1,13 +1,13 @@
 ---
 title: "Annale : Quelle teneur en cuivre dans une pièce de 5 centimes d'euro&nbsp;?"
-subtitle: "Chapitre 4,12"
+subtitle: "Chapitre 5,12"
 author: ""
 type: ""
 date: 2020-10-28T09:20:44+04:00
 draft: false
 toc: true
 tags: ["Beer-Lambert", "Dosage par étalonnage", "Incertitudes"]
-categories: ["Chimie", "Terminale Spé PC"]
+categories: ["Chimie", "Terminale Spé PC", "Annale"]
 image: ""
 solution_est_visible: true
 auto_numbering: true

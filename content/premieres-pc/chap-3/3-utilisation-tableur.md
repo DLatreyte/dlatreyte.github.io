@@ -1,5 +1,5 @@
 ---
-title: "Utilisation d'un tableur pour déterminer une incertitude de mesure"
+title: "Utilisation d'un tableur pour déterminer une incertitude de mesure de type A"
 subtitle: "Chapitre 3,3"
 author: ""
 type: ""
@@ -21,7 +21,7 @@ Leurs résultats sont regroupés dans le tableau ci-dessous&nbsp;:
 <center>
 
 | N° mesure | Valeur ($\pu{m/s}$) | N° mesure | Valeur ($\pu{m/s}$) |
-|:-:|&nbsp;:-: |:-:|:-:|
+|:-:| :-: |:-:|:-:|
 | 1 | 338 | 11 | 338 |
 | 2 | 341 | 12 | 336 |
 | 3 | 338 | 13 | 342 |
@@ -198,3 +198,20 @@ Pour une série de $n$ échantillons, $k_{95} = \pu{2,09}$ et $k_{99} = \pu{2,85
 - Pour une confiance de 95&nbsp;%, $v = \pu{339 \pm 1) m.s-1}$&nbsp;;
 - Pour une confiance de 99&nbsp;%, $v = \pu{339 \pm 2) m.s-1}$&nbsp;;
 {{% /solution %}}
+
+## Application
+
+La mesure $\Delta t$ de la durée de chute d'un objet depuis une fenêtre a 
+été répétée 16 fois avec un chronomètre de qualité. Les résultats 
+obtenus, exprimés en seconde, sont les suivants&nbsp;:
+<center>
+
+|  |  |  |  |  |  |  |  |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 1,38 | 1,45 | 1,41 | 1,45 | 1,43 | 1,41 | 1,46 | 1,39 |
+|  |  |  |  |  |  |  |  |
+| 1,43 | 1,48 | 1,38 | 1,44 | 1,40 | 1,42 | 1,39 | 1,44 |
+
+</center>
+
+Donner la valeur de la durée de chute de l'objet accompagnée de son incertitude.

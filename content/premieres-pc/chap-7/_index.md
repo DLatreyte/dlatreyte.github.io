@@ -1,6 +1,6 @@
 ---
 title: "Évolution d'un système chimique"
-subtitle: "Chapitre 7"
+subtitle: "Chapitre 6"
 author: ""
 type: ""
 date: 2021-01-05T18:03:18+04:00
@@ -29,14 +29,14 @@ layout: "single"
 
 ----
 
-- **Chap. 7,1 :** [*Transformation de la matière, transformations chimiques*](1-transformation-matiere)
+- **Chap. 6,1 :** [*Transformation de la matière, transformations chimiques*](1-transformation-matiere)
 
-- **Chap. 7,2 :** [*Transformations chimiques, exercices de révision*](2-exercices)
+- **Chap. 6,2 :** [*Transformations chimiques, exercices de révision*](2-exercices)
 
-- **Chap. 7,3 :** [*Bilan quantitatif des transformations chimiques*](3-bilan-quantitatif)
+- **Chap. 6,3 :** [*Bilan quantitatif des transformations chimiques*](3-bilan-quantitatif)
 
-- **Chap. 7,4 :** [*Recherche d'un réactif limitant à l'aide d'un programme écrit en Python*](4-reactif-limitant-simulation)
+- **Chap. 6,4 :** [*Recherche d'un réactif limitant à l'aide d'un programme écrit en Python*](4-reactif-limitant-simulation)
 
-- **Chap. 7,5 :** [*Une transformation chimique n'est pas toujours totale*](5-transformation-limitee)
+- **Chap. 6,5 :** [*Une transformation chimique n'est pas toujours totale*](5-transformation-limitee)
 
-- **Chap. 7,6 :** [*Devoir d'entraînement*](6-devoir-entrainement)
+- **Chap. 6,6 :** [*Devoir d'entraînement*](6-devoir-entrainement)

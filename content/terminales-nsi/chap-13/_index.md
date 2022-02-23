@@ -1,6 +1,6 @@
 ---
 title: "Bases de données"
-subtitle: "Chapitre 13"
+subtitle: "Chapitre 12"
 author: ""
 type: ""
 date: 2021-01-18T17:54:59+04:00
@@ -31,15 +31,20 @@ Il convient de sensibiliser les élèves à un usage critique et responsable de
 
 ## Documents
 
-- **Chap. 13,1 :** [*Introduction aux bases de données*](1-introduction-bases-de-donnees)
+- **Chap. 12,1 :** [*Introduction aux bases de données*](1-introduction-bases-de-donnees)
 
-- **Chap. 13,2 :** [*Le modèle Entité/Association*](2-entite-association)
+- **Chap. 12,2 :** [*Le modèle Entité/Association*](2-entite-association)
 
-- **Chap. 13,4 :** [*Le langage SQL : Le langage de manipulation de données (LMD)*](4-sql-lmd)
+- **Chap. 12,3 :** [*Du schéma entités/associations au schéma relationnel*](3-vers-modele-relationnel)
 
-- **Chap. 13,5 :** [*Le langage SQL : Le langage de manipulation de données (LMD), Compléments*](5-sql-lmd-avance)
+- **Chap. 12,4 :** [*Le langage SQL : Le langage de manipulation de données (LMD)*](4-sql-lmd)
 
-- **Chap. 13,6 :** [*Gestion d'une salle de cinéma*](6-gestion-cinema)
+- **Chap. 12,5 :** [*Le langage SQL : Le langage de manipulation de données (LMD), Compléments*](5-sql-lmd-avance)
 
-- **Chap. 13,7 :** [*SQL Murder Mystery*](7-murder-mystery)
+- **Chap. 12,6 :** [*Gestion d'une salle de cinéma*](6-gestion-cinema)
+
+- **Chap. 12,7 :** [*SQL Murder Mystery*](7-murder-mystery)
+
+- **Chap. 12,8 :** [*Emprunt de livres dans un CDI*](8-cdi)
+
 

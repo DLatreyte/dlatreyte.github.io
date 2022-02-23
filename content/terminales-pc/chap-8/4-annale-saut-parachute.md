@@ -1,6 +1,6 @@
 ---
 title: "Annale : Saut en parachute"
-subtitle: "Chapitre 8,5"
+subtitle: "Chapitre 9,5"
 author: ""
 type: ""
 date: 2020-12-23T17:45:24+04:00
@@ -54,6 +54,7 @@ données a débuté dès son entrée dans l'avion, sur la piste de décollage.
 des temps le début du saut.
 
 <img src="/terminales-pc/chap-8/chap-8-4-1.png" alt="" width="" />
+
 > **Figure 1**
 
 Les données recueillies ont été utilisées pour modéliser les équations
@@ -63,7 +64,7 @@ identifiées sur la figure 1.
 1. Recopier et compléter le tableau ci-dessous en justifiant brièvement
     l'affectation des équations horaires aux différentes phases :
 
-    1. $z_a = - 50\\, t + \pu{4,0e3}$ ;
+    1. $z_a (t) = - 50\\, t + \pu{4,0e3}$ ;
 
     2. $z_b (t) = - \pu{4,2}\\, t + \pu{1,75e3}$ ;
 
@@ -115,6 +116,7 @@ On prend $v_0 = \pu{33 m.s-1}$ et
 $h_0 = \pu{4000 m}$.
 
 <img src="/terminales-pc/chap-8/chap-8-4-2.jpg" alt="" width="70%" />
+
 > **Figure 2**
 
 4. Montrer que les coordonnées du vecteur accélération du système dans
@@ -154,6 +156,7 @@ $\vec{F_f}$ modélise l'action de l'air sur le système
     partie 1.
 
 <img src="/terminales-pc/chap-8/chap-8-4-3.jpg" alt="" width="70%" />
+
 > **Figure 3**
 
 Quelques secondes après l'ouverture du parachute, la chute du tandem se

@@ -1,13 +1,13 @@
 ---
 title: "Étoiles et diffraction"
-subtitle: "Chapitre 2,2,2"
+subtitle: "Chapitre 3,2,2"
 author: ""
 type: ""
 date: 2020-09-14T10:56:06+04:00
 draft: false
 toc: true
-tags: []
-categories: []
+tags: ["Diffraction"]
+categories: ["Physique", "Terminale Spé PC"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
@@ -26,7 +26,9 @@ auto_numbering: true
 
 - **Question 4 :** Chercher le nouveau protocole. La nouvelle valeur de la largeur de la tache centrale est $L_2 = \pu{5,9 cm}$ pour une distance de l'écran $D=\pu{1,80 m}$.
 
-- **Question 8 :** Valeurs possible à utiliser pour poursuivre :  
+- **Question 8 :** Valeurs possible à utiliser pour poursuivre :
+
+<center>
 
 | $a (\pu{m})$ | $ L(m) $ |
 | :-: | :-: |
@@ -36,9 +38,12 @@ auto_numbering: true
 | $\pu{1,0000e-4}$ | $\pu{0,024}$ |
 | $\pu{1,2000e-4}$ | $\pu{0,021}$ |
 
+</center>
+
 Utiliser le tableur grapheur [Graphical Analysis](https://www.vernier.com/product/graphical-analysis-4/) de Vernier[^1].
 
 ## Corrigé
+
 
 {{% solution "Réponses aux questions" %}}
 **1.** L'angle $\theta$ est fixé par le phénomène de diffraction. Plus l'écran est loin de l'objet diffractant plus grande est la tache de diffraction. Il est donc préférable de choisir $D=\pu{1,80 m}$.

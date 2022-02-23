@@ -1,5 +1,5 @@
 ---
-title: "Recherche d'un élément dans un tableau&nbsp;: algorithmes itératifs et récursifs"
+title: "Recherche d'un élément dans un tableau : algorithmes itératifs et récursifs"
 subtitle: "Chapitre 1,3"
 author: ""
 type: ""

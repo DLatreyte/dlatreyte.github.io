@@ -1,6 +1,6 @@
 ---
 title: "Transformation de la matière, transformations chimiques"
-subtitle: "Chapitre 7,1"
+subtitle: "Chapitre 6,1"
 author: ""
 type: ""
 date: 2021-01-05T18:19:27+04:00

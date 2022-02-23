@@ -1,6 +1,6 @@
 ---
 title: "Invariance de la valeur du quotient de réaction dans l'état d'équilibre"
-subtitle: "Chapitre 9,3"
+subtitle: "Chapitre 10,3"
 author: ""
 type: ""
 date: 2021-01-09T19:11:38+04:00
@@ -32,7 +32,7 @@ où $C^o = \pu{1,00 mol.L-1}$.
 
 Remarque
 
-: Le quotient de réaction sera défini plus précisément dans le document [Chapitre 9,4]({{< relref "./4-quotient-reaction-constante-equilibre.md" >}}).
+: Le quotient de réaction sera défini plus précisément dans le document [Chapitre 10,4]({{< relref "./4-quotient-reaction-constante-equilibre.md" >}}).
 
 ## Manipulation
 

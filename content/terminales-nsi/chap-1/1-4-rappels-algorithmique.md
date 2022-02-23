@@ -1,6 +1,6 @@
 ---
 title: "Introduction à l'algorithmique, recherche d'un élément dans un tableau"
-subtitle: "Chapitre 16"
+subtitle: "Chapitre 1,4"
 author: ""
 type: ""
 date: 2020-09-12T17:46:07+04:00
@@ -554,10 +554,9 @@ On considère la fonction `somme_premiers_entiers` qui implémente l'algorithme&
 ```python
 def somme_premiers_entiers(n: int) -> int:
     """
-    Calcule la somme des n premiers
-    entiers.
+    Calcule la somme des n premiers entiers.
     
-    HYPOTHÈSE&nbsp;: n entier naturel
+    HYPOTHÈSE : n entier naturel
     """
     somme = 0
     i = 0

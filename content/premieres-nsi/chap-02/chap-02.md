@@ -1,28 +1,17 @@
 ---
-title: "Premiers pas en programmation... et en Python"
-subtitle: "Chapitre 02"
+title: "Langages et programmation"
+subtitle: "Chapitre 2,1"
 toc: true
 date: 2019-09-14T21:37:45+04:00
 draft: false
 tags: ["Fonctions", "Typage", "Signature d'une fonction", "Spécification d'une fonction", "Python"]
-categories: ["Informatique"]
+categories: ["Première Spé NSI"]
 solution_est_visible: true
 auto_numbering: true
+
 ---
 [^1]: Nous reviendrons sur ce point plus tard dans l'année.
 
-On appelle **informatique** le *traitement automatisé des informations* par un ordinateur. Cette discipline s'appuie sur la **programmation**, activité qui consiste à apprendre à un ordinateur à effectuer des tâches qu'il n'est pas capable d'exécuter à sa conception. L'écriture d'un programme nécessite l'utilisation d'un **langage de programmation**. Dans ce cours nous utiliserons Python.
-
-## Au programme
-
-#### Langages et programmation
-
-|           Contenus           |                                                 Capacités attendues                                                 |                                                                    Commentaires                                                                   |
-|:----------------------------:|:-------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------:|
-| Constructions élémentaires   | Mettre en évidence un corpus de constructions élémentaires.                                                         | Séquences, affectation, conditionnelles, boucles bornées, boucles non bornées, appels de fonction.                                                |
-| Spécification                | Prototyper une fonction. Décrire les préconditions sur les arguments. Décrire des postconditions sur les résultats. | Des assertions peuvent être utilisées pour garantir des préconditions ou des postconditions.                                                      |
-| Mise au point de programmes  | Utiliser des jeux de tests.                                                                                         | L’importance de la qualité et du nombre des tests est mise en évidence. Le succès d’un jeu de tests ne garantit pas la correction d’un programme. |
-| Utilisation de bibliothèques | Utiliser la documentation d’unebibliothèque.                                                                        | Aucune connaissance exhaustive d’une bibliothèque particulière n’est exigible.                                                                    |
 
 ## À quoi a-t-on accès lorsqu'on utilise un langage de programmation ?
 
@@ -31,18 +20,16 @@ Un langage de programmation doit :
 
 - fournir des **objets (ou types) primitifs** ;
 - posséder une bibliothèque de **fonctions prédéfinies** ;
-- permettre la **manipulation des objets primitifs et des fonctions
-  prédéfinies**;
-- établir des règles qui permettent de **construire de nouveaux
-  objets (ou types)** ou de nouvelles fonctions par combinaison des types primitifs et des fonctions prédéfinies.*
+- permettre la **manipulation des objets primitifs et des fonctions prédéfinies** ;
+- établir des règles qui permettent de **construire de nouveaux objets (ou types)** ou de nouvelles fonctions par *combinaison des types primitifs et des fonctions prédéfinies*.
 {{% /note %}}
 
 
-Dans ce chapitre nous allons aborder chacun de ces points.
+Nous allons aborder chacun de ces points.
 
-## Quelques objets primitifs en Python ##
+## Quelques objets primitifs en Python
 
-Le langage Python possède un grand nombre d'objets primitifs. Parmi eux, on utilisera lors des premiers chapitres :
+Le langage Python possède un grand nombre d'*objets primitifs*. Parmi eux, on utilisera lors des premiers chapitres :
 
 - Les **constantes entières** (« Integer », `int`)
 
@@ -52,6 +39,7 @@ Le langage Python possède un grand nombre d'objets primitifs. Parmi eux, on uti
 >>> type(-10)
 <type 'int'>
 ```
+
 - Les **constantes « flottantes »** (type `float`). Il s'agit d'une *approximations des nombres non entiers*[^1].
 
 ```python3
@@ -78,11 +66,10 @@ Le langage Python possède un grand nombre d'objets primitifs. Parmi eux, on uti
 >>> type("abcd")
 <type 'str'>
 >>> type('abcd')
-<type 'str'>}
+<type 'str'>
 >>> type('a')
 <type 'str'>
 ```
-
 
 ## Syntaxe et évaluation d'une expression en Python
 
@@ -94,8 +81,8 @@ En mathématique et en informatique une expression est une formule exprimant la 
 
 ### Ambigüité de l'écriture traditionnelle des expressions
 
-En mathématique on écrit $3 x^2 + 2 x + 4$ l'expression qui permet de calculer la valeur du polynôme du second degrés, pour toute valeur de la variable $x$. En programmation, peut-on se contenter d'utiliser la syntaxe des mathématiques ?  
-Si l'on se penche un peu plus attentivement sur l'écriture du polynôme, on remarque :
+En mathématique on écrit l'expression qui permet de calculer la valeur du polynôme du second degrés, pour toute valeur de la variable $x$ : $3 x^2 + 2 x + 4$. En programmation, peut-on se contenter d'utiliser la syntaxe des mathématiques ?  
+Si on se penche un peu plus attentivement sur l'écriture du polynôme, on remarque :
 
 - qu'il faut savoir que $2 x$ signifie la multiplication du nombre 2 par $x$ ;
   
@@ -111,11 +98,11 @@ De même, en mathématique, on écrit :
   
 - $\sin (x)$ : la fonction est placée avant son argument ;
   
-- $f\rq $ pour indiquer la fonction dérivée de la fonction $f$ (le symbole de la dérivée est placé après le nom de la fonction).
+- $f'$ pour indiquer la fonction dérivée de la fonction $f$ (le symbole de la dérivée est placé après le nom de la fonction).
 
 En conclusion, l'écriture mathématique traditionnelle nous parait claire *car on l'utilise depuis les plus petites classes et parce qu'on a appris des règles telles que celles de la priorité des opérateurs*. *En informatique, la syntaxe devra être plus rigoureuse, moins ambiguë car la machine effectuera une vérification pointilleuse de tout ce qui sera écrit.*
 
-L'écriture la plus rigoureuse du polynôme est : $\lparen 3 \times \lparen x^2 \rparen \rparen + \lparen\lparen2 \times x \rparen + 4 \rparen $, heureusement le langage Python a intégré la règle de priorité des opérateurs et on pourra écrire : `3 * x** 2 + 2 * x + 4`.
+L'écriture la plus rigoureuse du polynôme est : $\left( \left( 3 \times \left( x^2 \right) \right) + \left( \left( 2 \times x \right) + 4 \right) \right)$, heureusement le langage Python a intégré la règle de priorité des opérateurs et on pourra écrire : `3 * x** 2 + 2 * x + 4`.
 
 
 **Remarque :** Les expressions en informatique ne se limitent bien évidemment pas au domaine des mathématiques.
@@ -134,16 +121,16 @@ Les opérateurs en Python se répartissent en trois catégories :
 
 Dans ce chapitre nous allons nous contenter d'utiliser les opérateurs arithmétiques.
 
-| Opérateur  |  Expression   |  Description  |
-| :---------------: | :-----------------: | :------------------|
-| `+` | `op1 + op2` | renvoie le résultat de l'addition de `op1` et `op2`|
-| `-` | `op1 - op2` | renvoie le résultat de la soustraction de `op1` et `op2`|
-| `-` | `-op` | renvoie la valeur opposée de `op`|
-| `*` | `op1 * op2` | renvoie le résultat de la multiplication de `op1` et `op2`|
-| `/` | `op1 / op2` | renvoie le résultat de la division de `op1` et `op2`|
-| `//` | `op1 // op2` | renvoie le résultat de la division euclidienne (le quotient donc) de `op1` et `op2`| 
-| `%` | `op1 % op2` | renvoie le reste de la division euclidienne de `op1` et `op2`| 
-| `**` | `op**exp` | renvoie le résultat de `op` à la puissance `exp` |
+| Opérateur |  Expression  | Description                                                                         |
+| :-------: | :----------: | :---------------------------------------------------------------------------------- |
+|    `+`    | `op1 + op2`  | renvoie le résultat de l'addition de `op1` et `op2`                                 |
+|    `-`    | `op1 - op2`  | renvoie le résultat de la soustraction de `op1` et `op2`                            |
+|    `-`    |    `-op`     | renvoie la valeur opposée de `op`                                                   |
+|    `*`    | `op1 * op2`  | renvoie le résultat de la multiplication de `op1` et `op2`                          |
+|    `/`    | `op1 / op2`  | renvoie le résultat de la division de `op1` et `op2`                                |
+|   `//`    | `op1 // op2` | renvoie le résultat de la division euclidienne (le quotient donc) de `op1` et `op2` |
+|    `%`    | `op1 % op2`  | renvoie le reste de la division euclidienne de `op1` et `op2`                       |
+|   `**`    |  `op**exp`   | renvoie le résultat de `op` à la puissance `exp`                                    |
 
 
 {{% note warning %}}
@@ -168,7 +155,7 @@ Utiliser l'éditeur de texte Thonny pour visualiser toutes les étapes de l'éva
 - Progresser pas à pas grâce à la commande Run $\rightarrow$ Step into  (touche <kbd>F7</kbd>) en notant à chaque fois ce qui est évalué et le résultat de l'évaluation.
 {{% /solution %}}
 
-## Application d'une fonction <a id="application-fonction"></a>
+## Application d'une fonction
 
 
 ### Schéma-bloc d'une fonction
@@ -179,8 +166,7 @@ On appelle schéma-bloc la modélisation du fonctionnement d'une fonction.  Cett
 {{% /note %}}
 
 
-Par exemple, le schéma-bloc de la fonction « mise au carré » est le
-suivant :
+Par exemple, le schéma-bloc de la fonction « mise au carré » est le suivant :
 
 <img src="/premieres-nsi/chap-02/fonction.svg" width="80%" alt="Schéma bloc d'une fonction" />
 
@@ -234,7 +220,6 @@ Les fonctions intégrées `dir` et `help` sont très importantes. Il faut appren
 
 ### Syntaxe de l'application d'une fonction
 
-
 L'appel (ou l'application) d'une fonction obéit à une syntaxe bien particulière, semblable à celle utilisée en math. Par exemple, l'appel de la fonction `abs` avec l'argument `-3` s'écrit `abs(-3)`.
 
 
@@ -242,15 +227,12 @@ L'appel (ou l'application) d'une fonction obéit à une syntaxe bien particuliè
 Il ne faut donc pas confondre `f`, le nom de la fonction, avec `f(x)`, l'appel (ou application) de la fonction.
 {{% /note %}}
 
-
 ### Évaluation de l'argument d'une fonction
-
 
 Il n'est pas nécessaire de fournir une constante comme argument à une fonction, on peut lui fournir une expression comme argument. Par exemple l'appel suivant `abs(3 + 4 / 2 + 7 // 3)` est tout à fait valide.  
 L'interpréteur Python procède ainsi :
 1. Évaluation de l'expression `3 + 4 / 2 + 7 // 3`. Le résultat est le nombre 7.0 ;
 2. Appel de la fonction `abs` avec comme argument le nombre 7.0.
-
 
 ## Définition d'une fonction
 
@@ -271,7 +253,7 @@ $$
    
 En informatique, on s'appuie sur cette écriture, en la précisant un peu, on dit que la fonction possède un **nom**, un **type** et une **signature**.
 
-<img src="/premieres-nsi/chap-02/signature_fonction.svg" width="30%" alt="Schéma bloc d'une fonction" />
+<img src="/premieres-nsi/chap-02/signature_fonction.svg" width="22%" alt="Schéma bloc d'une fonction" />
   
 
 {{% note tip %}}
@@ -300,7 +282,7 @@ def f(x: float) -> float:
 	return x**2
 ```
 
-On reconnaît tout de suite la signature de la fonction `def f(x: float) -> float` qui indique bien que la fonction possède un paramètre `x` de type `float` et retourne une valeur de type `float`. **Chaque paramètre doit donc être accompagné de son type !**
+On reconnaît tout de suite la signature de la fonction `def f(x: float) -> float` qui indique bien que la fonction possède un paramètre `x` de type `float` et retourne une valeur de type `float`. **Chaque paramètre peut donc être accompagné de son type !**
 
 - Les deux points `:` à la fin de la ligne servent à indiquer que le *bloc d'instructions* qui suit la signature constitue **le corps de la fonction**, c'est à dire l'ensemble des étapes qui sont réalisées lorsqu'on appelle la fonction. 
 
@@ -317,6 +299,11 @@ def surface(a: float, b: float) -> float:
 	return a * b
 ```
 
+{{% note normal %}}
+Les indications `: float`, qui sert à indiquer le **type** de l'argument attendu et `-> float`, qui permet d'indiquer le type de la valeur retournée par la fonction, sont des **annotations**.\
+L'interpréteur Python ne les prend pas en compte, **leur présence est utile aux programmeurs et simplifie la lecture du code**.
+{{% /note %}}
+
 ### Spécification d'une fonction
 
 {{% note tip %}}
@@ -330,7 +317,10 @@ L'utilisation d'une fonction nécessite la description précise :
 Il est donc indispensable d'établir *un contrat entre le concepteur de la fonction et son utilisateur*.
 
 {{% note tip %}}
-On appelle spécification l'association de la **signature** et de la **documentation** de la fonction : **Spécification = Signature + Commentaires**.
+On appelle spécification l'association de la **signature** et de la **documentation** de la fonction :
+$$
+    \text{\textbf{Spécification}} = \text{\textbf{Signature}} + \text{\textbf{Commentaires}}
+$$
 {{% /note %}}
 
 **Remarque :** Une spécification ne s'intéresse pas au « comment » !  
@@ -411,12 +401,12 @@ D'après la documentation, la fonction `sum` attend une séquence de nombres et 
 Help on class int in module builtins:
 
 class int(object)
- |  int([x]) -> integer
- |  int(x, base=10) -> integer
- |  
- |  Convert a number or string to an integer, or return 0 if no arguments
- |  are given.  If x is a number, return x.__int__().  For floating point
- |  numbers, this truncates towards zero.
+ | int([x]) -> integer                                                   |
+ | i-------------------------------------------------------------------r |
+ |                                                                       |
+ | Convert a number or string to an integer, or return 0 if no arguments |
+ | are given.  If x is a number, return x.__int__().  For floating point |
+ | numbers, this truncates towards zero.                                 |
 ```
 
 De même les fonctions `float`, `str` et `bool` convertissent, si possible, un nombre, une chaîne de caractères en approximation des nombres réels, chaîne de caractères, nombre booléen.
@@ -679,7 +669,8 @@ def moyenne_ponderee(x:float, y:float, z:float, a:int, b:int, c:int) -> float:
 {{% /note %}}
 
 {{% solution "Solution 7." %}}
-```python3
+
+```python
 from math import pow, pi
 
 def surface_rectangle(a: float, b: float) -> float:

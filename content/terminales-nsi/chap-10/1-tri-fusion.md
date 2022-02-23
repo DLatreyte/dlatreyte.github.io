@@ -1,6 +1,6 @@
 ---
 title: "Le tri fusion"
-subtitle: "Chapitre 10,1"
+subtitle: "Chapitre 13,1"
 author: ""
 type: ""
 date: 2020-11-18T17:12:24+04:00

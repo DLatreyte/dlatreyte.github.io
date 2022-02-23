@@ -1,6 +1,6 @@
 ---
 title: "Analyse physique d’un système chimique"
-subtitle: "Chapitre 4"
+subtitle: "Chapitre 5"
 author: ""
 type: ""
 date: 2020-10-05T09:24:24+04:00
@@ -29,13 +29,15 @@ layout: "single"
 
 ### Documents 
 
-- **Chap. 4,1 :** [*Détermination de la composition d'une solution colorée, loi de Beer-Lambert*](1-beer-lambert)
+- **Chap. 5,1 :** [*Détermination de la composition d'une solution colorée, loi de Beer-Lambert*](1-beer-lambert)
 
-- **Chap. 4,2 :** [*Dosage par étalonnage d'un antiseptique : l'eau de Dakin*](2-eau-dakin)
+- **Chap. 5,2 :** [*Dosage par étalonnage d'un antiseptique : l'eau de Dakin*](2-eau-dakin)
 
-- **Chap. 4,3 :** [*Conductimétrie (cours)*](3-conductivite-solution)
+- **Chap. 5,3 :** [*Conductimétrie (cours)*](3-conductivite-solution)
 
-- **Chap. 4,4 :** [*Dosage par étalonnage d'un sérum physiologique*](4-kohlrausch-dosage)
+- **Chap. 5,4 :** [*Dosage par étalonnage d'un sérum physiologique*](4-kohlrausch-dosage)
+
+- **Chap. 5,15 :** [*Dosages par étalonnage : exercices*](14-dosages-etalonnage-exercices)
 
 ## Titrages
 
@@ -51,13 +53,18 @@ layout: "single"
 
 ### Suivi conductimétrique
 
-- **Chap. 4,5 :** [*Titrage d'une solution de vinaigre par conductimétrie*](5-titrage-conductimetrique)
+- **Chap. 5,5 :** [*Titrage d'une solution de vinaigre par conductimétrie*](5-titrage-conductimetrique)
 
-- **Chap. 4,6 :** [*Titrage d'une solution de sérum physiologique par conductimétrie*](6-titrage-conductimetrique-2)
+- **Chap. 5,6 :** [*Titrage d'une solution de sérum physiologique par conductimétrie*](6-titrage-conductimetrique-2)
 
 ### Suivi pH-métrique
 
-- **Chap. 4,7 :** [*Titrages par suivi pH-métrique*](7-titrage-acide-base)
+- **Chap. 5,7 :** [*Titrages par suivi pH-métrique*](7-titrage-acide-base)
+
+- **Chap. 5,17 :** [*Titrage de l'acide acétique présent dans un vinaigre*](15-titrage-acide-acetique)
+
+- **Chap. 5,18 :** [*Titrage direct de l'aspirine*](18-titrage-aspirine)
+
 
 ## Spectroscopie
 
@@ -73,21 +80,21 @@ layout: "single"
 - {{< remote "Chapitre du Livre Scolaire" "http://LLS.fr/PCTP39" >}}
 ----
 
-- **Chap. 4,8 :** *Comment peut-on identifier un groupe caractéristique ?*
+- **Chap. 5,8 :** *Comment peut-on identifier un groupe caractéristique ?*
     - {{< remote "Version dynamique" "https://www.icloud.com/keynote/0KKFt0V9rV7HQhYkZ56dwP0Ug" >}}
     - {{< remote "Version pdf statique" "/terminales-pc/chap-4/chap-4-8-1.pdf" >}}
 
 
 ## Annales
 
-- **Chap. 4,9 :** [*Annale : Titrage indirect d'une eau de Javel*](8-titrage-indirect)
+- **Chap. 5,9 :** [*Annale : Titrage indirect d'une eau de Javel*](8-titrage-indirect)
 
-- **Chap. 4,10 :** [*Annale : Chaufferette chimique*](9-chaufferette-chimique)
+- **Chap. 5,10 :** [*Annale : Chaufferette chimique*](9-chaufferette-chimique)
 
-- **Chap. 4,11 :** [*Annale : Ammoniac*](10-ammoniac)
+- **Chap. 5,11 :** [*Annale : Ammoniac*](10-ammoniac)
 
-- **Chap. 4,12 :** [*Annale : Quelle teneur en cuivre dans une pièce de 5 centimes d'euro ?*](11-teneur-cuivre-piece)
+- **Chap. 5,12 :** [*Annale : Quelle teneur en cuivre dans une pièce de 5 centimes d'euro ?*](11-teneur-cuivre-piece)
 
-- **Chap. 4,13 :** [*Annale : Les dangers de l'alcool*](12-alcool)
+- **Chap. 5,13 :** [*Annale : Les dangers de l'alcool*](12-alcool)
 
-- **Chap.4,14 :** [*Annale : Acide ascorbique*](13-acide-ascorbique)
+- **Chap.5,14 :** [*Annale : Acide ascorbique*](13-acide-ascorbique)

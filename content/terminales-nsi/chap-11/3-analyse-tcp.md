@@ -1,6 +1,6 @@
 ---
 title: "Analyse du protocole de transport TCP"
-subtitle: "Chapitre 11,03"
+subtitle: "Chapitre 10,03"
 author: ""
 type: ""
 date: 2020-11-29T05:59:52+04:00

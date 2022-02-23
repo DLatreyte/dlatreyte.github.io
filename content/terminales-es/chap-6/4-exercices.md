@@ -1,6 +1,6 @@
 ---
 title: "Exercices"
-subtitle: "Chapitre 6,4"
+subtitle: "Chapitre 2,4"
 author: ""
 type: ""
 date: 2021-01-21T08:21:54+04:00

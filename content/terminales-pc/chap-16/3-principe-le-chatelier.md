@@ -1,6 +1,6 @@
 ---
 title: "Déplacement d'équilibre et principe de Le Chatelier"
-subtitle: "Chapitre 16,3"
+subtitle: "Chapitre 15,3"
 author: ""
 type: ""
 date: 2021-04-12T16:33:33+04:00

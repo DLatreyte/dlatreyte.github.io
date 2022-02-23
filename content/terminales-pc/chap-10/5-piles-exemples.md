@@ -1,6 +1,6 @@
 ---
 title: "Les piles, des générateurs omnipré-sents"
-subtitle: "Chapitre 10,5"
+subtitle: "Chapitre 11,5"
 author: ""
 type: ""
 date: 2021-02-05T22:37:14+04:00

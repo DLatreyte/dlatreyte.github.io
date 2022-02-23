@@ -1,6 +1,6 @@
 ---
 title: "Mouvements dans le champ gravitationnel non uniforme"
-subtitle: "Chapitre 8,6"
+subtitle: "Chapitre 9,6"
 author: ""
 type: ""
 date: 2020-12-28T23:21:35+04:00
@@ -29,20 +29,23 @@ Les deux premières lois furent publiées par Kepler en 1609 et la troisième en
 - **(Loi des aires)** *Les aires balayées par le rayon vecteur joignant le Soleil à la planète sont proportionnelles aux durées employées à les décrire.*
     **Autre formulation.** *Le rayon vecteur joignant le Soleil à la planète balaie des surfaces égales pendant des durées égales.*
 
-- **(Loi des périodes)** *Les carrés des périodes de révolution des planètes sont proportionnels aux cubes des demi-grands axes de leurs orbites :* 
+- **(Loi des périodes)** *Les carrés des périodes de révolution des planètes sont proportionnels aux cubes des demi-grands axes de leurs orbites&nbsp;:* 
 $$
     \dfrac{T^2}{a^3} = \text{cste}
 $$
 {{% /note %}}
 
 <img src="/terminales-pc/chap-8/chap-8-6/chap-8-6-2.png" alt="" width="70%" />
+
 > Illustration de la **loi des trajectoires** (première loi de Kepler)
 
 <img src="/terminales-pc/chap-8/chap-8-6/chap-8-6-4.png" alt="" width="80%" />
+
 > Illustration de la **loi des aires** (deuxième loi de Kepler)
 
 <img src="/terminales-pc/chap-8/chap-8-6/chap-8-6-6.png" alt="" width="100%" />
 <img src="/terminales-pc/chap-8/chap-8-6/chap-8-6-8.png" alt="" width="" />
+
 > Illustration de la **loi des périodes** (troisième loi de Kepler)
 
 
@@ -88,17 +91,17 @@ On peut montrer que la troisième loi de Kepler impose à la valeur de la force 
 ### Force gravitationnelle
 
 {{% note tip %}}
-Deux **corps ponctuels** de masses $m_1$ et $m_2$ sont situés en deux points $M_1$ et $M_2$ de l'espace éloignés d'une distance $d$. On modélise l'action qu'exerce le corps de masse $m_1$ sur le corps de masse $m_2$ par la force gravitationnelle introduite par Newton : 
+Deux **corps ponctuels** de masses $m_1$ et $m_2$ sont situés en deux points $M_1$ et $M_2$ de l'espace éloignés d'une distance $d$. On modélise l'action qu'exerce le corps de masse $m_1$ sur le corps de masse $m_2$ par la force gravitationnelle introduite par Newton&nbsp;: 
 $$
 \vec{F}\_{m_1 / m_2} = 
 \begin{cases}
     \text{Point d'application : } M_2\cr
-    \text{Direction : } \text{droite}  (M_1 M_2)\cr
+    \text{Direction : } \text{droite }  (M_1 M_2)\cr
     \text{Sens : } \text{vers } M_1\cr
     \text{Valeur : } F\_{m_1 / m_2} = G \dfrac{m_1 m_2}{d^2}
 \end{cases}
 $$ 
-où $G$ est la *constante de gravitation universelle* : $G = \pu{6,67e- 11 N.m2.kg-2}$.
+où $G$ est la *constante de gravitation universelle* : $G = \pu{6,67e-11 N.m2.kg-2}$.
 {{% /note %}}
 
 <img src="/terminales-pc/chap-8/chap-8-6/chap-8-6-9.png" alt="" width="40%" />
@@ -142,16 +145,16 @@ $$
 
 {{% note normal %}}
 
-Comme dans les documents [chap. 8,2]({{< ref "./2-mouvement-champ-pesanteur-uniforme" >}}) et [chap. 8,5]({{< ref "./5-mouvement-champ-electrique" >}}), on constate que quelle que soit la masse $m$ qui subit l'action de la masse $m_1$ :
+Comme dans les documents [chap. 9,2]({{< ref "./2-mouvement-champ-pesanteur-uniforme" >}}) et [chap. 9,5]({{< ref "./5-mouvement-champ-electrique" >}}), on constate que quelle que soit la masse $m$ qui subit l'action de la masse $m_1$ :
 $$
 \dfrac{\vec{F}\_{m_1 / m_2}}{m_2} = \dfrac{\vec{F}\_{m_1 / m_3}}{m_3} =
    \dfrac{\vec{F}\_{m_1 / m_4}}{m_4} = \ldots = - G\\, \dfrac{m_1}{d^2}\\,  \vec{u} =
    \vec{\mathcal{G}} (M_2)
 $$
- $\vec{\mathcal{G}} (M_2)$, force que subirait un corps de masse 1 kg placé au point $M_2$, est le champ gravitationnel créé par le corps de masse $m_1$ au point $M_2$.
+ $\vec{\mathcal{G}} (M_2)$, force que subirait un corps de masse 1&nbsp;kg placé au point $M_2$, est le champ gravitationnel créé par le corps de masse $m_1$ au point $M_2$.
  {{% /note %}}
 
-La présence de la masse $m_1$ au point $M_1$ « communique » à tout point de l'espace la propriété suivante :
+La présence de la masse $m_1$ au point $M_1$ « communique » à tout point de l'espace la propriété suivante&nbsp;:
 
 {{% note tip %}}
 #### Relation entre la force gravitationnelle et le champ électrique en un point de l'espace
@@ -182,15 +185,15 @@ Caractériser le mouvement de la planète.
 {{% solution "Réponse" %}}
 - Système = {Planète}
 
-- Interactions :
+- Interactions&nbsp;:
 
-  -  Système - Champ gravitationnel $\vec{\mathcal{G}}$ créé par l'astre $S$ : $\vec{F} = m\\, \vec{\mathcal{G}} (M)$
+  -  Système - Champ gravitationnel $\vec{\mathcal{G}}$ créé par l'astre $S$&nbsp;: $\vec{F} = m\\, \vec{\mathcal{G}} (M)$
 
 - Référentiel = {Héliocentrique}
 
-- Schématisation : voir plus haut.
+- Schématisation&nbsp;: voir plus haut.
 
-- Deuxième loi de Newton : 
+- Deuxième loi de Newton&nbsp;: 
   $$
   m\\, \vec{a}_P = m\\, \vec{\mathcal{G}} (M)
   $$
@@ -255,12 +258,12 @@ On peut démontrer qu'une telle accélération conduit à des mouvement *ellipti
 {{% note tip %}}
 Dans le repère de Frenet, 
 
-- La vitesse d'une planète s'écrit : 
+- La vitesse d'une planète s'écrit&nbsp;: 
     $$
         \vec{v} = v\\, \vec{t}
     $$
 
-- On peut démontrer que l'accélération d'une planète s'écrit : 
+- On peut démontrer que l'accélération d'une planète s'écrit&nbsp;: 
     $$
             \vec{a}\_P = \dfrac{\mathrm{d}v}{\mathrm{dt}}\\, \vec{t} + \dfrac{v^2}{r}\\, \vec{n}
     $$ où $r$ est le rayon du cercle.
@@ -276,7 +279,7 @@ Projeter l'expression de la deuxième loi de Newton dans le repère de Frenet.
 {{% /note %}}
 
 {{% solution "Réponse" %}}
-On possède désormais deux expressions différentes de l'accélération :
+On possède désormais deux expressions différentes de l'accélération&nbsp;:
 
 - Résultat de l'écriture de la deuxième loi de Newton :
 $$
@@ -293,7 +296,7 @@ $$
      \vec{t} + \dfrac{v^2}{r}\\, \vec{n}
 $$
 
-- Par identification, on obtient : 
+- Par identification, on obtient&nbsp;: 
 $$
 \begin{cases}
     \text{Selon } \vec{t} \text{ :} & \dfrac{\mathrm{d}v}{\mathrm{dt}} = 0\\\\
@@ -333,7 +336,7 @@ Donner l'expression de la période $T$ de révolution de la planète autour du S
 {{% /note %}}
 
 {{% solution "Réponse" %}}
-La période de révolution $T$ de la planète autour de l'astre attracteur $S$ est la durée nécessaire pour parcourir l'orbite circulaire à la vitesse constante $v$, donc : 
+La période de révolution $T$ de la planète autour de l'astre attracteur $S$ est la durée nécessaire pour parcourir l'orbite circulaire à la vitesse constante $v$, donc&nbsp;: 
 $$
 T = \dfrac{2 \pi r}{v} = \dfrac{2 \pi r}{\sqrt{G\\, \dfrac{M_S}{r}}}
 $$
@@ -362,7 +365,7 @@ $$
         \dfrac{T^2}{r^3} = \dfrac{4 \pi^2}{GM_S}
     }
 $$ 
-On retouve la troisième loi de Kepler et on comprend pourquoi elle peut servir de « test d'appartenance du corps au système Solaire » : le rapport est constant pour tous les satellites qui ont pour corps attracteur le corps de masse $M_S$.
+On retouve la troisième loi de Kepler et on comprend pourquoi elle peut servir de « test d'appartenance du corps au système Solaire »&nbsp;: le rapport est constant pour tous les satellites qui ont pour corps attracteur le corps de masse $M_S$.
 
 {{% /solution %}}
 
@@ -377,7 +380,7 @@ La trajectoire d'un satellite « geostationnaire » est un *cercle situé dans l
 
 #### Période de révolution.
 
-La période de révolution d'un satellite « geostationnaire », dans le référentiel géocentrique, est égale à la période de rotation propre de la Terre : 
+La période de révolution d'un satellite « geostationnaire », dans le référentiel géocentrique, est égale à la période de rotation propre de la Terre&nbsp;: 
 $$
 T = \pu{86 164 s} \qquad  \text{(jour sidéral)}
 $$
@@ -392,7 +395,7 @@ Démontrer que les satellites géostationnaires ne peuvent se trouver qu'à une 
 
 {{% solution "Réponse" %}}
 
-On peut écrire : $T^2 = \dfrac{4 \pi^2}{GM_T}  (R_T + h)^3$ puisque la distance entre le centre de la Terre et le satellite est : $r = R_T + h$. Donc : 
+On peut écrire&nbsp;: $T^2 = \dfrac{4 \pi^2}{GM_T}  (R_T + h)^3$ puisque la distance entre le centre de la Terre et le satellite est&nbsp;: $r = R_T + h$. Donc&nbsp;: 
 $$
 h = \left( \frac{GM_T T^2}{4 \pi^2} \right)^{1 / 3} - R_T
 $$ 

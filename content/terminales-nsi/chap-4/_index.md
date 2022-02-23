@@ -18,7 +18,7 @@ layout: "single"
 
 | Contenus | Capacités attendues | Commentaires |
 |:-:|:-:|:-:|
-|  Vocabulaire de la programmation objet : **classes**, **attributs**, **méthodes**, **objets**. |  - **Écrire** la définition d’une classe. <br />- Accéder aux attributs et méthodes d’une classe. |  On n’aborde pas ici tous les aspects de la programmation objet comme le polymorphisme et l’héritage. |
+|  Vocabulaire de la programmation objet : **classes**, **attributs**, **méthodes**, **objets**. |  - **Écrire** la définition d’une classe. <br />- Accéder aux attributs et méthodes d’une classe. |  On n’aborde pas ici tous les aspects de la programmation objet comme le polymorphisme et l’héritage. |
 
 
 ## Documents

@@ -1,6 +1,6 @@
 ---
 title: "Accélération et premières applications des lois de Newton"
-subtitle: "Chapitre 7,5"
+subtitle: "Chapitre 8,5"
 author: ""
 type: ""
 date: 2020-12-05T23:18:35+04:00

@@ -1,6 +1,6 @@
 ---
 title: "Le langage SQL : Le langage de manipulation de données (LMD), Compléments"
-subtitle: "Chapitre 13,5"
+subtitle: "Chapitre 12,5"
 author: ""
 type: ""
 date: 2021-02-09T08:37:37+04:00

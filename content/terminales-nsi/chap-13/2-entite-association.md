@@ -1,6 +1,6 @@
 ---
 title: "Le modèle Entités/Associations"
-subtitle: "Chapitre 13,2"
+subtitle: "Chapitre 12,2"
 author: ""
 type: ""
 date: 2021-02-02T05:04:55+04:00
@@ -258,8 +258,7 @@ Le modèle E/A, conçu en 1976, est à la base de la plupart des méthodes de co
 La première étape d'une conception consiste à identifier les entités tiles.
 
 {{% note tip %}}
-*On désigne par **entité** tout objet identifiable et
-pertinent pour l'application.*
+*On désigne par **entité** tout objet identifiable et pertinent pour l'application.*
 {{% /note %}}
 
 La notion *d'identité* est primordiale, c'est elle qui permet de distinguer les entités les unes des autres, et donc de dire qu'une information est redondante ou qu'elle ne l'est pas. *Il est indispensable de prévoir un moyen technique pour pouvoir effectuer cette distinction entre entités au niveau de la base de données* : on parle

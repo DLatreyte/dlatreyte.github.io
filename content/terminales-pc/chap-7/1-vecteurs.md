@@ -1,6 +1,6 @@
 ---
 title: "Les vecteurs en physique"
-subtitle: "Chapitre 7,1"
+subtitle: "Chapitre 8,1"
 author: ""
 type: ""
 date: 2020-11-27T15:24:37+04:00
@@ -11,6 +11,7 @@ categories: ["Physique", "Terminale Spé PC"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
+mathjax: true
 ---
 
 La mécanique, l'étude du mouvement des objets et des objets à l'origine de ce mouvement s'appuie sur le formalisme vectoriel. Il est donc nécessaire de bien le maîtriser afin de pouvoir se concentrer sur la physique.
@@ -24,6 +25,7 @@ Un **vecteur** est un objet mathématique qui possède trois caractéristiques&n
 - une *direction*&nbsp;;
 - un *sens*&nbsp;; 
 - une *norme* (ou *longueur*).
+
 On peut représenter un vecteur par un segment muni d'une flèche&nbsp;; la longueur du segment étant égale à la norme du vecteur.
 {{% /note %}}
 
@@ -57,7 +59,7 @@ La méthode du parallélogramme ne s'applique pas lorsque les deux vecteurs à s
 {{% /note %}}
 
 {{% note exercise %}}
-Pour chacune des situations présentées ci-dessous, construire les vecteurs $\vec{a} + \vec{b}$, $\vec{a} - \vec{b}$, $2\vec{a} + \vec{b}$, $\dfrac{1}{2}(\vec{a} + \vec{b})$.
+Pour chacune des situations présentées ci-dessous, construire les vecteurs $\vec{a} + \vec{b}$, $\vec{a} - \vec{b}$, $2 \vec{a} + \vec{b}$, $\dfrac{1}{2}(\vec{a} + \vec{b})$.
 {{% /note %}}
 
 <img src="/terminales-pc/chap-7/chap-7-1-11.png" alt="" width="100%" />
@@ -112,7 +114,7 @@ Une projection est dite **orthogonale** *si la droite sur laquelle on projette e
 
 L'opérateur mathématique permettant de réaliser une projection est le **produit scalaire**.
 
-Si $\vec{u}$ est un vecteur unitaire de la droite $(x'x)$ sur laquelle on projette orthogonalement le vecteur, la projection orthogonale $a_x$ est&nbsp;:
+Si $\vec{u}$ est un **vecteur unitaire** de la droite $(x'x)$ sur laquelle on projette orthogonalement le vecteur, la projection orthogonale $a_x$ est&nbsp;:
 
 <div class="row" style=".row::after {
   content: ''; clear: both; display: table;">
@@ -149,7 +151,7 @@ On appelle composantes (coordonnées) d'un vecteur le doublet (à 2D) ou le trip
 <img src="/terminales-pc/chap-7/chap-7-1-7.png" alt="" width="45%" />  
 
 $$
-\vec{v} = \left(
+\vec{v} \ \left(
 \begin{aligned}
 v_x &= v \cos(\theta) \cr
 v_y &= v \sin(\theta) \cr
@@ -211,13 +213,13 @@ On montre cependant que
 
 {{% note tip %}}
 #### Détermination du vecteur vitesse à partir de données expérimentales
-La meilleure approximation pour le vecteur vitesse au point $A_i$ à la date $t_i$ est&nbsp;:
+La meilleure approximation pour le vecteur vitesse au point $M_i$ à la date $t_i$ est&nbsp;:
 $$
-\vec{v}(A_i) \approx \dfrac{\overrightarrow{A_{i-1}A_{i+1}}}{t_{i+1}-t_{i-1}}
+\vec{v}(M_i) \approx \dfrac{\overrightarrow{M_{i-1}M_{i+1}}}{t_{i+1}-t_{i-1}}
 $$	
-Les vecteurs $\vec{v}(A_i)$ et $\overrightarrow{A_{i-1}A_{i+1}}$ sont <strong>colinéaires</strong>, ils ont <strong>même direction</strong> et <strong>même sens</strong> (puisque le coefficient de colinéarité est positif). On peut donc en déduire que&nbsp;:
+Les vecteurs $\vec{v}(M_i)$ et $\overrightarrow{M_{i-1}M_{i+1}}$ sont <strong>colinéaires</strong>, ils ont <strong>même direction</strong> et <strong>même sens</strong> (puisque le coefficient de colinéarité est positif). On peut donc en déduire que&nbsp;:
 $$
-v(A_i) \approx \dfrac{A_{i-1}A_{i+1}}{t_{i+1}-t_{i-1}}
+v(M_i) \approx \dfrac{M_{i-1}M_{i+1}}{t_{i+1}-t_{i-1}}
 $$
 {{% /note %}}
 

@@ -1,13 +1,13 @@
 ---
 title: "Description d'un fluide au repos"
-subtitle: "Chapitre 10,1"
+subtitle: "Chapitre 9,1"
 author: ""
 type: ""
 date: 2021-02-24T05:06:35+04:00
 draft: false
 toc: true
 tags: []
-categories: []
+categories: ["Premières Spé PC"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
@@ -72,14 +72,14 @@ Brown, un botaniste, en 1827, alors qu'il étudiait des grains de pollen dans un
 
 ### Simulation d'une marche au hazard à deux dimensions
 
-Le programme à {{< remote "cette adresse" "https://repl.it/@dlatreyte/Marche-au-hasard-a-deux-dimensions" >}} simule un déplacement, aléatoire, dans un plan, de trois tortues (commenter l'instruction `tortue1.hideturtle()` et dé-commenter l'instruction `tortue1.shape("turtle")` pour faire apparaître la tortue).
+Le programme à {{< remote "cette adresse" "https://replit.com/@dlatreyte/Marche-au-hasard-a-deux-dimensions#main.py" >}} simule un déplacement, aléatoire, dans un plan, de trois tortues (commenter l'instruction `tortue1.hideturtle()` et dé-commenter l'instruction `tortue1.shape("turtle")` pour faire apparaître la tortue).
 
 10. Lancer la simulation. Qu'est-ce qui provoque son arrêt ?
 {{% solution "Réponse" %}}
 La simulation s'arrête lorsqu'une tortue atteint le cadre qui délimite le plan.
 {{% /solution %}}
 
-11. Quelle est l'action des instructions comprises entre les lignes 38 et 45 ?
+11. Quelle est l'action des instructions comprises entre les lignes 45 et 52 ?
 {{% solution "Réponse" %}}
 Le bloc constitue une boucle `TantQue` qui se répète deux fois.\
 Les instructions du bloc font :
@@ -90,28 +90,28 @@ Les instructions du bloc font :
 Le tout trace donc la limite du plan dans lequel les tortues peuvent se déplacer.
 {{% /solution %}}
 
-12. Résumer la condition d'arrêt de la boucle `TantQue` (`while`) qui débute à la ligne 56.
+12. Résumer la condition d'arrêt de la boucle `TantQue` (`while`) qui débute à la ligne 64.
 {{% solution "Réponse" %}}
-La boucle se poursuit tant que les tortues restent dans le plan délimité par la frontière dessinée par les instructions comprises entre les lignes 38 et 45.\
+La boucle se poursuit tant que les tortues restent dans le plan délimité par la frontière dessinée par les instructions comprises entre les lignes 45 et 52.\
 Pour une tortue de coordonnées $(x,y)$, on doit donc avoir les relations, si $L$ est la largeur du plan et $H$ sa hauteur, $-L/2 \leqslant x \leqslant L/2$ et $$-H/2 \leqslant y \leqslant H/2$.
 {{% /solution %}}
 
-13. Que contient la variable `dx1` une fois l'instruction de la ligne 63 exécutée ? Se document sur la fonction `randint` du module `random` si nécessaire.
+13. Que contient la variable `dx1` une fois l'instruction de la ligne 73 exécutée ? Se document sur la fonction `randint` du module `random` si nécessaire.
 {{% solution "Réponse" %}}
-La variable `dx1` contient un nombre entier compris entre -10 et 10 inclus.
+La variable `dx1` contient un nombre entier compris entre -10 et 10 inclus, choisi aléatoirement.
 {{% /solution %}}
 
-14. À quoi servent les instructions des ligne 65 et 66 ?
+14. À quoi servent les instructions des ligne 75 et 76 ?
 {{% solution "Réponse" %}}
 Les instructions calculent les nouvelles coordonnées de la tortue.
 {{% /solution %}}
 
-15. À quoi sert l'instruction de la ligne 67 ?
+15. À quoi sert l'instruction de la ligne 77 ?
 {{% solution "Réponse" %}}
 L'instruction déplace la tortue jusqu'au nouveau point.
 {{% /solution %}}
 
-16. Ajouter une quatrième tortue à ce programme. Effectuer toutes les modifications nécessaires.
+16. Ajouter une cinquième tortue à ce programme. Effectuer toutes les modifications nécessaires.
 
 17. En quoi ce programme simule-t-il le mouvement brownien.
 {{% solution "Réponse" %}}

@@ -1,6 +1,6 @@
 ---
 title: "Exploration du système saturnien"
-subtitle: "Chapitre 8,7"
+subtitle: "Chapitre 9,7"
 author: ""
 type: ""
 date: 2020-12-29T17:38:14+04:00
@@ -14,7 +14,7 @@ auto_numbering: true
 ---
 > Saturne, à cause de sa distance à la Terre et au Soleil, est une destination spatiale complexe qui nécessite un savoir-faire et des ressources financières très importants. La mission Cassini-Huygens reste, à ce jour, la seule mission à avoir placé une sonde, Cassini, en orbite autour de Saturne, et à avoir pu mener une étude approfondie de son système.
 
-Cet exercice se propose d'étudier l'une des particularités de la planète Saturne, *ses anneaux*, puis se concentre sur l'étude de deux aspects de la mission Cassini-Huygens : l'*atterrissage en douceur de l'atterrisseur* Huygens sur le sol de la lune la plus grosse de Saturne, Titan et *une erreur de conception qui aurait pu faire échouer la partie la plus importante de la mission*.
+Cet exercice se propose d'étudier l'une des particularités de la planète Saturne, *ses anneaux*, puis se concentre sur l'étude de deux aspects de la mission Cassini-Huygens : l'*atterrissage en douceur de l'atterrisseur* Huygens sur le sol de la lune la plus grosse de Saturne, Titan et *une erreur de conception qui aurait pu faire échouer la partie la plus importante de la mission*.
 
 <center>
 <strong>Les trois parties de cet exercice (1., 2. et 3.) sont indépendantes.</strong> 
@@ -23,9 +23,10 @@ Cet exercice se propose d'étudier l'une des particularités de la planète Satu
 ## Les anneaux de Saturne
 
 <img src="/terminales-pc/chap-8/chap-8-7/chap-8-7-1.jpg" alt="" width="40%" style="float: right; padding-left: 20px;" />
+
 Les anneaux de Saturne sont les anneaux planétaires les plus importants du Système solaire. *Bien qu'ils semblent continus vus depuis la Terre, ils sont en fait constitués d'innombrables particules de glace* (95 à 99 % de glace d'eau pure selon les analyses spectroscopiques) et de poussière dont la taille varie de quelques micromètres à quelques centaines de mètres ; ils ont chacun une orbite différente. Les anneaux forment un disque dont le diamètre est de $\pu{360000 km}$ (les anneaux principaux s'étendent de $\pu{7000}$ à $\pu{72000 km}$) comportant plusieurs divisions de largeurs variées et dont l'épaisseur va de 2 à 10 mètres. [etc.]
 
-La sonde Cassini, a permis de montrer que la masse des anneaux est faible et que leur date de formation serait récente (quelques centaines de millions d'années peut-être alors qu'on admettait généralement qu'ils dataient de la formation du système solaire).
+La sonde Cassini, a permis de montrer que la masse des anneaux est faible et que leur date de formation serait récente (quelques centaines de millions d'années peut-être alors qu'on admettait généralement qu'ils dataient de la formation du système solaire).
 
 <div style="text-align: right;">
 <a href="https://fr.wikipedia.org/wiki/Anneaux_de_Saturne" target="_blank">https://fr.wikipedia.org/wiki/Anneaux_de_Saturne</a>
@@ -85,12 +86,13 @@ Soient deux objets $A$ et $B$, assimilables à des points matériels, satellisé
 
 À une date ultérieure, l'objet satellite $B$ a effectué exactement une révolution autour de Saturne. On souhaite savoir où se trouve l'objet $A$ sur son orbite.
 
+13. Indiquer en justifiant la réponse, laquelle des trois configurations proposées ci-dessous est possible :
+
 <img src="/terminales-pc/chap-8/chap-8-7/chap-8-7-5.png" alt="" width="" />
-   
 
 ### Les anneaux de Saturne
 
-13. À l'aide de l'étude qui précède, en supposant valides les hypothèses faites dans la partie 1.3., montrer que si les anneaux de Saturne ont été à un moment donné d'un seul tenant (soudés les uns aux autres), il est peu probable qu'ils aient pu le rester par la suite.
+14. À l'aide de l'étude qui précède, en supposant valides les hypothèses faites dans la partie 1.3., montrer que si les anneaux de Saturne ont été à un moment donné d'un seul tenant (soudés les uns aux autres), il est peu probable qu'ils aient pu le rester par la suite.
 
 ## La mission Cassini-Huygens
 

@@ -1,13 +1,13 @@
 ---
 title: "Annale : Chaufferette Chimique"
-subtitle: "Chapitre 4,10"
+subtitle: "Chapitre 5,10"
 author: ""
 type: ""
 date: 2020-10-26T16:57:54+04:00
 draft: false
 toc: true
 tags: ["Titrage", "Transformation totale", "Tableau d'avancement", "Méthode de la dérivée", "Réaction acide-base", "Tableau d'avancement"]
-categories: ["Chimie", "Terminale Spé PC"]
+categories: ["Chimie", "Terminale Spé PC", "Annale"]
 image: ""
 solution_est_visible: true
 auto_numbering: true

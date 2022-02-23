@@ -26,11 +26,28 @@ Dans la suite, nous utiliserons un alphabet composé seulement des 8 lettres A, 
 
 On cherche à coder chaque lettre de cet alphabet par une séquence de chiffres binaires.
 
-1. Combien de bits sont nécessaires pour coder chacune des 8 lettres de l’alphabet ?
+1. Combien de bits sont nécessaires pour coder chacune des 8 lettres de l’alphabet&nbsp;?
+{{% solution "Réponse" %}}
 
-2. Quelle est la longueur en octets d’un message de 1 000 caractères construit sur cet alphabet ?
+Il faut coder 8 caractères, on a donc besoin de 3 bits, puisque $2^3 = 8$.
+
+{{% /solution %}}
+
+2. Quelle est la longueur en octets d’un message de 1 000 caractères construit sur cet alphabet&nbsp;?
+{{% solution "Réponse" %}}
+
+- $1000 \times 3 = 3000$ bits sont nécessaires.
+- $\dfrac{3000}{8} = 375$ octets sont nécessaires.
+
+{{% /solution %}}
 
 3. Proposer un code de taille fixe pour chaque caractère de l’alphabet de 8 lettres.
+{{% solution "Réponse" %}}
+
+A&nbsp;: 000&nbsp;; B&nbsp;: 001&nbsp;; C&nbsp;: 010&nbsp;; D&nbsp;: 011&nbsp;; E&nbsp;: 100&nbsp;; F&nbsp;: 101&nbsp;; G&nbsp;: 110 et H&nbsp;: 111.
+
+
+{{% /solution %}}
 
 On considère maintenant le codage suivant, la longueur du code de chaque caractère étant variable.
 
@@ -47,10 +64,20 @@ Ce type de code est dit **préfixe**, ce qui signifie qu’*aucun code n’est l
 {{% /note %}}
 
 4. En utilisant la table précédente, donner le code du message : CACHE.
+{{% solution "Réponse" %}}
+
+CACHE&nbsp;: 00010000111101
+
+{{% /solution %}}
 
 5. Quel est le message correspondant au code 001101100111001.
+{{% solution "Réponse" %}}
 
-Dans un texte, chacun des 8 caractères a un nombre d’apparitions différent. Cela est résumé dans le tableau suivant, construit à partir d’un texte de 1 000 caractères.
+001101100111001 : BADGE
+
+{{% /solution %}}
+
+Dans un texte, chacun des 8 caractères a un nombre d’apparitions différent. Cela est résumé dans le tableau suivant, construit à partir d’un texte de 1 &nbsp;000 caractères.
 
 <center>
 
@@ -60,9 +87,20 @@ Dans un texte, chacun des 8 caractères a un nombre d’apparitions différent. 
 
 </center>
 
-7. En utilisant le code de taille fixe proposé à la question 3., quelle est la longueur en bits du message contenant les 1 000 caractères énumérés dans le tableau précédent ?
+7. En utilisant le code de taille fixe proposé à la question 3., quelle est la longueur en bits du message contenant les 1 000 caractères énumérés dans le tableau précédent&nbsp;?
+{{% solution "Réponse" %}}
 
-8. En utilisant le code de la question 4., quelle est la longueur du même message en bits ?
+Si on utilise 3 bits pour chaque caractère, il faut $1000 \times 3 = 3000$ bits pour coder le message.
+
+{{% /solution %}}
+
+8. En utilisant le code de la question 4., quelle est la longueur du même message en bits&nbsp;?
+{{% solution "Réponse" %}}
+
+$N = f(A)\cdot l(A) + f(B)\cdot l(B) + f(C)\cdot l(C) + f(D)\cdot l(D) + f(E)\cdot l(E) + f(F)\cdot l(F) + f(G)\cdot l(G) + f(H)\cdot l(H)$ où $f(x_i)$ est la fréquence du caractère $x_i$ et $l(x_i)$ la longueur (en bits) du codage du caractère $x_i$.      
+**A.N.** $N = 240 \times 2 + 140 \times 3 + 160 \times 3 + 51 \times 4 + 280 \times 2 + 49 \times 4 + 45 \times 4 + 35 \times 4 = 2660$ 
+
+{{% /solution %}}
 
 {{% note normal %}}
 Ce type de codage réserve le codage le plus court aux caractères les plus fréquents.
@@ -108,7 +146,7 @@ graph TD
 - On recommence jusqu’à ce qu’il n’y ait plus qu’un seul arbre.
 {{% /note %}}
 
-9. Combien d’étapes (combien de fusions d’arbres) sont nécessaires pour que cet algorithme se termine ?
+9. Combien d’étapes (combien de fusions d’arbres) sont nécessaires pour que cet algorithme se termine&nbsp;?
 
 10. En suivant l’algorithme précédent, construire l’arbre de Huffman.
 
@@ -128,7 +166,7 @@ Dans le cas de l’arbre ci-dessus le code de X est 00 (deux fois à gauche), le
 
 11. Sur chaque arête de l’arbre construit à la question 10., inscrire 0 ou 1 selon que l’arête joint un fils gauche ou un fils droit.
 
-12. Quel est le code de F ? 
+12. Quel est le code de F&nbsp;? 
 
 
 Le code suivant permet, à partir d’un fichier nommé texte.txt, de construire l’arbre de Huffman puis un dictionnaire qui associe à chaque caractère du fichier d’entrée son code sous forme d’une séquence de bits (liste de 0 et de 1).
@@ -174,9 +212,31 @@ et l'algorithme (cf. Cormen, *Algorithmes*)
 Cet algorithm est un exemple d'**algorithme glouton** dans lequel on prend la décision qui semble la meilleure à un instant donné.
 {{% /note %}}
 
-17. Écrire une fonction (et la spécification !) nommée `encodage` qui, étant donné un code de Huffman et le texte initial, retourne la chaîne de bits produite par le codage de Huffman.
+17. Écrire une fonction nommée `codes_huffman_parcours` dont la spécification est :
+```python
+def codes_huffman_parcours(a: Noeud, dic: Dict[str, str], code: str) -> None:
+    """
+    Parcours de l'arbre et construction des codes et du dictionnaire passé en argument. Les lettres constituent les valeurs et les codes les clés.
 
-18. Écrire une fonction (et la spécification !) nommée `decodage` qui, étant donné un code de Huffman et le texte compressé, retourne le message initial.
+    Algorithme récursif.
+    """
+```
+
+18. Écrire une fonction nommée `encodage` dont la spécification est :
+```python
+def encodage(message: str, codes: Dict[str, str]) -> str:
+    """
+    Retourne la chaîne de bits produite par le codage de Huffman pour la chaîne message.
+    """
+```
+
+19. Écrire une fonction nommée `decodage` dont la spécification est :
+```python
+def decodage(message_compresse: str, codes: Dict[str, str]) -> str:
+    """
+    Retourne le message non compressé à partir du codage de Huffman. 
+    """
+```
 
 {{% solution "Corrigé" %}}
 {{% remote "Code Python" "https://repl.it/@dlatreyte/huffman" %}}

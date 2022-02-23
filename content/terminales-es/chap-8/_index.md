@@ -1,6 +1,6 @@
 ---
 title: "Choix énergétiques et impacts sur les sociétés"
-subtitle: "Chapitre 8"
+subtitle: "Chapitre 4"
 author: ""
 type: ""
 date: 2021-02-11T05:58:54+04:00
@@ -31,8 +31,8 @@ Pour les sociétés, l’enjeu climatique et environnemental est celui d’une t
 
 ----
 
-- **Chap. 8,1 :** [*Le nucléaire comme choix énergétique*](1-nucleaire)
+- **Chap. 4,1 :** [*Le nucléaire comme choix énergétique*](1-nucleaire)
 
-- **Chap. 8,2 :** [*Vers un mix énergétique pour le village d'Eklaugy*](2-mix-energetique)
+- **Chap. 4,2 :** [*Vers un mix énergétique pour le village d'Eklaugy*](2-mix-energetique)
 
 

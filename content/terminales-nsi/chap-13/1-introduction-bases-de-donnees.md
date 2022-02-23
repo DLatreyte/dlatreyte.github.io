@@ -1,6 +1,6 @@
 ---
 title: "Introduction aux bases de données"
-subtitle: "Chapitre 13,1"
+subtitle: "Chapitre 12,1"
 author: ""
 type: ""
 date: 2021-01-31T04:39:04+04:00

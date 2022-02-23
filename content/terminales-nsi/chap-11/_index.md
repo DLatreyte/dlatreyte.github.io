@@ -1,6 +1,6 @@
 ---
 title: "Les réseaux"
-subtitle: "Chapitre 11"
+subtitle: "Chapitre 10"
 author: ""
 type: ""
 date: 2020-11-26T06:04:09+04:00
@@ -24,12 +24,12 @@ Dans un réseau, les routeurs jouent un rôle essentiel dans la transmission de
 
 ## Documents
 
-- **Chap. 11,01 :** [*Modélisation des réseaux*](1-modelisation-reseaux)
+- **Chap. 10,01 :** [*Modélisation des réseaux*](1-modelisation-reseaux)
 
-- **Chap. 11,02 :** [*Adressage IP*](2-ip)
+- **Chap. 10,02 :** [*Adressage IP*](2-ip)
 
-- **Chap. 11,03 :** [*Analyse du protocole de transport TCP*](3-analyse-tcp)
+- **Chap. 10,03 :** [*Analyse du protocole de transport TCP*](3-analyse-tcp)
 
-- **Chap. 11,04 :** [*Simulation de réseaux*](4-simulation-reseau)
+- **Chap. 10,04 :** [*Simulation de réseaux*](4-simulation-reseau)
 
-- **Chap. 11,05 :** [*Le routage entre réseaux IP*](5-routage)
+- **Chap. 10,05 :** [*Le routage entre réseaux IP*](5-routage)

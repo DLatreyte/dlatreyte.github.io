@@ -1,6 +1,6 @@
 ---
 title: "Vers un mix énergétique pour le village d'Eklaugy"
-subtitle: "Chapitre 8,2"
+subtitle: "Chapitre 4,2"
 author: ""
 type: ""
 date: 2021-02-11T09:47:16+04:00

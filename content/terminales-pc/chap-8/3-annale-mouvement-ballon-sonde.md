@@ -1,6 +1,6 @@
 ---
 title: "Annale : Mécanique du vol d'un ballon sonde"
-subtitle: "Chapitre 8,3"
+subtitle: "Chapitre 9,3"
 author: ""
 type: ""
 date: 2020-12-20T19:27:51+04:00

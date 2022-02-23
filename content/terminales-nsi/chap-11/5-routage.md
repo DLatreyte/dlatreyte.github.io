@@ -1,6 +1,6 @@
 ---
 title: "Le routage entre réseaux IP"
-subtitle: "Chapitre 11,5"
+subtitle: "Chapitre 10,5"
 author: ""
 type: ""
 date: 2021-01-02T15:51:33+04:00
@@ -25,7 +25,7 @@ Un **routeur** est un ordinateur possédant **au moins deux interfaces réseaux*
 
 {{% note warning %}}
 Il faut être capable de distinguer une **carte réseau** d'une **interface réseau**.\
-Une **carte réseau** est un *objet physique possédant une adresse MAC*. *On peut « attacher » à une **carte réseau** une ou plusieurs **interfaces réseaux**, objets virtuels, possédant toutes des adresses IP différentes*.\
+Une **carte réseau** est un *objet physique possédant une adresse MAC*. *On peut «&nbsp;attacher&nbsp;» à une **carte réseau** une ou plusieurs **interfaces réseaux**, objets virtuels, possédant toutes des adresses IP différentes*.\
 La plupart du temps, cependant, on n'attache qu'une seule interface à chaque carte réseau.
 {{% /note %}}
 
@@ -50,7 +50,7 @@ Chaque ordinateur sur un réseau doit décider à qui transmettre les trames lor
 {{% /note %}}
 
 
-À l'aide du logiciel Filius, on se connecte à une machine d'adresse IP `172.12.0.2` et on clique sur « Afficher le bureau ».
+À l'aide du logiciel Filius, on se connecte à une machine d'adresse IP `172.12.0.2` et on clique sur «&nbsp;Afficher le bureau&nbsp;».
 
 On utilise la commande `route` dans le terminal et on obtient le résultat suivant :
 <img src="/terminales-nsi/chap-11/chap-11-5/chap-11-5-2.png" alt="" width="" />
@@ -86,7 +86,7 @@ On simule le réseau suivant ({{< remote "Fichier simulation à télécharger" "
 Remarque
 : Tous les routeurs utilisent un routage automatique. Leur action n'est pas étudiée dans l'exercice qui suit.
 
-3. À l'aide du logiciel Filius, se connecter à la machine d'adresse IP `192.168.0.10` et cliquer sur « Afficher le bureau ».
+3. À l'aide du logiciel Filius, se connecter à la machine d'adresse IP `192.168.0.10` et cliquer sur «&nbsp;Afficher le bureau&nbsp;».
 
 4. Cette machine est-elle capable d'envoyer un paquet vers la machine d'adresse `192.168.3.11` ? Justifier la réponse à partir de l'étude de la table de routage.
 {{% solution "Réponse" %}}
@@ -138,7 +138,7 @@ La route par défaut, dans la table de routage passe par le routeur R4 qui, sauf
 
 ### Comment une décision de routage est-elle prise par un routeur ?
 
-{{% note normal %}}
+{{% note tip %}}
 #### Algorithme de prise de décision
 
 - Un signal électrique (ou lumineux ou hertzien) parvient à l'une des cartes réseau du routeur.\
@@ -229,16 +229,16 @@ Cette table de routage est complète, il n'est pas nécessaire d'ajouter quoi qu
 
 ## Types de routage
 
-Si le réseau n'est pas trop étendu, il est possible de créer manuellement les tables de routage de chaque routeur. Cependant, cette méthode n'est pas applicable sur des grands réseaux : les routeurs doivent alors mettre en œuvre des protocoles leurs permettant de construire et de partager automatiquement les tables de routage ; on parle de **routage dynamique**.
+Si le réseau n'est pas trop étendu, il est possible de créer manuellement les tables de routage de chaque routeur (**routage statique**). Cependant, cette méthode n'est pas applicable sur des grands réseaux&nbsp;: les routeurs doivent alors mettre en œuvre des protocoles leurs permettant de construire et de partager automatiquement les tables de routage&nbsp;; on parle de **routage dynamique**.
 
 
 ### Intérêt d'un routage automatique
 
-{{% note normal %}}
+{{% note tip %}}
 
 - Les protocoles de routage établissent des règles d’**échange entre routeurs pour mettre à jour leurs tables selon des critères de coût** comme, par exemple, la **distance**, l’**état de la liaison**, le **débit**. *Ils améliorent ainsi l’efficacité du routage*.
 
-- Les protocoles de routage ont pour objectif d'éviter les **boucles de routage** (le message peut « tourner en rond » dans le réseau et ne jamais atteindre son destinataire).
+- Les protocoles de routage ont pour objectif d'éviter les **boucles de routage** (le message peut «&nbsp;tourner en rond&nbsp;» dans le réseau et ne jamais atteindre son destinataire).
 
 - Les protocoles de routage doivent permettre de **compenser les pannes dans le réseau** : une fois une panne détectée, il faut transmettre l’information sur l’événement le plus rapidement possible pour que les différents routeurs recalculent par où faire passer leurs messages en contournant la liaison en panne.
 {{% /note %}}
@@ -278,7 +278,7 @@ $$ \text{adresse} + \text{distance} = \text{vecteur} $$
 
 - Des routes doivent être retirées de la table gérée par RIP dans deux situations :
 
-	- en premier lieu, si un **réseau immédiatement connecté devient inaccessible** (panne de l'interface, de la ligne, modification de la topologie par l'administrateur, etc.), les routeurs RIP reliés à ce réseau affectent dans leur table une *distance « infinie »* (16 comme indiqué plus haut) à cette route. Elle est conservée pendant la durée d'un temporisateur de « maintien » (garbage collect) de 120 secondes puis est supprimée. Immédiatement après, le vecteur avec une distance « infinie » est diffusé. Un routeur qui reçoit un vecteur avec une distance de 16 comprend : « il faut que tu retires cette route de ta table, car elle est devenue invalide ! » De proche en proche, cette information se propage ;
+	- en premier lieu, si un **réseau immédiatement connecté devient inaccessible** (panne de l'interface, de la ligne, modification de la topologie par l'administrateur, etc.), les routeurs RIP reliés à ce réseau affectent dans leur table une *distance «&nbsp;infinie&nbsp;»* (16 comme indiqué plus haut) à cette route. Elle est conservée pendant la durée d'un temporisateur de «&nbsp;maintien&nbsp;» (garbage collect) de 120 secondes puis est supprimée. Immédiatement après, le vecteur avec une distance «&nbsp;infinie&nbsp;» est diffusé. Un routeur qui reçoit un vecteur avec une distance de 16 comprend : «&nbsp;il faut que tu retires cette route de ta table, car elle est devenue invalide !&nbsp;» De proche en proche, cette information se propage ;
 	- en second lieu, **un routeur du réseau tombe en panne**. Cela veut peut-être dire que les réseaux situés derrière cet appareil sont devenus inaccessibles. Mais comment savoir si un routeur est en panne ? RIP considère qu'un routeur qui *n'a pas donné de nouvelles depuis trois minutes* est hors service. Pour gérer cette situation, il attribue à toutes les routes dynamiques un temporisateur initialisé à 180 secondes par défaut. À chaque réception d'un vecteur de distance déjà présent dans la table, le compteur est réinitialisé. Mais si jamais ce compteur atteint zéro, la route est considérée comme invalide. On se retrouve alors dans la situation précédente (distance infinie, temporisateur de maintien, diffusion de l'information puis suppression de la route). Maintenant, si un autre routeur connaît une route menant vers un des réseaux que l'on vient de retirer, c'est parfait ! Notre routeur intègrera cette nouvelle route dans sa table. De cette façon, RIP permet la tolérance aux pannes.
 
 <div style="text-align: right;">

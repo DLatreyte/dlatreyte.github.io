@@ -1,6 +1,6 @@
 ---
 title: "Caractéristiques des ondes progressives"
-subtitle: "Chapitre 1"
+subtitle: "Chapitre 2"
 author: ""
 type: ""
 date: 2020-09-04T13:26:22+04:00
@@ -25,13 +25,20 @@ layout: "single"
 ----
 - {{< remote "Chapitre du Livre Scolaire" "http://LLS.fr/PCTP465" >}}
 ----
-- **Chap. 1,1 :** [*Qu'est-ce qu'une onde progressive ?*](1-rappels-ondes-progressives)
 
-- **Chap. 1,2 :** [*Intensité sonore, niveau d'intensité sonore*](2-intensite-sonore)
+- **Chap. 2,0 :** [*Qu'est-ce qu'une onde progressive - carte mentale*](/terminales-pc/chap-1/ondes_progressives_carte_mentale.svg)
 
-- **Chap. 1,3 :** [*Exercices de révision de 1ère*](3-exercices-revisions)
+- **Chap. 2,1 :** [*Qu'est-ce qu'une onde progressive ?*](1-rappels-ondes-progressives)
 
-- **Chap. 1,4 :** [*Évaluer l'atténuation du signal dans une fibre optique*](4-attenuation-fibre-optique)
+- **Chap. 2,2 :** [*Intensité sonore, niveau d'intensité sonore*](2-intensite-sonore)
+
+- **Chap. 2,3 :** [*Exercices de révision de 1ère*](3-exercices-revisions)
+
+- **Chap. 2,4 :** [*Intensité sonore, niveau d'intensité sonore : activités expérimentales*](6-activite-experimentale)
+
+- **Chap. 2,5 :** [*Évaluer l'atténuation du signal dans une fibre optique*](4-attenuation-fibre-optique)
+
+- **Chap. 2,6 :** [*Utiliser le réseau téléphonique pour surfer sur Internet*](5-reseau-telephonique)
 
 
 

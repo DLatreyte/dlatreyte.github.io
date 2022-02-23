@@ -1,6 +1,6 @@
 ---
 title: "SQL Murder Mystery"
-subtitle: "Chapitre 13,7"
+subtitle: "Chapitre 12,7"
 author: ""
 type: ""
 date: 2021-02-07T07:00:01+04:00
@@ -14,7 +14,7 @@ auto_numbering: true
 ---
 
 {{% note normal %}}
-- Les fichiers de travail se trouvent à cette adresse : {{< remote "https://repl.it/@dlatreyte/Murder-Mystery" "https://repl.it/@dlatreyte/Murder-Mystery" >}}
+- Les fichiers de travail se trouvent à cette adresse : {{< remote "https://replit.com/@dlatreyte/Murder-Mystery#main.sql" "https://replit.com/@dlatreyte/Murder-Mystery" >}}
 
 - Les documents de référence se trouvent à cette adresse : {{< remote "https://github.com/NUKnightLab/sql-mysteries" "https://github.com/NUKnightLab/sql-mysteries" >}}
 {{% /note %}}

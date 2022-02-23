@@ -1,6 +1,6 @@
 ---
 title: "Annale : Condensateur d'un flash"
-subtitle: "Chapitre 5,6"
+subtitle: "Chapitre 6,6"
 author: ""
 type: ""
 date: 2020-11-07T14:18:10+04:00

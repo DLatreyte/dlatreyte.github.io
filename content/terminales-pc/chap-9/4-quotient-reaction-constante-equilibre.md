@@ -1,6 +1,6 @@
 ---
 title: "Quotient de réaction et constante d'équilibre"
-subtitle: "Chapitre 9,4"
+subtitle: "Chapitre 10,4"
 author: ""
 type: ""
 date: 2021-01-09T18:58:02+04:00

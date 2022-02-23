@@ -1,6 +1,6 @@
 ---
-title: "Suivi cinétique et vitesse volumique de réaction"
-subtitle: "Chapitre 6,4"
+title: "Suivi cinétique et vitesses volumiques de formation et de disparition"
+subtitle: "Chapitre 7,4"
 author: ""
 type: ""
 date: 2020-11-14T20:04:29+04:00
@@ -73,10 +73,10 @@ La concentration des réactifs est un facteur cinétique. Lorsque le système av
 </center>
 {{% /solution %}}
 
-5. La transformation étudiée est-elle totale&nbsp;: Justifier la réponse.
+5. La transformation étudiée est-elle totale&nbsp;? Justifier la réponse.
 
 {{% solution "Réponse" %}}
-- Si la transformation chimique est totale au moins l'un des réactifs est limitant et $x_f = x_{\text{max}}$.
+- Si la transformation chimique est totale au moins un des réactifs est limitant et $x_f = x_{\text{max}}$.
 - Détermination de l'avancement maximal&nbsp;:
     - $\ce{I^-}$ limitant&nbsp;:    
     $n_0(\ce{I^-}) - 2x_{\text{max}} = 0 \iff x_{\text{max}} = \dfrac{n_0(\ce{I^-})}{2}$.     
@@ -120,8 +120,24 @@ $$
 ### Temps de demi-réaction
 
 {{% note tip %}}
-Le **temps de demi-réaction** $t_{1/2}$ d’une réaction chimique est la *durée nécessaire pour que l’avancement de la réaction parvienne à la moitié de sa valeur finale*.
-$$ x (t_{1/2}) = \dfrac{x_f}{2} $$
+Le **temps de demi-réaction**, noté $t\_{1/2}$, d’une réaction chimique est la *durée nécessaire pour que l’avancement de la réaction parvienne à la moitié de sa valeur finale*.
+
+$$ 
+    x (t_{1/2}) = \dfrac{x_f}{2} 
+$$
+{{% /note %}}
+
+{{% note normal %}}
+
+- Si la transformation chimique est **totale**, 
+$$
+    x (t_{1/2}) = \dfrac{x_{max}}{2} 
+$$
+
+- Si la transformation est **totale**, le temps de demi-réaction est aussi la *durée au bout de laquelle la moitié du réactif limitant a été consommée*.
+
+- Le temps de demi-réaction est la durée au bout de laquelle la moitié de la quantité de matière finale de produit a été produite.
+
 {{% /note %}}
 
 ### Le temps de demi-réaction est, en terminale, une valeur essentiellement expérimentale
@@ -178,16 +194,33 @@ Le **temps de demi-réaction** *fournit une échelle de temps caractéristique d
 {{% /note %}}
 
 
-## Comment définir la vitesse d'une réaction&nbsp;:
+## Vitesses (volumiques) d'un formation d'un produit et de disparition d'un réactif
 
-### Vitesse (volumique) de réaction
+### Vitesse (volumique) de formation d'un produit
 
 {{% note tip %}}
-La vitesse (volumique) $v(t)$ d’une réaction chimique se déroulant dans une solution de volume $V$ **constant** et dont l’avancement est noté $x(t)$, a pour expression&nbsp;:
-$$ v(t) = \dfrac{1}{V}\\, \lim\limits_{\Delta t \to 0} \dfrac{x(t+\Delta t) - x(t)}{\Delta t} = \dfrac{1}{V}\\, \left( \dfrac{\mathrm{d} x}{\mathrm{dt}} \right)_t$$
+La vitesse (volumique) de formation $v\_f (t)$ d'un produit $X$ a pour expression&nbsp;:
+$$ 
+    v\_f (t) = \lim \limits_{\Delta t \to 0} \dfrac{\[ X \](t+\Delta t) - \[ X \] (t)}{\Delta t} = \left( \dfrac{\mathrm{d} \[ X \]}{\mathrm{dt}} \right)_t
+$$
 {{% /note %}}
 
-### Quelle est l’unité de la vitesse volumique de réaction&nbsp;:
+### Vitesse volumique de disparition d'un réactif
+
+{{% note tip %}}
+La vitesse (volumique) de disparition $v\_d (t)$ d'un réactif $Y$ a pour expression&nbsp;:
+$$ 
+    v\_d (t) = - \left( \lim \limits_{\Delta t \to 0} \dfrac{\[ Y \](t+\Delta t) - \[ Y \] (t)}{\Delta t} \right) = - \left( \dfrac{\mathrm{d} \[ Y \]}{\mathrm{dt}} \right)_t
+$$
+{{% /note %}}
+
+{{% note warning %}}
+
+Le signe $-$ permet de définir *une vitesse de disparition positive* puisque la concentration du réactif $Y$ diminue au cours du temps.
+
+{{% /note %}}
+
+### Quelle est l’unité d'une vitesse volumique ?
 
 10. À l'aide d'une analyse dimensionnelle, déterminer l'unité de la vitesse volumique.
 {{% solution "Réponse" %}}
@@ -198,12 +231,12 @@ En pratique, on utilise *mole par litre par seconde*&nbsp;: $\pu{mol.L-1.s-1}$.
 ### Comment déterminer expérimentalement la valeur de la vitesse de réaction&nbsp;:
 
 {{% note tip %}}
-Pour déterminer la vitesse volumique de réaction $v$ à une date $t_1$, à partir des valeurs de l’avancement $x(t)$ obtenues lors d’une expérience&nbsp;:
+Pour déterminer une vitesse volumique $v$ à une date $t_1$, à partir des valeurs de la concentration d'un produit (ou d'un réactif) $[X]$ (ou $[Y]$) obtenues lors d’une expérience&nbsp;:
 - On modélise le «&nbsp;nuage de points&nbsp;»&nbsp;;
-- On mesure la pente de la tangente à la courbe obtenue lors de l’étape précédente au point d’abscisse $t_1$&nbsp;;
-- On divise la valeur de cette pente par le volume du système.
+- On mesure la pente de la tangente à la courbe obtenue lors de l’étape précédente au point d’abscisse $t_1$.
 {{% /note %}}
 
+<!--
 11. À l'aide du logiciel Graphical analysis déterminer la vitesse de réaction $v$ aux dates $\pu{5 min}$, $\pu{10 min}$ et $\pu{20 min}$.    
 Commenter l'évolution de la vitesse volumique de réaction.
 {{% solution "Réponse" %}}
@@ -215,27 +248,25 @@ Commenter l'évolution de la vitesse volumique de réaction.
 
 Comme attendu, la vitesse volumique de réaction diminue au cours du temps.
 {{% /solution %}}
+-->
 
-12. Écrire l'expression de la vitesse volumique de réaction en fonction de $[\ce{I_2}]$ et vérifier que l'on retrouve les mêmes valeurs lorsqu'on utilise la courbe $[\ce{I_2}] (t)$ que lorsqu'on utilise la courbe $x(t)$.
+11. Écrire l'expression de la vitesse volumique de formation de $[\ce{I_2}]$ et et déterminer ses valeurs aux dates $\pu{5 min}$, $\pu{10 min}$ et $\pu{20 min}$.
 
-{{% solution "Réponse" %}}
-- $v(t) = \dfrac{1}{V}\\, \dfrac{\mathrm{d} x}{\mathrm{dt}} $ et $[\ce{I_2}] (t) = \dfrac{x(t)}{V}$. Comme le volume $V$ de la solution est supposé constant, 
-$$ \boxed{v(t) = \dfrac{\mathrm{d} [\ce{I_2}]}{\mathrm{dt}}}$$
+{{% solution "Réponse" %}} 
+$$ \boxed{v\_f (\ce{I_2})(t) = \dfrac{\mathrm{d} [\ce{I_2}]}{\mathrm{dt}}}$$
 
 <img src="/terminales-pc/chap-6/chap-6-4-6.png" alt="" width="100%" />
 {{% /solution %}}
 
-13. Écrire l'expression de la vitesse volumique de réaction en fonction de $[\ce{I^-}]$ et vérifier que l'on retrouve les mêmes valeurs lorsqu'on utilise la courbe $[\ce{I^-}] (t)$ que lorsqu'on utilise la courbe $x(t)$.
+12. Écrire l'expression de la vitesse volumique de disparition de $[\ce{I^-}]$ et déterminer ses valeurs aux dates $\pu{5 min}$, $\pu{10 min}$ et $\pu{20 min}$.
 
 {{% solution "Réponse" %}}
 
-- $v(t) = \dfrac{1}{V}\\, \dfrac{\mathrm{d} x}{\mathrm{dt}} $ et $[\ce{I^-}] = [\ce{I^-}] _0 - \dfrac{2 x}{V}$.    
-Comme $x = \dfrac{V}{2} \left( [\ce{I^-}] _0 - [\ce{I^-}] \right)$, $\dfrac{\mathrm{d} x}{\mathrm{dt}} = \dfrac{\mathrm{d} }{\mathrm{dt}} \left(\dfrac{V}{2} \left( [\ce{I^-}] _0 - [\ce{I^-}]\right) \right) = - \dfrac{V}{2} \dfrac{\mathrm{d} [\ce{I^-}]}{\mathrm{dt}}$ puisque $[\ce{I^-}] _0$ est une constante.     
-Finalement $$v(t) = - \dfrac{1}{2} \dfrac{\mathrm{d} [\ce{I^-}]}{\mathrm{dt}}$$
-Le signe - est logique puisque la vitesse est une fonction positive alors que $[\ce{I^-}]$ est une fonction qui décroît au cours du temps.
+$$
+    v\_d (\ce{I^-})(t) = - \dfrac{1}{2} \dfrac{\mathrm{d} [\ce{I^-}]}{\mathrm{dt}}$$
 
 <img src="/terminales-pc/chap-6/chap-6-4-7.png" alt="" width="100%" />
-> $v (\pu(20 min) = -0,5 \times \pu{1,7e-3 mol.L-1.min-1} = \pu{8,5e-4 mol.L-1.min-1}$
+
 {{% /solution %}}
 
 ## Données expérimentales

@@ -1,9 +1,9 @@
 ---
 title: "Dosage d'un antiseptique : l'eau de Dakin"
-subtitle: "Chapitre 4,2"
+subtitle: "Chapitre 5,2"
 author: ""
 type: ""
-date: 2020-10-05T09:38:50+04:00
+date: 2021-10-05T09:38:50+04:00
 draft: false
 toc: true
 tags: ["Soluté", "Concentration molaire", "Concentration massique", "Beer Lambert", "Dilution", "Couleur", "Absorption", "Dosage", "Étalonnage"]
@@ -35,11 +35,18 @@ D'après <a href="https://fr.wikipedia.org/wiki/Solution_de_Dakin" target="_blan
 Le permanganate de potassium, découvert en 1659, est un sel inorganique de formule chimique $\ce{KMnO4}$ et de masse molaire $M = \pu{158,0 g/mol}$. Il est composé d'ions potassium $\ce{K^+}$ et d'ions permanganate $\ce{MnO_4^-}$. À l'état solide, il se présente sous la forme de cristaux violets. Lorsqu'il est dissous dans l'eau, il forme une *solution aqueuse violette*. C'est un composé sans odeur, et au goût amer.
 
 ### Dosage par étalonnage
+
+{{% note normal %}}
+
 **Doser** une solution consiste à déterminer la concentration (molaire) d'une espèce chimique en solution. Un **dosage par étalonnage** consiste à *déterminer la concentration d’une espèce chimique en comparant une grandeur physique caractéristique de la solution, à la même grandeur physique mesurée pour des solutions étalon*. La détermination de la concentration se fait alors par la lecture sur le graphe de la courbe d’étalonnage.
+
+{{% /note %}}
 
 Un *dosage colorimétrique* est un type de dosage par étalonnage possible lorsque *l'espèce chimique colore la solution* et que la loi de Beer-Lambert peut être utilisée.
 
 #### Conditions générales de réalisation d'un dosage colorimétrique
+
+{{% note normal %}}
 
 - *La loi de Beer-Lambert doit pouvoir être appliquée*, la solution doit 
 donc être diluée (la concentration de l'espèce chimique colorant la solution doit être inférieure à $\pu{1e-2 mol/L}$).
@@ -51,6 +58,8 @@ l'absorbance.
 
 - *La longueur d'onde du filtre choisi doit correspondre au rayonnement pour lequel
 l'absorbance de la solution est maximale*.
+
+{{% /note %}}
 
 ### Réalisation d'une échelle de teinte (solutions étalons)
 
@@ -70,16 +79,39 @@ Pour réaliser une échelle de teinte à partir d'une solution $S_0$ dans laquel
 
 ### Résultats expérimentaux
 
-- Spectre d'absorption du permanganate de potassium : {{< remote "Données expérimentales" "/terminales-pc/chap-4/chap-4-2-2.smbl" >}}. L'exploitation de ce fichier nécessite le téléchargement du logiciel {{< remote "Spectral Analysis" "https://www.vernier.com/product/spectral-analysis/" >}}. 
+- *Spectre d'absorption du permanganate de potassium&nbsp;:* {{< remote "Données expérimentales" "/terminales-pc/chap-4/chap-4-2-2.smbl" >}}. L'exploitation de ce fichier nécessite le téléchargement du logiciel {{< remote "Spectral Analysis" "https://www.vernier.com/product/spectral-analysis/" >}}. 
 
-- Absorbances des solutions étalons de permanganate de potassium : 
+- *Absorbances des solutions étalons de permanganate de potassium&nbsp;:* 
+
+<center>
+
+|  | $S_0$ | $S_1$ | $S_2$ | $S_3$ | $S_4$ | $S_5$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Concentration ($\pu{mol/L}$) | $\pu{2,0e-4}$ | $\pu{1,0e-4}$ | $\pu{8,0e-5}$ | $\pu{6,0e-5}$ | $\pu{4,0e-5}$ |  $\pu{2,0e-5}$|
+| Absorbance | .... | .... | .... | .... | .... | .... |
+
+</center>
+
+{{% solution "Résultats expérimentaux" %}}
+
+<center>
 
 |  | $S_0$ | $S_1$ | $S_2$ | $S_3$ | $S_4$ | $S_5$ |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | Concentration ($\pu{mol/L}$) | $\pu{2,0e-4}$ | $\pu{1,0e-4}$ | $\pu{8,0e-5}$ | $\pu{6,0e-5}$ | $\pu{4,0e-5}$ |  $\pu{2,0e-5}$|
 | Absorbance | 0,44 | 0,22 | 0,18 | 0,13 | 0,088 | 0,044 |
 
+</center>
+
+{{% /solution %}}
+
+- *Absorbance de la solution de Dakin&nbsp;:* $A = \ldots$.
+
+{{% solution "Résultat expérimental" %}}
+
 - Absorbance de la solution de Dakin : $A = \pu{0,15}$.
+
+{{% /solution %}}
 
 - L'exploitation des résultats expérimentaux nécessite le téléchargement du logiciel {{< remote "Graphical Analysis" "https://www.vernier.com/product/graphical-analysis-4/" >}}.
 
@@ -146,11 +178,20 @@ Ici, tous les points semblent appartenir à une même droite. De plus, on cherch
 #### Détermination de $C_{\text{Dakin}}$
 Les conditions expérimentales étant identiques, on peut utiliser la courbe d'étalonnage (et la fonction obtenue) pour déterminer la concentration en permanganate de potassium dans la solution de Dakin.  
 
-$A_{\text{Dakin}} = k\\, C_{\text{Dakin}} \leftrightarrow C_{\text{Dakin}} = \dfrac{A_{\text{Dakin}}}{k}$   
+$A_{\text{Dakin}} = k\\, C_{\text{Dakin}} \iff C_{\text{Dakin}} = \dfrac{A_{\text{Dakin}}}{k}$   
 
 **A.N.** $C_{\text{Dakin}} = \dfrac{\pu{0,15}}{\pu{2203 L/mol}} = \pu{6,8e-5 mol/L}$.  
 La concentration trouvée correspond bien à celle annoncée dans le document 1.1
 {{% /solution %}}
 
+## Exploitation des données avec Python
 
+{{% note normal %}}
+
+- Un code Python incomplet se trouve à [cette adresse](https://replit.com/join/nmnrhpqzrn-dlatreyte).
+- Un corrigé se trouve à [cette adresse](https://replit.com/join/rufhkoxaau-dlatreyte)
+
+{{% /note %}}
+
+Remplacer les .......... dans le code source de façon à déterminer la concentration en permanganate de potassium dans le dakin.
 

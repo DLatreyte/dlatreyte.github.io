@@ -1,6 +1,6 @@
 ---
 title: "Comment fonctionne un capteur photovoltaïque ?"
-subtitle: "Chapitre 5,3"
+subtitle: "Chapitre 1,3"
 author: ""
 type: ""
 date: 2020-12-10T04:35:18+04:00
@@ -13,7 +13,7 @@ solution_est_visible: true
 auto_numbering: true
 ---
 
-## La théorie des bandes
+## La théorie des bandes : conducteurs, isolants et semi-conducteurs
 
 {{< youtube "EWLgeBVY-08" >}}
 
@@ -53,44 +53,38 @@ La notion d'électron libre prend tout son sens pour expliquer le comportement c
 - **Les électrons du solide se répartissent dans les bandes d'énergie autorisées ; cette répartition dépend de la température**.
 {{% /solution %}}
 
-5. Qu'appelle-t-on « bande de valence », « bande de conduction » ? Comment appelle-t-on l'énergie qui séparer la bande de valence de la bande de conduction ?
+5. Qu'appelle-t-on « bande de valence », « bande de conduction » ? Comment appelle-t-on l'énergie qui sépare la bande de valence de la bande de conduction ?
 {{% solution "Réponse" %}}
 - La **dernière bande d'énergie complètement remplie par les électrons** est appelée « **bande de valence** ». 
 - La **bande d'énergie permise qui suit la bande de valence** est appelée « **bande de conduction** ». *Elle peut être vide ou partiellement remplie*. 
 - L'énergie qui sépare la bande de valence de la bande de conduction est appelée le « **gap** » (fossé, interstice en anglais, bande interdite en français).
 {{% /solution %}}
 
-6. La formation des molécules fait intervenir les électrons de valence des atomes. Par analogie essayer de préciser quel est le rôle des électrons situés dans la bande de valence. Pourquoi ne peuvent-ils pas participer à la conduction du courant électrique ?
-{{% solution "Réponse" %}}
-Les *électrons de valence* sont les électrons qui participent à la formation des doublets liants (liaisons) dans les molécules, *ils assurent donc la cohésion des molécules*. Par analogie, on peut penser que les *électrons de la bande de valence* contribuent à la **cohésion du solide** (entre atomes voisins). Ils ne peuvent donc pas participer à la conduction du courant électrique.
 
-À l'opposé, les électrons de la bande de conduction ne participent pas à la cohésion du solide. Ce sont ces électrons qui participent à la conduction électrique. 
-{{% /solution %}}
-
-7. En conclusion, de quoi dépendent les propriétés électroniques d'un solide ?
+6. En conclusion, de quoi dépendent les propriétés électroniques d'un solide ?
 {{% solution "Réponse" %}}
 Les propriétés électroniques du solide dépendent donc essentiellement de la **répartition des électrons dans les bandes de valence et de conduction**, ainsi que de la **valeur du gap** entre ces deux bandes.
 {{% /solution %}}
 
-8. Qu'est-ce qui caractérise un **conducteur** du point de vue de la théorie des bandes ?
+7. Qu'est-ce qui caractérise un **conducteur** du point de vue de la théorie des bandes ?
 {{% solution "Réponse" %}}
 - Dans un **conducteur**, le plus haut niveau d'énergie occupé par les électrons (niveau de Fermi) se trouve dans la bande de conduction ; **les bandes de conduction et de valence se chevauchent.**    
 La bande de conduction est donc toujours partiellement occupée, même à une température de zéro kelvin. Un faible champ électrique peut mettre en mouvement les électrons et le solide est conducteur.
 {{% /solution %}}
 
-9. Qu'est-ce qui caractérise un **isolant** du point de vue de la théorie des bandes ?
+8. Qu'est-ce qui caractérise un **isolant** du point de vue de la théorie des bandes ?
 {{% solution "Réponse" %}}
 Dans un **isolant**, le plus haut niveau d'énergie occupé par les électrons (niveau de Fermi) se trouve dans la **bande interdite**. 
 La **bande de conduction est donc vide** et comme le **gap est grand** (de l'ordre de 10&nbsp;eV) même une élévation de température ne permet à *aucun électron de participer à la conduction*.
 {{% /solution %}}
 
-10. Qu'est-ce qui caractérise un **semi-conducteur** du point de vue de la théorie des bandes ?
+9. Qu'est-ce qui caractérise un **semi-conducteur** du point de vue de la théorie des bandes ?
 {{% solution "Réponse" %}}
 Dans un **semi-conducteur**, le plus haut niveau d'énergie occupé par les électrons (niveau de Fermi) se trouve dans la **bande interdite**.
-La **bande de conduction est donc vide**. Cependant, comme le **gap n'est pas très grand** (de l'ordre de 1 à 2&nbsp;eV) une *élévation de température* ou une *exposition à un rayonnement* peut permettre à *un électron de participer à la conduction* (passage dans la bande de conduction).
+La **bande de conduction est donc vide**. Cependant, comme le **gap n'est pas très grand** (de l'ordre de 1 à 2&nbsp;eV) une *élévation de température* ou une *exposition à un rayonnement* (UV, X, etc.) peut permettre à *un électron de participer à la conduction* (passage dans la bande de conduction).
 {{% /solution %}}
 
-11. Qu'appelle-t-on dopage d'un semi-conducteur ? Combien de types de dopages sont possibles ?
+10. Qu'appelle-t-on dopage d'un semi-conducteur ? Combien de types de dopages sont possibles ?
 {{% solution "Réponse" %}}
 - Doper un semi-conducteur consiste à ajouter des « impuretés » (atomes) dans le semi-conducteur.
 - Ces impuretés peuvent posséder plus d'électrons périphériques que nécessaire pour participer à la cohésion du solide.\
@@ -105,7 +99,7 @@ On parle de dopage $P$.
 
 {{< youtube "23i-_v_tWTA" >}}
 
-12. Pourquoi dope-t-on le silicium pour créer une cellule photovoltaïque ?
+11. Pourquoi dope-t-on le silicium pour créer une cellule photovoltaïque ?
 {{% solution "Réponse" %}}
 Le silicium est un semi-conducteur dont le gap 1,2&nbsp;eV est assez faible. Une exposition à un rayonnement, même de faible énergie comme le visible, permet donc de faire passer des électrons dans la bande de conduction.
 
@@ -113,7 +107,7 @@ Cependant, rendre un matériau conducteur ne le transforme pas en générateur (
 
 {{% /solution %}}
 
-13. Quelle est la particularité de l'atome de phosphore, comparé à l'atome de silicium ?
+12. Quelle est la particularité de l'atome de phosphore, comparé à l'atome de silicium ?
 {{% solution "Réponse" %}}
 L'atome de phosphore se trouve, dans la classification périodique, dans la colonne qui suit celle dans laquelle se trouve le silicium. Il possède donc un électron périphérique supplémentaire par rapport à l'atome de silicium. **Cet électron se trouve dans la bande de conduction**.
 
@@ -124,7 +118,7 @@ L'introduction d'atomes donneurs d'électrons entraîne l'apparition d'un pseudo
 <img src="/terminales-es/chap-5/chap-5-3/chap-5-3-3.svg" alt="" width="50%" />
 {{% /solution %}}
 
-14. Quelle est la particularité de l'atome de bore, comparé à l'atome de silicium ?
+13. Quelle est la particularité de l'atome de bore, comparé à l'atome de silicium ?
 {{% solution "Réponse" %}}
 
 L'atome de bore se trouve, dans la classification périodique, dans la colonne qui précède celle dans laquelle se trouve le silicium. Il possède donc un électron périphérique en moins par rapport à l'atome de silicium. **Un trou apparaît donc dans la bande de valence**.
@@ -142,40 +136,40 @@ Lors d'un dopage P, l'introduction d'atomes accepteurs d'électrons entraîne l'
 
 ----
 
-15. Dans une cellule photovoltaïque, d’où provient l’énergie nécessaire aux électrons des semi-conducteurs pour franchir le gap ? 
+14. Dans une cellule photovoltaïque, d’où provient l’énergie nécessaire aux électrons des semi-conducteurs pour franchir le gap ? 
 {{% solution "Réponse" %}}
 L’énergie permettant aux électrons de franchir le gap des semi-conducteurs provient de l’énergie radiative du Soleil, donc des photons.
 {{% /solution %}}
 
-16. À l'intérieur d’une cellule à simple jonction, dans quel sens circulent les électrons ? 
+15. À l'extérieur d’une cellule à simple jonction, dans quel sens circulent les électrons ? 
 {{% solution "Réponse" %}}
 Les électrons se déplacent de la partie dopée de type $N$ à la partie dopée de type $P$ du semi-conducteur, *en passant par le circuit électrique extérieur*.
 {{% /solution %}}
 
-17. Expliquer le fonctionnement d'une cellule photovoltaïque.
+16. Expliquer le fonctionnement d'une cellule photovoltaïque.
 {{% solution "Réponse" %}}
 Les photons de la lumière, s'ils ont suffisamment d'énergie, peuvent arracher des électrons aux atomes de sicilicium de la jonction $PN$. Ces électrons sont accélérés vers la couche $N$ par le champ électrique. Parallèlement, des électrons de la couche $P$ diffusent de façon à compenser le trou laissé par les électrons qui ont quitté la jonction $PN$. Un déficit d'électrons se déplace donc dans le matériau dopé $P$.
 Si on connecte les matériaux $N$ et $P$ par un circuit électrique, un courant électrique apparaît de façon à compenser le déficit d'électrons dans le matériau $P$.
 {{% /solution %}}
 
-18. Un bon semi-conducteur pour des panneaux photovoltaïques doit avoir une énergie de gap ni trop basse ni trop élevée. Le meilleur compromis est obtenu en choisissant des semi-conducteurs ayant un gap compris entre 1 et 1,7 eV. Identifier les semi-conducteurs qui répondent le mieux à ces critères. 
+17. Un bon semi-conducteur pour des panneaux photovoltaïques doit avoir une énergie de gap ni trop basse ni trop élevée. Le meilleur compromis est obtenu en choisissant des semi-conducteurs ayant un gap compris entre 1 et 1,7 eV. Identifier les semi-conducteurs qui répondent le mieux à ces critères. 
 {{% solution "Réponse" %}}
 Les semi-conducteurs ayant un gap compris entre 1 et 1,7 eV sont Si, InP, a-Si, GaAS et CdTe.
 {{% /solution %}}
 
-19. Identifier le semi-conducteur qui possède la plus large bande d’absorption du rayonnement. Pourquoi n’est-il pas utilisé à la place du silicium pour fabriquer la plupart des cellules photovoltaïques à simple jonction ?
+18. Identifier le semi-conducteur qui possède la plus large bande d’absorption du rayonnement. Pourquoi n’est-il pas utilisé à la place du silicium pour fabriquer la plupart des cellules photovoltaïques à simple jonction ?
 {{% solution "Réponse" %}}
 Le semi-conducteur ayant la plus large bande d’absorption est Ge (germanium). Il n’est pas utilisé à la place du silicium car le rendement d'une cellule qui l'utiliserait serait trop faible et parce qu'il coûte 4 fois plus cher que le silicium.
 {{% /solution %}}
 
-20. Identifier la partie du spectre solaire absorbée par les semi-conducteurs. 
+19. Identifier la partie du spectre solaire absorbée par les semi-conducteurs. 
 {{% solution "Réponse" %}}
 Les semi-conducteurs absorbent essentiellement dans le visible (380 nm-780 nm) et dans l’infrarouge jusqu’à 1 400 nm pour le germanium par exemple. Ils absorbent peu dans les ultraviolets (jusqu’à 250 nm environ).
 {{% /solution %}}
 
-21. L’une des possibilités explorées pour augmenter le rendement des cellules photovoltaïques est la cellule multi-jonctions, un empilement de deux ou trois semi-conducteurs différents. Une cellule multi-jonction est fabriquée à partir des trois semi-conducteurs suivants : InP, GaAs et Ge. Rédiger un court paragraphe pour expliquer l’intérêt de ce choix. 
+20. L’une des possibilités explorées pour augmenter le rendement des cellules photovoltaïques est la cellule multi-jonctions, un empilement de deux ou trois semi-conducteurs différents. Une cellule multi-jonction est fabriquée à partir des trois semi-conducteurs suivants : InP, GaAs et Ge. Rédiger un court paragraphe pour expliquer l’intérêt de ce choix. 
 {{% solution "Réponse" %}}
--Les photons ayant une énergie inférieure au gap ne peuvent pas être absorbés par le semi-conducteur et ne contribuent donc pas à la génération d'électricité. 
+- Les photons ayant une énergie inférieure au gap ne peuvent pas être absorbés par le semi-conducteur et ne contribuent donc pas à la génération d'électricité. 
 - Les photons d'énergie supérieure au gap provoquent un échauffement du matériau par mécanisme de thermalisation. 
 - En superposant judicieusement des semi-conducteurs de gaps différents, on peut mieux exploiter le spectre solaire et ainsi augmenter l'efficacité des panneaux photovoltaïques. 
 

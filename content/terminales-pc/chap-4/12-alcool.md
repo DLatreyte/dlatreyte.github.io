@@ -1,13 +1,13 @@
 ---
 title: "Annale : Les dangers de l'alcool (extraits)"
-subtitle: "Chapitre 4,13"
+subtitle: "Chapitre 5,13"
 author: ""
 type: ""
 date: 2020-10-28T22:10:10+04:00
 draft: false
 toc: true
 tags: ["Beer-Lambert", "Dosage par étalonnage", "Spectroscopie IR", "Groupes caractéristiques", "Fonctions chimiques"]
-categories: ["Chimie", "Terminale Spé PC"]
+categories: ["Chimie", "Terminale Spé PC", "Annale"]
 image: ""
 solution_est_visible: true
 auto_numbering: true

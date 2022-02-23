@@ -1,6 +1,6 @@
 ---
 title: "Le langage SQL : Le langage de manipulation de données (LMD)"
-subtitle: "Chapitre 13,4"
+subtitle: "Chapitre 12,4"
 author: ""
 type: ""
 date: 2021-02-04T04:29:53+04:00
@@ -220,10 +220,10 @@ WHERE Age > 40;
 ```
 {{% /solution %}}
 
-17. Quels sont les noms des acteurs (sans distinction de sexe) qui ont plus de 40 ans ?
+17. Quels sont les noms et prénoms des acteurs (sans distinction de sexe) qui ont plus de 40 ans ?
 {{% solution "Réponse" %}}
 ```SQL
-SELECT Nom
+SELECT Nom, Prenom
 FROM Celebrites
 WHERE Age > 40;
 ```
@@ -287,13 +287,19 @@ WHERE Age > 40 OR Pays = "Australie";
 1. Donner le schéma relationnel de la base de données.
 2. Afficher toutes les informations relatives aux utilisateurs qui ne sont pas des footballeurs.
 3. Afficher toutes les informations relatives aux utilisateurs qui ont plus de 200 million followers.
-4. Afficher toutes les informations relatives des utilisateurs qui ont plus de 200 million followers.
+4. Afficher toutes les informations relatives des utilisateurs qui ont au plus 200 million followers.
 5. Afficher toutes les informations relatives des utilisateurs qui ont au moins 200 million followers.
 6. Afficher les prénoms, noms et « Instagram handle » des comptes qui ont au maximum 155 millions de followers.
 7. Afficher toutes les informations pour les comptes qui correspondent à des chanteurs et qui ont plus de 200 millions de followers.
 8. Afficher toutes les informations pour les comptes qui correspondent à des footballeurs ou qui ont moins de 150 millions de followers.
 
 ## Première requêtes : Ordres SQL
+
+{{% note normal %}}
+
+On reprend, dans cette partie, l'étude de la relation `Celebrites`.
+
+{{% /note %}}
 
 {{% note tip %}}
 L'opérateur `ORDER BY` est utilisé pour *trier le résultat d'une projection*. Par défaut ce tri s'effectue par *ordre croissant* (lexicographique ou numérique). Pour trier par ordre décroissant, il faut ajouter le mot clé `DESC`, pour trier par ordre croissant on utilise `ASC`. 
@@ -352,13 +358,19 @@ L'opérateur `BETWEEN` est utilisé pour *sélectionner une valeur numérique da
 27. Écrire une requête qui affiche toutes les informations sur les artistes dont les ages sont compris entre 30 et 60 ans.
 {{% solution "Réponse" %}}
 ```SQL
-SELECT *Age, Sexe*
+SELECT Age, Sexe
 FROM Celebrites
 WHERE Age BETWEEN 30 AND 60;
 ```
 {{% /solution %}}
 
 ## Première requêtes : recherche de motifs lors d'une sélection
+
+{{% note normal %}}
+
+On reprend, dans cette partie, l'étude de la relation `Celebrites`.
+
+{{% /note %}}
 
 {{% note tip %}}
 L'opérateur `LIKE` permet de rechercher un motif lors d'une sélection.
@@ -448,6 +460,12 @@ WHERE Pays LIKE '%a%';
 
 ## Modification des entrées d'une base de données
 
+{{% note normal %}}
+
+On reprend, dans cette partie, l'étude de la relation `Celebrites`.
+
+{{% /note %}}
+
 {{% note tip %}}
 L'ordre `UPDATE` permet de modifier un enregistrement dans une table. La clause `WHERE` est utilisée pour sélectionner l'enregistrement.
 {{% /note %}}
@@ -496,7 +514,7 @@ WHERE Nom = "Holland";
 3. Écrire une requête qui affiche les noms des superheroes femmes.
 
 4. Écrire une requête qui affiche les noms et types (gentil ou méchant) des films X-Men ou Guardians of the Galaxy.
-Write a query to show all the names from the Superheroes and Villain table in alphabetical order (A to Z).
+
 5. Écrire une requête qui affiche tous les noms des personnages par ordre alphabétique.
 
 6. Écrire une requête qui affiche les types des personnages et leurs noms par ordre alphabétique croissant pour les types mais ordre alphabétique décroissant pour les noms.

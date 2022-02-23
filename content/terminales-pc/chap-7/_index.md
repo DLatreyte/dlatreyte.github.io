@@ -1,6 +1,6 @@
 ---
 title: "Les lois de Newton"
-subtitle: "Chapitre 7"
+subtitle: "Chapitre 8"
 author: ""
 type: ""
 date: 2020-11-27T15:24:29+04:00
@@ -30,17 +30,17 @@ layout: "single"
 - {{< remote "Deuxième loi de Newton sur le Livre Scolaire" "http://LLS.fr/PCTP315" >}}
 ----
 
-- **Chap. 7,1 :** [*Les vecteurs en physique*](1-vecteurs)
+- **Chap. 8,1 :** [*Les vecteurs en physique*](1-vecteurs)
 
-- **Chap. 7,2 :** [*Étude de mouvements circulaires*](2-mouvements-circulaires)
+- **Chap. 8,2 :** [*Étude de mouvements circulaires*](2-mouvements-circulaires)
 
-- **Chap. 7,3 :** [*Les lois de Newton*](3-lois-newton)
+- **Chap. 8,3 :** [*Les lois de Newton*](3-lois-newton)
 
-- **Chap. 7,4 :** [*Plan à suivre pour résoudre un problème en mécanique*](4-resolution-probleme)
+- **Chap. 8,4 :** [*Plan à suivre pour résoudre un problème en mécanique*](4-resolution-probleme)
 
-- **Chap. 7,5 :** [*Accélération et premières applications des lois de Newton*](5-exercices)
+- **Chap. 8,5 :** [*Accélération et premières applications des lois de Newton*](5-exercices)
 
-- **Chap. 7,6 :** [*Équilibre d'un système*](6-equilibre-systeme)
+- **Chap. 8,6 :** [*Équilibre d'un système*](6-equilibre-systeme)
 
-- **Chap. 7,7 :** [*Annale : Lancement d'une fusée et retour sur Terre*](7-annale-mouvement-fusee)
+- **Chap. 8,7 :** [*Annale : Lancement d'une fusée et retour sur Terre*](7-annale-mouvement-fusee)
 

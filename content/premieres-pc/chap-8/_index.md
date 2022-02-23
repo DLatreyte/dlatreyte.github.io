@@ -1,6 +1,6 @@
 ---
 title: "Modélisation d’interactions fondamentales"
-subtitle: "Chapitre 8"
+subtitle: "Chapitre 7"
 author: ""
 type: ""
 date: 2021-01-27T08:28:43+04:00
@@ -29,4 +29,6 @@ layout: "single"
 
 ----
 
-- **Chap. 8,1 :** [*Les interactions qui gouvernent l'Univers*](1-interactions-qui-gouvernent-le-monde)
+- **Chap. 7,1 :** [*Les interactions qui gouvernent l'Univers*](1-interactions-qui-gouvernent-le-monde)
+
+- **Chap. 7,2 :** [*Le télescope James-Webb*](2-telescope-james-webb)

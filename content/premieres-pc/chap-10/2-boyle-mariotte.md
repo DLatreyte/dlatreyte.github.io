@@ -1,44 +1,248 @@
 ---
-title: "Vérification de la loi de Boyle-Mariotte"
-subtitle: "Chapitre 10,2"
+title: "Loi de Boyle-Mariotte"
+subtitle: "Chapitre 9,2"
 author: ""
 type: ""
-date: 2021-02-28T13:36:55+04:00
+date: 2022-02-03T17:59:51+04:00
 draft: false
 toc: true
 tags: []
-categories: []
+categories: ["Premières Spé PC"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
 ---
 
-> L'objet de ce document est de vérifier la relation de Boyle-Mariotte pour un gaz décrit par le modèle du gaz parfait.
+{{% note normal %}}
 
-{{% note warning %}}
-Aucune manipulation n'étant possible, on utilisera lors de cette séance, l'application accessible {{< remote "à cette adresse" "https://phet.colorado.edu/sims/html/gas-properties/latest/gas-properties_en.html" >}}
+À la fin du document [Chap. 9,1](../1-description-fluide), on a précisé que pour décrire **l'état d'un gaz au niveau macroscopique**, il est nécessaire de prendre en compte les paramètres **volume**, **pression**, **température** et **quantité de matière**, et que ces quatre paramètres ne sont pas indépendant les uns des des autres.
+
 {{% /note %}}
 
-1. Faire afficher par l'application la longueur d'un côté de l'enceinte. Cette enceinte a la forme d'un cube.
 
-2. Introduire 300 particules dans l'enceinte. Choisir de conserver constante la température.
+> L'objectif de cette séance est de *mettre en évidence la relation qui existe entre la pression au sein d'un gaz et son volume, la température et la quantité de matière restant constantes*. Cette relation porte le nom de **loi de Boyle-Mariotte**.
 
-3. Pour une température de $\pu{300 K}$, faire varier la longueur d'un côté de $\pu{7 nm}$ à $\pu{15 nm}$.\
-Relever à chaque fois la valeur de la pression (en Pa).
+## Manipulations 
 
-4. Entrer toutes ces valeurs dans le logiciel Graphical Analysis.
+- Choisir pour la seringue à disposition le volume le plus grand possible.
+- Connecter la seringue au pressiomètre.
+- Relever les valeurs des pressions pour les volumes ci-dessous et compléter le tableau :
 
-5. Ajouter une colonne calculée. Le calcul à effectuer est celui du volume de l'enceinte.
+<center>
 
-6. Afficher la courbe $P = f(V)$. Existe-t-il une relation de proportionnalité entre $P$ et $V$ ?
+| Volume ($\pu{cm3}$) | 60 | 55 | 50 | 45 | 40 | 35 | 30 |
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| Pression (hPa) | ... | ... | ... | ... | ... | ... | ... |
 
-7. Ajouter une colonne calculée. Le calcul à effectuer est celui de l'inverse du volume de l'enceinte.
+</center>
 
-8. Afficher la courbe $P = g(\dfrac{1}{V})$. Existe-t-il une relation de proportionnalité entre $P$ et $\dfrac{1}{V}$ sur tout l'intervalle des volumes possibles (ou des pressions) ?
+## Préparation des variables du problème
 
-9. Si on se limite aux faibles pressions, existe-t-il une relation de proportionnalité ?
+{{% note normal %}}
 
-10. Pourquoi la proportionnalité n'intervient-elle que pour les faibles pressions ?
+Le fichier de travail se trouve à cette {{% remote "adresse" "https://dlatreyte.github.io/jupyter-lite/lab?path=premiere-spe-pc%2Fdescription-fluide-au-repos%2Fboyle-mariotte-eleves.ipynb" %}}
+
+{{% /note %}}
+
+1. Compléter les instructions suivantes :
+```python
+V = [....]  # cm³
+P = [....]  # hPa
+```
+
+{{% solution "Réponse" %}}
+
+```python
+V = [30, 35, 40, 45, 50, 55, 60]  # cm³
+P = [1935, 1680, 1521, 1338, 1218, 1093, 1004]  # hPa
+```
+
+{{% /solution %}}
+
+2. Convertir les volumes en $\pu{m3}$.
+```python
+for i in range(len(V)):
+    V[i] = ....
+```
+
+{{% solution "Réponse" %}}
+
+```python
+for i in range(len(V)):
+    V[i] = V[i] * 1e-6
+```
+
+{{% /solution %}}
+
+3. De la même façon, convertir les pressions en Pa (pascal).
+```python
+.... :
+    ....
+```
+
+{{% solution "Réponse" %}}
+
+```python
+for i in range(len(P)):
+    P[i] = P[i] * 100
+```
+
+{{% /solution %}}
+
+## Évolution de la pression en fonction du volume
+
+4. Compléter les instructions suivantes de façon à afficher l'évolution de la pression lorsque le volume varie.
+```python
+sns.set()
+plt.figure()
+plt.plot(...., ...., 'o', label="Pression (Pa)")
+plt.xlabel(r"$V\ (\mathrm{m}^3)$")
+plt.ylim(50000, 250000)
+plt.xlim(1e-5, 8e-5)
+plt.legend()
+plt.show()
+```
+
+{{% solution "Réponse" %}}
+
+```python
+sns.set()
+plt.figure()
+plt.plot(V, P, 'o', label="Pression (Pa)")
+plt.xlabel(r"$V\ (\mathrm{m}^3)$")
+plt.ylim(50000, 250000)
+plt.xlim(1e-5, 8e-5)
+plt.legend()
+plt.show()
+```
+
+{{% /solution %}}
+
+5. La relation entre $P$ et $V$ est-elle linéaire ?
+
+{{% solution "Réponse" %}}
+
+$P$ n'est pas proportionnel à $V$.
+
+{{% /solution %}}
+
+6. La variable `invV` doit référencer une liste dont les valeurs sont les inverses des valeurs de la liste référencée par la variable `V`. Écrire le code qui réalise cette opération.
+```python
+invV = []
+for elt in V:
+    ....
+```
+
+{{% solution "Réponse" %}}
+
+```python
+invV = []
+for elt in V:
+    invV.append(1 / elt)
+```
+
+{{% /solution %}}
+
+7. Compléter les instructions suivantes de façon à afficher l'évolution de la pression P en focntion de `invV`.
+```python
+plt.plot(...., ...., 'o', label="Pression (Pa)")
+plt.xlabel(r"$1/V\ (\mathrm{m}^{-3})$")
+plt.legend()
+plt.show()
+```
+
+{{% solution "Réponse" %}}
+
+```python
+plt.plot(invV, P, 'o', label="Pression (Pa)")
+plt.xlabel(r"$1/V\ (\mathrm{m}^{-3})$")
+plt.legend()
+plt.show()
+```
+
+{{% /solution %}}
+
+8. La relation est-elle cette fois linéaire ?
+
+{{% solution "Réponse" %}}
+
+$P$ et $\dfrac{1}{V}$ sont proportionnels.
+
+{{% /solution %}}
+
+### Modélisation du comportement de $P$ en fonction de l'inverse du volume
+
+On effectue dans cette partie une modélisation, en postulant que la relation qui existe entre $P$ et $\dfrac{1}{V}$ est une relation de linéarité.
+
+9. Compléter le code de la fonction `modele` de façon à ce qu'elle traduise le comportement recherché.    
+Compléter aussi le code des deux instructions qui réalisent le tracé.
+```python
+# Fonction modèle
+def modele(x, a):
+    return ....
+
+# Détermination des paramètres optimaux
+popt, pcov = curve_fit(modele, invV, P)
+a_mod = popt[0]
+
+# Préparation du tracé
+invV_mod = np.linspace(min(invV), max(invV), 50)
+P_mod = modele(invV_mod, a_mod)
+
+# Tracé
+plt.plot(...., ...., 'o', label="Pression (Pa)")
+plt.plot(...., ...., '-', label="Pression (Pa) modélisée")
+plt.xlabel(r"$1/V\ (\mathrm{m}^{-3})$")
+plt.legend()
+plt.show()
+print(popt)
+```
+
+{{% solution "Réponse" %}}
+
+```python
+# Fonction modèle
+def modele(x, a):
+    return a * x
+
+# Détermination des paramètres optimaux
+popt, pcov = curve_fit(modele, invV, P)
+a_mod = popt[0]
+
+# Préparation du tracé
+invV_mod = np.linspace(min(invV), max(invV), 50)
+P_mod = modele(invV_mod, a_mod)
+
+# Tracé
+plt.plot(invV, P, 'o', label="Pression (Pa)")
+plt.plot(invV_mod, P_mod, '-', label="Pression (Pa) modélisée")
+plt.xlabel(r"$1/V\ (\mathrm{m}^{-3})$")
+plt.legend()
+plt.show()
+print(popt)
+```
+
+{{% /solution %}}
+
+10. Afficher la valeur du paramètre `a_mod`.
+
+{{% solution "Réponse" %}}
+
+```python
+print("a = {}".format(a_mod))
+```
+
+{{% /solution %}}
+
+## Corrigé complet
+
+{{% solution "Corrigé" %}}
+
+{{% remote "Correction interactive" "https://dlatreyte.github.io/jupyter-lite/lab?path=premiere-spe-pc%2Fdescription-fluide-au-repos%2Fboyle-mariotte.ipynb" %}}
+
+{{% /solution %}}
+
+## À retenir
 
 {{% note tip %}}
 #### Modèle du gaz parfait

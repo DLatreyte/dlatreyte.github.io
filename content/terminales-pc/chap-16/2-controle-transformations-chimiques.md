@@ -1,6 +1,6 @@
 ---
 title: "Contrôles des transformations chimiques : estérification"
-subtitle: "Chapitre 16,2"
+subtitle: "Chapitre 15,2"
 author: ""
 type: ""
 date: 2021-04-12T09:05:04+04:00

@@ -4,7 +4,7 @@ subtitle: ""
 author: ""
 type: ""
 date: 2020-12-05T07:01:57+04:00
-draft: false
+draft: true
 toc: true
 tags: []
 categories: ["Réforme du Bac"]

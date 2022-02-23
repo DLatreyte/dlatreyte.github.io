@@ -6,8 +6,8 @@ type: ""
 date: 2021-03-09T10:20:05+04:00
 draft: false
 toc: true
-tags: []
-categories: []
+tags: [ "Programmation dynamique"]
+categories: ["Terminales Spé NSI"]
 image: ""
 solution_est_visible: true
 auto_numbering: true

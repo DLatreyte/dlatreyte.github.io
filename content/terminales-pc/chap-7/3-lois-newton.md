@@ -1,6 +1,6 @@
 ---
 title: "Les lois de Newton"
-subtitle: "Chapitre 7,3"
+subtitle: "Chapitre 8,3"
 author: ""
 type: ""
 date: 2020-11-27T15:25:17+04:00
@@ -11,6 +11,7 @@ categories: ["Physique", "Terminale Spé PC"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
+mathjax: true
 ---
 
 ## Système mécanique et interactions
@@ -184,16 +185,18 @@ De même que l'on s'intéresse, **dans un référentiel donné**, au **taux de v
 
 $$
 \overrightarrow{v_G} (t_i) 
-= \lim_{\Delta t \to 0}  \left( \dfrac{\Delta \overrightarrow{OG}}{\Delta t} \right)_{t_i} 
-= \left( \dfrac{\mathrm{d} \overrightarrow{OG}}{\mathrm{dt}} \right)_{t_i} 
+= \lim_{\Delta t \to 0}  \left( \dfrac{\overrightarrow{OG}(t+\Delta t) - \overrightarrow{OG}(t)}{\Delta t} \right)\_{t_i} 
+= \lim_{\Delta t \to 0}  \left( \dfrac{\Delta \overrightarrow{OG}}{\Delta t} \right)\_{t_i} 
+= \left( \dfrac{\mathrm{d} \overrightarrow{OG}}{\mathrm{dt}} \right)\_{t_i} 
 $$
     
 --- *On étudie ainsi comment évolue cette position au cours du temps* ---, on peut définir le **taux de variation instantanée du vecteur vitesse** $\overrightarrow{v_G}$ ou **vecteur accélération** $\overrightarrow{a_G} (t_i)$ du centre d'inertie du système mécanique *à la date* $t_i$ dans le même référentiel, par :
 
 $$
 \overrightarrow{a_G} (t_i) 
-= \lim_{\Delta t \to 0}  \left( \dfrac{\Delta \overrightarrow{v_G}}{\Delta t} \right)_{t_i} 
-= \left( \dfrac{\mathrm{d} \overrightarrow{v_G}}{\mathrm{dt}} \right)_{t_i}
+= \lim\_{\Delta t \to 0}  \left( \dfrac{\overrightarrow{v_G}(t+\Delta t) - \overrightarrow{v_G}(t)}{\Delta t} \right)\_{t_i} 
+= \lim\_{\Delta t \to 0}  \left( \dfrac{\Delta \overrightarrow{v_G}}{\Delta t} \right)\_{t_i} 
+= \left( \dfrac{\mathrm{d} \overrightarrow{v_G}}{\mathrm{dt}} \right)\_{t_i}
 $$
 
 *On étudie alors comment varie le vecteur vitesse* $\overrightarrow{v_G}$ *à la date* $t_i$.
@@ -261,9 +264,16 @@ On appelle **repère de Frenet** le repère mobile associé au point $G$, centre
 <img src="/terminales-pc/chap-7/chap-7-3-1.png" alt="" width="40%" />
 
 Dans le repère de Frenet,
-$$\vec{v} = v(t)\\, \vec{t}$$
+$$
+  \vec{v} = v(t)\\, \vec{t}
+$$
 et
-$$\vec{a}(t) = a_t\\, \vec{t} + a_n\\, \vec{n} = \dfrac{\mathrm{d} v}{\mathrm{dt}}\\, \vec{t} + \dfrac{v^2}{r}\\, \vec{n}$$
+$$
+  \begin{aligned}
+    \vec{a}(t) &= a_t\\, \vec{t} + a_n\\, \vec{n} \\\\
+              &= \dfrac{\mathrm{d} v}{\mathrm{dt}}\\, \vec{t} + \dfrac{v^2}{r}\\, \vec{n}
+  \end{aligned}
+$$
 où $r$ est le rayon instantané de courbure (lorsque la trajectoire est un cercle, $r$ est le rayon du cercle).
 
 ### Deuxième loi de Newton

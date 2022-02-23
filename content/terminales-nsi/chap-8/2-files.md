@@ -63,6 +63,25 @@ La spécification d'une file montre qu'il n'existe aucune **opération élément
 La valeur retirée de la file est toujours la première valeur à l'avoir intégrée&nbsp;: **First In, First Out (FIFO)**
 {{% /note %}}
 
+## Jeu de tests possibles
+
+```python
+if __name__ == "__main__":
+	f = File()
+	f.enfiler(1)
+	f.enfiler(2)
+	f.enfiler(3)
+	f.enfiler(4)
+	print(f.defiler())
+	f.enfiler(5)
+	print(f.defiler())
+	print(f.defiler())
+	print(f)
+	print(f.defiler())
+	print(f.defiler())
+	print(f.defiler())
+```
+
 ## Implémentation d'une structure de file à l'aide d'une liste Python
 
 L'idée est de définir le type `File` à l'aide d'une classe ne possédant qu'un seul attribut nommé `contenu`, qui référence une liste, puis de créer les méthodes de la spécification.
@@ -82,9 +101,9 @@ Cette méthode doit lever une exception de type `IndexError` lorsqu'on essaie de
 
 6. Tester le code.
 
-7. La complexité de chacune des méthodes est égale à la complexité annoncée dans la spécification.
+7. La complexité de chacune des méthodes est égale à la complexité annoncée dans la spécification&nbsp;?
 
-8. Comment pourrait-on améliorer la complexité de la méthode `defiler` ?   
+8. Comment pourrait-on améliorer la complexité de la méthode `defiler`&nbsp;?   
 Modifier toutes les méthodes qui doivent l'être de façon à améliorer l'implémentation de la classe `File`.
 
 {{% solution "Corrigé" %}}

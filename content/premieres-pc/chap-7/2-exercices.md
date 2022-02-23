@@ -1,6 +1,6 @@
 ---
 title: "Transformations chimiques, exercices de révision"
-subtitle: "Chapitre 7,2"
+subtitle: "Chapitre 6,2"
 author: ""
 type: ""
 date: 2021-01-05T19:09:51+04:00

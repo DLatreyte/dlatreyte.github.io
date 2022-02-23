@@ -1,6 +1,6 @@
 ---
 title: "Stockage de l’énergie"
-subtitle: "Chapitre 6,2"
+subtitle: "Chapitre 2,2"
 author: ""
 type: ""
 date: 2021-01-14T07:03:02+04:00

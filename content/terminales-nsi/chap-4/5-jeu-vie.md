@@ -209,14 +209,14 @@ def dans_grille(self: Grille, i: int, j: int) -> bool:
 ```python
 def setXY(self: Grille, i: int, j: int, cellule: Cellule) -> None:
     """
-    Affecte une nouvelle cellule à la case $(i,j)$ de la grille
+    Affecte une nouvelle cellule à la case (i,j) de la grille
     """
 ``` 
 
 ```python
 def getXY(self: Grille, i: int, j: int) -> Cellule:
     """
-    Récupère la cellule située dans la case $(i,j)$ de la grille
+    Récupère la cellule située dans la case (i,j) de la grille
     """
 ``` 
 

@@ -49,7 +49,7 @@ On peut donc seulement&nbsp;:
     - fonction&nbsp;: `lire(p: Pile[T])` $\longrightarrow$ retourne la dernière valeur de la pile&nbsp;;
     - Complexité&nbsp;: 1 opération élémentaire.
 - **Retirer** la dernière valeur de la pile&nbsp;:
-    - fonction&nbsp;: `depiler(p&nbsp;: Pile[T])` $\longrightarrow$ `T`&nbsp;;
+    - fonction&nbsp;: `depiler(p: Pile[T])` $\longrightarrow$ `T`&nbsp;;
     - complexité&nbsp;: 1 opération élémentaire.
 - **Tester** si une pile est vide&nbsp;:
     - fonction&nbsp;: `est_vide(p: Pile[T])` $\longrightarrow$ retourne un booléen&nbsp;;
@@ -102,6 +102,26 @@ Cette méthode doit lever une exception de type `IndexError` lorsqu'on essaie de
 L'implémentation à l'aide des listes Python est efficace car, en moyenne, les méthodes `append` et `pop`, s'exécutent en temps constant. Tous les langages ne présentent cependant pas la structure de tableau dynamique et une autre implémentation doit alors être mise en œuvre.
 {{% /note %}}
 
+#### Jeu de tests possible
+```python
+if __name__ == "__main__":
+    p = Pile()
+    p.empiler(2)
+    print(p.lire())
+    p.empiler(42)
+    p.empiler(89)
+    p.empiler(23)
+    print(p.lire())
+    print(p.depiler())
+    print(p.lire())
+    print(p.depiler())
+    print(p.lire())
+    print(p.depiler())
+    print(p.lire())
+    print(p.depiler())
+    print(p.depiler())
+```
+
 ## Implémentation d'une structure de Pile à l'aide d'une liste chaînée
 
 L'idée est de définir le type `Pile` à l'aide d'une classe ne possédant qu'un seul attribut nommé `contenu`, qui référence une liste chaînée, puis de créer les méthodes de la spécification.
@@ -127,6 +147,25 @@ Cette méthode doit lever une exception de type `IndexError` lorsqu'on essaie de
 
 - {{< remote "Accès au corrigé" "https://repl.it/@dlatreyte/pileschaines" >}}
 
+#### Jeu de tests possible
+```python
+if __name__ == "__main__":
+    p = Pile()
+    p.empiler(2)
+    print(p)
+    p.empiler(42)
+    p.empiler(89)
+    p.empiler(23)
+    print(p)
+    print(p.depiler())
+    print(p)
+    print(p.depiler())
+    print(p)
+    print(p.depiler())
+    print(p.depiler())
+    print(p.depiler())
+    print(p.depiler())
+```
 
 ## À retenir
 

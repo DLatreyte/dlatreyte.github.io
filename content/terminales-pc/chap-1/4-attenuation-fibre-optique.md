@@ -7,9 +7,9 @@ date: 2020-09-18T14:52:43+04:00
 draft: false
 toc: true
 tags: ["Absorption", "Atténuation", "Ondes", "Fibre optique"]
-categories: ["Physique", "Terminale Spé PC"]
+categories: ["Physique", "Terminale Spé PC", "Annale"]
 image: ""
-solution_est_visible: true
+solution_est_visible: false
 auto_numbering: true
 ---
 

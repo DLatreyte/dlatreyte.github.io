@@ -1,15 +1,15 @@
 ---
 title: "Quel est l'impact de la qualité de l'air sur la santé humaine ?"
-subtitle: "Chapitre 4,4"
+subtitle: "Chapitre 5,2"
 author: ""
 type: ""
 date: 2020-11-19T05:07:53+04:00
 draft: false
 toc: true
-tags: []
+tags: ["Énergie de combustion", "Réaction de combustion"]
 categories: ["Terminale Enseignement Scientifique"]
 image: ""
-solution_est_visible: true
+solution_est_visible: false
 auto_numbering: true
 ---
 
@@ -35,6 +35,9 @@ La masse molaire s'exprime, en pratique, en gramme par mole ($\pu{g/mol}$).
 {{% note tip %}}
 On appelle **énergie de combustion** d'une entité microscopique, *l'énergie libérée par la combustion d'une mole (ou d'un kilogramme) de cette entité*.     
 L'énergie libérée s'exprime donc en joule par mole ($\pu{J/mol}$) ou joule par kilogramme ($\pu{J/kg}$).
+
+Remarque
+: Une **réaction de combustion** est une réaction entre un **combustible** («&nbsp;ce qui brûle&nbsp;») et un **comburant**. *Lorsque cette combustion se déroule à l'air libre, le comburant est le dioxygène*.
 {{% /note %}}
 
 {{% note tip %}}

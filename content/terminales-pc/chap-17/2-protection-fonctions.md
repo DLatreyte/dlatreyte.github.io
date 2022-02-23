@@ -1,6 +1,6 @@
 ---
 title: "Protection/déprotection de fonctions chimiques"
-subtitle: "Chapitre 17,2"
+subtitle: "Chapitre 16,2"
 author: ""
 type: ""
 date: 2021-04-19T18:07:58+04:00

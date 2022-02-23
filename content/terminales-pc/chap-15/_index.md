@@ -1,6 +1,6 @@
 ---
 title: "Évolution temporelle d'une transformation nucléaire"
-subtitle: "Chapitre 15"
+subtitle: "Chapitre 17"
 author: ""
 type: ""
 date: 2021-03-08T10:57:03+04:00
@@ -28,17 +28,17 @@ layout: "single"
 
 ----
 
-- **Chap. 15,1 :** [*Introduction (Intérêt documentaire)*](1-introduction)
+- **Chap. 17,1 :** [*Introduction (Intérêt documentaire)*](1-introduction)
 
-- **Chap. 15,2 :** [*Radioactivité et physique nucléaire*](2-radioactivite-physique-nucleaire)
+- **Chap. 17,2 :** [*Radioactivité et physique nucléaire*](2-radioactivite-physique-nucleaire)
 
-- **Chap. 15,3 :** [*Décroissance radioactive*](3-decroissance-radioactive)
+- **Chap. 17,3 :** [*Décroissance radioactive*](3-decroissance-radioactive)
 
-- **Chap. 15,4 :** [*Applications de la radioactivité à la datation*](4-datation)
+- **Chap. 17,4 :** [*Applications de la radioactivité à la datation*](4-datation)
 
-- **Chap. 15,5 :** [*Doses de radiations*](5-radiations)
+- **Chap. 17,5 :** [*Doses de radiations*](5-radiations)
 
-- **Chap. 15,6 :** <a href="/terminales-pc/chap-15/chap-15-6/chap-15-6-exercices.html" target="_blank">Décroissance radioactive, exercices</a>
+- **Chap. 17,6 :** <a href="/terminales-pc/chap-15/chap-15-6/chap-15-6.html" target="_blank">Décroissance radioactive, exercices</a>
 
 
-- **Chap. 15,7 :** <a href="/terminales-pc/chap-15/chap-15-7/chap-15-07.html" target="_blank">Annale : La médecine nucléaire</a>
+- **Chap. 17,7 :** <a href="/terminales-pc/chap-15/chap-15-7/chap-15-07.html" target="_blank">Annale : La médecine nucléaire</a>

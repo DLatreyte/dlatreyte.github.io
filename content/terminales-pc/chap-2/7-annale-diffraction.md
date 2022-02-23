@@ -1,13 +1,13 @@
 ---
 title: "Annale : La houle et l’entrée d’un port"
-subtitle: "Chapitre 2,2,3"
+subtitle: "Chapitre 3,2,3"
 author: ""
 type: ""
 date: 2020-09-14T21:59:57+04:00
 draft: false
 toc: true
 tags: ["Annale", "Diffraction", "Célérité"]
-categories: ["Physique", "Terminale Spé PC"]
+categories: ["Physique", "Terminale Spé PC", "Annale"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
@@ -15,7 +15,7 @@ auto_numbering: true
 
 On modélise l’entrée d’un port comme sur le schéma ci-dessous&nbsp;:
 
-<img src="/terminales-pc/chap-2/fig-2-2-3-1.jpg" alt="" width="60%" />
+<img src="/terminales-pc/chap-2/fig-2-2-3-1.jpg" alt="" width="80%" />
 
 Le port est séparé de la mer par deux digues. Une ouverture de largeur $L = \pu{25 m}$ permet aux bateaux d’y accéder.   
 La houle est assimilée à une onde mécanique progressive et sinusoïdale, arrivant de l’ouest vers le port. Elle soulève périodiquement le petit bateau situé au large de l’entrée du port.  

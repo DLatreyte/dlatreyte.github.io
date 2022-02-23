@@ -1,6 +1,6 @@
 ---
 title: "Applications de la radioactivité à la datation"
-subtitle: "Chapitre 15,4"
+subtitle: "Chapitre 17,4"
 author: ""
 type: ""
 date: 2021-03-16T05:52:49+04:00

@@ -6,8 +6,8 @@ type: ""
 date: 2020-09-11T18:37:18+04:00
 draft: false
 toc: true
-tags: ["Ondes", "Effet Doppler", "Mur du son", "Annale"]
-categories: ["Physique", "Terminale Spé PC"]
+tags: ["Ondes", "Effet Doppler", "Mur du son"]
+categories: ["Physique", "Terminale Spé PC", "Annale"]
 image: ""
 solution_est_visible: true
 auto_numbering: true

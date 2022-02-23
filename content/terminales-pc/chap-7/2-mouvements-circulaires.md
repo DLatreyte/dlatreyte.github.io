@@ -1,6 +1,6 @@
 ---
 title: "Études de mouvements circulaires"
-subtitle: "Chapitre 7,2"
+subtitle: "Chapitre 8,2"
 author: ""
 type: ""
 date: 2020-11-30T10:33:14+04:00
@@ -11,6 +11,7 @@ categories: ["Physique", "Terminale Spé PC"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
+mathjax: true
 ---
 
 > L'objectif de cette séance est l'étude du mouvement d'un mobile autoporteur en rotation autour d'un axe fixe à l'aide d'un fil inextensible sur une table à coussins d'air.
@@ -146,16 +147,18 @@ De même que l'on s'intéresse, **dans un référentiel donné**, au **taux de v
 
 $$
 \overrightarrow{v_G} (t_i) 
-= \lim_{\Delta t \to 0}  \left( \dfrac{\Delta \overrightarrow{OG}}{\Delta t} \right)_{t_i} 
-= \left( \dfrac{\mathrm{d} \overrightarrow{OG}}{\mathrm{dt}} \right)_{t_i} 
+= \lim\_{\Delta t \to 0}  \left( \dfrac{\overrightarrow{OG}(t+\Delta t) - \overrightarrow{OG}(t)}{\Delta t} \right)\_{t_i} 
+= \lim\_{\Delta t \to 0}  \left( \dfrac{\Delta \overrightarrow{OG}}{\Delta t} \right)\_{t_i} 
+= \left( \dfrac{\mathrm{d} \overrightarrow{OG}}{\mathrm{dt}} \right)\_{t_i} 
 $$
     
 --- *On étudie ainsi comment évolue cette position au cours du temps* ---, on peut définir le **taux de variation instantanée du vecteur vitesse** $\overrightarrow{v_G}$ ou **vecteur accélération** $\overrightarrow{a_G} (t_i)$ du centre d'inertie du système mécanique *à la date* $t_i$ dans le même référentiel, par :
 
 $$
 \overrightarrow{a_G} (t_i) 
-= \lim_{\Delta t \to 0}  \left( \dfrac{\Delta \overrightarrow{v_G}}{\Delta t} \right)_{t_i} 
-= \left( \dfrac{\mathrm{d} \overrightarrow{v_G}}{\mathrm{dt}} \right)_{t_i}
+= \lim\_{\Delta t \to 0}  \left( \dfrac{\overrightarrow{v_G}(t+\Delta t) - \overrightarrow{v_G}(t)}{\Delta t} \right)\_{t_i} 
+= \lim\_{\Delta t \to 0}  \left( \dfrac{\Delta \overrightarrow{v_G}}{\Delta t} \right)\_{t_i} 
+= \left( \dfrac{\mathrm{d} \overrightarrow{v_G}}{\mathrm{dt}} \right)\_{t_i}
 $$
 
 *On étudie alors comment varie le vecteur vitesse* $\overrightarrow{v_G}$ *à la date* $t_i$.

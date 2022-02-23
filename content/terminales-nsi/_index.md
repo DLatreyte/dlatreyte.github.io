@@ -20,7 +20,9 @@ layout: single
 
 - {{< remote "Modalités de l'épreuve du Grand oral" "../terminales-pc/grand_oral" >}}
 
+<!--
 - [<span style="color: red;"><strong>BAC 2021 NSI : «&nbsp;Entrées prépondérantes&nbsp;»</strong></span>]({{< ref "2020-2021-entrees-preponderantes.md" >}})
+-->
 
 ## Quelques références
 
@@ -55,6 +57,8 @@ layout: single
 
 ### Langages et programmation
 
+- **Chapitre 0 :** [*Héron d'Alexandrie*]({{% relref "./Chap-0/heron_alexandrie" %}})
+
 - **Chapitre 1 :** [*Récursivité*](chap-1)
 
 - **Chapitre 2 :** [*Modularité et robustesse du code*](chap-2)
@@ -81,23 +85,27 @@ layout: single
 
 ### Algorithmique
 
-- **Chapitre 10 :** [*Méthode «&nbsp;diviser pour régner&nbsp;»*](chap-10)
+- **Chapitre 13 :** [*Méthode «&nbsp;diviser pour régner&nbsp;»*](chap-10)
 
 - **Chapitre 14 :** [*Programmation dynamique*](chap-14)
 
 ### Architectures matérielles, systèmes d'exploitation et réseaux
 
-- **Chapitre 11 :** [*Réseaux*](chap-11)
+- **Chapitre 10 :** [*Réseaux*](chap-11)
 
-- **Chapitre 12 :** [*Les systèmes d'exploitation*](chap-12)
+- **Chapitre 11 :** [*Les systèmes d'exploitation*](chap-12)
 
 
 ### Bases de données
  
-- **Chapitre 13 :** [*Bases de données*](chap-13)
+- **Chapitre 12 :** [*Bases de données*](chap-13)
 
 <!-- - **Chapitre 14 :** [**](chap-14)  -->
 
 ## Projets
 
 - [*Page des projets*](projets)
+
+## Épreuves pratiques (NSI)
+
+- [*Sujets des épreuves pratiques*](ece)

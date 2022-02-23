@@ -1,6 +1,6 @@
 ---
 title: "Équilibre Chimique"
-subtitle: "Chapitre 9,1"
+subtitle: "Chapitre 10,1"
 author: ""
 type: ""
 date: 2021-01-07T22:24:09+04:00

@@ -1,6 +1,6 @@
 ---
 title: "Méthodes spéciales"
-subtitle: ""
+subtitle: "Chapitre 4,3"
 author: ""
 type: ""
 date: 2020-09-29T09:51:52+04:00
@@ -29,3 +29,33 @@ Un corrigé de cette activité se trouve à cette adresse : {{< remote "https://
 {{% note warning %}}
 S'assurer que les fractions sont toujours sous forme réduite.
 {{% /note %}}
+
+#### Remarque : jeu de tests possibles
+
+```python
+f1 = Fraction(4, 2)
+print(f1)
+
+f2 = Fraction(35, 9)
+print(f2)
+
+# Addition de nombres rationnels
+f3 = f1 + f2
+assert str(f3) == "53 / 9"
+# Multiplication de nombres rationnels
+f4 = f1 * f2
+assert str(f4) == "70 / 9"
+# Test de l'égalité de deux nombres rationnels
+f5 = Fraction(2, 1)
+assert (f1 == f2) == False
+assert (f5 == f1) == True
+# Teste si un nombre rationnel est plus petit qu'un autre
+assert (f1 < f2) == True
+assert (f1 < f5) == True
+
+# Test si réduction fonctionne
+f6 = Fraction(48, 6)
+print(f6)
+f7 = Fraction(39, 6)
+print(f7)
+```

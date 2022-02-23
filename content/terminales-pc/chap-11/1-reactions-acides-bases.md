@@ -1,6 +1,6 @@
 ---
 title: "Réactions entre acides et bases"
-subtitle: "Chapitre 11,1"
+subtitle: "Chapitre 12,1"
 author: ""
 type: ""
 date: 2021-01-25T10:12:12+04:00
@@ -11,6 +11,7 @@ categories: ["Chimie", "Terminale Spé PC"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
+mathjax: true
 ---
 
 > Dans un précédent chapitre les acides et les bases ont été introduits. Il a été montré que leur réaction avec l'eau pouvait conduire à des transformations limitées ou totales. L'évolution du pH lors d'un titrage acide-base a aussi été montrée.\
@@ -31,7 +32,7 @@ Dans ce chapitre, on introduit les outils qui permettent de comparer entre eux l
     circuler un courant électrique dans un volume d'eau pure, on
     constate qu'un très faible courant électrique circule.
 
-- À 25 °C, le pH de l'eau pure est égal à 7.0. 
+- À 25 °C, le pH de l'eau pure est égal à 7,0. 
 {{% /note %}}
 
 1. À quelle conclusion doit nous mener la première remarque du document ?
@@ -41,7 +42,7 @@ L'eau pure n'est donc pas uniquement composée de molécules d'eau mais aussi d'
 
 2. À quelle conclusion doit nous mener la seconde remarque du document ?
 {{% solution "Réponse" %}}
-Parmi les ions présents dans l'eau pure, il existe des ions oxonium à la concentration :
+Parmi les ions présents dans l'eau pure, il existe des ions oxonium à la concentration&nbsp;:
     $[{\ce{H3O+}}] = \pu{1,0e-7 mol.L-1}$.
 {{% /solution %}}
 
@@ -50,7 +51,7 @@ Parmi les ions présents dans l'eau pure, il existe des ions oxonium à la conc
 3. Formuler une hypothèse qui pourrait justifier les constations du document 1.
 
 {{% solution "Réponse" %}}
-La polarisation des liaisons et la présence des doublets d'électrons non liants au niveau de l'atome d'une molécule d'eau permettent d'imaginer que, *sous l'effet d'interactions électriques*, certaines molécules d'eau s'ionisent selon la réaction d'équation :
+La polarisation des liaisons et la présence des doublets d'électrons non liants au niveau de l'atome d'une molécule d'eau permettent d'imaginer que, *sous l'effet d'interactions électriques*, certaines molécules d'eau s'ionisent selon la réaction d'équation&nbsp;:
 $$\ce{H2O + H2O <=> H3O+ + OH- (aq)}$$
 {{% /solution %}} 
 
@@ -61,7 +62,10 @@ $$\ce{H2O + H2O <=> H3O+ + OH- (aq)}$$ est appelée **autoprotolyse de l'eau**.
 {{% /note %}}
 
 
-On remarque que la réaction d'autoprotolyse de l'eau impose $[\ce{H3O+}] = [\ce{HO-}]$ dans l'eau.
+On remarque que la réaction d'autoprotolyse de l'eau, **lorsqu'elle est seule**, impose $[\ce{H3O+}] = [\ce{HO-}]$ dans l'eau.
+
+Remarque
+: Lorsque la réaction d'autoprotolyse de l'eau n'est pas la seule réaction acide-base se déroulant dans la solution, en général, $[\ce{H3O+}] \neq [\ce{HO-}]$
 
 ### Avancement final de la réaction d'autoprotolyse de l'eau
 
@@ -93,7 +97,7 @@ L'avancement de la réaction est tellement petit que l'on peut considérer que l
 
 ### Produit ionique de l'eau
 
-{{% note normal %}}
+{{% note warning %}}
 *La réaction d'autoprotolyse de l'eau ne met en jeu que des molécules d'eau, **elle se déroule donc dans toute solution aqueuse**, indépendamment de la présence d'autres réactions chimiques.*
 {{% /note %}}
 
@@ -108,7 +112,7 @@ $$K\_e = \dfrac{[\ce{H3O+}]\_{eq} \cdot [\ce{HO-}]\_{eq}}{C^{o2}}$$ avec $C^o =
 
 **Remarques**
 
-- On définit, par commodité et par analogie avec l'expression du pH, la grandeur : $$\text{pK}\_e= - \log K\_e \qquad \text{ou} \qquad K\_e = 10^{-\text{pK}\_e}$$
+- On définit, par commodité et par analogie avec l'expression du pH, la grandeur&nbsp;: $$\text{pK}\_e= - \log K\_e \qquad \text{ou} \qquad K\_e = 10^{-\text{pK}\_e}$$
 
 - Comme pour toutes les constantes d'équilibre, *la valeur du produit ionique de l'eau dépend de la température*.\
 À 25 °C, $K\_e = \dfrac{\pu{1,0e-7 mol.L-1} \times \pu{1,0e-7 mol.L-1}}{(\pu{1,0 mol.L-1})^2} = \pu{1,0e-14}$\
@@ -117,16 +121,21 @@ donc $\text{pK}\_e = 14,0$.
 > Dépendance du produit ionique de l'eau avec la température (wikipedia)
 <img src="/terminales-pc/chap-11/chap-11-1/chap-11-1-8.svg" alt="" width="70%" />
 
-{{% note normal %}}
-Dans toute solution aqueuse, la réaction d'autoprotolyse de l'eau impose :
+{{% note warning %}}
+Dans toute solution aqueuse, la réaction d'autoprotolyse de l'eau impose&nbsp;:
 - la présence d'ions oxonium et d'ions hydroxyde ;
 - la relation $K\_e = \dfrac{[\ce{H3O+}] \cdot [\ce{HO-}]}{C^{o2}}$.
 {{% /note %}}
 
 7. Exprimer la relation qui existe entre le pH et la concentration en ions hydroxyde.
 {{% solution "Réponse" %}}
+{{% note normal %}}
+
 $$\text{pH} = \text{pK}_e + \log \left( \dfrac{[ \ce{HO^-}]\_{(eq)}}{C^o} \right) \text{ ou } 
     [ \ce{HO^-}]\_{(eq)} = C^o \\, 10^{(\text{pH} - \text{pK}\_e)}$$
+
+{{% /note %}}
+
 {{% /solution %}}
 
 ### pH des solutions neutre, acide et basique
@@ -152,7 +161,7 @@ $$ \text{pH} > \dfrac{1}{2}\\, \text{pK}\_e$$
 {{% /solution %}}
 
 
-Remarque :
+Remarque&nbsp;:
 
 :   Les limites supérieure et inférieure du pH en solution aqueuse seront démontrées un peu plus loin dans ce document.
 
@@ -162,18 +171,18 @@ Remarque :
 ### Définition
 
 {{% note tip %}}
-La **constante d'équilibre** de la **réaction d'un acide avec l'eau**, d'équation :
+La **constante d'équilibre** de la **réaction d'un acide avec l'eau**, d'équation&nbsp;:
 $$
    \ce{ AH (aq) +  H2O <=> A^{-} (aq) + H3O+}
 $$
 est appelée **constante d'acidité** du couple
-$\ce{AH/A^{-}}$ et notée $K\_a$. Son expression est :
+$\ce{AH/A^{-}}$ et notée $K\_a$. Son expression est&nbsp;:
 $$K\_a = \dfrac{[ \ce{A-}]\_{(eq)} \cdot [ \ce{H3O+} ]\_{(eq)}}{[ \ce{AH}]\_{(eq)} \cdot C^o}$$
 {{% /note %}}
 
 **Remarques**
 
-- On définit, par commodité et par analogie avec l'expression du pH, la grandeur : 
+- On définit, par commodité et par analogie avec l'expression du pH, la grandeur&nbsp;: 
 $$
    \text{pK}\_a = -\log K_a \qquad \text{ou} \qquad K_a = 10^{-\text{pK}\_a}
 $$
@@ -209,20 +218,20 @@ $$
 
 12. Déterminer la valeur de la constante d'acidité du couple $\ce{H3O+/H2O}$.
 {{% solution "Réponse" %}}
-Réaction de l'acide du couple avec l'eau :
+Réaction de l'acide du couple avec l'eau&nbsp;:
 $$
  \ce{H3O+ + H2O <=> H2O + H3O+}
 $$
-donc $K = 1,0$. 
+donc $K = \pu{1,0}$. 
 {{% note tip %}}
 Pour le couple $\ce{H3O+ / H2O}$,
-$$ K\_A = 1,0 \iff \text{pK}\_a = 0,0$$
+$$ K\_A = \pu{1,0} \iff \text{pK}\_a = \pu{0,0}$$
 {{% /note %}}
 {{% /solution %}}
 
 13. Déterminer la valeur de la constante d'acidité du couple $\ce{H2O/HO-}$.
 {{% solution "Réponse" %}}
-Réaction de l'acide du couple avec l'eau :
+Réaction de l'acide du couple avec l'eau&nbsp;:
 $$
  \ce{H2O + H2O <=> OH- + H3O+}
 $$
@@ -292,7 +301,7 @@ Lorsqu'on compare deux espèces chimiques, on dit que *celle qui présente la pl
 Le relation
 $\text{pH} = \text{pK}\_a + \log \left( \dfrac{[ \ce{A-}]\_{(eq)} }{[ \ce{AH}]\_{(eq)} }   \right)$,
 *caractéristique du couple*
-$\ce{AH/A^-}$, permet de vérifier que :
+$\ce{AH/A^-}$, permet de vérifier que&nbsp;:
 
 - si $\text{pH} = \text{pK}\_a$ alors
     $[\ce{AH}] = [\ce{A^-}]$.\
@@ -314,6 +323,7 @@ $\ce{AH/A^-}$, permet de vérifier que :
 {{% /note %}}
 
 <img src="/terminales-pc/chap-11/chap-11-1/chap-11-1-2.png" alt="" width="100%" />
+
 **Remarque**
 
 - Si $\text{pK}\_a < \text{pH}  < \dfrac{1}{2}\\, \text{pK}\_e$, la forme basique du couple prédomine alors que la solution est acide ! 
@@ -337,7 +347,7 @@ Un lait a un pH égal à 6,5.
 {{% /note %}}
 
 {{% solution "Réponses" %}}
-1. Le $\text{pK}\_a$ du couple vaut : $\text{pK}\_a = -\log K\_a = \pu{3,9}$. Comme $\text{pH} > \text{pK}\_a$, l'espèce chimique prédominante est $\ce{CH3-CHOH-CO2-}$, la forme basique du couple.
+1. Le $\text{pK}\_a$ du couple vaut&nbsp;: $\text{pK}\_a = -\log K\_a = \pu{3,9}$. Comme $\text{pH} > \text{pK}\_a$, l'espèce chimique prédominante est $\ce{CH3-CHOH-CO2-}$, la forme basique du couple.
 
 2. $$
     K\_a = \dfrac{[\ce{A-}]\_{eq} \cdot [\ce{H3O+}]\_{eq}}{[\ce{AH}]\_{eq} \cdot C^o} \iff \dfrac{[\ce{A-}]\_{eq}}{[\ce{AH}]\_{eq}} = \dfrac{K\_a \cdot C^o}{[\ce{H3O+}]\_{eq}}
@@ -380,7 +390,7 @@ Si $[\ce{A-}] > 10\\, [\ce{AH}]$, $\dfrac{[\ce{A-}]}{[\ce{AH}]} > 10^{1}$ et $\t
 - Dans la zone de pH comprise entre $\text{pK}\_a -1$ et $\text{pK}\_a +1$, l'indicateur présente sa **teinte sensible**, *résultat de la superposition de ses teintes acide et basique*. Cette zone est appelée **zone de virage de l'indicateur**.
 {{% /note %}}
 
-<img src="/terminales-pc/chap-11/chap-11-1/chap-11-1-7.png" alt="" width="90%" />
+<img src="/terminales-pc/chap-11/chap-11-1/chap-11-1-7.png" alt="" width="75%" />
 
 {{% note exercise %}}
 On verse dans deux béchers, $A$ et $B$, deux volumes identiques de solution d'eau de Javel diluée.\
@@ -394,12 +404,12 @@ Proposer un encadrement du rapport des concentrations des espèces $\ce{ClO-}$ e
 
 Données
 : - $\text{pK}\_a (\ce{HClO/ClO-}) = \pu{7,3}$.
-- BBT :
-    - forme acide : jaune si $\text{pH} < \pu{6,0}$
-    - forme basique : bleu si $\text{pH} > \pu{7,6}$
-- phénolphtaléine :
-    - forme acide : incolore si $\text{pH} < \pu{8,2}$
-    - forme basique : fuschia si $\text{pH} > \pu{10,0}$
+- BBT&nbsp;:
+    - forme acide&nbsp;: jaune si $\text{pH} < \pu{6,0}$
+    - forme basique&nbsp;: bleu si $\text{pH} > \pu{7,6}$
+- phénolphtaléine&nbsp;:
+    - forme acide&nbsp;: incolore si $\text{pH} < \pu{8,2}$
+    - forme basique&nbsp;: fuschia si $\text{pH} > \pu{10,0}$
 {{% /note %}}
 
 {{% solution "Réponses" %}}
@@ -441,7 +451,7 @@ Un **acide aminé** est un *acide carboxylique* qui possède
 donc à la fois *un groupe carboxyle* et un *groupe amine*, par exemple
 une *amine primaire* ou une *amine secondaire* . On connaît environ 500
 acides aminés, dont environ 140 sont présents dans les protéines. Ces
-acides aminés peuvent être classés de nombreuses manières différentes :
+acides aminés peuvent être classés de nombreuses manières différentes&nbsp;:
 on les classe ainsi souvent en fonction de la *position du groupe amine
 par rapport au groupe carboxyle* en distinguant par exemple les acides
 $\alpha$-aminés, $\beta$-aminés, $\gamma$-aminés ou $\delta$-aminés.
@@ -453,7 +463,7 @@ $\alpha$-aminés, $\beta$-aminés, $\gamma$-aminés ou $\delta$-aminés.
 Un acide aminé est dit $\alpha$-aminé si le *groupe
 amine* est porté par l'atome de carbone voisin de celui qui porte le
 groupe carboxyle . La formule générale d'un acide $\alpha$-aminé est
-donc :
+donc&nbsp;:
 <img src="/terminales-pc/chap-11/chap-11-1/chap-11-1-4.png" alt="" width="35%" />
 {{% /note %}}
 
@@ -478,12 +488,12 @@ est **une réaction acido-basique intramoléculaire**.
 #### Couples acide/base 
 
 L'amphion est un ampholyte. En solution aqueuse, il
-peut être considéré comme :
+peut être considéré comme&nbsp;:
 
-- L'acide du couple amphion/anion :
+- L'acide du couple amphion/anion&nbsp;:
     $$\ce{H_3N^+-CHR-CO_2^-} = \ce{H_2N-CHR-CO_2^-} + \ce{H^+}$$
 
-- La base du couple cation/amphion :
+- La base du couple cation/amphion&nbsp;:
     $$\ce{H_3N^+-CHR-CO_2H} = \ce{H_3N^+-CHR-CO_2^-} + \ce{H^+}$$
 {{% /note %}}
 
@@ -504,7 +514,7 @@ peut être considéré comme :
 
 {{% note tip %}}
 #### Réaction entre un acide fort et une base forte
-Le mélange d'un acide fort et d'une base forte dans une solution conduit à une **transformation chimique totale** modélisée par la réaction chimique d'équation :
+Le mélange d'un acide fort et d'une base forte dans une solution conduit à une **transformation chimique totale** modélisée par la réaction chimique d'équation&nbsp;:
 $$
     \ce{H3O^+  + HO- (aq) --> 2 H2O (l)}
 $$
@@ -524,7 +534,7 @@ $$
 On appelle **solution tampon** une solution dont le pH varie peu, *par addition d'un acide, d'une base ou par dilution*.
 {{% /note %}}
 
-Les solutions tampons sont utilisées lorsqu'une réaction chimique susceptible de libérer ou de consommer des protons doit se faire à un pH sensiblement constant. Il en est souvent ainsi en biologie : les cellules, les enzymes ne peuvent exister que dans une zone de pH bien déterminée (1,5 pour la peptase de l'estomac, 6,5 pour l'amylase de la salive, 7,4 pour le pH du sang).
+Les solutions tampons sont utilisées lorsqu'une réaction chimique susceptible de libérer ou de consommer des protons doit se faire à un pH sensiblement constant. Il en est souvent ainsi en biologie&nbsp;: les cellules, les enzymes ne peuvent exister que dans une zone de pH bien déterminée (1,5 pour la peptase de l'estomac, 6,5 pour l'amylase de la salive, 7,4 pour le pH du sang).
 
 #### Remarque
 Nous utilisons des solutions tampons pour étalonner les pH-mètres.

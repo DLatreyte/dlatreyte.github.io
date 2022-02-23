@@ -1,9 +1,9 @@
 ---
 title: "Propriétés des ondes progressives"
-subtitle: "Chapitre 2"
+subtitle: "Chapitre 3"
 author: ""
 type: ""
-date: 2020-09-04T13:26:22+04:00
+date: 2021-09-19T11:30:29+04:00
 draft: false
 toc: true
 tags: []
@@ -23,10 +23,10 @@ layout: "single"
 ----
 - {{< remote "Chapitre du Livre Scolaire" "http://LLS.fr/PCTP463" >}}
 ----
-- **Chap. 2,1,1 :** [*Un effet lié au mouvement relatif de l’émetteur et du récepteur : l’effet Doppler*](1-effet-doppler-introduction)
-- **Chap. 2,1,2 :** [*L'Univers en expansion*](2-univers)
-- **Chap. 2,1,3 :** [*Détermination par effet Doppler de la vitesse d'un émetteur sonore*](3-doppler-demo)
-- **Chap. 2,1,4 :** [*Annale : L'effet doppler en astrophysique*](4-doppler-astrophysique)
+- **Chap. 3,1,1 :** [*Un effet lié au mouvement relatif de l’émetteur et du récepteur : l’effet Doppler*](1-effet-doppler-introduction)
+- **Chap. 3,1,2 :** [*L'Univers en expansion*](2-univers)
+- **Chap. 3,1,3 :** [*Détermination par effet Doppler de la vitesse d'un émetteur sonore*](3-doppler-demo)
+- **Chap. 3,1,4 :** [*Annale : L'effet doppler en astrophysique*](4-doppler-astrophysique)
 
 ## Diffraction
 
@@ -38,13 +38,13 @@ layout: "single"
 - {{< remote "Chapitre du Livre Scolaire" "https://www.lelivrescolaire.fr/page/16299528" >}}
 ----
 
-- **Chap. 2,2,1 :** [*Présentation du phénomène de diffraction*](6-cours-diffraction)
+- **Chap. 3,2,1 :** [*Présentation du phénomène de diffraction*](6-cours-diffraction)
 
-- **Chap. 2,2,2 :** [*TP : Étoiles et diffraction*](5-diffraction-etoiles)
+- **Chap. 3,2,2 :** [*TP : Étoiles et diffraction*](5-diffraction-etoiles)
 
-- **Chap. 2,2,3 :** [*Annale : La houle et l’entrée d’un port*](7-annale-diffraction)
+- **Chap. 3,2,3 :** [*Annale : La houle et l’entrée d’un port*](7-annale-diffraction)
 
-- **Chap. 2,2,4 :** [*Annale : Caractère ondulatoire de la lumière d’après Huyghens*](8-annale-diffraction)
+- **Chap. 3,2,4 :** [*Annale : Caractère ondulatoire de la lumière d’après Huyghens*](8-annale-diffraction)
 
 ## Interférences
 
@@ -56,10 +56,10 @@ layout: "single"
 - {{< remote "Chapitre du Livre Scolaire" "https://www.lelivrescolaire.fr/page/16299528" >}}
 ----
 
-- **Chap. 2,3,1 :** [*Retard, déphasage d'une onde sonore sinusoïdale*](9-retard-dephasage)
+- **Chap. 3,3,1 :** [*Retard, déphasage d'une onde sonore sinusoïdale*](9-retard-dephasage)
 
-- **Chap. 2,3,2 :** [*Notion de différence de marche*](10-difference-marche)
+- **Chap. 3,3,2 :** [*Notion de différence de marche*](10-difference-marche)
 
-- **Chap. 2,3,3 :** [*Conditions d’interférence de deux ondes sinusoïdales*](11-interferences)
+- **Chap. 3,3,3 :** [*Conditions d’interférence de deux ondes sinusoïdales*](11-interferences)
 
-- **Chap. 2,3,4 :** [*Exercices et annale*](12-exercices)
+- **Chap. 3,3,4 :** [*Exercices et annale*](12-exercices)

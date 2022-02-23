@@ -19,12 +19,8 @@ $
 ## §1. L’espace et le temps
 
 **1.** En mécanique on entend par *mouvement* le changement
-avec le temps de la position spatiale d'un corps. La position du corps dont il
-est question est une *position relative*, définie par rapport à
-d'autres corps. Le concept de position absolue, qui serait la position d'un
-corps dans un «&nbsp;espace absolu&nbsp;», donc sans
-aucune référence à celles d'autres corps, est dénué de
-sens.
+avec le temps de la position spatiale d'un corps. La position du corps dont il est question est une *position relative*, définie par rapport à
+d'autres corps. Le concept de position absolue, qui serait la position d'un corps dans un «&nbsp;espace absolu&nbsp;», donc sans aucune référence à celles d'autres corps, est dénué de sens.
 
 Le corps ou le système de corps par rapport auxquels on définit les
 positions d'autres corps sont désignés sous le nom de

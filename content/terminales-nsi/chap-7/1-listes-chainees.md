@@ -188,7 +188,7 @@ Tous ces objets sont pour l'instant isolés (ils ne pointent vers aucune autre c
 {{% note tip %}}
 Une liste chaînée est :
 - *soit la liste vide* (objet `None`) ;
-- *soit constituée de son premier élément* (objet de type `Cellule`) et *du reste des éléments qui forment aussi une liste*.
+- *soit constituée de son premier élément* (objet de type `Cellule`) et *du reste des éléments qui forment aussi une liste*.    
 Une liste chaînée est donc une **structure récursive**.
 {{% /note %}}
 
@@ -309,9 +309,24 @@ def ajout_fin_liste(lst: Cellule, valeur: Cellule) -> None:
 On doit parcourir toute la liste pour ajouter un élément à la fin. La complexité est donc linéaire.
 {{% /solution %}}
 
+22. Écrire la fonction `ajout_debut_liste` dont la spécification est :
+```python
+def ajout_debut_liste(lst: Cellule, valeur: Cellule) -> Cellule:
+    """
+    Ajout de valeur au début de la liste.
+    Création d'une nouvelle liste mais toute modification de la liste
+    lst modifie cette nouvelle liste.
+    """
+````
+
+23. Quelle est la complexité de cette fonction ?
+{{% solution "Réponse" %}}
+$O(1)$
+{{% /solution %}}
+
 ### Retrait du dernier élément d'une liste
 
-22. Écrire la fonction `retrait_dernier_element` dont la spécification est :
+24. Écrire la fonction `retrait_dernier_element` dont la spécification est :
 ```python
 def retrait_dernier_element(lst: Cellule) -> int:
     """
@@ -327,7 +342,7 @@ def retrait_dernier_element(lst: Cellule) -> int:
 On appelle **concaténation** de deux listes l'opération consistant à mettre bout à bout les deux listes.
 {{% /note %}}
 
-23. Écrire la fonction `concatener` dont la spécification est :
+25. Écrire la fonction `concatener` dont la spécification est :
 ```python
 def concatener(lst1: Cellule, lst2: Cellule) -> Cellule:
     """
@@ -344,7 +359,7 @@ def concatener(lst1: Cellule, lst2: Cellule) -> Cellule:
 ``` 
 <img src="/terminales-nsi/chap-7/chap-7-1-3.png" alt="" width="100%" />
 
-24. Écrire la fonction `copie` dont la spécification est :
+26. Écrire la fonction `copie` dont la spécification est :
 ```python
 def copie(lst: Cellule) -> Cellule:
     """
@@ -355,7 +370,7 @@ def copie(lst: Cellule) -> Cellule:
 ``` 
 <img src="/terminales-nsi/chap-7/chap-7-1-4.png" alt="" width="75%" />
 
-25. Se servir de la fonction `copie` pour écrire la fonction `concatener_avec_copie_integrale` dont la spécification est : 
+27. Se servir de la fonction `copie` pour écrire la fonction `concatener_avec_copie_integrale` dont la spécification est : 
 ```python
 def concatener_avec_copie_integrale(lst1: Cellule, lst2: Cellule) -> Cellule:
     """
@@ -367,7 +382,7 @@ def concatener_avec_copie_integrale(lst1: Cellule, lst2: Cellule) -> Cellule:
 ```
 <img src="/terminales-nsi/chap-7/chap-7-1-5.png" alt="" width="100%" />
 
-26. Quelle est la complexité de la fonction `concatener` ? Même question pour la fonction `concatener_avec_copie_integrale`.
+28. Quelle est la complexité de la fonction `concatener` ? Même question pour la fonction `concatener_avec_copie_integrale`.
 {{% solution "Réponse" %}}
 - Dans le premier cas, il est nécessaire de recopier tous les éléments de `lst1`. La complexité est donc linéaire et dépend du nombre d'élements de `lst1`.
 - Dans le second cas, on recopie tous les éléments de `lst1` et de `lst2`. La complexité est donc linéaire et est la somme du nombre d'éléments de `lst1` et de `lst2`.
@@ -375,7 +390,7 @@ def concatener_avec_copie_integrale(lst1: Cellule, lst2: Cellule) -> Cellule:
 
 ### Renverser une liste
 
-27. Écrire la fonction `renverser` dont la spécification est : 
+29. Écrire la fonction `renverser` dont la spécification est : 
 ```python
 def renverser(lst: Cellule) -> Cellule:
     """
@@ -400,3 +415,51 @@ def renverser(lst: Cellule) -> Cellule:
 - Les opérations sur les listes chaînées se programment sous la forme de **parcours qui suivent ces liaisons**, en utilisant la récursivité ou des boucles.
 {{% /note %}}
 
+
+## Tests possibles
+
+```python
+if __name__ == "__main__":
+    #c1 = Cellule(1, None)
+    #c2 = Cellule(2, None)
+    #c3 = Cellule(3, None)
+    #lst = c1
+    #lst.suivante = c2
+    #c2.suivante = c3
+
+    lst = Cellule(1, Cellule(2, Cellule(3, Cellule(4, None))))
+    affichage_elements_liste(lst)
+
+    assert longueur(lst) == 4
+    assert longueur_iter(lst) == 4
+
+    assert n_ieme_element(lst, 0) == 1
+    assert n_ieme_element(lst, 3) == 4
+    #print(n_ieme_element(lst, 4))
+
+    assert n_ieme_element_iter(lst, 0) == 1
+    assert n_ieme_element_iter(lst, 3) == 4
+    #print(n_ieme_element_iter(lst, 4))
+
+    lst1 = Cellule(1, Cellule(2, Cellule(3, Cellule(4, None))))
+    lst2 = Cellule(5, Cellule(6, Cellule(7, None)))
+    lst3 = concatener_avec_copie_integrale(lst1, lst2)
+    print(lst3)
+
+    # Modification de la liste
+    modifier_n_ieme_element(lst, 0, 12)
+    assert n_ieme_element_iter(lst, 0) == 12
+
+    # Ajout en fin de liste
+    ajout_fin_liste(lst, Cellule(25, None))
+    affichage_elements_liste(lst)
+
+    # Ajout en début de liste
+    lst = ajout_debut_liste(lst, Cellule(34, None))
+    affichage_elements_liste(lst)
+
+    # Retrait dernier élément
+    dernier = retrait_dernier_element(lst)
+    print(dernier)
+    affichage_elements_liste(lst)
+    ```

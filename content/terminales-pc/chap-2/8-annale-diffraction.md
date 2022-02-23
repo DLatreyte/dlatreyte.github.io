@@ -1,13 +1,13 @@
 ---
 title: "Caractère ondulatoire de la lumière d’après Huyghens"
-subtitle: "Chapitre 2,2,4"
+subtitle: "Chapitre 3,2,4"
 author: ""
 type: ""
 date: 2020-09-14T22:51:28+04:00
 draft: false
 toc: true
 tags: ["Annale", "Diffraction"]
-categories: ["Physique", "Terminale Spé PC"]
+categories: ["Physique", "Terminale Spé PC", "Annale"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
@@ -78,7 +78,7 @@ Dans cette relation $\theta$ doit être exprimé en radians, $\lambda$ et $a$ en
 {{% /solution %}}
 
 On trace la courbe $\theta = f(1/a)$ (les ordonnées sont exprimées en radian et les abscisses en «&nbsp;par mètre&nbsp;»).   
-<img src="/terminales-pc/chap-2/fig-2-2-4-2.jpg" alt="" width="70%" />
+<img src="/terminales-pc/chap-2/fig-2-2-4-2.jpg" alt="" width="80%" />
 
 7. Montrer que cette courbe est en accord avec l’expression de $\theta$ donnée à la question 6.
 {{% solution "Réponse" %}}

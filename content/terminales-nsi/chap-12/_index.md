@@ -1,6 +1,6 @@
 ---
 title: "Les systèmes d'exploitation"
-subtitle: "Chapitre 12"
+subtitle: "Chapitre 11"
 author: ""
 type: ""
 date: 2020-12-09T10:12:03+04:00
@@ -32,10 +32,10 @@ Toute machine est dotée d’un système d’exploitation qui a pour fonction de
 
 ## Documents
 
-- **Chap. 12,01 :** [*Système d'exploitation : Principes généraux*](1-os-principes-generaux)
+- **Chap. 11,01 :** [*Système d'exploitation : Principes généraux*](1-os-principes-generaux)
 
-- **Chap. 12,02 :** [*Linux : Navigation dans le système de fichiers en utilisant le shell*](2-navigation-systeme-fichiers)
+- **Chap. 11,02 :** [*Linux : Navigation dans le système de fichiers en utilisant le shell*](2-navigation-systeme-fichiers)
 
-- **Chap. 12,03 :** [*Gestion des processus et des ressources*](3-processus)
+- **Chap. 11,03 :** [*Gestion des processus et des ressources*](3-processus)
 
-<!-- - **Chap. 12,01 :** [*Système d'exploitation et virtualisation*]() -->
+<!-- - **Chap. 11,01 :** [*Système d'exploitation et virtualisation*]() -->

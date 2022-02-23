@@ -1,6 +1,6 @@
 ---
 title: "Méthode « Diviser pour régner »"
-subtitle: "Chapitre 10"
+subtitle: "Chapitre 13"
 author: ""
 type: ""
 date: 2020-11-18T17:11:50+04:00
@@ -23,11 +23,15 @@ layout: "single"
 
 ## Documents
 
-- **Chapitre 10,1 :** [*Le tri fusion*](1-tri-fusion)
+- **Chapitre 13,1 :** [*Le tri fusion*](1-tri-fusion)
 
-- **Chapitre 10,2 :** [*Rotation d'une image bitmap d'un quart de tour*](2-rotation-image)
+- **Chapitre 13,2 :** [*Recherche des plus grand et petit éléments dans un tableau*](2-minmax) 
 
-- **Chapitre 10,3 :** [*Les tours de Hanoï*](3-tour-hanoi)
+- **Chapitre 13,3 :** [*Les tours de Hanoï*](3-tour-hanoi)
 
+- **Chapitre 13,4 :** [*Problème de la sous-séquence de somme maximale*](4-max-somme-sous-tableau)
 
+- **Chapitre 13,5 :** [*Recherche numérique de zéros de fonctions dans $\Reals$*](5-recherche-zero)
+
+- **Chapitre 13,6 :** [*Rotation d'une image bitmap d'un quart de tour*](5-rotation-image)
 

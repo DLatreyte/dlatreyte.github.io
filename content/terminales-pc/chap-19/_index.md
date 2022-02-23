@@ -1,6 +1,6 @@
 ---
 title: "Former des images à l'aide d'une lunette"
-subtitle: "Chapitre 19"
+subtitle: "Chapitre 1"
 author: ""
 type: ""
 date: 2021-05-09T09:40:35+04:00
@@ -24,11 +24,24 @@ layout: "single"
 
 ----
 
-- {{< remote "Structure et optimisation en chimie organique" "https://www.lelivrescolaire.fr/page/16273878" >}}
+- {{< remote "Lunette astronomique sur le Livre Scolaire" "https://www.lelivrescolaire.fr/page/16273878" >}}
 
 ----
 
-- **Chapitre 19,01 :** {{< remote "Cours" "https://www.icloud.com/keynote/0c26OAX1gOKDcglzaaff0TrKw#Optique" >}}
+<!--
+- **Chapitre 1,1 :** {{< remote "Cours" "https://www.icloud.com/keynote/0c26OAX1gOKDcglzaaff0TrKw#Optique" >}}
+-->
 
-- **Chapitre 19,02 :** <a href="/terminales-pc/chap-19/chap-19-2/chap-19-2.html">*Exercices d'optique géométrique*</a>
+- **Chapitre 1,0 :** [Révisions de 1ère]({{% relref "../../premieres-pc/chap-5/4-formation-images" %}})
 
+- **Chapitre 1,0 :** [Révisions de 1ère - Carte mentale](/terminales-pc/chap-19/chap-19-1/optique-geometrique-carte-mentale.svg)
+
+- **Chapitre 1,1 :** {{< remote "Formation d'une image par une lentille mince convergente" "1-formation-images" >}}
+
+- **Chapitre 1,2 :** {{< remote "Construction d'une lunette afocale" "2-lunette" >}}
+
+- **Chapitre 1,3 :** <a href="/terminales-pc/chap-19/chap-19-2/chap-19-2.html">Exercices d'optique géométrique</a>
+
+- **Chapitre 1,4 :** [Formation d'une image à l'aide d'une lunette - Carte mentale](/terminales-pc/chap-19/lunette-carte-mentale.svg)
+
+   

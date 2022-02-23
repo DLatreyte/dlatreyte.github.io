@@ -1,6 +1,6 @@
 ---
 title: "Équilibre d'un système"
-subtitle: "Chapitre 7,6"
+subtitle: "Chapitre 8,6"
 author: ""
 type: ""
 date: 2020-12-06T13:25:30+04:00
@@ -11,6 +11,7 @@ categories: ["Physique", "Terminale Spé PC"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
+mathjax: true
 ---
 
 {{% note warning %}}
