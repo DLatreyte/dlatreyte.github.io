@@ -1,6 +1,6 @@
 ---
 title: "Titrage d'une solution de vinaigre par conductimétrie"
-subtitle: "Chapitre 4,5"
+subtitle: "Chapitre 5,5"
 author: ""
 type: ""
 date: 2020-10-10T21:25:36+04:00
@@ -58,7 +58,7 @@ L'acide acétique ou acide éthanoïque est un acide carboxylique avec une chaî
 - On verse, dans un bécher de $\pu{400 mL}$, $\pu{20 mL}$ d'un vinaigre blanc commercial, *dilué 10 fois*, prélevé à l'aide d'une pipette jaugée.
 - On ajoute dans ce même bécher un volume de $\pu{250 mL}$ d'eau distillée.
 - On plonge la sonde d'un conductimètre dans le bécher.
-- Dans une burette graduée, on introduit une solution de soude $(\ce{Na^+_{(aq)} + OH^-_{(aq)}})$ de concentration $C_B = \pu{0,2 mol.L-1}$.
+- Dans une burette graduée, on introduit une solution de soude $(\ce{Na^+ (aq) + OH^- (aq)})$ de concentration $C_B = \pu{0,2 mol.L-1}$.
 - On verse millilitre par millilitre la solution de soude dans le bécher jusqu'à un volume de $\pu{22 mL}$. On mesure pour chaque ajout la conductivité de la solution.
 
 ### Résultats 

@@ -1,6 +1,6 @@
 ---
 title: "Comparer la force des acides et des bases"
-subtitle: "Chapitre 11"
+subtitle: "Chapitre 12"
 author: ""
 type: ""
 date: 2021-01-25T09:58:50+04:00
@@ -28,19 +28,23 @@ layout: "single"
 
 ----
 
-- **Chap. 11,1 :** [*Réactions entre acides et bases*](1-reactions-acides-bases)
+- **Chap. 12,1 :** [*Réactions entre acides et bases*](1-reactions-acides-bases)
 
-- **Chap. 11,2 :** [*Tracé d'un diagramme de prédominance à l'aide du langage Python*](2-trace-diagramme-predominance)
+- **Chap. 12,2 :** [*Détermination du $pK_A$ du couple acide/base de l'acide acétique*](2-determination-pka)
 
-- **Chap. 11,3 :** [*L'acide benzoïque, un conservateur alimentaire*](3-determination-avancement-final)
+- **Chap. 12,3 :** [*Détermination de la constante d'acidité du couple acide/base de l'acide méthanoïque*](3-determination-pka)
 
-- **Chap. 11,4 :** [*pH et milieux biologiques*](4-ph-milieux-biologiques)
+- **Chap. 12,4 :** [*Tracé d'un diagramme de distribution à l'aide du langage Python*](2-trace-diagramme-predominance)
 
-- **Chap. 11,5 :** [*Annales*](5-annales)
+- **Chap. 12,5 :** [*L'acide benzoïque, un conservateur alimentaire*](3-determination-avancement-final)
 
-- **Chap. 11,6 :** [*Annale : Le bleu de bromophénol*](6-annale-bleu-de-bromophenol)
+- **Chap. 12,6 :** [*pH et milieux biologiques*](4-ph-milieux-biologiques)
 
-- **Chap. 11,7 :** [*Annale : Propriétés des solutions d'ammoniac*](7-annale-solutions-ammoniac)
+- **Chap. 12,7 :** [*Annales*](5-annales)
+
+- **Chap. 12,8 :** [*Annale : Le bleu de bromophénol*](6-annale-bleu-de-bromophenol)
+
+- **Chap. 12,9 :** [*Annale : Propriétés des solutions d'ammoniac*](7-annale-solutions-ammoniac)
 
 
 

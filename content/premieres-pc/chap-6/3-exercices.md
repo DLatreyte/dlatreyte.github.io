@@ -1,6 +1,6 @@
 ---
 title: "Mise en équation des réactions d'oxydoréduction"
-subtitle: "Chapitre 6,3"
+subtitle: "Chapitre 5,3"
 author: ""
 type: ""
 date: 2020-12-05T12:31:57+04:00

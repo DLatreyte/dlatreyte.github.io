@@ -34,9 +34,9 @@ Comment détermine-t-on $U(m)$ en pratique&nbsp;?
 Lors du calcul d'une incertitude trois cas de figure peuvent se présenter&nbsp;:
 
 1. L'incertitude porte sur une **mesure expérimentale que l'on peut répéter 
-  plusieurs fois** &nbsp;;
+  plusieurs fois**&nbsp;: *on parle d'incertitude de **type A***&nbsp;;
 2. L'incertitude porte sur une **mesure expérimentale que l'on ne peut pas 
-  répéter** plusieurs fois&nbsp;;
+  répéter** plusieurs fois&nbsp;: *on parle d'incertitude de **type B***&nbsp;;
 3. L'incertitude est celle du **résultat d'un calcul effectué à partir de 
   grandeurs pour lesquelles les incertitudes sont connues**.
 {{% /note %}}
@@ -62,6 +62,7 @@ Lorsqu'on peut réaliser plusieurs fois un mesurage, on utilise des notions de s
 - *L'**incertitude** est calculée à partir de l'écart-type de la série de mesures.*
 {{% /note %}}
 
+<!--
 ### La valeur moyenne d'une série de mesures est une grandeur aléatoire
 
 Un corrigé de cette activité se trouve à l'adresse&nbsp;: 
@@ -295,14 +296,16 @@ avec un niveau de confiance à 95 % puis avec un niveau de confiance à 99 %.
 {{% solution "Réponse" %}}
 $\Delta t\_{95} = \pu{(1,43 \pm 0,02)  s}$ et $\Delta t\_{99} = \pu{(1,43 \pm 0,03) s}$.
 {{% /solution %}}
+-->
 
+Ce type d'incertitude est étudié dans l'activité [Chap. 3,3 : Utilisation d'un tableur pour déterminer une incertitude de mesure de type A]({{% relref "./3-utilisation-tableur.md" %}}).
 
 ## Détermination de l'incertitude lorsqu'on n'effectue qu'une seule mesure
 
-Lorsqu'une mesure ne peut pas être reproduite plusieurs fois, il est **impossible d'estimer une incertitude de répétabilité**. ll est alors nécessaire d'analyser les différentes sources d'erreurs liées à l'instrument de mesure. 
+Lorsqu'une mesure ne peut pas être reproduite plusieurs fois, il est **impossible d'estimer une incertitude de répétabilité**. Il est alors nécessaire d'analyser les différentes sources d'erreurs liées à l'instrument de mesure. 
 
 {{% note warning %}}
-On rappelle qu'il ne faut surtout pas apprendre par cœur les expressions mais savoir les utiliser.
+On rappelle qu'il ne faut surtout pas apprendre par cœur les expressions mais savoir les utiliser&nbsp;!
 {{% /note %}}
  
 ### Utilisation d'un appareil gradué

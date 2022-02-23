@@ -1,6 +1,6 @@
 ---
 title: "Les atouts de l'électricité"
-subtitle: "Chapitre 6"
+subtitle: "Chapitre 2"
 author: ""
 type: ""
 date: 2021-01-07T04:15:49+04:00
@@ -35,10 +35,10 @@ Les lois de l’électricité, les notions d’énergie et de puissance électri
 
 ----
 
-- **Chap. 6,1 :** [*Production d'électricité sans combustion*](1-production-electricites-sans-combustion)
+- **Chap. 2,1 :** [*Production d'électricité sans combustion*](1-production-electricites-sans-combustion)
 
-- **Chap. 6,2 :** [*Stockage de l’énergie*](2-stockage-energie)
+- **Chap. 2,2 :** [*Stockage de l’énergie*](2-stockage-energie)
 
-- **Chap. 6,3 :** [*Énergie stockée dans un barrage*](3-stockage-energie-barrage)
+- **Chap. 2,3 :** [*Énergie stockée dans un barrage*](3-stockage-energie-barrage)
 
-- **Chap. 6,4 :** [*Exercices du chapitre*](4-exercices)
+- **Chap. 2,4 :** [*Exercices du chapitre*](4-exercices)

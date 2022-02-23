@@ -1,6 +1,6 @@
 ---
 title: "Détermination d’une quantité de matière par titrage"
-subtitle: "Chapitre 9"
+subtitle: "Chapitre 8"
 author: ""
 type: ""
 date: 2021-01-26T17:41:17+04:00
@@ -29,6 +29,8 @@ layout: "single"
 
 ----
 
-- **Chap. 9,1 :** [*L’élément fer dans l’anti-mousse*](1-titrage-ions-fer-par-permanaganate)
+- **Chap. 8,1 :** [*L’élément fer dans l’anti-mousse*](1-titrage-ions-fer-par-permanaganate)
 
-- **Chap. 9,2 :** [*Exercices du chapitre*](2-exercices)
+- **Chap. 8,2 :** [*Exercices du chapitre*](2-exercices)
+
+- **Chap. 8,3 :** [*Titrage du diiode dans la Bétadine*](3-betadine)

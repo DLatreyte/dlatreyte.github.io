@@ -1,6 +1,6 @@
 ---
 title: "Annale : Corrosion des gouttières"
-subtitle: "Chapitre 6,10"
+subtitle: "Chapitre 7,11"
 author: ""
 type: ""
 date: 2020-11-21T21:52:17+04:00

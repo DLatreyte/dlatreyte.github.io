@@ -123,7 +123,7 @@ Quels sont les mots représentés dans l'arbre&nbsp;?
 {{% note exercise %}}
 Ajouter les mots «&nbsp;matériel&nbsp;» et «&nbsp;vallon&nbsp;».
 
-**Remarque&nbsp;:** identifier les lettres é et e.
+**Remarque&nbsp;:** ne pas différencier les lettres é et e.
 {{% /note %}}
 {{% solution "Réponse" %}}
 <img src="/terminales-nsi/chap-9/chap-9-1-2.svg" alt="" width="">
@@ -170,7 +170,7 @@ graph TD
 ### Hauteur d'un nœud, profondeur d'un arbre
 
 {{% note tip %}}
-La **hauteur** (ou **profondeur** ou **niveau**) d'un nœud est égale au *nombre de nœuds rencontrés en descendant de la racine jusqu'au nœud (racine et nœud inclus)*.
+La **hauteur** (ou **profondeur** ou **niveau**) d'un nœud est égale au *nombre de nœuds rencontrés en descendant de la racine jusqu'au nœud (**racine et nœud inclus**)*.
 {{% /note %}}
 
 {{% note tip %}}
@@ -182,7 +182,7 @@ La hauteur d'un arbre est très importante. En effet, la plupart des algorithmes
 {{% /note %}}
 
 {{% note warning %}}
-Dans notre convention, la hauteur de la racine est égale à 1. *Tous les auteurs n'utilisent pas cette convention !* Pour certains, la **hauteur** d’un *nœud* est égale au *nombre d’arêtes qu’il faut parcourir à partir de la racine pour parvenir au nœud*&nbsp;; la hauteur de la racine est alors de 0.   
+Dans notre convention, la hauteur de la racine est égale à 1. *Tous les auteurs n'utilisent pas cette convention !* Pour certains, la **hauteur** d’un *nœud* est égale au *nombre d’arêtes qu’il faut parcourir à partir de la racine pour parvenir au nœud*&nbsp;; la hauteur de la racine est alors de 0.   
 {{% /note %}}
 
 {{% note exercise %}}

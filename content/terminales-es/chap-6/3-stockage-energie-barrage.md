@@ -1,6 +1,6 @@
 ---
 title: "Énergie stockée dans un barrage"
-subtitle: "Chapitre 6,3"
+subtitle: "Chapitre 2,3"
 author: ""
 type: ""
 date: 2021-01-14T08:14:58+04:00

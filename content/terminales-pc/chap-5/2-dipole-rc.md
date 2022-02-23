@@ -1,6 +1,6 @@
 ---
 title: "Le dipôle (R,C)"
-subtitle: "Chapitre 5,2"
+subtitle: "Chapitre 6,2"
 author: ""
 type: ""
 date: 2020-10-30T20:15:29+04:00
@@ -261,7 +261,7 @@ où $A$, $B$ et $\tau$ sont des constantes.
 {{% solution "Réponse" %}}
 On substitue $u_{AB}$ par la famille de solution dans l'équation différentielle.  
 
-Puisque $\dfrac{\mathrm{d}u_{AB}}{\mathrm{dt}} = \dfrac{\mathrm{d}(A + B e^{-t/\tau})}{\mathrm{dt}} = -\dfrac{B}{\tau} \\, e^{-t/\tau}$ l'équation devient $-\dfrac{B}{\tau} \\, e^{-t/\tau} + \dfrac{A}{RC} + \dfrac{B}{RC} e^{-t/\tau} = \dfrac{E}{RC} \iff \left( \dfrac{1}{\tau} + \dfrac{1}{RC} \right)\\, B e^{-t/\tau} + \dfrac{A}{RC} = \dfrac{E}{RC}$. 
+Puisque $\dfrac{\mathrm{d}u_{AB}}{\mathrm{dt}} = \dfrac{\mathrm{d}(A + B e^{-t/\tau})}{\mathrm{dt}} = -\dfrac{B}{\tau} \\, e^{-t/\tau}$ l'équation devient $-\dfrac{B}{\tau} \\, e^{-t/\tau} + \dfrac{A}{RC} + \dfrac{B}{RC} e^{-t/\tau} = \dfrac{E}{RC} \iff \left( - \dfrac{1}{\tau} + \dfrac{1}{RC} \right)\\, B e^{-t/\tau} + \dfrac{A}{RC} = \dfrac{E}{RC}$. 
 
 - Le terme à droite de l'égalité, $\dfrac{E}{RC}$ ne dépend pas du temps. Celui à gauche de cette même égalité ne peut donc pas dépendre du temps. Ceci n'est possible que si $\dfrac{1}{\tau} + \dfrac{1}{RC} = 0 \iff \boxed{\tau = RC}$.
 

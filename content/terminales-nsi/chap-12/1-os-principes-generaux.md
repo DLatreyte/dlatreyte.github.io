@@ -1,6 +1,6 @@
 ---
 title: "Système d'exploitation : Principes généraux"
-subtitle: "Chapitre 12,1"
+subtitle: "Chapitre 11,1"
 author: ""
 type: ""
 date: 2021-01-06T16:24:21+04:00

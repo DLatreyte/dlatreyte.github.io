@@ -82,43 +82,44 @@ assert nombre(zoo_Beauval, 'panda') == 2
 
 {{% solution "Solution" %}}
 ```python
-from typing import List, Dict, Tuple
+from typing import Dict, Tuple
 
 
-def plus_grand_nombre(dic: Dict[str, Tuple[str, int]]) -> str:
+def plus_grand_nombre(zoo: Dict[str, Tuple[str, int]]) -> str:
     """
-    Prend un zoo en paramètre et qui renvoie le nom de l’animal le plus représenté dans ce zoo.
+    Retourne le nom de l’animal le plus représenté dans le zoo.
     """
-    v_max = 0
-    for cle in dic.keys():
-        if dic[cle][1] > v_max:
-            v_max = dic[cle][1]
+    nbre_max = 0  # nbre maximale d'animaux
+    for (cle, valeur) in zoo.items():
+        if valeur[1] > nbre_max:
+            nbre_max = valeur[1]
             cle_max = cle
+        elif valeur[1] == nbre_max:
+            cle_max += ", " + cle
     return cle_max
 
 
-def nombre_total(dic: Dict[str, Tuple[str, int]], continent: str) -> int:
+def nbre_total_continent(zoo: Dict[str, Tuple[str, int]],
+                         continent: str) -> int:
     """
-    Prend un zoo en paramètre ainsi que le nom d’un continent, et  renvoie le nombre d’animaux originaires de ce continent dans le zoo. 
+    Retourne le nombre d’animaux originaires de ce continent dans le zoo.
     """
-    nbre = 0
-    for cle in dic.keys():
-        animal = dic[cle]  # tuple(continent, nombre)
-        if animal[0] == continent:  # continent
-            nbre_animaux_dans_continent = dic[cle][1]
-            nbre = nbre + nbre_animaux_dans_continent
-    return nbre
+    nbre_total = 0  # Nbre total d'animaux pour le continent
+    for valeur in zoo.values():
+        if valeur[0] == continent:
+            nbre_total += valeur[1]
+    return nbre_total
 
 
-def nombre(dic: Dict[str, Tuple[str, int]], animal: str) -> int:
+def nbre_pour_animal(zoo: Dict[str, Tuple[str, int]], animal: str) -> int:
     """
-    Prend un zoo en paramètre ainsi que le nom d’un animal, et renvoie le nombre de représentants de cet animal dans le zoo.
+    Retourne le nombre de représentants de animal dans zoo.
     """
-    if animal in dic.keys():
-        nbre = dic[animal][1]
-    else:
-        nbre = 0
-    return nbre
+    if animal in zoo.keys():
+        rep = zoo[animal][1]
+    else:  # si animal pas présent dans zoo
+        rep = 0
+    return rep
 
 
 if __name__ == "__main__":
@@ -127,7 +128,8 @@ if __name__ == "__main__":
         'écureuil': ('Asie', 17),
         'panda': ('Asie', 2),
         'hippopotame': ('Afrique', 7),
-        'girafe': ('Afrique', 4)
+        'girafe': ('Afrique', 4),
+        'lion': ('Afrique', 17)
     }
 
     zoo_LaFleche = {
@@ -138,12 +140,12 @@ if __name__ == "__main__":
     }
 
     assert plus_grand_nombre(zoo_LaFleche) == 'girafe'
-    assert plus_grand_nombre(zoo_Beauval) == 'écureuil'
+    assert plus_grand_nombre(zoo_Beauval) == 'écureuil, lion'
 
-    assert nombre_total(zoo_LaFleche, 'Afrique') == 14
-    assert nombre_total(zoo_Beauval, 'Asie') == 24
+    assert nbre_total_continent(zoo_LaFleche, 'Afrique') == 14
+    assert nbre_total_continent(zoo_Beauval, 'Asie') == 24
 
-    assert nombre(zoo_LaFleche, 'panda') == 0
-    assert nombre(zoo_Beauval, 'panda') == 2
+    assert nbre_pour_animal(zoo_Beauval, 'panda') == 2
+    assert nbre_pour_animal(zoo_LaFleche, 'panda') == 0
 ```
 {{% /solution %}}

@@ -1,6 +1,6 @@
 ---
 title: "Les polymères"
-subtitle: "Chapitre 16,6"
+subtitle: "Chapitre 15,6"
 author: ""
 type: ""
 date: 2021-04-26T07:43:08+04:00

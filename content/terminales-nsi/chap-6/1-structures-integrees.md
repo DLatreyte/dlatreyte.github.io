@@ -19,9 +19,25 @@ Python possède dans la bibliothèque standard un grand nombre de structures de 
 Les **structures de données** *organisent différemment les données que le programme traite*. Le langage Python fournissant le type `list`, on pourrait se demander pourquoi ne pas *systématiquement* l'utiliser et pourquoi devoir apprendre de nouveaux types.   
 En fait, *la spécialisation des structures de données rend la programmation plus simple (utilisation de l'**API**) et plus efficace (**complexité**).*
 
-## Tableaux dynamiques : `list`
+{{% note warning %}}
 
-Le type `list` de Python ne s’apparente pas aux **listes chaînées** (que nous étudierons au [chapitre 7](../../chap-7)), car *la suppression ou l’ajout ailleurs qu’en fin de liste nécessite de décaler les valeurs de fin de liste, et n’est donc pas réalisé en temps constant*. D’autre part, *l’accès à un élément quelconque est réalisé en temps constant*, ce qui n’est pas le cas avec une liste chaînée. Le type `list` de Python correspond donc plutôt à un *tableau dynamique*.
+Nous verrons dans les prochains chapitres qu'*il faut distinguer l'objet que l'on manipule dans un programme de son implémentation* (comment il est programmé).
+
+{{% /note %}}
+
+{{% note tip %}}
+
+Un même type peut être implémenté de différentes façons. *Dans tous les cas, il présente la même interface au programmeur* (API).
+
+On parle donc de **type abstrait**.
+
+{{% /note %}}
+
+## Liste : `list`
+
+Le type `list` de Python n'est pas implémeté à l'aide de **listes chaînées** (que nous étudierons au [chapitre 7](../../chap-7)), car *la suppression ou l’ajout ailleurs qu’en fin de liste nécessite de décaler les valeurs de fin de liste, et n’est donc pas réalisé en temps constant*. D’autre part, *l’accès à un élément quelconque est réalisé en temps constant*, ce qui n’est pas le cas avec une liste chaînée. 
+
+Le type `list` de Python est implémenté à l'aide de *tableaux dynamiques*.
 
 ## Tableau associatif : `dict`
 
@@ -64,7 +80,7 @@ Un ensemble Python (`set`) est *équivalent à un dictionnaire ne contenant que 
 | `set` | Ensemble | Ajout d'un élément | `s.add(elt)` | $O(1)$ |
 | `s = {}` |  | Retrait d'un élément | `s.remove(elt)` | $O(1)$ |
 | `len(s)` |  | Test d'appartenance | `elt in s` | $O(1)$ |
-| |  | Union | `s | t` | $O(n + m)$ |
+| |  | Union | `s \| t` | $O(n + m)$ |
 | |  | Intersection | `s & t` | $O(min(n, m))$ |
 | |  | Différence | `s - t` | $O(n)$ |
 | |  | Différence symétrique | `s ^ t` | $O(n)$ |

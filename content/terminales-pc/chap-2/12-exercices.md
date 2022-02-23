@@ -1,13 +1,13 @@
 ---
 title: "Exercices et Annale"
-subtitle: "Chapitre 2,3,4"
+subtitle: "Chapitre 3,3,4"
 author: ""
 type: ""
 date: 2020-09-28T12:01:30+04:00
 draft: false
 toc: true
-tags: ["Différence de marche", "Superposition", "Période temporelle", "Longueur d'onde", "Retard", "Déphasage", "Ondes", "Interférences", "Doppler", "Annale"]
-categories: ["Physique", "Terminale Spé PC"]
+tags: ["Différence de marche", "Superposition", "Période temporelle", "Longueur d'onde", "Retard", "Déphasage", "Ondes", "Interférences", "Doppler"]
+categories: ["Physique", "Terminale Spé PC", "Annale"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
@@ -23,7 +23,7 @@ auto_numbering: true
 ## Annale
 - {{< remote "Autour du papillon" "/terminales-pc/chap-2/chap-2-12-2.pdf" >}}
 
-*Ne pas traiter la deuxième partie (seulement les parties 1 et 3).*
+*Ne pas traiter les première et deuxième partie (seulement la partie 3).*
 
 - {{< remote "D'où viennent les couleurs des ailes des papillons ?" "https://youtu.be/yriopuT98ZU" >}}
 

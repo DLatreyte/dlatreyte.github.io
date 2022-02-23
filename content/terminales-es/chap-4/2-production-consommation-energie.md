@@ -1,6 +1,6 @@
 ---
 title: "Production et consommation énergétique"
-subtitle: "Chapitre 4,2"
+subtitle: "Chapitre 5,1"
 author: ""
 type: ""
 date: 2020-11-12T05:19:22+04:00
@@ -9,7 +9,7 @@ toc: true
 tags: ["Transformation", "Production", "Consommation", "Énergie fossile"]
 categories: ["Terminale Enseignement Scientifique"]
 image: ""
-solution_est_visible: true
+solution_est_visible: false
 auto_numbering: true
 ---
 
@@ -51,7 +51,7 @@ Ceci n'est cependant pas une bonne nouvelle à long terme puisque cette évoluti
 
 4. Commenter cette affirmation&nbsp;: «&nbsp; Les énergies renouvelables sont déjà largement utilisées dans le monde&nbsp;».
 {{% solution "Réponse" %}}
-Les sources d'énergie fossiles représentent encore près de 80 % des sources d'énergie. L'affirmation est donc fantaisiste.
+Les sources d'énergie fossiles représentent encore près de 80 % des sources d'énergie. L'affirmation est donc à nuancer fortement.
 {{% /solution %}}
 
 5. Montrer la corrélation entre croissance (économique et démographique) et émissions de dioxyde de carbone, puis conclure sur la viabilité du modèle industriel actuel dans les années à venir.

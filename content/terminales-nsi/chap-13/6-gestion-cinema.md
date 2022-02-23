@@ -1,6 +1,6 @@
 ---
 title: "Gestion d'une salle de cinéma"
-subtitle: "Chapitre 13,6"
+subtitle: "Chapitre 12,6"
 author: ""
 type: ""
 date: 2021-02-09T05:50:34+04:00
@@ -9,7 +9,7 @@ toc: true
 tags: []
 categories: []
 image: ""
-solution_est_visible: true
+solution_est_visible: false
 auto_numbering: true
 ---
 
@@ -131,8 +131,7 @@ FROM film;
 ```
 {{% /solution %}}
 
-11. Combien il y a-t-il de films produits par Universal dans la base ?\
-Utiliser deux requêtes imbriquées.
+11. Combien il y a-t-il de films produits par Universal dans la base ?
 {{% solution "Réponse" %}}
 ```SQL 
 SELECT production, COUNT(numfilm) AS 'Nbre films'
@@ -143,8 +142,7 @@ WHERE production = (SELECT production
 ```
 {{% /solution %}}
 
-12. Combien il y a-t-il de films dans la catégorie documentaire (libellé catégorie, nombre de films) ?\
-Utiliser deux requêtes imbriquées.
+12. Combien il y a-t-il de films dans la catégorie documentaire (libellé catégorie, nombre de films) ?
 {{% solution "Réponse" %}}
 ```SQL 
 SELECT libcat, COUNT(numfilm) AS 'Nbre films'

@@ -1,13 +1,13 @@
 ---
 title: "Annale : Ammoniac"
-subtitle: "Chapitre 4,11"
+subtitle: "Chapitre 5,11"
 author: ""
 type: ""
 date: 2020-10-26T18:56:00+04:00
 draft: false
 toc: true
 tags: ["Titrage", "Suivi conductimétrique", "Suivi pH-métrique", "Conductivité", "Base", "Acide", "Équivalence"]
-categories: ["Chimie", "Terminale Spé PC"]
+categories: ["Chimie", "Terminale Spé PC", "Annale"]
 image: ""
 solution_est_visible: true
 auto_numbering: true

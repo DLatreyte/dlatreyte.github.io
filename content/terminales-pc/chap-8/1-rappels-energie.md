@@ -1,6 +1,6 @@
 ---
 title: "Théorèmes de l'énergie cinétique et de l'énergie mécanique"
-subtitle: "Chapitre 8,1"
+subtitle: "Chapitre 9,1"
 author: ""
 type: ""
 date: 2020-12-18T14:32:22+04:00

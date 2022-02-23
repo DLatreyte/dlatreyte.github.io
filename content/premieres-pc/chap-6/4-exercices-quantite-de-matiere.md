@@ -1,6 +1,6 @@
 ---
 title: "Bilans de matière et réactions d'oxydo-réduction"
-subtitle: "Chapitre 6,4"
+subtitle: "Chapitre 5,4"
 author: ""
 type: ""
 date: 2020-12-05T17:48:33+04:00

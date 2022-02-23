@@ -1,6 +1,6 @@
 ---
 title: "Réactions chimiques et échelle microscopique"
-subtitle: "Chapitre 6,3"
+subtitle: "Chapitre 7,3"
 author: ""
 type: ""
 date: 2020-11-09T11:25:13+04:00

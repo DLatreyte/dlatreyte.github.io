@@ -1,6 +1,6 @@
 ---
 title: "L'effet Joule"
-subtitle: "Chapitre 7,1"
+subtitle: "Chapitre 3,1"
 author: ""
 type: ""
 date: 2021-01-20T22:25:02+04:00
@@ -25,10 +25,10 @@ auto_numbering: true
 
 1. Expliquer les inconvénients de l’effet Joule dans le transport de l’électricité.
 {{% solution "Réponse" %}}
-L’effet Joule a plusieurs inconvénients dans le transport de l’électricité. En effet, il dégage de l’énergie sous forme de chaleur, ce qui peut endommager le réseau (en entraînant la fusion des gaines par exemple) ou entraîner des incendies (depuis les boîtiers situés sur les pylônes). *Ces dégagements peuvent surtout causer des pertes d’énergie tout le long du réseau*.
+L’effet Joule a plusieurs inconvénients dans le transport de l’électricité. En effet, il est une perte d’énergie sous forme thermique (chaleur), l'élévation de température peut endommager le réseau (en entraînant la fusion des gaines par exemple) ou entraîner des incendies (depuis les boîtiers situés sur les pylônes). *Bien évidemment, la perte d'énergie représente en elle-même un problème*.
 {{% /solution %}}
 
-2. Calculer la valeur de la résistance de l’âme d’un câble de 1 000 m de long transportant de très hautes tensions.
+2. Calculer la valeur de la résistance de l’âme d’un câble de 1 000 m de long transportant de très hautes tensions.
 {{% solution "Réponse" %}}
 
 - $S = \pu{2500 mm2} = 2500\\ (10^{-3} \text{ m})^2 = \pu{2,5e-3 m2}$.

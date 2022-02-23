@@ -81,8 +81,9 @@ Le code suivant permet de calculer des produits scalaires. Il est testé sur des
 
 {{< highlight py3 "linenos=table" >}}
 import random
+from typing import Tuple
 
-def scalaire(v1: tuple, v2: tuple) -> float:  
+def scalaire(v1: Tuple[int], v2: Tuple[int]) -> float:  
     """
     Calcule le produit scalaire des deux vecteurs v1 et v2.
     """
@@ -118,7 +119,7 @@ Prises séparément, les deux fonctions semblent opérationnelles :
 (-6, 2, 8)
 ```
 
-Pourtant, lorsqu’on exécute la fonction `main()`, le programme n’affiche que quelques produits scalaires (ici 12, 118 et −104) et plante :
+Pourtant, lorsqu’on exécute la fonction `main()`, le programme n’affiche que quelques produits scalaires (ici 12, 118 et −104) puis lève une exception :
 
 ```python
 >>> main()
@@ -222,6 +223,8 @@ On rappelle que `ord("a")` donne le code numérique associé à la lettre `"a"` 
 La chaîne `string.ascii_uppercase` est définie dans le module `string` et vaut `"ABCDEFGHIJKLMNOPQRSTUVWXYZ"`.
 
 1. Pour chacune des propositions suivantes, proposer un test qui montre que la fonction ne répond pas au cahier des charges de l’énoncé.
+
+**Proposition 1**
 ```python
 def valeur1(chaine):
     s = 0 
@@ -230,6 +233,8 @@ def valeur1(chaine):
             s = s + ord(c) - ord('A') + 1 
     return s
 ```
+
+**Proposition 2**
 
 ```python
 def valeur2(chaine) : 
@@ -240,6 +245,7 @@ def valeur2(chaine) :
     return s
 ```
 
+**Proposition 3**
 ```python
 import string
 def valeur3(chaine): 

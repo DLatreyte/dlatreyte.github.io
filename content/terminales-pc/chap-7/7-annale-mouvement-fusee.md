@@ -1,6 +1,6 @@
 ---
 title: "Lancement d'une fusée et retour sur Terre"
-subtitle: "Chapitre 7,7"
+subtitle: "Chapitre 8,7"
 author: ""
 type: ""
 date: 2020-12-18T17:44:22+04:00

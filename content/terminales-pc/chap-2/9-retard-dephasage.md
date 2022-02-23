@@ -1,6 +1,6 @@
 ---
 title: "Retard, déphasage d'une onde sonore sinusoïdale"
-subtitle: "Chapitre 2,3,1"
+subtitle: "Chapitre 3,3,1"
 author: ""
 type: ""
 date: 2020-09-19T20:47:42+04:00

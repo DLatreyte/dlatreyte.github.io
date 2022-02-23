@@ -1,6 +1,6 @@
 ---
 title: "Annale : Airbag et condensateur, quel rapport ?"
-subtitle: "Chapitre 5,4"
+subtitle: "Chapitre 6,4"
 author: ""
 type: ""
 date: 2020-11-06T12:00:01+04:00

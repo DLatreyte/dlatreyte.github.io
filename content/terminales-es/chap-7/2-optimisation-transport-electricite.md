@@ -1,13 +1,13 @@
 ---
 title: "Optimisation du transport de l'électricité"
-subtitle: "Chapitre 7,2"
+subtitle: "Chapitre 3,2"
 author: ""
 type: ""
 date: 2021-01-28T05:07:41+04:00
 draft: false
 toc: true
 tags: []
-categories: []
+categories: ["Terminale Enseignement Scientifique"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
@@ -56,17 +56,17 @@ Il a représenté les quartiers par des nœuds et les ponts par des arêtes et c
 
 - Un **graphe non orienté** est constitué d’un ensemble de points, appelés **nœuds**, et d’un ensemble de **couples de nœuds distincts** appelés **arêtes**.
 
-- Un **graphe orienté** est constitué d’un ensemble de points, appelés **nœuds**, et d’un ensemble de **couples de nœuds distincts** appelés **arcs**. *Les arcs sont alors représentés par des flèches*.
+- Un **graphe orienté** est constitué d’un ensemble de points, appelés **nœuds**, et d’un ensemble de **couples de nœuds distincts** appelés **arcs**. *Les arcs sont alors représentés par des flèches*.
 
 - Un graphe, orienté ou non peut être **pondéré par des valeurs numériques** affectées à ses arêtes ou à ses arcs.
 
 - On appelle parcours dans un graphe un chemin qui relie deux nœuds.
 {{% /note %}}
 
-Dans le cas d’un graphe pondéré, la valeur numérique associée à une arête (poids) peut être la distance entre ses deux extrémités ou le coût pour aller de l’une à l’autre.
+Dans le cas d’un graphe pondéré, la valeur numérique associée à une arête (poids) peut être la distance entre ses deux extrémités ou le coût pour aller de l’une à l’autre.
 
-De nombreux problèmes d’optimisation sur les graphes ont été étudiés, l’un des plus connus étant celui du {{< remote "voyageur de commerce" "https://fr.wikipedia.org/wiki/Problème_du_voyageur_de_commerce" >}} : *« Étant donné une liste de villes, et des distances entre toutes les paires de villes, détermine un plus court chemin qui visite chaque ville une et une seule fois et qui termine dans la ville de départ. »*\
-Ce problème est encore un domaine actif de recherche et il existe seulement des algorithmes imparfaits qui ne trouvent pas toujours le meilleur chemin.
+De nombreux problèmes d’optimisation sur les graphes ont été étudiés, l’un des plus connus étant celui du {{< remote "voyageur de commerce" "https://fr.wikipedia.org/wiki/Problème_du_voyageur_de_commerce" >}} : *« Étant donné une liste de villes, et des distances entre toutes les paires de villes, déterminer un plus court chemin qui visite chaque ville une et une seule fois et qui termine dans la ville de départ. »*\
+Ce problème est encore un domaine actif de recherche et il existe seulement des algorithmes imparfaits qui ne trouvent pas toujours le meilleur chemin.
 
 #### Exemples de modélisations de situations par des graphes
 
@@ -74,17 +74,17 @@ Ce problème est encore un domaine actif de recherche et il existe seulement de
 - Relations entre personnes dans les réseaux sociaux ;
 - Réseau autoroutier ;
 - Réseau ferré ;
-- 
+- ...
 
 {{% note exercise %}}
 Pour chacun des graphes ci-dessous, indiquer le nombre de nœuds, d'arêtes (ou d'arcs), s'il est orienté ou pas, s'il est pondéré ou pas.
 <img src="/terminales-es/chap-7/chap-7-2/chap-7-2-2.png" alt="" width="60%" />
 {{% /note %}}
 {{% solution "Réponses" %}}
-a) Graphe non orienté constitué de 4 nœuds et de 5 arêtes.
-b) Graphe non orienté constitué de 4 nœuds et de 7 arêtes (grphoe du problème des {{< remote "7 ponts de Königsberg" "https://fr.wikipedia.org/wiki/Problème_des_sept_ponts_de_Königsberg" >}}).
-c) Graphe orienté constitué de 4 nœuds et 6 arcs.
-d) Graphe orienté et pondéré constitué de 4 nœuds et 5 arcs.
+a) Graphe non orienté constitué de 4 nœuds et de 5 arêtes.   
+b) Graphe non orienté constitué de 4 nœuds et de 7 arêtes (graphe du problème des {{< remote "7 ponts de Königsberg" "https://fr.wikipedia.org/wiki/Problème_des_sept_ponts_de_Königsberg" >}}).    
+c) Graphe orienté constitué de 4 nœuds et 6 arcs.    
+d) Graphe orienté et pondéré constitué de 4 nœuds et 5 arcs.   
 {{% /solution %}}
 
 ### Modélisation d'un réseau électrique
@@ -94,7 +94,7 @@ d) Graphe orienté et pondéré constitué de 4 nœuds et 5 arcs.
 
 - L’intensité du courant électrique qui quitte une source ne peut pas dépasser sa capacité de production ;
 - L’intensité totale du courant électrique qui entre dans chaque nœud doit être égale à l’intensité du courant électrique qui en sort (c’est la **loi des nœuds**) ;
-- L’intensité du courant électrique qui arrive au niveau de chaque cible est fixée par ses besoins en énergie. électrique.
+- L’intensité du courant électrique qui arrive au niveau de chaque cible est fixée par ses besoins en énergie électrique.
 {{% /note %}}
 
 
@@ -113,7 +113,7 @@ Le problème d'optimisation du transport du courant électrique est donc un **pr
 
 {{< remote "Livre Scolaire" "https://www.lelivrescolaire.fr/page/10663400?docId=2e7BWRI03T0y579PXQ9RS" >}}
 
-Une île comporte quatre villes. Pour répondre aux besoins énergétiques de ces quatre villes, un champ éolien, une centrale marémotrice et une centrale thermique ont été construits.
+Une île comporte quatre villes. Pour répondre aux besoins énergétiques de ces quatre villes, un champ éolien, une centrale marémotrice et une centrale thermique ont été construits.
 
 La répartition du courant se fait par l’intermédiaire de deux postes de distribution reliés entre eux. La centrale marémotrice et le champ éolien sont chacun reliés à un poste différent. La centrale thermique est reliée au même poste que le champ éolien. Deux villes sont connectées à un poste et les deux autres villes à l’autre.
 
@@ -134,10 +134,10 @@ La répartition du courant se fait par l’intermédiaire de deux postes de dist
 ## Minimiser les pertes pour la distribution d'énergie
 
 {{% note exercise %}}
-Deux villes de moyenne montagne sont connectées à l’ensemble du réseau, mais l’électricité provient essentiellement de deux sources : une centrale hydroélectrique et une petite centrale à charbon.
-Avant d’arriver aux villes, l’électricité passe par un poste électrique qui répartit le courant électrique en fonction des besoins.
+Deux villes de moyenne montagne sont connectées à l’ensemble du réseau, mais l’électricité provient essentiellement de deux sources : une centrale hydroélectrique et une petite centrale à charbon.
+Avant d’arriver aux villes, l’électricité passe par un poste électrique qui répartit le courant électrique en fonction des besoins.
 
-On cherche ici à déterminer l’intensité du courant dans toutes les branches du réseau avec le minimum de perte d’énergie lors du transport de l’électricité.
+On cherche ici à déterminer l’intensité du courant dans toutes les branches du réseau avec le minimum de perte d’énergie lors du transport de l’électricité.
 {{% /note %}}
 
 1. Construire le graphe modélisant le réseau électrique.
@@ -145,11 +145,11 @@ On cherche ici à déterminer l’intensité du courant dans toutes les branc
 <img src="/terminales-es/chap-7/chap-7-2/chap-7-2-6.png" alt="" width="80%" />
 {{% /solution %}}
 
-- La tension au sein du réseau étudié est de $\pu{20 kV}$.
-- La longueur des lignes reliant la centrale hydroélectrique au poste électrique est deux fois plus grande que celle reliant la centrale à charbon au poste électrique. La résistance est donc aussi deux fois plus grande. La résistance des autres branches est négligée.
-- La ville 1 a besoin d’une puissance électrique moyenne de $\pu{4,0 MW}$. 
-- La ville 2 a besoin d’une puissance électrique moyenne de $\pu{1,0 MW}$.
-- La valeur de la résistance des lignes reliant la centrale à charbon au poste de distribution est arbitrairement prise comme valant $\pu{1 \Omega}$.
+- La tension au sein du réseau étudié est de $\pu{20 kV}$.
+- La longueur des lignes reliant la centrale hydroélectrique au poste électrique est deux fois plus grande que celle reliant la centrale à charbon au poste électrique. La résistance est donc aussi deux fois plus grande. La résistance des autres branches est négligée.
+- La ville 1 a besoin d’une puissance électrique moyenne de $\pu{4,0 MW}$. 
+- La ville 2 a besoin d’une puissance électrique moyenne de $\pu{1,0 MW}$.
+- La valeur de la résistance des lignes reliant la centrale à charbon au poste de distribution est arbitrairement prise comme valant $\pu{1 \Omega}$.
 
 2. Compléter le graphe avec les informations ci-dessus.
 {{% solution "Réponse" %}}

@@ -1,6 +1,6 @@
 ---
 title: "Sens d'évolution spontané d'un système chimique"
-subtitle: "Chapitre 9,5"
+subtitle: "Chapitre 10,5"
 author: ""
 type: ""
 date: 2021-01-07T22:36:27+04:00
@@ -227,20 +227,14 @@ La constante d'équilibre $K$ associée à la réaction d'équation écrite à l
 {{% /note %}}
 
 {{% solution "Réponses" %}}
-1. 
-$$
-    \ce{2 Al (s) + 3 Zn^{2+} (aq) <=> 2 Al^{3+} (aq) + 3 Zn (s)}
-$$
 
-2. 
-$$
-    Q\_r = \dfrac{\left( \dfrac{[\ce{Al^{3+}}]}{C^o} \right)^2}{\left( \dfrac{[\ce{Zn^{2+}}]}{C^o} \right)^3} = \dfrac{[\ce{Al^{3+}}]^2 \cdot C^o}{[\ce{Zn^{2+}}]^3}
-$$
-    avec $C^o = \pu{1,00 mol.L-1}$.
+1.  $\ce{2 Al (s) + 3 Zn^{2+} (aq) <=> 2 Al^{3+} (aq) + 3 Zn (s)}$
 
-3. $Q\_r = \dfrac{\left( \pu{2,0e-3 mol.L-1} \right)^2 \times \pu{1,00 mol.L-1}}{\left( \pu{1,5e-1 mol.L-1} \right)^3} = \pu{1,2e-3}$\
-$Q\_r < K$, le système évolue dans le sens d'écriture de la réaction chimique ; l'aluminium métallique est consommé.
+2.  $ Q\_r = \dfrac{\left( \dfrac{[\ce{Al^{3+}}]}{C^o} \right)^2}{\left( \dfrac{[\ce{Zn^{2+}}]}{C^o} \right)^3} = \dfrac{[\ce{Al^{3+}}]^2 \cdot C^o}{[\ce{Zn^{2+}}]^3} $ avec $C^o = \pu{1,00 mol.L-1}$.
 
-4. $Q\_r = \dfrac{\left( \pu{1,0 mol.L-1} \right)^2 \times \pu{1,00 mol.L-1}}{\left( \pu{2,0e-8 mol.L-1} \right)^3} = \pu{1,3e23}$\
-$Q\_r < K$, le système évolue dans le sens d'écriture de la réaction chimique ; l'aluminium métallique est consommé.
+3. $Q\_{r,i} = \dfrac{\left( \pu{2,0e-3 mol.L-1} \right)^2 \times \pu{1,00 mol.L-1}}{\left( \pu{1,5e-1 mol.L-1} \right)^3} = \pu{1,2e-3}$\
+$Q\_{r,i} < K$, le système évolue dans le sens d'écriture de la réaction chimique ; l'aluminium métallique est consommé.
+
+4. $Q\_{r,i} = \dfrac{\left( \pu{1,0 mol.L-1} \right)^2 \times \pu{1,00 mol.L-1}}{\left( \pu{2,0e-8 mol.L-1} \right)^3} = \pu{1,3e23}$\
+$Q\_{r,i} < K$, le système évolue dans le sens d'écriture de la réaction chimique ; l'aluminium métallique est consommé.
 {{% /solution %}}

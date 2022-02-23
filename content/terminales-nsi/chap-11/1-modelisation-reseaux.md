@@ -1,6 +1,6 @@
 ---
 title: "Modélisation des réseaux"
-subtitle: "Chapitre 11,1"
+subtitle: "Chapitre 10,1"
 author: ""
 type: ""
 date: 2020-11-26T06:13:06+04:00

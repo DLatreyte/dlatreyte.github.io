@@ -4,7 +4,7 @@ subtitle: ""
 author: ""
 type: ""
 date: 2020-09-01T13:23:15+04:00
-draft: false
+draft: true
 toc: true
 tags: []
 categories: ["Planning"]

@@ -1,6 +1,6 @@
 ---
 title: "Prévoir le sens de l’évolution spontanée d’un système chimique"
-subtitle: "Chapitre 9"
+subtitle: "Chapitre 10"
 author: ""
 type: ""
 date: 2021-01-07T21:27:50+04:00
@@ -29,14 +29,14 @@ layout: "single"
 
 ----
 
-- **Chap. 9,1 :** [*Équilibre chimique*](1-equilibre-chimique)
+- **Chap. 10,1 :** [*Équilibre chimique*](1-equilibre-chimique)
 
-- **Chap. 9,2 :** [*Simulation d'une transformation chimique vers un état d'équilibre*](2-simulation-transformation-chimique)
+- **Chap. 10,2 :** [*Simulation d'une transformation chimique vers un état d'équilibre*](2-simulation-transformation-chimique)
 
-- **Chap. 9,3 :** [*Invariance de la valeur du quotient de réaction dans l'état d'équilibre*](3-invariance-quotient-reaction-equilibre)
+- **Chap. 10,3 :** [*Invariance de la valeur du quotient de réaction dans l'état d'équilibre*](3-invariance-quotient-reaction-equilibre)
 
-- **Chap. 9,4 :** [*Quotient de réaction et constante d'équilibre*](4-quotient-reaction-constante-equilibre)
+- **Chap. 10,4 :** [*Quotient de réaction et constante d'équilibre*](4-quotient-reaction-constante-equilibre)
 
-- **Chap. 9,5 :** [*Sens d’évolution spontanée d’un système chimique*](5-sens-evolution)
+- **Chap. 10,5 :** [*Sens d’évolution spontanée d’un système chimique*](5-sens-evolution)
 
-- **Chap. 9,6 :** [*Les différentes raisons pour lesquelles un système chimique n'évolue pas*](6-td-evolution-spontanee)
+- **Chap. 10,6 :** [*Les différentes raisons pour lesquelles un système chimique n'évolue pas*](6-td-evolution-spontanee)

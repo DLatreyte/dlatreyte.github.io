@@ -13,4 +13,4 @@ solution_est_visible: true
 auto_numbering: true
 ---
 
-- Lien vers le document : {{% remote "Quelle prépa choisir en fonction des spécialités choisies" "pdf/CPGE_bac_general_info.pdf" %}}
+- Lien vers le document : {{% remote "Quelle prépa choisir en fonction des spécialités choisies" "/pdf/CPGE_bac_general_info.pdf" %}}

@@ -98,7 +98,7 @@ En *programmation fonctionnelle* un programme est considéré comme l'**applicat
 {{% /note %}}
 
 #### Remarque
-- La mise en œuvre des langages fonctionnels fait un usage sophistiqué de la **pile** (cf. [chapitre 1]({{% ref "../chap-1/1-1-recursivite-sur-entiers.md" %}}) sur la récursivité et un futur chapitre sur la structure de pile) car, *afin de s'affranchir de la nécessité de stocker des données temporaires dans des tableaux*, ils font largement appel à la **récursivité**. L'une des multiples techniques pour rendre la compilation de la récursivité plus efficace est une technique dénommée **récursion terminale** (en anglais&nbsp;: **tail-recursion**), qui consiste à *accumuler les résultats intermédiaires dans une case mémoire de la pile et à la passer en paramètre dans l'appel récursif*. Ceci permet d'*éviter d'empiler les appels récursifs dans la pile en les remplaçant par une simple succession de sauts*. Le code généré par le compilateur est alors similaire à celui généré par une boucle en impératif.
+- La mise en œuvre des langages fonctionnels fait un usage sophistiqué de la **pile** (cf. chapitre 1 sur la [récursivité]({{% ref "../chap-1/1-1-recursivite-sur-entiers.md" %}}) et chapitre 8 sur la [structure de pile]({{% relref "../chap-8/_index.md" %}})) car, *afin de s'affranchir de la nécessité de stocker des données temporaires dans des tableaux*, ils font largement appel à la **récursivité**. L'une des multiples techniques pour rendre la compilation de la récursivité plus efficace est une technique dénommée **récursion terminale** (en anglais&nbsp;: **tail-recursion**), qui consiste à *accumuler les résultats intermédiaires dans une case mémoire de la pile et à la passer en paramètre dans l'appel récursif*. Ceci permet d'*éviter d'empiler les appels récursifs dans la pile en les remplaçant par une simple succession de sauts*. Le code généré par le compilateur est alors similaire à celui généré par une boucle en impératif.
 
 - La programmation fonctionnelle éliminant les effets de bord (*fonctions pures*), il est plus facile de faire effectuer des calculs en parallèle aux programmes développés dans un style fonctionnel pur.
 
@@ -123,7 +123,7 @@ Définir une fonction qui réalise la somme des nombres d'une liste passée en a
 2. En style fonctionnel.
 {{% /note %}}
 
-1. Style impératif.
+1. **Style impératif**
 {{< highlight py3 "linenos=table" >}}
 from typing import List
 
@@ -138,7 +138,7 @@ def somme(liste: List[float]) -> float:
 {{< /highlight >}}
 Cette fonction manipule la variable locale `somme` et utilise une boucle `for`. *Le paradigme utilisé est bien impératif.*
 
-2. Style fonctionnel.
+2. **Style fonctionnel**
 {{< highlight py3 "linenos=table" >}}
 from typing import List
 
@@ -155,7 +155,7 @@ Cette fonction ne manipule aucune variable et n'utilise pas de boucle mais la r�
 
 **Remarque :** `liste[1:]` est une sous-liste de `liste` dans laquelle le premier élément de `liste` n'est pas présent.
 
-2. Style fonctionnel avec récursion terminale (nous reviendrons sur cet exemple plus tard dans l'année).
+2. **Style fonctionnel avec récursion terminale**
 {{< highlight py3 "linenos=table" >}}
 from typing import List
 
@@ -176,7 +176,7 @@ def somme(liste: List[float], total: float = 0) -> float:
 {{% note exercise %}}
 #### Exercice 2&nbsp;: un exemple de fonction non pure
 
-Écrire une fonction (un peu intelligente !!!) dont la spécification est la suivante :
+Écrire une fonction (sans grand intérêt !!!) dont la spécification est la suivante :
 ```python
 def elevation_puissance(n: int) -> float:
     """
@@ -252,7 +252,8 @@ Mettre en œuvre ce paradigme nécessite donc de **modéliser le problème** *pa
 
 {{% note tip %}}
 - Un **objet** possède un **état** (des **champs** ou **attributs**) et un **comportement** (des **méthodes**).
-- Une **classe** est un **patron** permettant de fabriquer des objets.
+- Une **classe** est un **patron** permettant de fabriquer des objets.   
+    Une **classe** est aussi la définition d'un **nouveau type** de données.
 {{% /note %}}
 
 #### Mots clés pour repérer un langage objet

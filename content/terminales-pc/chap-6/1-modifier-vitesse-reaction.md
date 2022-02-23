@@ -1,6 +1,6 @@
 ---
 title: "Comment modifier la vitesse d'une réaction chimique ?"
-subtitle: "Chapitre 6,1"
+subtitle: "Chapitre 7,1"
 author: ""
 type: ""
 date: 2020-11-08T20:28:31+04:00

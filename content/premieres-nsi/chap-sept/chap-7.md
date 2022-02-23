@@ -7,7 +7,7 @@ date: 2019-10-12T18:10:22+04:00
 draft: false
 toc: true
 tags: []
-categories: []
+categories: ["Première Spé NSI"]
 image: ""
 ---
 

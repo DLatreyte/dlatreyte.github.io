@@ -1,6 +1,6 @@
 ---
 title: "Énergie, choix de développement et futur climatique"
-subtitle: "Chapitre 4"
+subtitle: "Chapitre 5"
 author: ""
 type: ""
 date: 2020-11-11T20:49:39+04:00
@@ -27,19 +27,27 @@ La consommation mondiale d’énergie fait majoritairement appel aux combustible
 
 - {{< remote "https://www.sauvonsleclimat.org/fr/base-documentaire" "https://www.sauvonsleclimat.org/fr/base-documentaire" >}}
 
+<!--
 - {{< remote "https://jancovici.com" "https://jancovici.com" >}}
+-->
 
 
 ## Documents 
 
+<!--
 - **Chap. 4,1 :** [*Nous vivons de transformer la matière*](1-transformer-la-matiere)
+-->
 
-- **Chap. 4,2 :** [*Production et consommation énergétique*](2-production-consommation-energie)
+- **Chap. 5,1 :** [*Production et consommation énergétique*](2-production-consommation-energie)
 
+<!--
 - **Chap. 4,3 :** [*La Terre, un carrefour énergétique*](3-terre-carrefour-energetique)
+-->
 
-- **Chap. 4,4 :** [*Quel est l'impact de la qualité de l'air sur la santé humaine ?*](4-impact-qualite-air)
+- **Chap. 5,2 :** [*Quel est l'impact de la qualité de l'air sur la santé humaine ?*](4-impact-qualite-air)
 
-- **Chap. 4,5 :** [*Climat : l’objectif des 2 °C appartient, hélas, au passé*](5-climat-rechauffement)
+- **Chap. 5,3 :** [*Climat : l’objectif des 2 °C appartient, hélas, au passé*](5-climat-rechauffement)
+
+- **Chap. 5,4 :** [*Détermination expérimentale d'une énergie de combustion*](6-energie-combustion-tp)
 
 

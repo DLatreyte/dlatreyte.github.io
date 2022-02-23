@@ -1,13 +1,13 @@
 ---
 title: "Annale : Titrage indirect d'une eau de Javel"
-subtitle: "Chapitre 4,9"
+subtitle: "Chapitre 5,9"
 author: ""
 type: ""
 date: 2020-10-26T15:41:44+04:00
 draft: false
 toc: true
 tags: ["Titrage indirect", "Titrage en retour", "Réaction d'oxydo-réduction", "Équivalence", "Volume molaire"]
-categories: ["Chimie", "Terminale Spé PC"]
+categories: ["Chimie", "Terminale Spé PC", "Annale"]
 image: ""
 solution_est_visible: true
 auto_numbering: true

@@ -1,6 +1,6 @@
 ---
 title: "Annale : Principe de la spectrométrie de masse"
-subtitle: "Chapitre 8,8"
+subtitle: "Chapitre 9,8"
 author: ""
 type: ""
 date: 2020-12-29T17:03:10+04:00

@@ -1,6 +1,6 @@
 ---
 title: "Condensateur et éclairage d'un train miniature"
-subtitle: "Chapitre 5,5"
+subtitle: "Chapitre 6,5"
 author: ""
 type: ""
 date: 2020-11-06T12:41:50+04:00

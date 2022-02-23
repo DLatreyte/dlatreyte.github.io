@@ -1,9 +1,9 @@
 ---
 title: "Le pH et sa mesure"
-subtitle: "Chapitre 3,1"
+subtitle: "Chapitre 4,1"
 author: ""
 type: ""
-date: 2020-09-28T17:22:22+04:00
+date: 2021-09-28T17:22:22+04:00
 draft: false
 toc: true
 tags: ["pH", "Acide", "Base", "Couple acide/base", "Réaction acide-base", "Schéma de Lewis", "Électronégativité", "Polaire", "Polarisation"]
@@ -11,6 +11,7 @@ categories: ["Chimie", "Terminale Spé PC"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
+mathjax: true
 ---
 [^1]: Ceci sera démontré plus tard dans l'année.
 
@@ -258,10 +259,10 @@ En 1909, le chimiste danois Sörensen a introduit une grandeur sans unité plus 
 {{% note tip %}}
 #### pH (potentiel hydrogène)
 Pour des solutions diluées ($[ \ce{H3O^+} ] \leqslant \pu{5.0e-2 mol.L-1}$), le pH est exprimé par la relation 
-$$ {pH} = - \log \left( \dfrac{[ \ce{H3O^+} ]}{C_0} \right) $$
+$$ \ce{pH} = - \log \left( \dfrac{[ \ce{H3O^+} ]}{C_0} \right) $$
 où $C_0$ est une concentration de référence telle que $C_0 = \pu{1,0 mol.L-1}$.  
 Cette relation est équivalente à 
-$$ [ \ce{H3O^+} ] = C_0 \\, 10^{- {pH}} $$
+$$ [ \ce{H3O^+} ] = C_0 \\, 10^{- \ce{pH}} $$
 {{% /note %}}
 
 #### Remarques

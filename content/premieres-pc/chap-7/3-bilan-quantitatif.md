@@ -1,6 +1,6 @@
 ---
 title: "Bilan quantitatif des transformations chimiques"
-subtitle: "Chapitre 7,3"
+subtitle: "Chapitre 6,3"
 author: ""
 type: ""
 date: 2021-01-05T21:39:20+04:00
@@ -11,6 +11,7 @@ categories: ["Premières Spé PC", "Chimie"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
+mathjax: true
 ---
 
 ## Évolution d'un système chimique
@@ -151,7 +152,7 @@ $$
 
 <img src="/premieres-pc/chap-7/chap-7-3/chap-7-3-1.png" alt="" width="" />
 
-#### Exercice 5. Obtention du soufre
+#### Exercice 4. Obtention du soufre
 
 L'une des étapes de la synthèse de l'acide sulfurique est la réaction entre le sulfure d'hydrogène $\ce{H2S}$ et le dioxyde de soufre $\ce{SO2}$. Le soufre $\ce{S}$ et l'eau sont les produits de cette réaction.
 
@@ -291,7 +292,7 @@ $$
 
     $n_0 (\ce{O2}) = \dfrac{m_2}{M (\ce{O2})}$
 
-    **A.N.** $n_0 (\ce{O2}) = \dfrac{\pu{480 g}}{(2 \times \pu{16,0})\pu{g.mol-1}} = \pu{1,0 mol}$
+    **A.N.** $n_0 (\ce{O2}) = \dfrac{\pu{480 g}}{(2 \times \pu{16,0})\pu{g.mol-1}} = \pu{15,0 mol}$
 
 2. Le système contient de l'ammoniac tant que
     $$
@@ -327,7 +328,7 @@ $$
 
     - $m(\ce{NO}) = \pu{12,0 mol} \times (\pu{14,0} + \pu{16,0})\pu{g.mol-1} = \pu{360 g}$
 
-    - $m (\ce{H2O}) = 18,0 \text{mol} \times (2 \times \pu{1,0} + \pu{16,0})\pu{g.mol-1} = \pu{324 g}$
+    - $m (\ce{H2O}) = \pu{18,0 mol} \times (2 \times \pu{1,0} + \pu{16,0})\pu{g.mol-1} = \pu{324 g}$
 {{% /solution %}}
 
 3. Déterminer la masse $m'$ du réactif limitant qu'il aurait fallu utiliser pour obtenir un mélange initial stœchiométrique, la masse de l'autre réactif restant identique.

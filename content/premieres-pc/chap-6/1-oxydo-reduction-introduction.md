@@ -1,6 +1,6 @@
 ---
 title: "Qu'est-ce qu'une réaction d'oxydo-réduction ?"
-subtitle: "Chapitre 6,1"
+subtitle: "Chapitre 5,1"
 author: ""
 type: ""
 date: 2020-11-29T04:20:35+04:00
@@ -25,42 +25,72 @@ auto_numbering: true
 
 ## Réaction du fer en présence de sulfate de cuivre
 
-### Expérience
+### Expérience 1
 
+<!--
 {{% youtube  "O50sHIoTuBA" %}}
+-->
 
-- Introduire de la lame de fer dans un bécher.
+- Introduire de la limaille de fer dans un tube à essais.
 - Ajouter une solution bleue de sulfate de cuivre (II), $\left(\ce{Cu^{2+}(aq) + SO4^{2-} (aq)}\right)$.
 - Observer.
-- Quel solide semble s’être formé ?
-- Proposer un test permettant de déterminer quel ion métallique est apparu dans la solution.
+- Ajouter quelques gouttes d'une solution de soude $\left( \ce{Na+ (aq) + OH- (aq)} \right)$ dans le tube à essais.
+- Observer.
 
-### Interprétation
+### Interprétation 1
 
-1. Le système chimique est le siège d'une réaction chimique. Écrire l'équation de cette réaction.
-2. Considérons l'élément cuivre : écrire l'*équation formelle* permettant de traduire la transformation.
-3. Considérons l'élément fer : écrire l'équation formelle permettant de traduire la transformation.
-4. Quelle particule a été transférée lors de cette réaction chimique ?
+1. Interpréter les différentes observations.
+2. Écrire l'équation de la réaction chimique principale qui se déroule dans le tube à essais.
+3. **Élément cuivre :** écrire l'*équation formelle* permettant de traduire la transformation de cet élément.
+4. **Élément fer :** écrire l'équation formelle permettant de traduire la transformation de cet élément.
+5. Quelle particule a été transférée lors de cette réaction chimique ?
+
+### Expérience 2
+
+- Introduire de la tournure de cuivre dans un tube à essais.
+- Ajouter une solution de sulfate de fer (II), $\left(\ce{Fe^{2+}(aq) + SO4^{2-} (aq)}\right)$.
+- Observer.
+- Ajouter quelques gouttes d'une solution de soude $\left( \ce{Na+ (aq) + OH- (aq)} \right)$ dans le tube à essais.
+- Observer.
+
+### Interprétation 2
+
+1. Que nous apprend cette manipulation&nbsp;?
 
 ## Réaction du zinc en présence de sulfate de cuivre
 
-### Expérience
+### Expérience 3
 
+<!--
 {{% youtube  "32XCDfJxLoU" %}}
-
-- Introduire de la lame de zinc dans un bécher.
+-->
+- Introduire de la poudre de zinc dans un tube à essais.
 - Ajouter une solution bleue de sulfate de cuivre (II) $\left(\ce{Cu^{2+}(aq) + SO4^{2-} (aq)}\right)$.
 - Observer.
-- Quel solide semble s’être formé ?
-- Proposer un test permettant de déterminer quel ion métallique est apparu dans la solution.
+- Ajouter quelques gouttes d'une solution de soude $\left( \ce{Na+ (aq) + OH- (aq)} \right)$ dans le tube à essais.
+- Observer.
 
-### Interprétation
+### Interprétation 3
 
-1. Le système chimique est le siège d'une réaction chimique. Écrire l'équation de cette réaction.
-2. Considérons l'élément cuivre : écrire l'*équation formelle* permettant de traduire la transformation.
-3. Considérons l'élément ZINC : écrire l'équation formelle permettant de traduire la transformation.
-4. Quelle particule a été transférée lors de cette réaction chimique ?
+1. Interpréter les différentes observations.
+2. Écrire l'équation de la réaction chimique principale qui se déroule dans le tube à essais.
+3. Élément cuivre : écrire l'*équation formelle* permettant de traduire la transformation.
+4. Élément Zinc : écrire l'équation formelle permettant de traduire la transformation.
+5. Quelle particule a été transférée lors de cette réaction chimique ?
 
+### Expérience 4
+
+- Introduire de la tournure de cuivre dans un tube à essais.
+- Ajouter une solution de sulfate de zinc (II) $\left(\ce{Zn^{2+}(aq) + SO4^{2-} (aq)}\right)$.
+- Observer.
+- Ajouter quelques gouttes d'une solution de soude $\left( \ce{Na+ (aq) + OH- (aq)} \right)$ dans le tube à essais.
+- Observer.
+
+### Interprétation 4
+
+1. Que nous apprend cette manipulation&nbsp;?
+
+<!--
 ## Réaction du fer en présence d'acide chlorhydrique
 
 ### Expérience
@@ -85,6 +115,39 @@ Préciser quel test permet de mettre en évidence l'ion spectateur.
 
 4. Considérons l'élément fer : écrire l'équation formelle permettant de traduire la transformation.
 
+5. Quelle particule a été transférée lors de cette réaction chimique ?
+
+-->
+
+## Réaction du fer en présence de diiode
+
+### Expérience 5 
+
+- Dans un tube à essai, verser environ $\pu{2 mL}$ d'une solution de diiode $\ce{I2 (aq)}$.
+- Ajouter environ $\pu{2 mL}$ d'une solution de cyclohexane.
+- Boucher, agiter puis laisser décanter. 
+- Observer.
+
+### Interprétation 5 
+
+1. Comment interpréter l'évolution des teintes&nbsp;?
+
+### Expérience 6 
+
+- Dans un tube à essai, verser environ $\pu{2 mL}$ d'une solution de diiode $\ce{I2 (aq)}$.
+- Ajouter une spatule de limaille de fer.
+- Boucher, agiter puis laisser décanter.
+- Observer.
+- Proposer un protocole permettant de vérifier&nbsp;:    
+    a) que le diiode $\ce{I2 (aq)}$ a été consommé&nbsp;;     
+    b) qu'il s'est formé des ions fer (II) ou (III).
+
+### Interprétation 6
+
+1. Interpréter les différentes observations.
+2. Écrire l'équation de la réaction chimique principale qui se déroule dans le tube à essais.
+3. Élément fer : écrire l'*équation formelle* permettant de traduire la transformation.
+4. Élément iode : écrire l'équation formelle permettant de traduire la transformation.
 5. Quelle particule a été transférée lors de cette réaction chimique ?
 
 

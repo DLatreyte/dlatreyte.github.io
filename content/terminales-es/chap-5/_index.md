@@ -1,6 +1,6 @@
 ---
 title: "Deux siècles d'énergie électrique"
-subtitle: "Chapitre 5"
+subtitle: "Chapitre 1"
 author: ""
 type: ""
 date: 2020-11-25T18:32:47+04:00
@@ -35,11 +35,13 @@ Les spectres de raies d'émission atomiques ainsi que les notions de caractéris
 
 ----
 
-- **Chap. 5,1 :** [*La découverte du phénomène de l'induction électromagnétique*](1-induction-electromagnetique)
+- **Chap. 1,1 :** [*La découverte du phénomène de l'induction électromagnétique*](1-induction-electromagnetique)
 
-- **Chap. 5,2 :** [*Comment fonctionne un alternateur ?*](2-alternateur)
+- **Chap. 1,2 :** [*Comment fonctionne un alternateur ?*](2-alternateur)
 
-- **Chap. 5,3 :** [*Comment fonctionne un capteur photovoltaïque ?*](3-capteur-photovoltaique)
+- **Chap. 1,3 :** [*Comment fonctionne un capteur photovoltaïque ?*](3-capteur-photovoltaique)
 
-- **Chap. 5,4 :** [*Exercices*](4-exercices)
+- **Chap. 1,4 :** [*Exercices*](4-exercices)
+
+- **Chap. 1,5 :** [*Générateurs électriques - Carte mentale*](/terminales-es/chap-5/generateurs_electriques.svg)
 

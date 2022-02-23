@@ -1,6 +1,6 @@
 ---
 title: "Électrocinétique"
-subtitle: "Chapitre 5,1"
+subtitle: "Chapitre 6,1"
 author: ""
 type: ""
 date: 2020-10-30T20:15:15+04:00
@@ -174,7 +174,7 @@ Indiquer quel est le rôle de la pompe et essayer de trouver la grandeur physiqu
 
 
 {{% note warning %}}
-Fondamentalement, une analogie est possible si deux phénomènes *sont liés par des lois de conservations similaires*. Il faut cependant se méfier&nbsp;: une analogie peut être utiles pour expliquer/décrire certains phénomènes d'un domaine (ici ce que représente le potentiel électrique) mais cela ne signifie pas qu'elle décrit correctement tous les phénomènes de ce domaine.
+Fondamentalement, une analogie est possible si deux phénomènes *sont liés par des lois de conservations similaires*. Il faut cependant se méfier&nbsp;: une analogie peut être utiles pour expliquer/décrire certains phénomènes d'un domaine (ici ce que représente le potentiel électrique) mais cela ne signifie pas qu'elle décrit correctement tous les phénomènes de ce domaine.
 {{% /note %}}
 
 ### Tension électrique
@@ -203,14 +203,14 @@ et elle s’exprime en Volts ($\pu{V}$).
 
 | Tension | Provenance | 
 | :---: | :---: |
-| 230 V | EDF (délivrée) |
+| 230 V | EDF (délivrée) |
 | plusieurs kV | Industrielle |
 | 225 kV à 400 kV | Lignes haute tension |
 | quelques V | Piles |
 
 </center>
 
-**Remarque.** Une tension électrique n’est pas en soi {{< remote "dangereuse pour la santé" "https://youtu.be/Zi4kXgDBFhw" >}}, ce qui peut faire l’objet de {{< remote "spectacles impressionnants" "https://youtu.be/3FpjcOWwiI4" >}}. Le fait d’être à un certain potentiel n’est donc pas dangereux. *Toutefois, ce potentiel peut induire un certain courant électrique, qui lui est dangereux*.
+**Remarque.** Une tension électrique n’est pas en soi {{< remote "dangereuse pour la santé" "https://youtu.be/Zi4kXgDBFhw" >}}, ce qui peut faire l’objet de {{< remote "spectacles impressionnants" "https://youtu.be/3FpjcOWwiI4" >}}. **Le fait d’être à un certain potentiel n’est donc pas forcément dangereux**. *Toutefois, une différence de potentiel induit un courant électrique, qui lui peut être dangereux*.
 
 14. Quelle relation lie les tensions électriques $U_{AB}$ et $U_{BA}$&nbsp;? Quelle propriété importante peut-on en déduire&nbsp;?
 {{% solution "Réponse" %}}

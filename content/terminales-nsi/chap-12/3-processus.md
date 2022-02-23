@@ -1,6 +1,6 @@
 ---
 title: "Gestion des processus et des ressources"
-subtitle: "Chapitre 12,3"
+subtitle: "Chapitre 11,3"
 author: ""
 type: ""
 date: 2021-01-10T05:10:07+04:00
@@ -164,7 +164,7 @@ Les états **Nouveau** et **Terminé** sont temporaires. Normalement l'état d'u
 
 ### L'ordonnancement
 
-Plusieurs processus peuvent donc être dans l’état prêt : *comment choisir celui qui sera élu ?* 
+Plusieurs processus peuvent donc être dans l’état prêt : *comment choisir celui qui sera élu&nbsp;?* 
 {{% note tip %}}
 L’**ordonnanceur** (**scheduler**) classe les processus prêts dans une file et le **répartiteur** (**dispatcher**) alloue quant à lui un processeur à l’élu dans le cas d’une architecture multiprocesseur.
 {{% /note %}}

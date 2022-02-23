@@ -1,13 +1,13 @@
 ---
 title: "Exercices du chapitre"
-subtitle: "Chapitre 10,4"
+subtitle: "Chapitre 9,4"
 author: ""
 type: ""
 date: 2021-03-03T08:53:58+04:00
 draft: false
 toc: true
 tags: []
-categories: []
+categories: ["Premières Spé PC"]
 image: ""
 solution_est_visible: true
 auto_numbering: true

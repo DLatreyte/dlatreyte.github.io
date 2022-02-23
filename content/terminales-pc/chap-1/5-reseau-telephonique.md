@@ -4,12 +4,12 @@ subtitle: "Chapitre 1,5"
 author: "Hachette, TS"
 type: ""
 date: 2020-09-18T16:43:15+04:00
-draft: true
+draft: false
 toc: true
-tags: []
-categories: []
+tags: ["Absorption", "Atténuation", "Ondes", "Fibre optique"]
+categories: ["Physique", "Terminale Spé PC", "Annale"]
 image: ""
-solution_est_visible: true
+solution_est_visible: false
 auto_numbering: true
 ---
 [^1]: La **résistivité** est la capacité d'un matériau à s'opposer à la circulation du courant électrique.

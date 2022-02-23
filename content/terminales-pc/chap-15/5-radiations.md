@@ -1,6 +1,6 @@
 ---
 title: "Doses de radiations"
-subtitle: "Chapitre 15,5"
+subtitle: "Chapitre 17,5"
 author: ""
 type: ""
 date: 2021-03-09T06:39:53+04:00

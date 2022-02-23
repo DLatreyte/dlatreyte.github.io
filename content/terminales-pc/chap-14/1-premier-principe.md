@@ -28,10 +28,10 @@ systèmes.
 {{% note exercise %}}
 Une masse $m$ est mise en mouvement au contact de la Terre. L'expérience
 montre que, à cause des frottements solides, la masse finit
-immanquablement par s'arrêter.
+immanquablement par s'arrêter après avoir parcouru une distance $d$.
 {{% /note %}}
 
-<img src="/terminales-pc/chap-14/chap-14-1/chap-14-1-1.png" alt="" width="" />
+<img src="/terminales-pc/chap-14/chap-14-1/chap-14-1-1.png" alt="" width="80%" />
 
 1. Démontrer que l'énergie mécanique n'est pas une grandeur conservative.
 {{% solution "Réponse" %}}
@@ -42,7 +42,7 @@ $\Delta E_M = E_M (t_{\infty}) - E_M(t = 0) = - \dfrac{1}{2}\\, m\\, v_0^2 < 0$.
 *L'énergie mécanique n'est pas conservée bien que le système {masse + Terre} soit isolé, $E_M$ n'est pas une grandeur conservative !*
 {{% /solution %}}
 
-2. Donner l'expression de la force de frottements solides (force non conservative constante).
+2. Donner, après application du théorème de l'énergie cinétique, l'expression de la valeur de la force de frottements solides (force non conservative constante) dans le cas de l'expérience proposée.
 {{% solution "Réponse" %}}
 $\Delta E_M = E_M (t_{\infty}) - E_M(t = 0) = W(\vec{f}) = \vec{f} \cdot \overrightarrow{AB}$ donc $- \dfrac{1}{2}\\, m\\, v_0^2 = -f \cdot d$ où $d = \Vert \overrightarrow{AB} \Vert$. Finalement 
 $$
@@ -94,8 +94,7 @@ L’énergie interne est une **fonction d'état du système** : *sa variation ne
 
 Remarque
 : Il faut garder à l'esprit que les composants d'un système sont toujours
-en mouvement au niveau microscopique, même si le système est
-macroscopiquement au repos.
+en mouvement au niveau microscopique, même si le système est macroscopiquement au repos.
 
 Rappel : passage du microscopique au macroscopique
 : La grandeur qui relie le monde microscopique au monde macroscopique est
@@ -135,8 +134,7 @@ Le *point d'application de la force pressante se déplace*, cette dernière tran
 {{% /solution %}}
 
 {{% note tip %}}
-Lorsque le point d'application d'une force qui s'applique sur un système se déplace, de l'énergie est transférée au système (*algébriquement*). Ce type de transfert
-s'appelle le **travail**.
+Lorsque le point d'application d'une force qui s'applique sur un système se déplace, de l'énergie est transférée au système (*algébriquement*). Ce type de transfert s'appelle le **travail** ; on le note $W$.
 {{% /note %}}
 
 {{% note exercise %}}
@@ -145,16 +143,16 @@ Un gaz contenu dans une enceinte rigide est chauffé à l'aide d'une résistance
 
 5. Comment appelle-t-on le transfert d'énergie reçu par le gaz ?
 {{% solution "Réponse" %}}
-L'énergie de ce système varie (la température s'élève) mais *aucune force ne voit son point d'application se déplacer* ! On appelle **chaleur** (ou **transfert thermique**) $Q$ le transfert d'énergie autre que le travail.
+L'énergie de ce système varie (la température s'élève) mais *aucune force ne voit son point d'application se déplacer*&nbsp;! On appelle **chaleur** (ou **transfert d'énergie thermique**) le **transfert d'énergie** autre que le travail.
 {{% /solution %}}
 
 {{% note tip %}}
-On appelle **chaleur** ou **transfert thermique**, le transfert d'énergie (algébrique) qui s'effectue sans *déplacement macroscopique* du point d'application d'une force qui agit sur le système. **L'origine de ce transfert est microscopique** et sera précisée un peu plus tard dans ce chapitre.
+On appelle **chaleur** ou **transfert d'énergie thermique**, le transfert d'énergie (algébrique) qui s'effectue sans *déplacement macroscopique* du point d'application d'une force qui agit sur le système. On note $Q$ ce transfert d'énergie.    
+**L'origine de ce transfert d'énergie est microscopique** et sera précisée un peu plus tard dans ce chapitre.
 {{% /note %}}
 
 {{% note normal %}}
-Un système **calorifugé** est un système qui ne peut pas échanger
-d'énergie sur forme thermique avec l'environnement.
+Un système **calorifugé** est un système qui ne peut pas échanger d'énergie sur forme de chaleur avec l'environnement.
 {{% /note %}}
 
 ### Premier principe de la thermodynamique
@@ -202,7 +200,7 @@ $$
      conservatives} \right) + Q
 $$ 
 
-*Unité de la capacité thermique massique :* joule par kelvin et par kg, $\pu{J.K-1.kg-1}$).
+*Unité de la capacité thermique massique :* joule par kelvin et par kilogramme ($\pu{J.K-1.kg-1}$).
 {{% /note %}}
 
 ## Transferts thermiques

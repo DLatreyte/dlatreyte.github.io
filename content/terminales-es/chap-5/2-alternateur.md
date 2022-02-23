@@ -1,6 +1,6 @@
 ---
 title: "Comment fonctionne un alternateur ?"
-subtitle: "Chapitre 5,2"
+subtitle: "Chapitre 1,2"
 author: ""
 type: ""
 date: 2020-11-25T19:02:34+04:00

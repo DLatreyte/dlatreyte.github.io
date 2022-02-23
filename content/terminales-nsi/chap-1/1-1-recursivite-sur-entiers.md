@@ -180,7 +180,7 @@ assert arrangement(5) == 15
 
 ### Retour sur le calcul de la factorielle d'un entier naturel
 
-On reprend ici le calcul de la factorielle de l'entier naturel $n$. La \emph{définition récursive} de la fonction factorielle est donc&nbsp;:
+On reprend ici le calcul de la factorielle de l'entier naturel $n$. La *définition récursive* de la fonction factorielle est donc&nbsp;:
 
 $$
 n! = \left\lbrace
@@ -225,7 +225,7 @@ def factorielle(n: int) -> int:
     """ 
     Définition récursive de la fonction factorielle.
     
-    HYPOTHÈSE&nbsp;: n entier naturel.
+    HYPOTHÈSE : n entier naturel.
     """
     if n == 0:                          # cas de base
         return 1

@@ -1,13 +1,13 @@
 ---
 title: "Annale : Acide Ascorbique"
-subtitle: "Chapitre 4,14"
+subtitle: "Chapitre 5,14"
 author: ""
 type: ""
 date: 2020-10-29T11:15:12+04:00
 draft: false
 toc: true
 tags: ["Titrage", "Suivi conductimétrique", "Suivi pH-métrique", "Conductivité", "Base", "Acide", "Équivalence", "Titrage colorimétrique", "Incertitudes"]
-categories: ["Chimie", "Terminale Spé PC"]
+categories: ["Chimie", "Terminale Spé PC", "Annale"]
 image: ""
 solution_est_visible: true
 auto_numbering: true

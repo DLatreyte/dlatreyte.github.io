@@ -7,7 +7,7 @@ date: 2019-09-28T17:41:06+04:00
 draft: false
 toc: true
 tags: [Boucles]
-categories: [Cours 1ère]
+categories: ["Première Spé NSI"]
 image: ""
 ---
 

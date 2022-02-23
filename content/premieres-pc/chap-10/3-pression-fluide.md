@@ -1,13 +1,13 @@
 ---
-title: "Pression d'un fluide"
-subtitle: "Chapitre 10,3"
+title: "Pression dans un fluide"
+subtitle: "Chapitre 9,3"
 author: ""
 type: ""
 date: 2021-03-03T08:55:04+04:00
 draft: false
 toc: true
 tags: []
-categories: []
+categories: ["Premières Spé PC"]
 image: ""
 solution_est_visible: true
 auto_numbering: true
@@ -71,6 +71,16 @@ Dire ce qu'est la pression atmosphérique et donner une image qui permet d'illus
 {{% /solution %}}
 
 ## Évolution de la pression en fonction de la profondeur pour un fluide incompressible : loi fondamentale de la statique des fluides
+
+### Détermination expérimentale
+
+- Réaliser le travail accessible à cette <a href="https://dlatreyte.github.io/jupyter-lite/lab?path=premiere-spe-pc%2Fdescription-fluide-au-repos%2Fpression-hydrostatique-eleves.ipynb" target="_blank">adresse</a>.
+
+{{% solution "Corrigé" %}}
+
+{{% remote "Corrigé en ligne" "https://dlatreyte.github.io/jupyter-lite/lab?path=premiere-spe-pc%2Fdescription-fluide-au-repos%2Fpression-hydrostatique.ipynb" %}}
+
+{{% /solution %}}
 
 Dans un **fluide au repos**, *la pression $P$ n’est pas uniforme en tout point du fluide*. La **loi fondamentale de la statique des fluides** permet de relier la variation de la pression d’un fluide à sa masse volumique $ρ$, au champ de pesanteur $g$ et à la profondeur $h$.
 

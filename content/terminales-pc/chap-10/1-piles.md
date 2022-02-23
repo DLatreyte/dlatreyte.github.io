@@ -1,6 +1,6 @@
 ---
 title: "Réalisation d'une pile électrochimique"
-subtitle: "Chapitre 10,1"
+subtitle: "Chapitre 11,1"
 author: ""
 type: ""
 date: 2021-01-18T21:52:27+04:00
@@ -62,7 +62,7 @@ auto_numbering: true
 - Les ions zinc $\ce{Zn^{2+} (aq)}$ forment avec les ions hydroxyde $\ce{OH- (aq)}$ un précipité blanc d’hydroxyde de zinc (II) $\ce{Zn(OH)2 (s)}$.
 - La constante d'équilibre associée à la réaction entre les ions cuivre et le métal zinc a pour valeur : $K = \pu{1,9e37}$.
 
-1. À quoi servent les tubes à essais n° 1 et 3 ?
+1. À quoi servent les tubes à essais n° 1 et 3&nbsp;?
 {{% solution "Réponse" %}}
 Ce sont des témoins. Ils permettent par exemple de se souvenir de la coloration initiale de la solution avant l'introduction du second réactif.
 {{% /solution %}}
@@ -87,12 +87,12 @@ Ce sont des témoins. Ils permettent par exemple de se souvenir de la coloration
 Il semble que les ions cuivre II réagissent avec le métal zinc pour former du cuivre et des ions zinc II.
 {{% /solution %}}
 
-4. De quel type de réaction s’agit-il ?
+4. De quel type de réaction s’agit-il&nbsp;?
 {{% solution "Réponse" %}}
 Il s'agit d'une réaction d'oxydoréduction.
 {{% /solution %}}
 
-5. Quels sont les couples oxydant/réducteur dans les expériences 1 et 2 ? Écrire l'équation de la réaction.
+5. Quels sont les couples oxydant/réducteur dans les expériences 1 et 2&nbsp;? Écrire l'équation de la réaction.
 {{% solution "Réponse" %}}
 
 - $\ce{Cu^{2+} / Cu}$ et $\ce{Zn^{2+} / Zn}$.
@@ -100,7 +100,7 @@ Il s'agit d'une réaction d'oxydoréduction.
 - $ \ce{Cu^{2+} (aq) + Zn (s) <=> Cu (s) + Zn^{2+} (aq)}$
 {{% /solution %}}
 
-6. Les résultats expérimentaux étaient-ils prévisibles à partir des données ci-dessus ?
+6. Les résultats expérimentaux étaient-ils prévisibles à partir des données ci-dessus&nbsp;?
 {{% solution "Réponse" %}}
 Pour prédire le sens d'une transformation, il faut comparer la valeur du quotient de réaction dans l'état initial à la valeur de la constante d'équilibre.
 
@@ -123,19 +123,19 @@ La réaction étudiée met en jeu un **transfert direct d'électrons à la surfa
 
 <img src="/terminales-pc/chap-10/chap-10-1/pile_daniels.svg" alt="" width="" style="float: right;" />
 
-- Introduire une lame de cuivre décapée dans un bécher de $\pu{100 mL}$ contenant $\pu{20 mL}$ de solution aqueuse décimolaire de sulfate de cuivre (II), $(\ce{Cu^{2+} (aq) + SO4^{2-} (aq)})$ ;
+- Introduire une lame de cuivre décapée dans un bécher de $\pu{50 mL}$ contenant $\pu{20 mL}$ de solution aqueuse décimolaire de sulfate de cuivre (II), $(\ce{Cu^{2+} (aq) + SO4^{2-} (aq)})$.
 
-- Introduire une lame de zinc décapée dans un bécher contenant $\pu{20 mL}$ de sulfate de zinc (II), $(\ce{Zn^{2+} (aq) + SO4^{2-} (aq)})$, à la même concentration ;
+- Introduire une lame de zinc décapée dans un bécher contenant $\pu{20 mL}$ de sulfate de zinc (II), $(\ce{Zn^{2+} (aq) + SO4^{2-} (aq)})$, à la même concentration.
 
-- Relier les deux béchers par l’intermédiaire d’un pont électrolytique (pont salin) ;
+- Relier les deux béchers par l’intermédiaire d’un pont électrolytique (pont salin).
 
-- Mesurer la tension $U\_{\ce{Cu/Zn}} = V\_{\ce{Cu}} - V\_{\ce{Zn}}$ ;
+- Mesurer la tension $U\_{\ce{Cu/Zn}} = V\_{\ce{Cu}} - V\_{\ce{Zn}}$.
 
-- Inverser le branchement et noter la valeur de la tension $U\_{\ce{Cu/Zn}} = V\_{\ce{Zn}} - V\_{\ce{Cu}}$ ;
+- Inverser le branchement et noter la valeur de la tension $U\_{\ce{Cu/Zn}} = V\_{\ce{Zn}} - V\_{\ce{Cu}}$.
 
-- Brancher en série aux bornes de la pile un ampèremètre et un conducteur ohmique de résistance $R = \pu{10 Ω}$. Noter la valeur de l’intensité du courant débité ;
+- Brancher en série aux bornes de la pile un ampèremètre et un conducteur ohmique de résistance $R = \pu{10 Ω}$. Noter la valeur de l’intensité du courant débité.
 
-- Retirer le pont électrolytique. Qu’observe-t-on ?
+- Retirer le pont électrolytique. Qu’observe-t-on&nbsp;?
 
 {{% solution "Observations" %}}
 
@@ -161,7 +161,7 @@ La réaction étudiée met en jeu un **transfert direct d'électrons à la surfa
 <img src="/terminales-pc/chap-10/chap-10-1/pile1.svg" alt="" width="50%" />
 {{% /solution %}}
 
-8. Indiquer sur le schéma précédent le sens de circulation des électrons à l'extérieur de la pile. Les électrons peuvent-ils circuler à l'intérieur de la pile ?
+8. Indiquer sur le schéma précédent le sens de circulation des électrons à l'extérieur de la pile. Les électrons peuvent-ils circuler à l'intérieur de la pile&nbsp;?
 {{% solution "Réponse" %}}
 
 - À l'extérieur de la pile les électrons circulent dans le sens opposé au sens du courant électrique. Ils circulent donc de la borne négative, l'électrode de zinc, vers l'électrode de cuivre.
@@ -169,7 +169,7 @@ La réaction étudiée met en jeu un **transfert direct d'électrons à la surfa
 - À l'intérieur de la pile, on trouve des solutions aqueuses. **Il n'est pas possible de trouver des électrons libres au sein d'une solution aqueuse**, donc aucun électron ne circule dans la pile.
 {{% /solution %}}
 
-9. D'où proviennent les électrons qui circulent dans le circuit électrique ?
+9. D'où proviennent les électrons qui circulent dans le circuit électrique&nbsp;?
 {{% solution "Réponse" %}}
 
 - Aucun électron ne peut être créé par une réaction chimique. Les électrons qui quittent l'électrode de cuivre sont donc **libérés par une réaction chimique**.
@@ -180,7 +180,7 @@ $$
 $$
 {{% /solution %}}
 
-10. Que deviennent les électrons qui arrivent au niveau de l'électrode de cuivre ?
+10. Que deviennent les électrons qui arrivent au niveau de l'électrode de cuivre&nbsp;?
 {{% solution "Réponse" %}}
 
 - Les électrons qui parviennent au niveau de l'électrode de cuivre ne peuvent pas entrer dans la solution et **ne peuvent pas s'accumuler**.\
@@ -207,12 +207,12 @@ $$
 $$
 {{% /solution %}}
 
-12. L'évolution constatée est-elle en accord avec les conclusions de la première partie ?
+12. L'évolution constatée est-elle en accord avec les conclusions de la première partie&nbsp;?
 {{% solution "Réponse" %}}
 On retrouve bien le sens d'évolution prédit et constaté dans la première partie du TP.
 {{% /solution %}}
 
-13. Quelle électrode constitue l'anode de la pile ? Quelle électrode constitue la cathode de la pile ?
+13. Quelle électrode constitue l'anode de la pile&nbsp;? Quelle électrode constitue la cathode de la pile&nbsp;?
 {{% solution "Réponse" %}}
 
 - L'anode est lieu de l'oxydation, c'est donc l'électrode de zinc.
@@ -220,7 +220,7 @@ On retrouve bien le sens d'évolution prédit et constaté dans la première par
 - La cathode est le lieu de la réduction. Cette dernière s'effectue au niveau de l'électrode de cuivre.
 {{% /solution %}}
 
-14. Quel est le rôle du pont électrolytique ?
+14. Quel est le rôle du pont électrolytique&nbsp;?
 {{% solution "Réponse" %}}
 
 - **Le pont électrolytique ferme le circuit électrique**. Sans lui le circuit serait ouvert et les charges électriques ne circuleraient pas.
@@ -234,7 +234,7 @@ On retrouve bien le sens d'évolution prédit et constaté dans la première par
 <img src="/terminales-pc/chap-10/chap-10-1/pile2.svg" alt="" width="50%" />
 {{% /solution %}}
 
-15. Les ions du pont électrolytique jouent-ils bien le double rôle qu'on leur a attribué à la question 13. ?
+15. Les ions du pont électrolytique jouent-ils bien le double rôle qu'on leur a attribué à la question 13.&nbsp;?
 {{% solution "Réponse" %}}
 
 - Les ions potassium sont des cations. Leur sens de circulation est celui du courant électrique. Ils se dirigent donc du bécher contenant les ions zinc vers le bécher contenant les ions cuivre.\
@@ -244,7 +244,7 @@ On retrouve bien le sens d'évolution prédit et constaté dans la première par
 *Ce sens permet de compenser, du point de vue électrique, l'apparition des ions zinc (des cations) dans le bécher contenant le zinc. Cette solution reste neutre électriquement*.
 {{% /solution %}}
 
-16. Une pile en fonctionnement est-elle un système dans l’état d’équilibre ou hors équilibre ?
+16. Une pile en fonctionnement est-elle un système dans l’état d’équilibre ou hors équilibre&nbsp;?
 {{% solution "Réponse" %}}
 À partir du bilan chimique, on peut écrire :
 $$Q\_{r,i} = \dfrac{\dfrac{[\ce{Zn^{2+}}]\_i}{C^o}}{\dfrac{[\ce{Cu^{2+}}]\_i}{C^o}} = \dfrac{[\ce{Zn^{2+}}]\_i}{[\ce{Cu^{2+}}]\_i}$$
@@ -330,10 +330,10 @@ $$ Q\_{r,eq} = K \qquad \text{et} \qquad I\_{eq} = 0 $$
 {{% /note %}}
 
 
-## Comment décrire le fonctionnement d'une pile ?
+## Comment décrire le fonctionnement d'une pile à partir d'une mesure expérimentale&nbsp;?
 
 {{% note tip %}}
-#### Étapes à suivre pour décrire précisément le fonctionnement d'une pile
+#### Étapes à suivre pour décrire précisément le fonctionnement d'une pile à partir d'une mesure expérimentale
 
 1. À partir de l'indication de l'ampèremètre ou du voltmère déterminer la polarité de la pile.
 
@@ -378,7 +378,7 @@ Prévoir dans quel sens va évoluer le système.
 
 2. En déduire les réactions aux électrodes et le sens de déplacement des porteurs de charges dans la pile lorsqu'elle débite.
 
-3. Quelle est la polarité des électrodes ? 
+3. Quelle est la polarité des électrodes&nbsp;? 
 
 4. Faire un schéma de cette pile en précisant le sens
 de $I$ et le sens des électrons dans le circuit.
@@ -445,7 +445,7 @@ $$
 $$
 La masse de l'électrode de zinc diminue de $\pu{0,13 g}$ en 1h40min, l'intensité $I$ du courant étant constante.
 
-Quelle est l'intensité $I$ du courant débité ?
+Quelle est l'intensité $I$ du courant débité&nbsp;?
 {{% /note %}}
 
 {{% solution "Réponse" %}}

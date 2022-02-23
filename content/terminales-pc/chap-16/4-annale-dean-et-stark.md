@@ -1,6 +1,6 @@
 ---
 title: "Annale : Synthèse d'un ester à l'aide d'un appareil de Dean et Stark"
-subtitle: "Chapitre 16,4"
+subtitle: "Chapitre 15,4"
 author: ""
 type: ""
 date: 2021-04-12T18:51:08+04:00

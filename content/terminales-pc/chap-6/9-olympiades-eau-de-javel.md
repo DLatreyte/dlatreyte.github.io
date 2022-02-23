@@ -1,6 +1,6 @@
 ---
 title: "Annale : L'eau de Javel"
-subtitle: "Chapitre 6,9"
+subtitle: "Chapitre 7,10"
 author: ""
 type: ""
 date: 2020-11-21T16:28:23+04:00

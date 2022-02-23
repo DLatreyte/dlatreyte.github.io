@@ -1,6 +1,6 @@
 ---
 title: "Différence de marche et conséquence sur la superposition de deux ondes synchrones"
-subtitle: "Chapitre 2,3,2"
+subtitle: "Chapitre 3,3,2"
 author: ""
 type: ""
 date: 2020-09-21T08:17:58+04:00

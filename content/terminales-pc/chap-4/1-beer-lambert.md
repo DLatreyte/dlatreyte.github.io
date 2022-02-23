@@ -1,6 +1,6 @@
 ---
 title: "Détermination de la composition d'une solution colorée, loi de Beer-Lambert"
-subtitle: "Chapitre 4,1"
+subtitle: "Chapitre 5,1"
 author: ""
 type: ""
 date: 2020-10-05T09:38:31+04:00

@@ -1,6 +1,6 @@
 ---
 title: "Tomographie par émission de positons (Difficile !)"
-subtitle: "Chapitre 8,10"
+subtitle: "Chapitre 9,10"
 author: ""
 type: ""
 date: 2020-12-30T16:56:15+04:00

@@ -1,6 +1,6 @@
 ---
 title: "Stratégies de synthèse"
-subtitle: "Chapitre 17"
+subtitle: "Chapitre 16"
 author: ""
 type: ""
 date: 2021-04-19T11:05:56+04:00
@@ -28,8 +28,8 @@ layout: "single"
 
 ----
 
-- **Chap. 17,1 :** [*Comment peut-on modifier la structure d'une molécule ?*](1-modification-molecule-organique)
+- **Chap. 16,1 :** [*Comment peut-on modifier la structure d'une molécule ?*](1-modification-molecule-organique)
 
-- **Chap. 17,2 :** [*Protection/déprotection de fonctions*](2-protection-fonctions)
+- **Chap. 16,2 :** [*Protection/déprotection de fonctions*](2-protection-fonctions)
 
 

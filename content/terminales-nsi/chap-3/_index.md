@@ -18,7 +18,7 @@ layout: "single"
 
 | Contenus | Capacités attendues | Commentaires |
 |:-:|:-:|:-:|
-|  Paradigmes de programmation. |  - Distinguer sur des exemples les paradigmes impératif, fonctionnel et objet. <br />- Choisir le paradigme de programmation selon le champ d’application d’un programme. |  Avec un même langage de programmation, on peut utiliser des paradigmes différents. Dans un même programme, on peut utiliser des paradigmes différents. |
+|  Paradigmes de programmation. |  - Distinguer sur des exemples les paradigmes impératif, fonctionnel et objet. <br />- Choisir le paradigme de programmation selon le champ d’application d’un programme. |  Avec un même langage de programmation, on peut utiliser des paradigmes différents. Dans un même programme, on peut utiliser des paradigmes différents. |
 
 
 ## Documents

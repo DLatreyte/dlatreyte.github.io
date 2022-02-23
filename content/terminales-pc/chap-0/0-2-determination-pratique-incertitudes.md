@@ -67,12 +67,15 @@ Un corrigé de cette activité se trouve à l'adresse&nbsp;:
 La mesure $\Delta t$ de la durée de chute d'un objet depuis une fenêtre a 
 été répétée 16 fois avec un chronomètre de qualité. Les résultats 
 obtenus, exprimés en seconde, sont les suivants&nbsp;:
+<center>
 
 |  |  |  |  |  |  |  |  |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | 1,38 | 1,45 | 1,41 | 1,45 | 1,43 | 1,41 | 1,46 | 1,39 |
 |  |  |  |  |  |  |  |  |
 | 1,43 | 1,48 | 1,38 | 1,44 | 1,40 | 1,42 | 1,39 | 1,44 |
+
+</center>
 
 1. Se rendre à l'adresse&nbsp;: [https://repl.it/@dlatreyte/incertitudeeleves](https://repl.it/@dlatreyte/incertitudeeleves) et cliquer sur le bouton `fork`, juste à côté de `run`.
 
@@ -167,7 +170,7 @@ Elle dépend du nombre $n$ de mesures indépendantes réalisées, de l'écart ty
 
 **Exemple de valeurs de $k$&nbsp;:**
 
-| nn | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
+| n | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | $k$ 95%| 12,7 | 4,30 | 3,18 | 2,78 | 2,57 | 2,45 | 2,37 | 2,31 | 2,26 | 2,23 | 2,20 | 2,18 | 2,16 | 2,15 | 2,13 |
 | $k$ 99% | 63,7 | 9,93 | 5,84 | 4,60 | 4,03 | 3,71 | 3,50 | 3,36 | 3,25 | 3,17 | 3,11 | 3,06 | 3,01 | 2,98 | 2,95 |

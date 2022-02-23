@@ -1,6 +1,6 @@
 ---
 title: "Introduction aux mécanismes réactionnels"
-subtitle: "Chapitre 6,6"
+subtitle: "Chapitre 7,6"
 author: ""
 type: ""
 date: 2020-11-16T08:54:31+04:00

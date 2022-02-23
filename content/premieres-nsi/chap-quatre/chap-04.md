@@ -7,6 +7,6 @@ date: 2019-09-28T17:40:46+04:00
 draft: false
 toc: true
 tags: [Booléens, Tests, Conditions]
-categories: [Cours 1ère]
+categories: ["Première Spé NSI"]
 image: ""
 ---

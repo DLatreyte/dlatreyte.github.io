@@ -9,7 +9,7 @@ toc: true
 tags: ["Modules", "Exceptions", "Assertions"]
 categories: ["Terminales Spé NSI", "Informatique"]
 image: ""
-solution_est_visible: false
+solution_est_visible: true
 auto_numbering: true
 ---
 Cette séance a pour objectif de vous familiariser avec la *création et la 
@@ -32,7 +32,7 @@ En mathématique, on démontre qu'un capital placé à un certain taux
 d'intérêt évolue selon la formule&nbsp;:
 
 $$
-C = C\_{0}  \left( 1 + \frac{t}{360 \times 100} \right)^n
+C = C\_{0}  \left( 1 + \dfrac{t}{360 \times 100} \right)^n
 $$
 
 où $C$ est le montant du capital considéré le jour de l'examen, $C\_{0}$ le 
@@ -45,16 +45,16 @@ Pour une durée de placement exprimée en jours, l'usage fait que l'intérêt es
 Selon le problème à résoudre on peut bien évidemment aussi écrire:
 
 $$
-C\_{0} = C \left( 1 + \frac{t}{360 \times 100} \right)^{- n}
+C\_{0} = C \left( 1 + \dfrac{t}{360 \times 100} \right)^{- n}
 $$
 
 $$
-  n = \frac{\ln \left( \frac{C}{C\_{0}} \right)}{\ln \left( 1 + \frac{t}{360
+  n = \frac{\ln \left( \dfrac{C}{C\_{0}} \right)}{\ln \left( 1 + \frac{t}{360
   \times 100} \right)}
 $$
 
 $$
-  t = 360 \times 100 \left( \left( \frac{C}{C\_{0}} \right)^{1 / n} - 1
+  t = 360 \times 100 \left( \left( \dfrac{C}{C\_{0}} \right)^{1 / n} - 1
   \right)
 $$
 
@@ -189,10 +189,7 @@ def taux_annuel(C0: float, C: float, n: int) -> float:
         sys.exit(1)
     return t
 
-__name__ = "capitalisation"
-"""
-Bloc de test
-"""
+
 if __name__ == "__main__":
     C = 2.2133983053266699
     C0 = 2.0

@@ -1,6 +1,6 @@
 ---
 title: "Titrages par suivi pH-métrique"
-subtitle: "Chapitre 4,7"
+subtitle: "Chapitre 5,7"
 author: ""
 type: ""
 date: 2020-10-24T17:31:05+04:00
@@ -46,13 +46,26 @@ On réalise un suivi pH-métrique et on traite les {{< remote "données expérim
 
 1. Lors de ce titrage, quel est le titrant ? Le titré ?
 {{% solution "Réponse" %}}
-- Le titré est l'acide nitrique.
+
+Remarque
+: $\ce{HNO3}$ est un acide fort, il réagit donc totalement avec l'eau et n'existe pas dans la solution aqueuse. En fait, son introduction dans le solvant conduit à la réaction (modélisant une transformation totale) suivante :
+$$
+    \ce{HNO3 (l) + H2O -> NO3^- (aq) + H3O+}
+$$
+La solution d'acide nitrique est donc $(\ce{H3O+ + NO3- (aq)})$.
+
+- Le titré est l'ion oxonium $\ce{H3O+}$ présent dans la solution d'acide nitrique $(\ce{H3O+ + NO3- (aq)})$.
 - Le titrant est l'ion hydroxyde présent dans la solution de soude $(\ce{Na^+ + HO^-})$.
 {{% /solution %}}
 
 2. Écrire l'équation du titrage.
 {{% solution "Réponse" %}}
-$\ce{HNO3 + HO^- -> NO3^- + H2O  }$
+
+
+$$\ce{H3O+ + HO^- (aq) -> 2 H2O (l) }$$
+
+Remarque
+: **La réaction chimique précédente est la réaction de titrage de n'importe quel acide fort par n'importe quelle base forte**. 
 {{% /solution %}}
 
 *Lors d'un suivi pH-métrique on verse progressivement le titrant initialement contenu dans une burette dans le bécher (ou l'erlenmeyer) contenant le titré et on mesure la valeur du pH après chacun de ces ajouts*.
@@ -71,13 +84,13 @@ La courbe présente :
 
 5. Pourquoi la solution passe-t-elle du domaine acide au domaine basique lors de ce titrage ?
 {{% solution "Réponse" %}}
-- Dans un premier temps, le titrant (ion hydroxyde) est le réactif limitant. La solution contient donc de l'eau, des ions nitrates $\ce{NO3^-}$, base indifférente dans l'eau, des ions sodium $\ce{Na^+}$, introduits avec les ions hydroxyde et de l'acide nitrique. *Elle est donc acide et le pH inférieur à 7,0*.
-- Au delà de l'équivalence, le titré (acide nitrique) est le réactif limitant. La solution contient donc de l'eau, des ions nitrates $\ce{NO3^-}$, base indifférente dans l'eau, des ions sodium $\ce{Na^+}$, introduits avec les ions hydroxyde et des ions hydroxyde, base forte. *Elle est donc basique et le pH supérieur à 7,0*.
+- Dans un premier temps, le titrant (ion hydroxyde) est le réactif limitant. La solution contient donc de l'eau, des ions nitrates $\ce{NO3^-}$, *base indifférente dans l'eau*, des ions sodium $\ce{Na^+}$, introduits avec les ions hydroxyde et des ions oxonium $\ce{H3O+}$. *Elle est donc acide et le pH inférieur à 7,0*.
+- Au delà de l'équivalence, le titré (ions oxonium) est le réactif limitant. La solution contient donc de l'eau, des ions nitrates $\ce{NO3^-}$, *base indifférente dans l'eau*, des ions sodium $\ce{Na^+}$, introduits avec les ions hydroxyde et des ions hydroxyde $\ce{OH-}$, base forte. *Elle est donc basique et le pH supérieur à 7,0*.
 {{% /solution %}}
 
 6. Analyser le contenu de la solution à l'équivalence et indiquer quel doit être le pH du point équivalent.
 {{% solution "Réponse" %}}
-L'équivalence est l'instant du titrage où on change de réactif limitant. Les réactifs ont alors été introduits dans les proportions stœchiométriques et leur quantité de matière est nulle. Le milieu ne contient donc que des ions nitrates $\ce{NO3^-}$, base indifférente dans l'eau, des ions sodium $\ce{Na^+}$, introduits avec les ions hydroxyde, et de l'eau. On s'attend donc à ce que la solution soit neutre, c'est à dire à ce que $pH = \pu{7,0}$.
+L'équivalence est l'instant du titrage où on change de réactif limitant. Les réactifs ont alors été introduits dans les proportions stœchiométriques et leur quantité de matière est nulle. Le milieu ne contient donc que des ions nitrates $\ce{NO3^-}$, *base indifférente dans l'eau*, des ions sodium $\ce{Na^+}$, introduits avec les ions hydroxyde, et de l'eau. On s'attend donc à ce que la solution soit neutre, c'est à dire à ce que $pH = \pu{7,0}$.
 {{% /solution %}}
 
 7. Placer le point d'ordonnée $pH = \pu{7,0}$ sur la courbe. Quelle particularité mathématique présente ce point ?
@@ -186,6 +199,9 @@ On réalise un suivi pH-métrique et on traite les {{< remote "données expérim
 2. Écrire l'équation du titrage.
 {{% solution "Réponse" %}}
 $\ce{HO^- + H3O^+ -> 2 H2O  }$
+
+Remarque
+: **La réaction chimique précédente est la réaction de titrage de n'importe quelle base forte par n'importe quel acide fort**. 
 {{% /solution %}}
 
 *Lors d'un suivi pH-métrique on verse progressivement le titrant initialement contenu dans une burette dans le bécher (ou l'erlenmeyer) contenant le titré et on mesure la valeur du pH après chacun de ces ajouts*.

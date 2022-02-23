@@ -1,6 +1,6 @@
 ---
 title: "Mouvement dans le champ de pesanteur uniforme"
-subtitle: "Chapitre 8,2"
+subtitle: "Chapitre 9,2"
 author: ""
 type: ""
 date: 2020-12-18T22:06:43+04:00
@@ -232,8 +232,11 @@ constante*, le mouvement est **uniformément accéléré**.
 {{% note tip %}}
 Un système dont l'équation du mouvement est $ \overrightarrow{a} = 
 \overrightarrow{g}$ est dit en « chute libre dans le champ de pesanteur » (ici terrestre).     
-Une chute libre est un mouvement uniformément accéléré.
+Une chute libre est un mouvement uniformément accéléré.     
+Tous les systèmes en chute libre possèdent la même accélération.
 {{% /note %}}
+
+{{< youtube E43-CfukEgs >}}
 
 ### Établissement des équations horaires du mouvement
 

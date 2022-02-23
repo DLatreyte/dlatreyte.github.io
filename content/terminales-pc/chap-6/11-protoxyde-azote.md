@@ -1,6 +1,6 @@
 ---
 title: "Décomposition du protoxyde d’azote"
-subtitle: "Chapitre 6,11"
+subtitle: "Chapitre 7,9"
 author: ""
 type: ""
 date: 2020-11-24T05:27:00+04:00
@@ -38,55 +38,78 @@ $\ce{ 2 N2O(g) -> 2  N2(g) + O2(g)  }$
 
 4. Dans le tableau, dans le {{< remote "fichier des données" "/terminales-pc/chap-6/chap-6-11-1.ambl" >}} ajouter une colonne calculée pour exprimer la concentration $[\ce{N2O}]$ en protoxyde d'azote à chaque instant.
 {{% solution "Réponse" %}}
-$ [\ce{N2O}] = C_0 - 2 x $ et $ [\ce{N2}] = 2x $, donc $ [\ce{N2O}] = C_0 - [\ce{N2}] $
+$ [\ce{N2O}] = C_0 - 2 x $ et $ [\ce{N2}] = 2x $, donc $ [\ce{N2O}] = C_0 - [\ce{N2}] $.
 
 <img src="/terminales-pc/chap-6/chap-6-11-3.png" alt="" width="" />
 {{% /solution %}}
 
-5. Exprimer la vitesse volumique de réaction $v$ en fonction de $[\ce{N2}]$.
+5. Exprimer la vitesse volumique de formation $v\_f$ de $[\ce{N2}]$.
 {{% solution "Réponse" %}}
-$ v = \dfrac{1}{V}\\, \dfrac{\mathrm{d} x}{\mathrm{dt}} $. Or $[\ce{N2}] = \dfrac{2x}{V}$, donc $v = \dfrac{1}{2}\\, \dfrac{\mathrm{d} [\ce{N2}]}{\mathrm{dt}}$.
+$$
+    v\_f (\ce{N2}) = \dfrac{\mathrm{d} [\ce{N2}]}{\mathrm{dt}} 
+$$
 {{% /solution %}}
 
+<!--
 {{% note tip %}}
 On appelle **vitesse volumique de formation** d'un produit $A$ la vitesse 
 $$ v_f = \dfrac{\mathrm{d} [A]}{\mathrm{dt}}$$
 $v_f$ est positive et s'exprime en mole par litre par seconde (en pratique).
 {{% /note %}}
+-->
 
+<!--
 6. Trouver la relation qui existe entre la vitesse volumique de formation de $\ce{N2}$, $v_f(\ce{N2})$, et la vitesse volumique de réaction.
 {{% solution "Réponse" %}}
 $v_f(\ce{N2}) = \dfrac{\mathrm{d} [\ce{N2}]}{\mathrm{dt}}$ donc $v = \dfrac{1}{2}\\, v_f(\ce{N2})$.
 {{% /solution %}}
+-->
 
-7. Trouver la relation qui existe entre la vitesse volumique de formation de $\ce{O2}$, $v_f(\ce{O2})$, et la vitesse volumique de réaction.
+6. Trouver la relation qui existe entre la vitesse volumique de formation de $\ce{O2}$, $v_f(\ce{O2})$, et la vitesse volumique de formation de de $[\ce{N2}]$.
 {{% solution "Réponse" %}}
-- $v_f(\ce{O2}) = \dfrac{\mathrm{d} [\ce{O2}]}{\mathrm{dt}}$.
-- $v = \dfrac{1}{V}\\, \dfrac{\mathrm{d} x}{\mathrm{dt}} $. Or $[\ce{O2}] = \dfrac{x}{V}$, donc $v = \dfrac{\mathrm{d} [\ce{O2}]}{\mathrm{dt}}$.
 
-Finalement $v = v_f(\ce{O2})$.
+- $v\_f (\ce{N2}) = \dfrac{\mathrm{d} [\ce{N2}]}{\mathrm{dt}}$
+- $v\_f (\ce{O2}) = \dfrac{\mathrm{d} [\ce{O2}]}{\mathrm{dt}}$
+
+Or, grâce au tableau d'avancement on apprend que $n(\ce{N2})(t) = 2 x(t)$ et $n(\ce{O2})(t) = x(t)$. On en conclut donc que $n(\ce{N2})(t) = 2 n(\ce{O2})(t)$. Il se forme à chaque instant deux fois plus de diazote que de dioxygène. 
+
+Finalement, on en déduit que $[\ce{N2}\] (t) = 2 [\ce{O2}\](t)$ et que $v\_f (\ce{N2}) = 2 v\_f (\ce{O2}) $.
+
 {{% /solution %}}
 
+<!--
 {{% note tip %}}
 On appelle **vitesse volumique de disparition** d'un réactif $A$ la vitesse 
 $$ v_d = \left\lvert \dfrac{\mathrm{d} [A]}{\mathrm{dt}} \right\rvert $$
 $v_d$ est positive et s'exprime en mole par litre par seconde (en pratique).
 {{% /note %}}
+-->
 
-8. Trouver la relation qui existe entre la vitesse volumique de disparition de $\ce{N2O}$, $v_d(\ce{N2O})$, et la vitesse volumique de réaction.
+7. Dans le tableau, dans le {{< remote "fichier des données" "/terminales-pc/chap-6/chap-6-11-1.ambl" >}} ajouter deux colonnes calculées pour calculer les vitesses de formation de $\ce{N2}$ et de $\ce{O2}$.
+
+
+8. Trouver la relation qui existe entre la vitesse volumique de disparition de $\ce{N2O}$, $v_d(\ce{N2O})$, et la vitesse volumique de formation de $\ce{N2}$.
 {{% solution "Réponse" %}}
-- $v_d(\ce{N2O}) = \left\lvert \dfrac{\mathrm{d} [\ce{N2O}]}{\mathrm{dt}} \right\rvert$.
-- $v = \dfrac{1}{V}\\, \dfrac{\mathrm{d} x}{\mathrm{dt}} $. Or $[\ce{N2O}] = [\ce{N2O}]\_0 - \dfrac{2x}{V}$, donc $v = - \dfrac{1}{2}\\, \dfrac{\mathrm{d} [\ce{N2O}]}{\mathrm{dt}}$.
+- $v_d(\ce{N2O}) = - \dfrac{\mathrm{d} [\ce{N2O}]}{\mathrm{dt}}$.
 
-Finalement $v = \dfrac{1}{2}\\,  v_d(\ce{N2O})$.
+Or, on a démontré à la question 4. que $ [\ce{N2O}] = C_0 - [\ce{N2}] $, on peut donc écrire, après dérivation par rapport au temps de la relation précédente, que $\dfrac{\mathrm{d} [\ce{N2O}]}{\mathrm{dt}} = - \dfrac{\mathrm{d} [\ce{N2}]}{\mathrm{dt}}$, ce qui implique que $v_d(\ce{N2O}) = v_f(\ce{N2})$.
 {{% /solution %}}
 
+<!--
 9. Quelle est la grandeur cinétique commune à tous les produits et réactifs de la réaction ?       
     a. La vitesse volumique de formation ou de disparition ?        
     b. La vitesse volumique de réaction ?
 {{% solution "Réponse" %}}
 - *Les vitesses volumiques de formation ou de disparition sont spécifiques à chacune de entités de la réaction*.
 - *La vitesse volumique de réaction est commune à toutes les entités de la réaction*.
+{{% /solution %}}
+-->
+
+9. Les vitesses volumiques de formation et de disparition sont-elles communes à toutes les espèces chimiques ou dépendent-elles de chaque espèce chimique&nbsp;?
+{{% solution "Réponse" %}}
+
+Les vitesses volumiques de formation ou de disparition sont spécifiques à chacune de entités de la réaction. Tout dépend des proportions dans lesquelles ces entités se forment ou disparaissent.
+
 {{% /solution %}}
 
 10. Dans le tableau, dans le {{< remote "fichier des données" "/terminales-pc/chap-6/chap-6-11-1.ambl" >}} ajouter une colonne calculée pour calculer la vitesse de disparition $v_d(\ce{N2O})$ du protoxyde d'azote $\ce{N2O}$ à chaque instant.

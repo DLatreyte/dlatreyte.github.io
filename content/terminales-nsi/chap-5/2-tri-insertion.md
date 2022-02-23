@@ -114,7 +114,13 @@ La boucle externe est une boucle Pour. Il n'est donc pas nécessaire de prouver 
 
 8. Démontrer la terminaison de cet algorithme.
 {{% solution "Réponse" %}}
+La fonction $f$ définie par $f(j) = j$ est-elle un variant de boucle ?
 
+- Première valeur de $j$ : $i-1$, donc première valeur de $f$ : $f(j) = i - 1 >0$ puisque $i > 1$.
+- $f$ est-elle décroissante ?   
+    $f\_{j+1} - f\_{j} = j-1 - j = -1$, La fonction est bien décroissante.
+- Dernière valeur de $j$ : $-1$, donc $f(j) = -1$.
+$f$ est une fonction positive, décroissante dont la dernière valeur est négative : c'est bien un variant de boucle. La boucle se termine.
 {{% /solution %}}
 
 9. Comment prouve-t-on, de façon générale, la correction d'un algorithme ?
@@ -139,7 +145,7 @@ La troisième propriété est peut-être la plus importante : elle est utilisée
 
 #### Démonstration de la correction de l'algorithme. 
 
-**Initialisation.** `i=0`, `tab[0]` est alors un tableau à un élément, trié de façon évidente.
+**Initialisation.** `i=1`, `tab[0]` est alors un tableau à un élément, trié de façon évidente.
 
 **Conservation.** Par hypothèse, pour `i` compris entre 1 et `nb-2`, `tab[0,  ,i-1]` est un tableau trié. Lors de l'itération `i`, on recherche le plus petit élément du tableau `tab[i, ... ,nb-1]` et on le place à la position d'indice `i`. À partir de l'hypothèse, cet élément est plus grand que n'importe quel élément du tableau `tab[0,  ,i-1]` (sinon il appartiendrait déjà à ce tableau) ; le tableau `tab[0, ... ,i]` est donc trié.
 

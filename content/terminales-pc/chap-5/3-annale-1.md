@@ -1,6 +1,6 @@
 ---
 title: "Annale : Le super condensateur prêt à sortir de l'ombre"
-subtitle: "Chapitre 5,3"
+subtitle: "Chapitre 6,3"
 author: ""
 type: ""
 date: 2020-11-06T11:35:19+04:00

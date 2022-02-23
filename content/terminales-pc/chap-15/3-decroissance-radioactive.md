@@ -1,6 +1,6 @@
 ---
 title: "Décroissance radioactive"
-subtitle: "Chapitre 15,3"
+subtitle: "Chapitre 17,3"
 author: ""
 type: ""
 date: 2021-03-09T06:35:58+04:00

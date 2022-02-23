@@ -1,6 +1,6 @@
 ---
 title: "Étude d'une pile électrique"
-subtitle: "Chapitre 10,3"
+subtitle: "Chapitre 11,3"
 author: ""
 type: ""
 date: 2021-01-25T21:05:45+04:00

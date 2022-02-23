@@ -1,6 +1,6 @@
 ---
 title: "Les réactions d'oxydo-réduction"
-subtitle: "Chapitre 6,2"
+subtitle: "Chapitre 5,2"
 author: ""
 type: ""
 date: 2020-11-28T23:29:00+04:00

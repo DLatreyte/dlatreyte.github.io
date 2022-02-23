@@ -1,6 +1,6 @@
 ---
 title: "Exercices sur les piles"
-subtitle: "Chapitre 10,2"
+subtitle: "Chapitre 11,2"
 author: ""
 type: ""
 date: 2021-01-24T00:17:23+04:00

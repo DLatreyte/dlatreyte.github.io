@@ -1,6 +1,6 @@
 ---
 title: "Le cycle de vie du plastique"
-subtitle: "Chapitre 16,6"
+subtitle: "Chapitre 15,6"
 author: ""
 type: ""
 date: 2021-04-17T21:36:02+04:00

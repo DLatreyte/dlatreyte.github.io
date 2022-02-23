@@ -22,7 +22,7 @@ fi
 git commit -m "$msg"
 
 # Push source and build repos.
-git push origin master
+github push origin master
 
 # Remarque sur la création du submodule pour git
 # La procédure du site n'a pas fonctionné

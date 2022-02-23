@@ -9,7 +9,7 @@ toc: true
 tags: ["Beer-Lambert", "Dosage", "Étalonnage"]
 categories: ["Premières Spé PC", "Chimie"]
 image: ""
-solution_est_visible: true
+solution_est_visible: false
 auto_numbering: true
 ---
 
@@ -32,14 +32,22 @@ D'après <a href="https://fr.wikipedia.org/wiki/Solution_de_Dakin" target="_blan
 
 ### Permanganate de potassium
 
+{{% note normal %}}
+
 Le permanganate de potassium, découvert en 1659, est un sel inorganique de formule chimique $\ce{KMnO4}$ et de masse molaire $M = \pu{158,0 g/mol}$. Il est composé d'ions potassium $\ce{K^+}$ et d'ions permanganate $\ce{MnO_4^-}$. À l'état solide, il se présente sous la forme de cristaux violets. Lorsqu'il est dissous dans l'eau, il forme une *solution aqueuse violette*. C'est un composé sans odeur, et au goût amer.
 
+{{% /note %}}
+
+<!--
 #### Absorbance d'une solution de permanganate de potassium
 
 <img src="/premieres-pc/chap-2/chap-2-4-2.png" alt="" width="50%" />
 
+-->
 
 ### Dosage colorimétrique
+
+{{% note tip %}}
 
 **Doser** une solution consiste à déterminer la concentration (molaire) d'une espèce chimique en solution. Un *dosage colorimétrique* est un type de dosage possible lorsque *l'espèce chimique colore la solution* et que la loi de Beer-Lambert peut être utilisée.
 
@@ -51,18 +59,21 @@ donc être diluée (la concentration de l'espèce chimique colorant la solution 
 - La coloration de la solution doit *rester stable* pendant la mesure de 
 l'absorbance.
 
-- *Il est nécessaire de réaliser, dans un premier temps, une courbe d'étalonnage à l'aide d'une échelle de teinte (**solutions étalons**)* dont les *concentrations encadrent la concentration recherchée*.
+- *Il est nécessaire de réaliser, dans un premier temps, une courbe d'étalonnage à l'aide d'une échelle de teinte (**solutions étalons**)* **dont les *concentrations encadrent la concentration recherchée*.**
 
-- *La longueur d'onde du filtre choisi doit correspondre au rayonnement pour lequel
-l'absorbance de la solution est maximale*.
+- *La longueur d'onde du filtre choisi doit correspondre au **rayonnement pour lequel
+l'absorbance de la solution est maximale*.**
+
+{{% /note %}}
+
 
 ### Réalisation d'une échelle de teinte (solutions étalons)
 
-Pour réaliser une échelle de teinte à partir d'une solution $S_0$ dans laquelle l'espèce chimique qui colore la solution est à la concentration molaire $C_0 = \pu{2,0e-4 mol/L}$, on peut préparer, dans des tubes à essai, 6 solutions de volumes $\pu{10 mL}$ et de concentrations&nbsp;:
+Pour réaliser une échelle de teinte à partir d'une solution $S_0$ dans laquelle l'espèce chimique qui colore la solution est à la concentration molaire $C_0 = \pu{4,0e-4 mol/L}$, on peut préparer, dans des tubes à essai, 7 solutions (fabriquées à l'aide de fioles jaugées de volumes $\pu{20 mL}$) de concentrations&nbsp;:
 
-|  | $S_0$ | $S_1$ | $S_2$ | $S_3$ | $S_4$ | $S_5$ |
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-| **Concentration ($\pu{mol/L}$)** | $\pu{2,0e-4}$ | $\pu{1,0e-4}$ | $\pu{8,0e-5}$ | $\pu{6,0e-5}$ | $\pu{4,0e-5}$ |  $\pu{2,0e-5}$|
+|  | $S_0$ | $S_1$ | $S_2$ | $S_3$ | $S_4$ | $S_5$ | $S_6$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| **Concentration ($\pu{mol/L}$)** | $\pu{4,0e-4}$ | $\pu{2,0e-4}$ | $\pu{1,0e-4}$ | $\pu{8,0e-5}$ | $\pu{6,0e-5}$ | $\pu{4,0e-5}$ | $\pu{2,0e-5}$ |
 
 <img src="/premieres-pc/chap-2/chap-2-4-3.jpg" alt="" width="" />
 
@@ -72,6 +83,7 @@ L'objectif de cette séance est de vérifier que l'information sur la concentrat
 
 ## Travail
 
+<!--
 ### Résultats expérimentaux
 
 - Absorbances des solutions étalons de permanganate de potassium : 
@@ -84,6 +96,7 @@ L'objectif de cette séance est de vérifier que l'information sur la concentrat
 - Absorbance de la solution de Dakin : $A = \pu{0,15}$.
 
 - L'exploitation des résultats expérimentaux nécessite le téléchargement du logiciel {{< remote "Graphical Analysis" "https://www.vernier.com/product/graphical-analysis-4/" >}}.
+-->
 
 ### Questions
 
@@ -92,7 +105,7 @@ L'objectif de cette séance est de vérifier que l'information sur la concentrat
 Une solution de permanganate de potassium absorbe la lumière dans la partie verte du spectre. Comme nous percevons la couleur complémentaire de la couleur absorbée (*lumière incidente supposée blanche - lumière absorbée*), une solution de permanganate de potassium nous paraît magenta. 
 {{% /solution %}}
 
-2. On sélectionne, lors du dosage colorimétrique, la longueur d'onde $\lambda = \pu{530 nm}$. Justifier ce choix.
+2. On sélectionne, lors du dosage colorimétrique, la longueur d'onde $\lambda = \pu{530 nm}$. Justifier ce choix à l'aide d'un des documents et d'une expérience.
 {{% solution "Réponse" %}}
 Le document 1.3. nous apprend que «&nbsp;*La longueur d’onde du filtre choisi doit correspondre au rayonnement pour lequel l’absorbance de la solution est maximale.*&nbsp;» La longueur d'onde $\lambda = \pu{530 nm}$ est située dans la zone où l'absorbance est maximale.
 
