@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Détermination de la masse du Soleil à l&#39;aide de Python - Accueil</title>
+  <meta name="description" content="Chapitre 9,14">
+  <meta name="author" content="David Latreyte"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Accueil",
+    
+    "url": "https:\/\/dlatreyte.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/dlatreyte.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io\/terminales-pc\/chap-8\/14-troisieme-loi-kepler-python\/",
+          "name": "Détermination de la masse du soleil à l\u0027aide de python"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "David Latreyte"
+  },
+  "headline": "Détermination de la masse du Soleil à l\u0027aide de Python",
+  "description" : "L\u0026rsquo;objectif de ce document est de retrouver la masse du Soleil à l\u0026rsquo;aide des données des périodes et des demi-grands axes des planètes et de la troisième loi de Képler.\n Un corrigé de cette activité se trouve à cette adresse. Ne pas le consulter avant d\u0026rsquo;avoir cherché les réponses aux questions.  Données     Planète Période (ans) Demi-grand axe ($\\times \\pu{10^{10} m}$)     Mercure 0,24 5,79   Vénus 0,62 10,80   Terre 1,00 15,00   Mars 1,88 22,80   Jupiter 11,90 77,80   Saturne 29,50 143,00   Uranus 84,00 287,00   Neptune 165,00 450,00   Pluton 248,00 590,00     Affichage du carré de la période en fonction du cube du demi-grand axe   Une version du fichier de travail se trouve à cette adresse.",
+  "inLanguage" : "fr",
+  "wordCount":  483 ,
+  "datePublished" : "2022-01-11T10:47:21",
+  "dateModified" : "2022-01-11T10:47:21",
+  "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+  "keywords" : [ "" ],
+  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/terminales-pc\/chap-8\/14-troisieme-loi-kepler-python\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/dlatreyte.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Détermination de la masse du Soleil à l&#39;aide de Python" />
+<meta property="og:description" content="Chapitre 9,14">
+<meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
+<meta property="og:url" content="https://dlatreyte.github.io/terminales-pc/chap-8/14-troisieme-loi-kepler-python/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Accueil" />
+
+  <meta name="twitter:title" content="Détermination de la masse du Soleil à l&#39;aide de Python" />
+  <meta name="twitter:description" content="Chapitre 9,14">
+  <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@@DLatreyte" />
+  <meta name="twitter:creator" content="@@DLatreyte" />
+  <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.92.2" />
+  <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://dlatreyte.github.io">Accueil</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Infos" href="../../../about/infos">Infos</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Blog" href="../../../">Blog</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Cours</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../premieres-pc">1ère Spé. PC</a>
+                
+                  <a href="../../../premieres-nsi">1ère Spé. NSI</a>
+                
+                  <a href="../../../terminales-pc">Terminale Spé. PC</a>
+                
+                  <a href="../../../terminales-nsi">Terminale Spé. NSI</a>
+                
+                  <a href="../../../terminales-es">Terminale Ens. Scientifique</a>
+                
+                  <a href="../../../superieur">... dans le supérieur</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Culture</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../culture">Articles</a>
+                
+                  <a href="../../../programmation">Programmation</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Catégories" href="../../../categories">Catégories</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="../../../tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Accueil" href="https://dlatreyte.github.io">
+            <img class="avatar-img" src="https://dlatreyte.github.io/first_page.jpg" alt="Accueil" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="terminales-pc-heading">
+              
+                <h1>Détermination de la masse du Soleil à l&#39;aide de Python</h1>
+              
+              
+                <hr class="small">
+              
+              
+                
+                  <h2 class="terminales-pc-subheading">Chapitre 9,14</h2>
+                
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post" auto_numbering >
+          
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#affichage-du-carré-de-la-période-en-fonction-du-cube-du-demi-grand-axe">Affichage du carré de la période en fonction du cube du demi-grand axe</a></li>
+    <li><a href="#modélisation">Modélisation</a></li>
+    <li><a href="#détermination-de-la-masse-du-soleil">Détermination de la masse du Soleil</a></li>
+  </ul>
+</nav>
+          
+        
+        <hr />
+
+        <blockquote>
+<p>L&rsquo;objectif de ce document est de retrouver la masse du Soleil à l&rsquo;aide des données des périodes et des demi-grands axes des planètes et de la troisième loi de Képler.</p>
+</blockquote>
+<div class="note normal">
+  Un corrigé de cette activité se trouve à cette <a href="https://replit.com/@dlatreyte/Troisieme-loi-de-Kepler#main.py" target="_blank">adresse</a>. Ne pas le consulter avant d&rsquo;avoir cherché les réponses aux questions.
+</div>
+<h4 id="données">Données</h4>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Planète</th>
+<th style="text-align:center">Période (ans)</th>
+<th style="text-align:center">Demi-grand axe ($\times \pu{10^{10} m}$)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Mercure</td>
+<td style="text-align:center">0,24</td>
+<td style="text-align:center">5,79</td>
+</tr>
+<tr>
+<td style="text-align:center">Vénus</td>
+<td style="text-align:center">0,62</td>
+<td style="text-align:center">10,80</td>
+</tr>
+<tr>
+<td style="text-align:center">Terre</td>
+<td style="text-align:center">1,00</td>
+<td style="text-align:center">15,00</td>
+</tr>
+<tr>
+<td style="text-align:center">Mars</td>
+<td style="text-align:center">1,88</td>
+<td style="text-align:center">22,80</td>
+</tr>
+<tr>
+<td style="text-align:center">Jupiter</td>
+<td style="text-align:center">11,90</td>
+<td style="text-align:center">77,80</td>
+</tr>
+<tr>
+<td style="text-align:center">Saturne</td>
+<td style="text-align:center">29,50</td>
+<td style="text-align:center">143,00</td>
+</tr>
+<tr>
+<td style="text-align:center">Uranus</td>
+<td style="text-align:center">84,00</td>
+<td style="text-align:center">287,00</td>
+</tr>
+<tr>
+<td style="text-align:center">Neptune</td>
+<td style="text-align:center">165,00</td>
+<td style="text-align:center">450,00</td>
+</tr>
+<tr>
+<td style="text-align:center">Pluton</td>
+<td style="text-align:center">248,00</td>
+<td style="text-align:center">590,00</td>
+</tr>
+</tbody>
+</table>
+</center>
+<h2 id="affichage-du-carré-de-la-période-en-fonction-du-cube-du-demi-grand-axe">Affichage du carré de la période en fonction du cube du demi-grand axe</h2>
+<ol>
+<li>
+<p>Une version du fichier de travail se trouve à <a href="https://replit.com/@dlatreyte/Troisieme-loi-de-Kepler-Eleves#main.py" target="_blank">cette adresse</a>. L&rsquo;intégrer à son profil personnel sur <a href="https://replit.com" target="_blank">Replit</a> (<kbd>Fork repl</kbd>).</p>
+</li>
+<li>
+<p>Construire la liste <code>T</code>, à la ligne 47, avec les valeurs données dans le tableau ci-dessus.</p>
+</li>
+<li>
+<p>Même question pour la liste <code>a</code>, à la ligne 49.</p>
+</li>
+<li>
+<p>Les périodes sont données en années. L&rsquo;objectif des instructions, lignes 56 et 57, est de toutes les transformer en secondes.<br>
+Écrire les instructions nécessaires.</p>
+</li>
+<li>
+<p><code>T_carre</code> est un tableau de même longueur que la la liste <code>T</code> formé uniquement de 0. L&rsquo;objectif des instructions, lignes 61 et 62, est de garnir le tableau <code>T_carre</code> des valeurs de la liste <code>T</code> au carré.<br>
+Écrire les instructions nécessaires.</p>
+</li>
+<li>
+<p><code>a_cube</code> est un tableau de même longueur que la la liste <code>a</code> formé uniquement de 0. L&rsquo;objectif des instructions, lignes 66 et 67, est de garnir le tableau <code>a_cube</code> des valeurs de la liste <code>a</code> au cube.<br>
+Écrire les instructions nécessaires.</p>
+</li>
+<li>
+<p>La fonction <code>affichage</code> permet une construction simple d&rsquo;un graphique $y = f(x)$. Compléter l&rsquo;instruction de la fonction <code>plot</code> qui permet cet affichage, ligne 14.</p>
+</li>
+<li>
+<p>Compléter l&rsquo;appel de la fonciton <code>affichage</code>, ligne 70, de façon à ce que le graphique construit soit $T^2 = f(a^3)$.  <br>
+Examiner le résultat.</p>
+</li>
+</ol>
+<h2 id="modélisation">Modélisation</h2>
+<ol start="11">
+<li>La fonction <code>f_modelisation</code>, dont la définition débute à la ligne 37, est la fonction mathématique qui traduit le mieux comportement du jeu de données. <br>
+Remplacer <code>pass</code> par la bonne instruction :
+<ul>
+<li><code>return a * x</code></li>
+<li><code>return a * x + b</code></li>
+<li><code>return a * x**2 + b * x + c</code></li>
+<li><code>return a * sin(b * x)</code></li>
+<li><code>return a * log(x)</code></li>
+</ul>
+</li>
+</ol>
+<p>Ajouter, au bas du document, avec les lignes de code suivantes (faire un copier-coller) :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Modélisation</span>
+<span class="n">popt</span><span class="p">,</span> <span class="n">pcov</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">f_modelisation</span><span class="p">,</span> <span class="n">a_cube</span><span class="p">,</span>
+                       <span class="n">T_carre</span><span class="p">)</span>  <span class="c1"># Calcul modélisation</span>
+
+<span class="c1"># Affichage modélisation</span>
+<span class="n">affichage_modelisation</span><span class="p">(</span><span class="n">a_cube</span><span class="p">,</span> <span class="n">T_carre</span><span class="p">,</span> <span class="n">f_modelisation</span><span class="p">(</span><span class="n">a_cube</span><span class="p">,</span> <span class="o">*</span><span class="n">popt</span><span class="p">))</span>
+
+<span class="c1"># Constante de Kepler</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Modélisation : T^2 = </span><span class="si">{}</span><span class="s2"> a^3&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="12">
+<li>La modélisation est-elle satisfaisante ? Noter la valeur de la constante de Képler.</li>
+</ol>
+<h2 id="détermination-de-la-masse-du-soleil">Détermination de la masse du Soleil</h2>
+<ol start="13">
+<li>
+<p>Définir, au bas du document, la variable <code>G</code> et lui affecter la valeur de la constante universelle de gravitation.</p>
+</li>
+<li>
+<p>Définir la variable <code>MS</code> et lui affecter le résultat du calcul de la masse du Soleil.  <br>
+Utiliser les variables <code>K</code>, <code>MS</code>, <code>np.pi</code>.</p>
+</li>
+<li>
+<p>Afficher la masse du Soleil à l&rsquo;écran.</p>
+</li>
+</ol>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+              </div>
+            </section>
+        
+
+        
+          
+          
+        
+      </article>
+
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://dlatreyte.github.io/terminales-pc/chap-8/13-annale-particule-alpha/" data-toggle="tooltip" data-placement="top" title="Particule ⍺ dans un champ électrostatique uniforme">&larr; Post précédent</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:david.latreyte@louismassignon.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DLatreyte" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/@DLatreyte" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/latreyte-david-917852b2" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/agdavgablou" title="Instagram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://dlatreyte.github.io">David Latreyte</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://dlatreyte.github.io">Accueil</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          Carbure avec <a href="https://gohugo.io">Hugo v0.92.2</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://dlatreyte.github.io/js/main.js"></script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dlatreyte.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+<script>
+  MathJax = {
+    tex: {
+      packages: {'[-]': ['textmacros']},
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,      
+      processEnvironments: true, 
+      processRefs: true,         
+      digits: /^(?:[0-9]+(?:\{,\}[0-9]{3})*(?:\.[0-9]*)?|\.[0-9]+)/,
+                               
+      tags: 'ams',              
+      tagSide: 'right',          
+      tagIndent: '0.8em',        
+      useLabelIds: true,         
+      multlineWidth: '85%',      
+      maxMacros: 1000,           
+      maxBuffer: 10 * 1024,       
+      formatError:               
+          (jax, err) => jax.formatError(err)
+    },
+    showProcessingMessages: true,
+    svg: {
+      fontCache: 'global',
+      scale: 0.97,                
+      minScale: 0.8               
+    },
+    chtml: {
+      scale: 1,                      
+      minScale: .5,                  
+      matchFontHeight: true         
+    }
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
+
+  
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Structures de données abstraites arborescentes : les arbres - Accueil</title>
+  <meta name="description" content="Chapitre 9,1">
+  <meta name="author" content="David Latreyte"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Accueil",
+    
+    "url": "https:\/\/dlatreyte.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/dlatreyte.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io\/terminales-nsi\/chap-9\/1-introduction-arbres\/",
+          "name": "Structures de données abstraites arborescentes les arbres"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "David Latreyte"
+  },
+  "headline": "Structures de données abstraites arborescentes : les arbres",
+  "description" : "La notion de listes chaînées est parfaite pour structurer un ensemble d\u0026rsquo;élements destinés à être énumérés séquentiellement. Elle permet aussi d\u0026rsquo;implémenter les structures de piles et de files. Elle n\u0026rsquo;est cependant pas adaptée aux accès spécifiques à des positions données dans la séquence, puisqu\u0026rsquo;il faut alors parcourir toutes les cellules depuis le début de la liste jusqu\u0026rsquo;à la position souhaitée (complexité en $O(N)$).\n Document de référence pour ce cours Structures arborescentes Lorsqu\u0026rsquo;on manipule une information présentant une certaine hiérarchie, il est commun de la représenter graphiquement :",
+  "inLanguage" : "fr",
+  "wordCount":  892 ,
+  "datePublished" : "2020-11-05T03:37:56",
+  "dateModified" : "2020-11-05T03:37:56",
+  "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+  "keywords" : [ "Arbres, Listes" ],
+  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/terminales-nsi\/chap-9\/1-introduction-arbres\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/dlatreyte.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Structures de données abstraites arborescentes : les arbres" />
+<meta property="og:description" content="Chapitre 9,1">
+<meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
+<meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/chap-9/1-introduction-arbres/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Accueil" />
+
+  <meta name="twitter:title" content="Structures de données abstraites arborescentes : les arbres" />
+  <meta name="twitter:description" content="Chapitre 9,1">
+  <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@@DLatreyte" />
+  <meta name="twitter:creator" content="@@DLatreyte" />
+  <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.92.2" />
+  <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://dlatreyte.github.io">Accueil</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Infos" href="../../../about/infos">Infos</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Blog" href="../../../">Blog</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Cours</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../premieres-pc">1ère Spé. PC</a>
+                
+                  <a href="../../../premieres-nsi">1ère Spé. NSI</a>
+                
+                  <a href="../../../terminales-pc">Terminale Spé. PC</a>
+                
+                  <a href="../../../terminales-nsi">Terminale Spé. NSI</a>
+                
+                  <a href="../../../terminales-es">Terminale Ens. Scientifique</a>
+                
+                  <a href="../../../superieur">... dans le supérieur</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Culture</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../culture">Articles</a>
+                
+                  <a href="../../../programmation">Programmation</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Catégories" href="../../../categories">Catégories</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="../../../tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Accueil" href="https://dlatreyte.github.io">
+            <img class="avatar-img" src="https://dlatreyte.github.io/first_page.jpg" alt="Accueil" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="terminales-nsi-heading">
+              
+                <h1>Structures de données abstraites arborescentes : les arbres</h1>
+              
+              
+                <hr class="small">
+              
+              
+                
+                  <h2 class="terminales-nsi-subheading">Chapitre 9,1</h2>
+                
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post" auto_numbering >
+          
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#structures-arborescentes">Structures arborescentes</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#définitions-et-vocabulaire">Définitions et vocabulaire</a>
+      <ul>
+        <li><a href="#arbre-enraciné">Arbre (enraciné)</a></li>
+        <li><a href="#racine-noeud-branche-feuille">Racine, noeud, branche, feuille</a></li>
+        <li><a href="#hauteur-dun-nœud-profondeur-dun-arbre">Hauteur d&rsquo;un nœud, profondeur d&rsquo;un arbre</a></li>
+        <li><a href="#taille-dun-arbre">Taille d&rsquo;un arbre</a></li>
+        <li><a href="#degré-dun-noeud-degré-dun-arbre">Degré d’un noeud, degré d’un arbre</a></li>
+      </ul>
+    </li>
+    <li><a href="#relation-entre-les-liste-et-les-arbres">Relation entre les liste et les arbres</a></li>
+  </ul>
+</nav>
+          
+        
+        <hr />
+
+        <blockquote>
+<p>La notion de listes chaînées est parfaite pour structurer un ensemble d&rsquo;élements destinés à être énumérés séquentiellement. Elle permet aussi d&rsquo;implémenter les structures de piles et de files. <em>Elle n&rsquo;est cependant pas adaptée aux accès spécifiques à des positions données dans la séquence</em>, puisqu&rsquo;il faut alors parcourir toutes les cellules depuis le début de la liste jusqu&rsquo;à la position souhaitée (complexité en $O(N)$).</p>
+</blockquote>
+
+<a class="remote" href="https://isn-icn-ljm.pagesperso-orange.fr/NSI-TLE/co/section_chapitre3.html" target="_blank">Document de référence pour ce cours</a>
+
+
+<h2 id="structures-arborescentes">Structures arborescentes</h2>
+<p>Lorsqu&rsquo;on manipule une information présentant une certaine hiérarchie, il est commun de la représenter graphiquement :</p>
+<h4 id="arbre-généalogique">Arbre généalogique</h4>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    mermaid.initialize({    
+        theme: 'default',
+        themeCSS: '',
+        cloneCssStyles: false,
+        useMaxWidth: true,
+        htmlLabels: true,
+        flowchart: { 
+                curve: 'basis' 
+        }
+    });
+</script>
+<pre class="mermaid" align="center">
+graph TD
+    A(Jules) --> B(Mireille)
+    A(Jules) --> C(Gérard)
+    A(Jules) --> D(Guy)
+    B --> E(David)
+    E --> F(Gabriel)
+    E --> G(Louise)
+    C --> H(Fabien)
+    D --> I(Sandra)
+    D --> J(Marion)
+</pre>
+
+<h4 id="arborescence-dun-système-de-fichier">Arborescence d&rsquo;un système de fichier</h4>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    mermaid.initialize({    
+        theme: 'default',
+        themeCSS: '',
+        cloneCssStyles: false,
+        useMaxWidth: true,
+        htmlLabels: true,
+        flowchart: { 
+                curve: 'basis' 
+        }
+    });
+</script>
+<pre class="mermaid" align="center">
+graph TD
+  A(/) --> B(bin)
+  A --> C(root)
+  A --> D(home)
+  A --> F(etc)
+  A --> G(var)
+  A --> H(usr)
+  A --> I(tmp)
+  D --> J(mats)
+  J --> K(Documents)
+  J --> L(Images)
+  J --> M(Vidéos)
+  K --> N(Terminale)
+  N --> O(NSI)
+  N --> P(PC)
+</pre>
+
+<h4 id="expression-mathématique">Expression mathématique</h4>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    mermaid.initialize({    
+        theme: 'default',
+        themeCSS: '',
+        cloneCssStyles: false,
+        useMaxWidth: true,
+        htmlLabels: true,
+        flowchart: { 
+                curve: 'basis' 
+        }
+    });
+</script>
+<pre class="mermaid" align="center">
+graph TD
+  A(+) --> B(*)
+  B --> C(3)
+  B --> D(8)
+  A --> E(6)
+</pre>
+
+<div class="note exercise">
+  Écrire l&rsquo;expression mathématique représentée par l&rsquo;arbre ci-dessus.
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>$3 \times 8 + 6$</p>
+</details>
+<hr />
+<div class="note exercise">
+  Écrire l&rsquo;arbre représentant l&rsquo;expression mathématique $ a\, sin( \dfrac{2\pi}{T}t)$.
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<img src="../../../terminales-nsi/chap-9/chap-9-1-1.svg" alt="" width="">
+</details>
+<hr />
+<h4 id="arbre-lexicographique">Arbre lexicographique</h4>
+<p>Un arbre lexicographique, ou arbre en parties communes, ou dictionnaire, représente un ensemble de mots. <em>Les préfixes communs à plusieurs mots n&rsquo;apparaissent qu&rsquo;une seule fois dans l’arbre</em>.</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    mermaid.initialize({    
+        theme: 'default',
+        themeCSS: '',
+        cloneCssStyles: false,
+        useMaxWidth: true,
+        htmlLabels: true,
+        flowchart: { 
+                curve: 'basis' 
+        }
+    });
+</script>
+<pre class="mermaid" align="center">
+graph TD
+  A(.) --> B(m)
+  B --> C(a)
+  C --> D(i)
+  D --> E(s)
+  E --> F(o)
+  F --> G(n)
+  D --> H(t)
+  H --> I(r)
+  I --> J(i)
+  J --> K(s)
+  K --> L(e)
+  L --> M(r)
+  C --> N(t)
+  N --> O(e)
+  O --> P(l)
+  P --> Q(a)
+  Q --> R(t)
+  P --> S(o)
+  S --> T(t)
+  A --> U(v)
+  U --> V(a)
+  V --> W(l)
+  W --> X(i)
+  X --> Y(s)
+  Y --> Z(e)
+</pre>
+
+<div class="note exercise">
+  Quels sont les mots représentés dans l&rsquo;arbre ?
+</div>
+<div class="note exercise">
+  <p>Ajouter les mots « matériel » et « vallon ».</p>
+<p><strong>Remarque :</strong> ne pas différencier les lettres é et e.</p>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<img src="../../../terminales-nsi/chap-9/chap-9-1-2.svg" alt="" width="">
+</details>
+<hr />
+<h2 id="définitions-et-vocabulaire">Définitions et vocabulaire</h2>
+<h3 id="arbre-enraciné">Arbre (enraciné)</h3>
+<div class="note tip">
+  <ul>
+<li>
+<p>Un <strong>arbre</strong> (nom complet <strong>arbre enraciné</strong>) est une <em>structure de données abstraite arborescente dans laquelle les données sont hiérarchisées depuis un <strong>nœud racine</strong>.</em></p>
+</li>
+<li>
+<p>Un arbre dont tous les nœuds sont nommés est dit <strong>étiqueté</strong>. L’étiquette (ou nom du sommet) représente la « valeur » du nœud ou bien l’information associée au nœud.</p>
+</li>
+</ul>
+</div>
+<h3 id="racine-noeud-branche-feuille">Racine, noeud, branche, feuille</h3>
+<div class="note tip">
+  <ul>
+<li>Un arbre est un ensemble organisé de <strong>nœuds</strong> dans lequel <em>chaque nœud a un <strong>père</strong>, sauf un nœud que l’on appelle le <strong>nœud racine</strong>.</em></li>
+<li><em>Si le nœud n’a pas de fils</em>, on dit que c’est une <strong>feuille</strong>.</li>
+<li>Les nœuds sont reliés par des <strong>branches</strong>.</li>
+</ul>
+</div>
+<div class="note exercise">
+  <ul>
+<li>Nommer les nœuds puis les feuilles dans l&rsquo;arbre représenté ci-dessous.</li>
+<li>Compter le nombre de branches.</li>
+</ul>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    mermaid.initialize({    
+        theme: 'default',
+        themeCSS: '',
+        cloneCssStyles: false,
+        useMaxWidth: true,
+        htmlLabels: true,
+        flowchart: { 
+                curve: 'basis' 
+        }
+    });
+</script>
+<pre class="mermaid" align="center">
+graph TD
+  A(a) --> B(b)
+  A --> C(c)
+  B --> D(d)
+  B --> E(e)
+  E --> F(f)
+  E --> G(g)
+  B --> H(h)
+  H --> I(i)
+</pre>
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponses</strong>
+    </summary>
+<ul>
+<li><strong>Nœuds</strong> : a (racine), b, e, h et <strong>feuilles</strong> : c, d, f, g, i.</li>
+<li>8 branches.</li>
+</ul>
+</details>
+<hr />
+<h3 id="hauteur-dun-nœud-profondeur-dun-arbre">Hauteur d&rsquo;un nœud, profondeur d&rsquo;un arbre</h3>
+<div class="note tip">
+  La <strong>hauteur</strong> (ou <strong>profondeur</strong> ou <strong>niveau</strong>) d&rsquo;un nœud est égale au <em>nombre de nœuds rencontrés en descendant de la racine jusqu&rsquo;au nœud (<strong>racine et nœud inclus</strong>)</em>.
+</div>
+<div class="note tip">
+  La <strong>hauteur</strong> (ou <strong>profondeur</strong>) d’un <em>arbre</em> est égale à <em>la profondeur du nœud le plus profond</em>.
+</div>
+<div class="note normal">
+  La hauteur d&rsquo;un arbre est très importante. En effet, la plupart des algorithmes que nous verrons dans la suite ont une <em>complexité qui dépend de la hauteur de l&rsquo;arbre</em>. Ainsi plus l&rsquo;arbre aura une hauteur élevée, plus l&rsquo;algorithme mettra de temps à s&rsquo;exécuter.
+</div>
+<div class="note warning">
+  Dans notre convention, la hauteur de la racine est égale à 1. <em>Tous les auteurs n&rsquo;utilisent pas cette convention !</em> Pour certains, la <strong>hauteur</strong> d’un <em>nœud</em> est égale au <em>nombre d’arêtes qu’il faut parcourir à partir de la racine pour parvenir au nœud</em> ; la hauteur de la racine est alors de 0.
+</div>
+<div class="note exercise">
+  <ul>
+<li>Donner la hauteur du nœud <code>e</code> dans l&rsquo;arbre représenté ci-dessus.</li>
+<li>Quelle est la profondeur de cet arbre ?</li>
+</ul>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponses</strong>
+    </summary>
+<ul>
+<li>Hauteur de <code>e</code> : 3.</li>
+<li>Profondeur de l&rsquo;arbre : 4.</li>
+</ul>
+</details>
+<hr />
+<h3 id="taille-dun-arbre">Taille d&rsquo;un arbre</h3>
+<div class="note tip">
+  La <strong>taille</strong> d’un arbre est égale au <em>nombre de nœuds de l’arbre (nœuds internes et feuilles)</em>.
+</div>
+<div class="note exercise">
+  <ul>
+<li>Indiquer la taille de l&rsquo;arbre représenté ci-dessus.</li>
+</ul>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponses</strong>
+    </summary>
+<ul>
+<li>Taille de l&rsquo;arbre : 9.</li>
+</ul>
+</details>
+<hr />
+<h3 id="degré-dun-noeud-degré-dun-arbre">Degré d’un noeud, degré d’un arbre</h3>
+<div class="note tip">
+  <ul>
+<li>Le <strong>degré d’un nœud</strong> est égal au <em>nombre de ses descendants (fils)</em>.</li>
+<li>Le <strong>degré d’un arbre</strong> est égal au <em>plus grand des degrés de ses nœuds</em>.</li>
+</ul>
+</div>
+<div class="note exercise">
+  <ul>
+<li>Quel est le degré du nœud <code>b</code> dans l&rsquo;arbre représenté ci-dessus ?</li>
+<li>Quel est le degré du nœud <code>a</code> ?</li>
+<li>Quel est le degré de l&rsquo;arbre ?</li>
+</ul>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponses</strong>
+    </summary>
+<ul>
+<li>Degré de <code>b</code> : 3.</li>
+<li>Degré de <code>a</code> : 2.</li>
+<li>Degré de l&rsquo;arbre : 3.</li>
+</ul>
+</details>
+<hr />
+<h2 id="relation-entre-les-liste-et-les-arbres">Relation entre les liste et les arbres</h2>
+<div class="note tip">
+  Un arbre dont tous les nœuds n’ont qu’un seul fils est en fait une liste.
+</div>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://dlatreyte.github.io/tags/arbres/">Arbres</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/listes/">Listes</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+              </div>
+            </section>
+        
+
+        
+          
+          
+          <h4 class="see-also">Voir également</h4>
+          <ul>
+          
+            <li><a href="../../../terminales-nsi/chap-1/1-2-recursivite-chaines-listes/">La récursivité appliquée aux chaînes de caractères et aux listes</a></li>
+          
+          </ul>
+          
+        
+      </article>
+
+
+      
+        <ul class="pager blog-pager">
+          
+          
+            <li class="next">
+              <a href="https://dlatreyte.github.io/terminales-nsi/chap-9/2-arbres-binaires/" data-toggle="tooltip" data-placement="top" title="Les arbres binaires">Post suivant &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:david.latreyte@louismassignon.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DLatreyte" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/@DLatreyte" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/latreyte-david-917852b2" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/agdavgablou" title="Instagram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://dlatreyte.github.io">David Latreyte</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://dlatreyte.github.io">Accueil</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          Carbure avec <a href="https://gohugo.io">Hugo v0.92.2</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://dlatreyte.github.io/js/main.js"></script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dlatreyte.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/copy-tex.min.js" integrity="sha512-DJT2Gf9zoglFWNuxgFcMZ3zi9Ra9GPDxpw9/8kyQ6cji+SOaLlV1A49Its53eLZlGfb4WjwRCptEUdNju6Wxgw==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/mathtex-script-type.min.js" integrity="sha512-2c9WyrhBiLmhhuJeAEmai4Uh9O+bjCRVsKaFkbj2vCLsJ3aTI0Bx2r0+gRPiqjnmNKATzzsjQGgmQXXEOERmmQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/mhchem.min.js" integrity="sha512-ndr34OWlb/uvrgXcrqKXv4YUB42kRFQi9cJ+s+alNEvNBKYyIlO970xmSWYV3vNKsrT1rwW/leiBEaZxcCwjwA==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/render-a11y-string.min.js" integrity="sha512-SqjsWHpIJhclCK0YMrCV7qCKarjj6qF9ViYOldWgdJtELSOG+Jth6iKNhdMSwRAPNzKgGsU7jiE1B6YdK967tw==" crossorigin="anonymous"></script>
+<script>
+  renderMathInElement(document.body,
+    {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$", right: "$", display: false}
+        ]
+    }
+  );
+
+  var inlineMathArray = document.querySelectorAll("script[type='math/tex']");
+  for (var i = 0; i < inlineMathArray.length; i++) {
+      var inlineMath = inlineMathArray[i];
+      var tex = inlineMath.innerText || inlineMath.textContent;
+      var replaced = document.createElement("span");
+      replaced.innerHTML = katex.renderToString(tex, {displayMode: false});
+      inlineMath.parentNode.replaceChild(replaced, inlineMath);
+  }
+
+  var displayMathArray = document.querySelectorAll("script[type='math/tex; mode=display']");
+  for (var i = 0; i < displayMathArray.length; i++) {
+      var displayMath = displayMathArray[i];
+      var tex = displayMath.innerHTML;
+      var replaced = document.createElement("span");
+      replaced.innerHTML = katex.renderToString(tex.replace(/%.*/g, ''), {displayMode: true});
+      displayMath.parentNode.replaceChild(replaced, displayMath);
+  }
+
+</script>
+
+
+    
+  </body>
+</html>
+
