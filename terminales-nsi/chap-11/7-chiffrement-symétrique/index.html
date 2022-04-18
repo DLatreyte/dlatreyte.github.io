@@ -59,7 +59,7 @@
   "headline": "Réalisation d\u0027un chiffrement symétrique",
   "description" : "L\u0026rsquo;objectif de ce document est d\u0026rsquo;illustrer un exemple de chiffrement symétrique, basique mais très utilisé dans les débuts de l\u0026rsquo;informatique car son implémentation est très simple..\n Principe de la méthode  Rechercher le codage binaire du mot mon papa. C\u0026rsquo;est le message à chiffrer.    Réponse  01101101 01101111 01101110 00100000 01110000 01100001 01110000 01100001\n Remarque : utiliser le site https:\/\/www.rapidtables.com\/convert\/number\/ascii-to-binary.html pour obtenir les codes des caractères.",
   "inLanguage" : "fr",
-  "wordCount":  1186 ,
+  "wordCount":  1185 ,
   "datePublished" : "2022-04-15T06:36:15",
   "dateModified" : "2022-04-15T06:36:15",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -505,7 +505,6 @@ Rappeler la table de vérité du XOR (OU exclusif).</li>
 </span><span class="lnt">21
 </span><span class="lnt">22
 </span><span class="lnt">23
-</span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">codage</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -518,16 +517,15 @@ Rappeler la table de vérité du XOR (OU exclusif).</li>
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">inv_chaine_bin</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  <span class="c1"># Chaîne binaire inversée</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">a</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">a</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="n">inv_chaine_bin</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">//</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl">    <span class="n">inv_chaine_bin</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Dernière valeur</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">octet</span> <span class="o">=</span> <span class="mi">8</span>            <span class="c1"># Formation d&#39;octets</span>
+</span></span><span class="line"><span class="cl">    <span class="n">octet</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># Formation d&#39;octets</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inv_chaine_bin</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">octet</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="n">inv_chaine_bin</span> <span class="o">+=</span> <span class="s2">&#34;0&#34;</span> <span class="o">*</span> <span class="p">(</span><span class="n">octet</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">inv_chaine_bin</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">chaine_bin</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>      <span class="c1"># Inversion de la chaîne</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chaine_bin</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  <span class="c1"># Inversion de la chaîne</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">inv_chaine_bin</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">        <span class="n">chaine_bin</span> <span class="o">+=</span> <span class="n">inv_chaine_bin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
@@ -670,12 +668,14 @@ Rappeler la table de vérité du XOR (OU exclusif).</li>
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajustement_cle</span><span class="p">(</span><span class="n">cle</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">longueur_chaine</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajustement_cle</span><span class="p">(</span><span class="n">code_cle</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">longueur_chaine</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajuste la longueur de la clé à celle de la
-</span></span></span><span class="line"><span class="cl"><span class="s2">    chaîne à chiffrer, de longueur longueur_chaine.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajuste la longueur du code de la clé à celle du
+</span></span></span><span class="line"><span class="cl"><span class="s2">    code de la chaîne à chiffrer, de longueur 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    longueur_chaine.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -699,19 +699,21 @@ Rappeler la table de vérité du XOR (OU exclusif).</li>
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajustement_cle</span><span class="p">(</span><span class="n">cle</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">longueur_chaine</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajustement_cle</span><span class="p">(</span><span class="n">code_cle</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">longueur_chaine</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajuste la longueur de la clé à celle de la
-</span></span></span><span class="line"><span class="cl"><span class="s2">    chaîne à chiffrer, de longueur longueur_chaine.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajuste la longueur du code de la clé à celle du
+</span></span></span><span class="line"><span class="cl"><span class="s2">    code de la chaîne à chiffrer, de longueur 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    longueur_chaine.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cle</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">longueur_chaine</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">=</span> <span class="n">cle</span><span class="p">[:</span><span class="n">longueur_chaine</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">code_cle</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">longueur_chaine</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">=</span> <span class="n">code_cle</span><span class="p">[:</span><span class="n">longueur_chaine</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">rapport</span> <span class="o">=</span> <span class="n">longueur_chaine</span> <span class="o">//</span> <span class="nb">len</span><span class="p">(</span><span class="n">cle</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">=</span> <span class="n">cle</span> <span class="o">*</span> <span class="n">rapport</span>
-</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">+=</span> <span class="n">cle</span><span class="p">[:</span><span class="n">longueur_chaine</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">rep</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rapport</span> <span class="o">=</span> <span class="n">longueur_chaine</span> <span class="o">//</span> <span class="nb">len</span><span class="p">(</span><span class="n">code_cle</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">=</span> <span class="n">code_cle</span> <span class="o">*</span> <span class="n">rapport</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">+=</span> <span class="n">code_cle</span><span class="p">[:</span><span class="n">longueur_chaine</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">rep</span><span class="p">)]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">rep</span>
 </span></span></code></pre></td></tr></table>
