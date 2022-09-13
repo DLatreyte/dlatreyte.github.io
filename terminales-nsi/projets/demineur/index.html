@@ -10,7 +10,8 @@
   <title>Lé Démineur - Accueil</title>
   <meta name="description" content="Le Démineur est un jeu vidéo de réflexion dont le but est de localiser des mines cachées dans une grille représentant un champ de mines virtuel, avec pour seule indication le nombre de mines dans les zones adjacentes.
 Wikipedia L&rsquo;objectif de cette séance est la construction de la grille représentant le champ de mines.
-Écrire une fonction qui demande à l’utilisateur trois nombres entiers $M$, $N$ et $p$. Cette fonction crée alors un tableau à deux dimensions $(M \times N )$ formé de booléens.">
+Les fonctions développées ci-dessous devront appartenir à un module demineur.
+Créer ce module. Le plateau à deux dimensions (m lignes et n colonnes) du jeu sera défini à la question 3.">
   <meta name="author" content="David Latreyte"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -59,9 +60,9 @@ Wikipedia L&rsquo;objectif de cette séance est la construction de la grille rep
     "name" : "David Latreyte"
   },
   "headline": "Lé Démineur",
-  "description" : "Le Démineur est un jeu vidéo de réflexion dont le but est de localiser des mines cachées dans une grille représentant un champ de mines virtuel, avec pour seule indication le nombre de mines dans les zones adjacentes.\nWikipedia L\u0026rsquo;objectif de cette séance est la construction de la grille représentant le champ de mines.\nÉcrire une fonction qui demande à l’utilisateur trois nombres entiers $M$, $N$ et $p$. Cette fonction crée alors un tableau à deux dimensions $(M \\times N )$ formé de booléens.",
+  "description" : "Le Démineur est un jeu vidéo de réflexion dont le but est de localiser des mines cachées dans une grille représentant un champ de mines virtuel, avec pour seule indication le nombre de mines dans les zones adjacentes.\nWikipedia L\u0026rsquo;objectif de cette séance est la construction de la grille représentant le champ de mines.\nLes fonctions développées ci-dessous devront appartenir à un module demineur.\nCréer ce module. Le plateau à deux dimensions (m lignes et n colonnes) du jeu sera défini à la question 3.",
   "inLanguage" : "fr",
-  "wordCount":  203 ,
+  "wordCount":  507 ,
   "datePublished" : "2022-02-28T06:33:38",
   "dateModified" : "2022-02-28T06:33:38",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -83,7 +84,8 @@ Wikipedia L&rsquo;objectif de cette séance est la construction de la grille rep
 <meta property="og:title" content="Lé Démineur" />
 <meta property="og:description" content="Le Démineur est un jeu vidéo de réflexion dont le but est de localiser des mines cachées dans une grille représentant un champ de mines virtuel, avec pour seule indication le nombre de mines dans les zones adjacentes.
 Wikipedia L&rsquo;objectif de cette séance est la construction de la grille représentant le champ de mines.
-Écrire une fonction qui demande à l’utilisateur trois nombres entiers $M$, $N$ et $p$. Cette fonction crée alors un tableau à deux dimensions $(M \times N )$ formé de booléens.">
+Les fonctions développées ci-dessous devront appartenir à un module demineur.
+Créer ce module. Le plateau à deux dimensions (m lignes et n colonnes) du jeu sera défini à la question 3.">
 <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
 <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/projets/demineur/" />
 <meta property="og:type" content="website" />
@@ -293,6 +295,8 @@ Wikipedia L&rsquo;objectif de cette séance est la construction de la grille rep
 
       <article role="main" class="blog-post" auto_numbering >
           
+            <nav id="TableOfContents"></nav>
+          
         
         <hr />
 
@@ -306,22 +310,130 @@ Wikipedia L&rsquo;objectif de cette séance est la construction de la grille rep
 <p>L&rsquo;objectif de cette séance est la construction de la grille représentant le champ de mines.</p>
 </blockquote>
 <ol>
-<li>Écrire une fonction qui demande à l’utilisateur trois nombres entiers $M$, $N$ et $p$. Cette fonction crée alors un tableau à deux dimensions $(M \times N )$ formé de booléens. Le nombre $p$ doit servir à établir la probabilité pour que la valeur du booléen stocké soit <code>True</code>.</li>
+<li>Les fonctions développées ci-dessous devront appartenir à un module <code>demineur</code>.<br>
+Créer ce module.</li>
 </ol>
-<dl>
-<dt>Remarque</dt>
-<dd>Comment utiliser l’entier $p$ ?
-Si $p=8$ (probabilité 1/8) effectuer un tirage au sort entre 1 et 8. La valeur 1 (<em>c’est arbitraire</em>) impose le booléen <code>True</code>, toute autre valeur, le booléen <code>False</code>.</dd>
-</dl>
+<p>Le plateau à deux dimensions (m lignes et n colonnes) du jeu sera défini à la question 3. par une liste de listes contenant des valeurs booléennes. La présence d&rsquo;une bombe correspondra à la valeur <code>True</code> tandis que l&rsquo;absence d&rsquo;une bombe à la valeur <code>False</code>. Les bombes seront placées aléatoirement avec une probabilité de 1/p.</p>
 <ol start="2">
+<li>Dans le module <code>demineur</code>, définir la fonction <code>place_bombe</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">contient_bombe</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Fonction qui détermine si une case contient une bombe ou pas.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Cette détermination est aléatoire, de probabilité 1/p.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Remarque.</strong> Utiliser la fonction <code>randint</code> du module <code>random</code> pour effectuer le tirage aléatoire et décider que la présence d&rsquo;une bombe correspond à la valeur 1 (c&rsquo;est arbitraire).</p>
+<ol start="3">
+<li>Dans le module <code>demineur</code>, définir la fonction <code>initialisation_jeu</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">initialisation_jeu</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">]]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Initialise le Jeu en construisant un plateau de dimensions m x n cases, 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    contenant des bombes dont la probabilité d&#39;apparition est de 1/p.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    La présence d&#39;une bombe correspond à la valeur True, l&#39;absence d&#39;une
+</span></span></span><span class="line"><span class="cl"><span class="s2">    bombe correspond à la valeur False.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Remarque.</strong> En fait, il est plus pratique (la raison sera développée plus tard) de créer un plateau de m + 2 lignes et de n + 2 colonnes. Les première et dernière lignes, ainsi que les première et dernière colonnes ne devront contenir aucune bombe.</p>
+<ol start="4">
+<li>Dans le module <code>demineur</code>, définir la fonction <code>affichage</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">affichage</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Affiche le plateau du jeu dans la console.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Une astérisque représente une bombe, un point représente une cellule
+</span></span></span><span class="line"><span class="cl"><span class="s2">    « sure ».
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
 <li>
-<p>Dans le jeu du Démineur, chaque cellule occupée (c.a.d dont la valeur vaut <code>True</code>) à représente une bombe.
-Afficher dans la console le tableau en utilisant une astérisque pour représenter les bombes et un point pour représenter les
-cellules « sures ».</p>
+<p>Dans le fichier principal, importer le module <code>demineur</code>,</p>
+<ul>
+<li>définir les variables <code>M</code>, <code>N</code> et <code>p</code> en demandant à l&rsquo;utilisateur leurs valeurs,</li>
+<li>initialiser le jeu,</li>
+<li>afficher le plateau.</li>
+</ul>
 </li>
 <li>
-<p>Effectuer un second affichage du tableau en remplaçant les points par des entiers indiquant le nombre de bombes dans le voisinage immédiat de la cellule.</p>
+<p>Dans le module <code>demineur</code>, définir la fonction <code>nombre_bombes</code> dont la spécification est :</p>
 </li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">nombre_bombes</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">]],</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le nombre de bombes au voisinage de la 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    cellule (i, j) du plateau p.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Remarque.</strong> Le fait d&rsquo;avoir choisi une liste de listes de dimensions (m + 2) x (n + 2) facilite l&rsquo;écriture de cette fonction.</p>
+<ol start="8">
+<li>Dans le module <code>demineur</code>, définir la fonction dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">affichage_nbre_bombes</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Affiche le plateau du jeu dans la console.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Une astérisque représente une bombe, les cellules « sures » contiennent
+</span></span></span><span class="line"><span class="cl"><span class="s2">    le nombre de bombes adjacentes.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="9">
+<li>Appeler la fonction <code>affichage_nbre_bombes</code> depuis le fichier principal.</li>
 </ol>
 
 
