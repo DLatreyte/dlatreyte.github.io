@@ -60,7 +60,7 @@ Le jeu de la vie a été inventé par le mathématicien britannique John H. Conw
   "headline": "Jeu de la vie",
   "description" : "Le but de ce sujet est de réaliser en Python une implémentation du jeu de la vie en utilisant la programmation objet.\nLe jeu de la vie a été inventé par le mathématicien britannique John H. Conway (1937-2020). C’est un exemple de ce qu’on appelle un automate cellulaire. Il se déroule sur un tableau rectangulaire $(L \\times H)$ de cellules. Une cellule est représentée par ses coordonnées $x$ et $y$ qui vérifient $0 \\leqslant x \u0026lt; L$ et $0 \\leqslant y \u0026lt; H$.",
   "inLanguage" : "fr",
-  "wordCount":  1499 ,
+  "wordCount":  1274 ,
   "datePublished" : "2020-10-04T04:35:40",
   "dateModified" : "2020-10-04T04:35:40",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -323,61 +323,23 @@ Le jeu de la vie a été inventé par le mathématicien britannique John H. Conw
 </div>
 <h2 id="modélisation-objet">Modélisation objet</h2>
 <ol>
-<li>Quelles classes peut-on dégager de ce problème au premier abord ?</li>
+<li>
+<p>Quelles classes peut-on dégager de ce problème au premier abord ?</p>
+</li>
+<li>
+<p>Quelles sont quelques-unes des méthodes qu’on pourrait leur donner ?</p>
+</li>
+<li>
+<p>Dans quelle classe pouvons-nous représenter simplement la notion de voisinage d’une cellule ? Et le calculer ?</p>
+</li>
+<li>
+<p>Une cellule est au bord si $0=x$, $x=L-1$, $0=y$ ou $y=H-1$. Combien de voisins possède une cellule qui n’est pas au bord ?
+Combien de voisins possède une cellule qui est au bord ?</p>
+</li>
+<li>
+<p>Que pourrions-nous aussi considérer comme voisin de droite de la case en haut à droite de la grille ? Et comme voisin du haut ?</p>
+</li>
 </ol>
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-<p>Les classes <code>Grille</code> et <code>Cellule</code> viennent facilement à l’esprit, on peut penser à une classe <code>Etat</code> représentant l’état d’une cellule si l’on veut pousser la modélisation un peu plus loin.</p>
-</details>
-<hr />
-<ol start="2">
-<li>Quelles sont quelques-unes des méthodes qu’on pourrait leur donner ?</li>
-</ol>
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-<p>Nous retrouverons ces méthodes dans l’implémentation, mais il faut au moins songer ici aux méthodes qui permettent de récupérer l’état interne des attributs et de les modifier. Il faut aussi penser à la représentation du voisinage d’une cellule et aux méthodes permettant de le modifier ou de le récupérer.</p>
-</details>
-<hr />
-<ol start="3">
-<li>Dans quelle classe pouvons-nous représenter simplement la notion de voisinage d’une cellule ? Et le calculer ?</li>
-</ol>
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-<p>Il peut être commode qu’une Cellule connaisse ses voisins, mais une Grille est plus à même de calculer les voisinages. On peut donc mettre une méthode de calcul de voisinage dans la Grille et des méthodes pour affecter ou lire la liste des voisins dans la Cellule, ce qui lui permettra de calculer son état futur selon les règles du jeu de la vie.</p>
-</details>
-<hr />
-<ol start="4">
-<li>Une cellule est au bord si $0=x$, $x=L-1$, $0=y$ ou $y=H-1$. Combien de voisins possède une cellule qui n’est pas au bord ?
-Combien de voisins possède une cellule qui est au bord ?</li>
-</ol>
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-<p>Une cellule qui n’est pas au bord possède 8 voisins. Une cellule qui est en bordure en possède 3 dans les angles ou 5 ailleurs sur les bords.</p>
-</details>
-<hr />
-<ol start="5">
-<li>Que pourrions-nous aussi considérer comme voisin de droite de la case en haut à droite de la grille ? Et comme voisin du haut ?</li>
-</ol>
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-<p>Nous pourrions considérer comme voisin de droite de la case en haut à droite de la grille la cellule en haut à gauche. De même le voisin du haut de la case en haut à droite pourrait être la cellule en bas à droite de la grille (grille torique).</p>
-</details>
-<hr />
 <h2 id="implémentation-des-cellules">Implémentation des cellules</h2>
 <h4 id="la-classe-cellule">La classe <code>Cellule</code></h4>
 <ol>
