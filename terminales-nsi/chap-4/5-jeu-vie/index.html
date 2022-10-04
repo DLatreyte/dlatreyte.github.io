@@ -60,7 +60,7 @@ Le jeu de la vie a été inventé par le mathématicien britannique John H. Conw
   "headline": "Jeu de la vie",
   "description" : "Le but de ce sujet est de réaliser en Python une implémentation du jeu de la vie en utilisant la programmation objet.\nLe jeu de la vie a été inventé par le mathématicien britannique John H. Conway (1937-2020). C’est un exemple de ce qu’on appelle un automate cellulaire. Il se déroule sur un tableau rectangulaire $(L \\times H)$ de cellules. Une cellule est représentée par ses coordonnées $x$ et $y$ qui vérifient $0 \\leqslant x \u0026lt; L$ et $0 \\leqslant y \u0026lt; H$.",
   "inLanguage" : "fr",
-  "wordCount":  1282 ,
+  "wordCount":  1296 ,
   "datePublished" : "2020-10-04T04:35:40",
   "dateModified" : "2020-10-04T04:35:40",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -409,27 +409,66 @@ Expliquer brièvement l’utilité d’une telle méthode <code>__str__</code> e
 <p>Donner une méthode <code>__str__</code> qui permet d’afficher la grille sur un terminal.</p>
 </li>
 <li>
-<p>On veut remplir aléatoirement la Grille avec un certain taux de Cellule vivantes. Fournir à cet effet, une méthode <code>remplir_alea()</code> avec le taux (en pourcentage) en paramètre.</p>
+<p>On veut remplir aléatoirement la Grille avec un certain taux de Cellule vivantes. Définir une méthode <code>remplir_alea</code> avec le taux (en pourcentage) en argument.</p>
 </li>
 </ol>
 <h4 id="le-jeu">Le jeu</h4>
 <ol start="11">
 <li>
-<p>Concevoir une méthode <code>jeu()</code> permettant de passer en revue toutes les Cellules de la Grille, de calculer leur état futur, puis une méthode <code>actualise()</code> qui bascule toutes les cellules de la Grille dans leur état futur.</p>
+<p>Définir une méthode <code>jeu</code> permettant de passer en revue toutes les Cellules de la Grille, de calculer leur état futur, puis une méthode <code>actualise</code> qui bascule toutes les cellules de la Grille dans leur état futur.</p>
 </li>
 <li>
-<p>Programme principal : définir enfin une fonction <code>main</code> pour terminer l’implémentation du jeu de la vie avec un affichage en console en utilisant les méthodes précédentes.<br>
-On donne la méthode suivante qui permet d’effacer l’écran dans un terminal ANSI :</p>
+<p>Dans le fichier principal, entrer le code suivant afin de lancer le jeu :</p>
 </li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">effacer_ecran</span><span class="p">():</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">grille</span> <span class="kn">import</span> <span class="n">Grille</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">effacer_ecran</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\u001B</span><span class="s2">[H</span><span class="se">\u001B</span><span class="s2">[J&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plateau</span> <span class="o">=</span> <span class="n">Grille</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plateau</span><span class="o">.</span><span class="n">remplir_alea</span><span class="p">(</span><span class="mi">55</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plateau</span><span class="o">.</span><span class="n">set_voisins</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">effacer_ecran</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">plateau</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plateau</span><span class="o">.</span><span class="n">jeu</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">plateau</span><span class="o">.</span><span class="n">actualise</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">main</span><span class="p">()</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="spécifications">Spécifications</h2>
