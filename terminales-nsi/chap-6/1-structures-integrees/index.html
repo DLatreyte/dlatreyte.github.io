@@ -9,7 +9,10 @@
 
   <title>Structures de données fournies avec le langage Python - Accueil</title>
   <meta name="description" content="Python possède dans la bibliothèque standard un grand nombre de structures de données, programmées de manière efficace.
-Pourquoi différentes structures de données ? Les structures de données organisent différemment les données que le programme traite. Le langage Python fournissant le type list, on pourrait se demander pourquoi ne pas systématiquement l&rsquo;utiliser et pourquoi devoir apprendre de nouveaux types. En fait, la spécialisation des structures de données rend la programmation plus simple (utilisation de l&rsquo;API) et plus efficace (complexité).">
+Rappels : modules, fonctions Pour chaque module, on distingue :
+sa réalisation (ou implémentation) : c&rsquo;est le code lui-même.
+son interface (API) : c&rsquo;est l&rsquo;énumération des fonctions définies dans le module qui sont utilisées depuis d&rsquo;autres modules/programmes, les clients.
+L&rsquo;interface doit présenter une documentation dans laquelle tout ce que doit savoir le client doit être indiqué.">
   <meta name="author" content="David Latreyte"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -58,9 +61,9 @@ Pourquoi différentes structures de données ? Les structures de données organi
     "name" : "David Latreyte"
   },
   "headline": "Structures de données fournies avec le langage Python",
-  "description" : "Python possède dans la bibliothèque standard un grand nombre de structures de données, programmées de manière efficace.\nPourquoi différentes structures de données ? Les structures de données organisent différemment les données que le programme traite. Le langage Python fournissant le type list, on pourrait se demander pourquoi ne pas systématiquement l\u0026rsquo;utiliser et pourquoi devoir apprendre de nouveaux types. En fait, la spécialisation des structures de données rend la programmation plus simple (utilisation de l\u0026rsquo;API) et plus efficace (complexité).",
+  "description" : "Python possède dans la bibliothèque standard un grand nombre de structures de données, programmées de manière efficace.\nRappels : modules, fonctions Pour chaque module, on distingue :\nsa réalisation (ou implémentation) : c\u0026rsquo;est le code lui-même.\nson interface (API) : c\u0026rsquo;est l\u0026rsquo;énumération des fonctions définies dans le module qui sont utilisées depuis d\u0026rsquo;autres modules\/programmes, les clients.\nL\u0026rsquo;interface doit présenter une documentation dans laquelle tout ce que doit savoir le client doit être indiqué.",
   "inLanguage" : "fr",
-  "wordCount":  602 ,
+  "wordCount":  1247 ,
   "datePublished" : "2020-10-13T05:25:49",
   "dateModified" : "2020-10-13T05:25:49",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -81,7 +84,10 @@ Pourquoi différentes structures de données ? Les structures de données organi
 
 <meta property="og:title" content="Structures de données fournies avec le langage Python" />
 <meta property="og:description" content="Python possède dans la bibliothèque standard un grand nombre de structures de données, programmées de manière efficace.
-Pourquoi différentes structures de données ? Les structures de données organisent différemment les données que le programme traite. Le langage Python fournissant le type list, on pourrait se demander pourquoi ne pas systématiquement l&rsquo;utiliser et pourquoi devoir apprendre de nouveaux types. En fait, la spécialisation des structures de données rend la programmation plus simple (utilisation de l&rsquo;API) et plus efficace (complexité).">
+Rappels : modules, fonctions Pour chaque module, on distingue :
+sa réalisation (ou implémentation) : c&rsquo;est le code lui-même.
+son interface (API) : c&rsquo;est l&rsquo;énumération des fonctions définies dans le module qui sont utilisées depuis d&rsquo;autres modules/programmes, les clients.
+L&rsquo;interface doit présenter une documentation dans laquelle tout ce que doit savoir le client doit être indiqué.">
 <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
 <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/chap-6/1-structures-integrees/" />
 <meta property="og:type" content="website" />
@@ -89,7 +95,8 @@ Pourquoi différentes structures de données ? Les structures de données organi
 
   <meta name="twitter:title" content="Structures de données fournies avec le langage Python" />
   <meta name="twitter:description" content="Python possède dans la bibliothèque standard un grand nombre de structures de données, programmées de manière efficace.
-Pourquoi différentes structures de données ? Les structures de données …">
+Rappels : modules, fonctions Pour chaque module, on distingue :
+sa réalisation …">
   <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@@DLatreyte" />
@@ -294,15 +301,27 @@ Pourquoi différentes structures de données ? Les structures de données …">
           
             <nav id="TableOfContents">
   <ul>
+    <li><a href="#rappels--modules-fonctions">Rappels : modules, fonctions</a></li>
+    <li><a href="#avantages-dune-barrière-dabstraction">Avantages d&rsquo;une barrière d&rsquo;abstraction</a></li>
     <li><a href="#pourquoi-différentes-structures-de-données-">Pourquoi différentes structures de données ?</a></li>
-    <li><a href="#liste--list">Liste : <code>list</code></a></li>
-    <li><a href="#tableau-associatif--dict">Tableau associatif : <code>dict</code></a></li>
-    <li><a href="#ensemble--set">Ensemble : <code>set</code></a></li>
+    <li><a href="#principaux-types-abstraits-fournis-avec-le-langage-python">Principaux types abstraits fournis avec le langage Python</a>
+      <ul>
+        <li><a href="#liste--list">Liste : <code>list</code></a></li>
+        <li><a href="#tableau-associatif--dict">Tableau associatif : <code>dict</code></a></li>
+        <li><a href="#ensemble--set">Ensemble : <code>set</code></a></li>
+      </ul>
+    </li>
     <li><a href="#opérations-usuelles-et-complexité-en-temps">Opérations usuelles et complexité en temps</a>
       <ul>
         <li><a href="#opérations-sur-les-listes">Opérations sur les listes</a></li>
         <li><a href="#opérations-sur-les-dictionnaires">Opérations sur les dictionnaires</a></li>
         <li><a href="#opérations-sur-les-ensembles">Opérations sur les ensembles</a></li>
+      </ul>
+    </li>
+    <li><a href="#exemple--définition-et-implémentation-du-type-abstrait-tableau_dynamique-en-python">Exemple : Définition et implémentation du type abstrait Tableau_dynamique en Python</a>
+      <ul>
+        <li><a href="#interface-du-type-abstrait-tableau_dynamique">Interface du type abstrait Tableau_dynamique</a></li>
+        <li><a href="#implémentation">Implémentation</a></li>
       </ul>
     </li>
   </ul>
@@ -312,6 +331,46 @@ Pourquoi différentes structures de données ? Les structures de données …">
         <hr />
 
         <p>Python possède dans la bibliothèque standard un grand nombre de structures de données, programmées de manière efficace.</p>
+<h2 id="rappels--modules-fonctions">Rappels : modules, fonctions</h2>
+<div class="note tip">
+  <p>Pour chaque <strong>module</strong>, on distingue :</p>
+<ul>
+<li>
+<p><strong>sa réalisation</strong> (ou <strong>implémentation</strong>) : c&rsquo;est le code lui-même.</p>
+</li>
+<li>
+<p><strong>son interface (API)</strong> : c&rsquo;est l&rsquo;énumération des fonctions définies dans le module qui sont utilisées depuis d&rsquo;autres modules/programmes, les <strong>clients</strong>.</p>
+</li>
+<li>
+<p>L&rsquo;interface doit présenter une <strong>documentation</strong> dans laquelle  <strong>tout ce que doit savoir le client doit être indiqué</strong>.</p>
+</li>
+<li>
+<p>L&rsquo;objectif de l&rsquo;interface est que <strong>le client n&rsquo;ait pas à consulter l&rsquo;implémentation pour utiliser les fonctions</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="note warning">
+  L&rsquo;interface peut être envisagée comme une <strong>abstraction</strong> du module : <em>une description de ce qui caractérise ce module sans jamais entrer dans les détails de l&rsquo;implémentation</em>.
+</div>
+<div class="note tip">
+  <p>Pour chaque <strong>fonction</strong> du module, la <strong>spécification</strong> doit indiquer :</p>
+<ul>
+<li>son <strong>nom</strong>.</li>
+<li>la liste de ses <strong>paramètres</strong> accompagnés de leur <strong>type</strong>.</li>
+<li>le <strong>type</strong> de la <strong>valeur retournée</strong>.</li>
+<li>la <strong>documentation</strong> de la fonction.</li>
+</ul>
+</div>
+<div class="note warning">
+  La spécification peut être envisagée comme une <strong>abstraction</strong> de la fonction : <em>une description de ce qui caractérise cette fonction sans jamais entrer dans les détails de l&rsquo;implémentation</em>.
+</div>
+<h2 id="avantages-dune-barrière-dabstraction">Avantages d&rsquo;une barrière d&rsquo;abstraction</h2>
+<ul>
+<li>Séparation du programme en deux composantes : <strong>Implémentation</strong> et <strong>code client</strong>.
+<img src="../../../terminales-nsi/chap-6/barriere_abstraction.png" alt="" width="100%" /></li>
+<li>La barrière d&rsquo;abstraction permet de faire varier l&rsquo;implémentation sans impacter le client.</li>
+<li>La barrière d&rsquo;abstraction permet de cacher (encapsuler) le code de l&rsquo;implémentation.</li>
+</ul>
 <h2 id="pourquoi-différentes-structures-de-données-">Pourquoi différentes structures de données ?</h2>
 <p>Les <strong>structures de données</strong> <em>organisent différemment les données que le programme traite</em>. Le langage Python fournissant le type <code>list</code>, on pourrait se demander pourquoi ne pas <em>systématiquement</em> l&rsquo;utiliser et pourquoi devoir apprendre de nouveaux types.
 En fait, <em>la spécialisation des structures de données rend la programmation plus simple (utilisation de l&rsquo;<strong>API</strong>) et plus efficace (<strong>complexité</strong>).</em></p>
@@ -322,13 +381,14 @@ En fait, <em>la spécialisation des structures de données rend la programmation
   <p>Un même type peut être implémenté de différentes façons. <em>Dans tous les cas, il présente la même interface au programmeur</em> (API).</p>
 <p>On parle donc de <strong>type abstrait</strong>.</p>
 </div>
-<h2 id="liste--list">Liste : <code>list</code></h2>
+<h2 id="principaux-types-abstraits-fournis-avec-le-langage-python">Principaux types abstraits fournis avec le langage Python</h2>
+<h3 id="liste--list">Liste : <code>list</code></h3>
 <p>Le type <code>list</code> de Python n&rsquo;est pas implémeté à l&rsquo;aide de <strong>listes chaînées</strong> (que nous étudierons au <a href="../../chap-7">chapitre 7</a>), car <em>la suppression ou l’ajout ailleurs qu’en fin de liste nécessite de décaler les valeurs de fin de liste, et n’est donc pas réalisé en temps constant</em>. D’autre part, <em>l’accès à un élément quelconque est réalisé en temps constant</em>, ce qui n’est pas le cas avec une liste chaînée.</p>
 <p>Le type <code>list</code> de Python est implémenté à l&rsquo;aide de <em>tableaux dynamiques</em>.</p>
-<h2 id="tableau-associatif--dict">Tableau associatif : <code>dict</code></h2>
+<h3 id="tableau-associatif--dict">Tableau associatif : <code>dict</code></h3>
 <p>Le type <code>dict</code> de Python est une implémentation du type abstrait <strong>tableau associatif</strong>. L’implémentation correspond à une <strong>table de hachage</strong>, ce qui signifie que <em>la valeur est stockée dans un tableau et que la position dans ce tableau dépend du résultat d’une fonction de hachage appliquée à la clé</em>. En un temps indépendant du nombre de valeurs stockées dans le dictionnaire, Python peut retrouver la valeur associée à n’importe quelle clé : pour cela il calcule un indice à partir de la valeur de la clé (qui doit donc être hachable, c’est-à-dire récursivement non mutable) et récupère la valeur stockée à cet indice dans un tableau.</p>
 <p>Une caractéristique essentielle des dictionnaires est que <em>la récupération d’une valeur associée à une clé se fait en un temps constant, indépendant de la taille du dictionnaire</em>. De même, <em>savoir si une clé fait partie du dictionnaire prend un temps constant</em> (alors que vérifier si un élément est dans une liste prend un temps proportionnel à la taille de la liste).</p>
-<h2 id="ensemble--set">Ensemble : <code>set</code></h2>
+<h3 id="ensemble--set">Ensemble : <code>set</code></h3>
 <p>Un ensemble Python (<code>set</code>) est <em>équivalent à un dictionnaire ne contenant que des clés</em>. Par construction, <em>chaque élément est donc unique</em>. De plus, avec le type <code>set</code> on dispose déjà des opérations ensemblistes habituelles, implémentées de manière très efficace : <strong>union</strong>, <strong>intersection</strong>, <strong>différence</strong>, etc.</p>
 <h2 id="opérations-usuelles-et-complexité-en-temps">Opérations usuelles et complexité en temps</h2>
 <h3 id="opérations-sur-les-listes">Opérations sur les listes</h3>
@@ -506,6 +566,182 @@ En fait, <em>la spécialisation des structures de données rend la programmation
 </tr>
 </tbody>
 </table>
+<h2 id="exemple--définition-et-implémentation-du-type-abstrait-tableau_dynamique-en-python">Exemple : Définition et implémentation du type abstrait Tableau_dynamique en Python</h2>
+<h3 id="interface-du-type-abstrait-tableau_dynamique">Interface du type abstrait Tableau_dynamique</h3>
+<p>L&rsquo;interface de la classe est la suivante :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">Help</span> <span class="n">on</span> <span class="k">class</span> <span class="nc">TableauDynamique</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">__main__</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TableauDynamique</span><span class="p">(</span><span class="n">builtins</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="n">TableauDynamique</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="s1">&#39;None&#39;</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="n">Classe</span> <span class="n">implémentant</span> <span class="n">le</span> <span class="nb">type</span> <span class="err">«</span> <span class="n">tableau</span> <span class="n">dynamqie</span> <span class="err">»</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="n">version</span> <span class="n">très</span> <span class="n">simplifiée</span> <span class="n">du</span> <span class="nb">type</span> <span class="err">«</span> <span class="n">liste</span> <span class="err">»</span> <span class="n">de</span> <span class="n">Python</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="n">Methods</span> <span class="n">defined</span> <span class="n">here</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s1">&#39;TableauDynamique&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;object&#39;</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>      <span class="n">Retourne</span> <span class="n">l</span><span class="s1">&#39;élément d&#39;</span><span class="n">indice</span> <span class="n">i</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s1">&#39;TableauDynamique&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;None&#39;</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>      <span class="n">Création</span> <span class="n">d</span><span class="s1">&#39;un tableau vide à l&#39;</span><span class="n">initialisation</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s1">&#39;TableauDynamique&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;int&#39;</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>      <span class="n">Retourne</span> <span class="n">le</span> <span class="n">nombre</span> <span class="n">d</span><span class="s1">&#39;éléments dans le tableau.</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>  <span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="s1">&#39;TableauDynamique&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="s1">&#39;object&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;None&#39;</span>
+</span></span><span class="line"><span class="cl"> <span class="o">|</span>      <span class="n">Ajoute</span> <span class="n">l</span><span class="s1">&#39;élément obj en dernière position dans le tableau.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="implémentation">Implémentation</h3>
+<ol>
+<li>Créer la classe <code>TableauDynamique</code>.</li>
+<li>Dans la méthode <code>__init__</code>, initialiser trois attributs privés <code>_nbre</code>, <code>_capacite</code> et <code>_tab</code> tels que <code>_nbre</code> donne le nombre d&rsquo;éléments dans le tableau (initialement égal à 0), <code>_capacite</code> donne le nombre maximal possible d&rsquo;éléments dans le tableau (initialement égal à 1) et <code>_tab</code> référence un tableau créé à l&rsquo;aide de la fonction <code>py_object</code> du module <code>ctypes</code>.</li>
+</ol>
+<p><strong>Remarque :</strong> le code de création du tableau est le suivant :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_construit_tableau</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">TableauDynamique</span><span class="p">,</span> <span class="n">capacite</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Construction d&#39;un tableau de capacité donnée.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">capacite</span> <span class="o">*</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">py_object</span><span class="p">)()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>Définir la méthode <code>__len__</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">TableauDynamique</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le nombre d&#39;éléments dans le tableau.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>Définir la méthode <code>__getitem__</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">TableauDynamique</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne l&#39;élément d&#39;indice i.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Une exception est levée si l&#39;indice n&#39;appartient
+</span></span></span><span class="line"><span class="cl"><span class="s2">    pas au bon intervalle.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>Définir la méthode privée <code>_augmente_taille</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">_augmente_taille</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">TableauDynamique</span><span class="p">,</span> <span class="n">capacite</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Crée un nouveau tableau de dimension capacite puis copie tous les
+</span></span></span><span class="line"><span class="cl"><span class="s2">    éléments de l&#39;ancien tableau dans ce dernier.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Fait en sorte que le nouveau tableau soit le tableau désormais
+</span></span></span><span class="line"><span class="cl"><span class="s2">    utilisé.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Met à jour l&#39;attribut capacite.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li>Définir la méthode <code>append</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">TableauDynamique</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajoute l&#39;élément obj en dernière position dans le tableau.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Remarque :</strong> La méthode <code>append</code> doit appeler la méthode <code>_augmente_taille</code>.</p>
+<ol start="7">
+<li>Définir la méthode <code>__repr__</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">TableauDynamique</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la chaîne de caractères représentant le tableau.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="8">
+<li>Tester le bon fonctionnement de la classe.</li>
+</ol>
 
 
         
