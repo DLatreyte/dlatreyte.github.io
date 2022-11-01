@@ -57,9 +57,9 @@
     "name" : "David Latreyte"
   },
   "headline": "Les arbres binaires",
-  "description" : "Le corrigé de l\u0026rsquo;activité se trouve ici Arbres binaires Définition Un arbre binaire est structure de données abstraite formée d\u0026rsquo;un ensemble de nœuds organisés hiérarchiquement selon la définition récursive suivante : «\nUn arbre binaire est :\nsoit vide ; soit un nœud, appelé racine, relié à exactement deux arbres binaires $l$ et $r$, respectivement appelés sous-arbre gauche et sous arbre droit. » Remarques On note généralement $E$ l\u0026rsquo;arbre binaire vide et $N(x,l,r)$ l\u0026rsquo;arbre binaire dont la racine porte l\u0026rsquo;étiquette $x$.",
+  "description" : "Le corrigé de l\u0026rsquo;activité se trouve ici Arbres binaires Définition Un arbre binaire est une structure de données abstraite formée d\u0026rsquo;un ensemble de nœuds organisés hiérarchiquement selon la définition inductive suivante :\nUn arbre binaire est :\nsoit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé racine, relié à exactement deux arbres binaires $g$ et $d$, respectivement appelés sous-arbres gauche et sous-arbre droit. On note $T(r,g,d)$ l\u0026rsquo;arbre non vide dont la racine $r$ (on peut aussi indiquer l\u0026rsquo;étiquette de cette racine).",
   "inLanguage" : "fr",
-  "wordCount":  1711 ,
+  "wordCount":  1899 ,
   "datePublished" : "2020-11-05T03:38:41",
   "dateModified" : "2020-11-05T03:38:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -298,7 +298,8 @@
     <li><a href="#arbres-binaires">Arbres binaires</a>
       <ul>
         <li><a href="#définition">Définition</a></li>
-        <li><a href="#relation-entre-nombre-de-nœuds-et-hauteur-dans-le-cas-des-arbres-binaires">Relation entre nombre de nœuds et hauteur dans le cas des arbres binaires</a></li>
+        <li><a href="#vocabulaire-et-remarques">Vocabulaire et remarques</a></li>
+        <li><a href="#propriétés">Propriétés</a></li>
       </ul>
     </li>
     <li><a href="#spécification-des-arbres-binaires">Spécification des arbres binaires</a></li>
@@ -329,25 +330,84 @@
 <h2 id="arbres-binaires">Arbres binaires</h2>
 <h3 id="définition">Définition</h3>
 <div class="note tip">
-  <p>Un <strong>arbre binaire</strong> est <em>structure de données abstraite</em> formée d&rsquo;un ensemble de <strong>nœuds organisés hiérarchiquement</strong> selon la définition récursive suivante : «<br>
-Un arbre binaire est :</p>
+  <p>Un <strong>arbre binaire</strong> est une  <strong>structure de données abstraite</strong>  formée d&rsquo;un ensemble de nœuds organisés hiérarchiquement selon la définition inductive suivante :</p>
+<p>Un arbre binaire est :</p>
 <ul>
-<li>soit vide ;</li>
-<li>soit un nœud, appelé <strong>racine</strong>, relié à exactement deux arbres binaires $l$ et $r$, respectivement appelés sous-arbre gauche et sous arbre droit. »</li>
+<li>soit un arbre vide, noté $E$, ne contenant aucun nœud ;</li>
+<li>soit un nœud, appelé <strong>racine</strong>, relié à exactement deux arbres binaires $g$ et $d$, respectivement appelés <strong>sous-arbres gauche</strong> et <strong>sous-arbre droit</strong>.</li>
+</ul>
+<p>On note $T(r,g,d)$ l&rsquo;arbre non vide dont la racine $r$ (on peut aussi indiquer l&rsquo;étiquette de cette racine).</p>
+</div>
+<h3 id="vocabulaire-et-remarques">Vocabulaire et remarques</h3>
+<ul>
+<li>Un nœud dont les <strong>deux sous-arbres sont vides</strong> est appelé une <strong>feuille</strong>.</li>
+<li>Un nœud qui n&rsquo;est pas une feuille est un <strong>nœud interne</strong>.</li>
+<li>Un arbre binaire est dit <strong>parfait</strong> si  <strong>toutes les feuilles sont à la même profondeur</strong> .</li>
+<li>La racine d&rsquo;un arbre $T$ est le seul nœud de $T$ sans parent.</li>
+</ul>
+<h3 id="propriétés">Propriétés</h3>
+<div class="note normal">
+  <h4 id="position-des-sous-arbres">Position des sous-arbres</h4>
+<ul>
+<li>La position des sous-arbres gauche et droite est fondamentale : $$T(r,g,d) \neq T(r,d,g)$$</li>
 </ul>
 </div>
-<h4 id="remarques">Remarques</h4>
+<div class="note normal">
+  <h4 id="taille-dun-arbre">Taille d&rsquo;un arbre</h4>
 <ul>
-<li>On note généralement $E$ <em>l&rsquo;arbre binaire vide</em> et $N(x,l,r)$ <em>l&rsquo;arbre binaire dont la racine porte l&rsquo;étiquette</em> $x$.</li>
-<li>Un <em>arbre binaire</em> est un arbre dont <em>les nœuds sont au plus de degré 2</em>.</li>
+<li>La taille d&rsquo;un arbre est égale <strong>au nombre de nœuds qu&rsquo;il comporte</strong>.</li>
+<li>Le <strong>nombre de nœuds</strong> d&rsquo;un arbre binaire $T$, noté $n(T)$, se calcule récursivement :
+<ul>
+<li>$n(E)=0$</li>
+<li>$n(T)=1+n(g)+n(d)$</li>
 </ul>
+</li>
+</ul>
+</div>
+<div class="note normal">
+  <h4 id="profondeur-dun-nœud">Profondeur d&rsquo;un nœud</h4>
+<ul>
+<li>La profondeur d&rsquo;un nœud $x$, notée $h(x)$, est la sa <strong>distance à la racine</strong>.</li>
+<li>La profondeur d&rsquo;un nœud $x$, notée $h(x)$, est définie récursivement par :
+<ul>
+<li>$h(\text{racine})=0$</li>
+<li>$h(x)=1+h(\text{parent de }x)$</li>
+</ul>
+</li>
+<li><strong>La hauteur d&rsquo;un nœud dans un arbre est donc le nombre d&rsquo;arrêtes qu&rsquo;il faut parcourir, depuis la racine, pour parvenir au nœud.</strong></li>
+</ul>
+</div>
 <div class="note warning">
-  Pour simplifier la présentation, on va considérer que chaque nœud possède exactement deux fils mais que <strong>ceux-ci peuvent être vides</strong> (<code>None</code> par exemple).
+  La définition de la profondeur d&rsquo;un nœud peut varier !
 </div>
-<h3 id="relation-entre-nombre-de-nœuds-et-hauteur-dans-le-cas-des-arbres-binaires">Relation entre nombre de nœuds et hauteur dans le cas des arbres binaires</h3>
-<div class="note tip">
-  Si $N$ désigne la taille d&rsquo;un arbre binaire &mdash; c&rsquo;est à dire son nombre de nœuds non vides &mdash; et $h$ sa hauteur, alors
-$$h+1 \leqslant N \leqslant 2^{h+1} - 1$$
+<div class="note normal">
+  <h4 id="hauteur-dun-arbre">Hauteur d&rsquo;un arbre</h4>
+<ul>
+<li>La hauteur d&rsquo;un arbre est la profondeur la plus grande atteinte par ses nœuds.</li>
+<li>La hauteur d&rsquo;un arbre binaire $T$, notée $h(T)$ est définie récursivement par :
+<ul>
+<li>$h(E)=-1$</li>
+<li>$h(T)=1+\mathrm{max}(h(g), h(d))$</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="note warning">
+  La définition de la hauteur d&rsquo;un arbre peut varier !
+</div>
+<div class="note normal">
+  <h4 id="relation-entre-le-nombre-de-nœuds-n-et-la-hauteur-dun-arbre">Relation entre le nombre de nœuds $n$ et la hauteur d&rsquo;un arbre</h4>
+<ul>
+<li>
+<p>Soit $T$ un arbre binaire, $n$ son nombre de nœuds et $h$ sa hauteur. Ces grandeurs sont liées par les relations suivantes :</p>
+</li>
+<li>
+<p>$h + 1 \leq n \leq 2^{h+1} - 1$</p>
+</li>
+<li>
+<p>le nombre de sous-arbres vides de $T$ est $n+1$.</p>
+</li>
+</ul>
 </div>
 <ol>
 <li>Dans quel cas a-t-on $N = h+1$ ?</li>
@@ -1225,54 +1285,45 @@ Un arbre peut-être implémenté en Python avec un objet par nœud, d&rsquo;une 
 
 
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/katex.min.js"
-  integrity="sha512-CLi3JK94v6TUcogbWv4WT4xnfp6B8AET4PuBjGxXo5MZJ9xfNgMHgXaXH8QJe6JwN+kGxqR4//z8/2BYVnxRVw=="
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/auto-render.min.js"
-  integrity="sha512-iWiuBS5nt6r60fCz26Nd0Zqe0nbk1ZTIQbl3Kv7kYsX+yKMUFHzjaH2+AnM6vp2Xs+gNmaBAVWJjSmuPw76Efg=="
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/copy-tex.min.js"
-  integrity="sha512-cQxSkTM4RvFAjdBeBDkrllhYfERwZWjM/oijKfPsmhR0JI2U3fXSlbUaJp5SlgBh/FzYmMyWudRTXLnNj3MbEA=="
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/mathtex-script-type.min.js"
-  integrity="sha512-MBhOGY4yRA2eATtRGTcrDJCRqcnLai5+uu47GA2ueVr1MPzirC/iogLWRA8CXTlOTK09VI4fdTe4qE4LBfjsHw=="
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/mhchem.min.js"
-  integrity="sha512-V1hl0fnOXW6Cdqe5ZVqtw8TBpJVpu3XRDRQti96j/04+tMarPrCdXEUE3UdfvfKYTpOn9DV4zEZBVr0HhDiuiQ=="
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/render-a11y-string.min.js"
-  integrity="sha512-qBnQA4Y+OVTc4fPEzp5saII5ofAVDJQO6pMq9/VLm49xHvWsvRP4awjMq8U97bgalhahBEevp9HSsPo7B8JNcA=="
-  crossorigin="anonymous"></script>
 <script>
-  renderMathInElement(document.body,
-    {
-      delimiters: [
-        { left: "$$", right: "$$", display: true },
-        { left: "$", right: "$", display: false }
-      ]
+  MathJax = {
+    tex: {
+      packages: {'[-]': ['textmacros']},
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,      
+      processEnvironments: true, 
+      processRefs: true,         
+      digits: /^(?:[0-9]+(?:\{,\}[0-9]{3})*(?:\.[0-9]*)?|\.[0-9]+)/,
+                               
+      tags: 'ams',              
+      tagSide: 'right',          
+      tagIndent: '0.8em',        
+      useLabelIds: true,         
+      multlineWidth: '85%',      
+      maxMacros: 1000,           
+      maxBuffer: 10 * 1024,       
+      formatError:               
+          (jax, err) => jax.formatError(err)
+    },
+    showProcessingMessages: true,
+    svg: {
+      fontCache: 'global',
+      scale: 0.97,                
+      minScale: 0.8               
+    },
+    chtml: {
+      scale: 1,                      
+      minScale: .5,                  
+      matchFontHeight: true         
     }
-  );
+  };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+  </script>
 
-  var inlineMathArray = document.querySelectorAll("script[type='math/tex']");
-  for (var i = 0; i < inlineMathArray.length; i++) {
-    var inlineMath = inlineMathArray[i];
-    var tex = inlineMath.innerText || inlineMath.textContent;
-    var replaced = document.createElement("span");
-    replaced.innerHTML = katex.renderToString(tex, { displayMode: false });
-    inlineMath.parentNode.replaceChild(replaced, inlineMath);
-  }
-
-  var displayMathArray = document.querySelectorAll("script[type='math/tex; mode=display']");
-  for (var i = 0; i < displayMathArray.length; i++) {
-    var displayMath = displayMathArray[i];
-    var tex = displayMath.innerHTML;
-    var replaced = document.createElement("span");
-    replaced.innerHTML = katex.renderToString(tex.replace(/%.*/g, ''), { displayMode: true });
-    displayMath.parentNode.replaceChild(replaced, displayMath);
-  }
-
-</script>
+  
 
 
     
