@@ -59,7 +59,7 @@
   "headline": "Structures de données abstraites arborescentes : les arbres",
   "description" : "La notion de listes chaînées est parfaite pour structurer un ensemble d\u0026rsquo;élements destinés à être énumérés séquentiellement. Elle permet aussi d\u0026rsquo;implémenter les structures de piles et de files. Elle n\u0026rsquo;est cependant pas adaptée aux accès spécifiques à des positions données dans la séquence, puisqu\u0026rsquo;il faut alors parcourir toutes les cellules depuis le début de la liste jusqu\u0026rsquo;à la position souhaitée (complexité en $O(N)$).\nDocument de référence pour ce cours Structures arborescentes Lorsqu\u0026rsquo;on manipule une information présentant une certaine hiérarchie, il est commun de la représenter graphiquement :",
   "inLanguage" : "fr",
-  "wordCount":  807 ,
+  "wordCount":  876 ,
   "datePublished" : "2020-11-05T03:37:56",
   "dateModified" : "2020-11-05T03:37:56",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -304,7 +304,8 @@
       <ul>
         <li><a href="#arbre-enraciné">Arbre (enraciné)</a></li>
         <li><a href="#racine-noeud-branche-feuille">Racine, noeud, branche, feuille</a></li>
-        <li><a href="#hauteur-dun-nœud-profondeur-dun-arbre">Hauteur d&rsquo;un nœud, profondeur d&rsquo;un arbre</a></li>
+        <li><a href="#profondeur-dun-nœud-hauteur-dun-nœud">Profondeur d&rsquo;un nœud, hauteur d&rsquo;un nœud</a></li>
+        <li><a href="#profondeur-dun-arbre">Profondeur d&rsquo;un arbre</a></li>
         <li><a href="#taille-dun-arbre">Taille d&rsquo;un arbre</a></li>
         <li><a href="#degré-dun-noeud-degré-dun-arbre">Degré d’un noeud, degré d’un arbre</a></li>
       </ul>
@@ -544,15 +545,21 @@ graph TD
         <strong> Réponses</strong>
     </summary>
 <ul>
-<li><strong>Nœuds</strong> : a (racine), b, e, h et <strong>feuilles</strong> : c, d, f, g, i.</li>
+<li><strong>Nœuds</strong> internes: a (racine), b, e, h et <strong>feuilles</strong> : c, d, f, g, i.</li>
 <li>8 branches.</li>
 </ul>
 </details>
 <hr />
-<h3 id="hauteur-dun-nœud-profondeur-dun-arbre">Hauteur d&rsquo;un nœud, profondeur d&rsquo;un arbre</h3>
+<h3 id="profondeur-dun-nœud-hauteur-dun-nœud">Profondeur d&rsquo;un nœud, hauteur d&rsquo;un nœud</h3>
 <div class="note tip">
-  La <strong>hauteur</strong> (ou <strong>profondeur</strong> ou <strong>niveau</strong>) d&rsquo;un nœud est égale au <em>nombre de nœuds rencontrés en descendant de la racine jusqu&rsquo;au nœud (<strong>racine et nœud inclus</strong>)</em>.
+  La <strong>profondeur</strong> d&rsquo;un nœud est sa <strong>distance à la racine</strong>.<br>
+La profondeur d&rsquo;un nœud dans un arbre est donc <strong>le nombre d&rsquo;arrêtes qu&rsquo;il faut parcourir, depuis la racine, pour parvenir au nœud</strong>.
 </div>
+<div class="note tip">
+  La <strong>hauteur</strong> d&rsquo;un nœud est <em>sa distance à la feuille la plus profonde ayant une relation de descendance avec lui</em>.<br>
+La <strong>hauteur</strong> d&rsquo;un nœud dans un arbre est donc <strong>le nombre d&rsquo;arrêtes qu&rsquo;il faut parcourir, depuis ce nœud jusqu&rsquo;à la feuille la plus profonde ayant une relation de descendance avec lui</strong>.
+</div>
+<h3 id="profondeur-dun-arbre">Profondeur d&rsquo;un arbre</h3>
 <div class="note tip">
   La <strong>hauteur</strong> (ou <strong>profondeur</strong>) d’un <em>arbre</em> est égale à <em>la profondeur du nœud le plus profond</em>.
 </div>
@@ -560,10 +567,12 @@ graph TD
   La hauteur d&rsquo;un arbre est très importante. En effet, la plupart des algorithmes que nous verrons dans la suite ont une <em>complexité qui dépend de la hauteur de l&rsquo;arbre</em>. Ainsi plus l&rsquo;arbre aura une hauteur élevée, plus l&rsquo;algorithme mettra de temps à s&rsquo;exécuter.
 </div>
 <div class="note warning">
-  Dans notre convention, la hauteur de la racine est égale à 1. <em>Tous les auteurs n&rsquo;utilisent pas cette convention !</em> Pour certains, la <strong>hauteur</strong> d’un <em>nœud</em> est égale au <em>nombre d’arêtes qu’il faut parcourir à partir de la racine pour parvenir au nœud</em> ; la hauteur de la racine est alors de 0.
+  <em>Tous les auteurs n&rsquo;utilisent pas la convention choisie dans ce cours !</em><br>
+Pour certains, la <strong>profondeur</strong> d’un <em>nœud</em> est égale au <em>nombre de nœuds qu’il faut parcourir à partir de la racine (incluse) pour parvenir au nœud</em> ; la hauteur de la racine est alors de 1.
 </div>
 <div class="note exercise">
   <ul>
+<li>Donner la profondeur du nœud <code>e</code> dans l&rsquo;arbre représenté ci-dessus.</li>
 <li>Donner la hauteur du nœud <code>e</code> dans l&rsquo;arbre représenté ci-dessus.</li>
 <li>Quelle est la profondeur de cet arbre ?</li>
 </ul>
@@ -574,8 +583,9 @@ graph TD
         <strong> Réponses</strong>
     </summary>
 <ul>
-<li>Hauteur de <code>e</code> : 3.</li>
-<li>Profondeur de l&rsquo;arbre : 4.</li>
+<li>Profondeur de <code>e</code> : 2.</li>
+<li>Hauteur de <code>e</code> : 1.</li>
+<li>Profondeur de l&rsquo;arbre : 3.</li>
 </ul>
 </details>
 <hr />
