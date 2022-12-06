@@ -60,7 +60,7 @@ L&rsquo;ordonnanceur Rappel sur l&rsquo;exécution d&rsquo;un programme Un progr
   "headline": "Gestion des processus et des ressources",
   "description" : "L\u0026rsquo;objectif de ce document est d\u0026rsquo;essayer de faire comprendre les idées mises en œuvre lors de l\u0026rsquo;écriture des système d\u0026rsquo;exploitation afin qu\u0026rsquo;un nombre de programmes plus important que le nombre de processeurs puisse fonctionner « simultanément ».\nL\u0026rsquo;ordonnanceur Rappel sur l\u0026rsquo;exécution d\u0026rsquo;un programme Un programme est un fichier contenant une suite d\u0026rsquo;instructions écrites en langage machine. C\u0026rsquo;est une suite d\u0026rsquo;octets que le processeur que le processeur est capable de décoder et d\u0026rsquo;exécuter.",
   "inLanguage" : "fr",
-  "wordCount":  4107 ,
+  "wordCount":  4185 ,
   "datePublished" : "2021-01-10T05:10:07",
   "dateModified" : "2021-01-10T05:10:07",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -1165,7 +1165,9 @@ Pour passer à l&rsquo;état exécution, le processus p2 doit pouvoir accéder �
 Pour passer à l&rsquo;état exécution, le processus p3 doit pouvoir accéder à la table traçante alors que celle-ci est monopolisée par le processus p1. Il doit donc attendre que p1 libère la table traçante, ce qu&rsquo;il ne fera pas car il est bloqué, dans l&rsquo;attente d&rsquo;un accès au modem.<br>
 La situation décrite constitue donc bien un <strong>interblocage</strong>.</p>
 </li>
-<li></li>
+<li>
+<p>Il faut que le processus p2 puisse achever sa tache et libérer le modem pour que p1 puisse s&rsquo;executer. Comme p3 a aussi besoin de la table traçante, comme p1, il faut faire en sorte qu&rsquo;il soit immédiatement bloqué sans monopoliser aucune ressource :</p>
+</li>
 </ol>
 <center>
 <table>
@@ -1181,6 +1183,7 @@ La situation décrite constitue donc bien un <strong>interblocage</strong>.</p>
 </tbody>
 </table>
 </center>
+<p>L&rsquo;imprimante n&rsquo;est alors plus bloquée par p3, ce qui permet à p2 de s&rsquo;exécuter complètement et de libérer les ressources que p1 peut alors utiliser. Pour finir, une fois p1 terminé, p3 peut s&rsquo;exécuter.</p>
 <ol start="3">
 <li>Le processus sera bloqué.</li>
 </ol>
