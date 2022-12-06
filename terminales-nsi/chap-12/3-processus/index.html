@@ -60,7 +60,7 @@ L&rsquo;ordonnanceur Rappel sur l&rsquo;exécution d&rsquo;un programme Un progr
   "headline": "Gestion des processus et des ressources",
   "description" : "L\u0026rsquo;objectif de ce document est d\u0026rsquo;essayer de faire comprendre les idées mises en œuvre lors de l\u0026rsquo;écriture des système d\u0026rsquo;exploitation afin qu\u0026rsquo;un nombre de programmes plus important que le nombre de processeurs puisse fonctionner « simultanément ».\nL\u0026rsquo;ordonnanceur Rappel sur l\u0026rsquo;exécution d\u0026rsquo;un programme Un programme est un fichier contenant une suite d\u0026rsquo;instructions écrites en langage machine. C\u0026rsquo;est une suite d\u0026rsquo;octets que le processeur que le processeur est capable de décoder et d\u0026rsquo;exécuter.",
   "inLanguage" : "fr",
-  "wordCount":  3982 ,
+  "wordCount":  4107 ,
   "datePublished" : "2021-01-10T05:10:07",
   "dateModified" : "2021-01-10T05:10:07",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -1160,7 +1160,10 @@ d. terminé</p>
     </summary>
 <ol>
 <li>
-<p>Si chaque programme est lancé et que la première ligne est exécutée, chaque processus monopolise une ressource. Lors de l’exécution de la seconde ligne, chaque processus demande une ressource qui ne peut pas être libérée. Cette situation est celle d&rsquo;un interblocage.</p>
+<p>Pour passer à l&rsquo;état exécution, le processus p1 doit pouvoir accéder au modem alors que celui-ci est monopolisé par le processus p2. Il doit donc attendre que p2 libère le modem.<br>
+Pour passer à l&rsquo;état exécution, le processus p2 doit pouvoir accéder à l&rsquo;imprimante alors que celle-ci est monopolisée par le processus p3. Il doit donc attendre que p3 libère l&rsquo;imprimante.<br>
+Pour passer à l&rsquo;état exécution, le processus p3 doit pouvoir accéder à la table traçante alors que celle-ci est monopolisée par le processus p1. Il doit donc attendre que p1 libère la table traçante, ce qu&rsquo;il ne fera pas car il est bloqué, dans l&rsquo;attente d&rsquo;un accès au modem.<br>
+La situation décrite constitue donc bien un <strong>interblocage</strong>.</p>
 </li>
 <li></li>
 </ol>
@@ -1271,6 +1274,22 @@ Recopier sur la copie le schéma ci-dessous :</p>
 <li>En s&rsquo;appuyant sur les tables de routage, tracer les liaisons entre les routeurs.</li>
 </ol>
 </div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Correction</strong>
+    </summary>
+<ol>
+<li></li>
+<li>
+<p>Les application SGBD et CAO attendent mutuellement la Donnée $D_3$. Il y a donc un interblocage (deadlock). $D_2$, $D_4$ et $D_5$ ne pourront pas être libérées. Le traitement de texte ne pourra obtenir $D_2$. Le tableur ne pourra obtenir $D_5$.</p>
+</li>
+<li>
+<p>$A \ce{-&gt;} B \ce{-&gt;} E \ce{-&gt;} F$.</p>
+</li>
+</ol>
+</details>
+<hr />
 <h2 id="à-retenir">À retenir</h2>
 <div class="note tip">
   Les systèmes d&rsquo;exploitation multitâches sont la norme. Ils permettent d&rsquo;exécuter de façon <strong>concurrente</strong> plusieurs programmes. L&rsquo;exécution d&rsquo;un programme s&rsquo;appelle un <strong>processus</strong>. C&rsquo;est le système d&rsquo;exploitation, et en particulier l&rsquo;<strong>ordonnanceur</strong>, qui determine quel processus s&rsquo;exécute à un instant donné. Le fait pour un processus d&rsquo;être interrompu s&rsquo;appelle une <strong>commutation de contexte</strong>. Plusieurs processus s&rsquo;exécutant de façon concurrente peuvent s&rsquo;<strong>interbloquer</strong> s&rsquo;ils attendent un accès à une même ensemble de <strong>ressources en accès exclusif</strong>. Les <strong>threads</strong> ou <strong>processus légers</strong> sont des « sous-processus » s&rsquo;exécutant de manière concurrente. L&rsquo;accès à des ressources par plusieurs threads peut être protégé par des <strong>verrous</strong>.
