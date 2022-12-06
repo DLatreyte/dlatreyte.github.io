@@ -60,7 +60,7 @@ L&rsquo;ordonnanceur Rappel sur l&rsquo;exécution d&rsquo;un programme Un progr
   "headline": "Gestion des processus et des ressources",
   "description" : "L\u0026rsquo;objectif de ce document est d\u0026rsquo;essayer de faire comprendre les idées mises en œuvre lors de l\u0026rsquo;écriture des système d\u0026rsquo;exploitation afin qu\u0026rsquo;un nombre de programmes plus important que le nombre de processeurs puisse fonctionner « simultanément ».\nL\u0026rsquo;ordonnanceur Rappel sur l\u0026rsquo;exécution d\u0026rsquo;un programme Un programme est un fichier contenant une suite d\u0026rsquo;instructions écrites en langage machine. C\u0026rsquo;est une suite d\u0026rsquo;octets que le processeur que le processeur est capable de décoder et d\u0026rsquo;exécuter.",
   "inLanguage" : "fr",
-  "wordCount":  3334 ,
+  "wordCount":  3591 ,
   "datePublished" : "2021-01-10T05:10:07",
   "dateModified" : "2021-01-10T05:10:07",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -1116,6 +1116,73 @@ Pour outrepasser ce comportement, il faut utiliser le mot clé <code>globla</cod
 </div>
 </div><p>au dessous de l&rsquo;instruction <code>print(&quot;Section critique 1.1&quot;)</code>. <br>
 Expliquer pourquoi le comportement du programme a été modifié.</p>
+<div class="note exercise">
+  <h4 id="exercice">Exercice</h4>
+<p>Dans un bureau d’architectes, on dispose de certaines ressources qui ne peuvent être utilisées simultanément par plus d’un processus, comme l’imprimante, la table traçante, le modem. Chaque programme, lorsqu’il s’exécute, demande l’allocation des ressources qui lui sont nécessaires. Lorsqu’il a fini de s’exécuter, il libère ses ressources.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Programme 1</th>
+<th style="text-align:left">Programme 2</th>
+<th style="text-align:left">Programme 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">- demander (table traçante)<br />- demander (modem)<br />- exécution<br />- libérer (modem)<br />- libérer (table traçante)</td>
+<td style="text-align:left">- demander (modem)<br />- demander (imprimante)<br />- exécution<br />- libérer (imprimante)<br />- libérer (modem)</td>
+<td style="text-align:left">- demander (imprimante)<br />- demander (table traçante)<br />- exécution<br />- libérer (table traçante)<br />- libérer(imprimante)</td>
+</tr>
+</tbody>
+</table>
+<p>On appelle $p_1$, $p_2$ et $p_3$ les processus associés respectivement aux programmes 1, 2 et 3.</p>
+<ol>
+<li>
+<p>Les processus s&rsquo;exécutent de manière concurrente.<br>
+Justifier qu&rsquo;une situation d&rsquo;interblocage peut se produire.</p>
+</li>
+<li>
+<p>Modifier l&rsquo;ordre des instructions du programme 3 pour qu&rsquo;une telle situation ne puisse pas se produire. Aucune justification n&rsquo;est attendue.</p>
+</li>
+<li>
+<p>Supposons que le processus $p_1$ demande la table traçante alors qu&rsquo;elle est en cours d&rsquo;utilisation par le processus $p_3$. Parmi les états suivants, quel sera l&rsquo;état du processus $p_1$ tant que la table traçante n&rsquo;est pas disponible :<br>
+a. élu<br>
+b. bloqué<br>
+c. prêt<br>
+d. terminé</p>
+</li>
+</ol>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Correction</strong>
+    </summary>
+<ol>
+<li>
+<p>Si chaque programme est lancé et que la première ligne est exécutée, chaque processus monopolise une ressource. Lors de l’exécution de la seconde ligne, chaque processus demande une ressource qui ne peut pas être libérée. Cette situation est celle d&rsquo;un interblocage.</p>
+</li>
+<li></li>
+</ol>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Programme 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">- demander (table traçante)<br />- demander (imprimante)<br />- exécution<br />- libérer (table traçante)<br />- libérer(imprimante)</td>
+</tr>
+</tbody>
+</table>
+</center>
+<ol start="3">
+<li>Le processus sera bloqué.</li>
+</ol>
+</details>
+<hr />
 <h2 id="à-retenir">À retenir</h2>
 <div class="note tip">
   Les systèmes d&rsquo;exploitation multitâches sont la norme. Ils permettent d&rsquo;exécuter de façon <strong>concurrente</strong> plusieurs programmes. L&rsquo;exécution d&rsquo;un programme s&rsquo;appelle un <strong>processus</strong>. C&rsquo;est le système d&rsquo;exploitation, et en particulier l&rsquo;<strong>ordonnanceur</strong>, qui determine quel processus s&rsquo;exécute à un instant donné. Le fait pour un processus d&rsquo;être interrompu s&rsquo;appelle une <strong>commutation de contexte</strong>. Plusieurs processus s&rsquo;exécutant de façon concurrente peuvent s&rsquo;<strong>interbloquer</strong> s&rsquo;ils attendent un accès à une même ensemble de <strong>ressources en accès exclusif</strong>. Les <strong>threads</strong> ou <strong>processus légers</strong> sont des « sous-processus » s&rsquo;exécutant de manière concurrente. L&rsquo;accès à des ressources par plusieurs threads peut être protégé par des <strong>verrous</strong>.
