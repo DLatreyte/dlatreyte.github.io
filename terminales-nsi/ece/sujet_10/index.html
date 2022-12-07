@@ -57,9 +57,9 @@
     "name" : "David Latreyte"
   },
   "headline": "NUMERIQUE et SCIENCES INFORMATIQUES",
-  "description" : "Exercice 1 (50% des points) Écrire une fonction maxi qui prend en paramètre une liste tab de nombres entiers et renvoie un couple donnant le plus grand élément de cette liste, ainsi que l’indice de la première apparition de ce maximum dans la liste.\nRemarque L\u0026rsquo;utilisation de la fonction max fournie avec le langage Python n\u0026rsquo;est pas autorisée. Exemple :\n1 2 if __name__ == \u0026#34;__main__\u0026#34;: assert maxi([1, 5, 6, 9, 1, 2, 3, 7, 9, 8]) == (9, 3) Corrigé 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 from typing import List, Tuple def maxi(tab: List[int]) -\u0026gt; Tuple[int]: \u0026#34;\u0026#34;\u0026#34; Retourne le plus grand élément de cette liste, ainsi que l’indice de la première apparition de ce maximum dans la liste.",
+  "description" : "Exercice 1 (50% des points) Écrire une fonction maxi qui prend en paramètre une liste tab de nombres entiers et renvoie un couple donnant le plus grand élément de cette liste, ainsi que l’indice de la première apparition de ce maximum dans la liste.\nRemarque L\u0026rsquo;utilisation de la fonction max fournie avec le langage Python n\u0026rsquo;est pas autorisée. Exemple :\n1 2 if __name__ == \u0026#34;__main__\u0026#34;: assert maxi([1, 5, 6, 9, 1, 2, 3, 7, 9, 8]) == (9, 3) Exercice 2 (50% des points) Cet exercice utilise des piles qui seront représentées en Python par des listes (type list).",
   "inLanguage" : "fr",
-  "wordCount":  465 ,
+  "wordCount":  262 ,
   "datePublished" : "2021-10-27T18:39:50",
   "dateModified" : "2021-10-27T18:39:50",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -293,13 +293,6 @@
 
       <article role="main" class="blog-post" auto_numbering >
           
-            <nav id="TableOfContents">
-  <ul>
-    <li><a href="#exercice-1-50-des-points">Exercice 1 (50% des points)</a></li>
-    <li><a href="#exercice-2-50-des-points">Exercice 2 (50% des points)</a></li>
-  </ul>
-</nav>
-          
         
         <hr />
 
@@ -320,56 +313,7 @@
 </span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">maxi</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Corrigé</strong>
-    </summary>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">maxi</span><span class="p">(</span><span class="n">tab</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le plus grand élément de cette liste, ainsi que l’indice de la première apparition de ce maximum dans la liste.
-</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">val_max</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="n">indice</span> <span class="o">=</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)):</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">val_max</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">val_max</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">            <span class="n">indice</span> <span class="o">=</span> <span class="n">i</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">val_max</span><span class="p">,</span> <span class="n">indice</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">maxi</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div></details>
-<hr />
-<h2 id="exercice-2-50-des-points">Exercice 2 (50% des points)</h2>
+</div><h2 id="exercice-2-50-des-points">Exercice 2 (50% des points)</h2>
 <p>Cet exercice utilise des piles qui seront représentées en Python par des listes (type <code>list</code>). On rappelle que l’expression <code>T1 = list(T)</code> fait une copie de <code>T</code> indépendante de <code>T</code>, que l’expression <code>x = T.pop()</code> enlève le sommet de la pile <code>T</code> et le place dans la variable <code>x</code> et, enfin, que l’expression <code>T.append(v)</code> place la valeur <code>v</code> au sommet de la pile <code>T</code>.</p>
 <p>Compléter le code Python de la fonction <code>positif</code> ci-dessous qui prend une pile <code>T</code> de nombres entiers en paramètre et qui renvoie la pile des entiers positifs dans le même ordre, sans modifier la variable <code>T</code>.</p>
 <div class="highlight"><div class="chroma">
@@ -417,68 +361,7 @@
 </span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">positif</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Corrigé</strong>
-    </summary>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">positif</span><span class="p">(</span><span class="n">T</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la pile des entiers positifs dans le même ordre, sans modifier la pile T.
-</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">T2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">T3</span> <span class="o">=</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">T2</span> <span class="o">!=</span> <span class="p">[]:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">T2</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">T3</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">T2</span> <span class="o">=</span> <span class="p">[]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">T3</span> <span class="o">!=</span> <span class="p">[]:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="n">T3</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">        <span class="n">T2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;T = &#39;</span><span class="p">,</span><span class="n">T</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">T2</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="n">T</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">positif</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">==</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
-</span></span></code></pre></td></tr></table>
 </div>
-</div></details>
-<hr />
-
 
         
 
@@ -500,10 +383,6 @@
 
       
         <ul class="pager blog-pager">
-          
-            <li class="previous">
-              <a href="https://dlatreyte.github.io/terminales-nsi/ece/sujet_6/" data-toggle="tooltip" data-placement="top" title="NUMERIQUE et SCIENCES INFORMATIQUES">&larr; Post précédent</a>
-            </li>
           
           
             <li class="next">

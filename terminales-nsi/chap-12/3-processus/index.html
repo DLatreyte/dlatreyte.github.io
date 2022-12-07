@@ -60,7 +60,7 @@ L&rsquo;ordonnanceur Rappel sur l&rsquo;exécution d&rsquo;un programme Un progr
   "headline": "Gestion des processus et des ressources",
   "description" : "L\u0026rsquo;objectif de ce document est d\u0026rsquo;essayer de faire comprendre les idées mises en œuvre lors de l\u0026rsquo;écriture des système d\u0026rsquo;exploitation afin qu\u0026rsquo;un nombre de programmes plus important que le nombre de processeurs puisse fonctionner « simultanément ».\nL\u0026rsquo;ordonnanceur Rappel sur l\u0026rsquo;exécution d\u0026rsquo;un programme Un programme est un fichier contenant une suite d\u0026rsquo;instructions écrites en langage machine. C\u0026rsquo;est une suite d\u0026rsquo;octets que le processeur que le processeur est capable de décoder et d\u0026rsquo;exécuter.",
   "inLanguage" : "fr",
-  "wordCount":  4185 ,
+  "wordCount":  3334 ,
   "datePublished" : "2021-01-10T05:10:07",
   "dateModified" : "2021-01-10T05:10:07",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -1116,183 +1116,6 @@ Pour outrepasser ce comportement, il faut utiliser le mot clé <code>globla</cod
 </div>
 </div><p>au dessous de l&rsquo;instruction <code>print(&quot;Section critique 1.1&quot;)</code>. <br>
 Expliquer pourquoi le comportement du programme a été modifié.</p>
-<div class="note exercise">
-  <h4 id="annale">Annale</h4>
-<p>Dans un bureau d’architectes, on dispose de certaines ressources qui ne peuvent être utilisées simultanément par plus d’un processus, comme l’imprimante, la table traçante, le modem. Chaque programme, lorsqu’il s’exécute, demande l’allocation des ressources qui lui sont nécessaires. Lorsqu’il a fini de s’exécuter, il libère ses ressources.</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Programme 1</th>
-<th style="text-align:left">Programme 2</th>
-<th style="text-align:left">Programme 3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">- demander (table traçante)<br />- demander (modem)<br />- exécution<br />- libérer (modem)<br />- libérer (table traçante)</td>
-<td style="text-align:left">- demander (modem)<br />- demander (imprimante)<br />- exécution<br />- libérer (imprimante)<br />- libérer (modem)</td>
-<td style="text-align:left">- demander (imprimante)<br />- demander (table traçante)<br />- exécution<br />- libérer (table traçante)<br />- libérer(imprimante)</td>
-</tr>
-</tbody>
-</table>
-<p>On appelle $p_1$, $p_2$ et $p_3$ les processus associés respectivement aux programmes 1, 2 et 3.</p>
-<ol>
-<li>
-<p>Les processus s&rsquo;exécutent de manière concurrente.<br>
-Justifier qu&rsquo;une situation d&rsquo;interblocage peut se produire.</p>
-</li>
-<li>
-<p>Modifier l&rsquo;ordre des instructions du programme 3 pour qu&rsquo;une telle situation ne puisse pas se produire. Aucune justification n&rsquo;est attendue.</p>
-</li>
-<li>
-<p>Supposons que le processus $p_1$ demande la table traçante alors qu&rsquo;elle est en cours d&rsquo;utilisation par le processus $p_3$. Parmi les états suivants, quel sera l&rsquo;état du processus $p_1$ tant que la table traçante n&rsquo;est pas disponible :<br>
-a. élu<br>
-b. bloqué<br>
-c. prêt<br>
-d. terminé</p>
-</li>
-</ol>
-</div>
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Correction</strong>
-    </summary>
-<ol>
-<li>
-<p>Pour passer à l&rsquo;état exécution, le processus p1 doit pouvoir accéder au modem alors que celui-ci est monopolisé par le processus p2. Il doit donc attendre que p2 libère le modem.<br>
-Pour passer à l&rsquo;état exécution, le processus p2 doit pouvoir accéder à l&rsquo;imprimante alors que celle-ci est monopolisée par le processus p3. Il doit donc attendre que p3 libère l&rsquo;imprimante.<br>
-Pour passer à l&rsquo;état exécution, le processus p3 doit pouvoir accéder à la table traçante alors que celle-ci est monopolisée par le processus p1. Il doit donc attendre que p1 libère la table traçante, ce qu&rsquo;il ne fera pas car il est bloqué, dans l&rsquo;attente d&rsquo;un accès au modem.<br>
-La situation décrite constitue donc bien un <strong>interblocage</strong>.</p>
-</li>
-<li>
-<p>Il faut que le processus p2 puisse achever sa tache et libérer le modem pour que p1 puisse s&rsquo;executer. Comme p3 a aussi besoin de la table traçante, comme p1, il faut faire en sorte qu&rsquo;il soit immédiatement bloqué sans monopoliser aucune ressource :</p>
-</li>
-</ol>
-<center>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Programme 3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">- demander (table traçante)<br />- demander (imprimante)<br />- exécution<br />- libérer (table traçante)<br />- libérer(imprimante)</td>
-</tr>
-</tbody>
-</table>
-</center>
-<p>L&rsquo;imprimante n&rsquo;est alors plus bloquée par p3, ce qui permet à p2 de s&rsquo;exécuter complètement et de libérer les ressources que p1 peut alors utiliser. Pour finir, une fois p1 terminé, p3 peut s&rsquo;exécuter.</p>
-<ol start="3">
-<li>Le processus sera bloqué.</li>
-</ol>
-</details>
-<hr />
-<div class="note exercise">
-  <h4 id="annale">Annale</h4>
-<p>Un constructeur automobile utilise des ordinateurs pour la conception de ses véhicules.
-Ceux-ci sont munis d&rsquo;un système d&rsquo;exploitation ainsi que de nombreuses applications parmi lesquelles on peut citer :</p>
-<ul>
-<li>un logiciel de traitement de texte ;</li>
-<li>un tableur ;</li>
-<li>un logiciel de Conception Assistée par Ordinateur (CAO) ;</li>
-<li>un système de gestion de base de donnée (SGBD).</li>
-</ul>
-<p>Chaque ordinateur est équipé des périphériques classiques : clavier, souris, écran et est relié à une imprimante réseau.</p>
-<p>Ce constructeur automobile intègre à ses véhicules des systèmes embarqués, comme par exemple un système de guidage par satellites (GPS), un système de freinage antiblocage (ABS).<br>
-Ces dispositifs utilisent des systèmes sur puces (SoC : Système on a Chip).</p>
-<ol>
-<li>Citer deux avantages à utiliser ces systèmes sur puces plutôt qu&rsquo;une architecture classique d&rsquo;ordinateur.</li>
-</ol>
-<p>Un ingénieur travaille sur son ordinateur et utilise les quatre applications citées au début de l&rsquo;énoncé.<br>
-Pendant l&rsquo;exécution de ces applications, des processus mobilisent des données et sont en attente d&rsquo;autres données mobilisées par d&rsquo;autres processus.<br>
-On donne ci-dessous un tableau indiquant à un instant précis l&rsquo;état des processus en cours
-d&rsquo;exécution et dans lequel $D_1$, $D_2$, $D_3$, $D_4$ et $D_5$ sont des données.<br>
-La lettre $M$ signifie que la donnée est mobilisée par l&rsquo;application ; la lettre $A$ signifie que l&rsquo;application est en attente de cette donnée.
-Lecture du tableau : le logiciel de traitement de texte mobilise $(M)$ la donnée $D_1$ et est en attente $(A)$ de la donnée $D_2$.</p>
-<center>
-<table>
-<thead>
-<tr>
-<th style="text-align:left"></th>
-<th style="text-align:center">$D_1$</th>
-<th style="text-align:center">$D_2$</th>
-<th style="text-align:center">$D_3$</th>
-<th style="text-align:center">$D_4$</th>
-<th style="text-align:center">$D_5$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Traitement de texte</td>
-<td style="text-align:center">M</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">Tableur</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">M</td>
-</tr>
-<tr>
-<td style="text-align:left">SGBD</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">M</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:left">CAO</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">A</td>
-<td style="text-align:center">M</td>
-<td style="text-align:center">A</td>
-</tr>
-</tbody>
-</table>
-</center>
-<ol start="2">
-<li>Montrer que les applications s&rsquo;attendent mutuellement.<br>
-Comment s&rsquo;appelle cette situation ?</li>
-</ol>
-<p>Ce constructeur automobile possède six sites de production qui échangent des documents entre eux. Les sites de production sont reliés entre eux par six routeurs $A$, $B$, $C$, $D$, $E$ et $F$.<br>
-On donne ci dessous les tables de routage des routeurs $A$ à $F$ obtenus avec le protocole RIP :</p>
-<img src="../../../terminales-nsi/chap-12/chap-12-3/table_routage.png" alt="" width="" />
-<ol start="3">
-<li>Déterminer à l&rsquo;aide de ces tables le chemin emprunté par un paquet de données envoyé du
-routeur $A$ vers le routeur $F$.</li>
-</ol>
-<p>On veut représenter schématiquement le réseau de routeurs à partir des tables de routage.
-Recopier sur la copie le schéma ci-dessous :</p>
-<img src="../../../terminales-nsi/chap-12/chap-12-3/reseau.png" alt="" width="40%" />
-<ol start="4">
-<li>En s&rsquo;appuyant sur les tables de routage, tracer les liaisons entre les routeurs.</li>
-</ol>
-</div>
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Correction</strong>
-    </summary>
-<ol>
-<li></li>
-<li>
-<p>Les application SGBD et CAO attendent mutuellement la Donnée $D_3$. Il y a donc un interblocage (deadlock). $D_2$, $D_4$ et $D_5$ ne pourront pas être libérées. Le traitement de texte ne pourra obtenir $D_2$. Le tableur ne pourra obtenir $D_5$.</p>
-</li>
-<li>
-<p>$A \ce{-&gt;} B \ce{-&gt;} E \ce{-&gt;} F$.</p>
-</li>
-</ol>
-</details>
-<hr />
 <h2 id="à-retenir">À retenir</h2>
 <div class="note tip">
   Les systèmes d&rsquo;exploitation multitâches sont la norme. Ils permettent d&rsquo;exécuter de façon <strong>concurrente</strong> plusieurs programmes. L&rsquo;exécution d&rsquo;un programme s&rsquo;appelle un <strong>processus</strong>. C&rsquo;est le système d&rsquo;exploitation, et en particulier l&rsquo;<strong>ordonnanceur</strong>, qui determine quel processus s&rsquo;exécute à un instant donné. Le fait pour un processus d&rsquo;être interrompu s&rsquo;appelle une <strong>commutation de contexte</strong>. Plusieurs processus s&rsquo;exécutant de façon concurrente peuvent s&rsquo;<strong>interbloquer</strong> s&rsquo;ils attendent un accès à une même ensemble de <strong>ressources en accès exclusif</strong>. Les <strong>threads</strong> ou <strong>processus légers</strong> sont des « sous-processus » s&rsquo;exécutant de manière concurrente. L&rsquo;accès à des ressources par plusieurs threads peut être protégé par des <strong>verrous</strong>.
@@ -1324,6 +1147,10 @@ Recopier sur la copie le schéma ci-dessous :</p>
               <a href="https://dlatreyte.github.io/terminales-nsi/chap-12/1-os-principes-generaux/" data-toggle="tooltip" data-placement="top" title="Système d&#39;exploitation : Principes généraux">&larr; Post précédent</a>
             </li>
           
+          
+            <li class="next">
+              <a href="https://dlatreyte.github.io/terminales-nsi/chap-12/4-annales/" data-toggle="tooltip" data-placement="top" title="Gestion des processus et des ressources : Annales">Post suivant &rarr;</a>
+            </li>
           
         </ul>
       
