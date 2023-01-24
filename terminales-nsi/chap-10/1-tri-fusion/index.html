@@ -60,7 +60,7 @@ Diviser : Si la taille de l&rsquo;ensemble des données à traiter est inférieu
   "headline": "Le tri fusion",
   "description" : "La méthode « Diviser pour régner » La méthode « Diviser pour régner » est une méthode de résolution de problèmes qui consiste à décomposer le problème en trois étapes :\nDiviser : Si la taille de l\u0026rsquo;ensemble des données à traiter est inférieure à une certaine limite (un ou deux éléments typiquement) résoudre le problème. Si la taille de l\u0026rsquo;ensemble de données à traiter est supérieur à la limite fixée, diviser cet ensemble en deux sous-ensembles (de tailles inférieures).",
   "inLanguage" : "fr",
-  "wordCount":  2287 ,
+  "wordCount":  2517 ,
   "datePublished" : "2020-11-18T17:12:24",
   "dateModified" : "2020-11-18T17:12:24",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -295,13 +295,14 @@ Diviser : Si la taille de …">
             <nav id="TableOfContents">
   <ul>
     <li><a href="#la-méthode--diviser-pour-régner-">La méthode « Diviser pour régner »</a></li>
-    <li><a href="#le-tri-fusion">Le tri fusion</a>
+    <li><a href="#le-tri-fusion-dun-tableau">Le tri fusion d&rsquo;un tableau</a>
       <ul>
         <li><a href="#description-du-tri">Description du tri</a></li>
         <li><a href="#décomposition-de-lexécution-de-lalgorithme">Décomposition de l&rsquo;exécution de l&rsquo;algorithme</a></li>
       </ul>
     </li>
     <li><a href="#implémentation-du-tri-fusion-pour-un-tableau">Implémentation du tri fusion pour un tableau</a></li>
+    <li><a href="#le-tri-fusion-dune-liste-chaînée">Le tri fusion d&rsquo;une liste chaînée</a></li>
   </ul>
 </nav>
           
@@ -323,7 +324,7 @@ Diviser : Si la taille de …">
 </li>
 </ol>
 </div>
-<h2 id="le-tri-fusion">Le tri fusion</h2>
+<h2 id="le-tri-fusion-dun-tableau">Le tri fusion d&rsquo;un tableau</h2>
 <h3 id="description-du-tri">Description du tri</h3>
 <p>Dans cette partie, nous allons essayer de comprendre les principes sur lesquels s&rsquo;appuie ce tri. Son implémentation, pour des tableaux ou des listes chaînées, sera développée dans les prochaines sections.</p>
 <p>Le tri fusion s&rsquo;appuie sur la méthode <strong>Diviser pour régner</strong> pour trier les $n$ éléments d&rsquo;une séquence $S$ :</p>
@@ -1069,16 +1070,81 @@ Construire la liste à l&rsquo;aide de l&rsquo;instruction :</li>
 </li>
 </ol>
 <hr>
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Solution</strong>
-    </summary>
-<p><a class="remote" href="https://repl.it/@dlatreyte/tri-fusion-tableaux" target="_blank">Code Python</a></p>
-</details>
-<hr />
 <hr>
-
+<h2 id="le-tri-fusion-dune-liste-chaînée">Le tri fusion d&rsquo;une liste chaînée</h2>
+<p>Dans cette section, on cherche à adapter l&rsquo;algorithme de tri fusion à une liste chaînée.</p>
+<ol>
+<li>
+<p>Écrire le code de la classe <code>Cellule</code> permettant d&rsquo;implémenter une liste chaînée. Cette classe sert juste de structure et définit les champs <code>valeur</code>, de type <code>int</code>, et <code>suivant</code>, de type <code>Cellule</code>, initialisé à <code>None</code>.</p>
+</li>
+<li>
+<p>Dans la partie principale du programme, écrire le code qui crée la liste chaînée <code>[14, 11, 2, 35, 9, 1]</code>.</p>
+</li>
+<li>
+<p>Définir le code de la fonction <code>tri_fusion</code> dont la spécification est</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">tri_fusion</span><span class="p">(</span><span class="n">lst</span><span class="p">:</span> <span class="n">Cellule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Cellule</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Implémente l&#39;algorithme de tri-fusion.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Une nouvelle liste chaînée est créée.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Cette fonction doit utiliser la fonction <code>coupe</code> (définie un peu plus bas), qui découpe une liste chaînée en deux sous-listes, et la fonction <code>fusion</code> (définie elle aussi un peu plus bas) qui réalise la fusion de deux listes triées.</p>
+<p>La fonction <code>tri_fusion</code> doit mettre en œuvre le principe « Diviser pour régner ».</p>
+<ol start="4">
+<li>Définir la fonction <code>coupe</code> dont la spécification est</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">coupe</span><span class="p">(</span><span class="n">lst</span><span class="p">:</span> <span class="n">Cellule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Cellule</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Découpe la liste L2 est deux sous-listes de même
+</span></span></span><span class="line"><span class="cl"><span class="s2">    longueur à un élément près.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>Définir la fonction <code>fusion</code> dont la spécification est</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fusion</span><span class="p">(</span><span class="n">l1</span><span class="p">:</span> <span class="n">Cellule</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Cellule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Cellule</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Réalise la fusion des deux listes l1 et l2 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    triées.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme récursif.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 
         
           <div class="blog-tags">
