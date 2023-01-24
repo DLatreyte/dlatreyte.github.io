@@ -8,7 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <title>Rotation d&#39;une image bitmap d&#39;un quart de tour - Accueil</title>
-  <meta name="description" content="Chapitre 13,5">
+  <meta name="description" content="L&rsquo;objectif de cette activité est l&rsquo;écriture d&rsquo;une fonction qui effectue la rotation d&rsquo;une image bitmap de 90 degrés en utilisant le principe « Diviser pour régner ».
+On peut manipuler des images en Python à l&rsquo;aide du module PIL (Python Image Library). Une première partie de l&rsquo;activité est consacrée à la prise en main de ce module. Dans un second temps, la fonction de manipulation des bits est développée.
+Images numériques Définition L&rsquo;image matricielle Une image matricielle, ou « carte de points » (de l&rsquo;anglais « bitmap »), est une image constituée d&rsquo;une matrice de points colorés, c&rsquo;est-à-dire, constituée d&rsquo;un tableau, d&rsquo;une grille, où chaque case possède une couleur qui lui est propre et est considérée comme un point.">
   <meta name="author" content="David Latreyte"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -79,14 +81,17 @@
 </script>
 
 <meta property="og:title" content="Rotation d&#39;une image bitmap d&#39;un quart de tour" />
-<meta property="og:description" content="Chapitre 13,5">
+<meta property="og:description" content="L&rsquo;objectif de cette activité est l&rsquo;écriture d&rsquo;une fonction qui effectue la rotation d&rsquo;une image bitmap de 90 degrés en utilisant le principe « Diviser pour régner ».
+On peut manipuler des images en Python à l&rsquo;aide du module PIL (Python Image Library). Une première partie de l&rsquo;activité est consacrée à la prise en main de ce module. Dans un second temps, la fonction de manipulation des bits est développée.
+Images numériques Définition L&rsquo;image matricielle Une image matricielle, ou « carte de points » (de l&rsquo;anglais « bitmap »), est une image constituée d&rsquo;une matrice de points colorés, c&rsquo;est-à-dire, constituée d&rsquo;un tableau, d&rsquo;une grille, où chaque case possède une couleur qui lui est propre et est considérée comme un point.">
 <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
 <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/chap-10/6-rotation-image/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Accueil" />
 
   <meta name="twitter:title" content="Rotation d&#39;une image bitmap d&#39;un quart de tour" />
-  <meta name="twitter:description" content="Chapitre 13,5">
+  <meta name="twitter:description" content="L&rsquo;objectif de cette activité est l&rsquo;écriture d&rsquo;une fonction qui effectue la rotation d&rsquo;une image bitmap de 90 degrés en utilisant le principe « Diviser pour régner ».
+On peut …">
   <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@@DLatreyte" />
@@ -273,10 +278,6 @@
                 <hr class="small">
               
               
-                
-                  <h2 class="terminales-nsi-subheading">Chapitre 13,5</h2>
-                
-              
               
             </div>
           </div>
@@ -361,15 +362,15 @@
 <p>En plus de sa définition, une image numérique utilise plus ou moins de mémoire selon le <em>codage des informations de couleur</em> qu&rsquo;elle possède. C&rsquo;est ce que l&rsquo;on nomme le <strong>codage de couleurs</strong> ou <strong>profondeur des couleurs</strong>, exprimé en bits par pixel (bpp) : 1, 4, 8, 16, 24, &hellip; bits.</p>
 <p>Le <strong>codage des informations de couleur</strong> est donc <em>le nombre de bits utilisés pour coder une couleur</em>.</p>
 </div>
-<h4 id="remarque">Remarque.</h4>
+<h4 id="remarque">Remarque</h4>
 <p>Les écrans utilisent la <strong>synthèse additive</strong> pour restituer les couleurs : <em>chaque pixel est composé de trois sous-éléments munis respectivement d&rsquo;un filtre : rouge, vert, bleu</em>.</p>
 <div class="note normal">
   <h4 id="quelques-modes-de-représentation-des-couleurs">Quelques modes de représentation des couleurs</h4>
 <ul>
 <li><strong>Mode bitmap (noir et blanc) :</strong> Avec ce mode, il est possible d&rsquo;afficher uniquement des images en deux couleurs: noir et blanc. Il présente une profondeur de 1 bpp.</li>
-<li><strong>Mode  niveau de gris :</strong> Avec ce mode, il est possible d&rsquo;afficher  des images utilisant 254 ou 65534 nuances de gris entre le blanc et le noir.   <br>
-<em>Le niveau de gris représente la luminosité d&rsquo;un pixel, lorsque les valeurs de ses composantes de couleur sont identiques.</em>    <br>
-Pour convertir une image couleur en niveau de gris il faut remplacer, pour chaque pixel les trois valeurs représentant les niveaux de rouge, de vert et de bleu, en une seule valeur représentant la luminosité.    <br>
+<li><strong>Mode  niveau de gris :</strong> Avec ce mode, il est possible d&rsquo;afficher  des images utilisant 254 ou 65534 nuances de gris entre le blanc et le noir.
+<em>Le niveau de gris représente la luminosité d&rsquo;un pixel, lorsque les valeurs de ses composantes de couleur sont identiques.</em>
+Pour convertir une image couleur en niveau de gris il faut remplacer, pour chaque pixel les trois valeurs représentant les niveaux de rouge, de vert et de bleu, en une seule valeur représentant la luminosité.
 Il présente une profondeur de 8 bpp ou 16 bpp.</li>
 <li><strong>Mode RVB :</strong> Dans ce mode, la couleur de chaque pixel de l&rsquo;image est codée à l&rsquo;aide d&rsquo;un triplet de valeurs pour le rouge, le vert et le bleu. Chaque canal peut être codé sur 8 bits (le plus fréquent) ou 16 bits (appareils de photo modernes).</li>
 </ul>
@@ -486,7 +487,7 @@ Il présente une profondeur de 8 bpp ou 16 bpp.</li>
 <p>À partir de la fonction précédente, écrire une fonction nommée <code>noir_et_blanc</code> qui, en fonction d’un seuil <code>s</code>, transforme tous les pixels de valeur inférieure à <code>s</code> en 0 (noir) et tous les autres en 255 (blanc).</p>
 </li>
 <li>
-<p>En modifiant les couleurs des pixels, il est possible de « dessiner » dans une image. Par exemple, on peut tracer une ligne horizontale blanche dans l&rsquo;image.  <br>
+<p>En modifiant les couleurs des pixels, il est possible de « dessiner » dans une image. Par exemple, on peut tracer une ligne horizontale blanche dans l&rsquo;image.
 Écrire la fonction <code>ligne_blanche</code> qui trace une ligne blanche horizontale au niveau de l’ordonnée $y$ de l’image et le tester.</p>
 </li>
 <li>
@@ -702,7 +703,7 @@ Il présente une profondeur de 8 bpp ou 16 bpp.</li>
 
 </li>
 </ul>
-<p>Afin de pouvoir procéder récursivement, définir la fonction (et sa spécification !) <code>rotation_aux(px, x, y, t)</code> qui effectue la rotation de la portion carrée de l&rsquo;image comprise entre les pixels $(x,y)$ et $(x+t, y+t)$. Cette fonction ne renvoie rien, elle modifie le tableau <code>px</code> pour effectuer la rotation de cette portion de l&rsquo;image, au même endroit. On suppose que <code>t</code> est une puissance de 2.    <br>
+<p>Afin de pouvoir procéder récursivement, définir la fonction (et sa spécification !) <code>rotation_aux(px, x, y, t)</code> qui effectue la rotation de la portion carrée de l&rsquo;image comprise entre les pixels $(x,y)$ et $(x+t, y+t)$. Cette fonction ne renvoie rien, elle modifie le tableau <code>px</code> pour effectuer la rotation de cette portion de l&rsquo;image, au même endroit. On suppose que <code>t</code> est une puissance de 2.
 Le code de cette fonction est :</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -759,7 +760,7 @@ Le code de cette fonction est :</p>
 <p>Étudier ce code afin de bien le comprendre. En particulier, faire fonctionner à la main la fonction pour une image de définition $8 \times 8$.</p>
 </li>
 <li>
-<p>En déduire la fonction <code>rotation(px)</code> qui effectue une rotation de l&rsquo;image toute entière, sa dimension étant donnée par le paramètre <code>taille</code>.  <br>
+<p>En déduire la fonction <code>rotation(px)</code> qui effectue une rotation de l&rsquo;image toute entière, sa dimension étant donnée par le paramètre <code>taille</code>.
 Une fois la rotation effectuée, on pourra sauvegarder le résultat dans un autre fichier avec l&rsquo;instruction <code>im.save(&quot;Apres_rotation.png&quot;)</code>.</p>
 </li>
 </ol>
