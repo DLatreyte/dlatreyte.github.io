@@ -8,8 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <title>Le tri fusion - Accueil</title>
-  <meta name="description" content="La méthode « Diviser pour régner » La méthode « Diviser pour régner » est une méthode de résolution de problèmes qui consiste à décomposer le problème en trois étapes :
-Diviser : Si la taille de l&rsquo;ensemble des données à traiter est inférieure à une certaine limite (un ou deux éléments typiquement) résoudre le problème. Si la taille de l&rsquo;ensemble de données à traiter est supérieur à la limite fixée, diviser cet ensemble en deux sous-ensembles (de tailles inférieures).">
+  <meta name="description" content="Le tri fusion d&rsquo;un tableau Description du tri Dans cette partie, nous allons essayer de comprendre les principes sur lesquels s&rsquo;appuie ce tri. Son implémentation, pour des tableaux ou des listes chaînées, sera développée dans les prochaines sections.
+Le tri fusion s&rsquo;appuie sur la méthode Diviser pour régner pour trier les $n$ éléments d&rsquo;une séquence $S$ :
+Diviser : Si la séquence $S$ est composée de 0 ou un élément, retourner $S$ immédiatement ; cette séquence est déjà triée.">
   <meta name="author" content="David Latreyte"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -58,9 +59,9 @@ Diviser : Si la taille de l&rsquo;ensemble des données à traiter est inférieu
     "name" : "David Latreyte"
   },
   "headline": "Le tri fusion",
-  "description" : "La méthode « Diviser pour régner » La méthode « Diviser pour régner » est une méthode de résolution de problèmes qui consiste à décomposer le problème en trois étapes :\nDiviser : Si la taille de l\u0026rsquo;ensemble des données à traiter est inférieure à une certaine limite (un ou deux éléments typiquement) résoudre le problème. Si la taille de l\u0026rsquo;ensemble de données à traiter est supérieur à la limite fixée, diviser cet ensemble en deux sous-ensembles (de tailles inférieures).",
+  "description" : "Le tri fusion d\u0026rsquo;un tableau Description du tri Dans cette partie, nous allons essayer de comprendre les principes sur lesquels s\u0026rsquo;appuie ce tri. Son implémentation, pour des tableaux ou des listes chaînées, sera développée dans les prochaines sections.\nLe tri fusion s\u0026rsquo;appuie sur la méthode Diviser pour régner pour trier les $n$ éléments d\u0026rsquo;une séquence $S$ :\nDiviser : Si la séquence $S$ est composée de 0 ou un élément, retourner $S$ immédiatement ; cette séquence est déjà triée.",
   "inLanguage" : "fr",
-  "wordCount":  2517 ,
+  "wordCount":  2410 ,
   "datePublished" : "2020-11-18T17:12:24",
   "dateModified" : "2020-11-18T17:12:24",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -80,16 +81,16 @@ Diviser : Si la taille de l&rsquo;ensemble des données à traiter est inférieu
 </script>
 
 <meta property="og:title" content="Le tri fusion" />
-<meta property="og:description" content="La méthode « Diviser pour régner » La méthode « Diviser pour régner » est une méthode de résolution de problèmes qui consiste à décomposer le problème en trois étapes :
-Diviser : Si la taille de l&rsquo;ensemble des données à traiter est inférieure à une certaine limite (un ou deux éléments typiquement) résoudre le problème. Si la taille de l&rsquo;ensemble de données à traiter est supérieur à la limite fixée, diviser cet ensemble en deux sous-ensembles (de tailles inférieures).">
+<meta property="og:description" content="Le tri fusion d&rsquo;un tableau Description du tri Dans cette partie, nous allons essayer de comprendre les principes sur lesquels s&rsquo;appuie ce tri. Son implémentation, pour des tableaux ou des listes chaînées, sera développée dans les prochaines sections.
+Le tri fusion s&rsquo;appuie sur la méthode Diviser pour régner pour trier les $n$ éléments d&rsquo;une séquence $S$ :
+Diviser : Si la séquence $S$ est composée de 0 ou un élément, retourner $S$ immédiatement ; cette séquence est déjà triée.">
 <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
 <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/chap-10/1-tri-fusion/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Accueil" />
 
   <meta name="twitter:title" content="Le tri fusion" />
-  <meta name="twitter:description" content="La méthode « Diviser pour régner » La méthode « Diviser pour régner » est une méthode de résolution de problèmes qui consiste à décomposer le problème en trois étapes :
-Diviser : Si la taille de …">
+  <meta name="twitter:description" content="Le tri fusion d&rsquo;un tableau Description du tri Dans cette partie, nous allons essayer de comprendre les principes sur lesquels s&rsquo;appuie ce tri. Son implémentation, pour des tableaux ou des …">
   <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@@DLatreyte" />
@@ -294,7 +295,6 @@ Diviser : Si la taille de …">
           
             <nav id="TableOfContents">
   <ul>
-    <li><a href="#la-méthode--diviser-pour-régner-">La méthode « Diviser pour régner »</a></li>
     <li><a href="#le-tri-fusion-dun-tableau">Le tri fusion d&rsquo;un tableau</a>
       <ul>
         <li><a href="#description-du-tri">Description du tri</a></li>
@@ -309,22 +309,7 @@ Diviser : Si la taille de …">
         
         <hr />
 
-        <h2 id="la-méthode--diviser-pour-régner-">La méthode « Diviser pour régner »</h2>
-<div class="note tip">
-  <p>La méthode <strong>« Diviser pour régner »</strong> est une méthode de résolution de problèmes qui consiste à décomposer le problème en trois étapes :</p>
-<ol>
-<li>
-<p><strong>Diviser :</strong> Si la taille de l&rsquo;ensemble des données à traiter est inférieure à une certaine limite (un ou deux éléments typiquement) résoudre le problème. Si la taille de l&rsquo;ensemble de données à traiter est supérieur à la limite fixée, diviser cet ensemble en deux sous-ensembles (de tailles inférieures).</p>
-</li>
-<li>
-<p><strong>Régner :</strong> Résoudre récursivement le problème pour les deux sous-ensembles de données.</p>
-</li>
-<li>
-<p><strong>Combiner :</strong> Combiner les solutions des sous-problèmes afin de construire la solution du problème original.</p>
-</li>
-</ol>
-</div>
-<h2 id="le-tri-fusion-dun-tableau">Le tri fusion d&rsquo;un tableau</h2>
+        <h2 id="le-tri-fusion-dun-tableau">Le tri fusion d&rsquo;un tableau</h2>
 <h3 id="description-du-tri">Description du tri</h3>
 <p>Dans cette partie, nous allons essayer de comprendre les principes sur lesquels s&rsquo;appuie ce tri. Son implémentation, pour des tableaux ou des listes chaînées, sera développée dans les prochaines sections.</p>
 <p>Le tri fusion s&rsquo;appuie sur la méthode <strong>Diviser pour régner</strong> pour trier les $n$ éléments d&rsquo;une séquence $S$ :</p>
