@@ -60,7 +60,7 @@
   "headline": "Somme des $n$ nombres d\u0027un tableau",
   "description" : "L’objectif de ce document est d’écrire et d’implémenter un algorithme s’appuyant sur le raisonnement « Diviser pour régner » qui permet de déterminer la somme des $n$ nombres (entiers) d\u0026rsquo;un tableau.\nÉcrire le code de fonction somme1 dont la spécification est : 1 2 3 4 5 6 7 def somme1(tab: List[float]) -\u0026gt; float: \u0026#34;\u0026#34;\u0026#34; Calcul de la somme des nombres éléments de tab. Algorithme : Récursivité enveloppée \u0026#34;\u0026#34;\u0026#34; Penser à écrire un jeu de tests.",
   "inLanguage" : "fr",
-  "wordCount":  291 ,
+  "wordCount":  311 ,
   "datePublished" : "2023-01-29T23:13:31",
   "dateModified" : "2023-01-29T23:13:31",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -406,6 +406,13 @@ Tester cette fonction.</li>
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">somme2</span><span class="p">(</span><span class="n">tab</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -415,15 +422,22 @@ Tester cette fonction.</li>
 </span></span></span><span class="line"><span class="cl"><span class="s2">
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme : Diviser pour Régner.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Cas de base</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">tab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Diviser</span>
 </span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">nbre1</span> <span class="o">=</span> <span class="n">somme2</span><span class="p">(</span><span class="n">tab</span><span class="p">[:</span><span class="n">m</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">    <span class="n">nbre2</span> <span class="o">=</span> <span class="n">somme2</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">m</span><span class="p">:])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">somme_g</span> <span class="o">=</span> <span class="n">somme2</span><span class="p">(</span><span class="n">tab</span><span class="p">[:</span><span class="n">m</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="n">somme_d</span> <span class="o">=</span> <span class="n">somme2</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">m</span><span class="p">:])</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nbre1</span> <span class="o">+</span> <span class="n">nbre2</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Régner</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total</span> <span class="o">=</span> <span class="n">somme_g</span> <span class="o">+</span> <span class="n">somme_d</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Recombiner</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">total</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">tab</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
