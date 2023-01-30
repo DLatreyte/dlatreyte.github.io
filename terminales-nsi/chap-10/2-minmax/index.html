@@ -60,7 +60,7 @@ Générer une liste contenant un million de termes choisis aléatoirement entre 
   "headline": "Recherche des plus grand et petit éléments dans un tableau",
   "description" : "L\u0026rsquo;objectif de ce document est d\u0026rsquo;écrire et d\u0026rsquo;implémenter un algorithme s\u0026rsquo;appuyant sur le raisonnement « Diviser pour régner » qui permet de déterminer le maximum et le minimum des éléments dans un tableau.\nGénérer une liste contenant un million de termes choisis aléatoirement entre un et mille milliards. Réponse 1 2 3 4 from random import randint if __name__ == \u0026#34;__main__\u0026#34;: tab = [randint(1, int(1e12)) for i in range(int(1e6))] Utiliser les fonctions min et max fournies par le langage Python afin d\u0026rsquo;afficher les maximum et minimum dans la liste.",
   "inLanguage" : "fr",
-  "wordCount":  830 ,
+  "wordCount":  905 ,
   "datePublished" : "2022-01-26T05:14:44",
   "dateModified" : "2022-01-26T05:14:44",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -506,7 +506,8 @@ La spécification de la fonction est :</li>
 La complexité des fonctions <code>max</code> et <code>min</code> fournies par Python vous semblent-elles être en $O(N)$ ?</p>
 </li>
 <li>
-<p>À partir de l&rsquo;algorithme du tri fusion, écrire et implémenter la fonction <code>maxmin2</code> qui, dans un premier temps, se contente de déterminer le maximum dans la liste passée en argument.
+<p>Écrire et implémenter la fonction <code>maxmin2</code> qui implémente le raisonnement «Diviser pour régner » pour résoudre ce problème.
+Dans un premier temps, écrire une fonction qui se contente de déterminer le maximum dans la liste passée en argument. Compléter ensuite le code de façon à ce que le maximum et le minimum soient retournés.
 La spécification de la fonction est :</p>
 </li>
 </ol>
@@ -549,6 +550,12 @@ La spécification de la fonction est :</p>
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">maxmin2</span><span class="p">(</span><span class="n">tab</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -557,17 +564,24 @@ La spécification de la fonction est :</p>
 </span></span></span><span class="line"><span class="cl"><span class="s2">    
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Paradigme : Diviser pour régner
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Cas de base</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">tab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Diviser</span>
 </span></span><span class="line"><span class="cl">    <span class="n">milieu</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
 </span></span><span class="line"><span class="cl">    <span class="n">max1</span> <span class="o">=</span> <span class="n">maxmin2</span><span class="p">(</span><span class="n">tab</span><span class="p">[:</span><span class="n">milieu</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">    <span class="n">max2</span> <span class="o">=</span> <span class="n">maxmin2</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">milieu</span><span class="p">:])</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">max1</span><span class="p">,</span> <span class="n">max2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Régner</span>
+</span></span><span class="line"><span class="cl">    <span class="n">maximum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max1</span><span class="p">,</span> <span class="n">max2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Combiner</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">maximum</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div></details>
+</div><p><strong>Remarque :</strong> on peut aussi développersa propre fonction <code>max</code>.</p>
+</details>
 <hr />
 <ol start="9">
 <li>Vérifier le bon fonctionnement de la fonction à la suite des précédentes vérifications.</li>
@@ -634,6 +648,13 @@ La spécification de la fonction est :</li>
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">maxmin2</span><span class="p">(</span><span class="n">tab</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
@@ -642,14 +663,21 @@ La spécification de la fonction est :</li>
 </span></span></span><span class="line"><span class="cl"><span class="s2">    
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Paradigme : Diviser pour régner
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Cas de base</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tab</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Diviser</span>
 </span></span><span class="line"><span class="cl">    <span class="n">milieu</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
 </span></span><span class="line"><span class="cl">    <span class="n">max1</span><span class="p">,</span> <span class="n">min1</span> <span class="o">=</span> <span class="n">maxmin2</span><span class="p">(</span><span class="n">tab</span><span class="p">[:</span><span class="n">milieu</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">    <span class="n">max2</span><span class="p">,</span> <span class="n">min2</span> <span class="o">=</span> <span class="n">maxmin2</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">milieu</span><span class="p">:])</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">min1</span><span class="p">,</span> <span class="n">min2</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">max1</span><span class="p">,</span> <span class="n">max2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Régner</span>
+</span></span><span class="line"><span class="cl">    <span class="n">maximum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max1</span><span class="p">,</span> <span class="n">max2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">minimum</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">min1</span><span class="p">,</span> <span class="n">min2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Combiner</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">minimum</span><span class="p">,</span> <span class="n">maximum</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
