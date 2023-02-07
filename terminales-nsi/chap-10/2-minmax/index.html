@@ -60,7 +60,7 @@ Générer une liste contenant un million de termes choisis aléatoirement entre 
   "headline": "Recherche des plus grand et petit éléments dans un tableau",
   "description" : "L\u0026rsquo;objectif de ce document est d\u0026rsquo;écrire et d\u0026rsquo;implémenter un algorithme s\u0026rsquo;appuyant sur le raisonnement « Diviser pour régner » qui permet de déterminer le maximum et le minimum des éléments dans un tableau.\nGénérer une liste contenant un million de termes choisis aléatoirement entre un et mille milliards. Réponse 1 2 3 4 from random import randint if __name__ == \u0026#34;__main__\u0026#34;: tab = [randint(1, int(1e12)) for i in range(int(1e6))] Utiliser les fonctions min et max fournies par le langage Python afin d\u0026rsquo;afficher les maximum et minimum dans la liste.",
   "inLanguage" : "fr",
-  "wordCount":  905 ,
+  "wordCount":  1163 ,
   "datePublished" : "2022-01-26T05:14:44",
   "dateModified" : "2022-01-26T05:14:44",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -683,12 +683,47 @@ La spécification de la fonction est :</li>
 </div></details>
 <hr />
 <ol start="11">
-<li>
-<p>Quelle est la complexité de cette fonction ?</p>
-</li>
-<li>
-<p>Vérifier le bon fonctionnement de la fonction à la suite des précédentes vérifications.</p>
-</li>
+<li>Quelle est la complexité de cette fonction ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Si on note $C(n)$ la complexité en nombre de comparaisons à effectuer pour résoudre le problème en fonction de la taille du tableau, on obtient la relation suivante :
+$$
+C(n) = \begin{cases}
+0 &amp;\text{si } n = 1 \\
+2 &amp;\text{si } n = 2 \\
+2\, C(n//2) + 2 &amp;\text{si } n &gt; 2
+\end{cases}
+$$
+Dans la suite de cette partie, pour résoudre cette récurrence, on simplifie le problème en posant $n = 2^k$ (on ne restreint pas la généralité de la conclusion en effectuant cette hypothèse).
+On a alors</p>
+<p>$$
+\begin{array}{rl}
+C(n) &amp;= 2 \times C \left(\dfrac{2^k}{2} \right) + 2 \\
+&amp;= 2 \times \left[ 2 \times C\left(\dfrac{2^k}{2\times 2}\right) + 2  \right] + 2 \\
+&amp;= 2 \times 2 \times C\left(\dfrac{2^k}{2\times 2}\right) + 4 + 2 \\
+\end{array}
+$$
+il faut diviser $k-1$ fois pour parvenir au cas de base, on a alors
+$$
+C(n) = 2^{k-1}\times C(2) + \sum_{i=1}^{k-1} 2^i
+$$
+Comme $C(2)=1$ et $\sum_{i=1}^{k-1} 2^i = 2^k - 2$,
+$$
+C(n) = 2^{k-1} + 2^k - 2 = \dfrac{2^k}{2} + 2^k - 2
+$$
+Finalement
+$$
+C(n) = \dfrac{n}{2} + n - 2 = \dfrac{3n}{2} - 2
+$$
+Il faut donc $\dfrac{3n}{2} - 2$ comparaisons pour résoudre le problème. La complexité est donc linéaire.</p>
+</details>
+<hr />
+<ol start="12">
+<li>Vérifier le bon fonctionnement de la fonction à la suite des précédentes vérifications.</li>
 </ol>
 <hr />
 <details style="background-color: #f2f2f2;">
@@ -718,6 +753,15 @@ La spécification de la fonction est :</li>
 <ol start="13">
 <li>La fonction <code>maxmin2</code> est-elle, théoriquement, plus efficace que la fonction <code>maxmin1</code> ? Dans la pratique ? Comment expliquer ce comportement ?</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La fonction <code>maxmin2</code> n&rsquo;est théoriquement pas plus efficace que la fonction <code>maxmin1</code> puisque dans les deux cas, la complexité est linéaire.<br>
+En pratique, la fonction <code>maxmin2</code> peut même être moins efficace que la fonction <code>maxmin1</code> ! Tout dépend de l&rsquo;implémentation de la récursivité par le langage.</p>
+</details>
+<hr />
 
 
         
