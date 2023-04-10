@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <title>Les graphes : structure de données - Accueil</title>
-  <meta name="description" content="Chapitre 15,1">
+  <meta name="description" content="Cours et exercices non corrigés Solutions Cours et exercices corrigés">
   <meta name="author" content="David Latreyte"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -79,14 +79,14 @@
 </script>
 
 <meta property="og:title" content="Les graphes : structure de données" />
-<meta property="og:description" content="Chapitre 15,1">
+<meta property="og:description" content="Cours et exercices non corrigés Solutions Cours et exercices corrigés">
 <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
 <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/chap-15/1-graphes-structure-de-donnees/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Accueil" />
 
   <meta name="twitter:title" content="Les graphes : structure de données" />
-  <meta name="twitter:description" content="Chapitre 15,1">
+  <meta name="twitter:description" content="Cours et exercices non corrigés Solutions Cours et exercices corrigés">
   <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@@DLatreyte" />
@@ -273,10 +273,6 @@
                 <hr class="small">
               
               
-                
-                  <h2 class="terminales-nsi-subheading">Chapitre 15,1</h2>
-                
-              
               
             </div>
           </div>
@@ -310,6 +306,270 @@
 <p><a class="remote" href="../../../terminales-nsi/chap-15/chap-15-1/1-Graphes-Introduction-QR.pdf" target="_blank">Cours et exercices corrigés</a></p>
 </details>
 <hr />
+<!--
+## Un peu d'histoire : Les Ponts de Königsberg
+
+La ville de Königsberg (aujourd'hui Kaliningrad en Russie) est construite autour de deux îles situées sur le Pregel et reliées entre elles par un pont. Six autres ponts relient les rives de la rivière à l'une ou l'autre des deux îles.
+
+<img src="../../../terminales-nsi/chap-15/chap-15-1/im1.png" alt="" width="50%" />
+
+1. Existe-t-il une promenade dans les rues de Königsberg permettant, à partir d'un point de départ au choix, de *passer une et une seule fois par chaque pont*, et de *revenir à son point de départ*, étant entendu qu'on ne peut traverser le Pregel qu'en passant sur les ponts ?
+
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+
+Non. Si une telle promenade existait, chaque quartier devrait être relié à un nombre pair de ponts : un premier pour arriver dans le quartier, un second pour quitter le quartier.
+
+
+</details>
+<hr />
+
+
+
+2. Existe-t-il une promenade dans les rues de Königsberg permettant, à partir d'un point de départ au choix, de *passer une et une seule fois par chaque pont* ?
+
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+
+Non. Si une telle promenade existait, les quartiers, à l'exception des quartiers de départ et d'arrivée, devraient être reliés à un nombre pair de ponts : un premier pour arriver dans le quartier, un second pour quitter le quartier.
+
+
+</details>
+<hr />
+
+
+
+#### Comment Euler a-t-il résolu le problème en 1735 ?
+
+Il a représenté les quartiers par des nœuds et les ponts par des arêtes et cherché si un parcours passant par toutes les arêtes une et une seule fois existait.
+
+<img src="../../../terminales-nsi/chap-15/chap-15-1/im2.png" alt="" width="50%" />
+
+## Graphes
+
+Un **graphe** est un objet abstrait composé d'**éléments** — les *sommets* — qui modélisent des objets de la vie réelle et de **relations entre ces éléments** — les *arêtes* (graphes non orientés) ou les *arcs* (graphes orientés).
+
+Un graphe permet de représenter des liens d'amitié entre des personnes, des lignes aériennes entre des villes, des câbles entre des ordinateurs et des routeurs, des références entre des pages web, etc. Ce concept est utilisé dans l'industrie (informatique, recherche opérationnelle, etc) mais aussi dans la recherche (étude de réseaux sociaux, biologie, mathématiques, etc.)
+
+Un graphe peut être :
+
+- **orienté** ou **non orienté** ;
+- **pondéré** ou **non pondéré**.
+
+----
+
+#### Exemples supplémentaires de graphes
+
+- **Graphe du flot de contrôle d'un programme**  
+Les sommets sont les instructions ou les tests, les flèches indiquent les enchaînements possibles entre ceux-ci.
+
+<img src="../../../terminales-nsi/chap-15/chap-15-1/im3.png" alt="" width="50%" />
+
+3. Le graphe associé à ce flot de contrôle est-il orienté ou non orienté ?
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+
+Le graphe est orienté.
+
+
+</details>
+<hr />
+
+
+
+- **Organisation de tâches qui doivent être exécutées séquentiellement**  
+Les sommets sont les tâches, des relations existent entre les tâches terminées et celles qui les suivent.
+<img src="../../../terminales-nsi/chap-15/chap-15-1/im4.png" alt="" width="80%" />
+
+> Préparation d'un curry d'agneau.
+
+4. Pourquoi une structure de **file** ne peut-elle convenir ici ?
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+
+Certaines tâches doivent être réalisées en parallèle.
+
+
+</details>
+<hr />
+
+
+
+## Graphes non orientés
+
+### Définitions
+
+<div class="note tip">
+  <h4 id="graphe-non-orienté">Graphe non orienté</h4>
+<p>Un graphe non orienté $G$ est défini par un couple $G = (V, E)$, où $V$ est un <strong>ensemble de sommets</strong> et $E$ un <strong>ensemble d&rsquo;arêtes</strong>.
+</div>
+
+
+<img src="../../../terminales-nsi/chap-15/chap-15-1/im5.svg" alt="" width="50%" />
+
+5. Pour le graphe ci-dessus, donner l'ensemble $V$ des nœuds, puis l'ensemble $E$ des arêtes.
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+
+- Ensemble des nœuds : $V = \lbrace a, b, c, d, e \rbrace$ ;
+- Ensemble des arêtes : $E = \lbrace \lbrace a, b \rbrace, \lbrace a, c \rbrace, \lbrace b, d \rbrace, \lbrace c, d \rbrace, \lbrace c, e \rbrace, \lbrace b, e \rbrace, \lbrace d, e \rbrace \rbrace$.
+
+
+</details>
+<hr />
+
+
+
+6. Soit le graphe $G = (V, E)$ tel que $V = \lbrace a, b, c, d, e, f \rbrace$ et $E = \lbrace \lbrace a, b \rbrace, \lbrace c, d \rbrace, \lbrace c, e \rbrace, \lbrace a, c \rbrace, \lbrace b, d \rbrace, \lbrace f, d \rbrace \rbrace$.  
+Représenter $G$.
+
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+
+<img src="../../../terminales-nsi/chap-15/chap-15-1/im6.svg" alt="" width="50%" />
+
+
+</details>
+<hr />
+
+
+
+<div class="note tip">
+  <p>Soit $G = (V, E)$ un graphe non orienté.</p>
+<ul>
+<li>Une <strong>boucle</strong> est une arête $\lbrace u, u \rbrace$ avec $u \in V$ ;</li>
+<li>Une arête $e = \lbrace u, v \rbrace$ est <strong>multiple</strong> s&rsquo;il existe au moins deux arêtes $\lbrace u, v \rbrace$ dans $E$.</li>
+</ul>
+
+</div>
+
+
+<img src="../../../terminales-nsi/chap-15/chap-15-1/im7.svg" alt="" width="40%" />
+
+<div class="note tip">
+  <h4 id="graphe-orienté-simple">Graphe orienté simple</h4>
+<p>Un graphe non orienté simple $G$ est un graphe sans boucle ni arête multiple.
+</div>
+
+
+*Dans ce cours, on suppose a priori que tous les graphes non orientés sont simples.*
+
+### Vocabulaire
+
+<div class="note tip">
+  <ul>
+<li>
+<p>Tous les <strong>sommets voisins</strong> $v_{i}$ d&rsquo;un sommet $u$, c&rsquo;est à dire liés à $u$ par la formation d&rsquo;une arête, $\lbrace u, v_{i} \rbrace$ constituent l&rsquo;<strong>ensemble des sommets adjacents</strong> à $u$.</p>
+</li>
+<li>
+<p>On appelle <strong>degré d&rsquo;un sommet</strong> le nombre de sommets adjacents à ce sommet.<br>
+Le degré d&rsquo;un sommet est le <em>cardinal de l&rsquo;ensemble des sommets voisins.</em></p>
+</li>
+</ul>
+
+</div>
+
+
+7. Indiquer l'ensemble des sommets adjacents au sommet `d` du graphe ci-dessous, ainsi que son degré.
+<img src="../../../terminales-nsi/chap-15/chap-15-1/im5.svg" alt="" width="50%" />
+
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+
+- Ensemble des sommets adjacents à `d` : $\lbrace c,b,e  \rbrace$ ;
+- Degré de `d` : $d=3$.
+
+
+</details>
+<hr />
+
+
+
+8. Même question pour le sommet `a` du graphe.
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+
+- Ensemble des sommets adjacents à `a` : $\lbrace c,b  \rbrace$ ;
+- Degré de `d` : $d=2$.
+
+
+</details>
+<hr />
+
+
+
+9. Pour le graphe ci-dessous indiquer l'ensemble des sommets adjacents au sommet `e` et son degré.  
+<img src="../../../terminales-nsi/chap-15/chap-15-1/im8.svg" alt="" width="50%" />
+
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+
+- Ensemble des sommets adjacents à `e` : $\lbrace c  \rbrace$ ;
+- Degré de `d` : $d=1$.
+
+
+</details>
+<hr />
+
+
+
+<div class="note normal">
+  Pour tout graphe $G = (V,E)$ non orienté la somme des degrés de tous les sommets est égale à deux fois le nombre d&rsquo;arrêtes.
+</div>
+
+
+<div class="note tip">
+  <h4 id="chaîne">Chaîne</h4>
+<p>Une chaîne (walk) est une séquence de sommets et d&rsquo;arêtes $v = v_{1} e_{1} v_{2} e_{2} \ldots v_{n} e_{n} v_{n + 1}$ avec $v_{i} \in V$ pour $i \in \lbrace 1, \ldots, n + 1 \rbrace$ et $e_{i} = \lbrace v_{i}, v_{i + 1} \rbrace \in E$ pour $i \in 1, \ldots, n$.
+</div>
+
+
+-->
 
 
         
