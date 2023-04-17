@@ -61,7 +61,7 @@ La spécification du constructeur de la classe est : 1 2 3 4 def __init__(self: 
   "headline": "Représentation d\u0027un graphe en informatique",
   "description" : "Plusieurs modes de représentation peuvent être implémentés pour stocker des graphes : matrices d’adjacence (ou sommet-sommet), listes des voisins, des successeurs ou des prédécesseurs. Lors de cette séance nous allons écrire les classes réalisant ces implémentations.\nMatrice sommet-sommet Écrire le code de la classe GrapheM qui implémente une matrice sommet-sommet.\nLa spécification du constructeur de la classe est : 1 2 3 4 def __init__(self: GrapheM, mat: List[List[int]]) -\u0026gt; None: \u0026#34;\u0026#34;\u0026#34; Constructeur de la classe.",
   "inLanguage" : "fr",
-  "wordCount":  1422 ,
+  "wordCount":  1434 ,
   "datePublished" : "2021-04-22T04:48:57",
   "dateModified" : "2021-04-22T04:48:57",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -503,11 +503,13 @@ Jeu de tests :</p>
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_lie</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">GrapheM</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne True s&#39;il existe une relation (arête ou arc) entre les sommets i et j, False sinon.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne True s&#39;il existe une relation (arête ou arc) 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    entre les sommets i et j, False sinon.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -536,13 +538,15 @@ Jeu de tests :</p>
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_lie</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">GrapheM</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne True s&#39;il existe une relation (arête ou arc) entre les sommets i et j, False sinon.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne True s&#39;il existe une relation (arête ou arc) 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    entre les sommets i et j, False sinon.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span> 
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -566,12 +570,16 @@ Jeu de tests :</p>
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_non_oriente</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">GrapheM</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne True si le graphe est non orienté (si la matrice est symétrique) et False si le graphe est orienté.
-</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Retourne True si le graphe est non orienté 
+</span></span></span><span class="line"><span class="cl"><span class="s2">        (si la matrice est symétrique) et False si le 
+</span></span></span><span class="line"><span class="cl"><span class="s2">        graphe est orienté.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Jeu de tests :</p>
@@ -592,26 +600,34 @@ Jeu de tests :</p>
     </summary>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_non_oriente</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">GrapheM</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne True si le graphe est non orienté (si la matrice est symétrique) et False si le graphe est orienté.
-</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mat</span><span class="p">)):</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">])):</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mat</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
-</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Retourne True si le graphe est non orienté 
+</span></span></span><span class="line"><span class="cl"><span class="s2">        (si la matrice est symétrique) et False si le 
+</span></span></span><span class="line"><span class="cl"><span class="s2">        graphe est orienté.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mat</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mat</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
