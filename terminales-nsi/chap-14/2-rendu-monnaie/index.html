@@ -61,7 +61,7 @@ On suppose que les clients ne donnent que des sommes entières en euros (pas de 
   "headline": "Problème du rendu de monnaie",
   "description" : "Énoncé du problème Un commerçant cherche à rendre la monnaie à ses clients de façon optimale, c\u0026rsquo;est-à-dire avec le nombre minimal de pièces et de billets.\nDans ce problème,\nOn suppose que les clients ne donnent que des sommes entières en euros (pas de centimes pour simplifier) ; Les valeurs des pièces et billets à disposition sont : 1, 2, 5, 10, 20, 50, 100, 200 et 500. On suppose que l\u0026rsquo;on a autant d\u0026rsquo;exemplaires que nécessaire de chaque pièce et billet ; Dans la suite, afin de simplifier, on désigne par « pièces » à la fois les pièces et les billets.",
   "inLanguage" : "fr",
-  "wordCount":  1645 ,
+  "wordCount":  1897 ,
   "datePublished" : "2021-02-28T05:28:54",
   "dateModified" : "2021-02-28T05:28:54",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -299,7 +299,11 @@ On suppose que les …">
   <ul>
     <li><a href="#énoncé-du-problème">Énoncé du problème</a></li>
     <li><a href="#algorithme-glouton">Algorithme glouton</a></li>
-    <li><a href="#algorithme-de-force-brute">Algorithme de force brute</a></li>
+    <li><a href="#algorithme-de-force-brute">Algorithme de force brute</a>
+      <ul>
+        <li><a href="#compléments">Compléments</a></li>
+      </ul>
+    </li>
     <li><a href="#programmation-dynamique-mémoïsation">Programmation dynamique (mémoïsation)</a></li>
     <li><a href="#programmation-dynamique-méthode-tabulaire">Programmation dynamique (méthode tabulaire)</a></li>
   </ul>
@@ -555,7 +559,7 @@ On suppose que les …">
 <hr />
 <h2 id="algorithme-de-force-brute">Algorithme de force brute</h2>
 <ol>
-<li>On note $nb$ le nombre de pièces à rendre, prises dans la liste des pièces $p = [1, 2, 5, 10, 20, 50, 100, 200, 500]$, lorsque la somme à rendre est $x$.
+<li>On note $nb$ le nombre de pièces à rendre, prises dans la liste des pièces $p = [1, 2, 5, 10, 20, 50, 100, 200, 500]$, lorsque la somme à rendre est $x$.<br>
 Écrire la relation de récurrence que doit vérifier $nb$.</li>
 </ol>
 <hr />
@@ -699,13 +703,114 @@ $$</p>
 <a class="remote" href="https://replit.com/@dlatreyte/Rendu-de-monnaie-Brute-Force" target="_blank">cette adresse</a></p>
 </details>
 <hr />
+<h3 id="compléments">Compléments</h3>
+<ol start="7">
+<li>On souhaite maintenant écrire le code de la fonction <code>pieces_a_rendre</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pieces_a_rendre</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">pieces</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">serie</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">series</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine toutes les combinaisons de pièces qui permettent de rendre la somme somme.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    pieces est le tuple des pièces disponibles.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    series est la liste des pièces à rendre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    series est la liste des listes des pièces à rendre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="remarque">Remarque</h4>
+<p>On peut bien sur créer une fonction enveloppe qui ne prendrait que la somme et la liste des pièces disponibles en argument et retournerait la liste des listes de pièces.</p>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pieces_a_rendre</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">pieces</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">serie</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">series</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine toutes les combinaisons de pièces qui permettent de rendre la somme somme.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">somme</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">piece</span> <span class="ow">in</span> <span class="n">pieces</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">piece</span> <span class="o">&gt;</span> <span class="n">somme</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># Sauvegarde de la liste des pièces pour le retour arrière</span>
+</span></span><span class="line"><span class="cl">        <span class="n">serie_sauv</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">serie</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">piece</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">pieces_a_rendre</span><span class="p">(</span><span class="n">somme</span> <span class="o">-</span> <span class="n">piece</span><span class="p">,</span> <span class="n">pieces</span><span class="p">,</span> <span class="n">serie</span><span class="p">,</span> <span class="n">series</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">serie</span> <span class="o">=</span> <span class="n">serie_sauv</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="8">
+<li>
+<p>Tester le code pour une somme à rendre de 13 puis de 130. Obtient-on rapidement un résultat pour cette dernière valeur ?</p>
+</li>
+<li>
+<p>Comment déterminer le nombre minimum de pièces à retourner ?</p>
+</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Le nombre minimum de pièces est égal à la plus petite longueur des listes éléments de la liste <code>series</code>.</p>
+</details>
+<hr />
 <h2 id="programmation-dynamique-mémoïsation">Programmation dynamique (mémoïsation)</h2>
 <ol>
-<li>
-<ol>
 <li>Rappeler quel est l&rsquo;objectif de la programmation dynamique.</li>
-</ol>
-</li>
 </ol>
 <hr />
 <details style="background-color: #f2f2f2;">
@@ -724,7 +829,7 @@ Dans ce cas, un algorithme diviser-pour-régner fait plus de travail que nécess
 </details>
 <hr />
 <ol start="2">
-<li>Le manque d&rsquo;efficacité de la méthode Brute-Force a pour origine les multiples redondants. Mettre en œuvre la méthode de mémoïsation afin d&rsquo;améliorer l&rsquo;efficacité du code de la fonction <code>nb_rendre</code>.</li>
+<li>Le manque d&rsquo;efficacité de la méthode « force brute » a pour origine les multiples redondants. Mettre en œuvre la méthode de mémoïsation afin d&rsquo;améliorer l&rsquo;efficacité du code de la fonction <code>nb_rendre</code>.</li>
 </ol>
 <hr />
 <details style="background-color: #f2f2f2;">
