@@ -61,7 +61,7 @@ On suppose que les clients ne donnent que des sommes entières en euros (pas de 
   "headline": "Problème du rendu de monnaie",
   "description" : "Énoncé du problème Un commerçant cherche à rendre la monnaie à ses clients de façon optimale, c\u0026rsquo;est-à-dire avec le nombre minimal de pièces et de billets.\nDans ce problème,\nOn suppose que les clients ne donnent que des sommes entières en euros (pas de centimes pour simplifier) ; Les valeurs des pièces et billets à disposition sont : 1, 2, 5, 10, 20, 50, 100, 200 et 500. On suppose que l\u0026rsquo;on a autant d\u0026rsquo;exemplaires que nécessaire de chaque pièce et billet ; Dans la suite, afin de simplifier, on désigne par « pièces » à la fois les pièces et les billets.",
   "inLanguage" : "fr",
-  "wordCount":  1895 ,
+  "wordCount":  1905 ,
   "datePublished" : "2021-02-28T05:28:54",
   "dateModified" : "2021-02-28T05:28:54",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -554,7 +554,7 @@ On suppose que les …">
         <strong> Code complet</strong>
     </summary>
 <p>Le code se trouve à :
-<a class="remote" href="https://replit.com/@dlatreyte/Rendu-de-monnaie-Glouton#main.py" target="_blank">cette adresse</a></p>
+<a class="remote" href="#ZgotmplZ" target="_blank">cette adresse</a></p>
 </details>
 <hr />
 <h2 id="algorithme-de-force-brute">Algorithme de force brute</h2>
@@ -700,7 +700,7 @@ $$</p>
         <strong> Code complet</strong>
     </summary>
 <p>Le code se trouve à :
-<a class="remote" href="https://replit.com/@dlatreyte/Rendu-de-monnaie-Brute-Force" target="_blank">cette adresse</a></p>
+<a class="remote" href="#ZgotmplZ" target="_blank">cette adresse</a></p>
 </details>
 <hr />
 <h3 id="compléments">Compléments</h3>
@@ -829,15 +829,82 @@ Dans ce cas, un algorithme diviser-pour-régner fait plus de travail que nécess
 </details>
 <hr />
 <ol start="2">
-<li>Le manque d&rsquo;efficacité de la méthode force brute a pour origine les multiples redondants. Mettre en œuvre la méthode de mémoïsation afin d&rsquo;améliorer l&rsquo;efficacité du code de la fonction <code>nb_rendre</code>.</li>
+<li>Le manque d&rsquo;efficacité de la méthode force brute a pour origine les multiples calculs redondants. Mettre en œuvre la méthode de <strong>mémoïsation</strong> afin d&rsquo;améliorer l&rsquo;efficacité du code de la fonction <code>nb_rendre</code>.</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine le nombre minimal de pièces
+</span></span></span><span class="line"><span class="cl"><span class="s2">    à rendre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme récursif avec mémoïsation.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dic_a_rendre</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">dic</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Version mémoïsée de la fonction nb_rendre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">a_rendre</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dic</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="n">nb_min</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">a_rendre</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">nb</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">_nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span> <span class="o">-</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pieces</span><span class="p">,</span> <span class="n">dic</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="n">nb</span> <span class="o">&lt;=</span> <span class="n">nb_min</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">nb_min</span> <span class="o">=</span> <span class="n">nb</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="n">dic</span><span class="p">[</span><span class="n">a_rendre</span><span class="p">]</span> <span class="o">=</span> <span class="n">nb_min</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dic</span><span class="p">[</span><span class="n">a_rendre</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">_nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">,</span> <span class="n">pieces</span><span class="p">,</span> <span class="n">dic_a_rendre</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
 <hr />
 <details style="background-color: #f2f2f2;">
     <summary>
         <strong> Code complet</strong>
     </summary>
 <p>Le code se trouve à :
-<a class="remote" href="https://replit.com/@dlatreyte/Rendu-de-monnaie-Programmation-dynamique-1" target="_blank">cette adresse</a></p>
+<a class="remote" href="#ZgotmplZ" target="_blank">cette adresse</a></p>
 </details>
 <hr />
 <h2 id="programmation-dynamique-méthode-tabulaire">Programmation dynamique (méthode tabulaire)</h2>
@@ -860,78 +927,115 @@ Dans ce cas, un algorithme diviser-pour-régner fait plus de travail que nécess
 </div>
 </details>
 <hr />
-<ol start="2">
-<li>
-<p>On note $nb[i][j]$ le <em>nombre optimal de pièces à rendre pour une somme à rendre</em> $j$ et $i$ types de pièces.
+<!--
+2. On note $nb[i][j]$ le *nombre optimal de pièces à rendre pour une somme à rendre* $j$ et $i$ types de pièces.
 Ce nombre est vérifie la relation de récurrence :
 $$
-nb[i][j] =
-\begin{cases}
-0 &amp; \text{ si } j = 0\cr
-0 &amp; \text{ si } i = 0\cr
-min(nb[i-1][j] ; 1 + nb[i][j - \text{piece}[i]]) &amp; \text{ si } j - \text{pieces}[i] \geqslant 0  \cr
-nb[i-1][j] &amp; \text{ si } j - \text{pieces}[i] &lt; 0 \cr
-\end{cases}
-$$</p>
-<p>Justifier cette relation.</p>
-</li>
-<li>
-<p>Représenter le tableau $nb$ pour une somme à rendre de 12 euros.</p>
-</li>
-<li>
-<p>Quelle est le nombre de pièces optimal en utilisant la programmation dynamique ?</p>
-</li>
-<li>
-<p>Écrire le code de la fonction <code>sol_dynamique</code> dont la spécification est :</p>
-</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">construction_nb</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Construit le tableau dynamique nb définit par la relation de récurrence donnée.
-</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="6">
-<li>Quelle est la complexité de cet algorithme ?</li>
-</ol>
-<!--
+    nb[i][j] =
+    \begin{cases}
+    0 & \text{ si } j = 0\cr
+    0 & \text{ si } i = 0\cr
+    min(nb[i-1][j] ; 1 + nb[i][j - \text{piece}[i]]) & \text{ si } j - \text{pieces}[i] \geqslant 0  \cr
+    nb[i-1][j] & \text{ si } j - \text{pieces}[i] < 0 \cr
+    \end{cases}
+$$
+
+    Justifier cette relation.
+
+3. Représenter le tableau $nb$ pour une somme à rendre de 12 euros.
+
+4. Quelle est le nombre de pièces optimal en utilisant la programmation dynamique ?
+
+5. Écrire le code de la fonction `sol_dynamique` dont la spécification est :
+
+```python
+def construction_nb(somme: int, pieces: List[int]) -> List[List[int]]:
+    """
+    Construit le tableau dynamique nb définit par la relation de récurrence donnée.
+    """
+```
+
+6. Quelle est la complexité de cet algorithme ?
+
 7. À partir du tableau de la question 8, indiquer comment retrouver le découpage conduisant à la solution.
--->
-<ol start="7">
-<li>Écrire la fonction <code>recherche_sol</code> dont la spécification est :</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">recherche_sol</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">nb</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">:</span> <span class="nb">int</span><span class="p">]]:</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Recherche la solution et toutes les pièces à rendre pour cette solution.
-</span></span></span><span class="line"><span class="cl"><span class="s2">    La valeur retournée a pour forme (somme, {piece: nombre})
-</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><hr />
+
+7. Écrire la fonction `recherche_sol` dont la spécification est :
+
+```python
+def recherche_sol(somme: int, pieces: List[int], nb: List[List[int]]) -> Tuple[int, Dict[int: int]]:
+    """
+    Recherche la solution et toutes les pièces à rendre pour cette solution.
+    La valeur retournée a pour forme (somme, {piece: nombre})
+    """
+```
+
+
+<hr />
 <details style="background-color: #f2f2f2;">
     <summary>
         <strong> Code complet</strong>
     </summary>
-<p>Le code se trouve à :
-<a class="remote" href="https://replit.com/@dlatreyte/Rendu-de-monnaie-dynamique-1" target="_blank">cette adresse</a></p>
+    
+
+Le code se trouve à : 
+<a class="remote" href="#ZgotmplZ" target="_blank">cette adresse</a>
+
+
+
+
 </details>
+<hr />
+
+
+
+-->
+<ol start="2">
+<li>Le manque d&rsquo;efficacité de la méthode force brute a pour origine les multiples calculs redondants. Mettre en œuvre la méthode de <strong>ascendante</strong> afin d&rsquo;améliorer l&rsquo;efficacité du code de la fonction <code>nb_rendre</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine le nombre minimal de pièces
+</span></span></span><span class="line"><span class="cl"><span class="s2">    à rendre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme itératif, méthode ascendante.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbres</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)]</span> <span class="o">*</span> <span class="p">(</span><span class="n">a_rendre</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Tableau des valeurs</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbres</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">somme</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nbres</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">piece</span> <span class="ow">in</span> <span class="n">pieces</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">somme</span> <span class="o">-</span> <span class="n">piece</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">nbres</span><span class="p">[</span><span class="n">somme</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbres</span><span class="p">[</span><span class="n">sommes</span><span class="p">],</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">nbres</span><span class="p">[</span><span class="n">somme</span> <span class="o">-</span> <span class="n">piece</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nbres</span><span class="p">[</span><span class="n">a_rendre</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
 <hr />
 
 
