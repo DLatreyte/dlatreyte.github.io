@@ -61,7 +61,7 @@ soit la chaîne de caractères vide ; soit constituée de son premier caractère
   "headline": "La récursivité appliquée aux chaînes de caractères et aux listes",
   "description" : "Introduction Une chaîne de caractère est une structure de données qui permet de rassembler en un unique objet une succession ordonnée de caractères. Ainsi, une définition récursive d\u0026rsquo;une chaîne de caractères pourrait être :\nUne chaîne de caractères est :\nsoit la chaîne de caractères vide ; soit constituée de son premier caractère et du reste des caractères qui forment aussi une chaîne de caractères (éventuellement vide). Une liste est une structure de données qui permet de rassembler en un unique objet une succession ordonnée d\u0026rsquo;objets (ou de valeurs).",
   "inLanguage" : "fr",
-  "wordCount":  2202 ,
+  "wordCount":  2235 ,
   "datePublished" : "2020-09-08T04:53:31",
   "dateModified" : "2020-09-08T04:53:31",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -749,25 +749,35 @@ soit la chaîne de caractères vide ; soit constituée de son premier caractère
 </span><span class="lnt">34
 </span><span class="lnt">35
 </span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_palindrome</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Détecte si la chaîne de caractères est un palindrome.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Utilisation d&#39;une sous-chaïne. La récursivité est terminale.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Hypothèse : la chaîne c n&#39;est pas vide.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
 </span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">c</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
 </span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">est_palindrome</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">est_palindrome</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_palindrome_02</span><span class="p">(</span><span class="n">c</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Détecte si la chaîne de caractères est un palindrome.
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Utilisation d&#39;une sous-chaïne. La récursivité est terminale.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    i est le premier indice de la chaîne, j le dernier.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Utilisation d&#39;une sous-chaîne. La récursivité est terminale.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Hypothèse : la chaîne c n&#39;est pas vide.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
