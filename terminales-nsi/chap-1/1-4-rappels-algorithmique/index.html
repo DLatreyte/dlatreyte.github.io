@@ -61,7 +61,7 @@ Sa finitude : Il doit se terminer en un temps fini.">
   "headline": "Rappels d\u0027algorithmique",
   "description" : "Algorithmique Un algorithme est une suite finie et non ambiguë d\u0026rsquo;opérations ou d\u0026rsquo;instructions à réaliser afin de résoudre un problème. En informatique, pour qu\u0026rsquo;un algorithme puisse être implémenté, il est nécessaire de s\u0026rsquo;assurer que la « suite finie et non ambiguë d\u0026rsquo;opérations ou d\u0026rsquo;instructions à réaliser » s\u0026rsquo;effectue en une durée finie .\nLorsqu\u0026rsquo;on élabore ou étudie un algorithme, il est donc nécessaire de vérifier :\nSa finitude : Il doit se terminer en un temps fini.",
   "inLanguage" : "fr",
-  "wordCount":  2852 ,
+  "wordCount":  3957 ,
   "datePublished" : "2020-09-12T17:46:07",
   "dateModified" : "2020-09-12T17:46:07",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -749,19 +749,60 @@ puissance de deux supérieure ou égale à $n$.</em><br />
 <strong>Fin</strong></p>
 <hr>
 <ol>
-<li>
-<p>Décrire au moyen d&rsquo;un tableau indiquant l&rsquo;évolution des valeurs des
+<li>Décrire au moyen d&rsquo;un tableau indiquant l&rsquo;évolution des valeurs des
 variables le fonctionnement de l&rsquo;algorithme 2 pour la chaîne de caractères
 « sauras » puis pour la chaîne de caractères « radar ».<br>
-<strong>Remarque :</strong> Le premier élément d&rsquo;une chaîne a pour indice 0.</p>
-</li>
-<li>
-<p>Montrer que $f(i, j) = j - i$ est un variant de la boucle <strong>TantQue</strong>.</p>
-</li>
-<li>
-<p>En déduire que la boucle <strong>TantQue</strong> se termine.</p>
-</li>
+<strong>Remarque :</strong> Le premier élément d&rsquo;une chaîne a pour indice 0.</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<ul>
+<li>
+<p>Pour l&rsquo;entrée « sauras » :<br>
+$i$ : 0, 1, 2<br>
+$j$ : 5, 4, 3<br>
+La fonction retourne <code>Faux</code>.</p>
+</li>
+<li>
+<p>Pour l&rsquo;entrée « radar » :<br>
+$i$ : 0, 1, 2, 3<br>
+$j$ : 4, 3, 2, 1<br>
+La fonction retourne <code>Vrai</code>.</p>
+</li>
+</ul>
+</details>
+<hr />
+<ol start="2">
+<li>Montrer que $f(i, j) = j - i$ est un variant de la boucle <strong>TantQue</strong>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>$f(i, j) = j - i$ est-elle un variant de boucle ?</p>
+<ul>
+<li>Tant que $j &gt; i$, $f(i, j)$ est un entier positif et $f(i, j) = j - i &gt; 0$.</li>
+<li>$f (i+1, j-1) = j - 1 - (i + 1) = j - 1 - i - 1 = j - i - 2 = f(i, j) - 2 &lt; f(i, j)$.<br>
+La fonction est donc décroissante sur l&rsquo;ensemble des valeurs de $i$ et de $j$.</li>
+<li><em>Condition d&rsquo;arrêt :</em> $i &gt; j$, donc $f(i, j) = j - i &lt; 0$</li>
+</ul>
+</details>
+<hr />
+<ol start="3">
+<li>En déduire que la boucle <strong>TantQue</strong> se termine.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La fonction $f$ est un variant de boucle. La boucle se termine donc bien.</p>
+</details>
+<hr />
 <h2 id="correction-dun-algorithme-itératifnbsp-invariant-de-boucle">Correction d&rsquo;un algorithme itératif : invariant de boucle</h2>
 <div class="note tip">
   On appelle <strong>invariant d&rsquo;une boucle</strong>  une <em>propriété qui,
@@ -823,22 +864,85 @@ de l&rsquo;entier naturel $a$ par l&rsquo;entier naturel $b$</em><br>
 <strong>Fin</strong></p>
 <hr>
 <ol>
-<li>
-<p>Décrire le fonctionnement de l&rsquo;algorithme pour l&rsquo;entrée (<code>a = 17</code>, <code>b = 5</code>) au moyen d&rsquo;un tableau indiquant l&rsquo;évolution des valeurs des variables
-au fil des itérations.</p>
-</li>
-<li>
-<p>Montrer que la boucle <strong>TantQue</strong>  se termine en utilisant un <em>variant de
-boucle</em>.</p>
-</li>
-<li>
-<p>Montrer que la propriété $a =bq+ r$ est un invariant de la
-boucle <strong>TantQue</strong>, en déduire que l&rsquo;algorithme produit le résultat
-attendu.</p>
-</li>
+<li>Décrire le fonctionnement de l&rsquo;algorithme pour l&rsquo;entrée (<code>a = 17</code>, <code>b = 5</code>) au moyen d&rsquo;un tableau indiquant l&rsquo;évolution des valeurs des variables
+au fil des itérations.</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>$$
+\begin{array}{c : c : c : c : c}
+a &amp; 17 &amp; 17 &amp; 17 &amp; 17\cr \hdashline
+b &amp; 5 &amp; 5 &amp; 5 &amp; 5 \cr \hdashline
+q &amp; 0 &amp; 1 &amp; 2 &amp; 3 \cr \hdashline
+r &amp; 17 &amp; 12 &amp; 7 &amp; 2 \cr
+\end{array}
+$$</p>
+</details>
+<hr />
+<ol start="2">
+<li>Montrer que la boucle <strong>TantQue</strong>  se termine en utilisant un <em>variant de
+boucle</em>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La fonction $f(r) = r - b$ peut-elle être un variant de boucle ?</p>
+<ul>
+<li>$f(r) = r -b$ est un entier.</li>
+<li>Pour n&rsquo;importe quel tour de boucle $r \geqslant b$, donc $f(r) = r -b \geqslant 0$.</li>
+<li>Soit $r_2 = r_1 - b$.<br>
+$f(r_2) = r_2 - b = r_1 - b - b = f(r_1) - b \leqslant f(r_1)$.<br>
+La fonction $f$ est décroissante.</li>
+<li><em>Condition d&rsquo;arrêt :</em> $r &lt; b$, donc $f(r, b) = r - b &lt; 0$.</li>
+</ul>
+<p>La fonction $f$ est bien un variant de boucle et cette boucle se termine.</p>
+</details>
+<hr />
+<ol start="3">
+<li>Montrer que la propriété $a =bq+ r$ est un invariant de la
+boucle <strong>TantQue</strong>, en déduire que l&rsquo;algorithme produit le résultat
+attendu.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Si la propriété $a =b q+ r$ est un invariant de boucle, elle doit être vraie avant d&rsquo;entrer dans la boucle, à chaque tour de boucle et une fois la boucle terminée.</p>
+<ul>
+<li><strong>Initialisation :</strong> Avant d&rsquo;entrer dans la boucle, $q=0$ et $r=a$. Donc on a bien $a = 0 \times b + a$.</li>
+<li><strong>Conservation :</strong> On suppose la propriété vraie au rang $k$ quelconque de la boucle : $a = b q_k + r_k$.<br>
+Au rang $k+1$, $q_{k+1} = q_{k} + 1$ et $r_{k+1} = r_k - b$. Donc $a = b q_{k+1} + r_{k+1} = b q_{k} + b + r_k - b = b q_k + r_k$.</li>
+<li><strong>Terminaison :</strong> La boucle s&rsquo;arrête lorsque $r &lt; b$. Au dernier tour de la boucle on a donc bien $a=b q + r$.</li>
+</ul>
+<p>La propriété $a =bq+ r$ est bien un invariant de boucle et le programme est correct.</p>
+</details>
+<hr />
 <!--
 4. Montrer que la propriété $0 \leqslant r < b$ est un invariant de boucle.
+
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+    
+Si la propriété $0 \leqslant r$ est un invariant de boucle, elle doit être vraie avant d'entrer dans la boucle, à chaque tour de boucle et une fois la boucle terminée.
+
+- **Initialisation&nbsp;:** Avant d'entrer dans la boucle, $r=a > 0$.
+- **Conservation&nbsp;:** On suppose la propriété vraie au rang $k$ quelconque de la boucle&nbsp;: $r_k \geqslant 0$.  
+Au rang $k+1$, $r_{k+1} = r_k - b > 0$. On sait que $r_{k+1} > 0$ car on passe au rang $k+1$ uniquement si $r_k > b$.
+- **Terminaison&nbsp;:** La boucle s'arrête dès que $r < b$. Donc au dernier tour (et à la sortie, donc) de la boucle on a donc bien encore $b > r \geqslant 0$.
+
+La propriété $0 \leqslant r$ est bien un invariant de la boucle **TantQue** et en déduire que le programme est correct.
+
+</details>
+<hr />
 
 
 
@@ -871,9 +975,63 @@ attendu.</p>
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ol start="6">
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">division_euclidienne</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcule la division euclidienne de l&#39;entier naturel a par l&#39;entier naturel b.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne les entiers naturels q et r, quotient et reste de cette division.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">q</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span> <span class="o">=</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">r</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">q</span> <span class="o">=</span> <span class="n">q</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="6">
 <li>Écrire un jeu de tests pour la fonction <code>division_euclidienne</code>.</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">division_euclidienne</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">division_euclidienne</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">division_euclidienne</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
 <h2 id="exercices">Exercices</h2>
 <div class="note exercise">
   <h4 id="exercice">Exercice</h4>
@@ -916,6 +1074,53 @@ attendu.</p>
 </li>
 </ol>
 </div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponses</strong>
+    </summary>
+<ol>
+<li>
+<p><code>power</code> calcule $2^n$.</p>
+</li>
+<li></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">power</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">power</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">power</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1024</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>
+<p>$f(i) = n - i$ est-il un variant de boucle ?</p>
+<ul>
+<li>$f(0) = n$ est un entier naturel.</li>
+<li>$f(i+1) - f(i) = n - i - 1 - n + i = -1$<br>
+La suite est strictement décroissante.</li>
+<li>$i_{max} = n$ donc $f(i_{max}) = n - i_{max} = n - n = 0$.<br>
+$f(i)$ est un variant de boucle, l&rsquo;algorithme se termine.</li>
+</ul>
+</li>
+<li>
+<p>Invariant de boucle : &ldquo;À l&rsquo;issue de chaque itération, $p=2^i$.&rdquo;</p>
+<ul>
+<li><strong>Initialisation :</strong> À l&rsquo;entrée de la boucle, $i=0$, $2^i = 2^0 = 1 = p$.</li>
+<li><strong>Conservation :</strong> On suppose qu&rsquo;à l&rsquo;issue du tour de boucle de compteur $k$, $p_k = 2^k$.<br>
+$p_{k+1} = p_k \times 2 = 2^k \times 2 = 2^{k+1}$.</li>
+<li><strong>Terminaison :</strong> Lors du dernier tour de boucle, $i = n - 1$, le calcul effectué est donc $p = 2^{n-1} \times 2= 2^n$.<br>
+L&rsquo;algorithme est correct.</li>
+</ul>
+</li>
+</ol>
+</details>
+<hr />
 <div class="note exercise">
   <h4 id="exercice">Exercice</h4>
 <p>On considère la suivante :</p>
@@ -960,6 +1165,32 @@ attendu.</p>
 </li>
 </ol>
 </div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponses</strong>
+    </summary>
+<ol>
+<li>
+<p>la fonction trouve le plus grand élément dans la liste passée en argument.</p>
+</li>
+<li></li>
+<li>
+<p>$f(i) = i - 1$ avec $i=\text{len}(s)$ est-il un variant de boucle ?</p>
+<ul>
+<li>$f(i_0) = len(s) - 1$ est un entier naturel si la liste <code>s</code> n&rsquo;est pas vide.</li>
+<li>$f(i_{k+1}) - f(i_k) = len(s[1:]) - 1 - len(s) + 1 = len(s[1:]) - len(s) &lt; 0$<br>
+La fonction $f$ est strictement décroissante.</li>
+<li>$i_{der} = 1$, $f(i_{der}) = 1 - 1 = 0$.<br>
+$f$ est un variant de boucle et la boucle se termine.</li>
+</ul>
+</li>
+<li>
+<p>Invariant de boucle :</p>
+</li>
+</ol>
+</details>
+<hr />
 <div class="note exercise">
   <h4 id="exercice">Exercice</h4>
 <p>On considère la fonction <code>somme_premiers_entiers</code> qui implémente l&rsquo;algorithme :</p>
@@ -994,6 +1225,85 @@ attendu.</p>
 </li>
 </ol>
 </div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponses</strong>
+    </summary>
+<ol>
+<li></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">somme_premiers_entiers</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcule la somme des n premiers entiers.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : n entier naturel
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">somme</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">somme</span> <span class="o">=</span> <span class="n">somme</span> <span class="o">+</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">somme</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">somme_premiers_entiers</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">somme_premiers_entiers</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">somme_premiers_entiers</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">==</span> <span class="mi">12</span> <span class="o">*</span> <span class="p">(</span><span class="mi">12</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li></li>
+</ol>
+<ul>
+<li>Pour n&rsquo;importe quel tour de boucle, on a $i \leqslant n$. Donc $f(n, i) = n - i \geqslant 0$ ;</li>
+<li>Au rang $k+1$, $i_{k+1} = i_k + 1$ donc $f(n, i_{k+1}) = n - i_{k+1} = n - i_k - 1 = f(n, i_k) - 1 &lt; f(n, i_k)$. La fonction $f$ décroit lorsque la boucle progresse.</li>
+<li><em>condition d&rsquo;arrêt :</em> $i&gt;n$, donc $f(n,i) = n - i &lt; 0$.</li>
+</ul>
+<p>La fonction $f$ est positive, décroissante lorsque la boucle « tourne » et finalement prend une valeur négative lorsque la boucle est terminée ; c&rsquo;est <em>un variant de boucle</em>.<br>
+<em>La présence d&rsquo;un variant de boucle nous assure que la boucle se termine</em>.</p>
+<ol start="4">
+<li></li>
+</ol>
+<ul>
+<li><strong>Initialisation :</strong> Avant d&rsquo;entrer dans la boucle, $\text{somme} = 0$.</li>
+<li><strong>Conservation :</strong> On suppose que $\text{somme} = 0 + 1 + \ldots + k -1$ au début de la kième boucle.
+Pendant la kième boucle, on a $\text{somme} = \text{somme} + k = 0 + 1 + \ldots + k -1 + k$.<br>
+Au début de la $k+1$ième boucle, on a donc bien $\text{somme} = 0 + 1 + \ldots + k$.</li>
+<li><strong>Terminaison :</strong> La boucle s&rsquo;arrête dès que $i &gt; n$. Donc au début du $n+1$ième tour (tour de boucle qui n&rsquo;aura jamais lieu), on a bien $\text{somme} = 0 + 1 + \ldots + n$.</li>
+</ul>
+<p>La proposition est bien un invariant de boucle, <em>elle nous assure que le programme est corret</em>.</p>
+<ol start="5">
+<li></li>
+</ol>
+</details>
+<hr />
 
 
         
