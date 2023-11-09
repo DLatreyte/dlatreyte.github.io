@@ -61,7 +61,7 @@ soit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé
   "headline": "Les arbres binaires",
   "description" : "Le corrigé de l\u0026rsquo;activité se trouve ici Arbres binaires Définition Un arbre binaire est une structure de données abstraite formée d\u0026rsquo;un ensemble de nœuds organisés hiérarchiquement selon la définition inductive suivante :\nUn arbre binaire est :\nsoit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé racine, relié à exactement deux arbres binaires $g$ et $d$, respectivement appelés sous-arbres gauche et sous-arbre droit. On note $T(r,g,d)$ l\u0026rsquo;arbre non vide dont la racine $r$ (on peut aussi indiquer l\u0026rsquo;étiquette de cette racine).",
   "inLanguage" : "fr",
-  "wordCount":  2209 ,
+  "wordCount":  2210 ,
   "datePublished" : "2020-11-05T03:38:41",
   "dateModified" : "2020-11-05T03:38:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -316,6 +316,7 @@ soit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé
         <li><a href="#parcours-en-profondeur-dun-arbre-1">Parcours en profondeur d&rsquo;un arbre</a></li>
       </ul>
     </li>
+    <li><a href="#développement">Développement</a></li>
     <li><a href="#à-retenir">À retenir</a></li>
   </ul>
 </nav>
@@ -1129,7 +1130,7 @@ graph TD
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">Fonction parcours_largeur<span class="o">(</span>racine: Noeud<span class="o">)</span>:
-</span></span><span class="line"><span class="cl">    File <span class="nv">f</span> <span class="o">=</span> newFile<span class="o">()</span>
+</span></span><span class="line"><span class="cl">    File <span class="nv">f</span> <span class="o">=</span> File<span class="o">()</span>
 </span></span><span class="line"><span class="cl">    f.enfiler<span class="o">(</span>racine<span class="o">)</span>
 </span></span><span class="line"><span class="cl">    TantQue non f.est_vide<span class="o">()</span>:
 </span></span><span class="line"><span class="cl">        <span class="nv">n</span> <span class="o">=</span> f.defiler<span class="o">()</span>
@@ -1145,7 +1146,7 @@ graph TD
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="18">
-<li>Implémenter en Python l&rsquo;algorithme précédent.</li>
+<li>Implémenter en Python cet algorithme.</li>
 </ol>
 <h3 id="parcours-en-profondeur-dun-arbre-1">Parcours en profondeur d&rsquo;un arbre</h3>
 <ol start="19">
@@ -1171,25 +1172,26 @@ De quel type de parcours en profondeur s&rsquo;agit-il ?</li>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">Fonction parcours_profondeur<span class="o">(</span>racine: Noeud<span class="o">)</span>:
-</span></span><span class="line"><span class="cl">    Pile <span class="nv">p</span> <span class="o">=</span> newPile<span class="o">()</span>
+</span></span><span class="line"><span class="cl">    Pile <span class="nv">p</span> <span class="o">=</span> Pile<span class="o">()</span>
 </span></span><span class="line"><span class="cl">    p.empiler<span class="o">(</span>racine<span class="o">)</span>
-</span></span><span class="line"><span class="cl">    TantQue non est_vide<span class="o">(</span>p<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">    TantQue non p.est_vide<span class="o">()</span>:
 </span></span><span class="line"><span class="cl">        <span class="nv">n</span> <span class="o">=</span> p.depiler<span class="o">()</span>
 </span></span><span class="line"><span class="cl">        print<span class="o">(</span>n<span class="o">)</span>
 </span></span><span class="line"><span class="cl">        Si non est_vide<span class="o">(</span>n.filsG<span class="o">)</span>:
-</span></span><span class="line"><span class="cl">            empiler<span class="o">(</span>n.filsG<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            p.empiler<span class="o">(</span>n.filsG<span class="o">)</span>
 </span></span><span class="line"><span class="cl">        FinSi
 </span></span><span class="line"><span class="cl">        Si non est_vide<span class="o">(</span>n.filsD<span class="o">)</span>:
-</span></span><span class="line"><span class="cl">            empiler<span class="o">(</span>n.filsD<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            p.empiler<span class="o">(</span>n.filsD<span class="o">)</span>
 </span></span><span class="line"><span class="cl">        FinSi
 </span></span><span class="line"><span class="cl">    FinTantQue
 </span></span><span class="line"><span class="cl">FinFonction
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="20">
-<li>
-<p>Implémenter en Python l&rsquo;algorithme précédent.</p>
-</li>
+<li>Implémenter en Python cet algorithme.</li>
+</ol>
+<h2 id="développement">Développement</h2>
+<ol start="21">
 <li>
 <p>Reprendre toutes les fonctions de ce document en n&rsquo;utilisant pas la classe <code>Noeud</code> mais une liste à trois éléments. Le premier est la « valeur » du noeud, le second l&rsquo;adresse du fils gauche, le troisième l&rsquo;adresse du fils droit.</p>
 </li>
