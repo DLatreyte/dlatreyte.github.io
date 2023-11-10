@@ -61,7 +61,7 @@ soit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé
   "headline": "Les arbres binaires",
   "description" : "Arbres binaires Définition Un arbre binaire est une structure de données abstraite formée d\u0026rsquo;un ensemble de nœuds organisés hiérarchiquement selon la définition par récurrence suivante :\nUn arbre binaire est :\nsoit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé racine, relié à exactement deux arbres binaires $g$ et $d$, respectivement appelés sous-arbres gauche et sous-arbre droit. On note $T(r,g,d)$ l\u0026rsquo;arbre non vide dont la racine $r$ (on peut aussi indiquer l\u0026rsquo;étiquette de cette racine).",
   "inLanguage" : "fr",
-  "wordCount":  3688 ,
+  "wordCount":  4077 ,
   "datePublished" : "2020-11-05T03:38:41",
   "dateModified" : "2020-11-05T03:38:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -493,6 +493,7 @@ La hauteur d&rsquo;un arbre est aussi sa profondeur.</li>
 <li>Une liste Python de trois éléments ;</li>
 <li>Un dictionnaire comportant trois clés : <code>valeur</code>, <code>gauche</code> et <code>droit</code>.</li>
 </ul>
+<p><em>On peut même imaginer utiliser un tableau ou une liste chaînée !</em></p>
 <p>On ne créera pas de structure « arbre binaire » (accompagnée de méthodes) dans ce document.</p>
 </div>
 <ol start="2">
@@ -623,9 +624,7 @@ graph TD
     <summary>
         <strong> Réponse</strong>
     </summary>
-<!--
 <img src="../../../terminales-nsi/chap-9/chap-9-2-1.svg" alt="" width="100%" />
--->
 <br />
 <img src="../../../terminales-nsi/chap-9/chap-9-2-2.png" alt="" width="100%" />
 </details>
@@ -997,6 +996,204 @@ graph TD
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
 </span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span> <span class="o">+</span> <span class="n">nbre_feuilles</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span> <span class="o">+</span> <span class="n">nbre_feuilles</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="13">
+<li>Écrire le code de la fonction <code>remplace</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">remplace</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">val_ini</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">val_fin</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Cherche tous les noeuds de valeur val_ini et remplace ces
+</span></span></span><span class="line"><span class="cl"><span class="s2">    dernières par val_fin.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">remplace</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">val_ini</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">val_fin</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Cherche tous les noeuds de valeur val_ini et remplace ces
+</span></span></span><span class="line"><span class="cl"><span class="s2">    dernières par val_fin.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">n</span><span class="o">.</span><span class="n">valeur</span> <span class="o">==</span> <span class="n">val_ini</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span><span class="o">.</span><span class="n">valeur</span> <span class="o">=</span> <span class="n">val_fin</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">remplace</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">,</span> <span class="n">val_ini</span><span class="p">,</span> <span class="n">val_fin</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">remplace</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">,</span> <span class="n">val_ini</span><span class="p">,</span> <span class="n">val_fin</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="14">
+<li>Écrire le code de la fonction <code>ajoute</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajoute</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">enfant</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">gauche</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajoute un noeud de valeur enfant comme enfant du noeud de valeur
+</span></span></span><span class="line"><span class="cl"><span class="s2">    parent.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Le noeud enfant est placé par défaut à gauche.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : Le noeud de valeur parent existe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajoute</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">enfant</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">gauche</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajoute un noeud de valeur enfant comme enfant du noeud de valeur
+</span></span></span><span class="line"><span class="cl"><span class="s2">    parent.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Le noeud enfant est placé par défaut à gauche.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : Le noeud de valeur parent existe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">n</span><span class="o">.</span><span class="n">valeur</span> <span class="o">==</span> <span class="n">parent</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">gauche</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Le noeud enfant gauche existe déjà !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">gauche</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Le noeud enfant droit existe déjà !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">gauche</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">n</span><span class="o">.</span><span class="n">gauche</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="n">enfant</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">n</span><span class="o">.</span><span class="n">droit</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="n">enfant</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ajoute</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">enfant</span><span class="p">,</span> <span class="n">gauche</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ajoute</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">enfant</span><span class="p">,</span> <span class="n">gauche</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="15">
+<li>Écrire le code de la fonction <code>supprime</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">supprime</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Supprime le noeud de valeur val ainsi que tous ses descendants.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">supprime</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Supprime le noeud de valeur val ainsi que tous ses descendants.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">est_feuille</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="o">.</span><span class="n">valeur</span> <span class="o">==</span> <span class="n">val</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span><span class="o">.</span><span class="n">gauche</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="o">.</span><span class="n">valeur</span> <span class="o">==</span> <span class="n">val</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span><span class="o">.</span><span class="n">droit</span> <span class="o">=</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">supprime</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">supprime</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
