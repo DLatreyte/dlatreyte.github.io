@@ -61,7 +61,7 @@ soit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé
   "headline": "Les arbres binaires",
   "description" : "Arbres binaires Définition Un arbre binaire est une structure de données abstraite formée d\u0026rsquo;un ensemble de nœuds organisés hiérarchiquement selon la définition par récurrence suivante :\nUn arbre binaire est :\nsoit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé racine, relié à exactement deux arbres binaires $g$ et $d$, respectivement appelés sous-arbres gauche et sous-arbre droit. On note $T(r,g,d)$ l\u0026rsquo;arbre non vide dont la racine $r$ (on peut aussi indiquer l\u0026rsquo;étiquette de cette racine).",
   "inLanguage" : "fr",
-  "wordCount":  3552 ,
+  "wordCount":  3624 ,
   "datePublished" : "2020-11-05T03:38:41",
   "dateModified" : "2020-11-05T03:38:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -307,11 +307,10 @@ Un arbre …">
     <li><a href="#implémentation-de-la-spécification-en-python-à-laide-dune-classe">Implémentation de la spécification en Python à l&rsquo;aide d&rsquo;une classe</a></li>
     <li><a href="#quelques-algorithmes-de-manipulation-des-arbres-binaires">Quelques algorithmes de manipulation des arbres binaires</a>
       <ul>
-        <li><a href="#algorithmes-récursifs">Algorithmes récursifs</a></li>
-        <li><a href="#algorithmes-itératifs">Algorithmes itératifs</a></li>
+        <li></li>
       </ul>
     </li>
-    <li><a href="#parcours-dun-arbre-à-laide-dune-file-ou-dune-pile">Parcours d&rsquo;un arbre à l&rsquo;aide d&rsquo;une file ou d&rsquo;une pile</a>
+    <li><a href="#algorithmes-itératifs-----parcours-dun-arbre-à-laide-dune-file-ou-dune-pile">Algorithmes itératifs &mdash; Parcours d&rsquo;un arbre à l&rsquo;aide d&rsquo;une file ou d&rsquo;une pile</a>
       <ul>
         <li><a href="#parcours-en-largeur-dun-arbre">Parcours en largeur d&rsquo;un arbre</a></li>
         <li><a href="#parcours-en-profondeur-dun-arbre-1">Parcours en profondeur d&rsquo;un arbre</a></li>
@@ -497,11 +496,47 @@ La hauteur d&rsquo;un arbre est aussi sa profondeur.</li>
 <p>On ne créera pas de structure « arbre binaire » (accompagnée de méthodes) dans ce document.</p>
 </div>
 <ol start="2">
-<li>
-<p>Écrire le code de la classe <code>Noeud</code> respectant la spécification. Les trois attributs seront nommés <code>valeur</code>, <code>gauche</code>, <code>droit</code>.</p>
-</li>
-<li>
-<p>Écrire le code permettant de construire l&rsquo;arbre :
+<li>Écrire le code de la classe <code>Noeud</code> respectant la spécification. Les trois attributs seront nommés <code>valeur</code>, <code>gauche</code>, <code>droit</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Noeud</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Structure de stockage pour créer des arbres binaires.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="n">Noeud</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="n">Noeud</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34; Initialisation de l&#39;objet. &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">valeur</span> <span class="o">=</span> <span class="n">val</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">gauche</span> <span class="o">=</span> <span class="n">g</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">droit</span> <span class="o">=</span> <span class="n">d</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="3">
+<li>Écrire le code permettant de construire l&rsquo;arbre :
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
 <script type="text/javascript">
     mermaid.initialize({    
@@ -526,7 +561,6 @@ graph TD
   D --- E(None)
   D --- F(None)
 </pre>
-</p>
 </li>
 </ol>
 <hr />
@@ -550,6 +584,21 @@ graph TD
 </span></span><span class="line"><span class="cl">                        <span class="n">Noeud</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">)),</span>
 </span></span><span class="line"><span class="cl">                <span class="n">Noeud</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">                <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>ou</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">abr1</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">abr1</span><span class="o">.</span><span class="n">gauche</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">abr1</span><span class="o">.</span><span class="n">droit</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">abr1</span><span class="o">.</span><span class="n">gauche</span><span class="o">.</span><span class="n">droit</span> <span class="o">=</span> <span class="n">Noeud</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -768,7 +817,7 @@ graph TD
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="quelques-algorithmes-de-manipulation-des-arbres-binaires">Quelques algorithmes de manipulation des arbres binaires</h2>
-<h3 id="algorithmes-récursifs">Algorithmes récursifs</h3>
+<p>Tous les algorithmes qui suivent sont récursifs.</p>
 <ol start="10">
 <li>Écrire le code de la fonction <code>taille</code> dont la spécification est :</li>
 </ol>
@@ -1140,13 +1189,9 @@ graph TD
 </div>
 </div></details>
 <hr />
-<h3 id="algorithmes-itératifs">Algorithmes itératifs</h3>
-<ol start="16">
-<li>Reprendre les questions précédentes en utilisant des algorithmes itératifs.</li>
-</ol>
-<h2 id="parcours-dun-arbre-à-laide-dune-file-ou-dune-pile">Parcours d&rsquo;un arbre à l&rsquo;aide d&rsquo;une file ou d&rsquo;une pile</h2>
+<h2 id="algorithmes-itératifs-----parcours-dun-arbre-à-laide-dune-file-ou-dune-pile">Algorithmes itératifs &mdash; Parcours d&rsquo;un arbre à l&rsquo;aide d&rsquo;une file ou d&rsquo;une pile</h2>
 <h3 id="parcours-en-largeur-dun-arbre">Parcours en largeur d&rsquo;un arbre</h3>
-<ol start="17">
+<ol start="16">
 <li>Décrire le fonctionnement de l&rsquo;algorithme suivant et montrer qu&rsquo;il réalise un parcours en largeur d&rsquo;un arbre.</li>
 </ol>
 <div class="highlight"><div class="chroma">
@@ -1183,7 +1228,7 @@ graph TD
 </span></span><span class="line"><span class="cl">FinFonction
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ol start="18">
+</div><ol start="17">
 <li>Implémenter en Python cet algorithme.</li>
 </ol>
 <hr />
@@ -1230,7 +1275,7 @@ graph TD
 </div></details>
 <hr />
 <h3 id="parcours-en-profondeur-dun-arbre-1">Parcours en profondeur d&rsquo;un arbre</h3>
-<ol start="19">
+<ol start="18">
 <li>Décrire le fonctionnement de l&rsquo;algorithme suivant et montrer qu&rsquo;il réalise un parcours en profondeur d&rsquo;un arbre.<br>
 De quel type de parcours en profondeur s&rsquo;agit-il ?</li>
 </ol>
@@ -1318,7 +1363,7 @@ De quel type de parcours en profondeur s&rsquo;agit-il ?</li>
 </div>
 </div></details>
 <hr />
-<ol start="20">
+<ol start="19">
 <li>Implémenter en Python cet algorithme.</li>
 </ol>
 <hr />
@@ -1367,7 +1412,7 @@ De quel type de parcours en profondeur s&rsquo;agit-il ?</li>
 </div></details>
 <hr />
 <h2 id="implémentation-de-la-spécification-en-python-à-laide-dune-liste-python">Implémentation de la spécification en Python à l’aide d’une liste Python</h2>
-<ol start="21">
+<ol start="20">
 <li>Reprendre toutes les fonctions de ce document en n&rsquo;utilisant pas la classe <code>Noeud</code> mais une liste à trois éléments. Le premier est la « valeur » du noeud, le second l&rsquo;adresse du fils gauche, le troisième l&rsquo;adresse du fils droit.</li>
 </ol>
 <hr />
@@ -1674,7 +1719,7 @@ De quel type de parcours en profondeur s&rsquo;agit-il ?</li>
 </div></details>
 <hr />
 <h2 id="implémentation-de-la-spécification-en-python-à-laide-dun-dictionnaire">Implémentation de la spécification en Python à l’aide d’un dictionnaire</h2>
-<ol start="22">
+<ol start="21">
 <li>Reprendre toutes les fonctions de ce document en n&rsquo;utilisant pas la classe <code>Noeud</code> mais un dictionnaire à trois clés : <code>valeur</code>, <code>gauche</code> et <code>droit</code> pour stocker la « valeur » du noeud, l&rsquo;adresse du fils gauche et l&rsquo;adresse du fils droit.</li>
 </ol>
 <hr />
