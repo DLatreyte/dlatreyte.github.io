@@ -61,7 +61,7 @@ soit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé
   "headline": "Les arbres binaires",
   "description" : "Le corrigé de l\u0026rsquo;activité se trouve ici Arbres binaires Définition Un arbre binaire est une structure de données abstraite formée d\u0026rsquo;un ensemble de nœuds organisés hiérarchiquement selon la définition inductive suivante :\nUn arbre binaire est :\nsoit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé racine, relié à exactement deux arbres binaires $g$ et $d$, respectivement appelés sous-arbres gauche et sous-arbre droit. On note $T(r,g,d)$ l\u0026rsquo;arbre non vide dont la racine $r$ (on peut aussi indiquer l\u0026rsquo;étiquette de cette racine).",
   "inLanguage" : "fr",
-  "wordCount":  2210 ,
+  "wordCount":  2267 ,
   "datePublished" : "2020-11-05T03:38:41",
   "dateModified" : "2020-11-05T03:38:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -316,7 +316,7 @@ soit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé
         <li><a href="#parcours-en-profondeur-dun-arbre-1">Parcours en profondeur d&rsquo;un arbre</a></li>
       </ul>
     </li>
-    <li><a href="#développement">Développement</a></li>
+    <li><a href="#compléments">Compléments</a></li>
     <li><a href="#à-retenir">À retenir</a></li>
   </ul>
 </nav>
@@ -1016,34 +1016,17 @@ graph TD
     0 --- 8(8)
     1 --- 2(2)
     2 --- 3(3)
-    2 --- A(None)
     1 --- 4(4)
     4 --- 5(5)
     4 --- 6(6)
-    6 --- B(None)
     6 --- 7(7)
     8 --- 9(9)
     8 --- 13(13)
-    9 --- C(None)
     9 --- 10(10)
     10 --- 11(11)
     10 --- 12(12)
     13 --- 14(14)
     13 --- 15(15)
-    3 --- D(None)
-    3 --- E(None)
-    5 --- F(None)
-    5 --- G(None)
-    7 --- H(None)
-    7 --- I(None)
-    11 --- J(None)
-    11 --- K(None)
-    12 --- L(None)
-    12 --- M(None)
-    14 --- O(None)
-    14 --- P(None)
-    15 --- Q(None)
-    15 --- R(None)
 </pre>
 <hr />
 <details style="background-color: #f2f2f2;">
@@ -1058,48 +1041,96 @@ graph TD
 </details>
 <hr />
 <ol start="15">
-<li>Écrire les spécifications et le code des fonctions <code>affiche_infixe</code>, <code>affiche_prefixe</code> et <code>affiche_suffixe</code> dont les spécifications sont :</li>
+<li>Écrire les spécifications et le code des fonctions <code>parcours_infixe</code>, <code>parcours_prefixe</code> et <code>parcours_suffixe</code> dont les spécifications sont :</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">affiche_infixe</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">parcours_infixe</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Parcourt le sous-arbre gauche, affiche la valeur du nœud puis parcourt le sous-arbre droit.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le parcours sous forme d&#39;une chaîne de caractères.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">=</span> <span class="n">parcours_infixe</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">valeur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">+=</span> <span class="n">parcours_infixe</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">chaine</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">affiche_prefixe</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">parcours_prefixe</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Parcourt le sous-arbre gauche, affiche la valeur du nœud puis parcourt le sous-arbre droit.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le parcours sous forme d&#39;une chaîne de caractères.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">valeur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">+=</span> <span class="n">parcours_prefixe</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">+=</span> <span class="n">parcours_prefixe</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">chaine</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">affiche_suffixe</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">parcours_suffixe</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Parcourt le sous-arbre gauche, affiche la valeur du nœud puis parcourt le sous-arbre droit.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le parcours sous forme d&#39;une chaîne de caractères.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">=</span> <span class="n">parcours_suffixe</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">+=</span> <span class="n">parcours_suffixe</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">valeur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">chaine</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="algorithmes-itératifs">Algorithmes itératifs</h3>
@@ -1187,10 +1218,11 @@ De quel type de parcours en profondeur s&rsquo;agit-il ?</li>
 </span></span><span class="line"><span class="cl">FinFonction
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ol start="20">
+</div><p>Modifier l&rsquo;algorithme de telle sorte qu&rsquo;il réalise le parcours</p>
+<ol start="20">
 <li>Implémenter en Python cet algorithme.</li>
 </ol>
-<h2 id="développement">Développement</h2>
+<h2 id="compléments">Compléments</h2>
 <ol start="21">
 <li>
 <p>Reprendre toutes les fonctions de ce document en n&rsquo;utilisant pas la classe <code>Noeud</code> mais une liste à trois éléments. Le premier est la « valeur » du noeud, le second l&rsquo;adresse du fils gauche, le troisième l&rsquo;adresse du fils droit.</p>
