@@ -61,7 +61,7 @@ soit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé
   "headline": "Les arbres binaires",
   "description" : "Arbres binaires Définition Un arbre binaire est une structure de données abstraite formée d\u0026rsquo;un ensemble de nœuds organisés hiérarchiquement selon la définition par récurrence suivante :\nUn arbre binaire est :\nsoit un arbre vide, noté $E$, ne contenant aucun nœud ; soit un nœud, appelé racine, relié à exactement deux arbres binaires $g$ et $d$, respectivement appelés sous-arbres gauche et sous-arbre droit. On note $T(r,g,d)$ l\u0026rsquo;arbre non vide dont la racine $r$ (on peut aussi indiquer l\u0026rsquo;étiquette de cette racine).",
   "inLanguage" : "fr",
-  "wordCount":  3374 ,
+  "wordCount":  3552 ,
   "datePublished" : "2020-11-05T03:38:41",
   "dateModified" : "2020-11-05T03:38:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -1186,6 +1186,49 @@ graph TD
 </div><ol start="18">
 <li>Implémenter en Python cet algorithme.</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">parcours_largeur</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34; Réalise le parcours en largeur d&#39;un arbre binaire. &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">message</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="n">File</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">enfiler</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="ow">not</span> <span class="n">f</span><span class="o">.</span><span class="n">est_vide</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">defiler</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">message</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">valeur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">f</span><span class="o">.</span><span class="n">enfiler</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">f</span><span class="o">.</span><span class="n">enfiler</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">message</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
 <h3 id="parcours-en-profondeur-dun-arbre-1">Parcours en profondeur d&rsquo;un arbre</h3>
 <ol start="19">
 <li>Décrire le fonctionnement de l&rsquo;algorithme suivant et montrer qu&rsquo;il réalise un parcours en profondeur d&rsquo;un arbre.<br>
@@ -1225,10 +1268,104 @@ De quel type de parcours en profondeur s&rsquo;agit-il ?</li>
 </span></span><span class="line"><span class="cl">FinFonction
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Modifier l&rsquo;algorithme de telle sorte qu&rsquo;il réalise le parcours &hellip;</p>
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>L&rsquo;algorithme semble realiser un parcours préfixe mais en explorant d&rsquo;abord le sous-arbre droit au lieu d&rsquo;explorer le sous-arbre gauche.</p>
+</details>
+<hr />
+<p>Modifier l&rsquo;algorithme de telle sorte qu&rsquo;il réalise le parcours préfixe.</p>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">Fonction parcours_profondeur<span class="o">(</span>racine: Noeud<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">    Pile <span class="nv">p</span> <span class="o">=</span> Pile<span class="o">()</span>
+</span></span><span class="line"><span class="cl">    p.empiler<span class="o">(</span>racine<span class="o">)</span>
+</span></span><span class="line"><span class="cl">    TantQue non p.est_vide<span class="o">()</span>:
+</span></span><span class="line"><span class="cl">        <span class="nv">n</span> <span class="o">=</span> p.depiler<span class="o">()</span>
+</span></span><span class="line"><span class="cl">        print<span class="o">(</span>n<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        Si non est_vide<span class="o">(</span>n.filsD<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">            p.empiler<span class="o">(</span>n.filsD<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        FinSi
+</span></span><span class="line"><span class="cl">        Si non est_vide<span class="o">(</span>n.filsG<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">            p.empiler<span class="o">(</span>n.filsG<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        FinSi
+</span></span><span class="line"><span class="cl">    FinTantQue
+</span></span><span class="line"><span class="cl">FinFonction
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
 <ol start="20">
 <li>Implémenter en Python cet algorithme.</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">parcours_profondeur</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Réalise un parcours en profondeur à l&#39;aide d&#39;une pile.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">message</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">p</span> <span class="o">=</span> <span class="n">Pile</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="o">.</span><span class="n">empiler</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="ow">not</span> <span class="n">p</span><span class="o">.</span><span class="n">est_vide</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">depiler</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">message</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">valeur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">.</span><span class="n">empiler</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p</span><span class="o">.</span><span class="n">empiler</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">message</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
 <h2 id="implémentation-de-la-spécification-en-python-à-laide-dune-liste-python">Implémentation de la spécification en Python à l’aide d’une liste Python</h2>
 <ol start="21">
 <li>Reprendre toutes les fonctions de ce document en n&rsquo;utilisant pas la classe <code>Noeud</code> mais une liste à trois éléments. Le premier est la « valeur » du noeud, le second l&rsquo;adresse du fils gauche, le troisième l&rsquo;adresse du fils droit.</li>
