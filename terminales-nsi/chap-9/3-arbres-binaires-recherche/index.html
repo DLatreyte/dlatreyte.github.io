@@ -60,7 +60,7 @@ d&rsquo;organiser les données selon un ordre donné (numérique, lexicographiqu
   "headline": "Arbres Binaires Recherche",
   "description" : "Introduction Quelle structure de données permet :\nd\u0026rsquo;organiser les données selon un ordre donné (numérique, lexicographique, etc.) ; d\u0026rsquo;effectuer des recherches le plus efficacement possible ; d\u0026rsquo;accéder à, d\u0026rsquo;insérer ou de supprimer les données le plus efficacement possible. Tableaux Propriétés On peut ordonner des données dans un tableau mais l\u0026rsquo;algorithme de tri le plus rapide, pour un jeu de données aléatoires, est en $O(n \\; \\log n)$ ; On peut accéder à une donnée en $O(1)$ ; On peut rechercher une valeur efficacement en utilisant la dichotomie (si le tableau est trié !",
   "inLanguage" : "fr",
-  "wordCount":  1047 ,
+  "wordCount":  1436 ,
   "datePublished" : "2020-11-10T05:04:12",
   "dateModified" : "2020-11-10T05:04:12",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -460,7 +460,7 @@ graph TD
         <strong> Réponse</strong>
     </summary>
 <p>Non ! La propriété est bien vérifiée pour la racine mais pas pour le sous-arbre gauche.<br>
-La définition est récurisve !</p>
+La définition est récursive !</p>
 </details>
 <hr />
 <div class="note normal">
@@ -477,8 +477,61 @@ On ne crée pas de structure arbre binaire (accompagnée de méthodes).
 <strong>Les contraintes sur les valeurs des nœuds ne sont pas codées dans la classe</strong>.</p>
 </li>
 <li>
-<p>Écrire à nouveau les spécifications des fonctions <code>taille</code>, <code>hauteur</code> et <code>parcours</code> (parcours infixe).</p>
+<p>À quel arbre binaire de recherche ce code correspond-il ?</p>
 </li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># Création d&#39;un arbre binaire de recherche</span>
+</span></span><span class="line"><span class="cl"><span class="nv">arbre</span> <span class="o">=</span> Noeud<span class="o">(</span>10<span class="o">)</span>
+</span></span><span class="line"><span class="cl">arbre.gauche <span class="o">=</span> Noeud<span class="o">(</span>5<span class="o">)</span>
+</span></span><span class="line"><span class="cl">arbre.droit <span class="o">=</span> Noeud<span class="o">(</span>15<span class="o">)</span>
+</span></span><span class="line"><span class="cl">arbre.gauche.gauche <span class="o">=</span> Noeud<span class="o">(</span>3<span class="o">)</span>
+</span></span><span class="line"><span class="cl">arbre.gauche.droit <span class="o">=</span> Noeud<span class="o">(</span>8<span class="o">)</span>
+</span></span><span class="line"><span class="cl">arbre.droit.gauche <span class="o">=</span> Noeud<span class="o">(</span>12<span class="o">)</span>
+</span></span><span class="line"><span class="cl">arbre.droit.droit <span class="o">=</span> Noeud<span class="o">(</span>18<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.12.0/mermaid.js" type="text/javascript"></script>
+<script type="text/javascript">
+    mermaid.initialize({    
+        theme: 'default',
+        themeCSS: '',
+        cloneCssStyles: false,
+        useMaxWidth: true,
+        htmlLabels: true,
+        flowchart: { 
+                curve: 'basis' 
+        }
+    });
+</script>
+<pre class="mermaid" align="center"><p>graph TD
+A(10) &mdash; B(5)
+A &mdash; C(15)
+B &mdash; D(3)
+B &mdash; E(8)
+C &mdash; F(12)
+C &mdash; I(18)</p>
+</pre>
+</details>
+<hr />
+<ol start="5">
+<li>Écrire à nouveau les spécifications des fonctions <code>taille</code>, <code>hauteur</code> et <code>parcours</code> (parcours infixe).</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -494,7 +547,30 @@ On ne crée pas de structure arbre binaire (accompagnée de méthodes).
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Teste si un arbre est vide.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">n</span> <span class="o">==</span> <span class="kc">None</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -508,7 +584,48 @@ On ne crée pas de structure arbre binaire (accompagnée de méthodes).
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hauteur</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la profondeur de l&#39;arbre. 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Cas de base : si le nœud est vide, il n&#39;est pas dans l&#39;arbre.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Recherche récursive dans les sous-arbres gauche et droit.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arbre_gauche</span> <span class="o">=</span> <span class="n">hauteur</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arbre_droit</span> <span class="o">=</span> <span class="n">hauteur</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Détermine la profondeur</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">arbre_gauche</span><span class="p">,</span> <span class="n">arbre_droit</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -522,7 +639,48 @@ On ne crée pas de structure arbre binaire (accompagnée de méthodes).
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div class="chroma">
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">taille</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le nombre de noeud dans l&#39;arbre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Cas de base : un arbre vide ne contient aucun noeud.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Recherche récursive dans les sous-arbres gauche et droit.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">taille_gauche</span> <span class="o">=</span> <span class="n">taille</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">taille_droit</span> <span class="o">=</span> <span class="n">taille</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Calcul de la taille</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">taille_gauche</span> <span class="o">+</span> <span class="n">taille_droit</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -536,7 +694,42 @@ On ne crée pas de structure arbre binaire (accompagnée de méthodes).
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ol start="6">
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">parcours_inf</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34; Parcours en profondeur infixe d&#39;un arbre binaire. &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Cas de base : On atteint un noeud vide</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Appel récursif à gauche, valeur du nœud, appel récursif à droite</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">=</span> <span class="n">parcours_inf</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">valeur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">+=</span> <span class="n">parcours_inf</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">chaine</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="6">
 <li>Vérifier que la fonction <code>parcours</code> affiche les valeurs dans l&rsquo;ordre croissant.</li>
 </ol>
 <div class="note warning">
@@ -611,6 +804,20 @@ On ne crée pas de structure arbre binaire (accompagnée de méthodes).
 <ol start="8">
 <li>Quelle est la complexité de cette recherche ?</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La complexité du pire cas de la fonction <code>appartient</code> dépend de la hauteur de l&rsquo;arbre binaire de recherche (ABR).</p>
+<ul>
+<li>Dans le pire des cas, l&rsquo;arbre peut être déséquilibré au point de ressembler à une liste chaînée. Dans un tel scénario, la complexité de la recherche est <strong>linéaire</strong> par rapport au nombre total de nœuds dans l&rsquo;arbre.<br>
+Complexité : $O(n)$.</li>
+<li>Si on écarte ce cas extrême, l&rsquo;arbre binaire de recherche (ABR) est plus ou moins équilibré et la hauteur est de l&rsquo;ordre du logrithme du nombre de nœuds.<br>
+Complexité : $O(\log n)$.</li>
+</ul>
+</details>
+<hr />
 <h2 id="ajout-dune-valeur-dans-un-abr">Ajout d&rsquo;une valeur dans un ABR</h2>
 <ol start="9">
 <li>
