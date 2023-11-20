@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Le langage SQL : Le langage de manipulation de données (LMD), Compléments - Accueil</title>
+  <meta name="description" content="Notion de clé d&rsquo;une relation et dépendance fonctionnelle Lorsqu&rsquo;on utilise une base de données, il est nécessaire d&rsquo;accéder à un enregistrement par le contenu d&rsquo;un ou de plusieurs champs. On nomme clé d&rsquo;une relation un champ, ou un ensemble de champs, qui permet d&rsquo;identifier de façon unique un enregistrement. Une relation peut comprendre plusieurs clés possibles ; ce sont les clés candidates.
+On appelle clé primaire d&rsquo;une relation la clé minimale parmi toutes les clés candidates de la relation.">
+  <meta name="author" content="David Latreyte"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Accueil",
+    
+    "url": "https:\/\/dlatreyte.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/dlatreyte.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io\/terminales-nsi\/bases-donnees\/5-sql-lmd-avance\/",
+          "name": "Le langage SQL le langage de manipulation de données ( lmd), compléments"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "David Latreyte"
+  },
+  "headline": "Le langage SQL : Le langage de manipulation de données (LMD), Compléments",
+  "description" : "Notion de clé d\u0026rsquo;une relation et dépendance fonctionnelle Lorsqu\u0026rsquo;on utilise une base de données, il est nécessaire d\u0026rsquo;accéder à un enregistrement par le contenu d\u0026rsquo;un ou de plusieurs champs. On nomme clé d\u0026rsquo;une relation un champ, ou un ensemble de champs, qui permet d\u0026rsquo;identifier de façon unique un enregistrement. Une relation peut comprendre plusieurs clés possibles ; ce sont les clés candidates.\nOn appelle clé primaire d\u0026rsquo;une relation la clé minimale parmi toutes les clés candidates de la relation.",
+  "inLanguage" : "fr",
+  "wordCount":  1197 ,
+  "datePublished" : "2021-02-09T08:37:37",
+  "dateModified" : "2021-02-09T08:37:37",
+  "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+  "keywords" : [ "" ],
+  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/terminales-nsi\/bases-donnees\/5-sql-lmd-avance\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/dlatreyte.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Le langage SQL : Le langage de manipulation de données (LMD), Compléments" />
+<meta property="og:description" content="Notion de clé d&rsquo;une relation et dépendance fonctionnelle Lorsqu&rsquo;on utilise une base de données, il est nécessaire d&rsquo;accéder à un enregistrement par le contenu d&rsquo;un ou de plusieurs champs. On nomme clé d&rsquo;une relation un champ, ou un ensemble de champs, qui permet d&rsquo;identifier de façon unique un enregistrement. Une relation peut comprendre plusieurs clés possibles ; ce sont les clés candidates.
+On appelle clé primaire d&rsquo;une relation la clé minimale parmi toutes les clés candidates de la relation.">
+<meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
+<meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/bases-donnees/5-sql-lmd-avance/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Accueil" />
+
+  <meta name="twitter:title" content="Le langage SQL : Le langage de manipulation de données (LMD), …" />
+  <meta name="twitter:description" content="Notion de clé d&rsquo;une relation et dépendance fonctionnelle Lorsqu&rsquo;on utilise une base de données, il est nécessaire d&rsquo;accéder à un enregistrement par le contenu d&rsquo;un ou de …">
+  <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@@DLatreyte" />
+  <meta name="twitter:creator" content="@@DLatreyte" />
+  <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.120.4">
+  <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://dlatreyte.github.io">Accueil</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Infos" href="../../../about/infos">Infos</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Blog" href="../../../">Blog</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Cours</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../premieres-pc">1ère Spé. PC</a>
+                
+                  <a href="../../../premieres-nsi">1ère Spé. NSI</a>
+                
+                  <a href="../../../terminales-pc">Terminale Spé. PC</a>
+                
+                  <a href="../../../terminales-nsi">Terminale Spé. NSI</a>
+                
+                  <a href="../../../terminales-es">Terminale Ens. Scientifique</a>
+                
+                  <a href="../../../superieur">... dans le supérieur</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Culture</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../culture">Physique-Chimie</a>
+                
+                  <a href="../../../programmation">Programmation</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Catégories" href="../../../categories">Catégories</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="../../../tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Accueil" href="https://dlatreyte.github.io">
+            <img class="avatar-img" src="https://dlatreyte.github.io/first_page.jpg" alt="Accueil" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="terminales-nsi-heading">
+              
+                <h1>Le langage SQL : Le langage de manipulation de données (LMD), Compléments</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post" auto_numbering >
+          
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#notion-de-clé-dune-relation-et-dépendance-fonctionnelle">Notion de clé d&rsquo;une relation et dépendance fonctionnelle</a></li>
+    <li><a href="#jointure-de-deux-relations">Jointure de deux relations</a>
+      <ul>
+        <li><a href="#quest-ce-quune-jointure-">Qu&rsquo;est-ce qu&rsquo;une jointure ?</a></li>
+        <li><a href="#comment-effectuer-une-jointure-en-langage-sql-">Comment effectuer une jointure en langage SQL ?</a></li>
+      </ul>
+    </li>
+    <li><a href="#fonctions-de-calculs">Fonctions de calculs</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+          
+        
+        <hr />
+
+        <h2 id="notion-de-clé-dune-relation-et-dépendance-fonctionnelle">Notion de clé d&rsquo;une relation et dépendance fonctionnelle</h2>
+<p>Lorsqu&rsquo;on utilise une base de données, il est nécessaire d&rsquo;accéder à un
+enregistrement par le contenu d&rsquo;un ou de plusieurs champs. On nomme
+<em><strong>clé</strong></em> d&rsquo;une relation un champ, ou un ensemble de champs, qui permet
+d&rsquo;<em>identifier de façon unique un enregistrement.</em> Une relation peut
+comprendre plusieurs clés possibles ; ce sont les <strong>clés candidates</strong>.</p>
+<div class="note tip">
+  <em>On appelle <strong>clé primaire</strong> d&rsquo;une relation la clé
+minimale parmi toutes les clés candidates de la relation. Une clés
+primaire doit toujours contenir une valeur et celle-ci doit être unique
+pour chacun des enregistrements de la relation</em>
+</div>
+<p>Pour désigner une clé (primaire), il faut donc prendre en compte le «
+sens » des données contenues dans la relation. <strong>Si aucun champ ne peut
+constituer une clé, il est nécessaire d&rsquo;introduire un champ formel, tel
+qu&rsquo;un identifiant numérique.</strong></p>
+<div class="note tip">
+  <em>Une <strong>dépendance fonctionnelle</strong> existe entre deux
+ensembles de champs si les valeurs contenues dans l&rsquo;un des ensembles de
+champs permettent de déterminer les valeurs contenues dans l&rsquo;autre
+ensemble.</em>
+</div>
+<p>Les dépendances fonctionnelles expriment la relation de hiérarchie qui
+existe entre les champs.</p>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Numero_carte</th>
+<th style="text-align:center">Nom</th>
+<th style="text-align:center">Age</th>
+<th style="text-align:center">Ville</th>
+<th style="text-align:center">Etablissement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Henri</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">Paris</td>
+<td style="text-align:center">Université Sorbonne</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">Stanislas</td>
+<td style="text-align:center">34</td>
+<td style="text-align:center">Paris</td>
+<td style="text-align:center">Université Jussieu</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">Henriette</td>
+<td style="text-align:center">44</td>
+<td style="text-align:center">Lyon</td>
+<td style="text-align:center">CHU Bron</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">Dominique</td>
+<td style="text-align:center">19</td>
+<td style="text-align:center">Nancy</td>
+<td style="text-align:center">Université Poincaré</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">Isabelle</td>
+<td style="text-align:center">56</td>
+<td style="text-align:center">Nancy</td>
+<td style="text-align:center">INPL</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">Olivier</td>
+<td style="text-align:center">51</td>
+<td style="text-align:center">Marseille</td>
+<td style="text-align:center">Université Saint Charles</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">Henri</td>
+<td style="text-align:center">98</td>
+<td style="text-align:center">Paris</td>
+<td style="text-align:center">Université Sorbonne</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">Jérôme</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">Nancy</td>
+<td style="text-align:center">INPL</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">Laurence</td>
+<td style="text-align:center">34</td>
+<td style="text-align:center">Bordeaux</td>
+<td style="text-align:center">Université Victor Segalen</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">Christian</td>
+<td style="text-align:center">41</td>
+<td style="text-align:center">Paris</td>
+<td style="text-align:center">ENS</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">Antoine</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">Marseille</td>
+<td style="text-align:center">Université Saint Charles</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">Laurence</td>
+<td style="text-align:center">34</td>
+<td style="text-align:center">Paris</td>
+<td style="text-align:center">Université Jussieu</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>Relation lecteur(Numero_carte, Nom, Age, Ville,
+Etablissement)</em></p>
+</blockquote>
+</center>
+<p>Si l&rsquo;on examine les données de la relation, on remarque :</p>
+<ul>
+<li>
+<p>qu&rsquo;il ne peut y avoir de dépendance fonctionnelle entre les
+ensembles (Ville, Etablissement) et (Nom, Age). En effet, le couple
+(Laurence, 34) correspond aux deux couples (Paris, Université de
+Jussieu) et (Bordeaux, Université Victor Segalen).</p>
+<p><em>À un couple (Ville, Etablissement) ne correspond donc pas un unique
+couple (Nom, Age).</em></p>
+</li>
+<li>
+<p>que si l&rsquo;on suppose qu&rsquo;un établissement n&rsquo;est situé que dans une
+seule ville, il existe une dépendance fonctionnelle entre le champ «
+Etablissement » et le champ « Ville ».</p>
+<p><em>À une valeur du champ « Etablissement » correspond une et une seule
+valeur du champ « Ville ». Cette valeur n&rsquo;est cependant pas unique.</em></p>
+</li>
+<li>
+<p>La valeur du champ « Numero_carte » est unique pour chacun des
+enregistrements. Ses valeurs sont identifiantes pour tous les champs
+de la relation. Chaque champ dépend fonctionnellement de ce champ.
+Ses valeurs ne sont jamais vides, c&rsquo;est une clé candidate !</p>
+<p>Comme c&rsquo;est aussi la seule clé de la relation, ce champ constitue la
+<strong>clé primaire</strong>.</p>
+</li>
+</ul>
+<p>Tous les champs qui ne font pas partie d&rsquo;une clé candidate d&rsquo;une
+relation possèdent des dépendances fonctionnelles avec cette clé.</p>
+<div class="note tip">
+  <em>On indique la clé primaire d&rsquo;un schéma relationnel en soulignant le
+champ, dans le schéma relationnel</em> : <em>Relation lecteur(<ins>Numero_carte</ins>, Nom, Age, Ville,
+Etablissement)</em>
+</div>
+<h2 id="jointure-de-deux-relations">Jointure de deux relations</h2>
+<h3 id="quest-ce-quune-jointure-">Qu&rsquo;est-ce qu&rsquo;une jointure ?</h3>
+<div class="note tip">
+  <em>La <strong>jointure</strong> est l&rsquo;opération fondamentale de l&rsquo;algèbre relationnelle
+qui permet d&rsquo;exprimer le sens du lien entre les relations, dans le monde
+réel</em>. Conformément au programme, on ne présente ici que l&rsquo;opération de
+<em><strong>jointure symétrique</strong></em>.
+</div>
+<div class="note tip">
+  <p><em>Une <strong>jointure</strong> permet d&rsquo;associer plusieurs
+relations dans une même requête. Le résultat de cette requête est une
+relation de <strong>degré supérieur</strong> aux degrés de chacune des relations de
+départ. L&rsquo;opération de jointure est <strong>symétrique</strong> et <strong>associative</strong>.</em></p>
+<p><em>La liaison entre les relations s&rsquo;effectue par le contenu commun d&rsquo;un
+champ (<strong>champs de jointure</strong>).</em></p>
+</div>
+<div class="note normal">
+  Il est bien évidemment possible d&rsquo;<em>associer une jointure à une
+projection et une sélection</em>. <em>Ces associations doivent être prises en
+compte lors de la détermination du <strong>degré</strong> et de la <strong>cardinalité</strong> de
+la relation finale</em>.
+</div>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Numero_carte</th>
+<th style="text-align:center">Nom</th>
+<th style="text-align:center">Num_Etablissement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Henri</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">Stanislas</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">Henriette</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>Relation Lecteur_bis(<ins>Numero_carte</ins>, Nom,
+Numero_Etablissement)</em></p>
+</blockquote>
+</center>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Num_Etablissement</th>
+<th style="text-align:center"> Ville</th>
+<th style="text-align:center"> Nom_Etablissement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Paris</td>
+<td style="text-align:center">Université Jussieu</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">Lyon</td>
+<td style="text-align:center">CHU Bron</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">Nancy</td>
+<td style="text-align:center">Université Poincaré</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">Paris</td>
+<td style="text-align:center">Université Sorbonne</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>Relation Etablissement(<ins>Num_Etablissement</ins> Ville, Nom_Etablissement)</em></p>
+</blockquote>
+</center>
+<p>Même si l&rsquo;on ne dispose pas du modèle conceptuel associé, on constate
+que l&rsquo;on peut relier les deux relations par le champ <code>Numero_Etablissement</code>. Les
+informations concernant l&rsquo;établissement de la relation <code>Lecteur_bis</code> sont
+stockées dans la relation <code>Etablissement</code> dont la clé est le champ <code>Num_Etablissement</code><em>. Pour
+obtenir la liste des lecteurs ainsi que les informations concernant leur
+établissement, on effectue une jointure entre ces relations sur le champ
+<code>Numero_Etablissement</code>.</em></p>
+<p>Schéma de la base de données prenant en compte la jointure : Dans la
+relation l&rsquo;attribut est une <strong>clé étrangère</strong>.</p>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Numero_carte</th>
+<th style="text-align:center">Nom</th>
+<th style="text-align:center">Num_Etablissement</th>
+<th style="text-align:center">Num_Etablissement</th>
+<th style="text-align:center">Ville</th>
+<th style="text-align:center">Nom_Etablissement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Henri</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Paris</td>
+<td style="text-align:center">Université Jussieu</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">Stanislas</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">Lyon</td>
+<td style="text-align:center">CHU Bron</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">Henriette</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Paris</td>
+<td style="text-align:center">Université Jussieu</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Résultat de la jointure des relations <code>Lecteur_bis</code> et <code>Etablissement</code>.</p>
+</blockquote>
+</center>
+<p>Le champ <code>Num_Etablissement</code> figure deux fois dans la relation résultat de la jointure
+car la première occurrence provient de la relation <code>Lecteur_bis</code> alors que la
+seconde provient de la relation <code>Etablissement</code>.</p>
+<p>Afin de ne conserver qu&rsquo;<em>une occurrence des <strong>champs de jointure</strong></em>, on
+peut réaliser une <em><strong>projection</strong></em> :</p>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Numero_carte</th>
+<th style="text-align:center">Nom</th>
+<th style="text-align:center">Num_Etablissement</th>
+<th style="text-align:center">Ville</th>
+<th style="text-align:center">Nom_Etablissement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Henri</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Paris</td>
+<td style="text-align:center">Université Jussieu</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">Stanislas</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">Lyon</td>
+<td style="text-align:center">CHU Bron</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">Henriette</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Paris</td>
+<td style="text-align:center">Université Jussieu</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Résultat de la jointure des relations <code>Lecteur_bis</code> et <code>Etablissement</code> après projection.</p>
+</blockquote>
+</center>
+<p>Cette opération, $\text{jointure} + \text{projection}$, est parfois
+appelée <strong>jointure naturelle</strong>.</p>
+<p>Les champs de jointure ne doivent pas nécessairement être nommés à
+l&rsquo;identique.</p>
+<h3 id="comment-effectuer-une-jointure-en-langage-sql-">Comment effectuer une jointure en langage SQL ?</h3>
+<p>Il existe deux façons de réaliser une opération de jointure en SQL :</p>
+<ul>
+<li>la première est basée sur l&rsquo;idée qu&rsquo;<em>une opération de jointure
+peut être considérée comme une sélection sur le produit
+cartésien des deux relations</em> :</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">,</span><span class="w"> </span><span class="n">Etablissement</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>Avec une projection :</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Numero_carte</span><span class="p">,</span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Nom</span><span class="p">,</span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Ville</span><span class="p">,</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Nom_Etablissement</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">,</span><span class="n">Etablissement</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>la seconde méthode utilise l&rsquo;opérateur de jointure  :</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">Etablissement</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>Avec une projection :</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Numero_carte</span><span class="p">,</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Ville</span><span class="p">,</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Nom_Etablissement</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">Etablissement</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Lecteur_bis</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Etablissement</span><span class="p">.</span><span class="n">Num_Etablissement</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="note warning">
+  On remarque qu&rsquo;<em>un champ est défini de façon unique grâce à la concaténation du nom de la relation et de celui du champ</em>. Si les champs portent des noms différents, il n&rsquo;est pas nécessaire de préciser de quelle relation ils sont issus.
+</div>
+<h2 id="fonctions-de-calculs">Fonctions de calculs</h2>
+<p>Une règle, dans le domaine des bases de données, est que tout ce qui
+peut se calculer ne doit pas être stocké dans la base. <em>On évite ainsi
+la perte de place et l&rsquo;incohérence qui peut découler du stockage
+d&rsquo;informations redondantes</em>.</p>
+<p>Le langage SQL ne possède pas d&rsquo;instruction d&rsquo;itération ; il possède
+cependant des <em>fonctions simples de traitement des données d&rsquo;une
+colonne</em> (les calculs plus complexes doivent être effectués à l&rsquo;aide
+d&rsquo;un langage de programmation comme Python).</p>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Fonction</th>
+<th style="text-align:center"> Opération</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>COUNT</code></td>
+<td style="text-align:center">Comptage du nombre d&rsquo;enregistrements de la table</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>MAX</code></td>
+<td style="text-align:center">Maximum des éléments d&rsquo;une colonne</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>MIN</code></td>
+<td style="text-align:center">Minimum des éléments d&rsquo;une colonne</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>AVG</code></td>
+<td style="text-align:center">Moyenne des éléments d&rsquo;une colonne</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>SUM</code></td>
+<td style="text-align:center">Somme des éléments d&rsquo;une colonne</td>
+</tr>
+</tbody>
+</table>
+</center>
+<h4 id="exemples">Exemples</h4>
+<ul>
+<li>Détermination de l&rsquo;age moyen des lecteurs</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Age</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Age_Moyen</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">lecteur</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Comptage du nombre de lecteurs</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Nombre_Lecteurs</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">lecteur</span><span class="w"> </span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Dans le cas de la fonction , il n&rsquo;est pas nécessaire de préciser le champ puisque cette fonction s&rsquo;applique à la relation toute entière.</p>
+
+
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+              </div>
+            </section>
+        
+
+        
+          
+          
+        
+      </article>
+
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://dlatreyte.github.io/terminales-nsi/bases-donnees/6-gestion-cinema/" data-toggle="tooltip" data-placement="top" title="Gestion d&#39;une salle de cinéma">&larr; Post précédent</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://dlatreyte.github.io/terminales-nsi/bases-donnees/8-cdi/" data-toggle="tooltip" data-placement="top" title="Emprunt de livres dans un CDI">Post suivant &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:david.latreyte@louismassignon.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DLatreyte" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/@DLatreyte" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/latreyte-david-917852b2" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/agdavgablou" title="Instagram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://dlatreyte.github.io">David Latreyte</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2023
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://dlatreyte.github.io">Accueil</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          Carbure avec <a href="https://gohugo.io">Hugo v0.120.4</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://dlatreyte.github.io/js/main.js"></script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dlatreyte.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/katex.min.js"
+  integrity="sha512-CLi3JK94v6TUcogbWv4WT4xnfp6B8AET4PuBjGxXo5MZJ9xfNgMHgXaXH8QJe6JwN+kGxqR4//z8/2BYVnxRVw=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/auto-render.min.js"
+  integrity="sha512-iWiuBS5nt6r60fCz26Nd0Zqe0nbk1ZTIQbl3Kv7kYsX+yKMUFHzjaH2+AnM6vp2Xs+gNmaBAVWJjSmuPw76Efg=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/copy-tex.min.js"
+  integrity="sha512-cQxSkTM4RvFAjdBeBDkrllhYfERwZWjM/oijKfPsmhR0JI2U3fXSlbUaJp5SlgBh/FzYmMyWudRTXLnNj3MbEA=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/mathtex-script-type.min.js"
+  integrity="sha512-MBhOGY4yRA2eATtRGTcrDJCRqcnLai5+uu47GA2ueVr1MPzirC/iogLWRA8CXTlOTK09VI4fdTe4qE4LBfjsHw=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/mhchem.min.js"
+  integrity="sha512-V1hl0fnOXW6Cdqe5ZVqtw8TBpJVpu3XRDRQti96j/04+tMarPrCdXEUE3UdfvfKYTpOn9DV4zEZBVr0HhDiuiQ=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/render-a11y-string.min.js"
+  integrity="sha512-qBnQA4Y+OVTc4fPEzp5saII5ofAVDJQO6pMq9/VLm49xHvWsvRP4awjMq8U97bgalhahBEevp9HSsPo7B8JNcA=="
+  crossorigin="anonymous"></script>
+<script>
+  renderMathInElement(document.body,
+    {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    }
+  );
+
+  var inlineMathArray = document.querySelectorAll("script[type='math/tex']");
+  for (var i = 0; i < inlineMathArray.length; i++) {
+    var inlineMath = inlineMathArray[i];
+    var tex = inlineMath.innerText || inlineMath.textContent;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex, { displayMode: false });
+    inlineMath.parentNode.replaceChild(replaced, inlineMath);
+  }
+
+  var displayMathArray = document.querySelectorAll("script[type='math/tex; mode=display']");
+  for (var i = 0; i < displayMathArray.length; i++) {
+    var displayMath = displayMathArray[i];
+    var tex = displayMath.innerHTML;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex.replace(/%.*/g, ''), { displayMode: true });
+    displayMath.parentNode.replaceChild(replaced, displayMath);
+  }
+
+</script>
+
+
+    
+  </body>
+</html>
+

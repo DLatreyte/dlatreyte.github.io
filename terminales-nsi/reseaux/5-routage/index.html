@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Le routage entre réseaux IP - Accueil</title>
+  <meta name="description" content="Chapitre 10,5">
+  <meta name="author" content="David Latreyte"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Accueil",
+    
+    "url": "https:\/\/dlatreyte.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/dlatreyte.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io\/terminales-nsi\/reseaux\/5-routage\/",
+          "name": "Le routage entre réseaux IP"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "David Latreyte"
+  },
+  "headline": "Le routage entre réseaux IP",
+  "description" : "Routeurs et objectif du routage ? La responsabilité d’un protocole de routage est de fournir l’information nécessaire pour effectuer un routage, c’est-à-dire la détermination d’un chemin entre une machine émettrice et une machine réceptrice, toutes deux identifiées par leur adresse IP sur des sous-réseaux différents. Un routeur est un ordinateur possédant au moins deux interfaces réseaux situées sur des sous-réseaux IP différents. Il faut être capable de distinguer une carte réseau d\u0026rsquo;une interface réseau.",
+  "inLanguage" : "fr",
+  "wordCount":  3673 ,
+  "datePublished" : "2021-01-02T15:51:33",
+  "dateModified" : "2021-01-02T15:51:33",
+  "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+  "keywords" : [ "Réseaux, IP, Adressage, TCP, Ethernet, Routage" ],
+  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/terminales-nsi\/reseaux\/5-routage\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/dlatreyte.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Le routage entre réseaux IP" />
+<meta property="og:description" content="Chapitre 10,5">
+<meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
+<meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/reseaux/5-routage/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Accueil" />
+
+  <meta name="twitter:title" content="Le routage entre réseaux IP" />
+  <meta name="twitter:description" content="Chapitre 10,5">
+  <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@@DLatreyte" />
+  <meta name="twitter:creator" content="@@DLatreyte" />
+  <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.120.4">
+  <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://dlatreyte.github.io">Accueil</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Infos" href="../../../about/infos">Infos</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Blog" href="../../../">Blog</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Cours</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../premieres-pc">1ère Spé. PC</a>
+                
+                  <a href="../../../premieres-nsi">1ère Spé. NSI</a>
+                
+                  <a href="../../../terminales-pc">Terminale Spé. PC</a>
+                
+                  <a href="../../../terminales-nsi">Terminale Spé. NSI</a>
+                
+                  <a href="../../../terminales-es">Terminale Ens. Scientifique</a>
+                
+                  <a href="../../../superieur">... dans le supérieur</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Culture</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../culture">Physique-Chimie</a>
+                
+                  <a href="../../../programmation">Programmation</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Catégories" href="../../../categories">Catégories</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="../../../tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Accueil" href="https://dlatreyte.github.io">
+            <img class="avatar-img" src="https://dlatreyte.github.io/first_page.jpg" alt="Accueil" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="terminales-nsi-heading">
+              
+                <h1>Le routage entre réseaux IP</h1>
+              
+              
+                <hr class="small">
+              
+              
+                
+                  <h2 class="terminales-nsi-subheading">Chapitre 10,5</h2>
+                
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post" auto_numbering >
+          
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#routeurs-et-objectif-du-routage-">Routeurs et objectif du routage ?</a>
+      <ul>
+        <li><a href="#tables-de-routage">Tables de routage</a></li>
+        <li><a href="#comment-une-décision-de-routage-est-elle-prise-par-un-routeur-">Comment une décision de routage est-elle prise par un routeur ?</a></li>
+      </ul>
+    </li>
+    <li><a href="#types-de-routage">Types de routage</a>
+      <ul>
+        <li><a href="#intérêt-dun-routage-automatique">Intérêt d&rsquo;un routage automatique</a></li>
+        <li><a href="#routing-information-protocol-rip--algorithme-à-vecteur-de-distances">Routing Information Protocol (RIP) : algorithme à vecteur de distances</a></li>
+        <li><a href="#open-shortest-path-first-ospf--algorithme-à-état-de-liaison">Open Shortest Path First (OSPF) : algorithme à état de liaison</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercice">Exercice</a></li>
+  </ul>
+</nav>
+          
+        
+        <hr />
+
+        <h2 id="routeurs-et-objectif-du-routage-">Routeurs et objectif du routage ?</h2>
+<div class="note normal">
+  La responsabilité d’un <strong>protocole de routage</strong> est de <em>fournir l’information nécessaire pour effectuer un routage</em>, c’est-à-dire la détermination d’un chemin entre une <strong>machine émettrice</strong> et <strong>une machine réceptrice</strong>, toutes deux identifiées par leur <strong>adresse IP</strong> sur des <strong>sous-réseaux différents</strong>.
+</div>
+<div class="note tip">
+  Un <strong>routeur</strong> est un ordinateur possédant <strong>au moins deux interfaces réseaux</strong> situées sur des sous-réseaux IP différents.
+</div>
+<div class="note warning">
+  Il faut être capable de distinguer une <strong>carte réseau</strong> d&rsquo;une <strong>interface réseau</strong>.<br>
+Une <strong>carte réseau</strong> est un <em>objet physique possédant une adresse MAC</em>. <em>On peut « attacher » à une <strong>carte réseau</strong> une ou plusieurs <strong>interfaces réseaux</strong>, objets virtuels, possédant toutes des adresses IP différentes</em>.<br>
+La plupart du temps, cependant, on n&rsquo;attache qu&rsquo;une seule interface à chaque carte réseau.
+</div>
+<ul>
+<li>Tous les systèmes d&rsquo;exploitation, pour des raisons de fonctionnement interne qui ne seront pas développées ici, définissent une interface dite de bouclage (<strong>loopback</strong>) dont l&rsquo;adresse est <code>127.0.0.1</code>.</li>
+</ul>
+<div class="note exercise">
+  <ol>
+<li>Lancer un terminal.</li>
+<li>Entrer la commande <code>ipconfig /all</code> sous Windows ou <code>ifconfig</code> sous Linux ou OSX. Vérifier que l&rsquo;interface de loopback est bien définie.</li>
+<li>Tapper la commande <code>ping 127.0.0.1</code> et vérifier que l&rsquo;interface est bien active.</li>
+</ol>
+</div>
+<ul>
+<li>
+<p>Dans les faits, pour des raisons de performances, <em>dire qu&rsquo;un routeur possède plusieurs interfaces réseaux est équivalent à dire que le routeur possèdent plusieurs cartes réseaux</em>.</p>
+</li>
+<li>
+<p><strong>Dans les tables de routage, il n&rsquo;est jamais fait allusion aux cartes réseaux mais aux interfaces réseaux</strong>.</p>
+</li>
+</ul>
+<h3 id="tables-de-routage">Tables de routage</h3>
+<div class="note normal">
+  <h4 id="les-routeurs-ne-sont-pas-les-seuls-ordinateurs-à-posséder-une-table-de-routage">Les routeurs ne sont pas les seuls ordinateurs à posséder une table de routage</h4>
+<p>Chaque ordinateur sur un réseau doit décider à qui transmettre les trames lorsqu&rsquo;il doit dialoguer avec un autre ordinateur.
+</div>
+<p>À l&rsquo;aide du logiciel Filius, on se connecte à une machine d&rsquo;adresse IP <code>172.12.0.2</code> et on clique sur « Afficher le bureau ».</p>
+<p>On utilise la commande <code>route</code> dans le terminal et on obtient le résultat suivant :
+<img src="../../../terminales-nsi/chap-11/chap-11-5/chap-11-5-2.png" alt="" width="" /></p>
+<ol>
+<li>Décrire le plus précisément possible cet affichage.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<dl>
+<dt>Ligne 1</dt>
+<dd>La machine a pour adresse IP <code>172.12.0.2</code> (on le sait grâce au masque de sous-réseau <code>255.255.255.255</code> qui est le masque d&rsquo;un hôte). Tout paquet destiné à cet ordinateur émis depuis cet ordinateur doit passer par l&rsquo;interface de loopback.</dd>
+<dt>Ligne 2</dt>
+<dd>Tout paquet à destination du sous-réseau <code>172.12.0.0</code>, sous-réseau auquel appartient l&rsquo;ordinateur doit transiter par l&rsquo;interface attachée à cet ordinateur d&rsquo;adresse <code>172.12.0.2</code>.<br>
+<strong>Rappel :</strong> Un ordinateur n&rsquo;a pas besoin d&rsquo;un routeur pour dialoguer avec un autre ordinateur appartenant au même réseau. **Les routeurs ne sont obligatoires que lorsqu&rsquo;il s&rsquo;agit de faire dialoguer des ordinateurs appartenant à des réseaux différents.</dd>
+<dt>Ligne 3</dt>
+<dd>Tout paquet à destination du réseau de loopback doit transiter par l&rsquo;adresse de loopback.</dd>
+<dt>Ligne 4</dt>
+<dd>(<strong>Route par défaut</strong>) Tout paquet destiné à un ordinateur pour lequel aucune des décisions de routage précédentes ne convient (donc tous les paquets qui ne sont destinés ni à l&rsquo;ordinateur, ni au sous-réseau auquel l&rsquo;ordinateur appartient) doit transiter par l&rsquo;interface d&rsquo;adresse <code>172.12.0.2</code> et être adressé à l&rsquo;ordinateur d&rsquo;adresse <code>172.12.255.254</code> ; c&rsquo;est le <strong>routeur</strong>.</dd>
+</dl>
+</details>
+<hr />
+<ol start="2">
+<li>Quelle est l&rsquo;adresse du routeur avec lequel cet ordinateur peut directement dialoguer ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Le routeur de ce sous-réseau a donc pour adresse <code>172.12.255.254</code>.</p>
+</details>
+<hr />
+<p>On simule le réseau suivant (
+<a class="remote" href="../../../terminales-nsi/chap-11/chap-11-5/chap-11-5-3.fls" target="_blank">Fichier simulation à télécharger</a>
+
+) :
+<img src="../../../terminales-nsi/chap-11/chap-11-5/chap-11-5-4.png" alt="" width="" /></p>
+<dl>
+<dt>Remarque</dt>
+<dd>Tous les routeurs utilisent un routage automatique. Leur action n&rsquo;est pas étudiée dans l&rsquo;exercice qui suit.</dd>
+</dl>
+<ol start="3">
+<li>
+<p>À l&rsquo;aide du logiciel Filius, se connecter à la machine d&rsquo;adresse IP <code>192.168.0.10</code> et cliquer sur « Afficher le bureau ».</p>
+</li>
+<li>
+<p>Cette machine est-elle capable d&rsquo;envoyer un paquet vers la machine d&rsquo;adresse <code>192.168.3.11</code> ? Justifier la réponse à partir de l&rsquo;étude de la table de routage.</p>
+</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>L&rsquo;ordinateur peut tout à fait envoyer un paquet vers l&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code> puisqu&rsquo;il possède une route par défaut qui passe par le routeur R2, route qui mène au sous-réseau d&rsquo;adresse <code>192.168.3.0</code>.</p>
+</details>
+<hr />
+<ol start="5">
+<li>Même question pour l&rsquo;envoi d&rsquo;un paquet vers la machine d&rsquo;adresse <code>192.168.1.10</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Lorsqu&rsquo;on affiche la table de routage de cet ordinateur on constate qu&rsquo;aucune entrée ne lui permet d&rsquo;envoyer un paquet vers le réseau d&rsquo;adresse <code>192.168.1.0/24</code> puisque ce réseau n&rsquo;est pas le sien et que le routeur R2, passerelle par défaut pour cet ordinateur, n&rsquo;a aucune connaissance de ce réseau.</p>
+</details>
+<hr />
+<ol start="6">
+<li>Se connecter l&rsquo;ordinateur d&rsquo;adresse IP <code>192.168.0.11</code>. Est-il capable d&rsquo;envoyer un paquet vers la machine d&rsquo;adresse IP <code>192.168.3.11</code> ? Justifier la réponse à partir de l&rsquo;étude de la table de routage.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Lorsqu&rsquo;on affiche la table de routage de cet ordinateur on constate qu&rsquo;aucune entrée ne lui permet d&rsquo;envoyer un paquet hors de son réseau (ou de son adresse loopback). Il ne sait donc pas comment envoyer un message à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code>.</p>
+</details>
+<hr />
+<ol start="7">
+<li>Corriger la configuration réseau de l&rsquo;ordinateur d&rsquo;adresse IP <code>192.168.0.11</code> de façon à ce qu&rsquo;il puisse envoyer un paquet à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code>.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Il faut configurer la passerelle par défaut en lui attribuant l&rsquo;adresse du routeur : <code>192.168.1.253</code>.</p>
+</details>
+<hr />
+<ol start="8">
+<li>L&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code> peut-il répondre à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.0.10</code> ? Justifier la réponse à partir de l&rsquo;étude de la table de routage.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La route par défaut, dans la table de routage passe par le routeur R4 qui, sauf configuration particulière non prise en compte dans cette partie, ne sait pas comment atteindre le réseau <code>192.168.0.0</code>. L&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code> ne peut donc pas répondre à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.0.10</code>.</p>
+</details>
+<hr />
+<ol start="9">
+<li>
+<p>Utiliser la commande <code>ping</code> pour confirmer l&rsquo;étude menée jusqu&rsquo;à présent.</p>
+</li>
+<li>
+<p>Quelle entrée devrait posséder la table de routage de la machine d&rsquo;adresse <code>192.168.0.10</code> pour pouvoir communiquer avec la machine d&rsquo;adresse <code>192.168.1.10</code> ?</p>
+</li>
+</ol>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">192.168.1.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">192.168.0.254</td>
+<td style="text-align:center">192.168.0.10</td>
+</tr>
+</tbody>
+</table>
+</center>
+</details>
+<hr />
+<h3 id="comment-une-décision-de-routage-est-elle-prise-par-un-routeur-">Comment une décision de routage est-elle prise par un routeur ?</h3>
+<div class="note tip">
+  <h4 id="algorithme-de-prise-de-décision">Algorithme de prise de décision</h4>
+<ul>
+<li>
+<p>Un signal électrique (ou lumineux ou hertzien) parvient à l&rsquo;une des cartes réseau du routeur.<br>
+Le routeur <em>reconstruit la trame</em> contenant toutes les informations que transporte ce signal.</p>
+</li>
+<li>
+<p>Le routeur <em>lit l&rsquo;adresse MAC du destinataire dans l&rsquo;entête de la trame</em>.<br>
+Si cette adresse MAC n&rsquo;est pas celle du routeur, la trame est rejetée. Si l&rsquo;adresse MAC est bien celle du routeur, le routeur analyse l&rsquo;adresse <em>IP du destinataire final</em>, présente dans l&rsquo;entête du paquet contenu dans la trame.</p>
+</li>
+<li>
+<p>Si l&rsquo;<em>adresse IP du destinataire final appartient à un réseau auquel le routeur est directement connecté</em>, le routeur envoie directement l&rsquo;information sur le bon réseau.</p>
+</li>
+<li>
+<p>Si l&rsquo;<em>adresse IP du destinataire final appartient à un réseau qui apparaît dans la table de routage</em>, le routeur envoie l&rsquo;information à la passerelle définie.</p>
+</li>
+<li>
+<p>Si l&rsquo;<em>adresse IP du destinataire final n&rsquo;appartient à aucun des réseaux présents dans la table de routage</em>, le routeur envoie l&rsquo;information à la passerelle par défaut.</p>
+</li>
+</ul>
+</div>
+<ol start="11">
+<li>Quelle couche du modèle OSI est concernée par l&rsquo;émission ou la réception de signaux physiques ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>L&rsquo;émission ou la réception des signaux physiques sont définies par des protocoles de la <strong>couche physique</strong> (ou couche 1).</p>
+</details>
+<hr />
+<ol start="12">
+<li>À quelle couche appartiennent les protocoles qui définissent la structure d&rsquo;une trame et qui se basent sur les adresses MAC ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La structure d&rsquo;une trame est définie au niveau de la <strong>couche de liaison</strong> (couche 2).</p>
+</details>
+<hr />
+<ol start="13">
+<li>Au niveau de quelle couche parle-t-on de paquets et d&rsquo;adresses IP ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Les structure des paquets est définie au niveau de la <strong>courche réseau</strong> (couche 3).</p>
+</details>
+<hr />
+<ol start="14">
+<li>Combien de sauts retourne la commande <code>traceroute 192.168.3.11</code> lancée depuis la machine d&rsquo;adresse <code>192.168.0.10</code> ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Le signal parvient à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code> en 3 sauts : <code>192.168.0.253</code>, <code>192.168.2.2</code>, <code>192.168.3.11</code>.<br>
+Ce sont toutes les interfaces d&rsquo;entrées des différentes trames.</p>
+</details>
+<hr />
+<ol start="15">
+<li>Combien de sauts retourne la commande <code>traceroute 192.168.0.10</code> lancée depuis la machine d&rsquo;adresse <code>192.168.3.11</code> ? Expliquer l&rsquo;origine de la différence.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Le signal parvient à l&rsquo;ordinateur d&rsquo;adresse <code>192.168.0.10</code> en 4 sauts : <code>192.168.3.254</code>, <code>192.168.3.253</code>, <code>192.168.2.1</code>, <code>192.168.0.10</code>.<br>
+Ce sont toutes les interfaces d&rsquo;entrées des différentes trames.<br>
+On compte dans ce sens un saut de plus car l&rsquo;ordinateur d&rsquo;adresse <code>192.168.3.11</code> ne sait pas s&rsquo;adresser directement au routeur <code>192.168.3.253</code>.</p>
+</details>
+<hr />
+<ol start="16">
+<li>Compléter la table de routage du routeur R3 de façon à ce que n&rsquo;importe quel ordinateur puisse communiquer avec n&rsquo;importe quel autre ordinateur.
+Ajouter aussi la passerelle par défaut, R4</li>
+</ol>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">192.168.3.253</td>
+<td style="text-align:center">255.255.255.255</td>
+<td style="text-align:center">127.0.0.1</td>
+<td style="text-align:center">127.0.0.1</td>
+</tr>
+<tr>
+<td style="text-align:center">192.168.2.2</td>
+<td style="text-align:center">255.255.255.255</td>
+<td style="text-align:center">127.0.0.1</td>
+<td style="text-align:center">127.0.0.1</td>
+</tr>
+<tr>
+<td style="text-align:center">192.168.3.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">192.168.3.253</td>
+<td style="text-align:center">192.168.3.253</td>
+</tr>
+<tr>
+<td style="text-align:center">192.168.2.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">192.168.2.2</td>
+<td style="text-align:center">192.168.2.2</td>
+</tr>
+<tr>
+<td style="text-align:center">127.0.0.1</td>
+<td style="text-align:center">255.0.0.0</td>
+<td style="text-align:center">127.0.0.1</td>
+<td style="text-align:center">127.0.0.1</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">192.168.0.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">192.168.2.1</td>
+<td style="text-align:center">192.168.2.2</td>
+</tr>
+<tr>
+<td style="text-align:center">192.168.1.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">192.168.2.1</td>
+<td style="text-align:center">192.168.2.2</td>
+</tr>
+<tr>
+<td style="text-align:center">0.0.0.0</td>
+<td style="text-align:center">0.0.0.0</td>
+<td style="text-align:center">192.168.3.254</td>
+<td style="text-align:center">192.168.3.253</td>
+</tr>
+</tbody>
+</table>
+</center>
+</details>
+<hr />
+<ol start="17">
+<li>On donne ci-dessous la table de routage de base du routeur R1. Cette table doit-elle être complétée de façon à ce que tous les ordinateurs puissent communiquer avec tous les ordinateurs sur le réseau ?</li>
+</ol>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">192.168.1.254</td>
+<td style="text-align:center">255.255.255.255</td>
+<td style="text-align:center">127.0.0.1</td>
+<td style="text-align:center">127.0.0.1</td>
+</tr>
+<tr>
+<td style="text-align:center">192.168.0.254</td>
+<td style="text-align:center">255.255.255.255</td>
+<td style="text-align:center">127.0.0.1</td>
+<td style="text-align:center">127.0.0.1</td>
+</tr>
+<tr>
+<td style="text-align:center">192.168.1.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">192.168.1.254</td>
+<td style="text-align:center">192.168.1.254</td>
+</tr>
+<tr>
+<td style="text-align:center">192.168.0.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">192.168.0.254</td>
+<td style="text-align:center">192.168.0.254</td>
+</tr>
+<tr>
+<td style="text-align:center">127.0.0.1</td>
+<td style="text-align:center">255.0.0.0</td>
+<td style="text-align:center">127.0.0.1</td>
+<td style="text-align:center">127.0.0.1</td>
+</tr>
+<tr>
+<td style="text-align:center">0.0.0.0</td>
+<td style="text-align:center">0.0.0.0</td>
+<td style="text-align:center">192.168.0.253</td>
+<td style="text-align:center">192.168.0.254</td>
+</tr>
+</tbody>
+</table>
+</center>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Cette table de routage est complète, il n&rsquo;est pas nécessaire d&rsquo;ajouter quoi que ce soit. Tout paquet destiné à un réseau non présent dans cette table est envoyé à la passerelle par défaut qui s&rsquo;occupe de le router au-delà du périmètre d&rsquo;influence de R1.</p>
+</details>
+<hr />
+<h2 id="types-de-routage">Types de routage</h2>
+<p>Si le réseau n&rsquo;est pas trop étendu, il est possible de créer manuellement les tables de routage de chaque routeur (<strong>routage statique</strong>). Cependant, cette méthode n&rsquo;est pas applicable sur des grands réseaux : les routeurs doivent alors mettre en œuvre des protocoles leurs permettant de construire et de partager automatiquement les tables de routage ; on parle de <strong>routage dynamique</strong>.</p>
+<h3 id="intérêt-dun-routage-automatique">Intérêt d&rsquo;un routage automatique</h3>
+<div class="note tip">
+  <ul>
+<li>
+<p>Les protocoles de routage établissent des règles d’<strong>échange entre routeurs pour mettre à jour leurs tables selon des critères de coût</strong> comme, par exemple, la <strong>distance</strong>, l’<strong>état de la liaison</strong>, le <strong>débit</strong>. <em>Ils améliorent ainsi l’efficacité du routage</em>.</p>
+</li>
+<li>
+<p>Les protocoles de routage ont pour objectif d&rsquo;éviter les <strong>boucles de routage</strong> (le message peut « tourner en rond » dans le réseau et ne jamais atteindre son destinataire).</p>
+</li>
+<li>
+<p>Les protocoles de routage doivent permettre de <strong>compenser les pannes dans le réseau</strong> : une fois une panne détectée, il faut transmettre l’information sur l’événement le plus rapidement possible pour que les différents routeurs recalculent par où faire passer leurs messages en contournant la liaison en panne.</p>
+</li>
+</ul>
+</div>
+<p>On laisse donc les routeurs mettre eux-mêmes à jour leur table de routage grâce à la mise en œuvre de <em>protocoles de routage</em>.</p>
+<div class="note normal">
+  Initialement, les informations dont dispose un routeur sont celles sur ces voisins immédiats ainsi que les sous-réseaux auxquels il est connecté. En envoyant régulièrement des messages à ses voisins, et en évaluant le temps de réponse, il peut déterminer si un routeur fonctionne ou pas et en déduire si une liaison existe toujours ou est rompue. Il peut ensuite propager cette information à ses voisins qui peuvent eux-mêmes les transmettre à leurs voisins. <em>Ainsi, <strong>de proche en proche</strong>, tous les routeurs finissent par partager les mêmes connaissances sur la topologie du réseau</em>.
+</div>
+<h3 id="routing-information-protocol-rip--algorithme-à-vecteur-de-distances">Routing Information Protocol (RIP) : algorithme à vecteur de distances</h3>
+<ul>
+<li>RIP est historiquement le premier algorithme de routage.</li>
+</ul>
+<div class="note tip">
+  RIP recherche <strong>le plus court chemin</strong> selon un <em>critère de coût simple</em> : <strong>le nombre de routeurs à traverser (hop)</strong>.<br>
+Cela revient à affecter un <strong>coût unitaire à la traversée de chaque routeur</strong>.<br>
+RIP appartient à la famille des <strong>protocoles à vecteurs de distance</strong>, <em>puisque les informations contenues dans la table de routage sont du type <strong>(adresse, distance)</strong>.</em>
+$$ \text{adresse} + \text{distance} = \text{vecteur} $$
+</div>
+<h4 id="algorithme-général-de-rip">Algorithme général de RIP</h4>
+<ul>
+<li>
+<p>Lors de l&rsquo;<strong>initialisation du routeur</strong>, celui-ci détermine l&rsquo;adresse réseau de ses interfaces puis <em>envoie sur chacune une demande d&rsquo;informations (table RIP complète) aux routeurs voisins</em>.</p>
+</li>
+<li>
+<p>Lors de la <strong>réception d&rsquo;une demande</strong>, un <em>routeur envoie sa table complète ou partielle</em> suivant la nature de cette demande.</p>
+</li>
+<li>
+<p>Lors de la <strong>réception d&rsquo;une réponse</strong>, il met à jour sa table si besoin. Trois cas peuvent se présenter :</p>
+<ul>
+<li>pour une <strong>nouvelle route</strong>, il <em>incrémente la distance</em>, <em>vérifie que celle-ci est strictement inférieure à 15</em> et diffuse immédiatement le vecteur de distance correspondant ;</li>
+<li>pour une <strong>route existante, mais avec une distance plus faible</strong>, la table est mise à jour. La nouvelle distance et, éventuellement, l&rsquo;adresse du routeur si elle diffère sont intégrées à la table ;</li>
+<li>pour une <strong>route existante, mais avec une distance plus importante</strong>, la table est mise à jour si la nouvelle distance est émise par le même routeur voisin que précédemment.</li>
+</ul>
+<p>Bien sûr, si l&rsquo;<em>appareil reçoit une route dont la distance est supérieure à celle déjà connue d&rsquo;un autre voisin, RIP l&rsquo;ignore</em>.</p>
+</li>
+<li>
+<p>À intervalles réguliers (toutes les 30 secondes), la <em>table RIP est diffusée qu&rsquo;il y ait ou non des modifications.</em></p>
+</li>
+<li>
+<p>Des routes doivent être retirées de la table gérée par RIP dans deux situations :</p>
+<ul>
+<li>en premier lieu, si un <strong>réseau immédiatement connecté devient inaccessible</strong> (panne de l&rsquo;interface, de la ligne, modification de la topologie par l&rsquo;administrateur, etc.), les routeurs RIP reliés à ce réseau affectent dans leur table une <em>distance « infinie »</em> (16 comme indiqué plus haut) à cette route. Elle est conservée pendant la durée d&rsquo;un temporisateur de « maintien » (garbage collect) de 120 secondes puis est supprimée. Immédiatement après, le vecteur avec une distance « infinie » est diffusé. Un routeur qui reçoit un vecteur avec une distance de 16 comprend : « il faut que tu retires cette route de ta table, car elle est devenue invalide ! » De proche en proche, cette information se propage ;</li>
+<li>en second lieu, <strong>un routeur du réseau tombe en panne</strong>. Cela veut peut-être dire que les réseaux situés derrière cet appareil sont devenus inaccessibles. Mais comment savoir si un routeur est en panne ? RIP considère qu&rsquo;un routeur qui <em>n&rsquo;a pas donné de nouvelles depuis trois minutes</em> est hors service. Pour gérer cette situation, il attribue à toutes les routes dynamiques un temporisateur initialisé à 180 secondes par défaut. À chaque réception d&rsquo;un vecteur de distance déjà présent dans la table, le compteur est réinitialisé. Mais si jamais ce compteur atteint zéro, la route est considérée comme invalide. On se retrouve alors dans la situation précédente (distance infinie, temporisateur de maintien, diffusion de l&rsquo;information puis suppression de la route). Maintenant, si un autre routeur connaît une route menant vers un des réseaux que l&rsquo;on vient de retirer, c&rsquo;est parfait ! Notre routeur intègrera cette nouvelle route dans sa table. De cette façon, RIP permet la tolérance aux pannes.</li>
+</ul>
+</li>
+</ul>
+<div style="text-align: right;">
+<a href="https://inetdoc.developpez.com/tutoriels/routage-dynamique-protocole-rip/#L3-1" target="_blank"> https://inetdoc.developpez.com/tutoriels/routage-dynamique-protocole-rip/#L3-1 </a>
+</div>
+<div class="note normal">
+  Un routeur garde donc en mémoire, pour chaque réseau IP connu, l&rsquo;adresse du routeur voisin dont la distance (on dit aussi <strong>métrique</strong>) est la plus petite.
+</div>
+<div class="note tip">
+  <p>Les trois caractéristiques principales qui distinguent l’algorithme RIP de l’algorithme OSPF sont :</p>
+<ul>
+<li>
+<p><em>La distance est mesurée en nombre de routeurs à traverser</em>.</p>
+</li>
+<li>
+<p><em>Aucun routeur n&rsquo;a une vision globale du réseau</em>. Les routes sont connues de proche en proche.</p>
+</li>
+<li>
+<p>Le protocole est <em>limité aux réseaux dont le plus long chemin implique quinze routeurs au maximum car la convergence des informations est très lente</em>.</p>
+</li>
+</ul>
+</div>
+<dl>
+<dt>Remarque</dt>
+<dd>Les situations où les routes doivent être choisies en fonction de paramètres mesurés en temps réel comme un <strong>délai</strong>, une <strong>fiabilité</strong> ou une <strong>charge</strong>, se prêtent donc mal à ce type de traitement.</dd>
+<dt>Remarque</dt>
+<dd>Pour déterminer quelle est la meilleure route, le protocole RIP s&rsquo;appuie sur l&rsquo;algorithme de Bellman et Ford qui sera étudié un peu plus tard dans l&rsquo;année.</dd>
+</dl>
+<div class="note exercise">
+  <img src="../../../terminales-nsi/chap-11/chap-11-5/chap-11-5-5.png" alt="" width="" />
+<ol>
+<li>
+<p>Pour chaque sous-réseau situé entre deux routeurs, donner la première adresse utilisable pour adresser une machine et la dernière.</p>
+</li>
+<li>
+<p>Attribuer aux différentes interfaces des routeurs des adresses.</p>
+</li>
+<li>
+<p>Donner la table de routage du routeur $R_1$ à son initialisation. Ajouter une colonne distance.</p>
+</li>
+</ol>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</center>
+<p><strong>Remarque :</strong> Pour simplifier la lecture, ne rien écrire dans la colonne Passerelle si celle-ci est le routeur lui-même. De plus, ne pas prendre en compte l&rsquo;adresse de loopback et la route par défaut.</p>
+<ol start="4">
+<li>
+<p>Même question pour le routeur $R_3$ et le routeur $R_2$.</p>
+</li>
+<li>
+<p>Donner la table de routage du routeur $R_1$ si on imagine qu&rsquo;il a d&rsquo;abord échangé une demande RIP avec le routeur $R_3$.</p>
+</li>
+<li>
+<p>Donner la table de routage du routeur $R_1$ si on imagine qu&rsquo;il a ensuite échangé une demande RIP avec le routeur $R_2$.</p>
+</li>
+<li>
+<p>Quelle est la table de routage finale pour le routeur $R_1$.</p>
+</li>
+<li>
+<p>Quel chemin vont suivre les paquets entre PC1 et PC2 ?</p>
+</li>
+</ol>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponses</strong>
+    </summary>
+<ol>
+<li></li>
+</ol>
+<ul>
+<li><code>10.0.0.0/8</code>: adresses de <code>10.0.0.1</code> à <code>10.255.255.254</code> (même chose pour tous les réseaux en <code>x.0.0.0/8</code>) ;</li>
+<li><code>192.168.1.0/24</code>: adresses de <code>192.168.1.1</code> à <code>192.168.1.254</code> ;</li>
+<li><code>192.168.2.0/24</code>: adresses de <code>192.168.2.1</code> à <code>192.168.2.254</code> ;</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<ul>
+<li>$R_1$ : <code>192.168.1.254</code>, <code>10.0.0.1</code>, <code>20.0.0.1</code> ;</li>
+<li>$R_2$ : <code>20.0.0.2</code>, <code>30.0.0.2</code>, <code>40.0.0.2</code> ;</li>
+<li>$R_3$ : <code>30.0.0.1</code>, <code>50.0.0.1</code>, <code>70.0.0.2</code>, <code>10.0.0.2</code> ;</li>
+<li>$R_4$ : <code>40.0.0.1</code>, <code>50.0.0.2</code>, <code>60.0.0.2</code> ;</li>
+<li>$R_5$ : <code>192.168.2.254</code>, <code>60.0.0.1</code>, <code>70.0.0.1</code>.</li>
+</ul>
+<ol start="3">
+<li>Table de routage de $R_1$ après initialisation :</li>
+</ol>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>192.168.1.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>192.168.1.254</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>10.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>20.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>20.0.0.1</code></td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</center>
+<ol start="4">
+<li></li>
+</ol>
+<ul>
+<li>Table de routage de $R_2$ après initialisation :</li>
+</ul>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>40.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>40.0.0.2</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>30.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>30.0.0.2</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>20.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>20.0.0.2</code></td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</center>
+<ul>
+<li>Table de routage de $R_3$ après initialisation :</li>
+</ul>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>50.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>50.0.0.1</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>30.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>30.0.0.1</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>70.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>70.0.0.2</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>10.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>10.0.0.2</code></td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+</center>
+<ol start="5">
+<li>Après échange RIP entre $R_1$ et $R_3$, table de routage de $R_1$ :</li>
+</ol>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>192.168.1.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>192.168.1.254</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>10.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>20.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>20.0.0.1</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>50.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"><code>10.0.0.2</code></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>30.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"><code>10.0.0.2</code></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>70.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"><code>10.0.0.2</code></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+</center>
+<ol start="6">
+<li>Après échange RIP entre $R_1$ et $R_2$, table de routage de $R_1$ :</li>
+</ol>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>192.168.1.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>192.168.1.254</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>10.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>20.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>20.0.0.1</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>50.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"><code>10.0.0.2</code></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>30.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"><code>10.0.0.2</code></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>70.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"><code>10.0.0.2</code></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>40.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"><code>20.0.0.2</code></td>
+<td style="text-align:center"><code>20.0.0.1</code></td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+</center>
+<ol start="7">
+<li>Table de routage finale de $R_1$ :</li>
+</ol>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>192.168.1.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>192.168.1.254</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>10.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>20.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"><code>20.0.0.1</code></td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>50.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"><code>10.0.0.2</code></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>30.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"><code>10.0.0.2</code></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>70.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"><code>10.0.0.2</code></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>40.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"><code>20.0.0.2</code></td>
+<td style="text-align:center"><code>20.0.0.1</code></td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>60.0.0.0</code></td>
+<td style="text-align:center"><code>255.0.0.0</code></td>
+<td style="text-align:center"><code>20.0.0.2</code></td>
+<td style="text-align:center"><code>20.0.0.1</code></td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.2.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"><code>10.0.0.2</code></td>
+<td style="text-align:center"><code>10.0.0.1</code></td>
+<td style="text-align:center">3</td>
+</tr>
+</tbody>
+</table>
+</center>
+<ol start="8">
+<li>Les paquets vont traverser les routeurs $R_1$, $R_3$ et $R_5$.</li>
+</ol>
+</details>
+<hr />
+<h3 id="open-shortest-path-first-ospf--algorithme-à-état-de-liaison">Open Shortest Path First (OSPF) : algorithme à état de liaison</h3>
+<div class="note tip">
+  <ul>
+<li>
+<p>L’algorithme SPF (Shortest Path First) <em>calcule le plus court chemin</em> vers toutes les destinations de la zone ou du système autonome, en partant du routeur où s’effectue le calcul (à partir de sa base de données topologiques). <em>Il calcule le plus court chemin, selon un critère de coût où interviennent de <strong>multiples paramètres</strong> : l’<strong>état des liens</strong>, l’<strong>encombrement du réseau</strong> et des <strong>mémoires des routeurs intermédiaires</strong>.</em></p>
+</li>
+<li>
+<p>Le calcul du plus court chemin est effectué de manière indépendante par tous les routeurs qui possèdent donc la même information : une <strong>vision globale de tout le réseau</strong>.</p>
+</li>
+<li>
+<p><em>Chaque réseau peut être schématisé par un <strong>graphe</strong> dans lequel les routeurs et les switchs sont les <strong>sommets</strong>, leurs liaisons sont les <strong>arêtes</strong>, les étiquettes des arêtes sont les <strong>coûts</strong>.</em></p>
+</li>
+<li>
+<p>Le protocole OSPF définit les règles et les formats de messages entre routeurs.</p>
+</li>
+</ul>
+</div>
+<dl>
+<dt>Remarque</dt>
+<dd>L&rsquo;algorithme utilisé par le protocole SPF est l’<strong>algorithme de Dijkstra</strong> (cet algorithme sera étudié un peu plus tard dans l&rsquo;année) pour obtenir les routes les moins coûteuses et sans cycle. <em>Chaque routeur devient alors la racine d’un arbre qui contient les meilleures routes</em>.</dd>
+</dl>
+<div class="note exercise">
+  Reprendre l&rsquo;exercice précédent en prenant en compte que les débits des liaisons éthernet sont très supérieurs aux débits des liaisons séries. Le protocole OSPF conduit-il selon vous à la même conclusion que le protocole RIP quant au chemin le plus court pour se déplacer de PC1 à PC2 ?
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Les débits de transmission sur les liaisons séries sont bien plus petits que ceux sur les liaisons éthernet. Si le protocole OSPF est utilisé la meilleure route annoncée sera donc $R_1 \longrightarrow R_2 \longrightarrow R_3 \longrightarrow R_4 \longrightarrow R_5$.</p>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Technologie</th>
+<th style="text-align:center">BP descendante</th>
+<th style="text-align:center">BP montante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Modem</td>
+<td style="text-align:center">$\pu{56 kbit/s}$</td>
+<td style="text-align:center">$\pu{48 kbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Bluetooth</td>
+<td style="text-align:center">$\pu{3 Mbit/s}$</td>
+<td style="text-align:center">$\pu{3 Mbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Ethernet</td>
+<td style="text-align:center">$\pu{10 Mbit/s}$</td>
+<td style="text-align:center">$\pu{10 Mbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Wi-Fi</td>
+<td style="text-align:center">$\pu{11 Mbit/s}$ à $\pu{10 Gbit/s}$</td>
+<td style="text-align:center">$\pu{11 Mbit/s}$ à $\pu{10 Gbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">ADSL</td>
+<td style="text-align:center">$\pu{13 Mbit/s}$</td>
+<td style="text-align:center">$\pu{1 Mbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">4G</td>
+<td style="text-align:center">$\pu{100 Mbit/s}$</td>
+<td style="text-align:center">$\pu{50 Mbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">Satellite</td>
+<td style="text-align:center">$\pu{50 Mbit/s}$</td>
+<td style="text-align:center">$\pu{1 Mbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">FastEthernet</td>
+<td style="text-align:center">$\pu{100 Mbit/s}$</td>
+<td style="text-align:center">$\pu{100 Mbit/s}$</td>
+</tr>
+<tr>
+<td style="text-align:center">FFTH (fibre optique)</td>
+<td style="text-align:center">$\pu{10 Gbit/s}$</td>
+<td style="text-align:center">$\pu{10 Gbit/s}$</td>
+</tr>
+</tbody>
+</table>
+</center>
+</details>
+<hr />
+<div class="note tip">
+  <h4 id="notion-de-coût-dune-liaison">Notion de coût d&rsquo;une liaison</h4>
+<p>La notion de coût est directement liée au <strong>débit des liaisons</strong> entre les routeurs. Le <strong>débit</strong> correspond au <em>nombre de bits de données qu&rsquo;il est possible de faire passer dans un réseau par seconde</em>. Le débit est donc donné en bits par seconde (bps) ou dans l&rsquo;une des unités multiples.<br>
+Connaissant le débit d&rsquo;une liaison, il est possible de calculer le coût d&rsquo;une liaison à l&rsquo;aide de la formule suivante :
+$$
+\text{Coût} = \dfrac{10^8}{\text{Débit}}
+$$
+avec le débit en bits par seconde.
+</div>
+<dl>
+<dt>Remarque</dt>
+<dd>Pour obtenir la métrique d&rsquo;une route, il suffit d&rsquo;additionner les coûts de chaque liaison.</dd>
+</dl>
+<h2 id="exercice">Exercice</h2>
+<p>Soit le réseau dont la topologie est la suivante :
+<img src="../../../terminales-nsi/chap-11/chap-11-5/chap-11-5-6.png" alt="" width="" /></p>
+<p>Les adresses IP des routeurs sont les suivantes :</p>
+<ul>
+<li>$A$ :
+<ul>
+<li>eth0 : <code>172.18.255.254</code></li>
+<li>eth1 : <code>192.168.1.1</code></li>
+<li>eth2 : <code>192.168.2.1</code></li>
+</ul>
+</li>
+<li>$B$ :
+<ul>
+<li>eth0 : <code>192.168.1.2</code></li>
+<li>eth1 : <code>192.168.3.1</code></li>
+<li>eth2 : <code>172.16.255.254</code></li>
+</ul>
+</li>
+<li>$C$ :
+<ul>
+<li>eth0 : <code>192.168.2.2</code></li>
+<li>eth1 : <code>192.168.3.2</code></li>
+<li>eth2 : <code>172.17.255.254</code></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Établir la table de routage du routeur $A$ si on suppose que le protocole RIP est utilisé.<br>
+Utiliser le nom des interfaces (eth0, eth1, eth2) à la place des adresses IP dans la table de routage.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>172.18.0.0</code></td>
+<td style="text-align:center"><code>255.255.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">eth0</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.1.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">eth1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.2.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">eth2</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>172.17.0.0</code></td>
+<td style="text-align:center"><code>255.255.0.0</code></td>
+<td style="text-align:center"><code>192.168.2.2</code></td>
+<td style="text-align:center">eth2</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.3.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"><code>192.168.1.2</code></td>
+<td style="text-align:center">eth1</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>172.16.0.0</code></td>
+<td style="text-align:center"><code>255.255.0.0</code></td>
+<td style="text-align:center"><code>192.168.1.2</code></td>
+<td style="text-align:center">eth1</td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+</center>
+</details>
+<hr />
+<ol start="2">
+<li>Quel est, d&rsquo;après la table de routage ci-dessus, le chemin qui sera emprunté par un paquet pour aller d&rsquo;une machine ayant pour adresse IP <code>172.18.1.1/16</code> à une machine ayant pour adresse IP <code>172.16.5.3/16</code> ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La route que suivront les paquets est : $A \longrightarrow B$.</p>
+</details>
+<hr />
+<ol start="3">
+<li>Établir la table de routage du routeur $A$ si on suppose que le protocole OSPF est utilisé.<br>
+On donne les débits suivants :
+<ul>
+<li>Liaison routeur $A$ - routeur $B$ : 1 Mbps ;</li>
+<li>Liaison routeur $A$ - routeur $C$ : 10 Mbps ;</li>
+<li>Liaison routeur $C$ - routeur $B$ : 10 Mbps ;</li>
+<li>Liaisons routeurs - switch : 10 Mbps.</li>
+</ul>
+</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+<th style="text-align:center">Distance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>172.18.0.0</code></td>
+<td style="text-align:center"><code>255.255.0.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">eth0</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.1.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">eth1</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.2.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">eth2</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>172.17.0.0</code></td>
+<td style="text-align:center"><code>255.255.0.0</code></td>
+<td style="text-align:center"><code>192.168.2.2</code></td>
+<td style="text-align:center">eth2</td>
+<td style="text-align:center">20</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>192.168.3.0</code></td>
+<td style="text-align:center"><code>255.255.255.0</code></td>
+<td style="text-align:center"><code>192.168.2.2</code></td>
+<td style="text-align:center">eth2</td>
+<td style="text-align:center">20</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>172.16.0.0</code></td>
+<td style="text-align:center"><code>255.255.0.0</code></td>
+<td style="text-align:center"><code>192.168.2.2</code></td>
+<td style="text-align:center">eth2</td>
+<td style="text-align:center">30</td>
+</tr>
+</tbody>
+</table>
+</center>
+</details>
+<hr />
+<ol start="4">
+<li>Quel est, d&rsquo;après la table de routage ci-dessus, le chemin qui sera emprunté par un paquet pour aller d&rsquo;une machine ayant pour adresse IP <code>172.18.1.1/16</code> à une machine ayant pour adresse IP <code>172.16.5.3/16</code> ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La route que suivront les paquets est : $A \longrightarrow C \longrightarrow B$.</p>
+</details>
+<hr />
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://dlatreyte.github.io/tags/r%C3%A9seaux/">Réseaux</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/ip/">IP</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/adressage/">Adressage</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/tcp/">TCP</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/ethernet/">Ethernet</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/routage/">Routage</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+              </div>
+            </section>
+        
+
+        
+          
+          
+          <h4 class="see-also">Voir également</h4>
+          <ul>
+          
+            <li><a href="../../../terminales-nsi/reseaux/4-simulation-reseau/">Simulation de réseaux</a></li>
+          
+            <li><a href="../../../terminales-nsi/reseaux/3-analyse-tcp/">Analyse du protocole de transport TCP</a></li>
+          
+            <li><a href="../../../terminales-nsi/reseaux/1-modelisation-reseaux/">Modélisation des réseaux</a></li>
+          
+          </ul>
+          
+        
+      </article>
+
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://dlatreyte.github.io/terminales-nsi/reseaux/4-simulation-reseau/" data-toggle="tooltip" data-placement="top" title="Simulation de réseaux">&larr; Post précédent</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://dlatreyte.github.io/terminales-nsi/reseaux/7-chiffrement-sym%C3%A9trique/" data-toggle="tooltip" data-placement="top" title="Réalisation d&#39;un chiffrement symétrique">Post suivant &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:david.latreyte@louismassignon.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DLatreyte" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/@DLatreyte" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/latreyte-david-917852b2" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/agdavgablou" title="Instagram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://dlatreyte.github.io">David Latreyte</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2023
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://dlatreyte.github.io">Accueil</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          Carbure avec <a href="https://gohugo.io">Hugo v0.120.4</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://dlatreyte.github.io/js/main.js"></script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dlatreyte.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/katex.min.js"
+  integrity="sha512-CLi3JK94v6TUcogbWv4WT4xnfp6B8AET4PuBjGxXo5MZJ9xfNgMHgXaXH8QJe6JwN+kGxqR4//z8/2BYVnxRVw=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/auto-render.min.js"
+  integrity="sha512-iWiuBS5nt6r60fCz26Nd0Zqe0nbk1ZTIQbl3Kv7kYsX+yKMUFHzjaH2+AnM6vp2Xs+gNmaBAVWJjSmuPw76Efg=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/copy-tex.min.js"
+  integrity="sha512-cQxSkTM4RvFAjdBeBDkrllhYfERwZWjM/oijKfPsmhR0JI2U3fXSlbUaJp5SlgBh/FzYmMyWudRTXLnNj3MbEA=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/mathtex-script-type.min.js"
+  integrity="sha512-MBhOGY4yRA2eATtRGTcrDJCRqcnLai5+uu47GA2ueVr1MPzirC/iogLWRA8CXTlOTK09VI4fdTe4qE4LBfjsHw=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/mhchem.min.js"
+  integrity="sha512-V1hl0fnOXW6Cdqe5ZVqtw8TBpJVpu3XRDRQti96j/04+tMarPrCdXEUE3UdfvfKYTpOn9DV4zEZBVr0HhDiuiQ=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/render-a11y-string.min.js"
+  integrity="sha512-qBnQA4Y+OVTc4fPEzp5saII5ofAVDJQO6pMq9/VLm49xHvWsvRP4awjMq8U97bgalhahBEevp9HSsPo7B8JNcA=="
+  crossorigin="anonymous"></script>
+<script>
+  renderMathInElement(document.body,
+    {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    }
+  );
+
+  var inlineMathArray = document.querySelectorAll("script[type='math/tex']");
+  for (var i = 0; i < inlineMathArray.length; i++) {
+    var inlineMath = inlineMathArray[i];
+    var tex = inlineMath.innerText || inlineMath.textContent;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex, { displayMode: false });
+    inlineMath.parentNode.replaceChild(replaced, inlineMath);
+  }
+
+  var displayMathArray = document.querySelectorAll("script[type='math/tex; mode=display']");
+  for (var i = 0; i < displayMathArray.length; i++) {
+    var displayMath = displayMathArray[i];
+    var tex = displayMath.innerHTML;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex.replace(/%.*/g, ''), { displayMode: true });
+    displayMath.parentNode.replaceChild(replaced, displayMath);
+  }
+
+</script>
+
+
+    
+  </body>
+</html>
+

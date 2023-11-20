@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Récursivité sur les entiers - Accueil</title>
+  <meta name="description" content="To understand recursion, you must first understand recursion. La récurrence est un raisonnement mathématique courant et parmi les plus puissants pour démontrer des théorèmes ou construire des objets. Par exemple, on l&rsquo;utilise dans un cours de mathématique de lycée pour montrer que :
+Pour tout entier $n \geqslant 0$, on a : $1 &#43; 2 &#43; 3 &#43; \ldots &#43; n = \dfrac{n(n&#43;1)}{2}$ ; Un entier naturel n&rsquo;est autre que 0 ou le successeur d&rsquo;un entier naturel (0 est 0, 1 est le successeur de 0, 2 est le successeur de 1, &hellip;).">
+  <meta name="author" content="David Latreyte"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Accueil",
+    
+    "url": "https:\/\/dlatreyte.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/dlatreyte.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io\/terminales-nsi\/recursivite\/1-1-recursivite-sur-entiers\/",
+          "name": "Récursivité sur les entiers"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "David Latreyte"
+  },
+  "headline": "Récursivité sur les entiers",
+  "description" : "To understand recursion, you must first understand recursion. La récurrence est un raisonnement mathématique courant et parmi les plus puissants pour démontrer des théorèmes ou construire des objets. Par exemple, on l\u0026rsquo;utilise dans un cours de mathématique de lycée pour montrer que :\nPour tout entier $n \\geqslant 0$, on a : $1 \u002b 2 \u002b 3 \u002b \\ldots \u002b n = \\dfrac{n(n\u002b1)}{2}$ ; Un entier naturel n\u0026rsquo;est autre que 0 ou le successeur d\u0026rsquo;un entier naturel (0 est 0, 1 est le successeur de 0, 2 est le successeur de 1, \u0026hellip;).",
+  "inLanguage" : "fr",
+  "wordCount":  3971 ,
+  "datePublished" : "2020-09-05T18:34:00",
+  "dateModified" : "2020-09-05T18:34:00",
+  "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+  "keywords" : [ "Programmation, Récursivité, Fonctions, Algorithmique" ],
+  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/terminales-nsi\/recursivite\/1-1-recursivite-sur-entiers\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/dlatreyte.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Récursivité sur les entiers" />
+<meta property="og:description" content="To understand recursion, you must first understand recursion. La récurrence est un raisonnement mathématique courant et parmi les plus puissants pour démontrer des théorèmes ou construire des objets. Par exemple, on l&rsquo;utilise dans un cours de mathématique de lycée pour montrer que :
+Pour tout entier $n \geqslant 0$, on a : $1 &#43; 2 &#43; 3 &#43; \ldots &#43; n = \dfrac{n(n&#43;1)}{2}$ ; Un entier naturel n&rsquo;est autre que 0 ou le successeur d&rsquo;un entier naturel (0 est 0, 1 est le successeur de 0, 2 est le successeur de 1, &hellip;).">
+<meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
+<meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/recursivite/1-1-recursivite-sur-entiers/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Accueil" />
+
+  <meta name="twitter:title" content="Récursivité sur les entiers" />
+  <meta name="twitter:description" content="To understand recursion, you must first understand recursion. La récurrence est un raisonnement mathématique courant et parmi les plus puissants pour démontrer des théorèmes ou construire des objets. …">
+  <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@@DLatreyte" />
+  <meta name="twitter:creator" content="@@DLatreyte" />
+  <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.120.4">
+  <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://dlatreyte.github.io">Accueil</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Infos" href="../../../about/infos">Infos</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Blog" href="../../../">Blog</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Cours</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../premieres-pc">1ère Spé. PC</a>
+                
+                  <a href="../../../premieres-nsi">1ère Spé. NSI</a>
+                
+                  <a href="../../../terminales-pc">Terminale Spé. PC</a>
+                
+                  <a href="../../../terminales-nsi">Terminale Spé. NSI</a>
+                
+                  <a href="../../../terminales-es">Terminale Ens. Scientifique</a>
+                
+                  <a href="../../../superieur">... dans le supérieur</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Culture</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../culture">Physique-Chimie</a>
+                
+                  <a href="../../../programmation">Programmation</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Catégories" href="../../../categories">Catégories</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="../../../tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Accueil" href="https://dlatreyte.github.io">
+            <img class="avatar-img" src="https://dlatreyte.github.io/first_page.jpg" alt="Accueil" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="terminales-nsi-heading">
+              
+                <h1>Récursivité sur les entiers</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post" auto_numbering >
+          
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#rappels-sur-les-fonctions">Rappels sur les fonctions</a></li>
+    <li><a href="#définition-récursive-dune-fonction">Définition récursive d&rsquo;une fonction</a>
+      <ul>
+        <li><a href="#factorielle-dun-entier-naturel">Factorielle d&rsquo;un entier naturel</a></li>
+        <li><a href="#élévation-à-la-puissance">Élévation à la puissance</a></li>
+        <li><a href="#mise-en-œuvre-dun-raisonnement-récursifnbsp-le-jeu-de-bowling">Mise en œuvre d&rsquo;un raisonnement récursif : le jeu de Bowling</a></li>
+        <li><a href="#retour-sur-le-calcul-de-la-factorielle-dun-entier-naturel">Retour sur le calcul de la factorielle d&rsquo;un entier naturel</a></li>
+      </ul>
+    </li>
+    <li><a href="#définition-récursive-dune-fonction-1">Définition récursive d&rsquo;une fonction</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#récursivité-vs-itération">Récursivité vs itération</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#si-lon-devait-résumer-lidée-générale-de-la-récursivité">Si l&rsquo;on devait résumer l&rsquo;idée générale de la récursivité</a></li>
+    <li><a href="#exercices-du-chapitre">Exercices du chapitre</a></li>
+  </ul>
+</nav>
+          
+        
+        <hr />
+
+        <center>
+<h3>To understand recursion, you must first understand recursion.</h3>
+</center>
+<p>La <strong>récurrence</strong> est un <em>raisonnement mathématique</em> courant et parmi les plus puissants pour démontrer des théorèmes ou construire des objets. Par exemple, on l&rsquo;utilise dans un cours de mathématique de lycée pour montrer que :</p>
+<ul>
+<li>Pour tout entier $n \geqslant 0$, on a : $1 + 2 + 3 + \ldots + n = \dfrac{n(n+1)}{2}$ ;</li>
+<li>Un entier naturel n&rsquo;est autre que 0 ou le successeur d&rsquo;un entier naturel (0 est 0, 1 est le successeur de 0, 2 est le successeur de 1, &hellip;).</li>
+</ul>
+<p>En programmation, on peut raisonner de façon identique, nous allons <strong>construire des fonctions et des structures de données (listes chaînées, arbres, etc.) à l&rsquo;aide d&rsquo;une hypothèse de récurrence et d&rsquo;un point de départ</strong>. <strong>Le déroulement de la récurrence sera quant à lui pris en charge par la machine</strong>.</p>
+<div class="note warning">
+  La récursion est une approche plus <strong>descriptive</strong> que <strong>constructive</strong>. <em>On « dit » quoi faire à l&rsquo;ordinateur mais pas comment</em>.
+</div>
+<div class="note tip">
+  La <strong>récursion</strong> est un mécanisme puissant permettant d&rsquo;exprimer la <strong>répétition des opérations</strong> dans un programme <strong>sans utiliser de structure itérative</strong> (boucles <code>while</code> ou <code>for</code>). C&rsquo;est un mode de pensée qui permet de concevoir des fonctions ou des structures de données (listes chaînées, arbres, etc.) dont l&rsquo;écriture condense en peu de lignes l&rsquo;exécution de calculs éventuellement très longs.
+</div>
+<p><em>Ce chapitre traite de la récursion sur les nombres entiers.</em></p>
+<h2 id="rappels-sur-les-fonctions">Rappels sur les fonctions</h2>
+<ul>
+<li>
+<a class="remote" href="../../../premieres-nsi/chap-02/chap-02" target="_blank">Cours de 1ère NSI sur les fonctions</a>
+
+</li>
+</ul>
+<h2 id="définition-récursive-dune-fonction">Définition récursive d&rsquo;une fonction</h2>
+<h3 id="factorielle-dun-entier-naturel">Factorielle d&rsquo;un entier naturel</h3>
+<p>La fonction factorielle indique le <strong>nombre de permutations</strong> dans un ensemble comportant $n$ éléments.  Par exemple, il existe $3! =  6$ façons d&rsquo;arranger les 3 caractères &lsquo;a&rsquo;, &lsquo;b&rsquo;, &lsquo;c&rsquo; :</p>
+<blockquote>
+<p>&lsquo;abc&rsquo;, &lsquo;acb&rsquo;, &lsquo;bac&rsquo;, &lsquo;bca&rsquo;, &lsquo;cab&rsquo; et &lsquo;cba&rsquo;.</p>
+</blockquote>
+<p>On peut exprimer de plusieurs façons la définition de cette fonction :</p>
+<ul>
+<li>Une définition <strong>implicite</strong> : $n! = 1 \times 2 \times 3 \times \ldots \times n$</li>
+<li>Une définition <strong>explicite</strong> :
+$$
+n! = \left\lbrace
+\begin{array}{ll}
+1                   &amp; \text{ si } n = 0 \cr
+n\times (n-1)! &amp; \text{ si } n \geq 1 \cr
+\end{array}
+\right.
+$$</li>
+</ul>
+<p>La première définition est <em>particulièrement ambigüe</em> :</p>
+<ul>
+<li>Que signifie l&rsquo;ellipse &hellip; ?</li>
+<li>Est-il possible de calculer la factorielle d&rsquo;un nombre inférieur à 3 ?</li>
+<li>La factorielle de 0 existe-t-elle ?</li>
+</ul>
+<p>Les réponses à toutes ces questions sont évidentes pour une personne ayant suivi un cours de mathématique mais inaccessibles à un ordinateur.</p>
+<p>La  définition explicite, <em>qui se réfère à elle-même</em>, est dite <strong>récursive</strong> : <em>la valeur de la fonction en $n$ s&rsquo;exprime au moyen de la valeur de la fonction en $n-1$</em>.</p>
+<p>Une fonction définie de façon récursive est <strong>calculable</strong>.</p>
+<h3 id="élévation-à-la-puissance">Élévation à la puissance</h3>
+<p>On peut exprimer de plusieurs façons la définition de cette fonction :</p>
+<ul>
+<li>Une définition <strong>implicite</strong> : $x^n = \overbrace{x \times x \times \ldots \times x}^{n \text{fois}}$</li>
+<li>Une définition <strong>explicite</strong><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> :
+$$
+x^n = \left\lbrace
+\begin{array}{ll}
+1                   &amp; \text{ si } n = 0 \cr
+x \times x^{ (n-1)} &amp; \text{ si } n &gt; 0 \cr
+\end{array}
+\right.
+$$</li>
+</ul>
+<p>La définition implicite présente les mêmes ambiguïtés que dans le cas du calcul de la factorielle d&rsquo;un entier naturel, tandis que la définition explicite, <em>qui se réfère elle-aussi à elle-même</em> et est donc <strong>récursive</strong>, permet de <strong>calculer</strong> la valeur de $x^n$.</p>
+<h3 id="mise-en-œuvre-dun-raisonnement-récursifnbsp-le-jeu-de-bowling">Mise en œuvre d&rsquo;un raisonnement récursif : le jeu de Bowling</h3>
+<img src="../../../terminales-nsi/chap-1/im-1-1.jpg" width="50%" alt="" />
+<p>La disposition des quilles de Bowling permet d&rsquo;illustrer la mise en œuvre d&rsquo;un <em>raisonnement récursif</em> :</p>
+<ul>
+<li>Combien de quilles composent l&rsquo;arrangement présenté ?</li>
+</ul>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>10</p>
+</details>
+<hr />
+<ul>
+<li>On veut ajouter une cinquième ligne à l&rsquo;arrangement présenté. Combien de quilles supplémentaires devront être disposées si l&rsquo;on souhaite respecter la logique présente ?</li>
+</ul>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>5</p>
+</details>
+<hr />
+<ul>
+<li>De combien de quilles sera alors constitué l&rsquo;arrangement ?</li>
+</ul>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>$10+5=15$</p>
+</details>
+<hr />
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Nombre de lignes</th>
+<th style="text-align:center">Nombre de quilles</th>
+<th style="text-align:center">Calcul du nombre de quilles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><code>arrangement(1)</code></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2 + <code>arrangement(1)</code></td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">3 + <code>arrangement(2)</code></td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">4 + <code>arrangement(3)</code></td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">5 + <code>arrangement(4)</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Nombre de quilles en fonction du nombre de lignes. La fonction <strong>arrangement</strong> reçoit en argument le nombre de lignes et retourne le nombre de quilles dans un arrangement de ce nombre de lignes.</p>
+</blockquote>
+<dl>
+<dt>Combien de quilles contient un arrangement de 11 lignes ?</dt>
+<dd>On déduit rapidement du tableau ci-dessus que le nombre de quilles est égal à : 11 + <code>arrangement(10)</code>, c&rsquo;est à dire à 11 plus le nombre de quilles présentes dans un arrangement à 10 lignes.</dd>
+<dt>Obtient-on directement la réponse ?</dt>
+<dd>Non, il faut tout d&rsquo;abord calculer le nombre de quilles dans un arrangement à 10 lignes. Le calcul est facile, c&rsquo;est : 10  + <code>arrangement(9)</code>, etc.</dd>
+<dt>Quand faut-il s&rsquo;arrêter ?</dt>
+<dd>On sait que <code>arrangement(1)</code> = 1. On s&rsquo;arrête donc lorsque l&rsquo;on est parvenu à un arrangement à 1 ligne.</dd>
+</dl>
+<div class="note normal">
+  <p>Le raisonnement précédent est <strong>un raisonnement récursif</strong>. On a découpé le problème en deux parties :</p>
+<ul>
+<li>
+<p>Si l&rsquo;arrangement comporte une seule ligne, la réponse est : <code>arrangement(1)</code> = 1.</p>
+</li>
+<li>
+<p>Si l&rsquo;arrangement comporte $N$ lignes, la réponse est : N + <code>arrangement(N - 1)</code>.</p>
+</li>
+</ul>
+</div>
+<h4 id="calcul-effectif-du-nombre-de-quilles-dans-un-arrangement-à-5-lignes">Calcul effectif du nombre de quilles dans un arrangement à 5 lignes</h4>
+<p>$$
+\begin{aligned}
+\text{arrangement} (5) &amp; = 5 + \text{arrangement} (4)  \cr
+&amp; = 5 + (4 + \text{arrangement} (3))  \cr
+&amp; = 5 + (4 + (3 + \text{arrangement} (2)))  \cr
+&amp; = 5 + (4 + (3 + (2 + \text{arrangement} (1))))  \cr
+&amp; = 5 + (4 + (3 + (2 + (1)))) \cr
+&amp; = 5 + (4 + (3 + 3)) \cr
+&amp; = 5 + (4 + 6)  \cr
+&amp; = 5 + 10  \cr
+&amp; = 15
+\end{aligned}
+$$</p>
+<div class="note tip">
+  <h4 id="algorithme-récursif">Algorithme récursif</h4>
+<p>Un algorithme est simplement <strong>récursif</strong> s&rsquo;il s&rsquo;appelle lui-même pour effectuer son traitement.</p>
+<p><em>Il est impératif de veiller à ce qu&rsquo;un algorithme récursif se termine sous peine d&rsquo;engendrer un processus infini</em> !</p>
+</div>
+<h4 id="implémentation-de-lalgorithme-en-python">Implémentation de l&rsquo;algorithme en Python</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">arrangement</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermination du nombre de quilles dans un 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    arrangement à n lignes.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : n entier naturel.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>                          <span class="c1"># cas de base</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">arrangement</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># appel récursif</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">arrangement</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">15</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<a class="remote" href="#ZgotmplZ" target="_blank">Code Python interactif</a>
+
+</li>
+</ul>
+<h3 id="retour-sur-le-calcul-de-la-factorielle-dun-entier-naturel">Retour sur le calcul de la factorielle d&rsquo;un entier naturel</h3>
+<p>On reprend ici le calcul de la factorielle de l&rsquo;entier naturel $n$. La <em>définition récursive</em> de la fonction factorielle est donc :</p>
+<p>$$
+n! = \left\lbrace
+\begin{array}{ll}
+1                   &amp; \text{ si } n = 0\cr
+n\times (n-1)! &amp; \text{ si } n \geq 1\cr
+\end{array}
+\right.
+$$</p>
+<h4 id="applicationnbsp-calcul-de-la-factorielle-de-5">Application : calcul de la factorielle de 5</h4>
+<ul>
+<li>En prenant exemple sur le calcul effectif du nombre de quilles en fonction du nombre de ligne dans l&rsquo;arrangement, calculer la valeur de $5!$ en détaillant toutes les étapes.</li>
+</ul>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>$$
+\begin{aligned}
+\text{factorielle} (5) &amp; = 5 \times \text{factorielle} (4)\cr
+&amp; = 5 \times (4 \times \text{factorielle} (3))\cr
+&amp; = 5 \times (4 \times (3 \times \text{factorielle} (2)))\cr
+&amp; = 5 \times (4 \times (3 \times (2 \times \text{factorielle} (1))))\cr
+&amp; = 5 \times (4 \times (3 \times (2 \times (1 \times \text{factorielle} (0)))))\cr
+&amp; = 5 \times (4 \times (3 \times (2 \times (1 \times 1))))\cr
+&amp; = 5 \times (4 \times (3 \times (2 \times 1)))\cr
+&amp; = 5 \times (4 \times (3 \times 2))\cr
+&amp; = 5 \times (4 \times 6)\cr
+&amp; = 5\times 24\cr
+&amp; = 120
+\end{aligned}
+$$</p>
+</details>
+<hr />
+<h4 id="arbre-des-appels">Arbre des appels</h4>
+<p><strong>L&rsquo;arbre des appels</strong> est une représentation arborescente faisant apparaître les appels récursifs jusqu&rsquo;au cas de base.</p>
+<img src="../../../terminales-nsi/chap-1/im-1-2.jpg" width="70%" alt="" />
+<h4 id="implémentation-de-lalgorithme-récursif-en-python">Implémentation de l&rsquo;algorithme récursif en Python</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">factorielle</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Définition récursive de la fonction factorielle.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : n entier naturel.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>                          <span class="c1"># cas de base</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorielle</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>   <span class="c1"># appel récursif</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">assert</span> <span class="n">factorielle</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">120</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<a class="remote" href="#ZgotmplZ" target="_blank">Code Python interactif</a>
+
+</li>
+</ul>
+<h2 id="définition-récursive-dune-fonction-1">Définition récursive d&rsquo;une fonction</h2>
+<div class="note tip">
+  <p>La <strong>définition récursive</strong> d&rsquo;une fonction doit être formée :</p>
+<ul>
+<li>d&rsquo;un ou plusieurs <strong>cas de base</strong>, qui ne <em>doivent contenir aucun appel récursif</em> ;</li>
+<li>d&rsquo;un ou plusieurs <strong>appel(s) récursif(s)</strong> au cours desquels <em>la fonction s&rsquo;appelle elle-même</em>.</li>
+</ul>
+</div>
+<h4 id="remarques">Remarques</h4>
+<ul>
+<li>Il est impératif que le cas de base soit réalisé à une étape du processus, sous peine d&rsquo;obtenir une récursion infinie.</li>
+<li>Les appels récursifs n&rsquo;apparaissent pas de façon évidente dans le cas de la <em>récursivité croisée</em> (cf. exercices).</li>
+</ul>
+<div class="note info">
+  <h4 id="ensembles-bien-fondés">Ensembles bien fondés</h4>
+<p>La <strong>récursion</strong> sur les entiers naturels consiste à <em>transformer un problème sur un entier naturel $n$ en un ou plusieurs problèmes sur des nombres plus petits</em>. <em>Comme il n&rsquo;existe pas de suite infinie strictement décroissante dans l&rsquo;ensemble des entiers naturels</em>, la récursion finit par atteindre un <em>cas de base</em> comme 0 (ou 1, ou &hellip;) <em>pour lequel une solution directe au problème est fournie</em>.</p>
+<p>L&rsquo;ensemble des entiers naturels est dit « bien fondé ».</p>
+</div>
+<h2 id="récursivité-vs-itération">Récursivité vs itération</h2>
+<p>La récursivité et l&rsquo;itération sont deux <strong>paradigmes</strong>[^2] différents ayant le même objectif : <strong>faire effectuer des traitements répétitifs à un ordinateur</strong>.</p>
+<div class="note tip">
+  <h4 id="récursivité-itération">Récursivité, Itération</h4>
+<ul>
+<li>
+<p>Un <strong>algorithme itératif décrit</strong> <em>comment doivent être transformées les données</em> pour parvenir à résoudre le problème.<br>
+À chaque « tour de boucle » des affectations sont réalisées.</p>
+</li>
+<li>
+<p>Un <strong>algorithme récursif définit</strong>, au sens mathématique du terme, le traitement à mettre en œuvre pour parvenir à résoudre le problème.<br>
+Cet algorithme ne s&rsquo;appuie généralement pas sur la notion d&rsquo;affectation (Nous reviendrons sur cette partie lorsque nous parlerons des différents paradigmes de programmation).</p>
+</li>
+<li>
+<p><em>Tout problème dont la résolution s&rsquo;appuie sur un algorithme récursif peut aussi être résolu à l&rsquo;aide d&rsquo;un algorithme itératif</em> (plus ou moins simplement).</p>
+</li>
+<li>
+<p><em>Tout problème dont la résolution s&rsquo;appuie sur un algorithme itératif peut aussi être résolu à l&rsquo;aide d&rsquo;un algorithme récursif</em>.</p>
+</li>
+<li>
+<p>Les algorithmes récursifs sont généralement plus simples à comprendre que les algorithmes itératifs correspondant.</p>
+</li>
+</ul>
+</div>
+<div class="note warning">
+  <em>La version récursive d&rsquo;un algorithme ne dit pas comment atteindre l&rsquo;état final d&rsquo;un traitement, elle donne une définition de ce résultat</em>.
+</div>
+<h4 id="exemple">Exemple</h4>
+<ul>
+<li>L&rsquo;algorithme récursif du calcul de la factorielle d&rsquo;un nombre définit cette factorielle.</li>
+<li>L&rsquo;algorithme itératif indique qu&rsquo;il faut multiplier 1 par 2, stocker le résultat de ce calcul dans une variable, multiplier le contenu de cette variable par 3, &hellip;, jusqu&rsquo;à $n$.</li>
+</ul>
+<div class="note normal">
+  <p>Certains langages informatiques appelés <strong>langages fonctionnels</strong>, ne possèdent <em>ni instruction d&rsquo;affectation ni structure itérative</em> !</p>
+<p>Les langages qui privilégient les structures itératives (et l&rsquo;affectation) sont dits <strong>impératifs</strong>.<br>
+Python est un langage mutli-paradigme : il permet de programmer de façon <strong>impérative</strong>, <strong>objet</strong> ou <strong>fonctionnelle</strong> (même si les appels récursifs, par exemple, ne sont pas aussi bien optimisés en Python que dans les langages fonctionnels).</p>
+</div>
+<div class="note warning">
+  <h4 id="pourquoi-ne-pas-toujours-utiliser-la-récursiviténbsp">Pourquoi ne pas toujours utiliser la récursivité ?</h4>
+<p>Un algorithme récursif est généralement plus facile à comprendre que l&rsquo;équivalent itératif. On peut donc se demander pourquoi on ne privilégie pas toujours les traitements récursifs.</p>
+<p>Généralement, les appels récursifs successifs <em>nécessitent plus d&rsquo;espace mémoire et de traitements</em> &mdash; sachant que <em>les processeurs ont, eux, un fonctionnement fondamentalement itératif</em> &mdash; que les processus itératifs.<br>
+Les <strong>langages fonctionnels</strong> modernes possèdent des compilateurs ou des interpréteurs suffisamment « intelligents » pour palier à ces inconvénients.</p>
+</div>
+<h2 id="si-lon-devait-résumer-lidée-générale-de-la-récursivité">Si l&rsquo;on devait résumer l&rsquo;idée générale de la récursivité</h2>
+<div class="note tip">
+  <dl>
+<dt>Si un problème est facile à résoudre, le résoudre immédiatement.</dt>
+<dd><em>C&rsquo;est le cas de base</em>.</dd>
+<dt>Si un problème n&rsquo;est pas facile à résoudre, le découper en problèmes plus petits. Résoudre les plus petits problèmes.</dt>
+<dd><em>Ce sont les appels récursifs</em>.</dd>
+</dl>
+</div>
+<h2 id="exercices-du-chapitre">Exercices du chapitre</h2>
+<p>Penser à écrire, pour chacune des fonctions ci-dessous, sa spécification ainsi qu&rsquo;un jeu de tests.</p>
+<p>Un corrigé partiel se trouve en ligne à cette adresse : 
+<a class="remote" href="#ZgotmplZ" target="_blank">&lt;https://repl.it/join/qaeylksn-dlatreyte&gt;</a>
+
+. Ce corrigé comporte des exemples d&rsquo;utilisation de l&rsquo;instruction <code>assert</code>.</p>
+<div class="note exercise">
+  <h4 id="exercice-1nbsp-factorielle">Exercice 1 : Factorielle</h4>
+<p>Écrire la définition itérative de la fonction factorielle.
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">factorielle_iter</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcule la factorielle de n.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algortihme itératif.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : n est un entier naturel
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fact</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">fact</span> <span class="o">=</span> <span class="n">fact</span> <span class="o">*</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">fact</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">factorielle_rec</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcule la factorielle de n.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algortihme récursif.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : n est un entier naturel
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorielle_rec</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="note exercise">
+  <h4 id="exercice-2nbsp-compte-à-rebours">Exercice 2 : Compte à rebours</h4>
+<ul>
+<li>Écrire une fonction récursive qui, à partir d&rsquo;un argument entier, affiche un compte à rebours.</li>
+<li>En modifiant seulement la position de la fonction <code>print</code>, faire en sorte que le comptage se fasse dans l&rsquo;ordre croissant.</li>
+</ul>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">compte_a_rebours</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Affiche un compte à rebours à l&#39;écran.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">compte_a_rebours</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">compte</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Affiche un comptage à l&#39;écran.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">compte</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="note exercise">
+  <h4 id="exercice-3nbsp-somme-des-n-premiers-entiers">Exercice 3 : Somme des $N$ premiers entiers</h4>
+<p>Écrire les versions itérative et récursive d&rsquo;une fonction qui calcule la somme des $N$ premiers entiers. La tester pour $N = 15$.
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">somme_entiers_rec</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcule la somme des n premiers entiers.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme récursif.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : n entier naturel
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="n">somme_entiers_rec</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">somme_entiers_iter</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcule la somme des n premiers entiers.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme itératif.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : n entier naturel
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">somme</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">somme</span> <span class="o">=</span> <span class="n">somme</span> <span class="o">+</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">somme</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="note exercise">
+  <h4 id="exercice-4nbsp-multiplication-récursive">Exercice 4 : Multiplication récursive</h4>
+<p>Écrire une fonction récursive qui calcule le produit de deux nombres entiers positifs en utilisant des additions.</p>
+<p>Le principe est le suivant :
+$$
+a \times b = \left\lbrace
+\begin{array}{ll}
+0                   &amp; \text{ si } a = 0\cr
+(a-1) \times b + b &amp; \text{ si } a &gt; 0\cr
+\end{array}
+\right.
+$$</p>
+<p>Exécuter la fonction pour $a = 4$ et $b = 5$ (pour cela, présenter les appels récursifs successifs sous forme d&rsquo;un arbre), puis pour $a = 5$ et $b = 4$.<br>
+Pour quel appel l&rsquo;arbre est-il le plus grand ?<br>
+Noter sur quel argument porte la récursion.<br>
+Que peut-on en conclure ?</p>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">multiplication</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Réalise la multiplication de deux entiers naturels a et b.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">multiplication</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="note exercise">
+  <h4 id="exercice-5nbsp-calculs-de-puissances">Exercice 5 : Calculs de puissances</h4>
+<ul>
+<li>
+<p>Écrire une fonction récursive qui calcule $x^n$ sachant que :
+$$
+x^n = \left\lbrace
+\begin{array}{ll}
+1                   &amp; \text{ si } n = 0 \cr
+x^{n-1} \times x     &amp; \text{ si } n &gt; 0 \cr
+\end{array}
+\right.
+$$</p>
+</li>
+<li>
+<p>Écrire une fonction récursive qui calcule $x^n$ sachant que :
+$$
+x^n = \left\lbrace
+\begin{array}{ll}
+1                   &amp; \text{ si } n = 0\cr
+(x^{n/2})^2         &amp; \text{ si } n &gt; 0 \text{ pair}\cr
+(x^{(n-1)/2})^2  \times x       &amp; \text{ si } n &gt; 0 \text{ impair}\cr
+\end{array}
+\right.
+$$</p>
+</li>
+<li>
+<p>Comparer les exécutions (avec arbre des appels) des deux fonctions ci-dessus pour $n = 11$ et $x = 2$. Quel est l&rsquo;arbre le plus court ? Que peut-on en conclure ?</p>
+</li>
+</ul>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solutions</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">puissance_01</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Premier calcul de la puissance n du nombre x.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : n entier naturel.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">puissance_01</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">puissance_02</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Second calcul de la puissance n du nombre x.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : n entier naturel.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">inter</span> <span class="o">=</span> <span class="n">puissance_02</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">x</span><span class="p">,</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># mise en mémoire du résultat de l&#39;appel récursif</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">inter</span> <span class="o">*</span> <span class="n">inter</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">inter</span> <span class="o">=</span> <span class="n">puissance_02</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># mise en mémoire du résultat de l&#39;appel récursif</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">inter</span> <span class="o">*</span> <span class="n">inter</span> <span class="o">*</span> <span class="n">x</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="note exercise">
+  <h4 id="exercice-6nbsp-suite-de-fibonacci">Exercice 6 : Suite de Fibonacci</h4>
+<ul>
+<li>
+<p>Écrire une fonction récursive qui calcule le $n^{\text{ième}}$ terme de la « suite de Fibonacci » définie par :
+$$
+\begin{aligned}
+u_0 &amp; = 0 \cr
+u_1 &amp; = 1 \cr
+u_n &amp; = u_{n - 1} + u_{n - 2} \hspace{0.5cm} \text{pour } n \geqslant 2
+\end{aligned}
+$$
+Exécuter la fonction pour $n = 5$</p>
+</li>
+<li>
+<p>L&rsquo;arbre des appels est représenté sur la figure ci-dessous. Expliquer pourquoi cette fonction est très peu efficace.</p>
+</li>
+</ul>
+<img src="../../../terminales-nsi/chap-1/im-1-3.jpg" width="70%" alt="" />
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcule le terme n de la suite de Fibonacci.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : n entier naturel
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="note exercise">
+  <h4 id="exercice-7nbsp-formule-de-viète">Exercice 7 : Formule de Viète</h4>
+<p>On peut obtenir une valeur approchée du nombre $\pi$ grâce à la formule de Viète :
+$$
+\pi \approx 2^k \sqrt{2 - \sqrt{2 + \sqrt{2 + \ldots \sqrt{ 2 + \sqrt 2 }  }  } }
+$$
+où $k$ est le nombre de racines carrées. Plus la valeur de $k$ est grande, meilleure est l&rsquo;approximation.</p>
+<p>On constate que la partie $s = 2 + \sqrt{2 + \ldots \sqrt{ 2 + \sqrt 2 }  }$ est récursive.</p>
+<ol>
+<li>Écrire une fonction récursive nommée <code>calcul_inter</code>, qui, à partir d&rsquo;un entier positif $k$, calcule la valeur de la partie $s$.</li>
+<li>Écrire une fonction nommée <code>calcul_pi</code>, qui, à partir d&rsquo;un entier positif $k$, calcule la valeur approchée de $\pi$.</li>
+</ol>
+<blockquote>
+<p>Cette fonction doit appeler la fonction <code>calcul_inter</code>.</p>
+</blockquote>
+<ol start="3">
+<li>Depuis la fonction <code>main</code>, appeler la fonction <code>calcul_pi</code> avec plusieurs valeurs de $k$ (essayer 5, 10, 15). Comparer au résultat retourné par l&rsquo;attribut <code>pi</code> du module <code>math</code>.</li>
+</ol>
+</div>
+<div class="note exercise">
+  <h4 id="exercice-8nbsp-plus-grand-diviseur-commun">Exercice 8 : Plus grand diviseur commun</h4>
+<p>Écrire une fonction récursive qui retourne le plus grand diviseur commun de deux entiers passés comme arguments. On se servira de l&rsquo;algorithme d&rsquo;Euclide :<span id="pgcd">  </span>
+$$
+\text{pgcd}(m,n) = \left\lbrace
+\begin{array}{ll}
+m                        &amp; \text{ si } n = 0\cr
+\text{pgcd}(n,m)         &amp; \text{ si } m &lt; n \cr
+\text{pgcd}(n, m \, \text{mod}\, n)  &amp; \text{ sinon }\cr
+\end{array}
+\right.
+$$
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pgcd</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcule le pgcd de m et n. La récursivité est terminale. 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : n et m entiers naturels
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">m</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">pgcd</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">pgcd</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="note exercise">
+  <h4 id="exercice-9nbsp-ackermann-péter">Exercice 9 : Ackermann-Péter</h4>
+<p>La fonction d&rsquo;Ackermann-Péter est définie récursivement comme suit :
+$$
+A(m,n) = \left\lbrace
+\begin{array}{ll}
+n+1                        &amp; \text{ si } m = 0\cr
+A(m-1,1)         &amp; \text{ si } m &gt; 0 \text{ et } n = 0 \cr
+A(m-1, A(m, n-1))  &amp; \text{ si } m &gt; 0 \text{ et } n &gt; 0\cr
+\end{array}
+\right.
+$$
+Écrire une fonction qui, à partir de deux arguments $m$ et $n$, calcule $A(m,n)$. La tester avec les valeurs $m=3$, $n=4$.</p>
+<h4 id="remarques">Remarques</h4>
+<ul>
+<li>La fonction d&rsquo;Ackermann croît extrêmement rapidement : $A(4,2)$ a déjà $\pu{19729}$ chiffres !</li>
+<li>La fonction d&rsquo;Ackermann demandant beaucoup de calculs même pour de petites entrées, elle est parfois utilisée comme programme de test d&rsquo;une implémentation d&rsquo;un langage de programmation : en particulier, elle utilise de façon très exigeante la récursivité (cf. <a href="http://fr.wikipedia.org/wiki/Fonction_d'Ackermann">Fonction d&rsquo;Ackermann, Wikipédia</a>).</li>
+</ul>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ackermann</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Définition de la fonction d&#39;Ackermann.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : m, n entiers naturels
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">m</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ackermann</span><span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ackermann</span><span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ackermann</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="note exercise">
+  <h4 id="exercice-10nbsp-récursivité-croisée">Exercice 10 : Récursivité croisée</h4>
+<p>On considère deux suites $u(n)$ et $v(n)$ définies, pour $n \geq 0$ par :
+$$
+\begin{array}{rcl}
+u(0) &amp; = &amp; 1\cr
+v(0) &amp; = &amp; 2\cr
+u(n) &amp; = &amp; 3 u(n-1) + 2 v(n-1)\cr
+v(n) &amp; = &amp; 2 u(n-1) + 3 v(n-1)\cr
+\end{array}
+$$
+Ces deux suites ont pour particularité que : $v(n) - u(n) = 1$ pour tout $n$.</p>
+<ul>
+<li>
+<p>Écrire un programme qui, à l&rsquo;aide de fonctions récursives, donne les valeurs de ces deux suites pour un $n$ donnée (tester avec $n=3$) et qui vérifie que la différence entre ces deux valeurs est égale à 1.</p>
+</li>
+<li>
+<p>Établir les <em>arbres des appels</em>.</p>
+</li>
+</ul>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcul de la valeur de u(n).
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">u</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">v</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">v</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcul de la valeur de v(n)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">v</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrer la valeur de n : &#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">u_</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">v_</span> <span class="o">=</span> <span class="n">v</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;u(</span><span class="si">{}</span><span class="s2">) = </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">u_</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;v(</span><span class="si">{}</span><span class="s2">) = </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">v_</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;v(</span><span class="si">{}</span><span class="s2">) - u(</span><span class="si">{}</span><span class="s2">) = </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">v_</span><span class="p">,</span> <span class="n">u_</span><span class="p">,</span> <span class="n">v_</span> <span class="o">-</span> <span class="n">u_</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="note exercise">
+  <h4 id="exercice-10nbsp-fonctions-mutuellement-récursives">Exercice 10 : Fonctions mutuellement récursives</h4>
+<p>Le but de cet exercice consiste à écrire les fonctions récursives <code>est_pair</code> et <code>est_impair</code> <em>sans utiliser le modulo</em>.<br>
+La fonction <code>est_pair</code> (resp. <code>est_impair</code>) retourne <code>True</code> si son argument entier est pair (resp. impair).</p>
+<ul>
+<li>$n \in \mathbb{N}$ est impair si $n-1$ est pair.</li>
+<li>$n \in \mathbb{N}$ est pair si $n-1$ est impair.</li>
+<li>$0$ est pair.</li>
+<li>$0$ n&rsquo;est pas impair.</li>
+</ul>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_pair</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine si un nombre nbre est pair.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : nbre entier naturel
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">nbre</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">est_impair</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_impair</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine si un nombre nbre est impair.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : nbre entier naturel
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">nbre</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">est_pair</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34; Fonction principale &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrer le nombre à tester : &#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Est-il pair ? </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">est_pair</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="note exercise">
+  <h4 id="exercice-11nbsp-conjecture-de-syracuse">Exercice 11 : Conjecture de Syracuse</h4>
+<p>On appelle <strong>suite de Syracuse</strong> une suite d&rsquo;entiers naturels définie de la manière suivante : <em>On part d&rsquo;un nombre entier plus grand que zéro. S&rsquo;il est pair, on le divise par 2 ; s&rsquo;il est impair, on le multiplie par 3 et on ajoute 1. En répétant l&rsquo;opération, on obtient une suite d&rsquo;entiers positifs dont chacun ne dépend que de son prédécesseur.</em></p>
+<p>Par exemple, à partir de 14, on construit la suite des nombres :
+$$
+14,7,22,11,34,17,52,26,13,40,20,10,5,16,8,4,2,1,4,2,\ldots
+$$
+C&rsquo;est ce qu&rsquo;on appelle la suite de Syracuse du nombre 14. Une fois le nombre 1 atteint, la suite des valeurs $(1, 4, 2, 1, 4, 2, \ldots)$ se répète indéfiniment en un cycle de longueur 3 (appelé cycle trivial).</p>
+<p>La <strong>conjecture de Syracuse</strong> (encore appelée conjecture de Collatz, ou conjecture d&rsquo;Ulam) est l&rsquo;hypothèse mathématique selon laquelle la suite de Syracuse de n&rsquo;importe quel entier strictement positif atteint 1.</p>
+<p>Écrire la fonction <code>syracuse</code> à un paramètre entier qui retourne la longueur de la suite de Syracuse de cet entier pour obtenir 1.</p>
+</div>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">syracuse_01</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34; Retourne la longueur de la suite de Syracuse, c&#39;est à
+</span></span></span><span class="line"><span class="cl"><span class="s2">    dire le nombre de termes avant que la valeur soit égale à 1.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Récursivité enveloppée.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">syracuse_01</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">syracuse_01</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Ce n&rsquo;est pas la seule définition possible et c&rsquo;est loin d&rsquo;être la plus efficace une fois implémentée.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://dlatreyte.github.io/tags/programmation/">Programmation</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/r%C3%A9cursivit%C3%A9/">Récursivité</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/fonctions/">Fonctions</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io/tags/algorithmique/">Algorithmique</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+              </div>
+            </section>
+        
+
+        
+          
+          
+          <h4 class="see-also">Voir également</h4>
+          <ul>
+          
+            <li><a href="../../../premieres-nsi/chap-23/chap-23-02/">Problème du sac à dos</a></li>
+          
+            <li><a href="../../../premieres-nsi/chap-23/chap-23-01/">Algorithmes gloutons, problème du rendu de monnaie</a></li>
+          
+            <li><a href="../../../premieres-nsi/chap-02/chap-02/">Langages et programmation</a></li>
+          
+          </ul>
+          
+        
+      </article>
+
+
+      
+        <ul class="pager blog-pager">
+          
+          
+            <li class="next">
+              <a href="https://dlatreyte.github.io/terminales-nsi/recursivite/1-2-recursivite-chaines-listes/" data-toggle="tooltip" data-placement="top" title="La récursivité appliquée aux chaînes de caractères et aux listes">Post suivant &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:david.latreyte@louismassignon.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DLatreyte" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/@DLatreyte" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/latreyte-david-917852b2" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/agdavgablou" title="Instagram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://dlatreyte.github.io">David Latreyte</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2023
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://dlatreyte.github.io">Accueil</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          Carbure avec <a href="https://gohugo.io">Hugo v0.120.4</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://dlatreyte.github.io/js/main.js"></script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dlatreyte.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/katex.min.js"
+  integrity="sha512-CLi3JK94v6TUcogbWv4WT4xnfp6B8AET4PuBjGxXo5MZJ9xfNgMHgXaXH8QJe6JwN+kGxqR4//z8/2BYVnxRVw=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/auto-render.min.js"
+  integrity="sha512-iWiuBS5nt6r60fCz26Nd0Zqe0nbk1ZTIQbl3Kv7kYsX+yKMUFHzjaH2+AnM6vp2Xs+gNmaBAVWJjSmuPw76Efg=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/copy-tex.min.js"
+  integrity="sha512-cQxSkTM4RvFAjdBeBDkrllhYfERwZWjM/oijKfPsmhR0JI2U3fXSlbUaJp5SlgBh/FzYmMyWudRTXLnNj3MbEA=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/mathtex-script-type.min.js"
+  integrity="sha512-MBhOGY4yRA2eATtRGTcrDJCRqcnLai5+uu47GA2ueVr1MPzirC/iogLWRA8CXTlOTK09VI4fdTe4qE4LBfjsHw=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/mhchem.min.js"
+  integrity="sha512-V1hl0fnOXW6Cdqe5ZVqtw8TBpJVpu3XRDRQti96j/04+tMarPrCdXEUE3UdfvfKYTpOn9DV4zEZBVr0HhDiuiQ=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/render-a11y-string.min.js"
+  integrity="sha512-qBnQA4Y+OVTc4fPEzp5saII5ofAVDJQO6pMq9/VLm49xHvWsvRP4awjMq8U97bgalhahBEevp9HSsPo7B8JNcA=="
+  crossorigin="anonymous"></script>
+<script>
+  renderMathInElement(document.body,
+    {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    }
+  );
+
+  var inlineMathArray = document.querySelectorAll("script[type='math/tex']");
+  for (var i = 0; i < inlineMathArray.length; i++) {
+    var inlineMath = inlineMathArray[i];
+    var tex = inlineMath.innerText || inlineMath.textContent;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex, { displayMode: false });
+    inlineMath.parentNode.replaceChild(replaced, inlineMath);
+  }
+
+  var displayMathArray = document.querySelectorAll("script[type='math/tex; mode=display']");
+  for (var i = 0; i < displayMathArray.length; i++) {
+    var displayMath = displayMathArray[i];
+    var tex = displayMath.innerHTML;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex.replace(/%.*/g, ''), { displayMode: true });
+    displayMath.parentNode.replaceChild(replaced, displayMath);
+  }
+
+</script>
+
+
+    
+  </body>
+</html>
+
