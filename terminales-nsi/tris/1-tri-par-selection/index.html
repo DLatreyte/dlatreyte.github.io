@@ -64,7 +64,7 @@ Le tri des tableaux/listes permet de trouver rapidement les objets recherchés e
   "headline": "Tri par sélection",
   "description" : "La recherche d\u0026rsquo;un élément dans un tableau est beaucoup plus efficace si ce tableau est ordonné. À vrai dire, ce n\u0026rsquo;est pas en cours d\u0026rsquo;informatique que vous avez découvert ceci : dans toutes les bibliothèques les livres sont classés de façon à rendre leur recherche plus rapide !\nLe tri des tableaux\/listes permet de trouver rapidement les objets recherchés et facilite la recherche des valeurs extrêmes. La question que se propose d\u0026rsquo;aborder ce document est donc : « comment classer les éléments d\u0026rsquo;un tableau selon une relation d\u0026rsquo;ordre donnée ?",
   "inLanguage" : "fr",
-  "wordCount":  1306 ,
+  "wordCount":  1610 ,
   "datePublished" : "2023-11-24T12:59:47",
   "dateModified" : "2023-11-24T12:59:47",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -396,14 +396,10 @@ Les ordres les plus utilisés sont l&rsquo;ordre numérique et l&rsquo;ordre lex
 comprendre la méthode.</p>
 </li>
 <li>
-<p>Appliquer la méthode dans le jeu des tonneaux et trier cinq tonneaux du plus
-léger au plus lourd. Cette méthode était-elle celle que vous aviez mise en
-œuvre dans la section 1 ?</p>
+<p>Appliquer la méthode dans le jeu des tonneaux et trier cinq tonneaux du plus léger au plus lourd. Cette méthode était-elle celle que vous aviez mise en œuvre dans la section 1 ?</p>
 </li>
 <li>
-<p>La méthode étant bien comprise, choisir sept cartes à jouer (avec les valeurs
-numériques, pas des figures). Les placer en ligne au hasard sur une table et
-les trier en appliquant le tri par sélection.<br>
+<p>La méthode étant bien comprise, choisir sept cartes à jouer (avec les valeurs numériques, pas des figures). Les placer en ligne au hasard sur une table et les trier en appliquant le tri par sélection.<br>
 <strong>Se filmer pendant toute l&rsquo;opération en commentant chacune des étapes !</strong></p>
 </li>
 </ol>
@@ -504,19 +500,67 @@ ce qui économise de la place en mémoire.</p>
 <li>
 <p>Comment prouve-t-on, de façon générale, la terminaison d&rsquo;un algorithme ?</p>
 </li>
-<li>
-<p>Est-il nécessaire de prouver la terminaison de cet algorithme ?</p>
-</li>
-<li>
-<p>Comment prouve-t-on, de façon générale, la correction d&rsquo;un algorithme ?</p>
-</li>
-<li>
-<p>Prouver que la proposition « Au début de chaque itération de la boucle <code>Pour</code> externe le tableau <code>tab[0, ..., i-1]</code> est un tableau trié constitué des <code>i</code> plus petits éléments du tableau <code>tab</code>, dans l&rsquo;ordre croissant.» est un invariant de boucle.<br>
-Prouver que l&rsquo;algorithme est correct.</p>
-</li>
-<li>
-<p>Déterminer la complexité de l&rsquo;algorithme.</p>
-</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>On recherche un <em>variant de boucle</em>.</p>
+<div class="note tip">
+  <p>Un <strong>variant de boucle</strong> est une expression arithmétique associée à une boucle qui satisfait deux conditions :</p>
+<ul>
+<li><strong>Valeur initiale :</strong> Le variant doit être initialisé avec une <em>valeur entière non négative</em> avant que la boucle ne commence.</li>
+<li><strong>Décroissance :</strong> À chaque itération de la boucle, la <em>valeur du variant doit décroître</em>. Cela signifie que le variant agit comme une mesure de progression vers la sortie de la boucle.</li>
+</ul>
+<p>L&rsquo;idée derrière la notion de variant de boucle est que si le variant est toujours non négatif et diminue lors de la progression de la boucle, alors la boucle ne peut pas continuer indéfiniment. Si la boucle continue indéfiniment, cela signifie que le variant ne décroît pas à chaque itération, ce qui contredit la propriété de décroissance du variant.</p>
+</div>
+</details>
+<hr />
+<ol start="11">
+<li>Est-il nécessaire de prouver la terminaison de cet algorithme ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>L&rsquo;algorithme fait intervenir deux boucles <code>Pour</code>. Il se termine donc forcément puisqu&rsquo;il s&rsquo;agit de <em>boucles déterministes</em>.</p>
+</details>
+<hr />
+<ol start="12">
+<li>Comment prouve-t-on, de façon générale, la correction d&rsquo;un algorithme ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>On recherche un <em>invariant de boucle</em>.</p>
+<div class="note tip">
+  <p>Un <strong>invariant de boucle</strong> est une <em>proposition vraie à chaque tour de boucle</em>. Associé à une <strong>postcondition</strong> il permet, au final, de montrer la correction d&rsquo;un algorithme.</p>
+<p>Pour qu&rsquo;un invariant de boucle soit efficace, il doit satisfaire deux propriétés essentielles :</p>
+<ul>
+<li><strong>Initialisation :</strong> L&rsquo;invariant doit être vrai avant la première itération de la boucle. Cela garantit que l&rsquo;invariant est une propriété valable lorsque la boucle commence son exécution.</li>
+<li><strong>Conservation :</strong> Si l&rsquo;invariant est vrai avant une itération de la boucle, alors il doit également rester vrai après l&rsquo;itération, à condition que la condition de boucle (la condition qui détermine si la boucle doit continuer ou s&rsquo;arrêter) soit vraie. Cela assure que l&rsquo;invariant reste préservé à chaque étape de la boucle.</li>
+</ul>
+<p>Un invariant de boucle doit être associé à une <strong>postcondition</strong>, c&rsquo;est dire à une propriété qui doit être vraie à la fin de la boucle.</p>
+</div>
+</details>
+<hr />
+<ol start="13">
+<li>Prouver que la proposition « Au début de chaque itération de la boucle <code>Pour</code> externe le tableau <code>tab[0, ..., i-1]</code> est un tableau trié constitué des <code>i</code> plus petits éléments du tableau <code>tab</code>, dans l&rsquo;ordre croissant.» est un invariant de boucle.<br>
+Prouver que l&rsquo;algorithme est correct.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+</details>
+<hr />
+<ol start="14">
+<li>Déterminer la complexité de l&rsquo;algorithme.</li>
 </ol>
 <div class="note normal">
   <h4 id="dans-quels-cas-le-tri-par-sélection-peut-il-être-pertinent-">Dans quels cas le tri par sélection peut-il être pertinent ?</h4>
