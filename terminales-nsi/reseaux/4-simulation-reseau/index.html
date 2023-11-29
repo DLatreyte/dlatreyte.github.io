@@ -66,7 +66,7 @@ Construction d&rsquo;un réseau local En mode conception, créer le réseau loca
   "headline": "Simulation de réseaux",
   "description" : "L\u0026rsquo;objectif de cette séance est de mettre en pratique les concepts rappelés lors des séances précédentes et d\u0026rsquo;introduire la notion de routage.\nTélécharger le logiciel Filius\nAttention : Choisir la langue lors de la première ouverture du logiciel. En cas d’erreur, supprimer le dossier .filius contenant les paramètres de langues se trouvant dans C:\\Users\\nom d’utilisateur sur le réseau\\AppData\\Local\\.filius (sous windows).\nConstruction d\u0026rsquo;un réseau local En mode conception, créer le réseau local suivant : Configurer chaque ordinateur : Mode conception $\\longrightarrow$ Clic droit sur l\u0026rsquo;ordinateur $\\longrightarrow$ Configurer.",
   "inLanguage" : "fr",
-  "wordCount":  1134 ,
+  "wordCount":  1454 ,
   "datePublished" : "2020-12-06T04:35:41",
   "dateModified" : "2020-12-06T04:35:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -329,13 +329,14 @@ Attention : …">
 <img src="../../../terminales-nsi/chap-11/chap-11-4-1.png" alt="" width="" /></p>
 </li>
 <li>
-<p>Configurer chaque ordinateur : <code>Mode conception</code> $\longrightarrow$ <code>Clic droit</code> sur l&rsquo;ordinateur $\longrightarrow$ <code>Configurer</code>.</p>
+<p>Configurer chaque ordinateur : <code>Mode conception</code> $\longrightarrow$ <code>Clic droit</code> sur l&rsquo;ordinateur $\longrightarrow$ <code>Configurer</code>.<br>
+<em>Remarque :</em> le masque de sous-réseau doit être <code>255.255.255.0</code>.</p>
 </li>
 <li>
 <p>Sélectionner « Utiliser l&rsquo;adresse IP comme nom ».</p>
 </li>
 <li>
-<p>Ralentir les animations de façon à pouvoir visualiser le chemin des trames : ramener le curseur placé juste à droite du bouton <code>Simulation</code> à 10 ou 0 %.</p>
+<p>Ralentir les animations de façon à pouvoir visualiser le chemin des trames : ramener le curseur placé juste à droite du bouton <code>Simulation</code> à 1 %.</p>
 </li>
 <li>
 <p>Sur l&rsquo;ordinateur portable installer les outils en ligne de commande : <code>Mode simulation</code> $\longrightarrow$ <code>Clic gauche</code> $\longrightarrow$ <code>Installation des logiciels</code> $\longrightarrow$ <code>Ligne de commande</code> $\longrightarrow$ <code>Appliquer les modifications</code>.</p>
@@ -376,11 +377,11 @@ Attention : …">
 </tbody>
 </table>
 </center>
-Par défaut, on a juste l'adresse de diffusion.
+Par défaut, on a juste l'adresse MAC de diffusion (broadcast).
 </details>
 <hr />
 <ol start="8">
-<li>Lancer la commande <code>ping 192.168.0.11</code>. Que permet de visualiser cette commande ?</li>
+<li>Lancer la commande <code>ping 192.168.0.11</code>. À quoi sert cette commande ?</li>
 </ol>
 <hr />
 <details style="background-color: #f2f2f2;">
@@ -391,7 +392,7 @@ Par défaut, on a juste l'adresse de diffusion.
 </details>
 <hr />
 <ol start="9">
-<li>Décrire la circulation des segments observable lors de la simulation.</li>
+<li>Décrire la circulation des trames observables lors de la simulation.</li>
 </ol>
 <hr />
 <details style="background-color: #f2f2f2;">
@@ -404,7 +405,7 @@ Par défaut, on a juste l'adresse de diffusion.
 </ul>
 </details>
 <hr />
-<ol start="9">
+<ol start="10">
 <li>Lancer à nouveau la commande <code>arp -a</code>. Quelle information supplémentaire la table <code>arp</code> contient-elle ?</li>
 </ol>
 <hr />
@@ -435,27 +436,72 @@ Par défaut, on a juste l'adresse de diffusion.
 La table `arp` contient désormais une entrée pour l'ordinateur d'adresse IP 192.168.0.11.
 <dl>
 <dt>Remarque.</dt>
-<dd>Vous n&rsquo;obtiendrez pas forcément les mêmes entrées lors de votre simulation.</dd>
+<dd>Vous n&rsquo;obtiendrez pas forcément les mêmes adresses MAC lors de votre simulation.</dd>
 </dl>
 </details>
 <hr />
-<ol start="10">
-<li>
-<p>Visualiser l&rsquo;historique du traffic : <code>Clic droit</code> sur l&rsquo;ordinateur $\longrightarrow$ <code>Afficher les échanges de données</code>.</p>
-</li>
-<li>
-<p>Pourquoi voit-on, dans certains messages, une adresse MAC valant FF:FF:FF:FF:FF:FF  ?</p>
-</li>
+<ol start="11">
+<li>Visualiser l&rsquo;historique du traffic : <code>Clic droit</code> sur l&rsquo;ordinateur $\longrightarrow$ <code>Afficher les échanges de données</code>.<br>
+Décrire avec précision la méthode utilisée pour découvrir quel est l&rsquo;ordinateur d&rsquo;adresse IP 192.168.0.11 sur le réseau.</li>
 </ol>
 <hr />
 <details style="background-color: #f2f2f2;">
     <summary>
         <strong> Réponse</strong>
     </summary>
-<p>Il s&rsquo;agit de l&rsquo;adresse de diffusion.</p>
+<ul>
+<li>L&rsquo;ordinateur portable forme et envoie une trame <em>diffusée sur tout le réseau local (broadcast)</em> qui contient :
+<ul>
+<li>Pour la couche de liaison (niveau 2) :
+<ul>
+<li>Adresse MAC source : son adresse MAC</li>
+<li>Adresse MAC destination : adresse MAC de diffusion (l&rsquo;adresse MAC de l&rsquo;ordinateur distant est encore inconnue à ce stade)</li>
+</ul>
+</li>
+<li>Pour la couche réseau (niveau 3) :
+<ul>
+<li>IP source : son adresse IP</li>
+<li>IP destination  : l&rsquo;adresse IP de l&rsquo;ordinateur distant</li>
+<li>Protocole : ARP</li>
+<li>Commentaire : Qui a pour adresse IP 192.168.0.11 ?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>L&rsquo;ordinateur distant forme et envoie une trame <strong>potentiellement</strong> <em>diffusée sur tout le réseau local (broadcast)</em> qui contient :
+<ul>
+<li>Pour la couche de liaison (niveau 2) :
+<ul>
+<li>Adresse MAC source : son adresse MAC</li>
+<li>Adresse MAC destination : adresse MAC de l&rsquo;ordinateur portable</li>
+</ul>
+</li>
+<li>Pour la couche réseau (niveau 3) :
+<ul>
+<li>IP source : son adresse IP</li>
+<li>IP destination  : l&rsquo;adresse IP de l&rsquo;ordinateur portable</li>
+<li>Protocole : ARP</li>
+<li>Commentaire : C&rsquo;est moi et mon adresse MAC est &hellip;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>À ce stade de la communication, la découverte est terminée et on passe à un autre protocole.</p>
 </details>
 <hr />
 <ol start="12">
+<li>Pourquoi voit-on, dans certains messages, une adresse MAC valant FF:FF:FF:FF:FF:FF  ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Il s&rsquo;agit de l&rsquo;adresse MAC de diffusion (broadcast).</p>
+</details>
+<hr />
+<ol start="13">
 <li>À quel niveau du modèle OSI le protocole <code>arp</code> intervient-il ?</li>
 </ol>
 <hr />
@@ -463,10 +509,10 @@ La table `arp` contient désormais une entrée pour l'ordinateur d'adresse IP 19
     <summary>
         <strong> Réponse</strong>
     </summary>
-<p>Niveau 3, couche réseau. Ce protocole fait cependant le lien entre les informations de la couche 2 et celles de la couche 3. On dit parfois que ce protocole appartient à la couche 2,5.</p>
+<p>Niveau 3, couche réseau. Ce protocole fait cependant le lien entre les informations de la couche 2 et celles de la couche 3. On dit parfois que ce protocole appartient à la couche $2\, 1/2$.</p>
 </details>
 <hr />
-<ol start="13">
+<ol start="14">
 <li>À quel niveau du modèle OSI intervient la commande <code>ping</code> ?</li>
 </ol>
 <hr />
@@ -477,7 +523,7 @@ La table `arp` contient désormais une entrée pour l'ordinateur d'adresse IP 19
 <p>Le protocole ICMP intervient au niveau 3, couche réseau.</p>
 </details>
 <hr />
-<ol start="14">
+<ol start="15">
 <li>Examiner la table SAT du switch : <code>Clic gauche</code> sur le switch.
 Que nous apprend cette table ?</li>
 </ol>
@@ -486,10 +532,10 @@ Que nous apprend cette table ?</li>
     <summary>
         <strong> Réponse</strong>
     </summary>
-<p>Cette table indique sur quel port se trouve chaque ordinateur (repéré par son adresse MAC).</p>
+<p>Cette table indique quel port il faut emprunter pour accéder aux ordinateurs dont l&rsquo;adresse MAC a été repérée.</p>
 </details>
 <hr />
-<ol start="15">
+<ol start="16">
 <li>Expliquer pourquoi on dit qu&rsquo;« <strong>un commutateur (switch) limite le domaine de collision mais pas le domaine de diffusion</strong> ».</li>
 </ol>
 <hr />
@@ -506,24 +552,26 @@ Que nous apprend cette table ?</li>
 </div>
 </details>
 <hr />
-<ol start="16">
-<li>Reprendre les manipulations précédentes en effectuant la commande <code>ping</code> vers une nouvelle machine et en examinant le remplissage des tables <code>arp</code> et <code>SAT</code>.</li>
+<ol start="17">
+<li>Reprendre les manipulations précédentes en utilisant encore la commande <code>ping</code> vers une nouvelle machine. Vérifier le remplissage des tables <code>arp</code> et <code>SAT</code>.</li>
 </ol>
 <h2 id="communication-entre-deux-réseaux">Communication entre deux réseaux</h2>
-<ol start="17">
+<ol start="18">
 <li>Créer le réseau local suivant :
 <img src="../../../terminales-nsi/chap-11/chap-11-4-2.png" alt="" width="" /></li>
 </ol>
-<p>Les masques de sous-réseau sont :
-- 255.255.255.0 pour le sous-réseau connecté au switch A ;
-- 255.255.0.0 pour le sous-réseau connecté au switch B.</p>
+<p>Les masques de sous-réseau sont :</p>
+<ul>
+<li><code>255.255.255.0</code> pour le sous-réseau connecté au switch A ;</li>
+<li><code>255.255.0.0</code> pour le sous-réseau connecté au switch B.</li>
+</ul>
 <div class="note tip">
   <ul>
 <li>Pour pouvoir communiquer sur un même réseau, deux hôtes doivent avoir la même adresse réseau (IP).</li>
-<li>Pour pouvoir communiquer entre deux réseaux différents, il faut passer par une passerelle, qui elle possède plusieurs cartes réseau, et donc plusieurs adresses IP.</li>
+<li>Pour pouvoir communiquer entre deux réseaux différents, il faut passer par une routeur (ou passerelle), qui lui, possède plusieurs cartes réseau, et donc plusieurs adresses IP.</li>
 </ul>
 </div>
-<ol start="18">
+<ol start="19">
 <li>Lancer la commande <code>ping</code> depuis un ordinateur du sous-réseau A vers un ordinateur du sous-réseau B. Observer et justifier le résultat.</li>
 </ol>
 <hr />
@@ -534,8 +582,9 @@ Que nous apprend cette table ?</li>
 <p>Il est impossible d&rsquo;atteindre un ordinateur du sous-réseau B depuis un ordinateur du sous-réseau A car ils n&rsquo;appartiennent pas au même réseau et parce que le routeur n&rsquo;a pas encore été configuré.</p>
 </details>
 <hr />
-<ol start="19">
-<li>Configurer le routeur afin qu&rsquo;il route les paquets entre les deux sous-réseaux et tenter à nouveau l&rsquo;expérience de la question 18. La communication est-elle bien établie ?</li>
+<ol start="20">
+<li>Configurer le routeur afin qu&rsquo;il route les paquets entre les deux sous-réseaux et tenter à nouveau l&rsquo;expérience de la question 18. La communication est-elle bien établie ?
+<strong>Remarque :</strong> Choisir l&rsquo;adresse <code>192.168.0.254</code> pour l&rsquo;interface qui est dans le sous-réseau de gauche et <code>172.16.255.254</code> pour celle qui est dans le sous-réseau de droite.</li>
 </ol>
 <hr />
 <details style="background-color: #f2f2f2;">
@@ -545,7 +594,7 @@ Que nous apprend cette table ?</li>
 <p>La communication est toujours impossible.</p>
 </details>
 <hr />
-<ol start="20">
+<ol start="21">
 <li>Afin de comprendre pourquoi la communication entre les machines des deux sous-réseaux est toujours impossible, sur l&rsquo;ordinateur du sous-réseau A, lancer la commande <code>route</code>. Examiner le résultat et identifier le problème.</li>
 </ol>
 <hr />
@@ -553,27 +602,76 @@ Que nous apprend cette table ?</li>
     <summary>
         <strong> Réponse</strong>
     </summary>
+<center>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Destination</th>
+<th style="text-align:center">Masque</th>
+<th style="text-align:center">Passerelle</th>
+<th style="text-align:center">Interface</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">192.168.0.10</td>
+<td style="text-align:center">255.255.255.255</td>
+<td style="text-align:center">127.0.0.1</td>
+<td style="text-align:center">127.0.0.1</td>
+</tr>
+<tr>
+<td style="text-align:center">192.168.0.0</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">192.168.0.10</td>
+<td style="text-align:center">192.168.0.10</td>
+</tr>
+<tr>
+<td style="text-align:center">127.0.0.1</td>
+<td style="text-align:center">255.0.0.0</td>
+<td style="text-align:center">127.0.0.1</td>
+<td style="text-align:center">127.0.0.1</td>
+</tr>
+</tbody>
+</table>
+</center>
 <p>L&rsquo;ordinateur ne connaît pas la route vers le sous-réseau B.</p>
 </details>
 <hr />
-<ol start="21">
-<li>Configurer les ordinateurs afin que la communication entre les sous-réseaux soit possible.</li>
+<ol start="22">
+<li>Configurer l&rsquo;ordinateur afin que la communication avec l&rsquo;autre sous-réseau soit possible.</li>
 </ol>
 <hr />
 <details style="background-color: #f2f2f2;">
     <summary>
         <strong> Réponse</strong>
     </summary>
-<p>Définir la passerelle par défaut.</p>
+<p>Il faut ajouter à la main une nouvelle route (ce qui sera fait un peu plus tard) ou définir la « passerelle par défaut », c&rsquo;est à dire la passerelle qui sera utilisée chaque fois que l&rsquo;ordinateur ne saura pas quoi faire.</p>
 </details>
 <hr />
-<ol start="22">
-<li>
-<p>Lancer à nouveau la commande <code>ping</code> et examiner le résultat.</p>
-</li>
-<li>
-<p>Examiner la table <code>arp</code> de l&rsquo;ordinateur du sous-réseau A qui vient de communiquer avec l&rsquo;ordinateur du sous-réseau B. Existe-t-il une entrée pour l&rsquo;ordinateur du sous-réseau B ? Quelle est l&rsquo;entrée qui existe ?</p>
-</li>
+<ol start="23">
+<li>Lancer à nouveau la commande <code>ping</code> et examiner le résultat.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>La communication n&rsquo;a toujours pas lieu.</p>
+</details>
+<hr />
+<ol start="24">
+<li>Que faut-il faire pour que la communication entre les deux ordinateurs puisse enfin s&rsquo;établir ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>L&rsquo;ordinateur du sous-réseau B doit lui aussi avoir une passerelle définie.</p>
+</details>
+<hr />
+<ol start="25">
+<li>Examiner la table <code>arp</code> de l&rsquo;ordinateur du sous-réseau A qui vient de communiquer avec l&rsquo;ordinateur du sous-réseau B. Existe-t-il une entrée pour l&rsquo;ordinateur du sous-réseau B ? Quelle est l&rsquo;entrée qui existe ?</li>
 </ol>
 <hr />
 <details style="background-color: #f2f2f2;">
@@ -586,7 +684,7 @@ Que nous apprend cette table ?</li>
 </div>
 </details>
 <hr />
-<ol start="24">
+<ol start="26">
 <li>Lancer la commande <code>traceroute</code> vers l&rsquo;ordinateur du sous-réseau B. À quoi correspond le retour de cette commande ?</li>
 </ol>
 <hr />
@@ -602,7 +700,7 @@ Que nous apprend cette table ?</li>
   Télécharger le fichier de configuration du
 <a class="remote" href="../../../terminales-nsi/chap-11/chap-11-4-3.fls" target="_blank">réseau étendu</a>
 </div>
-<ol start="25">
+<ol start="27">
 <li>
 <p>Lancer la commande <code>traceroute</code> depuis l&rsquo;ordinateur M14 vers l&rsquo;ordinateur M9. Noter la route empruntée par les paquets.</p>
 </li>
@@ -614,7 +712,7 @@ Que nous apprend cette table ?</li>
 <dt>Remarque.</dt>
 <dd>Cela peut ne pas fonctionner du premier coup, car la mise à jour des tables de routage n’est pas immédiate. Pour remédier à cela, faire un <code>ping</code> entre M14 et M9, si cela ne fonctionne pas (timeout), attendre quelques secondes et recommencer.</dd>
 </dl>
-<ol start="27">
+<ol start="29">
 <li>Ouvrir les tables de routage de tous les routeurs qui sont intervenus dans la communication et expliquer le fonctionnement de ces tables.</li>
 </ol>
 
