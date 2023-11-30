@@ -66,7 +66,7 @@ Construction d&rsquo;un réseau local En mode conception, créer le réseau loca
   "headline": "Simulation de réseaux",
   "description" : "L\u0026rsquo;objectif de cette séance est de mettre en pratique les concepts rappelés lors des séances précédentes et d\u0026rsquo;introduire la notion de routage.\nTélécharger le logiciel Filius\nAttention : Choisir la langue lors de la première ouverture du logiciel. En cas d’erreur, supprimer le dossier .filius contenant les paramètres de langues se trouvant dans C:\\Users\\nom d’utilisateur sur le réseau\\AppData\\Local\\.filius (sous windows).\nConstruction d\u0026rsquo;un réseau local En mode conception, créer le réseau local suivant : Configurer chaque ordinateur : Mode conception $\\longrightarrow$ Clic droit sur l\u0026rsquo;ordinateur $\\longrightarrow$ Configurer.",
   "inLanguage" : "fr",
-  "wordCount":  1454 ,
+  "wordCount":  1786 ,
   "datePublished" : "2020-12-06T04:35:41",
   "dateModified" : "2020-12-06T04:35:41",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -670,8 +670,9 @@ Que nous apprend cette table ?</li>
 <p>L&rsquo;ordinateur du sous-réseau B doit lui aussi avoir une passerelle définie.</p>
 </details>
 <hr />
+<p>Associer une passerelle à tous les ordinateurs.</p>
 <ol start="25">
-<li>Examiner la table <code>arp</code> de l&rsquo;ordinateur du sous-réseau A qui vient de communiquer avec l&rsquo;ordinateur du sous-réseau B. Existe-t-il une entrée pour l&rsquo;ordinateur du sous-réseau B ? Quelle est l&rsquo;entrée qui existe ?</li>
+<li>Examiner la table <code>arp</code> de l&rsquo;ordinateur du sous-réseau A qui vient de communiquer avec l&rsquo;ordinateur du sous-réseau B. Existe-t-il une entrée pour l&rsquo;ordinateur du sous-réseau B ? À quel ordinateur est associée l&rsquo;entrée présente dans la table ?</li>
 </ol>
 <hr />
 <details style="background-color: #f2f2f2;">
@@ -680,11 +681,35 @@ Que nous apprend cette table ?</li>
     </summary>
 <p>Il n&rsquo;existe aucune entrée pour l&rsquo;ordinateur du sous-réseau B mais une entrée pour l&rsquo;interface du routeur appartenant au sous-réseau A.</p>
 <div class="note tip">
-  La couche de liaison ne définit <strong>aucune connexion directe entre deux ordinateurs</strong>. Les ordinateurs envoient toujours des <strong>segments</strong> (niveau 2) sur le réseau local. Lorsque l&rsquo;ordinateur destinataire ne se trouve pas sur le réseau local, c&rsquo;est au routeur d&rsquo;acheminer correctement les <strong>paquets</strong> (niveau 3).
+  La couche de liaison ne définit <strong>aucune connexion directe entre deux ordinateurs</strong>. Les ordinateurs envoient toujours des <strong>trames</strong> (niveau 2) sur le réseau local. Lorsque l&rsquo;ordinateur destinataire ne se trouve pas sur le réseau local, c&rsquo;est au routeur d&rsquo;acheminer correctement les <strong>paquets</strong> (niveau 3).
 </div>
 </details>
 <hr />
 <ol start="26">
+<li>De la même façon, examiner la table <code>arp</code> de l&rsquo;ordinateur du sous-réseau B qui vient de communiquer avec l&rsquo;ordinateur du sous-réseau A. Existe-t-il une entrée pour l&rsquo;ordinateur du sous-réseau A ? À quel ordinateur est associée l&rsquo;entrée présente dans la table ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Il n&rsquo;existe aucune entrée pour l&rsquo;ordinateur du sous-réseau A mais une entrée pour l&rsquo;interface du routeur appartenant au sous-réseau B.</p>
+</details>
+<hr />
+<ol start="27">
+<li>Quelle conclusion peut-on déduire des deux observations précédentes ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="note tip">
+  Les trames ne traversent pas les routeurs et ne peuvent pas se propager dans des réseaux différents.
+</div>
+</details>
+<hr />
+<ol start="28">
 <li>Lancer la commande <code>traceroute</code> vers l&rsquo;ordinateur du sous-réseau B. À quoi correspond le retour de cette commande ?</li>
 </ol>
 <hr />
@@ -695,12 +720,68 @@ Que nous apprend cette table ?</li>
 <p><code>traceroute</code> donne le chemin suivi par les paquets.</p>
 </details>
 <hr />
+<ol start="29">
+<li>Quelle première action doit effectuer un ordinateur qui doit envoyer un <strong>paquet</strong> sur un réseau qui n&rsquo;est pas celui auquel il appartient ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>L&rsquo;ordinateur doit dans un premier temps déterminer l&rsquo;adresse MAC du routeur (passerelle) sur son réseau.</p>
+<p>Cette étape nécessite la diffusion d&rsquo;une trame de découverte tel qu&rsquo;expliqué dans les premières étapes de ce document.</p>
+</details>
+<hr />
+<ol start="30">
+<li>Quelles informations contiennent la trame et le paquet formés et envoyés par un ordinateur qui doit envoyer un <strong>paquet</strong> sur un réseau qui n&rsquo;est pas celui auquel il appartient ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="note tip">
+  <ul>
+<li>Trame (couche de liaison ou niveau 2 du modèle OSI):
+<ul>
+<li>Addresse MAC source : son adresse MAC</li>
+<li>Adresse MAC de destination : l&rsquo;adresse MAC du <strong>routeur</strong></li>
+</ul>
+</li>
+<li>Paquet (couche réseau ou niveau 3 du modèle OSI) :
+<ul>
+<li>Addresse IP source : son adresse IP</li>
+<li>Addresse IP de destination : l&rsquo;adresse IP de l&rsquo;<strong>ordinateur appartenant à l&rsquo;autre sous-réseau</strong></li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+<hr />
+<ol start="31">
+<li>Quelles actions un routeur effectue-t-il lorsqu&rsquo;il reçoit une <strong>trame</strong> ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="note tip">
+  <ul>
+<li>Le routeur déconstruit la trame ;</li>
+<li>Le routeur lit l&rsquo;adresse IP de destination du paquet en lisant l&rsquo;entête de ce paquet ;</li>
+<li>Le routeur prend une décision de routage ;</li>
+<li>Le routeur recontruit une trame qui encapsule le paquet et contient comme adresse MAC source son adresse MAC et comme addresse MAC de destination celle de l&rsquo;ordinateur cible si ce dernier appartient au même sous-réseau que le routeur ou alors l&rsquo;adresse MAC du prochain routeur.</li>
+</ul>
+</div>
+</details>
+<hr />
 <h2 id="réseaux-étendus">Réseaux étendus</h2>
 <div class="note normal">
   Télécharger le fichier de configuration du
 <a class="remote" href="../../../terminales-nsi/chap-11/chap-11-4-3.fls" target="_blank">réseau étendu</a>
 </div>
-<ol start="27">
+<ol start="32">
 <li>
 <p>Lancer la commande <code>traceroute</code> depuis l&rsquo;ordinateur M14 vers l&rsquo;ordinateur M9. Noter la route empruntée par les paquets.</p>
 </li>
@@ -712,7 +793,7 @@ Que nous apprend cette table ?</li>
 <dt>Remarque.</dt>
 <dd>Cela peut ne pas fonctionner du premier coup, car la mise à jour des tables de routage n’est pas immédiate. Pour remédier à cela, faire un <code>ping</code> entre M14 et M9, si cela ne fonctionne pas (timeout), attendre quelques secondes et recommencer.</dd>
 </dl>
-<ol start="29">
+<ol start="34">
 <li>Ouvrir les tables de routage de tous les routeurs qui sont intervenus dans la communication et expliquer le fonctionnement de ces tables.</li>
 </ol>
 
