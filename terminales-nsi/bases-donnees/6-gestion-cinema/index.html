@@ -66,7 +66,7 @@ En particulier, faire apparaître les clés primaires et les clés étrangères.
   "headline": "Gestion d\u0027une salle de cinéma",
   "description" : "L\u0026rsquo;objectif de cette séance est de mettre en œuvre tous les concepts du chapitre.\nLa base de donnée accessible à cette adresse simule de façon simplifiée la gestion d\u0026rsquo;un cinéma.\nÉtudier la structure de chacune des relations de la base et établir son schéma relationnel.\nEn particulier, faire apparaître les clés primaires et les clés étrangères. Réponse Quelles sont les tables de la base ? 1 .tables Quelle est la structure de chacune de ces relations ?",
   "inLanguage" : "fr",
-  "wordCount":  1352 ,
+  "wordCount":  1387 ,
   "datePublished" : "2021-02-09T05:50:34",
   "dateModified" : "2021-02-09T05:50:34",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -801,9 +801,9 @@ En particulier, faire apparaître les clés primaires et les clés étrangères.
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">seance</span><span class="p">)</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">seance</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Première séance&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">projection</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="nb">date</span><span class="o">=</span><span class="s1">&#39;2005/11/18&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2005/11/18&#39;</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -830,13 +830,13 @@ Utiliser deux requêtes imbriquées.</li>
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">duree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">duree</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">               </span><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">               </span><span class="k">WHERE</span><span class="w"> </span><span class="n">numfilm</span><span class="o">=</span><span class="s1">&#39;71&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">               </span><span class="k">WHERE</span><span class="w"> </span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">71</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></details>
 <hr />
 <ol start="21">
-<li>Quel le numéro et le titre des films de la même catégorie que Super Mondet XII ?<br>
+<li>Quel est le numéro et le titre des films de la même catégorie que Super Mondet XII ?<br>
 Utiliser deux requêtes imbriquées.</li>
 </ol>
 <hr />
@@ -884,10 +884,25 @@ Utiliser deux requêtes imbriquées.</li>
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">seance</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;11h00&#39;</span><span class="p">,</span><span class="s1">&#39;13h10&#39;</span><span class="p">,</span><span class="s1">&#39;14h50&#39;</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
+</div><p>ou</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">titre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">numfilm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">seance</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;11h00&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;13h10&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;14h50&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
 </div></details>
 <hr />
 <ol start="23">
-<li>Quels sont les films (numéro et titre) plus longs que la moyenne ?<br>
+<li>Quels sont les films (numéro et titre) plus longs que la moyenne de tous les films ?<br>
 Utiliser deux requêtes imbriquées.</li>
 </ol>
 <hr />
@@ -912,7 +927,7 @@ Utiliser deux requêtes imbriquées.</li>
 </div></details>
 <hr />
 <ol start="24">
-<li>Quels films (numéro, titre, salle et séance) sont programmés aux mêmes horaires ?<br>
+<li>Quels films (numéro, salle et séance) sont programmés aux mêmes horaires ?<br>
 Utiliser une autojointure.</li>
 </ol>
 <hr />
