@@ -66,7 +66,7 @@ En particulier, faire apparaître les clés primaires et les clés étrangères.
   "headline": "Gestion d\u0027une salle de cinéma",
   "description" : "L\u0026rsquo;objectif de cette séance est de mettre en œuvre tous les concepts du chapitre.\nLa base de donnée accessible à cette adresse simule de façon simplifiée la gestion d\u0026rsquo;un cinéma.\nÉtudier la structure de chacune des relations de la base et établir son schéma relationnel.\nEn particulier, faire apparaître les clés primaires et les clés étrangères. Réponse Quelles sont les tables de la base ? 1 .tables Quelle est la structure de chacune de ces relations ?",
   "inLanguage" : "fr",
-  "wordCount":  1327 ,
+  "wordCount":  1319 ,
   "datePublished" : "2021-02-09T05:50:34",
   "dateModified" : "2021-02-09T05:50:34",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -546,7 +546,7 @@ En particulier, faire apparaître les clés primaires et les clés étrangères.
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">titre</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">titre</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="p">,</span><span class="w"> </span><span class="n">projection</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">film</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">projection</span><span class="p">.</span><span class="n">numfilm</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">salle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Sud&#39;</span><span class="w">
@@ -615,16 +615,12 @@ En particulier, faire apparaître les clés primaires et les clés étrangères.
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">libcat</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">numfilm</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Nbre films&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">categorie</span><span class="w"> </span><span class="k">c</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">codecat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">codecat</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">libcat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">libcat</span><span class="w"> 
-</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">FROM</span><span class="w"> </span><span class="n">categorie</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">WHERE</span><span class="w"> </span><span class="n">libcat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;documentaire&#34;</span><span class="p">);</span><span class="w">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Nbre films&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">JOIN</span><span class="w"> </span><span class="n">categorie</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">codecat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">codecat</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">libcat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;documentaire&#34;</span><span class="p">;</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></details>
