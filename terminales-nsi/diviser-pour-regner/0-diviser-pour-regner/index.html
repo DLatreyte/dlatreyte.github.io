@@ -63,7 +63,7 @@
   "headline": "Diviser pour régner",
   "description" : "Dans quel cas ? On parvient à découper un problème en sous-problèmes indépendants les uns des autres. On poursuit cette démarche jusqu\u0026rsquo;à aboutir à une situation simple : cas de base. La solution du cas de base est généralement simple à obtenir et permet la construction de la solution du problème. Remarque C\u0026rsquo;est l\u0026rsquo;indépendance des sous-problèmes qui permet la construction de la solution globale directe par recombinaison des solutions intermédiaires.",
   "inLanguage" : "fr",
-  "wordCount":  808 ,
+  "wordCount":  1157 ,
   "datePublished" : "2023-01-29T21:53:04",
   "dateModified" : "2023-01-29T21:53:04",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -307,6 +307,7 @@
       </ul>
     </li>
     <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#exercice--recherche-dichotomique">Exercice : recherche dichotomique</a></li>
   </ul>
 </nav>
           
@@ -557,6 +558,177 @@ La complexité de l&rsquo;algorithme est donc en $O(\log_2 n)$ ; elle est bien m
 <li>L&rsquo;efficacité d&rsquo;un algorithme qui s&rsquo;appuit sur le paradigme « Diviser pour régner » dépend de l&rsquo;implémentation de la récursivité par le langage choisi.</li>
 </ul>
 </div>
+<h2 id="exercice--recherche-dichotomique">Exercice : recherche dichotomique</h2>
+<ol start="6">
+<li>Écrire le code de la fonction <code>recherche1</code> dont la spécification est la suivante :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">recherche1</span><span class="p">(</span><span class="n">liste</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne l&#39;indice de la valeur dans la liste si cette 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    dernière est présente, -1 sinon.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : val est unique si présente.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme itératif.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">recherche1</span><span class="p">(</span><span class="n">liste</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne l&#39;indice de la valeur dans la liste si cette 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    dernière est présente, -1 sinon.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : val est unique si présente.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme itératif.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g</span> <span class="o">=</span> <span class="mi">0</span>               <span class="c1"># indice le plus petit</span>
+</span></span><span class="line"><span class="cl">    <span class="n">d</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">liste</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1"># indice le plus grand</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">trouve</span> <span class="o">=</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">g</span> <span class="o">&lt;</span> <span class="n">d</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">trouve</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">g</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>  <span class="c1"># indice milieu</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">liste</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">==</span> <span class="n">val</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">trouve</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">liste</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">val</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">d</span> <span class="o">=</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">g</span> <span class="o">=</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">m</span> <span class="k">if</span> <span class="n">trouve</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="7">
+<li>
+<p>Tester la fonction <code>recherche1</code>.</p>
+</li>
+<li>
+<p>Écrire le code de la fonction <code>recherche2</code> dont la spécification est la suivante :</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">recherche2</span><span class="p">(</span><span class="n">liste</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne l&#39;indice de la valeur dans la liste si cette 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    dernière est présente, -1 sinon.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : val est unique si présente.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme récursif.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">recherche2</span><span class="p">(</span><span class="n">liste</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">val</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">d</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne l&#39;indice de la valeur dans la liste si cette 
+</span></span></span><span class="line"><span class="cl"><span class="s2">    dernière est présente, -1 sinon.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : val est unique si présente.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme récursif.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">g</span> <span class="o">&gt;</span> <span class="n">d</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">g</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>  <span class="c1"># indice milieu</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">liste</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">==</span> <span class="n">val</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">m</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">liste</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">val</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">recursive</span><span class="p">(</span><span class="n">liste</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">recursive</span><span class="p">(</span><span class="n">liste</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="9">
+<li>Tester la fonction <code>recherche2</code>.</li>
+</ol>
 
 
         
