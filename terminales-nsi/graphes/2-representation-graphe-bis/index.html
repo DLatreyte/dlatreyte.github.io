@@ -65,7 +65,7 @@ Structure de graphe basée sur une liste d&rsquo;adjacence Écrire le code de la
   "headline": "Représentation d\u0027un graphe en informatique",
   "description" : "Plusieurs modes de représentation peuvent être implémentés pour stocker des graphes : matrices d’adjacence (ou sommet-sommet), listes des voisins, des successeurs ou des prédécesseurs. Lors de cette séance nous allons écrire les classes réalisant ces implémentations.\nStructure de graphe basée sur une liste d\u0026rsquo;adjacence Écrire le code de la méthode __init__ de la classe Sommet dont la spécification est :\n1 2 3 4 def __init__(self: Sommet, val: str) -\u0026gt; None: \u0026#34;\u0026#34;\u0026#34; Initialisation d\u0026#39;un sommet.",
   "inLanguage" : "fr",
-  "wordCount":  1988 ,
+  "wordCount":  1951 ,
   "datePublished" : "2024-03-19T19:48:53",
   "dateModified" : "2024-03-19T19:48:53",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -731,12 +731,12 @@ Structure de graphe basée sur une liste d&rsquo;adjacence Écrire le code de la
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Récupère le sommet de valeur s.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Lève une exception si le sommet n&#39;existe pas.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">sommet_recherche</span> <span class="o">=</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">sommet</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">s</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="n">sommet_recherche</span> <span class="o">=</span> <span class="n">sommet</span>
-</span></span><span class="line"><span class="cl">            <span class="k">break</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">sommet_recherche</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_sommet</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Le sommet </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2"> n&#39;existe pas.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="n">objet_sommet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	    <span class="k">if</span> <span class="n">objet_sommet</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">s</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	        <span class="k">return</span> <span class="n">objet_sommet</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -784,15 +784,6 @@ Structure de graphe basée sur une liste d&rsquo;adjacence Écrire le code de la
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">existe_arête</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">s2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -802,19 +793,10 @@ Structure de graphe basée sur une liste d&rsquo;adjacence Écrire le code de la
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Ne vérifie pas l&#39;existence de l&#39;arête {s2, s1}.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    Lève une exception si l&#39;un des sommets n&#39;existe pas.
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_sommet</span><span class="p">(</span><span class="n">s1</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Sommet </span><span class="si">{</span><span class="n">s1</span><span class="si">}</span><span class="s2"> n&#39;existe pas !&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_sommet</span><span class="p">(</span><span class="n">s2</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Sommet </span><span class="si">{</span><span class="n">s2</span><span class="si">}</span><span class="s2"> n&#39;existe pas !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">objet_sommet_depart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">objet_sommet_arrivee</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">sommet_depart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="n">sommet_destination</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">arete_existe</span> <span class="o">=</span> <span class="kc">False</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">sommet_destination</span> <span class="ow">in</span> <span class="n">sommet_depart</span><span class="o">.</span><span class="n">adj</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">arete_existe</span> <span class="o">=</span> <span class="kc">True</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">arete_existe</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">objet_sommet_arrivee</span> <span class="ow">in</span> <span class="n">objet_sommet_depart</span><span class="o">.</span><span class="n">adj</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -944,16 +926,15 @@ Structure de graphe basée sur une liste d&rsquo;adjacence Écrire le code de la
     </summary>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_non_oriente</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
@@ -962,8 +943,7 @@ Structure de graphe basée sur une liste d&rsquo;adjacence Écrire le code de la
 </span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">sommet1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">sommet2</span> <span class="ow">in</span> <span class="n">sommet1</span><span class="o">.</span><span class="n">adj</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">existe_arête</span><span class="p">(</span><span class="n">sommet1</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">sommet2</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_arête</span><span class="p">(</span><span class="n">sommet2</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">sommet1</span><span class="o">.</span><span class="n">val</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_arête</span><span class="p">(</span><span class="n">sommet2</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">sommet1</span><span class="o">.</span><span class="n">val</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">False</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">True</span>
 </span></span></code></pre></td></tr></table>
