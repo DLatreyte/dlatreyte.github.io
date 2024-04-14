@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+ 
+
+
+      <title>Coloration d&#39;un graphe - Physique, Chimie et Informatique</title>
+
+  <meta name="description" content="L&rsquo;objectif de cette séance est de découvrir comment colorier chaque sommet d&rsquo;un graphe à l&rsquo;aide d&rsquo;un algorithme glouton.
+Colorier un graphe signifie associer une couleur à chacun de ses sommets de façon à ce que deux sommets liés par une arête n&rsquo;aient pas la même couleur (deux sommets non adjacents peuvent avoir la même couleur).
+Colorier un graphe avec un nombre minimal de couleurs est un problème difficile mais l&rsquo;utilisation d&rsquo;un algorithme glouton permet de résoudre le problème, au prix d&rsquo;un nombre de couleurs qui n&rsquo;est pas toujours minimal.">
+  <meta name="author" content="David Latreyte"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Accueil",
+    
+    "url": "https:\/\/dlatreyte.github.io\/"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/dlatreyte.github.io\/"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io\/",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/dlatreyte.github.io\/terminales-nsi\/graphes\/5-coloration-graphe\/",
+          "name": "Coloration d\u0027un graphe"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "David Latreyte"
+  },
+  "headline": "Coloration d\u0027un graphe",
+  "description" : "L\u0026rsquo;objectif de cette séance est de découvrir comment colorier chaque sommet d\u0026rsquo;un graphe à l\u0026rsquo;aide d\u0026rsquo;un algorithme glouton.\nColorier un graphe signifie associer une couleur à chacun de ses sommets de façon à ce que deux sommets liés par une arête n\u0026rsquo;aient pas la même couleur (deux sommets non adjacents peuvent avoir la même couleur).\nColorier un graphe avec un nombre minimal de couleurs est un problème difficile mais l\u0026rsquo;utilisation d\u0026rsquo;un algorithme glouton permet de résoudre le problème, au prix d\u0026rsquo;un nombre de couleurs qui n\u0026rsquo;est pas toujours minimal.",
+  "inLanguage" : "fr",
+  "wordCount":  2115 ,
+  "datePublished" : "2024-04-14T18:42:53",
+  "dateModified" : "2024-04-14T18:42:53",
+  "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+  "keywords" : [ "Graphe, Structure de données" ],
+  "mainEntityOfPage" : "https:\/\/dlatreyte.github.io\/terminales-nsi\/graphes\/5-coloration-graphe\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/dlatreyte.github.io\/",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Coloration d&#39;un graphe" />
+<meta property="og:description" content="L&rsquo;objectif de cette séance est de découvrir comment colorier chaque sommet d&rsquo;un graphe à l&rsquo;aide d&rsquo;un algorithme glouton.
+Colorier un graphe signifie associer une couleur à chacun de ses sommets de façon à ce que deux sommets liés par une arête n&rsquo;aient pas la même couleur (deux sommets non adjacents peuvent avoir la même couleur).
+Colorier un graphe avec un nombre minimal de couleurs est un problème difficile mais l&rsquo;utilisation d&rsquo;un algorithme glouton permet de résoudre le problème, au prix d&rsquo;un nombre de couleurs qui n&rsquo;est pas toujours minimal.">
+<meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
+<meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/graphes/5-coloration-graphe/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Accueil" />
+
+  <meta name="twitter:title" content="Coloration d&#39;un graphe" />
+  <meta name="twitter:description" content="L&rsquo;objectif de cette séance est de découvrir comment colorier chaque sommet d&rsquo;un graphe à l&rsquo;aide d&rsquo;un algorithme glouton.
+Colorier un graphe signifie associer une couleur à …">
+  <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@@DLatreyte" />
+  <meta name="twitter:creator" content="@@DLatreyte" />
+  <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.124.1">
+  <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Activer la navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://dlatreyte.github.io/">Accueil</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Infos" href="../../../about/infos">Infos</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Blog" href="../../../">Blog</a>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Cours</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../premieres-pc">1ère Spé. PC</a>
+                
+                  <a href="../../../terminales-pc">Terminale Spé. PC</a>
+                
+                  <a href="../../../terminales-nsi">Terminale Spé. NSI</a>
+                
+                  <a href="../../../terminales-es">Terminale Ens. Scientifique</a>
+                
+                  <a href="../../../superieur">... dans le supérieur</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent">Culture</a>
+              <div class="navlinks-children">
+                
+                  <a href="../../../culture">Physique-Chimie</a>
+                
+                  <a href="../../../programmation">Programmation</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Catégories" href="../../../categories">Catégories</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="../../../tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Accueil" href="https://dlatreyte.github.io/">
+            <img class="avatar-img" src="https://dlatreyte.github.io/first_page.jpg" alt="Accueil" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="terminales-nsi-heading">
+              
+                <h1>Coloration d&#39;un graphe</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+      <article role="main" class="blog-post" auto_numbering >
+          
+            <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+          
+        
+        <hr />
+
+        <blockquote>
+<p>L&rsquo;objectif de cette séance est de découvrir comment colorier chaque sommet
+d&rsquo;un graphe à l&rsquo;aide d&rsquo;un algorithme glouton.</p>
+</blockquote>
+<div class="note normal">
+  <p>Colorier un graphe signifie associer une couleur à chacun de ses sommets
+de façon à ce que deux sommets liés par une arête n&rsquo;aient pas la même couleur
+(deux sommets non adjacents peuvent avoir la même couleur).</p>
+<p>Colorier un graphe avec un <strong>nombre minimal de couleurs</strong> est un problème
+difficile mais l&rsquo;utilisation d&rsquo;un algorithme glouton permet de résoudre
+le problème, au prix d&rsquo;un nombre de couleurs qui n&rsquo;est pas toujours minimal.</p>
+</div>
+<h4 id="remarques">Remarques</h4>
+<ul>
+<li>Les couleurs seront représentées par des nombres entiers
+débutant à la valeur 0.</li>
+<li>La classe <code>Graphe</code> du document
+<a href="2-representation-graphe-bis">Représentation d&rsquo;un graphe</a> sera utilisée.<br>
+Son code est reproduit ci-dessous.</li>
+</ul>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Code</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Représentation d’un graphe à l&#39;aide d&#39;une liste d&#39;adjacence.
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Sommet</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Représentation d&#39;un sommet.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Sommet</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Initialisation du sommet.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">adj</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Sommets adjacents</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">liste_adjacents</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Sommet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Sommet</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Retourne la liste des sommets adjacents.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">adj</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">ajoute_adjacent</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Sommet</span><span class="p">,</span> <span class="n">som</span><span class="p">:</span> <span class="n">Sommet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34; Ajoute un sommet adjacent &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">adj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">som</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Sommet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; : [&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adj</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">rep</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">sommet</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adj</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">rep</span> <span class="o">+=</span> <span class="s2">&#34;, &#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">+=</span> <span class="s2">&#34;]&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">rep</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Graphe</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Représentation du graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">valeurs</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        La liste des sommets peut être passée dans une
+</span></span></span><span class="line"><span class="cl"><span class="s2">        chaîne de caractères. Chaque sommet doit être
+</span></span></span><span class="line"><span class="cl"><span class="s2">        séparé du précédent par une virgule.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Hypothèse : chaque sommet n&#39;est présent qu&#39;une seule
+</span></span></span><span class="line"><span class="cl"><span class="s2">        fois dans valeurs.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># liste des sommets</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">valeurs</span> <span class="o">!=</span> <span class="s2">&#34;&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="n">valeurs</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;,&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Sommet</span><span class="p">(</span><span class="n">sommet</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">liste_sommets</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Sommet</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Retourne la liste des sommets du graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">ajout_sommet</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Ajout du sommet de valeur val.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Si le sommet est déjà présent dans le graphe une exception
+</span></span></span><span class="line"><span class="cl"><span class="s2">        est levée.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_sommet</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Sommet déjà présent dans le graphe !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Sommet</span><span class="p">(</span><span class="n">val</span><span class="p">))</span>  <span class="c1"># Ajout de l&#39;objet de type Sommet</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">existe_sommet</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Vérifie que le sommet s existe bien dans le graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sommet_present</span> <span class="o">=</span> <span class="kc">False</span>       <span class="c1"># Sommet pas présent</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">:</span>  <span class="c1"># sommet référence un objet</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">sommet</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">s</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sommet_present</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">sommet_present</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">recuperation_sommet</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sommet</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Récupère le sommet de valeur s.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Lève une exception si le sommet n&#39;existe pas.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_sommet</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Le sommet </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2"> n&#39;existe pas.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">objet_sommet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">objet_sommet</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">s</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">objet_sommet</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">ajout_arete</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">s2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Ajoute l&#39;arête (ou l&#39;arc) {s1, s2} au graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Si les sommets n&#39;existent pas, on lève une exception.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Si l&#39;arête existe déjà, on lève une exception.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Ne crée pas l&#39;arête {s2, s1}.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># L&#39;arête existe-t-elle déjà ?</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_arête</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Arête existe déjà !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Récupération des sommets</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sommet_depart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sommet_destination</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Ajout du sommet s2 à la liste des adjacents de s1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sommet_depart</span><span class="o">.</span><span class="n">ajoute_adjacent</span><span class="p">(</span><span class="n">sommet_destination</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">existe_arête</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">s2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Détermine si l&#39;arête {s1, s2} existe dans le graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Ne vérifie pas l&#39;existence de l&#39;arête {s2, s1}.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Lève une exception si l&#39;un des sommets n&#39;existe pas.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">objet_sommet_depart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">objet_sommet_arrivee</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">objet_sommet_arrivee</span> <span class="ow">in</span> <span class="n">objet_sommet_depart</span><span class="o">.</span><span class="n">liste_adjacents</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">est_non_oriente</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Détermine si le graphe est non orienté.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">sommet1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">sommet2</span> <span class="ow">in</span> <span class="n">sommet1</span><span class="o">.</span><span class="n">liste_adjacents</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_arête</span><span class="p">(</span><span class="n">sommet2</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">sommet1</span><span class="o">.</span><span class="n">val</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">construction_matrice</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Construction de la matrice sommet - sommet du graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">val_sommets_ordonnees</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">sommet</span><span class="o">.</span><span class="n">val</span> <span class="k">for</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">matrice</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Initialisation de la matrice</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">nom_sommet</span> <span class="ow">in</span> <span class="n">val_sommets_ordonnees</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># Récupération de l&#39;objet de type sommet associé au nom</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sommet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">nom_sommet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># Récupération des noms des sommets adjacents</span>
+</span></span><span class="line"><span class="cl">            <span class="n">nom_sommets_adjacents</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="n">sommet_adj</span><span class="o">.</span><span class="n">val</span> <span class="k">for</span> <span class="n">sommet_adj</span> <span class="ow">in</span> <span class="n">sommet</span><span class="o">.</span><span class="n">adj</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ligne_matrice</span> <span class="o">=</span> <span class="p">[]</span>       <span class="c1"># Initialisation de la ligne de la matrice</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">val_sommets_ordonnees</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">val_sommets_ordonnees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">nom_sommets_adjacents</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">ligne_matrice</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">ligne_matrice</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">matrice</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ligne_matrice</span><span class="p">)</span>  <span class="c1"># Ajout de la ligne à la matrice</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">matrice</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">representation_matrice</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Retourne une chaîne de caractères qui permet un
+</span></span></span><span class="line"><span class="cl"><span class="s2">        affichage classique de la matrice (lignes x colonnes).
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">matrice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construction_matrice</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nbre</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrice</span><span class="p">)</span>  <span class="c1"># nombre de lignes et de colonnes</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">rep</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">matrice</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">rep</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">rep</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Représentation du graphe sous forme d&#39;une chaîne de caractères.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">=</span> <span class="s2">&#34;{&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">rep</span> <span class="o">+=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">sommet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># Ajout de la virgule sauf dernier tour de boucle</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">rep</span> <span class="o">+=</span> <span class="s1">&#39;, &#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">+=</span> <span class="s2">&#34;}&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">rep</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">suppression_arete</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">s2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Supprime l&#39;arête {s1, s2} si elle existe, lève une exception
+</span></span></span><span class="line"><span class="cl"><span class="s2">        dans le cas contraire.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">suppression_sommet</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Supprime le sommet s s&#39;il existe, lève une exception dans
+</span></span></span><span class="line"><span class="cl"><span class="s2">        le cas contraire.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">        S&#39;assure avant la suppression du sommet que toute arrête
+</span></span></span><span class="line"><span class="cl"><span class="s2">        dans laquelle il intervient est supprimée.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">rend_non_oriente</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Assure que pour toute arête {s1, s2} il existe une
+</span></span></span><span class="line"><span class="cl"><span class="s2">        arête {s2, s1}. Si ce n&#39;est pas le cas, cette arête
+</span></span></span><span class="line"><span class="cl"><span class="s2">        est créée.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">taille</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Retourne le nombre de sommets dans le graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s1</span> <span class="o">=</span> <span class="n">Sommet</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span> <span class="o">=</span> <span class="n">Sommet</span><span class="p">(</span><span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s3</span> <span class="o">=</span> <span class="n">Sommet</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s1</span><span class="o">.</span><span class="n">adj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s1</span><span class="o">.</span><span class="n">adj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">g1</span> <span class="o">=</span> <span class="n">Graphe</span><span class="p">(</span><span class="s2">&#34;a,b,c,d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Sommet g présent dans le graphe : </span><span class="si">{</span><span class="n">g1</span><span class="o">.</span><span class="n">existe_sommet</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Sommet a présent dans le graphe : </span><span class="si">{</span><span class="n">g1</span><span class="o">.</span><span class="n">existe_sommet</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g1</span><span class="o">.</span><span class="n">ajout_sommet</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g1</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g1</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g1</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;e&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># g1.ajout_arete(&#34;a&#34;, &#34;b&#34;)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g1</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;e&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g1</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Le graphe est non orienté : </span><span class="si">{</span><span class="n">g1</span><span class="o">.</span><span class="n">est_non_oriente</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g1</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Le graphe est non orienté : </span><span class="si">{</span><span class="n">g1</span><span class="o">.</span><span class="n">est_non_oriente</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Matrice : </span><span class="si">{</span><span class="n">g1</span><span class="o">.</span><span class="n">construction_matrice</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">g1</span><span class="o">.</span><span class="n">representation_matrice</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Taille du graphe : </span><span class="si">{</span><span class="n">g1</span><span class="o">.</span><span class="n">taille</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;---------------------&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span> <span class="o">=</span> <span class="n">Graphe</span><span class="p">(</span><span class="s2">&#34;a,b,c,d,e,f,g&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Taille du graphe : </span><span class="si">{</span><span class="n">g2</span><span class="o">.</span><span class="n">taille</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;f&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;e&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;f&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;f&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;f&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;f&#34;</span><span class="p">,</span> <span class="s2">&#34;g&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;g&#34;</span><span class="p">,</span> <span class="s2">&#34;f&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Le graphe est non orienté : </span><span class="si">{</span><span class="n">g2</span><span class="o">.</span><span class="n">est_non_oriente</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">g2</span><span class="o">.</span><span class="n">representation_matrice</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">g2</span><span class="o">.</span><span class="n">liste_sommets</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<p>Le code du fichier fourni comporte les instructions suivantes :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">g2</span> <span class="o">=</span> <span class="n">Graphe</span><span class="p">(</span><span class="s2">&#34;a,b,c,d,e,f,g&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;f&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;e&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;d&#34;</span><span class="p">,</span> <span class="s2">&#34;f&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;f&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;f&#34;</span><span class="p">,</span> <span class="s2">&#34;d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;f&#34;</span><span class="p">,</span> <span class="s2">&#34;g&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g2</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;g&#34;</span><span class="p">,</span> <span class="s2">&#34;f&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>
+<p>Quelle est la taille de ce graphe ?</p>
+</li>
+<li>
+<p>Représenter ce graphe.</p>
+</li>
+<li>
+<p>Donner la matrice d&rsquo;adjacence de ce graphe.</p>
+</li>
+</ol>
+<p>Lancer le programme et vérifier la validité des vos réponses.</p>
+<div class="note normal">
+  <h4 id="principe-de-lalgorithme">Principe de l&rsquo;algorithme</h4>
+<p>On parcourt tous les sommets du graphe dans un ordre arbitraire, et pour chaque
+sommet, on lui attribue la première couleur qui n&rsquo;est pas déjà attribuée
+à ses sommets adjacents.</p>
+</div>
+<ol start="4">
+<li>Mettre en œuvre cet algorithme, à la main, sur le graphe proposé dans
+le code fourni.</li>
+</ol>
+<p>L&rsquo;implémentation de l&rsquo;algorithme en Python nécessite la définition de deux
+fonctions : <code>coloriage</code> et <code>choix_couleur</code> dont les spécifications sont :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">coloriage</span><span class="p">(</span><span class="n">g</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Colorie le graphe g passé en argument.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne un tuple constitué du dictionnaire des couleurs pour chaque
+</span></span></span><span class="line"><span class="cl"><span class="s2">    sommet et du nombre de couleurs utilisées.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>et</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">choix_couleur</span><span class="p">(</span><span class="n">sommet</span><span class="p">:</span> <span class="n">Sommet</span><span class="p">,</span> <span class="n">couleurs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Choisi la première couleur disponible en fonction de celles
+</span></span></span><span class="line"><span class="cl"><span class="s2">    déjà attribuées aux sommets adjacents.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Remarque :</strong> la fonction <code>coloriage</code> appelle la fonction <code>choix_couleur</code>.</p>
+<ol start="5">
+<li>Écrire le code Python de ces deux fonctions.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Aide pour l&#39;écriture de la fonction coloriage</strong>
+    </summary>
+<p>La fonction doit :</p>
+<ul>
+<li>Initialiser à 0 la variable <code>nbre_couleurs</code>. Elle comptabilise le nombre
+de couleurs différentes utilisées lors du coloriage du graphe.</li>
+<li>Initialiser au dictionnaire vide la variable <code>couleurs</code>. Ce dictionnaire a
+pour clés les étiquettes des sommets visités et pour valeurs les couleurs
+associées.</li>
+<li>Parcourir tous les sommets du graphe.
+<ul>
+<li>Pour chacun d&rsquo;eux lui attribuer une couleur à l&rsquo;aide de la fonction
+<code>choix_couleur</code>.</li>
+<li>Incrémenter d&rsquo;une unité le compteur de couleurs, <strong>si cette couleur n&rsquo;a
+pas déjà été utilisée</strong>.</li>
+<li>Mettre à jour le dictionnaire des couleurs.</li>
+</ul>
+</li>
+<li>Retourner le tuple constitué du dictionnaire des couleurs et de la variable
+qui comptabilise le nombre de couleurs utilisées.</li>
+</ul>
+</details>
+<hr />
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Aide pour l&#39;écriture de la fonction choix_couleur</strong>
+    </summary>
+<p>La fonction doit :</p>
+<ul>
+<li>Déterminer le nombre de sommets adjacents au sommet passé en argument.</li>
+<li>Initialiser à <code>False</code> la liste de booléens <code>couleurs_attribuees</code>. Les indices
+de cette liste sont les couleurs déjà attribuées aux sommets adjacents du sommet
+étudié. La valeur <code>True</code> signifie que la couleur a été attribuée, <code>False</code> que
+la couleur est libre.<br>
+Dans le pire des cas, tous les sommets adjacents ont déjà une couleur attribuée ;
+la première couleur attribuable sera donc l&rsquo;indice $n$. C&rsquo;est la raison pour
+laquelle <em>la longueur de la liste doit être égale à $n+1$ si $n$ est le nombre
+de sommets adjacents</em>.</li>
+<li>Doit rechercher les couleurs des sommets adjacents.
+<ul>
+<li>Pour chaque sommet adjacent, elle doit vérifier dans le dictionnaire
+<code>couleurs</code> si ce sommet a déjà été colorier.</li>
+<li>Si c&rsquo;est le cas et que cette couleur est inférieure à $n$, modifier
+à <code>True</code> la valeur de la liste <code>couleurs_attribuees</code> pour la couleur
+(indice) en question.</li>
+</ul>
+</li>
+<li>Doit rechercher la première couleur (indice) libre dans la liste
+<code>couleurs_attribuees</code> et la retourner.</li>
+</ul>
+</details>
+<hr />
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Solution</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">coloriage</span><span class="p">(</span><span class="n">g</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Colorie le graphe g passé en argument.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne un tuple constitué du dictionnaire des couleurs pour chaque
+</span></span></span><span class="line"><span class="cl"><span class="s2">    sommet et du nombre de couleurs utilisées.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbre_couleurs</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Nombre de couleurs utilisées</span>
+</span></span><span class="line"><span class="cl">    <span class="n">couleurs</span> <span class="o">=</span> <span class="p">{}</span>      <span class="c1"># Dictionnaire des sommets colorés</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">liste_sommets</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Choix d&#39;une couleur pour le sommet</span>
+</span></span><span class="line"><span class="cl">        <span class="n">couleur</span> <span class="o">=</span> <span class="n">choix_couleur</span><span class="p">(</span><span class="n">sommet</span><span class="p">,</span> <span class="n">couleurs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Incrémentation du compteur de couleurs si nouvelle couleur</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">couleur</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">couleurs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="n">nbre_couleurs</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Ajout de ce sommet au dictionnaire des couleurs</span>
+</span></span><span class="line"><span class="cl">        <span class="n">couleurs</span><span class="p">[</span><span class="n">sommet</span><span class="o">.</span><span class="n">val</span><span class="p">]</span> <span class="o">=</span> <span class="n">couleur</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">couleurs</span><span class="p">,</span> <span class="n">nbre_couleurs</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">choix_couleur</span><span class="p">(</span><span class="n">sommet</span><span class="p">:</span> <span class="n">Sommet</span><span class="p">,</span> <span class="n">couleurs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Choisi la première couleur disponible en fonction de celles
+</span></span></span><span class="line"><span class="cl"><span class="s2">    déjà attribuées aux sommets adjacents.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Nbre de sommets adjacents</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n_adj</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sommet</span><span class="o">.</span><span class="n">liste_adjacents</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Initialisation des couleurs déjà attribuées (indices de la liste)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># + 1 assure d&#39;avoir un choix possible pour le sommet étudié.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">couleurs_attribuees</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_adj</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># recherche des couleurs déjà attribuées</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">adj</span> <span class="ow">in</span> <span class="n">sommet</span><span class="o">.</span><span class="n">liste_adjacents</span><span class="p">():</span>  <span class="c1"># Sommet adjacent</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">adj</span><span class="o">.</span><span class="n">val</span> <span class="ow">in</span> <span class="n">couleurs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>    <span class="c1"># Sommet déjà colorié</span>
+</span></span><span class="line"><span class="cl">            <span class="n">couleur_attribuee</span> <span class="o">=</span> <span class="n">couleurs</span><span class="p">[</span><span class="n">adj</span><span class="o">.</span><span class="n">val</span><span class="p">]</span>  <span class="c1"># avec une valeur &lt;= n</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">couleur_attribuee</span> <span class="o">&lt;=</span> <span class="n">n_adj</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">couleurs_attribuees</span><span class="p">[</span><span class="n">couleur_attribuee</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Détermination de la couleur</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">couleurs_attribuees</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">couleurs_attribuees</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">i</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://dlatreyte.github.io//tags/graphe/">Graphe</a>&nbsp;
+            
+              <a href="https://dlatreyte.github.io//tags/structure-de-donn%C3%A9es/">Structure de données</a>&nbsp;
+            
+          </div>
+        
+
+        
+            <hr/>
+            <section id="social-share">
+              <div class="list-inline footer-links">
+                
+              </div>
+            </section>
+        
+
+        
+          
+          
+          <h4 class="see-also">Suggestions de lecture :</h4>
+          <ul>
+          
+            <li><a href="../../../terminales-nsi/graphes/2-representation-graphe-bis/">Représentation d&#39;un graphe en informatique</a></li>
+          
+            <li><a href="../../../terminales-nsi/graphes/4-parcours-profondeur-python/">Parcours en profondeur : écriture du code en Python</a></li>
+          
+            <li><a href="../../../terminales-nsi/graphes/3-parcours-graphes/">Parcours de graphes</a></li>
+          
+          </ul>
+          
+        
+      </article>
+
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://dlatreyte.github.io/terminales-nsi/graphes/2-representation-graphe-bis/" data-toggle="tooltip" data-placement="top" title="Représentation d&#39;un graphe en informatique">&larr; Post précédent</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:david.latreyte@louismassignon.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DLatreyte" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/@DLatreyte" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/latreyte-david-917852b2" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/agdavgablou" title="Instagram">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://dlatreyte.github.io">David Latreyte</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2024
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://dlatreyte.github.io/">Accueil</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          Carbure avec <a href="https://gohugo.io">Hugo v0.124.1</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://dlatreyte.github.io/js/main.js"></script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://dlatreyte.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/katex.min.js"
+  integrity="sha512-CLi3JK94v6TUcogbWv4WT4xnfp6B8AET4PuBjGxXo5MZJ9xfNgMHgXaXH8QJe6JwN+kGxqR4//z8/2BYVnxRVw=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/auto-render.min.js"
+  integrity="sha512-iWiuBS5nt6r60fCz26Nd0Zqe0nbk1ZTIQbl3Kv7kYsX+yKMUFHzjaH2+AnM6vp2Xs+gNmaBAVWJjSmuPw76Efg=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/copy-tex.min.js"
+  integrity="sha512-cQxSkTM4RvFAjdBeBDkrllhYfERwZWjM/oijKfPsmhR0JI2U3fXSlbUaJp5SlgBh/FzYmMyWudRTXLnNj3MbEA=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/mathtex-script-type.min.js"
+  integrity="sha512-MBhOGY4yRA2eATtRGTcrDJCRqcnLai5+uu47GA2ueVr1MPzirC/iogLWRA8CXTlOTK09VI4fdTe4qE4LBfjsHw=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/mhchem.min.js"
+  integrity="sha512-V1hl0fnOXW6Cdqe5ZVqtw8TBpJVpu3XRDRQti96j/04+tMarPrCdXEUE3UdfvfKYTpOn9DV4zEZBVr0HhDiuiQ=="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.2/contrib/render-a11y-string.min.js"
+  integrity="sha512-qBnQA4Y+OVTc4fPEzp5saII5ofAVDJQO6pMq9/VLm49xHvWsvRP4awjMq8U97bgalhahBEevp9HSsPo7B8JNcA=="
+  crossorigin="anonymous"></script>
+<script>
+  renderMathInElement(document.body,
+    {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    }
+  );
+
+  var inlineMathArray = document.querySelectorAll("script[type='math/tex']");
+  for (var i = 0; i < inlineMathArray.length; i++) {
+    var inlineMath = inlineMathArray[i];
+    var tex = inlineMath.innerText || inlineMath.textContent;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex, { displayMode: false });
+    inlineMath.parentNode.replaceChild(replaced, inlineMath);
+  }
+
+  var displayMathArray = document.querySelectorAll("script[type='math/tex; mode=display']");
+  for (var i = 0; i < displayMathArray.length; i++) {
+    var displayMath = displayMathArray[i];
+    var tex = displayMath.innerHTML;
+    var replaced = document.createElement("span");
+    replaced.innerHTML = katex.renderToString(tex.replace(/%.*/g, ''), { displayMode: true });
+    displayMath.parentNode.replaceChild(replaced, displayMath);
+  }
+
+</script>
+
+
+    
+  </body>
+</html>
+
