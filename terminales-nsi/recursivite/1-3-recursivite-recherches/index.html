@@ -66,7 +66,7 @@ La recherche linéaire itérative ; La recherche linéaire récursive ; La rec
   "headline": "Recherche d\u0027un élément dans un tableau : algorithmes itératifs et récursifs",
   "description" : "Recherche d\u0026rsquo;un élément dans un tableau La recherche d\u0026rsquo;éléments dans un tableau a déjà été évoquée en classe de première. Les deux algorithmes mis en œuvre à cette occasion, la recherche linéaire et la recherche dichotomique, utilisaient des boucles.\nL\u0026rsquo;objectif de cette séance est de rapidement revoir ces algorithmes et de mettre en œuvres des algorithmes récursifs de même complexité. Quatre algorithmes de recherche vont donc être implémentés :\nLa recherche linéaire itérative ; La recherche linéaire récursive ; La recherche dichotomique itérative ; La recherche dichotomique récursive.",
   "inLanguage" : "fr",
-  "wordCount":  1161 ,
+  "wordCount":  1884 ,
   "datePublished" : "2020-09-09T21:33:15\u002b04:00",
   "dateModified" : "2020-09-09T21:33:15\u002b04:00",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -463,6 +463,15 @@ est bien présente dans la liste.</p>
 <ol start="6">
 <li>Expliquer pourquoi l&rsquo;algorithme 2 est plus efficace que l&rsquo;algorithme 1.</li>
 </ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>On quitte la boucle dès l&rsquo;instant où la valeur a été trouvée, si elle
+est bien présente dans la liste.</p>
+</details>
+<hr />
 <h3 id="recherche-séquentielle-récursive">Recherche séquentielle récursive</h3>
 <div class="note normal">
   <h4 id="algorithme-3">Algorithme 3</h4>
@@ -538,6 +547,21 @@ est bien présente dans la liste.</p>
     <summary>
         <strong> Réponse</strong>
     </summary>
+<ul>
+<li><strong>Variant de boucle :</strong> $f(g, d) = d - g + 1$ où $d$ signifie « droite » et $g$ « gauche ».</li>
+<li>Au début, $g = 0$ et $d = n-1$ (où $n$ est la taille du tableau).
+Le variant initial est donc $n$, qui est un entier naturel.</li>
+<li>À chaque itération, on a trois cas :
+<ul>
+<li>Si l&rsquo;élément est trouvé, la boucle se termine.</li>
+<li>Si l&rsquo;élément cherché est plus grand que le milieu, on met à jour $g = m + 1$</li>
+<li>Si l&rsquo;élément cherché est plus petit que le milieu, on met à jour $d = m - 1$
+Dans les deux derniers cas, la taille de l&rsquo;intervalle est réduite de moitié (ou presque).
+Donc, le variant diminue strictement à chaque itération.</li>
+</ul>
+</li>
+</ul>
+<p>Puisque le variant est initialement positif, diminue strictement à chaque itération, et que la boucle se termine quand il atteint 0 ou 1, on peut conclure que l&rsquo;algorithme se termine toujours en un nombre fini d&rsquo;étapes.</p>
 </details>
 <hr />
 <ol start="10">
@@ -548,6 +572,49 @@ est bien présente dans la liste.</p>
     <summary>
         <strong> Réponse</strong>
     </summary>
+<p><strong>Invariant de boucle :</strong> À chaque itération de la boucle, l&rsquo;élément recherché, s&rsquo;il est présent dans le tableau, se trouve dans la sous-section de l&rsquo;intervalle [gauche, droite], où :</p>
+<ul>
+<li>
+<p>gauche est l&rsquo;indice de début de l&rsquo;intervalle actuel,</p>
+</li>
+<li>
+<p>droite est l&rsquo;indice de fin de l&rsquo;intervalle actuel.</p>
+</li>
+<li>
+<p><strong>Initialisation (avant la première itération)</strong></p>
+</li>
+</ul>
+<p>Initialement, les indices gauche et droite sont positionnés de telle sorte que :</p>
+<ul>
+<li>gauche = 0, qui représente le premier indice du tableau.</li>
+<li>droite = n - 1, qui représente le dernier indice du tableau.
+Ainsi, avant la première itération, l&rsquo;élément recherché se trouve potentiellement dans l&rsquo;intervalle entier du tableau [0, n - 1], ce qui respecte bien l&rsquo;invariant de boucle.</li>
+</ul>
+<p>Conclusion : L&rsquo;invariant est vérifié avant la première itération.</p>
+<ul>
+<li><strong>Conservation (pendant l&rsquo;itération)</strong></li>
+</ul>
+<p>Supposons que l&rsquo;invariant soit vrai au début d&rsquo;une itération, c&rsquo;est-à-dire que si l&rsquo;élément recherché est présent, il se trouve dans l&rsquo;intervalle [gauche, droite].</p>
+<p>L&rsquo;algorithme calcule ensuite l&rsquo;indice médian : milieu</p>
+<p>Il compare l&rsquo;élément à l&rsquo;indice milieu avec l&rsquo;élément recherché x :</p>
+<ul>
+<li><em>Si l&rsquo;élément au milieu est égal à x :</em> L&rsquo;algorithme s&rsquo;arrête, et l&rsquo;élément est trouvé, ce qui n&rsquo;est pas en contradiction avec l&rsquo;invariant.</li>
+<li><em>Si l&rsquo;élément au milieu est strictement inférieur à x :</em> L&rsquo;algorithme met à jour la borne gauche : gauche = milieu + 1
+Cela signifie que x ne peut pas se trouver dans la sous-partie gauche du tableau (de l&rsquo;indice gauche à milieu), car les éléments dans cette partie sont tous inférieurs à x. Par conséquent, l&rsquo;élément recherché, s&rsquo;il existe, se trouve dans le nouvel intervalle [gauche, droite], et l&rsquo;invariant est préservé.</li>
+<li><em>Si l&rsquo;élément au milieu est strictement supérieur à x :</em> L&rsquo;algorithme met à jour la borne droite : droite = milieu − 1
+Cela signifie que x ne peut pas se trouver dans la sous-partie droite du tableau (de milieu à droite), car les éléments dans cette partie sont tous supérieurs à x. Par conséquent, l&rsquo;élément recherché, s&rsquo;il existe, se trouve dans le nouvel intervalle [gauche, droite], et l&rsquo;invariant est préservé.</li>
+</ul>
+<p>Conclusion : L&rsquo;invariant est préservé à chaque itération.</p>
+<ul>
+<li><strong>Terminaison</strong></li>
+</ul>
+<p>La boucle se termine lorsque l&rsquo;intervalle devient vide, c&rsquo;est-à-dire lorsque gauche &gt; droite. Cela signifie que l&rsquo;élément recherché n&rsquo;existe pas dans le tableau (sinon, il aurait été trouvé lors des itérations précédentes).</p>
+<p>Ainsi, lorsque l&rsquo;algorithme se termine :</p>
+<ul>
+<li>Soit il a trouvé l&rsquo;élément recherché, ce qui est cohérent avec l&rsquo;invariant.</li>
+<li>Soit l&rsquo;intervalle est vide, et donc l&rsquo;élément n&rsquo;est pas présent dans le tableau, ce qui est également conforme à l&rsquo;invariant, car l&rsquo;invariant stipule seulement que si l&rsquo;élément est présent, il se trouve dans l&rsquo;intervalle.</li>
+</ul>
+<p>Conclusion : À la fin de l&rsquo;algorithme, l&rsquo;invariant reste valide et garantit que le résultat final est correct.</p>
 </details>
 <hr />
 <ol start="11">
@@ -558,6 +625,16 @@ est bien présente dans la liste.</p>
     <summary>
         <strong> Réponse</strong>
     </summary>
+<p>L&rsquo;algorithme fonctionne en divisant l&rsquo;intervalle de recherche par 2 à chaque itération. Ainsi, si le tableau contient $n$ éléments, après une itération, la taille de l&rsquo;intervalle est réduite à $n/2$, puis $n/4$, et ainsi de suite. En général, après $k$ itérations, la taille de l&rsquo;intervalle est réduite à $n / 2^k$.</p>
+<p>L&rsquo;algorithme se termine lorsque l&rsquo;intervalle ne contient plus qu&rsquo;un seul élément, ce qui se produit lorsque :
+$$
+\dfrac{n}{2^k} = 1
+$$
+En résolvant cette équation, on obtient :
+$$
+k = log_2(n)
+$$
+Cela signifie que l&rsquo;algorithme effectue au plus $log_2(n)$ itérations pour un tableau de taille $n$.</p>
 </details>
 <hr />
 <h3 id="recherche-dichotomique-récursive">Recherche dichotomique récursive</h3>
