@@ -14,7 +14,355 @@
 
       <title>Simulation d&#39;un titrage conductimétrique - Physique, Chimie et Informatique</title>
 
-  <meta name="description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 &#34;&#34;&#34; Simulation du suivi conductimétrique pour le titrage du sérum physiologique."><script type="application/ld+json">
+  <meta name="description" content="
+
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+
+
+&#34;&#34;&#34;
+Simulation du suivi conductimétrique pour le titrage
+du sérum physiologique.
+&#34;&#34;&#34;
+import matplotlib.pyplot as plt
+import csv
+from scipy.stats import linregress
+
+
+class Ion():
+    &#34;&#34;&#34;
+    Définition d&#39;un ion à prendre en compte dans le
+    calcul de la conductivité d&#39;une solution.
+    &#34;&#34;&#34;
+
+    def __init__(self, nom, conduc=0, charge=0, n=0):
+        self.nom = nom
+        self.charge = charge        # Charge électrique (multiple de e)
+        self.conductivite = conduc  # Conductivité molaire ionique
+        self.quantite = n           # Quantité de matière (moles)
+
+    @property
+    def quantite(self):
+        return self._quantite
+
+    @quantite.setter
+    def quantite(self, n):
+
+        if n &lt; 0:
+            self._quantite = 0
+        else:
+            self._quantite = n
+
+    def info(self):
+        chaine = &#34;Nom : {}\n&#34;.format(self.nom)
+        chaine &#43;= &#34;Charge électrique : {}e\n&#34;.format(self.charge)
+        chaine &#43;= &#34;Quantité de matière : {} mol\n&#34;.format(self.quantite)
+        return chaine
+
+
+class Solution():
+    &#34;&#34;&#34;
+    Définition d&#39;une solution ionique.
+    &#34;&#34;&#34;
+
+    def __init__(self, liste_ions=[], volume=0):
+        self.ions = liste_ions
+        self.volume = volume
+
+    def conductivite(self):
+
+        conduc = 0
+        for ion in self.ions:
+            contrib = ion.conductivite * ion.quantite / self.volume
+            conduc &#43;= contrib
+        return conduc
+
+
+def creation_fichier_resultat(nom_fichier, entete_x, entete_y,
+                              list_x, list_y):
+
+    with open(nom_fichier, &#39;w&#39;) as fichier:
+        writer = csv.writer(fichier, dialect=&#39;excel&#39;)
+        writer.writerow([entete_x, entete_y])
+
+        for i in range(len(list_x)):
+            writer.writerow((list_x[i], list_y[i]))
+
+
+def affichage(list_v, list_conduc, list_regres):
+    # Création d&#39;une figure
+    fig = plt.figure()
+    # Création d&#39;une sous-figure
+    ax = fig.add_subplot(111)
+    # Affichage des données
+    ax.plot(list_v, list_conduc, &#39;ro&#39;)
+    ax.plot(list_v, list_regres, &#39;b-&#39;)
+    # Limites pour l&#39;axe des abscisses
+    ax.set_xlim(min(list_v) - 1E-3, max(list_v) &#43; 1E-3)
+    # Utilisation de l&#39;écriture scientifique pour les valeurs
+    ax.ticklabel_format(axis=&#39;both&#39;, style=&#39;sci&#39;, scilimits=(0, 0))
+    # Label de l&#39;axe des abscisses
+    ax.set_xlabel(r&#39;$V_2$ (L)&#39;)
+    # Label de l&#39;axe des ordonnées
+    ax.set_ylabel(r&#39;$\sigma$ ($\mathrm{S}\cdot\mathrm{m}^{-1}$)&#39;)
+    # Affichage de la grille
+    ax.grid()
+    # Légende
+    ax.set_title(r&#39;Suivi conductimétrique sans effet de dilution&#39;)
+    # Sauvegarde de la figure
+    fig.savefig(&#34;conductimetrie_01.pdf&#34;)
+    # Affichage de la figure
+    plt.show()
+
+
+def determination_intervalles(liste1, liste2):
+    &#34;&#34;&#34;
+    Fonction qui, à partir de la liste liste1, possédant des valeurs
+    décroissantes puis croissantes, retourne un tuple constitué de quatre
+    listes ; la première ne contenant que les valeurs décroissantes, la
+    deuxième les valeurs croissantes de la liste 1. Les deux autres listes
+    correspondent aux parties correspondantes de la liste 2.
+    &#34;&#34;&#34;
+    indice_du_min = liste1.index(min(liste1))
+    liste1_1 = liste1[0:indice_du_min]
+    liste1_2 = liste1[indice_du_min:]
+
+    liste2_1 = liste2[0:indice_du_min]
+    liste2_2 = liste2[indice_du_min:]
+    return (liste2_1, liste1_1, liste2_2, liste1_2)
+
+
+def regression_lineaire(vol_1, conduc_1, vol_2, conduc_2):
+    lr1 = linregress(vol_1, conduc_1)
+    lr2 = linregress(vol_2, conduc_2)
+
+    drl = []
+    for vol in vol_1:
+        drl.append(lr1[0] * vol &#43; lr1[1])
+    for vol in vol_2:
+        drl.append(lr2[0] * vol &#43; lr2[1])
+
+    return drl
+
+
+def main():
+    C = 3.2E-2   # Concentration des ions chlorure
+    V = 10E-3    # Volume de sérum physiologique
+    C2 = 2E-2    # Concentration des ions argent
+    V2_max = 24  # Volume maximal de titrant versé (en mL)
+    V_eau = 0.100   # Volume d&#39;eau ajouté
+    xE = C * V   # Avancement à l&#39;équivalence
+
+    ion_argent = Ion(&#34;ion argent&#34;, 6.2E-3, 1)
+    ion_chlorure = Ion(&#34;ion chlorure&#34;, 7.6E-3, -1)
+    ion_sodium = Ion(&#34;ion sodium&#34;, 5.0E-3, 1, C * V)
+    ion_nitrate = Ion(&#34;ion nitrate&#34;, 7.1E-3, -1)
+
+    sol = Solution([ion_argent, ion_chlorure, ion_sodium, ion_nitrate])
+
+    # Volumes de titrant versés
+    volumes = [i * 1E-3 for i in range(V2_max &#43; 1)]
+    conduc = []  # valeurs des conductivités dans la solution
+
+    for V2 in volumes:
+        n2 = C2 * V2
+        ion_argent.quantite = n2 - xE
+        ion_chlorure.quantite = C * V - n2
+        ion_nitrate.quantite = n2
+        # Partie à adapter si on veut montrer l&#39;effet de la dilution
+        sol.volume = V_eau &#43; V &#43; V2
+        conduc.append(sol.conductivite())
+
+    creation_fichier_resultat(&#34;valeurs.csv&#34;,
+                              &#34;Volumes (L)&#34;,
+                              &#34;Conductivité (S.m^-1)&#34;,
+                              volumes,
+                              conduc)
+
+    vol_1, conduc_1, vol_2, conduc_2 = determination_intervalles(conduc,
+                                                                 volumes)
+    droites_regression = regression_lineaire(vol_1, conduc_1, vol_2,
+                                             conduc_2)
+
+    affichage(volumes, conduc, droites_regression)
+
+    print(volumes)
+    print(vol_1, vol_2)
+
+
+main()
+
+
+"><script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "WebSite",
@@ -62,7 +410,7 @@
     "name" : ""
   },
   "headline": "Simulation d\u0027un titrage conductimétrique",
-  "description" : "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 \u0026#34;\u0026#34;\u0026#34; Simulation du suivi conductimétrique pour le titrage du sérum physiologique.",
+  "description" : " 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 \u0026#34;\u0026#34;\u0026#34; Simulation du suivi conductimétrique pour le titrage du sérum physiologique. \u0026#34;\u0026#34;\u0026#34; import matplotlib.pyplot as plt import csv from scipy.stats import linregress class Ion(): \u0026#34;\u0026#34;\u0026#34; Définition d\u0026#39;un ion à prendre en compte dans le calcul de la conductivité d\u0026#39;une solution. \u0026#34;\u0026#34;\u0026#34; def __init__(self, nom, conduc=0, charge=0, n=0): self.nom = nom self.charge = charge # Charge électrique (multiple de e) self.conductivite = conduc # Conductivité molaire ionique self.quantite = n # Quantité de matière (moles) @property def quantite(self): return self._quantite @quantite.setter def quantite(self, n): if n \u0026lt; 0: self._quantite = 0 else: self._quantite = n def info(self): chaine = \u0026#34;Nom : {}\\n\u0026#34;.format(self.nom) chaine \u002b= \u0026#34;Charge électrique : {}e\\n\u0026#34;.format(self.charge) chaine \u002b= \u0026#34;Quantité de matière : {} mol\\n\u0026#34;.format(self.quantite) return chaine class Solution(): \u0026#34;\u0026#34;\u0026#34; Définition d\u0026#39;une solution ionique. \u0026#34;\u0026#34;\u0026#34; def __init__(self, liste_ions=[], volume=0): self.ions = liste_ions self.volume = volume def conductivite(self): conduc = 0 for ion in self.ions: contrib = ion.conductivite * ion.quantite \/ self.volume conduc \u002b= contrib return conduc def creation_fichier_resultat(nom_fichier, entete_x, entete_y, list_x, list_y): with open(nom_fichier, \u0026#39;w\u0026#39;) as fichier: writer = csv.writer(fichier, dialect=\u0026#39;excel\u0026#39;) writer.writerow([entete_x, entete_y]) for i in range(len(list_x)): writer.writerow((list_x[i], list_y[i])) def affichage(list_v, list_conduc, list_regres): # Création d\u0026#39;une figure fig = plt.figure() # Création d\u0026#39;une sous-figure ax = fig.add_subplot(111) # Affichage des données ax.plot(list_v, list_conduc, \u0026#39;ro\u0026#39;) ax.plot(list_v, list_regres, \u0026#39;b-\u0026#39;) # Limites pour l\u0026#39;axe des abscisses ax.set_xlim(min(list_v) - 1E-3, max(list_v) \u002b 1E-3) # Utilisation de l\u0026#39;écriture scientifique pour les valeurs ax.ticklabel_format(axis=\u0026#39;both\u0026#39;, style=\u0026#39;sci\u0026#39;, scilimits=(0, 0)) # Label de l\u0026#39;axe des abscisses ax.set_xlabel(r\u0026#39;$V_2$ (L)\u0026#39;) # Label de l\u0026#39;axe des ordonnées ax.set_ylabel(r\u0026#39;$\\sigma$ ($\\mathrm{S}\\cdot\\mathrm{m}^{-1}$)\u0026#39;) # Affichage de la grille ax.grid() # Légende ax.set_title(r\u0026#39;Suivi conductimétrique sans effet de dilution\u0026#39;) # Sauvegarde de la figure fig.savefig(\u0026#34;conductimetrie_01.pdf\u0026#34;) # Affichage de la figure plt.show() def determination_intervalles(liste1, liste2): \u0026#34;\u0026#34;\u0026#34; Fonction qui, à partir de la liste liste1, possédant des valeurs décroissantes puis croissantes, retourne un tuple constitué de quatre listes ; la première ne contenant que les valeurs décroissantes, la deuxième les valeurs croissantes de la liste 1. Les deux autres listes correspondent aux parties correspondantes de la liste 2. \u0026#34;\u0026#34;\u0026#34; indice_du_min = liste1.index(min(liste1)) liste1_1 = liste1[0:indice_du_min] liste1_2 = liste1[indice_du_min:] liste2_1 = liste2[0:indice_du_min] liste2_2 = liste2[indice_du_min:] return (liste2_1, liste1_1, liste2_2, liste1_2) def regression_lineaire(vol_1, conduc_1, vol_2, conduc_2): lr1 = linregress(vol_1, conduc_1) lr2 = linregress(vol_2, conduc_2) drl = [] for vol in vol_1: drl.append(lr1[0] * vol \u002b lr1[1]) for vol in vol_2: drl.append(lr2[0] * vol \u002b lr2[1]) return drl def main(): C = 3.2E-2 # Concentration des ions chlorure V = 10E-3 # Volume de sérum physiologique C2 = 2E-2 # Concentration des ions argent V2_max = 24 # Volume maximal de titrant versé (en mL) V_eau = 0.100 # Volume d\u0026#39;eau ajouté xE = C * V # Avancement à l\u0026#39;équivalence ion_argent = Ion(\u0026#34;ion argent\u0026#34;, 6.2E-3, 1) ion_chlorure = Ion(\u0026#34;ion chlorure\u0026#34;, 7.6E-3, -1) ion_sodium = Ion(\u0026#34;ion sodium\u0026#34;, 5.0E-3, 1, C * V) ion_nitrate = Ion(\u0026#34;ion nitrate\u0026#34;, 7.1E-3, -1) sol = Solution([ion_argent, ion_chlorure, ion_sodium, ion_nitrate]) # Volumes de titrant versés volumes = [i * 1E-3 for i in range(V2_max \u002b 1)] conduc = [] # valeurs des conductivités dans la solution for V2 in volumes: n2 = C2 * V2 ion_argent.quantite = n2 - xE ion_chlorure.quantite = C * V - n2 ion_nitrate.quantite = n2 # Partie à adapter si on veut montrer l\u0026#39;effet de la dilution sol.volume = V_eau \u002b V \u002b V2 conduc.append(sol.conductivite()) creation_fichier_resultat(\u0026#34;valeurs.csv\u0026#34;, \u0026#34;Volumes (L)\u0026#34;, \u0026#34;Conductivité (S.m^-1)\u0026#34;, volumes, conduc) vol_1, conduc_1, vol_2, conduc_2 = determination_intervalles(conduc, volumes) droites_regression = regression_lineaire(vol_1, conduc_1, vol_2, conduc_2) affichage(volumes, conduc, droites_regression) print(volumes) print(vol_1, vol_2) main() ",
   "inLanguage" : "fr",
   "wordCount":  739 ,
   "datePublished" : "2020-10-11T20:53:53\u002b04:00",
@@ -85,26 +433,421 @@
 
 
 <meta property="og:title" content="Simulation d&#39;un titrage conductimétrique" />
-<meta property="og:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 &#34;&#34;&#34; Simulation du suivi conductimétrique pour le titrage du sérum physiologique.">
+<meta property="og:description" content="
+
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+
+
+&#34;&#34;&#34;
+Simulation du suivi conductimétrique pour le titrage
+du sérum physiologique.
+&#34;&#34;&#34;
+import matplotlib.pyplot as plt
+import csv
+from scipy.stats import linregress
+
+
+class Ion():
+    &#34;&#34;&#34;
+    Définition d&#39;un ion à prendre en compte dans le
+    calcul de la conductivité d&#39;une solution.
+    &#34;&#34;&#34;
+
+    def __init__(self, nom, conduc=0, charge=0, n=0):
+        self.nom = nom
+        self.charge = charge        # Charge électrique (multiple de e)
+        self.conductivite = conduc  # Conductivité molaire ionique
+        self.quantite = n           # Quantité de matière (moles)
+
+    @property
+    def quantite(self):
+        return self._quantite
+
+    @quantite.setter
+    def quantite(self, n):
+
+        if n &lt; 0:
+            self._quantite = 0
+        else:
+            self._quantite = n
+
+    def info(self):
+        chaine = &#34;Nom : {}\n&#34;.format(self.nom)
+        chaine &#43;= &#34;Charge électrique : {}e\n&#34;.format(self.charge)
+        chaine &#43;= &#34;Quantité de matière : {} mol\n&#34;.format(self.quantite)
+        return chaine
+
+
+class Solution():
+    &#34;&#34;&#34;
+    Définition d&#39;une solution ionique.
+    &#34;&#34;&#34;
+
+    def __init__(self, liste_ions=[], volume=0):
+        self.ions = liste_ions
+        self.volume = volume
+
+    def conductivite(self):
+
+        conduc = 0
+        for ion in self.ions:
+            contrib = ion.conductivite * ion.quantite / self.volume
+            conduc &#43;= contrib
+        return conduc
+
+
+def creation_fichier_resultat(nom_fichier, entete_x, entete_y,
+                              list_x, list_y):
+
+    with open(nom_fichier, &#39;w&#39;) as fichier:
+        writer = csv.writer(fichier, dialect=&#39;excel&#39;)
+        writer.writerow([entete_x, entete_y])
+
+        for i in range(len(list_x)):
+            writer.writerow((list_x[i], list_y[i]))
+
+
+def affichage(list_v, list_conduc, list_regres):
+    # Création d&#39;une figure
+    fig = plt.figure()
+    # Création d&#39;une sous-figure
+    ax = fig.add_subplot(111)
+    # Affichage des données
+    ax.plot(list_v, list_conduc, &#39;ro&#39;)
+    ax.plot(list_v, list_regres, &#39;b-&#39;)
+    # Limites pour l&#39;axe des abscisses
+    ax.set_xlim(min(list_v) - 1E-3, max(list_v) &#43; 1E-3)
+    # Utilisation de l&#39;écriture scientifique pour les valeurs
+    ax.ticklabel_format(axis=&#39;both&#39;, style=&#39;sci&#39;, scilimits=(0, 0))
+    # Label de l&#39;axe des abscisses
+    ax.set_xlabel(r&#39;$V_2$ (L)&#39;)
+    # Label de l&#39;axe des ordonnées
+    ax.set_ylabel(r&#39;$\sigma$ ($\mathrm{S}\cdot\mathrm{m}^{-1}$)&#39;)
+    # Affichage de la grille
+    ax.grid()
+    # Légende
+    ax.set_title(r&#39;Suivi conductimétrique sans effet de dilution&#39;)
+    # Sauvegarde de la figure
+    fig.savefig(&#34;conductimetrie_01.pdf&#34;)
+    # Affichage de la figure
+    plt.show()
+
+
+def determination_intervalles(liste1, liste2):
+    &#34;&#34;&#34;
+    Fonction qui, à partir de la liste liste1, possédant des valeurs
+    décroissantes puis croissantes, retourne un tuple constitué de quatre
+    listes ; la première ne contenant que les valeurs décroissantes, la
+    deuxième les valeurs croissantes de la liste 1. Les deux autres listes
+    correspondent aux parties correspondantes de la liste 2.
+    &#34;&#34;&#34;
+    indice_du_min = liste1.index(min(liste1))
+    liste1_1 = liste1[0:indice_du_min]
+    liste1_2 = liste1[indice_du_min:]
+
+    liste2_1 = liste2[0:indice_du_min]
+    liste2_2 = liste2[indice_du_min:]
+    return (liste2_1, liste1_1, liste2_2, liste1_2)
+
+
+def regression_lineaire(vol_1, conduc_1, vol_2, conduc_2):
+    lr1 = linregress(vol_1, conduc_1)
+    lr2 = linregress(vol_2, conduc_2)
+
+    drl = []
+    for vol in vol_1:
+        drl.append(lr1[0] * vol &#43; lr1[1])
+    for vol in vol_2:
+        drl.append(lr2[0] * vol &#43; lr2[1])
+
+    return drl
+
+
+def main():
+    C = 3.2E-2   # Concentration des ions chlorure
+    V = 10E-3    # Volume de sérum physiologique
+    C2 = 2E-2    # Concentration des ions argent
+    V2_max = 24  # Volume maximal de titrant versé (en mL)
+    V_eau = 0.100   # Volume d&#39;eau ajouté
+    xE = C * V   # Avancement à l&#39;équivalence
+
+    ion_argent = Ion(&#34;ion argent&#34;, 6.2E-3, 1)
+    ion_chlorure = Ion(&#34;ion chlorure&#34;, 7.6E-3, -1)
+    ion_sodium = Ion(&#34;ion sodium&#34;, 5.0E-3, 1, C * V)
+    ion_nitrate = Ion(&#34;ion nitrate&#34;, 7.1E-3, -1)
+
+    sol = Solution([ion_argent, ion_chlorure, ion_sodium, ion_nitrate])
+
+    # Volumes de titrant versés
+    volumes = [i * 1E-3 for i in range(V2_max &#43; 1)]
+    conduc = []  # valeurs des conductivités dans la solution
+
+    for V2 in volumes:
+        n2 = C2 * V2
+        ion_argent.quantite = n2 - xE
+        ion_chlorure.quantite = C * V - n2
+        ion_nitrate.quantite = n2
+        # Partie à adapter si on veut montrer l&#39;effet de la dilution
+        sol.volume = V_eau &#43; V &#43; V2
+        conduc.append(sol.conductivite())
+
+    creation_fichier_resultat(&#34;valeurs.csv&#34;,
+                              &#34;Volumes (L)&#34;,
+                              &#34;Conductivité (S.m^-1)&#34;,
+                              volumes,
+                              conduc)
+
+    vol_1, conduc_1, vol_2, conduc_2 = determination_intervalles(conduc,
+                                                                 volumes)
+    droites_regression = regression_lineaire(vol_1, conduc_1, vol_2,
+                                             conduc_2)
+
+    affichage(volumes, conduc, droites_regression)
+
+    print(volumes)
+    print(vol_1, vol_2)
+
+
+main()
+
+
+">
 <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
 <meta property="og:url" content="https://dlatreyte.github.io/programmation/simulation-titrage-conductimetrique/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Accueil" />
 
   <meta name="twitter:title" content="Simulation d&#39;un titrage conductimétrique" />
-  <meta name="twitter:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 …">
+  <meta name="twitter:description" content="
+
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49 …">
   <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.132.1">
+  <meta name="generator" content="Hugo 0.135.0">
   <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-  
 
 
   </head>
@@ -770,7 +1513,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          Carbure avec <a href="https://gohugo.io">Hugo v0.132.1</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          Carbure avec <a href="https://gohugo.io">Hugo v0.135.0</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
           
         </p>
       </div>

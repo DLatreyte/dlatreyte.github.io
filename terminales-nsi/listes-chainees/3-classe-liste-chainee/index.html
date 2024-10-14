@@ -15,7 +15,287 @@
       <title>Réalisation d&#39;une classe Liste Chainee - Physique, Chimie et Informatique</title>
 
   <meta name="description" content="Par transformation des fonctions du document 1 dans ce chapitre en méthodes, écrire le code de la classe Liste qui définit le type abstrait « Liste chaînée ».
-Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 from __future__ import annotations class Maillon: &#34;&#34;&#34; Un maillon de la liste."><script type="application/ld+json">
+
+
+    
+         Réponse
+    
+
+
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+
+
+from __future__ import annotations
+
+
+class Maillon:
+    &#34;&#34;&#34;
+    Un maillon de la liste.
+    &#34;&#34;&#34;
+
+    def __init__(self: Maillon, valeur: int, suivant: Maillon = None) -&gt; None:
+        self.valeur = valeur
+        self.suivant = suivant
+
+
+class Liste:
+    &#34;&#34;&#34;
+    Implémentation de la classe liste.
+    &#34;&#34;&#34;
+
+    def __init__(self: Liste, valeur: int = None) -&gt; None:
+        &#34;&#34;&#34;
+        Initialisation de l&#39;objet. Il est possible de créer une liste
+        vide ou une liste contenant un élément.
+
+        Il est possible de créer directemnt une liste contenant plusieurs
+        éléments il faut utiliser une fonctionnalité de Python que vous
+        ne connaissez pas forcément et qui n&#39;est pas au programme.
+        &#34;&#34;&#34;
+        if valeur is None:
+            self.maillons = None
+        else:
+            self.maillons = Maillon(valeur)
+
+    def est_vide(self: Liste) -&gt; bool:
+        &#34;&#34;&#34; Détermine si la liste est vide. &#34;&#34;&#34;
+        return self.maillons is None
+
+    def __len__(self: Liste) -&gt; int:
+        &#34;&#34;&#34; Retourne le nombre d&#39;éléments dans la liste. &#34;&#34;&#34;
+        if self.est_vide():
+            return 0
+        else:
+            nbre = 0
+            maillon = self.maillons
+            while maillon is not None:
+                nbre &#43;= 1
+                maillon = maillon.suivant
+            return nbre
+
+    def append(self: Liste, valeur: int) -&gt; None:
+        &#34;&#34;&#34;
+        Ajoute valeur à la fin de la liste.
+        &#34;&#34;&#34;
+        if self.est_vide():
+            self.maillons = Maillon(valeur)
+        else:
+            maillon = self.maillons
+            while maillon.suivant is not None:
+                maillon = maillon.suivant
+
+            maillon.suivant = Maillon(valeur)
+
+    def append_first(self: Liste, valeur: int) -&gt; None:
+        &#34;&#34;&#34;
+        Ajoute valeur au début de la liste.
+        &#34;&#34;&#34;
+        maillon = Maillon(valeur)
+        maillon.suivant = self.maillons
+        self.maillons = maillon
+
+    def pop(self: Liste) -&gt; int:
+        &#34;&#34;&#34;
+        Retire le dernier élément de la liste et le retourne.
+
+        Lève une erreur si la liste est vide.
+        &#34;&#34;&#34;
+        if self.est_vide():  # Liste vide
+            raise Exception(&#34;La liste est vide !&#34;)
+
+        maillon = self.maillons
+        if maillon.suivant is None:  # Cas d&#39;une liste à un élément
+            valeur = maillon.valeur
+            self.maillons = None
+            return valeur
+        else:
+            while maillon.suivant.suivant is not None:  # Cas général
+                maillon = maillon.suivant
+            valeur = maillon.suivant.valeur
+            maillon.suivant = None
+            return valeur
+
+    def pop_first(self: Liste) -&gt; int:
+        &#34;&#34;&#34;
+        Retire le premier élément de la liste et le retourne.
+
+        Lève une erreur si la liste est vide.
+        &#34;&#34;&#34;
+        if self.est_vide():  # Liste vide
+            raise Exception(&#34;La liste est vide !&#34;)
+
+        valeur = self.maillons.valeur
+        self.maillons = self.maillons.suivant
+        return valeur
+
+    def __getitem__(self: Liste, i: int) -&gt; int:
+        &#34;&#34;&#34;
+        Redéfinition de la fonction d&#39;accès à l&#39;élément d&#39;indice i.
+        &#34;&#34;&#34;
+        if self.est_vide():
+            raise Exception(&#34;La liste est vide !&#34;)
+
+        maillon = self.maillons
+        j = 0
+        while j &lt; i:
+            if maillon is None:
+                raise IndexError(&#34;Indice hors des limites !&#34;)
+            maillon = maillon.suivant
+            j &#43;= 1
+        return maillon.valeur
+
+    def __str__(self: Liste) -&gt; str:
+        &#34;&#34;&#34;
+        Représentation de la liste sous-forme d&#39;une chaîne de caractères.
+        &#34;&#34;&#34;
+        rep = &#34;[&#34;
+
+        maillon = self.maillons
+        while maillon is not None:
+            rep &#43;= str(maillon.valeur)
+            if maillon.suivant is not None:
+                rep &#43;= &#34;, &#34;
+            maillon = maillon.suivant
+
+        rep &#43;= &#34;]&#34;
+        return rep
+
+
+
+"><script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "WebSite",
@@ -63,7 +343,7 @@ Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
     "name" : ""
   },
   "headline": "Réalisation d\u0027une classe Liste Chainee",
-  "description" : "Par transformation des fonctions du document 1 dans ce chapitre en méthodes, écrire le code de la classe Liste qui définit le type abstrait « Liste chaînée ».\nRéponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 from __future__ import annotations class Maillon: \u0026#34;\u0026#34;\u0026#34; Un maillon de la liste.",
+  "description" : "Par transformation des fonctions du document 1 dans ce chapitre en méthodes, écrire le code de la classe Liste qui définit le type abstrait « Liste chaînée ».\nRéponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 from __future__ import annotations class Maillon: \u0026#34;\u0026#34;\u0026#34; Un maillon de la liste. \u0026#34;\u0026#34;\u0026#34; def __init__(self: Maillon, valeur: int, suivant: Maillon = None) -\u0026gt; None: self.valeur = valeur self.suivant = suivant class Liste: \u0026#34;\u0026#34;\u0026#34; Implémentation de la classe liste. \u0026#34;\u0026#34;\u0026#34; def __init__(self: Liste, valeur: int = None) -\u0026gt; None: \u0026#34;\u0026#34;\u0026#34; Initialisation de l\u0026#39;objet. Il est possible de créer une liste vide ou une liste contenant un élément. Il est possible de créer directemnt une liste contenant plusieurs éléments il faut utiliser une fonctionnalité de Python que vous ne connaissez pas forcément et qui n\u0026#39;est pas au programme. \u0026#34;\u0026#34;\u0026#34; if valeur is None: self.maillons = None else: self.maillons = Maillon(valeur) def est_vide(self: Liste) -\u0026gt; bool: \u0026#34;\u0026#34;\u0026#34; Détermine si la liste est vide. \u0026#34;\u0026#34;\u0026#34; return self.maillons is None def __len__(self: Liste) -\u0026gt; int: \u0026#34;\u0026#34;\u0026#34; Retourne le nombre d\u0026#39;éléments dans la liste. \u0026#34;\u0026#34;\u0026#34; if self.est_vide(): return 0 else: nbre = 0 maillon = self.maillons while maillon is not None: nbre \u002b= 1 maillon = maillon.suivant return nbre def append(self: Liste, valeur: int) -\u0026gt; None: \u0026#34;\u0026#34;\u0026#34; Ajoute valeur à la fin de la liste. \u0026#34;\u0026#34;\u0026#34; if self.est_vide(): self.maillons = Maillon(valeur) else: maillon = self.maillons while maillon.suivant is not None: maillon = maillon.suivant maillon.suivant = Maillon(valeur) def append_first(self: Liste, valeur: int) -\u0026gt; None: \u0026#34;\u0026#34;\u0026#34; Ajoute valeur au début de la liste. \u0026#34;\u0026#34;\u0026#34; maillon = Maillon(valeur) maillon.suivant = self.maillons self.maillons = maillon def pop(self: Liste) -\u0026gt; int: \u0026#34;\u0026#34;\u0026#34; Retire le dernier élément de la liste et le retourne. Lève une erreur si la liste est vide. \u0026#34;\u0026#34;\u0026#34; if self.est_vide(): # Liste vide raise Exception(\u0026#34;La liste est vide !\u0026#34;) maillon = self.maillons if maillon.suivant is None: # Cas d\u0026#39;une liste à un élément valeur = maillon.valeur self.maillons = None return valeur else: while maillon.suivant.suivant is not None: # Cas général maillon = maillon.suivant valeur = maillon.suivant.valeur maillon.suivant = None return valeur def pop_first(self: Liste) -\u0026gt; int: \u0026#34;\u0026#34;\u0026#34; Retire le premier élément de la liste et le retourne. Lève une erreur si la liste est vide. \u0026#34;\u0026#34;\u0026#34; if self.est_vide(): # Liste vide raise Exception(\u0026#34;La liste est vide !\u0026#34;) valeur = self.maillons.valeur self.maillons = self.maillons.suivant return valeur def __getitem__(self: Liste, i: int) -\u0026gt; int: \u0026#34;\u0026#34;\u0026#34; Redéfinition de la fonction d\u0026#39;accès à l\u0026#39;élément d\u0026#39;indice i. \u0026#34;\u0026#34;\u0026#34; if self.est_vide(): raise Exception(\u0026#34;La liste est vide !\u0026#34;) maillon = self.maillons j = 0 while j \u0026lt; i: if maillon is None: raise IndexError(\u0026#34;Indice hors des limites !\u0026#34;) maillon = maillon.suivant j \u002b= 1 return maillon.valeur def __str__(self: Liste) -\u0026gt; str: \u0026#34;\u0026#34;\u0026#34; Représentation de la liste sous-forme d\u0026#39;une chaîne de caractères. \u0026#34;\u0026#34;\u0026#34; rep = \u0026#34;[\u0026#34; maillon = self.maillons while maillon is not None: rep \u002b= str(maillon.valeur) if maillon.suivant is not None: rep \u002b= \u0026#34;, \u0026#34; maillon = maillon.suivant rep \u002b= \u0026#34;]\u0026#34; return rep ",
   "inLanguage" : "fr",
   "wordCount":  611 ,
   "datePublished" : "2023-11-20T15:50:34\u002b04:00",
@@ -87,7 +367,287 @@ Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
 
 <meta property="og:title" content="Réalisation d&#39;une classe Liste Chainee" />
 <meta property="og:description" content="Par transformation des fonctions du document 1 dans ce chapitre en méthodes, écrire le code de la classe Liste qui définit le type abstrait « Liste chaînée ».
-Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 from __future__ import annotations class Maillon: &#34;&#34;&#34; Un maillon de la liste.">
+
+
+    
+         Réponse
+    
+
+
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+
+
+from __future__ import annotations
+
+
+class Maillon:
+    &#34;&#34;&#34;
+    Un maillon de la liste.
+    &#34;&#34;&#34;
+
+    def __init__(self: Maillon, valeur: int, suivant: Maillon = None) -&gt; None:
+        self.valeur = valeur
+        self.suivant = suivant
+
+
+class Liste:
+    &#34;&#34;&#34;
+    Implémentation de la classe liste.
+    &#34;&#34;&#34;
+
+    def __init__(self: Liste, valeur: int = None) -&gt; None:
+        &#34;&#34;&#34;
+        Initialisation de l&#39;objet. Il est possible de créer une liste
+        vide ou une liste contenant un élément.
+
+        Il est possible de créer directemnt une liste contenant plusieurs
+        éléments il faut utiliser une fonctionnalité de Python que vous
+        ne connaissez pas forcément et qui n&#39;est pas au programme.
+        &#34;&#34;&#34;
+        if valeur is None:
+            self.maillons = None
+        else:
+            self.maillons = Maillon(valeur)
+
+    def est_vide(self: Liste) -&gt; bool:
+        &#34;&#34;&#34; Détermine si la liste est vide. &#34;&#34;&#34;
+        return self.maillons is None
+
+    def __len__(self: Liste) -&gt; int:
+        &#34;&#34;&#34; Retourne le nombre d&#39;éléments dans la liste. &#34;&#34;&#34;
+        if self.est_vide():
+            return 0
+        else:
+            nbre = 0
+            maillon = self.maillons
+            while maillon is not None:
+                nbre &#43;= 1
+                maillon = maillon.suivant
+            return nbre
+
+    def append(self: Liste, valeur: int) -&gt; None:
+        &#34;&#34;&#34;
+        Ajoute valeur à la fin de la liste.
+        &#34;&#34;&#34;
+        if self.est_vide():
+            self.maillons = Maillon(valeur)
+        else:
+            maillon = self.maillons
+            while maillon.suivant is not None:
+                maillon = maillon.suivant
+
+            maillon.suivant = Maillon(valeur)
+
+    def append_first(self: Liste, valeur: int) -&gt; None:
+        &#34;&#34;&#34;
+        Ajoute valeur au début de la liste.
+        &#34;&#34;&#34;
+        maillon = Maillon(valeur)
+        maillon.suivant = self.maillons
+        self.maillons = maillon
+
+    def pop(self: Liste) -&gt; int:
+        &#34;&#34;&#34;
+        Retire le dernier élément de la liste et le retourne.
+
+        Lève une erreur si la liste est vide.
+        &#34;&#34;&#34;
+        if self.est_vide():  # Liste vide
+            raise Exception(&#34;La liste est vide !&#34;)
+
+        maillon = self.maillons
+        if maillon.suivant is None:  # Cas d&#39;une liste à un élément
+            valeur = maillon.valeur
+            self.maillons = None
+            return valeur
+        else:
+            while maillon.suivant.suivant is not None:  # Cas général
+                maillon = maillon.suivant
+            valeur = maillon.suivant.valeur
+            maillon.suivant = None
+            return valeur
+
+    def pop_first(self: Liste) -&gt; int:
+        &#34;&#34;&#34;
+        Retire le premier élément de la liste et le retourne.
+
+        Lève une erreur si la liste est vide.
+        &#34;&#34;&#34;
+        if self.est_vide():  # Liste vide
+            raise Exception(&#34;La liste est vide !&#34;)
+
+        valeur = self.maillons.valeur
+        self.maillons = self.maillons.suivant
+        return valeur
+
+    def __getitem__(self: Liste, i: int) -&gt; int:
+        &#34;&#34;&#34;
+        Redéfinition de la fonction d&#39;accès à l&#39;élément d&#39;indice i.
+        &#34;&#34;&#34;
+        if self.est_vide():
+            raise Exception(&#34;La liste est vide !&#34;)
+
+        maillon = self.maillons
+        j = 0
+        while j &lt; i:
+            if maillon is None:
+                raise IndexError(&#34;Indice hors des limites !&#34;)
+            maillon = maillon.suivant
+            j &#43;= 1
+        return maillon.valeur
+
+    def __str__(self: Liste) -&gt; str:
+        &#34;&#34;&#34;
+        Représentation de la liste sous-forme d&#39;une chaîne de caractères.
+        &#34;&#34;&#34;
+        rep = &#34;[&#34;
+
+        maillon = self.maillons
+        while maillon is not None:
+            rep &#43;= str(maillon.valeur)
+            if maillon.suivant is not None:
+                rep &#43;= &#34;, &#34;
+            maillon = maillon.suivant
+
+        rep &#43;= &#34;]&#34;
+        return rep
+
+
+
+">
 <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
 <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/listes-chainees/3-classe-liste-chainee/" />
 <meta property="og:type" content="website" />
@@ -95,19 +655,24 @@ Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
 
   <meta name="twitter:title" content="Réalisation d&#39;une classe Liste Chainee" />
   <meta name="twitter:description" content="Par transformation des fonctions du document 1 dans ce chapitre en méthodes, écrire le code de la classe Liste qui définit le type abstrait « Liste chaînée ».
-Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 …">
+
+
+    
+         Réponse
+    
+
+
+  1
+  2 …">
   <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.132.1">
+  <meta name="generator" content="Hugo 0.135.0">
   <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-  
 
 
   </head>
@@ -721,7 +1286,7 @@ Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 …">
         </p>
         
         <p class="credits theme-by text-muted">
-          Carbure avec <a href="https://gohugo.io">Hugo v0.132.1</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          Carbure avec <a href="https://gohugo.io">Hugo v0.135.0</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
           
         </p>
       </div>

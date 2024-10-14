@@ -15,7 +15,245 @@
       <title>Implémentation du type abstrait Liste Chaînée à l&#39;aide de listes Python - Physique, Chimie et Informatique</title>
 
   <meta name="description" content="Reprendre toutes les fonctions des sections 2 et 3 du document 1 de ce chapitre, en implémentant cette fois le type abstrait « Liste chaînée » à l&rsquo;aide de tuples (à la place de la classe).
-Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 def est_dans(tab: list[int], val: int) -&gt; bool: &#34;&#34;&#34; Recherche la présence de val dans tab."><script type="application/ld+json">
+
+
+    
+         Réponse
+    
+
+
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+
+
+def est_dans(tab: list[int], val: int) -&gt; bool:
+    &#34;&#34;&#34;
+    Recherche la présence de val dans tab.
+    &#34;&#34;&#34;
+    trouve = False
+
+    i = 0
+    while i &lt; len(tab) and not trouve:
+        if val == tab[i]:
+            trouve = True
+        i &#43;= 1
+
+    return trouve
+
+
+def est_dans_rec(tab: list[int], n: int, i: int = 0) -&gt; bool:
+    &#34;&#34;&#34;
+    Recherche si la valeur n est présente au moins une fois
+    dans le tableau tab.
+    Algorithme récursif, i est l&#39;indice de recherche.
+    &#34;&#34;&#34;
+    if i == len(tab):
+        return False
+    elif tab[i] == n:
+        return True
+    else:
+        return est_dans_rec(tab, n, i &#43; 1)
+
+
+def insere(tab: list[int], n: int, i: int) -&gt; None:
+    &#34;&#34;&#34;
+    Insère la valeur n à l&#39;indice i du tableau tab.
+    Algorithm itératif et en place.
+    
+    Lève une exception si le tableau est déjà plein.
+    
+    HYPOTHÈSE : la gestion des &#34;trous&#34; n&#39;est pas assurée,
+    l&#39;algorithme se contente de décaler les valeurs vers 
+    la droite.
+    &#34;&#34;&#34;
+    dernier_indice = len(tab) - 1
+
+    if tab[dernier_indice] != None:
+        raise Exception(&#34;Tableau plein !&#34;)
+
+    k = dernier_indice
+    while k &gt; i:
+        tab[k] = tab[k - 1]
+        k -= 1
+
+    #for k in range(dernier_indice, i, -1):
+    #    tab[k] = tab[k - 1]
+
+    tab[i] = n
+
+
+def insere_rec(tab: list[int], n: int, i: int, k: int) -&gt; None:
+    &#34;&#34;&#34;
+    Insère la valeur n à l&#39;indice i du tableau tab.
+    Algorithm récursif et en place. k est l&#39;indice de
+    recherche. 
+    Sa première valeur doit être len(tab) - 1.
+    
+    Lève une exception si le tableau est déjà plein.
+    
+    HYPOTHÈSE : la gestion des &#34;trous&#34; n&#39;est pas 
+    assurée, l&#39;algorithme se contente de décaler 
+    les valeurs vers la droite.
+    &#34;&#34;&#34;
+    dernier_indice = len(tab) - 1
+
+    if tab[dernier_indice] != None and k == dernier_indice:
+        raise Exception(&#34;Tableau plein !&#34;)
+    elif k == i:
+        tab[i] = n
+        return None
+    else:
+        tab[k] = tab[k - 1]
+        return insere_rec(tab, n, i, k - 1)
+
+
+if __name__ == &#34;__main__&#34;:
+    tab = [i for i in range(20)]
+
+    assert est_dans(tab, 12) == True
+    assert est_dans(tab, 0) == True
+    assert est_dans(tab, 20) == False
+
+    assert est_dans_rec(tab, 12) == True
+    assert est_dans_rec(tab, 0) == True
+    assert est_dans_rec(tab, 20) == False
+
+    print(&#34;Insertion itérative&#34;)
+    tab = [1, 1, 2, 3, 4, 5, None, None, None]
+    print(tab)
+    insere(tab, 7, 0)
+    print(tab)
+    insere(tab, 7, 0)
+    print(tab)
+    insere(tab, 7, 0)
+    print(tab)
+    #insere(tab, 7, 0)
+    #print(tab)
+    print()
+    print(&#34;Insertion récursive&#34;)
+    tab = [1, 1, 2, 3, 4, 5, None, None, None]
+    print(tab)
+    insere_rec(tab, 7, 0, len(tab) - 1)
+    print(tab)
+    insere_rec(tab, 7, 0, len(tab) - 1)
+    print(tab)
+    insere_rec(tab, 7, 0, len(tab))
+    print(tab)
+
+
+
+"><script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "WebSite",
@@ -63,7 +301,7 @@ Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
     "name" : ""
   },
   "headline": "Implémentation du type abstrait Liste Chaînée à l\u0027aide de listes Python",
-  "description" : "Reprendre toutes les fonctions des sections 2 et 3 du document 1 de ce chapitre, en implémentant cette fois le type abstrait « Liste chaînée » à l\u0026rsquo;aide de tuples (à la place de la classe).\nRéponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 def est_dans(tab: list[int], val: int) -\u0026gt; bool: \u0026#34;\u0026#34;\u0026#34; Recherche la présence de val dans tab.",
+  "description" : "Reprendre toutes les fonctions des sections 2 et 3 du document 1 de ce chapitre, en implémentant cette fois le type abstrait « Liste chaînée » à l\u0026rsquo;aide de tuples (à la place de la classe).\nRéponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 def est_dans(tab: list[int], val: int) -\u0026gt; bool: \u0026#34;\u0026#34;\u0026#34; Recherche la présence de val dans tab. \u0026#34;\u0026#34;\u0026#34; trouve = False i = 0 while i \u0026lt; len(tab) and not trouve: if val == tab[i]: trouve = True i \u002b= 1 return trouve def est_dans_rec(tab: list[int], n: int, i: int = 0) -\u0026gt; bool: \u0026#34;\u0026#34;\u0026#34; Recherche si la valeur n est présente au moins une fois dans le tableau tab. Algorithme récursif, i est l\u0026#39;indice de recherche. \u0026#34;\u0026#34;\u0026#34; if i == len(tab): return False elif tab[i] == n: return True else: return est_dans_rec(tab, n, i \u002b 1) def insere(tab: list[int], n: int, i: int) -\u0026gt; None: \u0026#34;\u0026#34;\u0026#34; Insère la valeur n à l\u0026#39;indice i du tableau tab. Algorithm itératif et en place. Lève une exception si le tableau est déjà plein. HYPOTHÈSE : la gestion des \u0026#34;trous\u0026#34; n\u0026#39;est pas assurée, l\u0026#39;algorithme se contente de décaler les valeurs vers la droite. \u0026#34;\u0026#34;\u0026#34; dernier_indice = len(tab) - 1 if tab[dernier_indice] != None: raise Exception(\u0026#34;Tableau plein !\u0026#34;) k = dernier_indice while k \u0026gt; i: tab[k] = tab[k - 1] k -= 1 #for k in range(dernier_indice, i, -1): # tab[k] = tab[k - 1] tab[i] = n def insere_rec(tab: list[int], n: int, i: int, k: int) -\u0026gt; None: \u0026#34;\u0026#34;\u0026#34; Insère la valeur n à l\u0026#39;indice i du tableau tab. Algorithm récursif et en place. k est l\u0026#39;indice de recherche. Sa première valeur doit être len(tab) - 1. Lève une exception si le tableau est déjà plein. HYPOTHÈSE : la gestion des \u0026#34;trous\u0026#34; n\u0026#39;est pas assurée, l\u0026#39;algorithme se contente de décaler les valeurs vers la droite. \u0026#34;\u0026#34;\u0026#34; dernier_indice = len(tab) - 1 if tab[dernier_indice] != None and k == dernier_indice: raise Exception(\u0026#34;Tableau plein !\u0026#34;) elif k == i: tab[i] = n return None else: tab[k] = tab[k - 1] return insere_rec(tab, n, i, k - 1) if __name__ == \u0026#34;__main__\u0026#34;: tab = [i for i in range(20)] assert est_dans(tab, 12) == True assert est_dans(tab, 0) == True assert est_dans(tab, 20) == False assert est_dans_rec(tab, 12) == True assert est_dans_rec(tab, 0) == True assert est_dans_rec(tab, 20) == False print(\u0026#34;Insertion itérative\u0026#34;) tab = [1, 1, 2, 3, 4, 5, None, None, None] print(tab) insere(tab, 7, 0) print(tab) insere(tab, 7, 0) print(tab) insere(tab, 7, 0) print(tab) #insere(tab, 7, 0) #print(tab) print() print(\u0026#34;Insertion récursive\u0026#34;) tab = [1, 1, 2, 3, 4, 5, None, None, None] print(tab) insere_rec(tab, 7, 0, len(tab) - 1) print(tab) insere_rec(tab, 7, 0, len(tab) - 1) print(tab) insere_rec(tab, 7, 0, len(tab)) print(tab) ",
   "inLanguage" : "fr",
   "wordCount":  555 ,
   "datePublished" : "2023-11-20T15:50:09\u002b04:00",
@@ -87,7 +325,245 @@ Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
 
 <meta property="og:title" content="Implémentation du type abstrait Liste Chaînée à l&#39;aide de listes Python" />
 <meta property="og:description" content="Reprendre toutes les fonctions des sections 2 et 3 du document 1 de ce chapitre, en implémentant cette fois le type abstrait « Liste chaînée » à l&rsquo;aide de tuples (à la place de la classe).
-Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 def est_dans(tab: list[int], val: int) -&gt; bool: &#34;&#34;&#34; Recherche la présence de val dans tab.">
+
+
+    
+         Réponse
+    
+
+
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+
+
+def est_dans(tab: list[int], val: int) -&gt; bool:
+    &#34;&#34;&#34;
+    Recherche la présence de val dans tab.
+    &#34;&#34;&#34;
+    trouve = False
+
+    i = 0
+    while i &lt; len(tab) and not trouve:
+        if val == tab[i]:
+            trouve = True
+        i &#43;= 1
+
+    return trouve
+
+
+def est_dans_rec(tab: list[int], n: int, i: int = 0) -&gt; bool:
+    &#34;&#34;&#34;
+    Recherche si la valeur n est présente au moins une fois
+    dans le tableau tab.
+    Algorithme récursif, i est l&#39;indice de recherche.
+    &#34;&#34;&#34;
+    if i == len(tab):
+        return False
+    elif tab[i] == n:
+        return True
+    else:
+        return est_dans_rec(tab, n, i &#43; 1)
+
+
+def insere(tab: list[int], n: int, i: int) -&gt; None:
+    &#34;&#34;&#34;
+    Insère la valeur n à l&#39;indice i du tableau tab.
+    Algorithm itératif et en place.
+    
+    Lève une exception si le tableau est déjà plein.
+    
+    HYPOTHÈSE : la gestion des &#34;trous&#34; n&#39;est pas assurée,
+    l&#39;algorithme se contente de décaler les valeurs vers 
+    la droite.
+    &#34;&#34;&#34;
+    dernier_indice = len(tab) - 1
+
+    if tab[dernier_indice] != None:
+        raise Exception(&#34;Tableau plein !&#34;)
+
+    k = dernier_indice
+    while k &gt; i:
+        tab[k] = tab[k - 1]
+        k -= 1
+
+    #for k in range(dernier_indice, i, -1):
+    #    tab[k] = tab[k - 1]
+
+    tab[i] = n
+
+
+def insere_rec(tab: list[int], n: int, i: int, k: int) -&gt; None:
+    &#34;&#34;&#34;
+    Insère la valeur n à l&#39;indice i du tableau tab.
+    Algorithm récursif et en place. k est l&#39;indice de
+    recherche. 
+    Sa première valeur doit être len(tab) - 1.
+    
+    Lève une exception si le tableau est déjà plein.
+    
+    HYPOTHÈSE : la gestion des &#34;trous&#34; n&#39;est pas 
+    assurée, l&#39;algorithme se contente de décaler 
+    les valeurs vers la droite.
+    &#34;&#34;&#34;
+    dernier_indice = len(tab) - 1
+
+    if tab[dernier_indice] != None and k == dernier_indice:
+        raise Exception(&#34;Tableau plein !&#34;)
+    elif k == i:
+        tab[i] = n
+        return None
+    else:
+        tab[k] = tab[k - 1]
+        return insere_rec(tab, n, i, k - 1)
+
+
+if __name__ == &#34;__main__&#34;:
+    tab = [i for i in range(20)]
+
+    assert est_dans(tab, 12) == True
+    assert est_dans(tab, 0) == True
+    assert est_dans(tab, 20) == False
+
+    assert est_dans_rec(tab, 12) == True
+    assert est_dans_rec(tab, 0) == True
+    assert est_dans_rec(tab, 20) == False
+
+    print(&#34;Insertion itérative&#34;)
+    tab = [1, 1, 2, 3, 4, 5, None, None, None]
+    print(tab)
+    insere(tab, 7, 0)
+    print(tab)
+    insere(tab, 7, 0)
+    print(tab)
+    insere(tab, 7, 0)
+    print(tab)
+    #insere(tab, 7, 0)
+    #print(tab)
+    print()
+    print(&#34;Insertion récursive&#34;)
+    tab = [1, 1, 2, 3, 4, 5, None, None, None]
+    print(tab)
+    insere_rec(tab, 7, 0, len(tab) - 1)
+    print(tab)
+    insere_rec(tab, 7, 0, len(tab) - 1)
+    print(tab)
+    insere_rec(tab, 7, 0, len(tab))
+    print(tab)
+
+
+
+">
 <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
 <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/listes-chainees/2-listes-chainees-liste/" />
 <meta property="og:type" content="website" />
@@ -98,15 +574,12 @@ Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
   <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.132.1">
+  <meta name="generator" content="Hugo 0.135.0">
   <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-  
 
 
   </head>
@@ -683,7 +1156,7 @@ Réponse 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
         </p>
         
         <p class="credits theme-by text-muted">
-          Carbure avec <a href="https://gohugo.io">Hugo v0.132.1</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          Carbure avec <a href="https://gohugo.io">Hugo v0.135.0</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
           
         </p>
       </div>

@@ -44,15 +44,12 @@
   <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.132.1">
+  <meta name="generator" content="Hugo 0.135.0">
   <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-  
 
 
   </head>
@@ -273,8 +270,13 @@
     </p>
     <div class="post-entry">
         
-        Dans ce document on introduit une méthode permettant d&rsquo;évaluer numériquement une solution de l&rsquo;équation $f (x) = 0$, avec $f$ une fonction de $\mathbb{R}$ dans $\mathbb{R}$ (lorsque la solution existe, bien sur) : la méthode de dichotomie.
-La méthode de dichotomie est efficace et converge relativement vite. De plus, les conditions de son utilisation sont assez simples : la fonction $f$ doit seulement être continue et changer de signe sur l&rsquo;intervalle choisi ; La méthode de Newton converge étonnement vite !
+        <p>Dans ce document on introduit une méthode permettant d&rsquo;évaluer numériquement une solution de l&rsquo;équation $f (x) = 0$, avec $f$ une fonction de $\mathbb{R}$ dans $\mathbb{R}$ (lorsque la solution existe, bien sur) : la <strong>méthode de dichotomie</strong>.</p>
+<ul>
+<li>La <strong>méthode de dichotomie</strong> est <em>efficace et converge relativement vite</em>. De plus, les conditions de son utilisation sont assez simples : la fonction $f$ doit seulement être <strong>continue</strong> et <strong>changer de signe sur l&rsquo;intervalle choisi</strong> ;</li>
+<li>La <strong>méthode de Newton</strong> <em>converge étonnement vite</em> ! Les conditions de son utilisation sont cependant plus contraignantes : la fonction $f$ <strong>doit être dérivable</strong>.</li>
+</ul>
+<h2 id="méthode-de-la-dichotomie">Méthode de la dichotomie</h2>
+<p>Le raisonnement à mettre en œuvre s&rsquo;appuie sur le théorème des valeurs intermédiaires.</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/diviser-pour-regner/5-recherche-zero/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -325,8 +327,45 @@ La méthode de dichotomie est efficace et converge relativement vite. De plus, l
     </p>
     <div class="post-entry">
         
-        Ce document étudie le problème de la sous-séquence de somme maximale. Ce problème est intéressant parce qu’il existe nombre d’algorithmes pour le résoudre et la complexité (en nombre d’opérations de somme) de ces algorithmes varie considérablement. Seulement deux algorithmes seront abordés, un prochain document présentera l&rsquo;algorithme le plus efficace (cf. programmation dynamique).
-Présentation Étant donné un tableau tab[1..n] d’entiers (positifs et négatifs), déterminer la valeur maximale du sous-tableau tab[g..h] donnant la plus grande somme de tous les sous-tableaux contigus de tab.
+        <blockquote>
+<p>Ce document étudie le <strong>problème de la sous-séquence de somme maximale</strong>. Ce problème est intéressant parce qu’il existe nombre d’algorithmes pour le résoudre et la complexité (en nombre d’opérations de somme) de ces algorithmes varie considérablement.
+Seulement deux algorithmes seront abordés, un prochain document présentera l&rsquo;algorithme le plus efficace (cf. <strong>programmation dynamique</strong>).</p>
+</blockquote>
+<h2 id="présentation">Présentation</h2>
+<div class="note normal">
+  Étant donné un tableau <code>tab[1..n]</code> d’entiers (<strong>positifs et négatifs</strong>), déterminer la valeur maximale du sous-tableau <code>tab[g..h]</code> donnant <em>la plus grande somme de tous les sous-tableaux contigus</em> de <code>tab</code>.
+Pour plus de commodité, la sous-séquence de somme maximale est 0 si tous les entiers sont négatifs.
+</div>
+<h4 id="exemples">Exemples</h4>
+<ul>
+<li>Pour le tableau <code>tab = [-2, -5, 6, -2, -3, 1, 5, -6]</code>, la sous séquence de somme maximale est <code>[6, -2, -3, 1, 5]</code> et sa somme est 7.</li>
+<li>Pour le tableau <code>tab = [0, 1, 2, -2, 3, 2]</code>, la sous séquence de somme maximale est <code>[1, 2, -2, 3, 2]</code> et sa somme est 6.</li>
+<li>Pour le tableau <code>tab = [1, -2, 3, 10, -4, 7, 2, -5]</code>, la sous séquence de somme maximale est <code>[3, 10, -4, 7, 2]</code> et sa somme est 18.</li>
+</ul>
+<h2 id="paradigme--brute-force-">Paradigme « Brute force »</h2>
+<ol>
+<li>On envisage dans un premier temps un algorithme basé sur le paradigme « Brute force » : on évalue la somme de chaque sous-tableau (parmi les $n(n + 1)/2$ sous-tableaux possibles) et à chaque évaluation on mémorise la somme maximale.
+Écrire le code de la fonction <code>sous_tab_max</code> dont la spécification est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sous_tab_max</span><span class="p">(</span><span class="n">tab</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Recherche de la somme maximale dans un tableau.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Paradigme : « Brute force ».
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Tester cette fonction.</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/diviser-pour-regner/4-max-somme-sous-tableau/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -367,8 +406,155 @@ Présentation Étant donné un tableau tab[1..n] d’entiers (positifs et négat
     </p>
     <div class="post-entry">
         
-        L&rsquo;objectif de ce document est d&rsquo;écrire et d&rsquo;implémenter un algorithme s&rsquo;appuyant sur le raisonnement « Diviser pour régner » qui permet de déterminer le maximum et le minimum des éléments dans un tableau.
-Générer une liste contenant un million de termes choisis aléatoirement entre un et mille milliards. Réponse 1 2 3 4 from random import randint if __name__ == &#34;__main__&#34;: tab = [randint(1, int(1e12)) for i in range(int(1e6))] Utiliser les fonctions min et max fournies par le langage Python afin d&rsquo;afficher les maximum et minimum dans la liste.
+        <blockquote>
+<p>L&rsquo;objectif de ce document est d&rsquo;écrire et d&rsquo;implémenter un algorithme s&rsquo;appuyant sur le raisonnement « Diviser pour régner » qui permet de déterminer le maximum et le minimum des éléments dans un tableau.</p>
+</blockquote>
+<ol>
+<li>Générer une liste contenant un million de termes choisis aléatoirement entre un et mille milliards.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tab</span> <span class="o">=</span> <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1e12</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">1e6</span><span class="p">))]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="2">
+<li>Utiliser les fonctions <code>min</code> et <code>max</code> fournies par le langage Python afin d&rsquo;afficher les maximum et minimum dans la liste.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Fonctions Python&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_min</span><span class="p">,</span> <span class="n">val_max</span> <span class="o">=</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">tab</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">tab</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;min = </span><span class="si">{}</span><span class="s2">, max = </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val_min</span><span class="p">,</span> <span class="n">val_max</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="3">
+<li>Écrire le code de la fonction <code>maxmin1</code> qui, à partir d&rsquo;un algorithme de « brute force », détermine les maximum et minimum dans la liste passée en argument.
+La spécification de la fonction est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">maxmin1</span><span class="p">(</span><span class="n">tab</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Recherche du minimum et du maximum dans le tableau tab.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Paradigme « Brute force »
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">maxmin1</span><span class="p">(</span><span class="n">tab</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Recherche du minimum et du maximum dans le tableau tab.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Paradigme « Brute force »
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_max</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_min</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">elt</span> <span class="ow">in</span> <span class="n">tab</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">elt</span> <span class="o">&gt;</span> <span class="n">val_max</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">val_max</span> <span class="o">=</span> <span class="n">elt</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">elt</span> <span class="o">&lt;</span> <span class="n">val_min</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">val_min</span> <span class="o">=</span> <span class="n">elt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">val_min</span><span class="p">,</span> <span class="n">val_max</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="4">
+<li>Vérifier le bon fonctionnement de la fonction <code>maxmin1</code> en affichant les maximum et minimum dans la liste, à la suite de ceux déterminés à l&rsquo;aide des fonctions fournies par Python.</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Recherche « Brute Force »&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_min</span><span class="p">,</span> <span class="n">val_max</span> <span class="o">=</span> <span class="n">maxmin1</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;min = </span><span class="si">{}</span><span class="s2">, max = </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val_min</span><span class="p">,</span> <span class="n">val_max</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<ol start="5">
+<li>Quelle est la complexité de la fonction <code>maxmin1</code> ?</li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<p>Il est nécessaire de parcourir tout le tableau, la complexité est donc en $O(N)$.</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/diviser-pour-regner/2-minmax/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -419,8 +605,18 @@ Générer une liste contenant un million de termes choisis aléatoirement entre 
     </p>
     <div class="post-entry">
         
-        Héron d&rsquo;Alexandrie est un ingénieur, un mécanicien et un mathématicien grec du premier siècle après J.-C.
-On ne sait pas grand chose de la vie d&rsquo;Héron, si ce n&rsquo;est qu&rsquo;il était originaire d&rsquo;Alexandrie ; les historiens se sont même longtemps divisés sur l&rsquo;époque où il a vécu. Leurs estimations allaient du 1er siècle avant J.-C. au 3ème siècle de notre ère. Aujourd&rsquo;hui, la querelle est éteinte : il est clairement établi que Héron est postérieur à Vitruve mort en $- 20$, et contemporain de Pline l&rsquo;Ancien (23 &ndash; 79), en étant actif autour de l&rsquo;an 62.
+        <p>Héron d&rsquo;Alexandrie est un ingénieur, un mécanicien et un
+mathématicien grec du premier siècle après J.-C.</p>
+<p>On ne sait pas grand chose de la vie d&rsquo;Héron, si ce n&rsquo;est qu&rsquo;il était
+originaire d&rsquo;Alexandrie ; les historiens se sont même longtemps
+divisés sur l&rsquo;époque où il a vécu. Leurs estimations allaient
+du 1<sup>er</sup> siècle avant J.-C. au 3<sup>ème</sup> siècle de
+notre ère. Aujourd&rsquo;hui, la querelle est éteinte : il est clairement
+établi que Héron est postérieur à Vitruve mort en $- 20$, et
+contemporain de Pline l&rsquo;Ancien (23 &ndash; 79), en étant actif autour de l&rsquo;an
+62. Il a donc bien vécu au 1<sup>er</sup> siècle après J.-C. et sans
+doute au début du 2<sup>ème</sup> siècle, donc sous l&rsquo;Empire romain,
+mais dans l&rsquo;Alexandrie grecque.</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/revisions/heron_alexandrie/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -461,9 +657,16 @@ On ne sait pas grand chose de la vie d&rsquo;Héron, si ce n&rsquo;est qu&rsquo;
     </p>
     <div class="post-entry">
         
-        Écriture d&rsquo;une classe Graphe L&rsquo;objectif de cette partie est l&rsquo;écriture du code modélisant un graphe orienté. La représentation choisie est celle d&rsquo;un dictionnaire de successeurs (en cours et dans le document 15,2 on a étudié les représentations par des matrice et liste de successeurs).
-La représentation par un dictionnaire de successeurs présente de nombreux avantages. Par exemple,
-les sommets peuvent être des entiers ou des chaînes de caractères quelconques ; La complexité de la liste des successeurs est directement proportionnelle au nombre de successeurs pour un sommet donné.
+        <h2 id="écriture-dune-classe-graphe">Écriture d&rsquo;une classe <code>Graphe</code></h2>
+<p>L&rsquo;objectif de cette partie est l&rsquo;écriture du code modélisant un graphe orienté. La représentation choisie est celle d&rsquo;un dictionnaire de successeurs (<a href="https://dlatreyte.github.io/terminales-nsi/graphes/1-graphes-structure-de-donnees/">en cours</a> et dans le <a href="https://dlatreyte.github.io/terminales-nsi/graphes/2-representation-graphe/">document 15,2</a> on a étudié les représentations par des matrice et liste de successeurs).<br>
+La représentation par un dictionnaire de successeurs présente de nombreux avantages. Par exemple,</p>
+<ul>
+<li>les sommets peuvent être des entiers ou des chaînes de caractères quelconques ;</li>
+<li>La complexité de la liste des successeurs est directement proportionnelle au nombre de successeurs pour un sommet donné. L&rsquo;occupation mémoire est donc faible si les sommets possèdent peu de successeurs.<br>
+<strong>Remarque :</strong> dans le cas d&rsquo;une matrice d&rsquo;adjacence, la taille est fixe et comporte $N^2$ éléments si le nombre de sommets est égal à $N$.</li>
+</ul>
+<h4 id="remarque">Remarque</h4>
+<p>Contrairement à ce qui a été fait dans le <a href="https://dlatreyte.github.io/terminales-nsi/graphes/2-representation-graphe/">document 15,2</a>, la classe qui va être implémentée ici permettra d&rsquo;initialiser un graphe vide, puis de le constituer progressivement.</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/graphes/4-parcours-profondeur-python/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -582,9 +785,29 @@ les sommets peuvent être des entiers ou des chaînes de caractères quelconques
     </p>
     <div class="post-entry">
         
-        Plusieurs modes de représentation peuvent être implémentés pour stocker des graphes : matrices d’adjacence (ou sommet-sommet), listes des voisins, des successeurs ou des prédécesseurs. Lors de cette séance nous allons écrire les classes réalisant ces implémentations.
-Matrice sommet-sommet Écrire le code de la classe GrapheM qui implémente une matrice sommet-sommet.
-La spécification du constructeur de la classe est : 1 2 3 4 def __init__(self: GrapheM, mat: List[List[int]]) -&gt; None: &#34;&#34;&#34; Constructeur de la classe.
+        <blockquote>
+<p>Plusieurs modes de représentation peuvent être implémentés pour stocker des graphes : <em>matrices d’adjacence (ou sommet-sommet), listes des voisins, des successeurs ou des prédécesseurs</em>. Lors de cette séance nous allons écrire les classes réalisant ces implémentations.</p>
+</blockquote>
+<h2 id="matrice-sommet-sommet">Matrice sommet-sommet</h2>
+<ol>
+<li>Écrire le code de la classe <code>GrapheM</code> qui implémente une matrice sommet-sommet.<br>
+La spécification du constructeur de la classe est :</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">GrapheM</span><span class="p">,</span> <span class="n">mat</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Constructeur de la classe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Remarque :</strong> cette classe possède l&rsquo;attribut <code>mat</code> qui référence la matrice d&rsquo;adjacence.</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/graphes/2-representation-graphe/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -765,154 +988,7 @@ Certaines tâches doivent être réalisées en parallèle.
 <div class="note tip">
   <h4 id="graphe-non-orienté">Graphe non orienté</h4>
 <p>Un graphe non orienté $G$ est défini par un couple $G = (V, E)$, où $V$ est un <strong>ensemble de sommets</strong> et $E$ un <strong>ensemble d&rsquo;arêtes</strong>.</p>
-</div>
-
-
-<img src="../../../../terminales-nsi/chap-15/chap-15-1/im5.svg" alt="" width="50%" />
-
-5. Pour le graphe ci-dessus, donner l'ensemble $V$ des nœuds, puis l'ensemble $E$ des arêtes.
-
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-    
-
-- Ensemble des nœuds : $V = \lbrace a, b, c, d, e \rbrace$ ;
-- Ensemble des arêtes : $E = \lbrace \lbrace a, b \rbrace, \lbrace a, c \rbrace, \lbrace b, d \rbrace, \lbrace c, d \rbrace, \lbrace c, e \rbrace, \lbrace b, e \rbrace, \lbrace d, e \rbrace \rbrace$.
-
-
-</details>
-<hr />
-
-
-
-6. Soit le graphe $G = (V, E)$ tel que $V = \lbrace a, b, c, d, e, f \rbrace$ et $E = \lbrace \lbrace a, b \rbrace, \lbrace c, d \rbrace, \lbrace c, e \rbrace, \lbrace a, c \rbrace, \lbrace b, d \rbrace, \lbrace f, d \rbrace \rbrace$.  
-Représenter $G$.
-
-
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-    
-
-<img src="../../../../terminales-nsi/chap-15/chap-15-1/im6.svg" alt="" width="50%" />
-
-
-</details>
-<hr />
-
-
-
-<div class="note tip">
-  <p>Soit $G = (V, E)$ un graphe non orienté.</p>
-<ul>
-<li>Une <strong>boucle</strong> est une arête $\lbrace u, u \rbrace$ avec $u \in V$ ;</li>
-<li>Une arête $e = \lbrace u, v \rbrace$ est <strong>multiple</strong> s&rsquo;il existe au moins deux arêtes $\lbrace u, v \rbrace$ dans $E$.</li>
-</ul>
-</div>
-
-
-<img src="../../../../terminales-nsi/chap-15/chap-15-1/im7.svg" alt="" width="40%" />
-
-<div class="note tip">
-  <h4 id="graphe-orienté-simple">Graphe orienté simple</h4>
-<p>Un graphe non orienté simple $G$ est un graphe sans boucle ni arête multiple.</p>
-</div>
-
-
-*Dans ce cours, on suppose a priori que tous les graphes non orientés sont simples.*
-
-### Vocabulaire
-
-<div class="note tip">
-  <ul>
-<li>
-<p>Tous les <strong>sommets voisins</strong> $v_{i}$ d&rsquo;un sommet $u$, c&rsquo;est à dire liés à $u$ par la formation d&rsquo;une arête, $\lbrace u, v_{i} \rbrace$ constituent l&rsquo;<strong>ensemble des sommets adjacents</strong> à $u$.</p>
-</li>
-<li>
-<p>On appelle <strong>degré d&rsquo;un sommet</strong> le nombre de sommets adjacents à ce sommet.<br>
-Le degré d&rsquo;un sommet est le <em>cardinal de l&rsquo;ensemble des sommets voisins.</em></p>
-</li>
-</ul>
-
-</div>
-
-
-7. Indiquer l'ensemble des sommets adjacents au sommet `d` du graphe ci-dessous, ainsi que son degré.
-<img src="../../../../terminales-nsi/chap-15/chap-15-1/im5.svg" alt="" width="50%" />
-
-
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-    
-
-- Ensemble des sommets adjacents à `d` : $\lbrace c,b,e  \rbrace$ ;
-- Degré de `d` : $d=3$.
-
-
-</details>
-<hr />
-
-
-
-8. Même question pour le sommet `a` du graphe.
-
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-    
-
-- Ensemble des sommets adjacents à `a` : $\lbrace c,b  \rbrace$ ;
-- Degré de `d` : $d=2$.
-
-
-</details>
-<hr />
-
-
-
-9. Pour le graphe ci-dessous indiquer l'ensemble des sommets adjacents au sommet `e` et son degré.  
-<img src="../../../../terminales-nsi/chap-15/chap-15-1/im8.svg" alt="" width="50%" />
-
-
-<hr />
-<details style="background-color: #f2f2f2;">
-    <summary>
-        <strong> Réponse</strong>
-    </summary>
-    
-
-- Ensemble des sommets adjacents à `e` : $\lbrace c  \rbrace$ ;
-- Degré de `d` : $d=1$.
-
-
-</details>
-<hr />
-
-
-
-<div class="note normal">
-  Pour tout graphe $G = (V,E)$ non orienté la somme des degrés de tous les sommets est égale à deux fois le nombre d&rsquo;arrêtes.
-</div>
-
-
-<div class="note tip">
-  <h4 id="chaîne">Chaîne</h4>
-<p>Une chaîne (walk) est une séquence de sommets et d&rsquo;arêtes $v = v_{1} e_{1} v_{2} e_{2} \ldots v_{n} e_{n} v_{n + 1}$ avec $v_{i} \in V$ pour $i \in \lbrace 1, \ldots, n + 1 \rbrace$ et $e_{i} = \lbrace v_{i}, v_{i + 1} \rbrace \in E$ pour $i \in 1, \ldots, n$.</p>
-</div>
-
-
--->
-
+        <a href="https://dlatreyte.github.io/terminales-nsi/graphes/1-graphes-structure-de-donnees/" class="post-read-more">[Lire]</a>
         
     </div>
 
@@ -962,9 +1038,44 @@ Le degré d&rsquo;un sommet est le <em>cardinal de l&rsquo;ensemble des sommets 
     </p>
     <div class="post-entry">
         
-        Au programme de la partie « Structures de données » Contenus Capacités attendues Commentaires Graphes : structures relationnelles. Sommets, arcs, arêtes, graphes orientés ou non orientés. - Modéliser des situations sous forme de graphes.
-- Écrire les implémentations correspondantes d’un graphe : matrice d’adjacence, liste de successeurs/de prédécesseurs.
-- Passer d’une représentation à une autre. On s’appuie sur des exemples comme le réseau routier, le réseau électrique, internet, les réseaux sociaux.
+        <h2 id="au-programme-de-la-partie--structures-de-données-">Au programme de la partie « Structures de données »</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Contenus</th>
+          <th style="text-align: left">Capacités attendues</th>
+          <th style="text-align: left">Commentaires</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Graphes : structures relationnelles. Sommets, arcs, arêtes, graphes orientés ou non orientés.</td>
+          <td style="text-align: left">- Modéliser des situations sous forme de graphes.<br />- Écrire les implémentations correspondantes d’un graphe : matrice d’adjacence, liste de successeurs/de prédécesseurs.<br />- Passer d’une représentation à une autre.</td>
+          <td style="text-align: left">On s’appuie sur des exemples comme le réseau routier, le réseau électrique, internet, les réseaux sociaux.<br />- Le choix de la représentation dépend du traitement qu’on veut mettre en place : on fait le lien avec la rubrique « algorithmique ».</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="au-programme-de-la-partie--algorithmique-">Au programme de la partie « Algorithmique »</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Contenus</th>
+          <th style="text-align: left">Capacités attendues</th>
+          <th style="text-align: left">Commentaires</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Algorithmes sur les graphes.</td>
+          <td style="text-align: left">- Parcourir un graphe en profondeur d’abord, en largeur d’abord.<br />- Repérer la présence d’un cycle dans un graphe.<br />- Chercher un chemin dans un graphe.</td>
+          <td style="text-align: left">- Le parcours d’un labyrinthe et le routage dans internet sont des exemples d’algorithme sur les graphes.<br />- L’exemple des graphes permet d’illustrer l’utilisation des classes en programmation.</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="documents">Documents</h2>
+<ul>
+<li>
+<p><strong>Doc.</strong> <a href="1-graphes-structure-de-donnees"><em>Les graphes : structure de données</em></a></p>
         <a href="https://dlatreyte.github.io/terminales-nsi/graphes/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -1140,7 +1251,7 @@ Le degré d&rsquo;un sommet est le <em>cardinal de l&rsquo;ensemble des sommets 
         </p>
         
         <p class="credits theme-by text-muted">
-          Carbure avec <a href="https://gohugo.io">Hugo v0.132.1</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          Carbure avec <a href="https://gohugo.io">Hugo v0.135.0</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
           
         </p>
       </div>

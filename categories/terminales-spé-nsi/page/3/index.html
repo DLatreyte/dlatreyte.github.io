@@ -44,15 +44,12 @@
   <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.132.1">
+  <meta name="generator" content="Hugo 0.135.0">
   <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/syntax.css" /><link rel="stylesheet" href="https://dlatreyte.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
-
-
-  
 
 
   </head>
@@ -273,9 +270,16 @@
     </p>
     <div class="post-entry">
         
-        Énoncé du problème Un commerçant cherche à rendre la monnaie à ses clients de façon optimale, c&rsquo;est-à-dire avec le nombre minimal de pièces et de billets.
-Dans ce problème,
-On suppose que les clients ne donnent que des sommes entières en euros (pas de centimes pour simplifier) ; Les valeurs des pièces et billets à disposition sont : 1, 2, 5, 10, 20, 50, 100, 200 et 500. On suppose que l&rsquo;on a autant d&rsquo;exemplaires que nécessaire de chaque pièce et billet ; Dans la suite, afin de simplifier, on désigne par « pièces » à la fois les pièces et les billets.
+        <h2 id="énoncé-du-problème">Énoncé du problème</h2>
+<p>Un commerçant cherche à rendre la monnaie à ses clients <strong>de façon optimale</strong>, c&rsquo;est-à-dire avec le <strong>nombre minimal de pièces et de billets</strong>.</p>
+<p>Dans ce problème,</p>
+<ul>
+<li>On suppose que les clients ne donnent que des sommes entières en euros (pas de centimes pour simplifier) ;</li>
+<li>Les valeurs des pièces et billets à disposition sont : 1, 2, 5, 10, 20, 50, 100, 200 et 500. On suppose que l&rsquo;on a autant d&rsquo;exemplaires que nécessaire de chaque pièce et billet ;</li>
+<li>Dans la suite, afin de simplifier, on désigne par « pièces » à la fois les pièces et les billets.</li>
+</ul>
+<h2 id="algorithme-glouton">Algorithme glouton</h2>
+<p>Un client nous achète un objet qui coûte 53 euros. Il paye avec un billet de 200 euros. Il faut donc lui rendre 147 euros, par exemple un billet de 100, deux billets de 20, un billet de 5 et une pièce de 2.</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/programmation-dynamique/2-rendu-monnaie/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -323,10 +327,91 @@ On suppose que les clients ne donnent que des sommes entières en euros (pas de 
     </p>
     <div class="post-entry">
         
-        Rappel : récursivité terminale La définition de la fonction factorielle est $$ n! = \begin{cases} 1 &amp; \text{if } n = 0 \cr n \times (n-1)! &amp; \text{sinon} \end{cases} $$
-Définir la fonction fact_env qui calcule la factorielle d&rsquo;un entier naturel $n$, sans oublier le jeu de tests.
-La spécification de la fonction est :
-1 2 3 4 5 6 def fact_env(n: int) -&gt; int: &#34;&#34;&#34; Retourne la factorielle de n.
+        <h2 id="rappel--récursivité-terminale">Rappel : récursivité terminale</h2>
+<p>La définition de la fonction factorielle est
+$$
+n! =
+\begin{cases}
+1 &amp; \text{if } n = 0 \cr
+n \times (n-1)! &amp; \text{sinon}
+\end{cases}
+$$</p>
+<ol>
+<li>
+<p>Définir la fonction <code>fact_env</code> qui calcule la factorielle d&rsquo;un entier naturel $n$, <em>sans oublier le jeu de tests</em>.<br>
+La spécification de la fonction est :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fact_env</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la factorielle de n.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme : récursivité enveloppée
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<hr />
+<details style="background-color: #f2f2f2;">
+    <summary>
+        <strong> Réponse</strong>
+    </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fact_env</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la factorielle de n.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme : récursivité enveloppée
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">fact_env</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">fact_env</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">fact_env</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">fact_env</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="mi">120</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">fact_env</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="o">==</span> <span class="mi">40320</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr />
+<div class="note normal">
+  <p>En informatique, la <strong>récursion terminale</strong>, aussi appelée, récursion finale, est un <em>cas particulier de récursivité assimilée à une itération</em>.<br>
+Une fonction à récursivité terminale (dite tail-recursive en anglais) est une fonction où l&rsquo;<strong>appel récursif est la dernière instruction à être évaluée</strong>. Cette instruction est alors nécessairement « pure », c&rsquo;est-à-dire qu&rsquo;elle consiste en un simple appel à la fonction, et jamais à un calcul ou une composition.<br>
+Les algorithmes récursifs exprimés à l&rsquo;aide de fonctions à récursion terminale profitent donc d&rsquo;une optimisation de la pile d&rsquo;exécution.<br>
+Cette réorganisation économise de l&rsquo;espace mémoire car aucun état, sauf l&rsquo;adresse de la fonction appelante, n&rsquo;a besoin d&rsquo;être sauvé sur la pile d&rsquo;exécution. Cela signifie également que le programmeur n&rsquo;a pas à craindre l&rsquo;épuisement de l&rsquo;espace de pile ou du tas pour des récursions très profondes.</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/programmation-dynamique/1-suite-fibonacci/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -386,9 +471,15 @@ La spécification de la fonction est :
     </p>
     <div class="post-entry">
         
-        Le modèle Entités/Associations en tant que tel n&rsquo;est pas au programme. Par contre il me semble utile afin de vous faire comprendre comment on modèle le réel et on parvient au final à un schéma relationnel.
-L&rsquo;objectif de ce chapitre n&rsquo;est donc pas la conception de schémas E/A mais plutôt leur compréhension et leur interprétation.
-Ce chapitre présente la première étape du processus de modélisation du monde réel. On commence par recueillir les informations à intégrer dans la base de donnée puis on les transcrit sous une forme qui nous permettra, dans le prochain chapitre, à passer au modèle relationnel (choix de la structure de la base, clés, .
+        <div class="note warning">
+  <p>Le modèle Entités/Associations en tant que tel n&rsquo;est pas au programme. Par contre il me semble utile afin de vous faire comprendre comment on modèle le réel et on parvient au final à un schéma relationnel.</p>
+<p><strong>L&rsquo;objectif de ce chapitre n&rsquo;est donc pas la conception de schémas E/A mais plutôt leur compréhension et leur interprétation.</strong></p>
+</div>
+<p>Ce chapitre présente la première étape du processus de modélisation du
+monde réel. On commence par recueillir les informations à intégrer dans
+la base de donnée puis on les transcrit sous une forme qui nous
+permettra, dans le prochain chapitre, à passer au <em>modèle relationnel</em>
+(choix de la structure de la base, clés, ...).</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/bases-donnees/2-entite-association/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -429,8 +520,19 @@ Ce chapitre présente la première étape du processus de modélisation du monde
     </p>
     <div class="post-entry">
         
-        Concepts relationnels Modèle relationnel Le modèle relationnel tire son nom de la notion de relation mathématique entre les éléments. Chacun de ces éléments peut prendre des valeurs dans un ensemble défini.
-Par exemple, les appareils électroménagers d&rsquo;une cuisine peuvent être contenus dans l&rsquo;ensemble des valeurs suivantes : {Réfrigérateur, Cuisinière, Hotte, Robot, Lave-vaisselle}. On peut, par ailleurs, aussi considérer l&rsquo;ensemble des couleurs que peuvent prendre ces appareils : {Rouge, Vert, Bleu, Jaune, Blanc, Noir, Rose}.
+        <h2 id="concepts-relationnels">Concepts relationnels</h2>
+<h3 id="modèle-relationnel">Modèle relationnel</h3>
+<p>Le modèle relationnel tire son nom de la notion de <em>relation</em>
+mathématique entre les éléments. Chacun de ces éléments peut prendre des
+valeurs dans un ensemble défini.</p>
+<p>Par exemple, les appareils électroménagers d&rsquo;une cuisine peuvent être
+contenus dans l&rsquo;ensemble des valeurs suivantes : {<em>Réfrigérateur</em>,
+<em>Cuisinière</em>, <em>Hotte</em>, <em>Robot</em>, <em>Lave-vaisselle</em>}. On peut, par ailleurs,
+aussi considérer l&rsquo;ensemble des couleurs que peuvent prendre ces
+appareils : {<em>Rouge</em>, <em>Vert</em>, <em>Bleu</em>, <em>Jaune</em>, <em>Blanc</em>, <em>Noir</em>, <em>Rose</em>}.
+Les combinaisons possibles entre les appareils et les couleurs sont au
+nombre de 35. Parmi toutes ces combinaisons possibles, on effectue une
+sélection qui représente la description d&rsquo;une cuisine :</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/bases-donnees/3-vers-modele-relationnel/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -471,8 +573,11 @@ Par exemple, les appareils électroménagers d&rsquo;une cuisine peuvent être c
     </p>
     <div class="post-entry">
         
-        Qu&rsquo;est-ce qu&rsquo;une base de données ? Le nombre d&rsquo;informations disponibles et les moyen de les diffuser sont en constante progression. La croissance du Web a encore accru ce développement en fournissant l&rsquo;accès à des bases de données gigantesques et très diverses par l&rsquo;intermédiaire d&rsquo;une interface commune (Amazon, Google, Facebook, ...).
-Notion de base de données Tout le monde a une idée naturelle de ce que peut être une base de donnée, nous stockons, sur nos disques durs, non seulement des fichiers musicaux, mais aussi des informations relatives à ces derniers : noms des artistes, des albums, dates d&rsquo;enregistrements, noms et numéros des morceaux, parfois noms des musiciens, .
+        <h2 id="quest-ce-quune-base-de-données-">Qu&rsquo;est-ce qu&rsquo;une base de données ?</h2>
+<p>Le nombre d&rsquo;informations disponibles et les moyen de les diffuser sont en constante progression. La croissance du Web a encore accru ce développement en fournissant l&rsquo;accès à des bases de données gigantesques et très diverses par l&rsquo;intermédiaire d&rsquo;une interface commune (Amazon, Google, Facebook, ...).</p>
+<h3 id="notion-de-base-de-données">Notion de base de données</h3>
+<p>Tout le monde a une <em>idée naturelle</em> de ce que peut être une base de donnée, nous stockons, sur nos disques durs, non seulement des fichiers musicaux, mais aussi <em>des informations relatives à ces derniers</em> : noms des
+artistes, des albums, dates d&rsquo;enregistrements, noms et numéros des morceaux, parfois noms des musiciens, ...</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/bases-donnees/1-introduction-bases-de-donnees/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -513,12 +618,20 @@ Notion de base de données Tout le monde a une idée naturelle de ce que peut ê
     </p>
     <div class="post-entry">
         
-        Le mot fractale vient du latin fractus qui signifie brisé. En effet, une figure fractale est un objet géométrique infiniment morcelé des détails sont observables à une échelle arbitrairement choisie.
-En zoomant sur une partie de la figure, on peut retrouver toute la figure, on dit qu&rsquo;elle est auto similaire.
-http://www.maths-et-tiques.fr/index.php/detentes/les-fractales
-http://fr.wikipedia.org/wiki/Fractalehttp://fr.wikipedia.org/wiki/Fractale
-Introduction Dans le code suivant (qu&rsquo;il faudra étudier et exécuter) :
-Quel est le cas de base de l&rsquo;algorithme récursif ?
+        <div class="note tip">
+  <p>Le mot fractale vient du latin fractus qui signifie brisé. En effet, une
+figure fractale est un objet géométrique infiniment morcelé des détails
+sont observables à une échelle arbitrairement choisie.</p>
+<p><em>En zoomant sur une partie de la figure, on peut retrouver toute la
+figure</em>, on dit qu&rsquo;elle est <strong>auto similaire</strong>.</p>
+<p><a class="remote" href="" target="_blank"><a href="http://www.maths-et-tiques.fr/index.php/detentes/les-fractales">http://www.maths-et-tiques.fr/index.php/detentes/les-fractales</a></a></p>
+<p><a class="remote" href="" target="_blank"><a href="http://fr.wikipedia.org/wiki/Fractalehttp://fr.wikipedia.org/wiki/Fractale">http://fr.wikipedia.org/wiki/Fractalehttp://fr.wikipedia.org/wiki/Fractale</a></a></p>
+</div>
+<h2 id="introduction">Introduction</h2>
+<p>Dans le code suivant (qu&rsquo;il faudra étudier et exécuter) :</p>
+<ol>
+<li>
+<p>Quel est le cas de base de l&rsquo;algorithme récursif ?</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/recursivite/5-fractales/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -572,7 +685,13 @@ Quel est le cas de base de l&rsquo;algorithme récursif ?
     </p>
     <div class="post-entry">
         
-        À lire absolument pour en découvrir plus ! Introduction Dans ce document, on s'intéresse à une classe de problèmes d'optimisation connus sous le nom général de « problème du sac à dos ». On peut définir ce problème de la manière suivante : *« durant un cambriolage un voleur possède un sac dont la capacité (en poids par exemple) est limitée. Il se trouve face à un ensemble d'objets qu'il veut dérober.
+        <div class="note warning">
+  <a href="https://interstices.info/le-probleme-du-sac-a-dos/">À lire absolument pour en découvrir plus !</a>
+</div>
+<h2 id="introduction">Introduction</h2>
+<img src="../../../../terminales-nsi/chap-9/chap-9-5/chap-9-5-1.png" alt="" width="45%" style="float: right; padding-left: 10px;" />
+Dans ce document, on s'intéresse à une classe de problèmes d'optimisation connus sous le nom général de « problème du sac à dos ». On peut définir ce problème de la manière suivante : *« durant un cambriolage un voleur possède un sac dont la capacité (en poids par exemple) est limitée. Il se trouve face à un ensemble d'objets qu'il veut dérober. Chacun de ces objets est caractérisé par sa valeur et son poids. Le voleur souhaite optimiser la valeur totale des objets qu'il dérobe tout en ne dépassant pas le poids maximal supporté par son sac ».*
+<p>Ce problème est une abstraction pour un grand nombre d&rsquo;autres problèmes d&rsquo;optimisation. Il a été utilisé en cryptographie comme base pour différents schémas de chiffrement1. Il faut cependant noter que la plupart de ces schémas de chiffrement ne sont plus actuellement considérés comme sûrs. ^1, il est utilisé lors du chargement des bateaux ou d&rsquo;avions, lors de la découpe de matériaux (minimisation des coupes « chutes » lors de la découpe), etc.</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/gloutons/2-sac-a-dos/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -626,7 +745,7 @@ Quel est le cas de base de l&rsquo;algorithme récursif ?
     </p>
     <div class="post-entry">
         
-        Le développement des traitements informatiques nécessite la manipulation de données de plus en plus nombreuses. Leur organisation et leur stockage constituent un enjeu essentiel de performance. Le recours aux bases de données relationnelles est aujourd’hui une solution très répandue. Ces bases de données permettent d’organiser, de stocker, de mettre à jour et d’interroger des données structurées volumineuses utilisées simultanément par différents programmes ou différents utilisateurs. Cela est impossible avec les représentations tabulaires étudiées en classe de première.
+        <p>Le développement des traitements informatiques nécessite la manipulation de données de plus en plus nombreuses. Leur organisation et leur stockage constituent un enjeu essentiel de performance. Le recours aux bases de données relationnelles est aujourd’hui une solution très répandue. Ces bases de données permettent d’organiser, de stocker, de mettre à jour et d’interroger des données structurées volumineuses utilisées simultanément par différents programmes ou différents utilisateurs. Cela est impossible avec les représentations tabulaires étudiées en classe de première.</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/bases-donnees/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -667,8 +786,20 @@ Quel est le cas de base de l&rsquo;algorithme récursif ?
     </p>
     <div class="post-entry">
         
-        Chaque méthode définie devra être accompagnée de sa spécification. Manipulation de points On considère la classe nommée Point ayant les attributs suivants :
-__abs : attribut privé de type float pour représenter l&rsquo;abscisse du point ; __ord : attribut privé de type float pour représenter l&rsquo;ordonnée du point. Définir la class Point et le constructeur __init__ permettant d&rsquo;initialiser les deux attributs. L&rsquo;encapsulation est un concept fondamental de la conception objet.
+        <div class="note warning">
+  Chaque méthode définie devra être accompagnée de sa spécification.
+</div>
+<h2 id="manipulation-de-points">Manipulation de points</h2>
+<p>On considère la classe nommée <code>Point</code> ayant les attributs suivants :</p>
+<ul>
+<li><code>__abs</code> : attribut privé de type <code>float</code> pour représenter l&rsquo;abscisse du point ;</li>
+<li><code>__ord</code> : attribut privé de type <code>float</code> pour représenter l&rsquo;ordonnée du point.</li>
+</ul>
+<ol>
+<li>Définir la class <code>Point</code> et le constructeur <code>__init__</code> permettant d&rsquo;initialiser les deux attributs.</li>
+</ol>
+<div class="note normal">
+  <p>L&rsquo;<strong>encapsulation</strong> est un concept fondamental de la conception objet. L&rsquo;idée est de <em>ne pas laisser accessibles les attributs depuis l&rsquo;extérieur de la classe/objet</em> ; les attributs sont alors dits <strong>privés</strong> (ou <strong>protégés</strong> si l&rsquo;accès est nécessaire dans une sous-classe).</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/programmation-objet/6-exercices/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -731,8 +862,15 @@ __abs : attribut privé de type float pour représenter l&rsquo;abscisse du poin
     </p>
     <div class="post-entry">
         
-        L&rsquo;objectif de ce document est d&rsquo;essayer de faire comprendre les idées mises en œuvre lors de l&rsquo;écriture des système d&rsquo;exploitation afin qu&rsquo;un nombre de programmes plus important que le nombre de processeurs puisse fonctionner « simultanément ».
-L&rsquo;ordonnanceur Rappel sur l&rsquo;exécution d&rsquo;un programme Un programme est un fichier contenant une suite d&rsquo;instructions écrites en langage machine. C&rsquo;est une suite d&rsquo;octets que le processeur est capable de décoder et d&rsquo;exécuter.
+        <blockquote>
+<p>L&rsquo;objectif de ce document est d&rsquo;essayer de faire comprendre les idées mises en œuvre lors de l&rsquo;écriture des système d&rsquo;exploitation afin qu&rsquo;<strong>un nombre de programmes plus important que le nombre de processeurs puisse fonctionner « simultanément »</strong>.</p>
+</blockquote>
+<h2 id="lordonnanceur">L&rsquo;ordonnanceur</h2>
+<h3 id="rappel-sur-lexécution-dun-programme">Rappel sur l&rsquo;exécution d&rsquo;un programme</h3>
+<div class="note tip">
+  <ul>
+<li>
+<p>Un programme est un fichier contenant une suite d&rsquo;instructions écrites en langage machine. C&rsquo;est une suite d&rsquo;octets que le processeur est capable de décoder et d&rsquo;exécuter.</p>
         <a href="https://dlatreyte.github.io/terminales-nsi/systemes-exploitation/3-processus/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -837,7 +975,7 @@ L&rsquo;ordonnanceur Rappel sur l&rsquo;exécution d&rsquo;un programme Un progr
         </p>
         
         <p class="credits theme-by text-muted">
-          Carbure avec <a href="https://gohugo.io">Hugo v0.132.1</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          Carbure avec <a href="https://gohugo.io">Hugo v0.135.0</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
           
         </p>
       </div>
