@@ -44,9 +44,9 @@
   <meta name="twitter:image" content="http://localhost:1313/first_page.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='http://localhost:1313/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.132.1">
+  <meta name="generator" content="Hugo 0.152.2">
   <link rel="alternate" href="http://localhost:1313/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="http://localhost:1313/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" /><link rel="stylesheet" href="http://localhost:1313/css/syntax.css" /><link rel="stylesheet" href="http://localhost:1313/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
@@ -270,9 +270,57 @@
     </p>
     <div class="post-entry">
         
-        Étapes à suivre La méthode introduite dans ce document s&rsquo;appuie sur les propriétés des CSS.
-Trois étapes :
-Modification du fichier default.md afin d&rsquo;y ajouter la variable booléenne auto_numbering ; Ajout de l&rsquo;appel à une nouvelle classe, auto_numbering, dans le modèle de page single.html ; Définition de la classe auto_numbering. Mise en œuvre Modification de l&rsquo;entête du fichier default.md Ajouter la ligne suivante au fichier archetypes &gt; default.md : 1 2 3 4 5 --- .
+        <h2 id="étapes-à-suivre">Étapes à suivre</h2>
+<p>La méthode introduite dans ce document s&rsquo;appuie sur les propriétés des CSS.</p>
+<p>Trois étapes :</p>
+<ul>
+<li>Modification du fichier <code>default.md</code> afin d&rsquo;y ajouter la variable booléenne <code>auto_numbering</code> ;</li>
+<li>Ajout de l&rsquo;appel à une nouvelle classe, <code>auto_numbering</code>, dans le modèle de page <code>single.html</code> ;</li>
+<li>Définition de la classe <code>auto_numbering</code>.</li>
+</ul>
+<h2 id="mise-en-œuvre">Mise en œuvre</h2>
+<h3 id="modification-de-lentête-du-fichier-defaultmd">Modification de l&rsquo;entête du fichier <code>default.md</code></h3>
+<ul>
+<li>Ajouter la ligne suivante au fichier <code>archetypes &gt; default.md</code> :</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">auto_numbering</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>Adapter la syntaxe si le langage choisi pour l&rsquo;entête n&rsquo;est pas YAML.</li>
+<li>Par défaut la numérotation est active. Il faut affecter le booléen <code>false</code> à la propriété <code>auto_numbering</code>, dans chaque article, pour la désactiver.</li>
+</ul>
+<h3 id="appel-de-la-classe-auto_numbering-par-chaque-article">Appel de la classe <code>auto_numbering</code> par chaque article</h3>
+<ul>
+<li>Copier le fichier <code>nom_thème &gt; layouts &gt; _default &gt; single.html</code> dans le dossier <code>layouts &gt; _default</code> ;</li>
+<li>Éditer le fichier de sorte à ce qu&rsquo;il appelle la classe <code>auto_numbering</code> lorsque c&rsquo;est nécessaire :</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">article</span> <span class="na">role</span><span class="o">=</span><span class="s">&#34;main&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;blog-post&#34;</span> <span class="err">{{</span><span class="na">-</span> <span class="na">if</span> <span class="err">.</span><span class="na">Param</span> <span class="err">&#34;</span><span class="na">auto_numbering</span><span class="err">&#34;</span> <span class="err">}}</span> <span class="na">auto_numbering</span> <span class="err">{{</span><span class="na">-</span> <span class="na">end</span> <span class="err">}}</span> <span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">...</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<p><strong>Remarque :</strong> tous les thèmes n&rsquo;utilisent pas une classe <code>bolg-post</code>, on rencontre aussi souvent <code>blog</code> mais cela ne change rien à l&rsquo;ajout à réaliser.</p>
         <a href="http://localhost:1313/hugo_notes/numerotation-automatique-sections/" class="post-read-more">[Lire]</a>
         
     </div>
@@ -301,46 +349,6 @@ Modification du fichier default.md afin d&rsquo;y ajouter la variable booléenne
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <ul class="list-inline text-center footer-links">
           
-          <li>
-            <a href="mailto:david.latreyte@louismassignon.com" title="Email me">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/DLatreyte" title="GitHub">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/@DLatreyte" title="Twitter">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="https://linkedin.com/in/latreyte-david-917852b2" title="LinkedIn">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/agdavgablou" title="Instagram">
-              <span class="fa-stack fa-lg">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
-              </span>
-            </a>
-          </li>
           
           <li>
             <a href="" title="RSS">
@@ -354,14 +362,10 @@ Modification du fichier default.md afin d&rsquo;y ajouter la variable booléenne
         </ul>
         <p class="credits copyright text-muted">
           
-          
-          <a href="https://dlatreyte.github.io">David Latreyte</a>
-          
-          
 
           &nbsp;&bull;&nbsp;&copy;
           
-          2024
+          2025
           
 
           
@@ -371,7 +375,7 @@ Modification du fichier default.md afin d&rsquo;y ajouter la variable booléenne
         </p>
         
         <p class="credits theme-by text-muted">
-          Carbure avec <a href="https://gohugo.io">Hugo v0.132.1</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          Carbure avec <a href="https://gohugo.io">Hugo v0.152.2</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
           
         </p>
       </div>
