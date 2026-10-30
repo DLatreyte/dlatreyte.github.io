@@ -27,7 +27,15 @@ Introduction
 Dans le code suivant (qu&rsquo;il faudra étudier et exécuter) :
 
 
-Quel est le cas de base de l&rsquo;algorithme récursif ?"><script type="application/ld+json">
+Quel est le cas de base de l&rsquo;algorithme récursif ?
+
+
+Où s&rsquo;effectue l&rsquo;appel récursif ?
+
+
+Pourquoi le cas de base est-il toujours réalisé ?
+
+"><script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "WebSite",
@@ -75,9 +83,9 @@ Quel est le cas de base de l&rsquo;algorithme récursif ?"><script type="applica
     "name" : ""
   },
   "headline": "Dessin de figures fractales",
-  "description" : " Le mot fractale vient du latin fractus qui signifie brisé. En effet, une figure fractale est un objet géométrique infiniment morcelé des détails sont observables à une échelle arbitrairement choisie.\nEn zoomant sur une partie de la figure, on peut retrouver toute la figure, on dit qu\u0026rsquo;elle est auto similaire.\nhttp:\/\/www.maths-et-tiques.fr\/index.php\/detentes\/les-fractales\nhttp:\/\/fr.wikipedia.org\/wiki\/Fractalehttp:\/\/fr.wikipedia.org\/wiki\/Fractale\nIntroduction Dans le code suivant (qu\u0026rsquo;il faudra étudier et exécuter) :\nQuel est le cas de base de l\u0026rsquo;algorithme récursif ?\n",
+  "description" : " Le mot fractale vient du latin fractus qui signifie brisé. En effet, une figure fractale est un objet géométrique infiniment morcelé des détails sont observables à une échelle arbitrairement choisie.\nEn zoomant sur une partie de la figure, on peut retrouver toute la figure, on dit qu\u0026rsquo;elle est auto similaire.\nhttp:\/\/www.maths-et-tiques.fr\/index.php\/detentes\/les-fractales\nhttp:\/\/fr.wikipedia.org\/wiki\/Fractalehttp:\/\/fr.wikipedia.org\/wiki\/Fractale\nIntroduction Dans le code suivant (qu\u0026rsquo;il faudra étudier et exécuter) :\nQuel est le cas de base de l\u0026rsquo;algorithme récursif ?\nOù s\u0026rsquo;effectue l\u0026rsquo;appel récursif ?\nPourquoi le cas de base est-il toujours réalisé ?\n",
   "inLanguage" : "fr",
-  "wordCount":  1402 ,
+  "wordCount":  1417 ,
   "datePublished" : "2021-01-26T06:16:46\u002b04:00",
   "dateModified" : "2021-01-26T06:16:46\u002b04:00",
   "image" : "https:\/\/dlatreyte.github.io\/first_page.jpg",
@@ -111,7 +119,15 @@ Introduction
 Dans le code suivant (qu&rsquo;il faudra étudier et exécuter) :
 
 
-Quel est le cas de base de l&rsquo;algorithme récursif ?">
+Quel est le cas de base de l&rsquo;algorithme récursif ?
+
+
+Où s&rsquo;effectue l&rsquo;appel récursif ?
+
+
+Pourquoi le cas de base est-il toujours réalisé ?
+
+">
 <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
 <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/recursivite/5-fractales/" />
 <meta property="og:type" content="website" />
@@ -125,7 +141,7 @@ sont observables à une échelle arbitrairement …">
   <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.156.0">
+  <meta name="generator" content="Hugo 0.169.0">
   <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -395,38 +411,44 @@ figure</em>, on dit qu&rsquo;elle est <strong>auto similaire</strong>.</p>
 </span><span class="lnt">29
 </span><span class="lnt">30
 </span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">turtle</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">math</span> <span class="k">as</span> <span class="nn">m</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">dessine_etoile</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">turtle</span><span class="p">,</span> <span class="n">pt</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">long</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">long</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
-</span></span><span class="line"><span class="cl">    
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">        <span class="n">x_ext</span> <span class="o">=</span> <span class="n">pt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">long</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">        <span class="n">y_ext</span> <span class="o">=</span> <span class="n">pt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">long</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="n">i</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="n">pt_ext</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_ext</span><span class="p">,</span> <span class="n">y_ext</span><span class="p">)</span> <span class="c1"># Extrémité du segment</span>
-</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">pt_ext</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_ext</span><span class="p">,</span> <span class="n">y_ext</span><span class="p">)</span>  <span class="c1"># Extrémité du segment</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">penup</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">setposition</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">pendown</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">setposition</span><span class="p">(</span><span class="n">pt_ext</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        
-</span></span><span class="line"><span class="cl">        <span class="n">dessine_etoile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pt_ext</span><span class="p">,</span> <span class="n">long</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dessine_etoile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">pt_ext</span><span class="p">,</span> <span class="n">long</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="n">t</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="n">t</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">t</span><span class="o">.</span><span class="n">hideturtle</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="n">segment</span> <span class="o">=</span> <span class="mi">300</span>
-</span></span><span class="line"><span class="cl">    <span class="n">centre</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">centre</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">dessine_etoile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">centre</span><span class="p">,</span> <span class="n">segment</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">turtle</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">main</span><span class="p">()</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -648,11 +670,13 @@ longueur $l$.</p>
 </span><span class="lnt">84
 </span><span class="lnt">85
 </span><span class="lnt">86
+</span><span class="lnt">87
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s2">Tracé du flocon de Von Koch
 </span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">turtle</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
@@ -728,9 +752,9 @@ longueur $l$.</p>
 </span></span><span class="line"><span class="cl">    <span class="n">t</span><span class="o">.</span><span class="n">pendown</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">dessine_flocon</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">#koch(t, 4, 300)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># koch(t, 4, 300)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1">#koch_1(t, 200)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># koch_1(t, 200)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">fen</span><span class="o">.</span><span class="n">exitonclick</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">
@@ -828,13 +852,19 @@ profondeur 10 ou 11 donne un résultat assez joli.</p>
 </span><span class="lnt">40
 </span><span class="lnt">41
 </span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s2">Programme qui dessine un arbre fractal.
 </span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">turtle</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">math</span> <span class="k">as</span> <span class="nn">m</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">arbre</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">turtle</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">longueur</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">
@@ -848,11 +878,12 @@ profondeur 10 ou 11 donne un résultat assez joli.</p>
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">width</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">longueur</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">arbre</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">longueur</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arbre</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">longueur</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">theta</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">arbre</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">longueur</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arbre</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">longueur</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span><span class="n">longueur</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">    <span class="n">t</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">Turtle</span><span class="p">()</span>
@@ -867,9 +898,10 @@ profondeur 10 ou 11 donne un résultat assez joli.</p>
 </span></span><span class="line"><span class="cl">    <span class="n">arbre</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">longueur</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="c1"># enregistrement de l&#39;image</span>
 </span></span><span class="line"><span class="cl">    <span class="n">ts</span> <span class="o">=</span> <span class="n">turtle</span><span class="o">.</span><span class="n">getscreen</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ts</span><span class="o">.</span><span class="n">getcanvas</span><span class="p">()</span><span class="o">.</span><span class="n">postscript</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;arbre.pdf&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ts</span><span class="o">.</span><span class="n">getcanvas</span><span class="p">()</span><span class="o">.</span><span class="n">postscript</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&#34;arbre.pdf&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">turtle</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">main</span><span class="p">()</span>
 </span></span></code></pre></td></tr></table>
@@ -972,7 +1004,7 @@ profondeur 10 ou 11 donne un résultat assez joli.</p>
         </p>
         
         <p class="credits theme-by text-muted">
-          Carbure avec <a href="https://gohugo.io">Hugo v0.156.0</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          Carbure avec <a href="https://gohugo.io">Hugo v0.169.0</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
           
         </p>
       </div>

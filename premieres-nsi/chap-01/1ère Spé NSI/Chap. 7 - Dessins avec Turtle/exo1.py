@@ -1,5 +1,6 @@
 import turtle
 
+
 def trace_rectangle(tortue: "Turtle", longueur: int, largeur: int) -> None:
     """
     Dessine à l'écran à l'aide de la tortue passée en argument
@@ -13,9 +14,10 @@ def trace_rectangle(tortue: "Turtle", longueur: int, largeur: int) -> None:
         tortue.forward(largeur)
         tortue.left(90)
 
+
 def main():
-    """ Fonction principale qui initialise toutes les
-    variables et appelle toutes les autres. """
+    """Fonction principale qui initialise toutes les
+    variables et appelle toutes les autres."""
     tortue_1 = turtle.Turtle()
     tortue_2 = turtle.Turtle()
     longueur = 300
@@ -24,5 +26,6 @@ def main():
     trace_rectangle(tortue_2, longueur // 3, largeur // 3)
 
     turtle.exitonclick()  # Empêche la fenêtre de se fermer automatiquement à la fin du tracé
+
 
 main()

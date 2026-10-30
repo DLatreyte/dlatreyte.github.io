@@ -3,6 +3,7 @@ Mise en œuvre de la stratégie gloutonne pour le
 problème du rendu de monnaie.
 Utilisation de l'opérateur modulo.
 """
+
 from typing import List
 
 
@@ -40,7 +41,9 @@ def main():
     a_rendre = somme_a_rendre(prix, client)
     comment = pieces_a_rendre(a_rendre, pieces)
 
-    reponse = ["{} piece(s) de {}".format(comment[i], pieces[i]) for i in range(len(pieces))]
+    reponse = [
+        "{} piece(s) de {}".format(comment[i], pieces[i]) for i in range(len(pieces))
+    ]
     print("Je dois rendre : {}".format(a_rendre))
     print("Je donne donc : {}".format(reponse))
 

@@ -2,6 +2,7 @@
 Implémentation du tri sélection.
 """
 
+
 def tri_selection(tab):
     """
     Implémentation du tri par sélection.
@@ -9,10 +10,10 @@ def tri_selection(tab):
     tableau.
     """
     nb = len(tab) - 1  # dernier indice
-    
+
     for i in range(0, nb):  # du premier à l'avant-dernier indice
         min = i
-        for j in range(i + 1, nb+1):  # de l'indice i+1 au dernier indice
+        for j in range(i + 1, nb + 1):  # de l'indice i+1 au dernier indice
             if tab[j] < tab[min]:
                 min = j
         # Permutation du contenu des variables
@@ -27,5 +28,6 @@ def main():
     print(tab)
     tri_selection(tab)
     print(tab)
-    
+
+
 main()

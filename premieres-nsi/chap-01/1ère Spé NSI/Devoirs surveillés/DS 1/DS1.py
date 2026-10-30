@@ -5,7 +5,7 @@ def aire_triangle(a: float, b: float, c: float) -> float:
     """
     Détermine l'aire du triangle par la méthode trouvée dans le vieux livre
     de mathématiques.
-    
+
     >>> aire_triangle(2, 4, 4)
     3.872983346207417
     """
@@ -37,7 +37,7 @@ def prix_timbre(masse: float, type: str) -> float:
     elif (masse <= 20) and (type == "Lettre verte"):
         prix = 0.95
     elif (masse <= 50) and (type == "Lettre prioritaire"):
-        prix = 1.
+        prix = 1.0
     elif (masse <= 50) and (type == "Ecopli"):
         prix = 0.78
     elif (masse <= 100) and (type == "Lettre verte"):
@@ -48,15 +48,14 @@ def prix_timbre(masse: float, type: str) -> float:
         prix = 1.0
     else:
         prix = -1
-    
-    return prix
 
+    return prix
 
 
 def factorielle(n: int) -> int:
     """
     Détermine la factorielle du nombre n.
-    
+
     >>> factorielle(3)
     6
     >>> factorielle(10)
@@ -71,7 +70,7 @@ def factorielle(n: int) -> int:
 def sinus(x: float, N: int) -> float:
     """
     Détermine le développement en série de la fonction sinus en x.
-    
+
     >>> sinus(3.1416/2, 10)
     0.9999999999932534
     >>> sinus(0, 10)
@@ -79,19 +78,19 @@ def sinus(x: float, N: int) -> float:
     """
     sinus = 0
     n = 0
-    
-    while True:    
-        sinus += (-1)**n * x**(2 * n + 1) / factorielle(2 * n + 1)
-        
+
+    while True:
+        sinus += (-1) ** n * x ** (2 * n + 1) / factorielle(2 * n + 1)
+
         if n == N:
             break
         else:
             n += 1
-    
+
     return sinus
-            
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

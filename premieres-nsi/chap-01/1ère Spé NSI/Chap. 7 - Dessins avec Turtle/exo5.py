@@ -1,6 +1,7 @@
 import turtle
 import random
 
+
 def trace_carre(tortue: "Turtle", largeur: int) -> None:
     """
     Trace un carré de largeur donnée dont l'orientation dépend
@@ -10,20 +11,21 @@ def trace_carre(tortue: "Turtle", largeur: int) -> None:
     for i in range(4):
         tortue.forward(largeur)
         tortue.left(90)
-        
+
+
 def main():
-    """ Fonction principale. """
+    """Fonction principale."""
     tortue = turtle.Turtle()
     tortue.speed(0)
-    
+
     nbre_carres = 200
-    
+
     largeur_min = 5
     largeur_max = 25
-    
+
     angle_min = 0
     angle_max = 360
-    
+
     x_min = -200
     x_max = 200
     y_min = -200
@@ -34,13 +36,13 @@ def main():
         y = random.randint(y_min, y_max)
         largeur = random.randint(largeur_min, largeur_max)
         angle = random.randint(angle_min, angle_max)
-        
+
         tortue.penup()
         tortue.setposition(x, y)
         tortue.setheading(angle)
         tortue.pendown()
         trace_carre(tortue, largeur)
-        
+
     turtle.exitonclick()
 
 

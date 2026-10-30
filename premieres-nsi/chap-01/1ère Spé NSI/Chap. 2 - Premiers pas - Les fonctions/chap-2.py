@@ -12,23 +12,25 @@ def salutation(nom: str, prenom: str, naissance: int) -> str:
     """
     À partir des nom, prénom et date de naissance, retourne un message
     d'accueil indiquant l'âge.
-    
+
     >>> salutation("Dupond", "Patrick", 1961)
     'Bonjour Patrick Dupond, vous avez 58 ans.'
     """
     annee_en_cours = 2019
-    message = "Bonjour {0} {1}, vous avez {2} ans.".format(prenom,
-                                                           nom,
-                                                           annee_en_cours - naissance)
+    message = "Bonjour {0} {1}, vous avez {2} ans.".format(
+        prenom, nom, annee_en_cours - naissance
+    )
     return message
 
 
 import random
+
+
 def age_aleatoire(age_min: int, age_max: int) -> str:
     """
     À partir de deux ages limites, retourne un message contenant
     un age déterminé aléatoirement.
-    
+
     >>> age_aleatoire(20, 100)
     'Votre age est : 85 ans !'
     """

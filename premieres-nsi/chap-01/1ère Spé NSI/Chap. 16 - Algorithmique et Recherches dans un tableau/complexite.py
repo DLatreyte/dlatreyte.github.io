@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 def affichage(x, y, labels):
     """
     Affichage des courbes.
-    
+
     Paramètres
     ----------
     x : array
@@ -14,7 +14,7 @@ def affichage(x, y, labels):
         Différentes ordonnées
     labels: tuple
         Liste des étiquettes
-    
+
     Retour
     ------
     res : None
@@ -29,17 +29,16 @@ def affichage(x, y, labels):
     fig.savefig("complexites_sans_exponentielle.png")
     fig.show()
 
+
 x = np.linspace(1, 10, 100)
-y1 = x                 # O(N)
-y2 = np.log2(x)        # O(log N)
+y1 = x  # O(N)
+y2 = np.log2(x)  # O(log N)
 
 y3 = np.zeros(len(x))  # O(N log N)
 for i in range(len(x)):
     y3[i] = y1[i] * y2[i]
-    
-y4 = y1 * y1           # O(N^2)
-y5 = np.exp(y1)        # O(e^^N)
 
-affichage(x,
-          (y1, y2, y3, y4),
-          ("O(N)", "O(log N)", "O(N log N)", "O(N^2)"))
+y4 = y1 * y1  # O(N^2)
+y5 = np.exp(y1)  # O(e^^N)
+
+affichage(x, (y1, y2, y3, y4), ("O(N)", "O(log N)", "O(N log N)", "O(N^2)"))

@@ -23,7 +23,7 @@ def valeur_absolue(x: float) -> float:
     >>> valeur_absolue(-3)
     3
     """
-    if x >=0 :
+    if x >= 0:
         return x
     else:
         return -x
@@ -56,7 +56,7 @@ def amelioration_essai(essai: float, x: float) -> float:
     >>> amelioration_essai(2, 1)
     1.25
     """
-    return moyenne(essai, x/essai)
+    return moyenne(essai, x / essai)
 
 
 def est_suffisamment_bon(essai: float, x: float) -> float:
@@ -80,8 +80,8 @@ def est_suffisamment_bon(essai: float, x: float) -> float:
 def test(essai: float, x: float) -> float:
     """
     Retourne la racine carrée du nombre x. Le calcul est effectué grâce à un
-	raisonnement itératif depuis une première valeur strictement positive notée
-	essai.
+        raisonnement itératif depuis une première valeur strictement positive notée
+        essai.
 
     >>> test(2, 4)
     2
@@ -116,4 +116,5 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

@@ -1,5 +1,6 @@
 from typing import List, Tuple
 
+
 def exo2(liste: List[float]) -> Tuple[float]:
     """
     Détermine l'élément le plus grand de la liste de floats passée
@@ -7,11 +8,13 @@ def exo2(liste: List[float]) -> Tuple[float]:
     """
     return max(liste), min(liste)
 
+
 from typing import List, Tuple
 import random
 
 from typing import List
 import random
+
 
 def loto() -> List[int]:
     """
@@ -35,6 +38,7 @@ def loto() -> List[int]:
 
 from typing import List
 
+
 def moyenne(liste_notes: List[float]) -> float:
     """
     Détermine la moyenne des notes reçues en argument dans la
@@ -43,18 +47,19 @@ def moyenne(liste_notes: List[float]) -> float:
     return sum(liste_notes) / len(liste_notes)
 
 
-def nombre_dans_intervalle(liste: List[float], valeur_min: float,
-                           valeur_max: float) -> float:
+def nombre_dans_intervalle(
+    liste: List[float], valeur_min: float, valeur_max: float
+) -> float:
     """
     Détermine le nombre de valeurs de liste comprises dans l'intervalle
     [val_min, val_max].
     """
     nbre = 0
-    
+
     for valeur in liste:
         if valeur >= valeur_min and valeur <= valeur_max:
             nbre += 1
-    
+
     return nbre
 
 
@@ -68,7 +73,7 @@ def statistiques(notes: List[float]) -> Tuple[float]:
     intervalle_inf = nombre_dans_intervalle(notes, 0, note_moyenne - 3)
     intervalle_mid = nombre_dans_intervalle(notes, note_moyenne - 3, note_moyenne + 3)
     intervalle_sup = nombre_dans_intervalle(notes, note_moyenne + 3, 20)
-    
+
     return (note_moyenne, intervalle_inf, intervalle_mid, intervalle_sup)
 
 
@@ -83,10 +88,9 @@ def distance(pt1: Tuple[float], pt2: Tuple[float]) -> float:
     """
     if len(pt1) != len(pt2):
         raise Exception("Les dimensions des tuples ne correspondent pas.")
-    
+
     distance_carre = 0
     for i in range(len(pt1)):
-        distance_carre += (pt1[i] - pt2[i])**2
-    
+        distance_carre += (pt1[i] - pt2[i]) ** 2
+
     return m.sqrt(distance_carre)
-    

@@ -30,7 +30,14 @@ Rechercher pour quelles actions les protocoles http, pop3, ftp, telnet, ssh et d
 
 
 Ces protocoles s&rsquo;appuient-ils sur le protocole TCP ou le protocole UDP au niveau de
-la couche transport du modèle OSI."><script type="application/ld+json">
+la couche transport du modèle OSI.
+
+
+Utiliser Wireshark pour analyser les traces http.pcap, smtp.pcap, pop3.pcap, ftp.pcap, telnet.pcap, ssh.pcap, dns.pcap et remplir le tableau suivant.
+Mettre le filtre de Wireshark à http, smtp, pop, ftp , telnet , ssh et dns respectivement pour afficher seulement les messages utiles.
+Utilisez l&rsquo;annexe de ce TP pour le format des entêtes TCP et UDP.
+
+"><script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "WebSite",
@@ -78,7 +85,7 @@ la couche transport du modèle OSI."><script type="application/ld+json">
     "name" : ""
   },
   "headline": "Analyse du protocole de transport TCP",
-  "description" : "Cette séance nécessite l\u0026rsquo;utilisation du logiciel libre Wireshark. Des versions pour Windows (il existe même une version portable qui n\u0026rsquo;a pas besoin d\u0026rsquo;être installée), OS X et Linux sont téléchargeables à cette adresse : https:\/\/www.wireshark.org Fichiers pour utilisation de Wireshark Rechercher pour quelles actions les protocoles http, pop3, ftp, telnet, ssh et dns sont utilisés.\nCes protocoles s\u0026rsquo;appuient-ils sur le protocole TCP ou le protocole UDP au niveau de la couche transport du modèle OSI.\n",
+  "description" : "Cette séance nécessite l\u0026rsquo;utilisation du logiciel libre Wireshark. Des versions pour Windows (il existe même une version portable qui n\u0026rsquo;a pas besoin d\u0026rsquo;être installée), OS X et Linux sont téléchargeables à cette adresse : https:\/\/www.wireshark.org Fichiers pour utilisation de Wireshark Rechercher pour quelles actions les protocoles http, pop3, ftp, telnet, ssh et dns sont utilisés.\nCes protocoles s\u0026rsquo;appuient-ils sur le protocole TCP ou le protocole UDP au niveau de la couche transport du modèle OSI.\nUtiliser Wireshark pour analyser les traces http.pcap, smtp.pcap, pop3.pcap, ftp.pcap, telnet.pcap, ssh.pcap, dns.pcap et remplir le tableau suivant. Mettre le filtre de Wireshark à http, smtp, pop, ftp , telnet , ssh et dns respectivement pour afficher seulement les messages utiles. Utilisez l\u0026rsquo;annexe de ce TP pour le format des entêtes TCP et UDP.\n",
   "inLanguage" : "fr",
   "wordCount":  1242 ,
   "datePublished" : "2020-11-29T05:59:52\u002b04:00",
@@ -117,7 +124,14 @@ Rechercher pour quelles actions les protocoles http, pop3, ftp, telnet, ssh et d
 
 
 Ces protocoles s&rsquo;appuient-ils sur le protocole TCP ou le protocole UDP au niveau de
-la couche transport du modèle OSI.">
+la couche transport du modèle OSI.
+
+
+Utiliser Wireshark pour analyser les traces http.pcap, smtp.pcap, pop3.pcap, ftp.pcap, telnet.pcap, ssh.pcap, dns.pcap et remplir le tableau suivant.
+Mettre le filtre de Wireshark à http, smtp, pop, ftp , telnet , ssh et dns respectivement pour afficher seulement les messages utiles.
+Utilisez l&rsquo;annexe de ce TP pour le format des entêtes TCP et UDP.
+
+">
 <meta property="og:image" content="https://dlatreyte.github.io/first_page.jpg" />
 <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/reseaux/3-analyse-tcp/" />
 <meta property="og:type" content="website" />
@@ -130,7 +144,7 @@ d&rsquo;être installée), OS X et Linux …">
   <meta name="twitter:image" content="https://dlatreyte.github.io/first_page.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://dlatreyte.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.156.0">
+  <meta name="generator" content="Hugo 0.169.0">
   <link rel="alternate" href="https://dlatreyte.github.io/index.xml" type="application/rss+xml" title="Accueil"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css" integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"><link rel="stylesheet" href="https://dlatreyte.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -362,74 +376,74 @@ Utilisez l&rsquo;annexe de ce TP pour le format des entêtes TCP et UDP.</p>
 </li>
 </ol>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: center"><strong>Protocole</strong></th>
-          <th style="text-align: center"><strong>Adresse IP du serveur</strong></th>
-          <th style="text-align: center"><strong>Numéro de port du serveur</strong></th>
-          <th style="text-align: center"><strong>Numéro du protocole (entête IP)</strong></th>
-          <th style="text-align: center"><strong>Adresse IPdu client</strong></th>
-          <th style="text-align: center"><strong>Numéro du port du client</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center"><code>http</code></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><code>smtp</code></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><code>pop</code></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><code>ftp</code></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><code>telnet</code></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><code>ssh</code></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><code>dns</code></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-          <td style="text-align: center"></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center"><strong>Protocole</strong></th>
+					<th style="text-align: center"><strong>Adresse IP du serveur</strong></th>
+					<th style="text-align: center"><strong>Numéro de port du serveur</strong></th>
+					<th style="text-align: center"><strong>Numéro du protocole (entête IP)</strong></th>
+					<th style="text-align: center"><strong>Adresse IPdu client</strong></th>
+					<th style="text-align: center"><strong>Numéro du port du client</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center"><code>http</code></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+			</tr>
+			<tr>
+					<td style="text-align: center"><code>smtp</code></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+			</tr>
+			<tr>
+					<td style="text-align: center"><code>pop</code></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+			</tr>
+			<tr>
+					<td style="text-align: center"><code>ftp</code></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+			</tr>
+			<tr>
+					<td style="text-align: center"><code>telnet</code></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+			</tr>
+			<tr>
+					<td style="text-align: center"><code>ssh</code></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+			</tr>
+			<tr>
+					<td style="text-align: center"><code>dns</code></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+					<td style="text-align: center"></td>
+			</tr>
+	</tbody>
 </table>
 <hr />
 <details style="background-color: #f2f2f2;">
@@ -437,74 +451,74 @@ Utilisez l&rsquo;annexe de ce TP pour le format des entêtes TCP et UDP.</p>
         <strong> Réponse</strong>
     </summary>
 <table>
-  <thead>
-      <tr>
-          <th style="text-align: center"><strong>Protocole</strong></th>
-          <th style="text-align: center"><strong>Adresse IP du serveur</strong></th>
-          <th style="text-align: center"><strong>Numéro de port du serveur</strong></th>
-          <th style="text-align: center"><strong>Numéro du protocole (entête IP)</strong></th>
-          <th style="text-align: center"><strong>Adresse IPdu client</strong></th>
-          <th style="text-align: center"><strong>Numéro du port du client</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td style="text-align: center"><code>http</code></td>
-          <td style="text-align: center">10.1.1.13</td>
-          <td style="text-align: center">80</td>
-          <td style="text-align: center">6</td>
-          <td style="text-align: center">10.1.1.11</td>
-          <td style="text-align: center">47756</td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><code>smtp</code></td>
-          <td style="text-align: center">10.1.1.13</td>
-          <td style="text-align: center">25</td>
-          <td style="text-align: center">6</td>
-          <td style="text-align: center">10.1.1.11</td>
-          <td style="text-align: center">60506</td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><code>pop</code></td>
-          <td style="text-align: center">10.5.1.53</td>
-          <td style="text-align: center">110</td>
-          <td style="text-align: center">6</td>
-          <td style="text-align: center">10.5.1.51</td>
-          <td style="text-align: center">39192</td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><code>ftp</code></td>
-          <td style="text-align: center">10.1.1.13</td>
-          <td style="text-align: center">21</td>
-          <td style="text-align: center">6</td>
-          <td style="text-align: center">10.1.1.11</td>
-          <td style="text-align: center">54670</td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><code>telnet</code></td>
-          <td style="text-align: center">10.1.1.13</td>
-          <td style="text-align: center">23</td>
-          <td style="text-align: center">6</td>
-          <td style="text-align: center">10.1.1.11</td>
-          <td style="text-align: center">38283</td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><code>ssh</code></td>
-          <td style="text-align: center">10.1.1.13</td>
-          <td style="text-align: center">22</td>
-          <td style="text-align: center">6</td>
-          <td style="text-align: center">10.1.1.11</td>
-          <td style="text-align: center">38257</td>
-      </tr>
-      <tr>
-          <td style="text-align: center"><code>dns</code></td>
-          <td style="text-align: center">10.1.1.13</td>
-          <td style="text-align: center">53</td>
-          <td style="text-align: center">17</td>
-          <td style="text-align: center">132.227.61.122</td>
-          <td style="text-align: center">34053</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th style="text-align: center"><strong>Protocole</strong></th>
+					<th style="text-align: center"><strong>Adresse IP du serveur</strong></th>
+					<th style="text-align: center"><strong>Numéro de port du serveur</strong></th>
+					<th style="text-align: center"><strong>Numéro du protocole (entête IP)</strong></th>
+					<th style="text-align: center"><strong>Adresse IPdu client</strong></th>
+					<th style="text-align: center"><strong>Numéro du port du client</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: center"><code>http</code></td>
+					<td style="text-align: center">10.1.1.13</td>
+					<td style="text-align: center">80</td>
+					<td style="text-align: center">6</td>
+					<td style="text-align: center">10.1.1.11</td>
+					<td style="text-align: center">47756</td>
+			</tr>
+			<tr>
+					<td style="text-align: center"><code>smtp</code></td>
+					<td style="text-align: center">10.1.1.13</td>
+					<td style="text-align: center">25</td>
+					<td style="text-align: center">6</td>
+					<td style="text-align: center">10.1.1.11</td>
+					<td style="text-align: center">60506</td>
+			</tr>
+			<tr>
+					<td style="text-align: center"><code>pop</code></td>
+					<td style="text-align: center">10.5.1.53</td>
+					<td style="text-align: center">110</td>
+					<td style="text-align: center">6</td>
+					<td style="text-align: center">10.5.1.51</td>
+					<td style="text-align: center">39192</td>
+			</tr>
+			<tr>
+					<td style="text-align: center"><code>ftp</code></td>
+					<td style="text-align: center">10.1.1.13</td>
+					<td style="text-align: center">21</td>
+					<td style="text-align: center">6</td>
+					<td style="text-align: center">10.1.1.11</td>
+					<td style="text-align: center">54670</td>
+			</tr>
+			<tr>
+					<td style="text-align: center"><code>telnet</code></td>
+					<td style="text-align: center">10.1.1.13</td>
+					<td style="text-align: center">23</td>
+					<td style="text-align: center">6</td>
+					<td style="text-align: center">10.1.1.11</td>
+					<td style="text-align: center">38283</td>
+			</tr>
+			<tr>
+					<td style="text-align: center"><code>ssh</code></td>
+					<td style="text-align: center">10.1.1.13</td>
+					<td style="text-align: center">22</td>
+					<td style="text-align: center">6</td>
+					<td style="text-align: center">10.1.1.11</td>
+					<td style="text-align: center">38257</td>
+			</tr>
+			<tr>
+					<td style="text-align: center"><code>dns</code></td>
+					<td style="text-align: center">10.1.1.13</td>
+					<td style="text-align: center">53</td>
+					<td style="text-align: center">17</td>
+					<td style="text-align: center">132.227.61.122</td>
+					<td style="text-align: center">34053</td>
+			</tr>
+	</tbody>
 </table>
 </details>
 <hr />
@@ -524,7 +538,7 @@ clients sont dynamiques et supérieurs à cette valeur. Seul un compte «
 administrateur de la machine » peut ouvrir un port inférieur à 1024.</p>
 </details>
 <hr />
-<h4 id="établissement-dune-connexion-hahahugoshortcode383s4hbhb">Établissement d&rsquo;une connexion (
+<h4 id="établissement-dune-connexion-hahahugoshortcode377s4hbhb">Établissement d&rsquo;une connexion (
 <a class="remote" href="https://fr.wikipedia.org/wiki/Transmission_Control_Protocol" target="_blank">Wikipedia</a>
 
 )</h4>
@@ -564,7 +578,7 @@ SYN, puis réponse avec un drapeau SYN,ACK et pour finir une dernière
 <p>Les trames sont donc les trames 5, 6 et 7.</p>
 </details>
 <hr />
-<h4 id="transferts-de-données-hahahugoshortcode383s7hbhb">Transferts de données (
+<h4 id="transferts-de-données-hahahugoshortcode377s7hbhb">Transferts de données (
 <a class="remote" href="https://fr.wikipedia.org/wiki/Transmission_Control_Protocol" target="_blank">Wikipedia</a>
 
 )</h4>
@@ -783,7 +797,7 @@ de contrôle dans UDP</strong>.</p>
         </p>
         
         <p class="credits theme-by text-muted">
-          Carbure avec <a href="https://gohugo.io">Hugo v0.156.0</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          Carbure avec <a href="https://gohugo.io">Hugo v0.169.0</a>&nbsp;&bull;&nbsp; Avec le Theme <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> adapté de <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
           
         </p>
       </div>

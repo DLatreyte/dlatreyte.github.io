@@ -7,6 +7,7 @@ def longueur(chaine: str) -> int:
         long += 1
     return long
 
+
 def est_dans(chaine: str, caractere: str) -> bool:
     """
     Détermine si le caractère passé en argument appartient ou pas à

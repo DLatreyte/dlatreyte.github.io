@@ -8,7 +8,7 @@ import pandas as pd
 
 def creation_echantillons(ensemble, ligne_debut, ligne_fin, nbre_col):
     """
-    Création d'une liste d'échantillons. Chaque échantillon est un dictionnaire dont 
+    Création d'une liste d'échantillons. Chaque échantillon est un dictionnaire dont
     certaines clés sont numériques (les numéros des pixels) avec pour valeur l'intensité
     lumineuse et une dernière clé est la chaîne de caractères 'chiffre'.
 
@@ -22,7 +22,7 @@ def creation_echantillons(ensemble, ligne_debut, ligne_fin, nbre_col):
         Dernière ligne que l'on prend en compte.
     nbre_col : int
         Nombre de colonnes à prendre en compte.int
-    
+
     Retour
     ------
     echantillons : List[Dict]
@@ -37,7 +37,7 @@ def creation_echantillons(ensemble, ligne_debut, ligne_fin, nbre_col):
             if j != nbre_col - 1:
                 echantillon[j] = ensemble.iloc[i, j]
             else:
-                echantillon['chiffre'] = str(ensemble.iloc[i, j])
+                echantillon["chiffre"] = str(ensemble.iloc[i, j])
         echantillons.append(echantillon)
     return echantillons
 
@@ -45,15 +45,15 @@ def creation_echantillons(ensemble, ligne_debut, ligne_fin, nbre_col):
 def calculs_distances(modeles, test):
     """
     Calcule les distances de chaque entrée du modèle à l'entrée test.
-    
+
     Paramètres
     ----------
     modeles : List[Dict]
         Chaque dictionnaire représente un échantillon du modèle
         et possède les clés numériques 0, 1, ..., 64 et la clé classe.
-    
+
     test : Dict
-        Dictionnaire qui représente un échantillon. 
+        Dictionnaire qui représente un échantillon.
         Possède les clés numériques 0, 1, ..., 64, et la clé classe.
 
     Retour
@@ -65,16 +65,16 @@ def calculs_distances(modeles, test):
     for echantillon in modeles:  # echantillon est un dictionnaire
         carre_distance = 0
         for i in range(len(echantillon) - 2):
-            carre_distance += (echantillon[i] - test[i])**2
-        echantillon['distance'] = np.sqrt(carre_distance)
-        
+            carre_distance += (echantillon[i] - test[i]) ** 2
+        echantillon["distance"] = np.sqrt(carre_distance)
+
     return modeles
 
 
 def k_plus_proches_voisins(modeles_avec_distances, k):
     """
     Construit la liste des k échantillons plus proches voisins.
-    
+
     Paramètres
     ----------
     modeles_avec_distances : List[Dict]
@@ -82,7 +82,7 @@ def k_plus_proches_voisins(modeles_avec_distances, k):
         et possède les clés numériques 0, 1, ..., 64 et les clés classe et distance.
     k : int
         Nombre de plus proches voisins à prendre en compte.
-        
+
     Retour
     ------
     plus_proches_voisins : List[Dict]
@@ -90,39 +90,38 @@ def k_plus_proches_voisins(modeles_avec_distances, k):
         échantillons les plus proches de l'échantillon testé.
     """
     # tri de la liste portant sur les premiers élements de chaque Tuple
-    plus_proches_voisins = sorted(modeles_avec_distances,
-                                  key=lambda x: x['distance'])  
-    
-    return plus_proches_voisins[ : k]
+    plus_proches_voisins = sorted(modeles_avec_distances, key=lambda x: x["distance"])
+
+    return plus_proches_voisins[:k]
 
 
 def determination_classe(voisins):
     """
     Détermine la classe probable de l'image de test. La classe de cette
-    image est celle qui apparait le plus souvent dans la liste des plus 
+    image est celle qui apparait le plus souvent dans la liste des plus
     proches voisins.
-    
+
     Paramètre
     ---------
     voisins : List[Dict]
         Liste des dictionnaires représentant les voisins les plus proches.
-    
-    Retour 
+
+    Retour
     ------
     classe : str
         Classe probable de l'échantillon testé.
     """
     classes = {}  # clés : classes, valeurs : nbre d'apparitions
-    
-    for echantillon in voisins:         # echantillon est un dictionnaire
-        classe = echantillon['chiffre']  # on récupère la classe
-        if classe not in classes:       # on incrémente sa valeur
+
+    for echantillon in voisins:  # echantillon est un dictionnaire
+        classe = echantillon["chiffre"]  # on récupère la classe
+        if classe not in classes:  # on incrémente sa valeur
             classes[classe] = 1
         else:
             classes[classe] += 1
-    
-    val_max = 0                        # initialisation du nombre d'apparitions
-    nom_classe = None                  # initialisation du nom de la classe à conserver
+
+    val_max = 0  # initialisation du nombre d'apparitions
+    nom_classe = None  # initialisation du nom de la classe à conserver
     for classe in classes:
         if classes[classe] > val_max:
             val_max = classes[classe]
@@ -134,26 +133,26 @@ def determination_classe(voisins):
 def main():
     # Ouverture du fichier contenant les données
     images = pd.read_csv("./digits.csv", sep=",", header=0)
-    #print(images.tail())
+    # print(images.tail())
 
     # Création des deux sous-ensembles : modeles et tests
     modeles = creation_echantillons(images, 0, 1780, 65)
     tests = creation_echantillons(images, 1781, 1796, 65)
-    
+
     # Choix d'une image et calcul des distances
     image = tests[0]  # image est un dictionnaire
     modeles_avec_distances = calculs_distances(modeles, image)
-    #print(modeles_avec_distances[0])
-    
+    # print(modeles_avec_distances[0])
+
     # Détermination des k plus proches voisins
     k = 5
     voisins = k_plus_proches_voisins(modeles_avec_distances, k)
-    #print(voisins)
-    
+    # print(voisins)
+
     # détermination de la classe
     chiffre_devine = determination_classe(voisins)
     print("Chiffre deviné : {}".format(chiffre_devine))
-    print("Chiffre réel : {}".format(image['chiffre']))
+    print("Chiffre réel : {}".format(image["chiffre"]))
 
 
 main()

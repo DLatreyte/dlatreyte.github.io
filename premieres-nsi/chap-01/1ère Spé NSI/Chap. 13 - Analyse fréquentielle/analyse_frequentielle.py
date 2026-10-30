@@ -62,7 +62,7 @@ def trouve_indice(car: str, seq: Sequence) -> int:
     """
     Détermine le premier indice du caractère car dans liste.
     On suppose que car appartient à la liste.
-    
+
     Ainsi trouve_indice('a', "jkhdsalkj") retourne 5.
     """
     indice = 0
@@ -126,6 +126,7 @@ def suppression_ponctuation(liste_car: List[str]) -> List[str]:
         i += 1
     return liste_car
 
+
 def nettoyage(liste_car: List[str]) -> List[str]:
     """
     Supprime les blancs, les chiffres et les ponctuations.
@@ -139,21 +140,22 @@ def nettoyage(liste_car: List[str]) -> List[str]:
         i += 1
     return liste_car
 
+
 def extraction_caracteres(nom_fichier: str) -> List[str]:
     """
     Ouvre le fichier nom_fichier, extrait l'ensemble des caractères
-    sous forme d'une unique chaîne de caractères puis crée une liste 
+    sous forme d'une unique chaîne de caractères puis crée une liste
     dont chaque élément est un caractère présent dans le texte initial.
     """
-    fichier =  open(nom_fichier, 'r')  # , encoding='utf-8-sig'
+    fichier = open(nom_fichier, "r")  # , encoding='utf-8-sig'
     chaine_contenu = fichier.read()
     return list(chaine_contenu)
 
 
 def main():
-    """ Fonction principale qui appelle toutes les autres. """
+    """Fonction principale qui appelle toutes les autres."""
     roman = "la-jangada.txt"
-    #roman = "texte-de-test.txt"
+    # roman = "texte-de-test.txt"
     liste_caracteres = extraction_caracteres(roman)
     print(len(liste_caracteres))
     # liste_caracteres = suppression_ponctuation(liste_caracteres)
@@ -161,15 +163,14 @@ def main():
     # liste_caracteres = suppression_chiffres(liste_caracteres)
     # liste_caracteres = transformation_accents(liste_caracteres)
     liste_caracteres = nettoyage(liste_caracteres)
-    
+
     liste_caracteres = transformation_minuscules(liste_caracteres)
     #     print(liste_caracteres)
     dict_car = creation_dict_car(liste_caracteres)
     #     print(dict_car)
     dict_car = analyse_dict_car(dict_car)
-    #print(dict_car)
+    # print(dict_car)
     affichage_dict(dict_car)
 
 
 main()
-
