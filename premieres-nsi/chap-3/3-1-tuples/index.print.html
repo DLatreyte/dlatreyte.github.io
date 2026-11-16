@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Énoncé au format pdf Objectif Regrouper plusieurs valeurs dans un seul objet, le tuple, pour qu’une fonction puisse renvoyer plusieurs résultats à la fois.
+Une fonction peut-elle renvoyer deux valeurs ? Dans le Doc. 2,4, la fonction plus_grand_plus_petit retournait une chaîne de caractères comme &#34;max : 18.0, min : 7.5&#34;. Pour un humain, c’est très lisible. Mais imaginons qu’on veuille ensuite calculer l’écart entre le maximum et le minimum. Il faudrait fouiller dans le texte pour retrouver les chiffres, puis les convertir en nombres. On a fabriqué une phrase alors qu’on voulait deux nombres.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Les tuples :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Énoncé au format pdf Objectif Regrouper plusieurs valeurs dans un seul objet, le tuple, pour qu’une fonction puisse renvoyer plusieurs résultats à la fois.
+Une fonction peut-elle renvoyer deux valeurs ? Dans le Doc. 2,4, la fonction plus_grand_plus_petit retournait une chaîne de caractères comme &#34;max : 18.0, min : 7.5&#34;. Pour un humain, c’est très lisible. Mais imaginons qu’on veuille ensuite calculer l’écart entre le maximum et le minimum. Il faudrait fouiller dans le texte pour retrouver les chiffres, puis les convertir en nombres. On a fabriqué une phrase alors qu’on voulait deux nombres.">
+    <meta property="og:url" content="https://dlatreyte.github.io/premieres-nsi/chap-3/3-1-tuples/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Les tuples :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Énoncé au format pdf Objectif Regrouper plusieurs valeurs dans un seul objet, le tuple, pour qu’une fonction puisse renvoyer plusieurs résultats à la fois.
+Une fonction peut-elle renvoyer deux valeurs ? Dans le Doc. 2,4, la fonction plus_grand_plus_petit retournait une chaîne de caractères comme &#34;max : 18.0, min : 7.5&#34;. Pour un humain, c’est très lisible. Mais imaginons qu’on veuille ensuite calculer l’écart entre le maximum et le minimum. Il faudrait fouiller dans le texte pour retrouver les chiffres, puis les convertir en nombres. On a fabriqué une phrase alors qu’on voulait deux nombres.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="1ère Spécialité NSI">
+    <meta property="article:published_time" content="2026-11-16T12:00:00+04:00">
+    <meta property="article:modified_time" content="2026-11-16T12:00:00+04:00">
+    <meta property="article:tag" content="Type Construit">
+    <meta property="article:tag" content="P-Uplet">
+    <meta property="article:tag" content="Tuple">
+    <meta property="article:tag" content="Indice">
+    <meta property="article:tag" content="Len">
+    <meta property="article:tag" content="Non Mutable">
+    <meta itemprop="name" content="Les tuples :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Énoncé au format pdf Objectif Regrouper plusieurs valeurs dans un seul objet, le tuple, pour qu’une fonction puisse renvoyer plusieurs résultats à la fois.
+Une fonction peut-elle renvoyer deux valeurs ? Dans le Doc. 2,4, la fonction plus_grand_plus_petit retournait une chaîne de caractères comme &#34;max : 18.0, min : 7.5&#34;. Pour un humain, c’est très lisible. Mais imaginons qu’on veuille ensuite calculer l’écart entre le maximum et le minimum. Il faudrait fouiller dans le texte pour retrouver les chiffres, puis les convertir en nombres. On a fabriqué une phrase alors qu’on voulait deux nombres.">
+    <meta itemprop="datePublished" content="2026-11-16T12:00:00+04:00">
+    <meta itemprop="dateModified" content="2026-11-16T12:00:00+04:00">
+    <meta itemprop="wordCount" content="3715">
+    <meta itemprop="keywords" content="Type Construit,P-Uplet,Tuple,Indice,Len,Non Mutable,Concaténation,Affectation Multiple,Assertion">
+    <title>Les tuples :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/premieres-nsi/chap-3/3-1-tuples/index.html" rel="canonical" type="text/html" title="Les tuples :: Physique, Chimie et Informatique">
+    <link href="/premieres-nsi/chap-3/3-1-tuples/index.xml" rel="alternate" type="application/rss&#43;xml" title="Les tuples :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.9c093d335cb3455111525922853877d4b3ac7a287ead8d15db22b978a233c036.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/premieres-nsi/chap-3/3-1-tuples/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/premieres-nsi/chap-3/3-1-tuples/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#une-fonction-peut-elle-renvoyer-deux-valeurs-">Une fonction peut-elle renvoyer deux valeurs ?</a></li>
+    <li><a href="#créer-un-tuple-et-lire-ses-éléments">Créer un tuple et lire ses éléments</a>
+      <ul>
+        <li><a href="#cest-la-virgule-qui-fait-le-tuple">C&rsquo;est la virgule qui fait le tuple</a></li>
+        <li><a href="#repérer-un-élément-par-son-indice">Repérer un élément par son indice</a></li>
+      </ul>
+    </li>
+    <li><a href="#un-tuple-ne-peut-pas-être-modifié">Un tuple ne peut pas être modifié</a></li>
+    <li><a href="#parcourir-un-tuple">Parcourir un tuple</a></li>
+    <li><a href="#déballer-un-tuple">Déballer un tuple</a>
+      <ul>
+        <li><a href="#laffectation-multiple">L&rsquo;affectation multiple</a></li>
+        <li><a href="#retour-sur-léchange-de-deux-variables">Retour sur l&rsquo;échange de deux variables</a></li>
+      </ul>
+    </li>
+    <li><a href="#écrire-une-fonction-qui-renvoie-un-tuple">Écrire une fonction qui renvoie un tuple</a></li>
+    <li><a href="#exercices-de-synthèse">Exercices de synthèse</a></li>
+    <li><a href="#bilan">Bilan</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Premières structures de données : listes et tuples">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/index.html"><span itemprop="name">1ère Spécialité NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/chap-3/index.html"><span itemprop="name">Premières structures de données : listes et tuples</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-3/3-1-tuples/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-3/index.html" title="Premières structures de données : listes et tuples (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-3/3-2-listes/index.html" title="Les listes (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable premieres-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Premières structures de données : listes et tuples</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/affectation-multiple/index.html">Affectation Multiple</a></li>
+    <li><a class="term-link" href="/tags/assertion/index.html">Assertion</a></li>
+    <li><a class="term-link" href="/tags/concat%C3%A9nation/index.html">Concaténation</a></li>
+    <li><a class="term-link" href="/tags/indice/index.html">Indice</a></li>
+    <li><a class="term-link" href="/tags/len/index.html">Len</a></li>
+    <li><a class="term-link" href="/tags/non-mutable/index.html">Non Mutable</a></li>
+    <li><a class="term-link" href="/tags/p-uplet/index.html">P-Uplet</a></li>
+    <li><a class="term-link" href="/tags/tuple/index.html">Tuple</a></li>
+    <li><a class="term-link" href="/tags/type-construit/index.html">Type Construit</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="les-tuples">Les tuples</h1>
+
+<ul>
+<li>
+<a class="remote" href="/premieres-nsi/chap-3/3-1/3-1-enonce.pdf" target="_blank">Énoncé au format pdf</a>
+
+</li>
+</ul>
+<div class="clue clue-goal" style="--accent: #e64553">
+  <div class="clue-header"><img class="clue-icon" src="/clues/flag.svg" alt="" aria-hidden="true"><span class="clue-title">Objectif</span></div>
+  <div class="clue-body">
+<p>Regrouper plusieurs valeurs dans un seul objet, le tuple, pour qu&rsquo;une fonction puisse renvoyer plusieurs résultats à la fois.</p>
+
+  </div>
+</div>
+
+<h2 id="une-fonction-peut-elle-renvoyer-deux-valeurs-">Une fonction peut-elle renvoyer deux valeurs ?<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Dans le Doc. 2,4, la fonction <code>plus_grand_plus_petit</code> retournait une chaîne de caractères comme <code>&quot;max : 18.0, min : 7.5&quot;</code>. Pour un humain, c&rsquo;est très lisible. Mais imaginons qu&rsquo;on veuille ensuite calculer l&rsquo;écart entre le maximum et le minimum. Il faudrait fouiller dans le texte pour retrouver les chiffres, puis les convertir en nombres. On a fabriqué une phrase alors qu&rsquo;on voulait deux nombres.</p>
+<p>Le vrai problème est le suivant : une instruction <code>return</code> met fin à la fonction. On ne peut donc pas écrire deux <code>return</code> à la suite en espérant récupérer deux résultats. Faisons une expérience.</p>
+<div class="question-bloc" id="q22">
+  <div class="question-num">Q22.</div>
+  <div class="question-corps">
+<p>Recopier la fonction suivante dans la partie principale de l&rsquo;éditeur Thonny :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">min_max</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne le plus petit puis le plus grand des nombres a et b.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span></span></span></code></pre></div>
+<ol>
+<li>Appeler <code>min_max(9, 4)</code> dans la console. Qu&rsquo;affiche-t-elle ?</li>
+<li>Saisir ensuite <code>resultat = min_max(9, 4)</code>, puis <code>type(resultat)</code>. Combien d&rsquo;objets la fonction a-t-elle retournés ?</li>
+</ol>
+
+  </div>
+</div>
+
+
+<p>On n&rsquo;a donc pas contourné la règle : une fonction renvoie toujours une seule valeur. On a simplement rangé les deux nombres dans une même boîte, et c&rsquo;est la boîte qu&rsquo;on renvoie.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Un <strong>tuple</strong> (le programme dit aussi <strong>p-uplet</strong>) est une suite ordonnée de valeurs. On l&rsquo;écrit en séparant les valeurs par des virgules, le plus souvent entre parenthèses : <code>(4, 9)</code>.</p>
+<p>Le tuple est un <strong>type construit</strong> : il est fabriqué à partir de valeurs de types de base (<code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>).</p>
+<p>Une fonction ne retourne qu&rsquo;une seule valeur. Pour retourner plusieurs résultats, elle les regroupe dans un tuple : <code>return a, b</code>.</p>
+
+  </div>
+</div>
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-3/3-1-tuples/#7" data-s="W1swXSxbMF1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">2 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 2</div>
+      <div class="qcm-enonce"><p>Avec la fonction <code>min_max</code> du cours, que vaut <code>type(min_max(9, 4))</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-0" value="0"> <span><code>&lt;class 'tuple'&gt;</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-0" value="1"> <span><code>&lt;class 'int'&gt;</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-0" value="2"> <span>Une erreur : une fonction ne peut retourner qu&rsquo;une valeur.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>return a, b</code> regroupe les deux nombres dans un seul objet, un tuple.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 2</div>
+      <div class="qcm-enonce"><p>Combien d&rsquo;objets une fonction qui exécute <code>return a, b</code> retourne-t-elle ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-1" value="0"> <span>Un seul : un tuple qui contient deux valeurs.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-1" value="1"> <span>Deux : <code>a</code>, puis <code>b</code>.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-1" value="2"> <span>Aucun : la virgule provoque une erreur.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Une fonction retourne toujours un seul objet ; pour transmettre plusieurs résultats, on les regroupe dans un tuple.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="créer-un-tuple-et-lire-ses-éléments">Créer un tuple et lire ses éléments<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="cest-la-virgule-qui-fait-le-tuple">C&rsquo;est la virgule qui fait le tuple<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="question-bloc" id="q23">
+  <div class="question-num">Q23.</div>
+  <div class="question-corps">
+<p>Pour chacune des expressions suivantes, prévoir le type de la valeur obtenue, puis vérifier avec la fonction <code>type</code> dans la console :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">((</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">((</span><span class="mi">5</span><span class="p">,))</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(())</span></span></span></code></pre></div>
+<p>Le deuxième essai provoque une erreur. Pourquoi, à votre avis ? Comment écrire un tuple qui ne contient qu&rsquo;un seul élément ?</p>
+
+  </div>
+</div>
+
+
+<p>Les éléments d&rsquo;un tuple ne sont pas forcément du même type. Une ville peut être décrite par son nom, sa latitude et sa longitude :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">ville</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&#34;Paris&#34;</span><span class="p">,</span> <span class="mf">48.86</span><span class="p">,</span> <span class="mf">2.35</span><span class="p">)</span></span></span></code></pre></div>
+<p>Ce tuple n&rsquo;a de sens que parce qu&rsquo;on s&rsquo;est mis d&rsquo;accord sur l&rsquo;ordre : d&rsquo;abord le nom, ensuite la latitude, enfin la longitude. Si on écrivait <code>(48.86, &quot;Paris&quot;, 2.35)</code>, Python ne protesterait pas, mais un programme qui attend le nom en premier serait trompé.</p>
+<h3 id="repérer-un-élément-par-son-indice">Repérer un élément par son indice<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Chaque élément d&rsquo;un tuple occupe une position, appelée <strong>indice</strong>. En Python, les indices commencent à 0. Cela paraît étrange au début. Une façon de s&rsquo;en souvenir : l&rsquo;indice indique <strong>combien de pas il faut faire depuis le début</strong> pour atteindre l&rsquo;élément. Le premier élément est à zéro pas du début.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>indice</strong></th>
+      <th class="align-left">0</th>
+      <th class="align-left">1</th>
+      <th class="align-left">2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"><strong>élément de</strong> <code>t</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left">7</td>
+      <td class="align-left">12</td>
+    </tr>
+  </tbody>
+</table>
+<p>On lit l&rsquo;élément d&rsquo;indice <code>i</code> du tuple <code>t</code> en écrivant <code>t[i]</code>. La fonction <code>len</code>, déjà rencontrée avec les chaînes de caractères, donne le nombre d&rsquo;éléments du tuple.</p>
+<div class="question-bloc" id="q24">
+  <div class="question-num">Q24.</div>
+  <div class="question-corps">
+<p>Saisir <code>t = (3, 7, 12)</code> dans la console. Prévoir le résultat de chacune des instructions suivantes, puis vérifier :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span></span></span></code></pre></div>
+<p>Quel est l&rsquo;indice du dernier élément d&rsquo;un tuple qui contient <code>n</code> éléments ?</p>
+
+  </div>
+</div>
+
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Indices négatifs</span></div>
+  <div class="clue-body">
+<p>Python accepte aussi des indices négatifs, qui comptent à partir de la fin : <code>t[-1]</code> est le dernier élément, <code>t[-2]</code> l&rsquo;avant-dernier. Avec <code>t = (3, 7, 12)</code>, <code>t[-1]</code> vaut <code>12</code>, exactement comme <code>t[len(t) - 1]</code>.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q25">
+  <div class="question-num">Q25.</div>
+  <div class="question-corps">
+<p>Avec <code>ville = (&quot;Paris&quot;, 48.86, 2.35)</code>, écrire une instruction qui affiche, à l&rsquo;aide d&rsquo;une f-string et des indices :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Paris : latitude 48.86, longitude 2.35</span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Les éléments d&rsquo;un tuple <code>t</code> sont repérés par leur <strong>indice</strong>, qui commence à 0. On lit l&rsquo;élément d&rsquo;indice <code>i</code> avec <code>t[i]</code>.</p>
+<p><code>len(t)</code> donne le nombre d&rsquo;éléments de <code>t</code>. Les indices valides vont donc de <code>0</code> à <code>len(t) - 1</code>. Un indice en dehors de ces limites provoque une erreur <code>IndexError</code>.</p>
+<p>Un tuple d&rsquo;un seul élément s&rsquo;écrit avec une virgule : <code>(5,)</code>. Le tuple vide s&rsquo;écrit <code>()</code>.</p>
+
+  </div>
+</div>
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-3/3-1-tuples/#8" data-s="W1swXSxbMl0sWzAsMV1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Que vaut <code>type((5))</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-0" value="0"> <span><code>&lt;class 'int'&gt;</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-0" value="1"> <span><code>&lt;class 'tuple'&gt;</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Les parenthèses seules ne font qu&rsquo;entourer l&rsquo;expression <code>5</code>. Pour un tuple d&rsquo;un seul élément, il faut une virgule : <code>(5,)</code>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Avec <code>t = (3, 7, 12)</code>, que produit <code>t[3]</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-1" value="0"> <span><code>12</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-1" value="1"> <span><code>7</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-1" value="2"> <span>Une erreur <code>IndexError</code>.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Le tuple contient 3 éléments, d&rsquo;indices 0, 1 et 2 : l&rsquo;indice 3 n&rsquo;existe pas.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="multiple" hidden>
+      <div class="qcm-num">Question 3 / 3 <em>(plusieurs réponses possibles)</em></div>
+      <div class="qcm-enonce"><p>Un tuple <code>t</code> contient <code>n</code> éléments. Quelles expressions donnent son dernier élément ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="checkbox" name="q8-2" value="0"> <span><code>t[len(t) - 1]</code></span></label></li>
+        <li data-i="1"><label><input type="checkbox" name="q8-2" value="1"> <span><code>t[-1]</code></span></label></li>
+        <li data-i="2"><label><input type="checkbox" name="q8-2" value="2"> <span><code>t[len(t)]</code></span></label></li>
+        <li data-i="3"><label><input type="checkbox" name="q8-2" value="3"> <span><code>t[n]</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Les indices vont de <code>0</code> à <code>len(t) - 1</code>. L&rsquo;indice négatif <code>-1</code> compte à partir de la fin. <code>t[len(t)]</code> et <code>t[n]</code> sont hors limites.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="un-tuple-ne-peut-pas-être-modifié">Un tuple ne peut pas être modifié<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="question-bloc" id="q26">
+  <div class="question-num">Q26.</div>
+  <div class="question-corps">
+<p>Toujours avec <code>t = (3, 7, 12)</code>, essayer de remplacer le premier élément par 4 :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span></span></span></code></pre></div>
+<p>Que se passe-t-il ?</p>
+
+  </div>
+</div>
+
+
+<p>Un tuple, une fois créé, ne change plus. On dit qu&rsquo;il est <strong>non mutable</strong> (ou <strong>immuable</strong>). Est-ce gênant ? Pas vraiment, car on peut toujours fabriquer un <strong>nouveau</strong> tuple.</p>
+<div class="question-bloc" id="q27">
+  <div class="question-num">Q27.</div>
+  <div class="question-corps">
+<p>Prévoir, puis vérifier, le contenu de <code>t</code> et de <code>u</code> après chacune des instructions suivantes :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">u</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="p">(</span><span class="mi">20</span><span class="p">,)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">u</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span></span></span></code></pre></div>
+<p>L&rsquo;opérateur <code>+</code> a-t-il modifié <code>t</code> ? La dernière affectation a-t-elle modifié le tuple <code>(3, 7, 12)</code> ?</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q28">
+  <div class="question-num">Q28.</div>
+  <div class="question-corps">
+<p>Prévoir puis vérifier le résultat de <code>7 in t</code> et de <code>8 in t</code>, avec <code>t = (4, 7, 12)</code>. De quel type est la valeur obtenue ?</p>
+
+  </div>
+</div>
+
+
+<p>Pourquoi Python propose-t-il un objet qu&rsquo;on ne peut pas modifier ? Parce que c&rsquo;est une garantie. Les coordonnées de Paris ne vont pas changer pendant l&rsquo;exécution du programme. Si on les range dans un tuple et qu&rsquo;on les confie à une fonction, on est certain de les retrouver intactes, quelle que soit la façon dont cette fonction a été écrite.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Un tuple est <strong>non mutable</strong> : on ne peut pas modifier ses éléments. L&rsquo;instruction <code>t[0] = 4</code> provoque une erreur <code>TypeError</code>.</p>
+<p>On peut en revanche construire un nouveau tuple, par exemple par <strong>concaténation</strong> avec l&rsquo;opérateur <code>+</code> : <code>(3, 7) + (12,)</code> vaut <code>(3, 7, 12)</code>.</p>
+<p><code>valeur in t</code> vaut <code>True</code> si <code>valeur</code> est un élément de <code>t</code>, <code>False</code> sinon.</p>
+
+  </div>
+</div>
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-3/3-1-tuples/#9" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Avec <code>t = (3, 7, 12)</code>, que produit l&rsquo;instruction <code>t[0] = 4</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q9-0" value="0"> <span>Une erreur <code>TypeError</code>.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q9-0" value="1"> <span><code>t</code> vaut désormais <code>(4, 7, 12)</code>.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q9-0" value="2"> <span><code>t</code> vaut désormais <code>(4, 3, 7, 12)</code>.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Un tuple est non mutable : on ne peut pas affecter une nouvelle valeur à l&rsquo;un de ses éléments.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Après <code>t = (3, 7, 12)</code> puis <code>u = t + (20,)</code>, que vaut <code>t</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q9-1" value="0"> <span><code>(3, 7, 12)</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q9-1" value="1"> <span><code>(3, 7, 12, 20)</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q9-1" value="2"> <span><code>(23, 27, 32)</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>La concaténation fabrique un <strong>nouveau</strong> tuple, rangé dans <code>u</code>. Le tuple <code>t</code> n&rsquo;est pas modifié.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Avec <code>t = (4, 7, 12)</code>, que vaut <code>8 in t</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q9-2" value="0"> <span><code>False</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q9-2" value="1"> <span><code>True</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q9-2" value="2"> <span><code>1</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>in</code> teste la présence d&rsquo;une valeur et donne un booléen : 8 n&rsquo;est pas un élément de <code>t</code>.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="parcourir-un-tuple">Parcourir un tuple<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Un tuple est un objet <strong>itérable</strong>, au même titre que ce que produit <code>range</code> (voir Doc. 2,4). On peut donc le parcourir avec une boucle <code>for</code>. Il y a deux façons de le faire.</p>
+<div class="question-bloc" id="q29">
+  <div class="question-num">Q29.</div>
+  <div class="question-corps">
+<p>Recopier les deux fonctions suivantes dans l&rsquo;éditeur :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">somme</span><span class="p">(</span><span class="n">valeurs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne la somme des éléments du tuple valeurs.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">valeurs</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total</span> <span class="o">+=</span> <span class="n">v</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">total</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">somme_2</span><span class="p">(</span><span class="n">valeurs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne la somme des éléments du tuple valeurs.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">valeurs</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total</span> <span class="o">+=</span> <span class="n">valeurs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">total</span></span></span></code></pre></div>
+<ol>
+<li>Tester <code>somme((3, 7, 12))</code> et <code>somme_2((3, 7, 12))</code>.</li>
+<li>Dans chaque fonction, quelles valeurs prend successivement la variable de boucle (<code>v</code> ou <code>i</code>) ?</li>
+<li>L&rsquo;annotation <code>tuple[float, ...]</code> signifie « tuple de nombres flottants, de longueur quelconque ». Pourquoi ne pas avoir écrit <code>tuple[float, float, float]</code> ?</li>
+</ol>
+
+  </div>
+</div>
+
+
+<p>La première écriture est plus courte. La seconde n&rsquo;est utile que lorsqu&rsquo;on a besoin de connaître la <strong>position</strong> des éléments, comme dans la question suivante.</p>
+<div class="question-bloc" id="q30">
+  <div class="question-num">Q30.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>indice_max</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">indice_max</span><span class="p">(</span><span class="n">valeurs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne l&#39;indice du plus grand élément de valeurs.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    valeurs ne doit pas être vide.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; indice_max((12, 5, 18, 7))
+</span></span></span><span class="line"><span class="cl"><span class="s2">    2
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p><strong>Indication.</strong> On suppose d&rsquo;abord que le plus grand élément est celui d&rsquo;indice 0, puis on compare cet élément à chacun des suivants.</p>
+
+  </div>
+</div>
+
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>On parcourt un tuple <code>t</code> de deux façons :</p>
+<ul>
+<li><code>for element in t:</code> donne directement les éléments, un par un ;</li>
+<li><code>for i in range(len(t)):</code> donne les indices, et on lit l&rsquo;élément avec <code>t[i]</code>. On utilise cette écriture lorsque la position de l&rsquo;élément compte.</li>
+</ul>
+
+  </div>
+</div>
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-3/3-1-tuples/#10" data-s="W1swXSxbMF1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">2 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 2</div>
+      <div class="qcm-enonce"><p>Avec <code>t = (3, 7, 12)</code>, quelles valeurs la variable <code>v</code> prend-elle dans <code>for v in t:</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q10-0" value="0"> <span><code>3</code>, puis <code>7</code>, puis <code>12</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q10-0" value="1"> <span><code>0</code>, puis <code>1</code>, puis <code>2</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q10-0" value="2"> <span><code>1</code>, puis <code>2</code>, puis <code>3</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Cette écriture parcourt directement les éléments du tuple.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 2</div>
+      <div class="qcm-enonce"><p>Pour écrire la fonction <code>indice_max</code>, quel parcours faut-il choisir ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q10-1" value="0"> <span><code>for i in range(len(valeurs)):</code>, car on a besoin de la position des éléments.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q10-1" value="1"> <span><code>for v in valeurs:</code>, car on n&rsquo;a besoin que des valeurs.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>La fonction doit retourner un indice : il faut connaître la position de chaque élément, donc parcourir les indices.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="déballer-un-tuple">Déballer un tuple<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="laffectation-multiple">L&rsquo;affectation multiple<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Quand un tuple contient peu d&rsquo;éléments, il est souvent plus clair de donner un nom à chacun d&rsquo;eux. Python permet de le faire en une seule ligne.</p>
+<div class="question-bloc" id="q31">
+  <div class="question-num">Q31.</div>
+  <div class="question-corps">
+<p>Saisir les instructions suivantes dans la console, en prévoyant le résultat avant chaque validation :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">point</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">point</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span></span></span></code></pre></div>
+<p>Expliquer le message d&rsquo;erreur obtenu à la dernière ligne.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q32">
+  <div class="question-num">Q32.</div>
+  <div class="question-corps">
+<p>Reprendre la fonction <code>min_max</code> de la première partie. Écrire dans la console une instruction qui range le résultat de <code>min_max(9, 4)</code> dans deux variables <code>petit</code> et <code>grand</code>, puis calculer l&rsquo;écart entre ces deux nombres.</p>
+
+  </div>
+</div>
+
+
+<h3 id="retour-sur-léchange-de-deux-variables">Retour sur l&rsquo;échange de deux variables<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Dans le Doc. 2,2, on a vu que la séquence <code>a = b</code> puis <code>b = a</code> n&rsquo;échange pas les valeurs de deux variables, et qu&rsquo;il fallait passer par une variable <code>tmp</code>. Avec les tuples, Python propose une écriture bien plus courte.</p>
+<div class="question-bloc" id="q33">
+  <div class="question-num">Q33.</div>
+  <div class="question-corps">
+<p>Saisir les instructions suivantes dans la console :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">605</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">506</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span></span></span></code></pre></div>
+<ol>
+<li>Les valeurs ont-elles été échangées ?</li>
+<li>La séquence <code>a = b</code> puis <code>b = a</code> échouait parce que la valeur de <code>a</code> était écrasée avant d&rsquo;avoir été recopiée. Expliquer, en décrivant ce que fait Python dans l&rsquo;ordre, pourquoi ce problème ne se pose pas ici.</li>
+</ol>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q34">
+  <div class="question-num">Q34.</div>
+  <div class="question-corps">
+<p><strong>Pour l&rsquo;épreuve écrite.</strong> Sans utiliser Python, compléter le tableau d&rsquo;état de la séquence suivante, puis vérifier dans la console.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">,</span> <span class="n">a</span></span></span></code></pre></div>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Instruction</strong></th>
+      <th class="align-left"><strong>a</strong></th>
+      <th class="align-left"><strong>b</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"><code>a, b = 3, 8</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>a, b = b, a + b</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>a, b = b - a, a</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q35">
+  <div class="question-num">Q35.</div>
+  <div class="question-corps">
+<p>Dans le Doc. 2,4, la fonction <code>fibo</code> utilisait une troisième variable <code>w</code> pour calculer le terme suivant de la suite de Fibonacci. Réécrire cette fonction sans la variable <code>w</code>, à l&rsquo;aide d&rsquo;une affectation multiple. Vérifier que <code>fibo(10)</code> retourne <code>'1 1 2 3 5 8 13 21 34 55 '</code>.</p>
+
+  </div>
+</div>
+
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>L&rsquo;<strong>affectation multiple</strong> <code>x, y = point</code> déballe un tuple : chaque variable de gauche reçoit l&rsquo;élément de même position. Il doit y avoir autant de variables que d&rsquo;éléments, sinon Python signale une erreur <code>ValueError</code>.</p>
+<p>Dans <code>a, b = b, a</code>, Python évalue d&rsquo;abord tout le membre de droite, qui forme un tuple, puis affecte les variables. C&rsquo;est pourquoi cette instruction échange les valeurs de <code>a</code> et de <code>b</code>.</p>
+
+  </div>
+</div>
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-3/3-1-tuples/#11" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Après <code>point = (2, 5)</code> puis <code>x, y = point</code>, que vaut <code>y</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q11-0" value="0"> <span><code>5</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q11-0" value="1"> <span><code>2</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q11-0" value="2"> <span><code>(2, 5)</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Chaque variable de gauche reçoit l&rsquo;élément de même position : <code>x</code> vaut 2 et <code>y</code> vaut 5.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Que produit <code>a, b = (1, 2, 3)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q11-1" value="0"> <span>Une erreur <code>ValueError</code>.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q11-1" value="1"> <span><code>a</code> vaut 1 et <code>b</code> vaut <code>(2, 3)</code>.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q11-1" value="2"> <span><code>a</code> vaut 1, <code>b</code> vaut 2 et le 3 est ignoré.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Il doit y avoir autant de variables que d&rsquo;éléments dans le tuple.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Que valent <code>a</code> et <code>b</code> après <code>a, b = 2, 5</code> puis <code>a, b = b, a + b</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q11-2" value="0"> <span><code>a</code> vaut 5 et <code>b</code> vaut 7.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q11-2" value="1"> <span><code>a</code> vaut 5 et <code>b</code> vaut 10.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q11-2" value="2"> <span><code>a</code> vaut 2 et <code>b</code> vaut 7.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Le membre de droite est entièrement évalué avec les anciennes valeurs : il forme le tuple <code>(5, 7)</code>, puis les deux variables sont affectées.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="écrire-une-fonction-qui-renvoie-un-tuple">Écrire une fonction qui renvoie un tuple<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Pour annoncer qu&rsquo;une fonction retourne un tuple, on indique dans sa signature le type de chaque élément, dans l&rsquo;ordre : <code>-&gt; tuple[int, int]</code> signifie « retourne un tuple de deux entiers ». Pour un tuple de longueur quelconque dont tous les éléments ont le même type, on écrit <code>tuple[float, ...]</code>.</p>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Consigne</span></div>
+  <div class="clue-body">
+<p>Écrire chaque fonction dans la partie principale de l&rsquo;éditeur, avec sa spécification complète (signature et documentation). Tester ensuite chacun des exemples de la documentation dans la console.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q36">
+  <div class="question-num">Q36.</div>
+  <div class="question-corps">
+<p><strong>Division euclidienne.</strong> Écrire la fonction <code>division_euclidienne</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">division_euclidienne</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne le quotient et le reste de la division euclidienne
+</span></span></span><span class="line"><span class="cl"><span class="s2">    de a par b (b non nul).
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; division_euclidienne(17, 5)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (3, 2)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; division_euclidienne(20, 4)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (5, 0)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p>Comparer avec le résultat de la fonction <code>divmod(17, 5)</code>, fournie par Python.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q37">
+  <div class="question-num">Q37.</div>
+  <div class="question-corps">
+<p><strong>Convertir une durée.</strong> Une course de fond a duré 3725 s. On veut exprimer cette durée en heures, minutes et secondes.</p>
+<ol>
+<li>Sans ordinateur, effectuer la conversion à la main, en détaillant le calcul.</li>
+<li>Écrire la fonction <code>convertir_duree</code> dont la spécification est :</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">convertir_duree</span><span class="p">(</span><span class="n">duree</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Convertit une durée donnée en secondes en un tuple
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (heures, minutes, secondes).
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; convertir_duree(3725)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (1, 2, 5)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; convertir_duree(59)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (0, 0, 59)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q38">
+  <div class="question-num">Q38.</div>
+  <div class="question-corps">
+<p><strong>Milieu d&rsquo;un segment.</strong> Dans un repère, un point est représenté par le tuple <code>(x, y)</code> de ses coordonnées. Écrire la fonction <code>milieu</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">milieu</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">b</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne les coordonnées du milieu du segment [AB].
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; milieu((0, 0), (4, 2))
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (2.0, 1.0)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; milieu((-1, 3), (1, 3))
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (0.0, 3.0)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p><strong>Indication.</strong> Commencer par déballer chacun des deux tuples.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q39">
+  <div class="question-num">Q39.</div>
+  <div class="question-corps">
+<p><strong>Distance entre deux points.</strong> Dans le Doc. 2,1, la fonction <code>distance</code> recevait quatre arguments <code>x1, y1, x2, y2</code>. Avec des tuples, deux arguments suffisent. On veut de plus que la fonction marche aussi dans l&rsquo;espace, avec des points à trois coordonnées. Dans un repère orthonormé de l&rsquo;espace, la distance entre <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>A</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>A</mi></msub><mo separator="true">,</mo><msub><mi>z</mi><mi>A</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A(x&#95;A, y&#95;A, z&#95;A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">A</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>B</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>B</mi></msub><mo separator="true">,</mo><msub><mi>z</mi><mi>B</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B(x&#95;B, y&#95;B, z&#95;B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span> est :
+</p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>A</mi><mi>B</mi><mo>&#61;</mo><msqrt><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mi>B</mi></msub><mo>−</mo><msub><mi>x</mi><mi>A</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>&#43;</mo><mo stretchy="false">(</mo><msub><mi>y</mi><mi>B</mi></msub><mo>−</mo><msub><mi>y</mi><mi>A</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>&#43;</mo><mo stretchy="false">(</mo><msub><mi>z</mi><mi>B</mi></msub><mo>−</mo><msub><mi>z</mi><mi>A</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">A B &#61; &#92;sqrt{(x&#95;B - x&#95;A)&#94;2 &#43; (y&#95;B - y&#95;A)&#94;2 &#43; (z&#95;B - z&#95;A)&#94;2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.24em;vertical-align:-0.2561em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9839em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.044em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.044em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-2.9439em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.28em" viewBox="0 0 400000 1296" preserveAspectRatio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2561em;"><span></span></span></span></span></span></span></span></span></span></span><ol>
+<li>Écrire la fonction <code>distance</code> dont la spécification est :</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">b</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne la distance entre les points a et b, qui doivent
+</span></span></span><span class="line"><span class="cl"><span class="s2">    avoir le même nombre de coordonnées.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; distance((0, 0), (3, 4))
+</span></span></span><span class="line"><span class="cl"><span class="s2">    5.0
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; distance((1, 2, 3), (1, 2, 3))
+</span></span></span><span class="line"><span class="cl"><span class="s2">    0.0
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; distance((0, 0, 0), (1, 2, 2))
+</span></span></span><span class="line"><span class="cl"><span class="s2">    3.0
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<ol start="2">
+<li>Que devrait faire la fonction si on l&rsquo;appelle avec <code>distance((0, 0), (1, 1, 1))</code> ? Ajouter au début du corps de la fonction l&rsquo;instruction :</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="s2">&#34;les deux points doivent avoir la même dimension&#34;</span></span></span></code></pre></div>
+<p>puis tester à nouveau cet appel.</p>
+
+  </div>
+</div>
+
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>L&rsquo;instruction <code>assert condition, &quot;message&quot;</code> vérifie qu&rsquo;une condition est vraie. Si elle est fausse, le programme s&rsquo;arrête avec une erreur <code>AssertionError</code> et affiche le message.</p>
+<p>On s&rsquo;en sert pour vérifier une <strong>précondition</strong>, c&rsquo;est-à-dire une condition que les arguments doivent respecter pour que la fonction ait un sens. Mieux vaut un programme qui s&rsquo;arrête en expliquant pourquoi qu&rsquo;un programme qui retourne un résultat faux sans prévenir.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q40">
+  <div class="question-num">Q40.</div>
+  <div class="question-corps">
+<p><strong>Plus petit et plus grand élément.</strong> Écrire la fonction <code>min_max_tuple</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">min_max_tuple</span><span class="p">(</span><span class="n">valeurs</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne le plus petit et le plus grand élément de valeurs,
+</span></span></span><span class="line"><span class="cl"><span class="s2">    qui ne doit pas être vide.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; min_max_tuple((12, 5, 18, 7))
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (5, 18)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; min_max_tuple((4,))
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (4, 4)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p>Les fonctions <code>min</code> et <code>max</code> de Python ne doivent pas être utilisées. Vérifier la précondition par une assertion.</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-3/3-1-tuples/#12" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Que retourne <code>division_euclidienne(17, 5)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q12-0" value="0"> <span><code>(3, 2)</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q12-0" value="1"> <span><code>(2, 3)</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q12-0" value="2"> <span><code>3.4</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>17</mn><mo>&#61;</mo><mn>3</mn><mo>×</mo><mn>5</mn><mo>&#43;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">17 &#61; 3 &#92;times 5 &#43; 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">17</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span> : le quotient vaut 3 et le reste 2, dans cet ordre.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Que se passe-t-il à l&rsquo;exécution de <code>assert len(valeurs) &gt; 0, &quot;valeurs ne doit pas être vide&quot;</code> lorsque <code>valeurs</code> vaut <code>()</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q12-1" value="0"> <span>Le programme s&rsquo;arrête avec une erreur <code>AssertionError</code> qui affiche le message.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q12-1" value="1"> <span>Rien : l&rsquo;instruction est ignorée.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q12-1" value="2"> <span>La fonction retourne <code>False</code>.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>La condition est fausse : <code>assert</code> arrête le programme en expliquant pourquoi, au lieu de laisser la fonction produire un résultat faux.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Quelle annotation de type, écrite comme dans le cours, convient à une fonction qui retourne une durée sous la forme <code>(heures, minutes, secondes)</code>, trois entiers ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q12-2" value="0"> <span><code>-&gt; tuple[int, int, int]</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q12-2" value="1"> <span><code>-&gt; int, int, int</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q12-2" value="2"> <span><code>-&gt; tuple</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>On indique le type de chacun des éléments du tuple retourné.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="exercices-de-synthèse">Exercices de synthèse<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="question-bloc" id="q41">
+  <div class="question-num">Q41.</div>
+  <div class="question-corps">
+<p><strong>Équation du second degré.</strong> On cherche les solutions réelles de l&rsquo;équation <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#43;</mo><mi>b</mi><mi>x</mi><mo>&#43;</mo><mi>c</mi><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a x&#94;2 &#43; b x &#43; c &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>, avec <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo mathvariant="normal">≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a &#92;neq  0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord katex-vbox"><span class="katex-thinbox"><span class="rlap"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="katex-inner"><span class="mord"><span class="mrel"></span></span></span><span class="katex-fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">&#61;</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>. On note <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>&#61;</mo><msup><mi>b</mi><mn>2</mn></msup><mo>−</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">&#92;Delta &#61; b&#94;2 - 4 a c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord">Δ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span></span></span></span></span> le discriminant.</p>
+<ul>
+<li>Si <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">&#92;Delta &gt; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord">Δ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>, il y a deux solutions : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>&#61;</mo><mo stretchy="false">(</mo><mo>−</mo><mi>b</mi><mo>−</mo><msqrt><mi mathvariant="normal">Δ</mi></msqrt><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>2</mn><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x&#95;1 &#61; (-b - &#92;sqrt{&#92;Delta}) / (2 a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1767em;vertical-align:-0.25em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9267em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">Δ</span></span></span><span style="top:-2.8867em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1133em;"><span></span></span></span></span></span><span class="mclose">)</span><span class="mord">/</span><span class="mopen">(</span><span class="mord">2</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mo>&#61;</mo><mo stretchy="false">(</mo><mo>−</mo><mi>b</mi><mo>&#43;</mo><msqrt><mi mathvariant="normal">Δ</mi></msqrt><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>2</mn><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x&#95;2 &#61; (-b &#43; &#92;sqrt{&#92;Delta}) / (2 a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1767em;vertical-align:-0.25em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9267em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">Δ</span></span></span><span style="top:-2.8867em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1133em;"><span></span></span></span></span></span><span class="mclose">)</span><span class="mord">/</span><span class="mopen">(</span><span class="mord">2</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span></span>.</li>
+<li>Si <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">&#92;Delta &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord">Δ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>, il y a une seule solution : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>&#61;</mo><mo>−</mo><mi>b</mi><mi mathvariant="normal">/</mi><mo stretchy="false">(</mo><mn>2</mn><mi>a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x&#95;0 &#61; -b / (2 a)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">−</span><span class="mord mathnormal">b</span><span class="mord">/</span><span class="mopen">(</span><span class="mord">2</span><span class="mord mathnormal">a</span><span class="mclose">)</span></span></span></span></span>.</li>
+<li>Si <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">&#92;Delta &lt; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord">Δ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>, il n&rsquo;y a pas de solution réelle.</li>
+</ul>
+<p>Le nombre de solutions change d&rsquo;une équation à l&rsquo;autre. Un tuple convient bien : il peut contenir deux, un ou zéro élément. Écrire la fonction <code>racines</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">racines</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne le tuple des solutions réelles de a x² + b x + c = 0,
+</span></span></span><span class="line"><span class="cl"><span class="s2">    avec a non nul.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; racines(1, -3, 2)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (1.0, 2.0)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; racines(1, 2, 1)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (-1.0,)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; racines(1, 0, 1)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    ()
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q42">
+  <div class="question-num">Q42.</div>
+  <div class="question-corps">
+<p><strong>Comparer deux dates.</strong> Une date est représentée par un tuple <code>(jour, mois, annee)</code>. Écrire la fonction <code>est_avant</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_avant</span><span class="p">(</span><span class="n">d1</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="n">d2</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne True si la date d1 est strictement antérieure
+</span></span></span><span class="line"><span class="cl"><span class="s2">    à la date d2, False sinon.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; est_avant((14, 7, 1789), (11, 11, 1918))
+</span></span></span><span class="line"><span class="cl"><span class="s2">    True
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; est_avant((25, 12, 2025), (1, 1, 2025))
+</span></span></span><span class="line"><span class="cl"><span class="s2">    False
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; est_avant((3, 5, 2026), (3, 5, 2026))
+</span></span></span><span class="line"><span class="cl"><span class="s2">    False
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; est_avant((3, 5, 2026), (4, 5, 2026))
+</span></span></span><span class="line"><span class="cl"><span class="s2">    True
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p><strong>Indication.</strong> Comparer d&rsquo;abord les années. Si elles sont égales, comparer les mois, et ainsi de suite.</p>
+
+  </div>
+</div>
+
+
+<h2 id="bilan">Bilan<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À l&rsquo;issue de cette activité, je sais…</span></div>
+  <div class="clue-body">
+<ul>
+<li>créer un tuple, y compris un tuple d&rsquo;un seul élément <code>(5,)</code> et le tuple vide <code>()</code> ;</li>
+<li>lire un élément d&rsquo;un tuple grâce à son indice, en sachant que les indices vont de <code>0</code> à <code>len(t) - 1</code> ;</li>
+<li>expliquer pourquoi <code>t[0] = 4</code> provoque une erreur, et construire un nouveau tuple à la place ;</li>
+<li>tester la présence d&rsquo;une valeur dans un tuple avec <code>in</code> ;</li>
+<li>parcourir un tuple par ses éléments ou par ses indices, et choisir l&rsquo;écriture adaptée ;</li>
+<li>déballer un tuple par une affectation multiple, et expliquer pourquoi <code>a, b = b, a</code> échange deux valeurs ;</li>
+<li>écrire une fonction qui renvoie un tuple de valeurs, avec une signature du type <code>-&gt; tuple[int, int]</code> ;</li>
+<li>vérifier une précondition à l&rsquo;aide d&rsquo;une assertion.</li>
+</ul>
+
+  </div>
+</div>
+
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 16 nov. 2026
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/1%C3%A8re-sp%C3%A9-nsi/index.html">1ère Spé NSI</a></li>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+<script src="/js/qcm.js"></script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

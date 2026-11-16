@@ -1,0 +1,2426 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Énoncé au format pdf Énoncé et réponses au format pdf Objectif Faire tourner des programmes à la main, en notant dans un tableau l’évolution du contenu des variables, pour prévoir ce que font un appel de fonction, une alternative et une boucle.
+Chaque exercice se fait d’abord sur papier, sans ordinateur. Le programme est ensuite recopié dans Thonny et exécuté en mode débogage (touche F7) pour vérifier le tableau.
+Méthode : remplir un tableau d’état Une ligne du tableau correspond à une instruction exécutée, dans l’ordre où Python l’exécute (ou à une itération, quand le tableau le précise). Sur chaque ligne, on écrit la valeur de chaque variable juste après l’exécution de l’instruction. Une case reste vide tant que la variable n’existe pas. Pour une condition (if, elif, while), on la recopie en remplaçant les variables par leurs valeurs, puis on écrit sa valeur : True ou False. Pour calculer une expression, on utilise les valeurs que les variables ont à ce moment-là, et non leurs valeurs du début. Exercice 1 — Suivre un appel de fonction On considère le programme suivant.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Suivre l&#39;évolution des variables :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Énoncé au format pdf Énoncé et réponses au format pdf Objectif Faire tourner des programmes à la main, en notant dans un tableau l’évolution du contenu des variables, pour prévoir ce que font un appel de fonction, une alternative et une boucle.
+Chaque exercice se fait d’abord sur papier, sans ordinateur. Le programme est ensuite recopié dans Thonny et exécuté en mode débogage (touche F7) pour vérifier le tableau.
+Méthode : remplir un tableau d’état Une ligne du tableau correspond à une instruction exécutée, dans l’ordre où Python l’exécute (ou à une itération, quand le tableau le précise). Sur chaque ligne, on écrit la valeur de chaque variable juste après l’exécution de l’instruction. Une case reste vide tant que la variable n’existe pas. Pour une condition (if, elif, while), on la recopie en remplaçant les variables par leurs valeurs, puis on écrit sa valeur : True ou False. Pour calculer une expression, on utilise les valeurs que les variables ont à ce moment-là, et non leurs valeurs du début. Exercice 1 — Suivre un appel de fonction On considère le programme suivant.">
+    <meta property="og:url" content="https://dlatreyte.github.io/premieres-nsi/chap-2/2-6-evolution-variables/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Suivre l&#39;évolution des variables :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Énoncé au format pdf Énoncé et réponses au format pdf Objectif Faire tourner des programmes à la main, en notant dans un tableau l’évolution du contenu des variables, pour prévoir ce que font un appel de fonction, une alternative et une boucle.
+Chaque exercice se fait d’abord sur papier, sans ordinateur. Le programme est ensuite recopié dans Thonny et exécuté en mode débogage (touche F7) pour vérifier le tableau.
+Méthode : remplir un tableau d’état Une ligne du tableau correspond à une instruction exécutée, dans l’ordre où Python l’exécute (ou à une itération, quand le tableau le précise). Sur chaque ligne, on écrit la valeur de chaque variable juste après l’exécution de l’instruction. Une case reste vide tant que la variable n’existe pas. Pour une condition (if, elif, while), on la recopie en remplaçant les variables par leurs valeurs, puis on écrit sa valeur : True ou False. Pour calculer une expression, on utilise les valeurs que les variables ont à ce moment-là, et non leurs valeurs du début. Exercice 1 — Suivre un appel de fonction On considère le programme suivant.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="1ère Spécialité NSI">
+    <meta property="article:published_time" content="2026-11-16T12:00:00+04:00">
+    <meta property="article:modified_time" content="2026-11-16T12:00:00+04:00">
+    <meta property="article:tag" content="Tableau D&#39;état">
+    <meta property="article:tag" content="Affectation">
+    <meta property="article:tag" content="Appel De Fonction">
+    <meta property="article:tag" content="Paramètre">
+    <meta property="article:tag" content="Argument">
+    <meta property="article:tag" content="Valeur Retournée">
+    <meta itemprop="name" content="Suivre l&#39;évolution des variables :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Énoncé au format pdf Énoncé et réponses au format pdf Objectif Faire tourner des programmes à la main, en notant dans un tableau l’évolution du contenu des variables, pour prévoir ce que font un appel de fonction, une alternative et une boucle.
+Chaque exercice se fait d’abord sur papier, sans ordinateur. Le programme est ensuite recopié dans Thonny et exécuté en mode débogage (touche F7) pour vérifier le tableau.
+Méthode : remplir un tableau d’état Une ligne du tableau correspond à une instruction exécutée, dans l’ordre où Python l’exécute (ou à une itération, quand le tableau le précise). Sur chaque ligne, on écrit la valeur de chaque variable juste après l’exécution de l’instruction. Une case reste vide tant que la variable n’existe pas. Pour une condition (if, elif, while), on la recopie en remplaçant les variables par leurs valeurs, puis on écrit sa valeur : True ou False. Pour calculer une expression, on utilise les valeurs que les variables ont à ce moment-là, et non leurs valeurs du début. Exercice 1 — Suivre un appel de fonction On considère le programme suivant.">
+    <meta itemprop="datePublished" content="2026-11-16T12:00:00+04:00">
+    <meta itemprop="dateModified" content="2026-11-16T12:00:00+04:00">
+    <meta itemprop="wordCount" content="4173">
+    <meta itemprop="keywords" content="Tableau D&#39;état,Affectation,Appel De Fonction,Paramètre,Argument,Valeur Retournée,Variable Locale,Alternative,Elif,Boucle For,Boucle While,Itération,Boucle Infinie">
+    <title>Suivre l&#39;évolution des variables :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/premieres-nsi/chap-2/2-6-evolution-variables/index.html" rel="canonical" type="text/html" title="Suivre l&#39;évolution des variables :: Physique, Chimie et Informatique">
+    <link href="/premieres-nsi/chap-2/2-6-evolution-variables/index.xml" rel="alternate" type="application/rss&#43;xml" title="Suivre l&#39;évolution des variables :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.9c093d335cb3455111525922853877d4b3ac7a287ead8d15db22b978a233c036.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/premieres-nsi/chap-2/2-6-evolution-variables/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/premieres-nsi/chap-2/2-6-evolution-variables/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#exercice-1--suivre-un-appel-de-fonction">Exercice 1 — Suivre un appel de fonction</a></li>
+    <li><a href="#exercice-2--une-fonction-qui-en-appelle-une-autre">Exercice 2 — Une fonction qui en appelle une autre</a></li>
+    <li><a href="#exercice-3--quelle-branche-est-exécutée-">Exercice 3 — Quelle branche est exécutée ?</a></li>
+    <li><a href="#exercice-4--des-if-successifs-ou-un-elif-">Exercice 4 — Des if successifs ou un elif ?</a></li>
+    <li><a href="#exercice-5--faire-tourner-une-boucle-à-la-main">Exercice 5 — Faire tourner une boucle à la main</a></li>
+    <li><a href="#exercice-6--fonctions-alternative-et-boucles-réunies">Exercice 6 — Fonctions, alternative et boucles réunies</a>
+      <ul>
+        <li><a href="#une-boucle-non-bornée-qui-appelle-une-fonction">Une boucle non bornée qui appelle une fonction</a></li>
+        <li><a href="#deux-boucles-imbriquées">Deux boucles imbriquées</a></li>
+      </ul>
+    </li>
+    <li><a href="#bilan">Bilan</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Premiers pas en programmation">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/index.html"><span itemprop="name">1ère Spécialité NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/chap-2/index.html"><span itemprop="name">Premiers pas en programmation</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-2/2-6-evolution-variables/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-2/2-5-jeu-pyxel/index.html" title="Un premier jeu avec Pyxel (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-3/index.html" title="Premières structures de données : listes et tuples (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable premieres-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Premiers pas en programmation</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/affectation/index.html">Affectation</a></li>
+    <li><a class="term-link" href="/tags/alternative/index.html">Alternative</a></li>
+    <li><a class="term-link" href="/tags/appel-de-fonction/index.html">Appel De Fonction</a></li>
+    <li><a class="term-link" href="/tags/argument/index.html">Argument</a></li>
+    <li><a class="term-link" href="/tags/boucle-for/index.html">Boucle For</a></li>
+    <li><a class="term-link" href="/tags/boucle-infinie/index.html">Boucle Infinie</a></li>
+    <li><a class="term-link" href="/tags/boucle-while/index.html">Boucle While</a></li>
+    <li><a class="term-link" href="/tags/elif/index.html">Elif</a></li>
+    <li><a class="term-link" href="/tags/it%C3%A9ration/index.html">Itération</a></li>
+    <li><a class="term-link" href="/tags/param%C3%A8tre/index.html">Paramètre</a></li>
+    <li><a class="term-link" href="/tags/tableau-d%C3%A9tat/index.html">Tableau D&#39;état</a></li>
+    <li><a class="term-link" href="/tags/valeur-retourn%C3%A9e/index.html">Valeur Retournée</a></li>
+    <li><a class="term-link" href="/tags/variable-locale/index.html">Variable Locale</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="suivre-lévolution-des-variables">Suivre l&#39;évolution des variables</h1>
+
+<ul>
+<li>
+<a class="remote" href="/premieres-nsi/chap-2/2-6/2-6-enonce.pdf" target="_blank">Énoncé au format pdf</a>
+
+</li>
+<li>
+<a class="remote" href="/premieres-nsi/chap-2/2-6/2-6-corrige.pdf" target="_blank">Énoncé et réponses au format pdf</a>
+
+</li>
+</ul>
+<div class="clue clue-goal" style="--accent: #e64553">
+  <div class="clue-header"><img class="clue-icon" src="/clues/flag.svg" alt="" aria-hidden="true"><span class="clue-title">Objectif</span></div>
+  <div class="clue-body">
+<p>Faire tourner des programmes à la main, en notant dans un tableau l&rsquo;évolution du contenu des variables, pour prévoir ce que font un appel de fonction, une alternative et une boucle.</p>
+
+  </div>
+</div>
+
+<p>Chaque exercice se fait d&rsquo;abord sur papier, sans ordinateur. Le programme est ensuite recopié dans Thonny et exécuté en mode débogage (touche <kbd>F7</kbd>) pour vérifier le tableau.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Méthode : remplir un tableau d&rsquo;état</span></div>
+  <div class="clue-body">
+<ul>
+<li>Une ligne du tableau correspond à une instruction exécutée, dans l&rsquo;ordre où Python l&rsquo;exécute (ou à une itération, quand le tableau le précise).</li>
+<li>Sur chaque ligne, on écrit la valeur de chaque variable juste après l&rsquo;exécution de l&rsquo;instruction. Une case reste vide tant que la variable n&rsquo;existe pas.</li>
+<li>Pour une condition (<code>if</code>, <code>elif</code>, <code>while</code>), on la recopie en remplaçant les variables par leurs valeurs, puis on écrit sa valeur : <code>True</code> ou <code>False</code>.</li>
+<li>Pour calculer une expression, on utilise les valeurs que les variables ont à ce moment-là, et non leurs valeurs du début.</li>
+</ul>
+
+  </div>
+</div>
+
+<h2 id="exercice-1--suivre-un-appel-de-fonction">Exercice 1 — Suivre un appel de fonction<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>On considère le programme suivant.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">transforme</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Fonction à étudier.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">transforme</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="n">transforme</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="mi">40</span><span class="p">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<div class="question-bloc" id="q24">
+  <div class="question-num">Q24.</div>
+  <div class="question-corps">
+<p>Sans utiliser Python, compléter le tableau d&rsquo;état ci-dessous. Les variables <code>x</code> et <code>y</code> n&rsquo;existent que pendant l&rsquo;exécution de la fonction : leurs cases restent vides en dehors d&rsquo;un appel.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Ligne</strong></th>
+      <th class="align-left"><strong>a</strong></th>
+      <th class="align-left"><strong>b</strong></th>
+      <th class="align-left"><strong>c</strong></th>
+      <th class="align-left"><strong>x</strong></th>
+      <th class="align-left"><strong>y</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">7</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">8 : appel de <code>transforme</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">4</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">5 : valeur retournée</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">8 : affectation de <code>b</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">9 : appel de <code>transforme</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">4</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">5 : valeur retournée</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">9 : affectation de <code>c</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Ligne</strong></th>
+      <th class="align-left"><strong>a</strong></th>
+      <th class="align-left"><strong>b</strong></th>
+      <th class="align-left"><strong>c</strong></th>
+      <th class="align-left"><strong>x</strong></th>
+      <th class="align-left"><strong>y</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">7</td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">8 : appel de <code>transforme(3)</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">3</td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left">3</td>
+      <td class="align-left">6</td>
+    </tr>
+    <tr>
+      <td class="align-left">4</td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left">7</td>
+      <td class="align-left">6</td>
+    </tr>
+    <tr>
+      <td class="align-left">5 : retourne <code>42</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left">7</td>
+      <td class="align-left">6</td>
+    </tr>
+    <tr>
+      <td class="align-left">8 : affectation de <code>b</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left">42</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">9 : appel de <code>transforme(2)</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left">42</td>
+      <td class="align-left"></td>
+      <td class="align-left">2</td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">3</td>
+      <td class="align-left">3</td>
+      <td class="align-left">42</td>
+      <td class="align-left"></td>
+      <td class="align-left">2</td>
+      <td class="align-left">4</td>
+    </tr>
+    <tr>
+      <td class="align-left">4</td>
+      <td class="align-left">3</td>
+      <td class="align-left">42</td>
+      <td class="align-left"></td>
+      <td class="align-left">5</td>
+      <td class="align-left">4</td>
+    </tr>
+    <tr>
+      <td class="align-left">5 : retourne <code>20</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left">42</td>
+      <td class="align-left"></td>
+      <td class="align-left">5</td>
+      <td class="align-left">4</td>
+    </tr>
+    <tr>
+      <td class="align-left">9 : affectation de <code>c</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left">42</td>
+      <td class="align-left">20</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+<p>À la ligne 9, l&rsquo;argument <code>b - 40</code> est évalué avant l&rsquo;appel : il vaut <code>2</code>. C&rsquo;est cette valeur que reçoit le paramètre <code>x</code>. À la fin, <code>a = 3</code>, <code>b = 42</code> et <code>c = 20</code>.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q25">
+  <div class="question-num">Q25.</div>
+  <div class="question-corps">
+<p>À la ligne 4, la valeur de <code>x</code> change. Pourquoi <code>a</code> vaut-elle toujours <code>3</code> à la fin du programme ?</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Lors de l&rsquo;appel <code>transforme(a)</code>, le paramètre <code>x</code> reçoit la valeur de l&rsquo;argument, c&rsquo;est-à-dire <code>3</code>. Ensuite, <code>x</code> et <code>a</code> sont deux variables différentes : affecter une nouvelle valeur à <code>x</code> ne modifie pas <code>a</code>.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q26">
+  <div class="question-num">Q26.</div>
+  <div class="question-corps">
+<p>Sans utiliser Python, déterminer la valeur de <code>transforme(transforme(1))</code> en détaillant les étapes. Vérifier ensuite dans la console.</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Python évalue d&rsquo;abord l&rsquo;argument <code>transforme(1)</code> : <code>y</code> prend la valeur <code>2</code>, puis <code>x</code> la valeur <code>3</code> ; l&rsquo;appel retourne <code>3 * 2</code>, soit <code>6</code>.</p>
+<p>L&rsquo;appel se ramène alors à <code>transforme(6)</code> : <code>y</code> vaut <code>12</code>, <code>x</code> vaut <code>13</code> ; l&rsquo;appel retourne <code>13 * 12</code>, soit <code>156</code>.</p>
+  </div>
+</details>
+<div class="qcm" data-qcm="/premieres-nsi/chap-2/2-6-evolution-variables/#7" data-s="W1swXSxbMF0sWzFdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Avec la fonction <code>transforme</code> de l&rsquo;exercice, que retourne <code>transforme(1)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-0" value="0"> <span><code>6</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-0" value="1"> <span><code>2</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-0" value="2"> <span><code>3</code></span></label></li>
+        <li data-i="3"><label><input type="radio" name="q7-0" value="3"> <span><code>4</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>y = 2 * 1 = 2</code>, puis <code>x = y + 1 = 3</code>, et la fonction retourne <code>x * y = 3 * 2 = 6</code>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Après <code>a = 3</code> puis <code>b = transforme(a)</code>, que vaut <code>a</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-1" value="0"> <span><code>3</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-1" value="1"> <span><code>7</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-1" value="2"> <span><code>42</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Le paramètre <code>x</code> reçoit la valeur de <code>a</code>, puis vit sa vie : modifier <code>x</code> dans la fonction ne modifie pas <code>a</code>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Que valent <code>x</code> et <code>y</code> après la fin de l&rsquo;appel <code>transforme(a)</code>, dans le programme principal ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-2" value="0"> <span><code>x</code> vaut 7 et <code>y</code> vaut 6.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-2" value="1"> <span>Elles n&rsquo;existent pas : ce sont des variables locales à la fonction.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-2" value="2"> <span>Elles valent 0.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>x</code> et <code>y</code> n&rsquo;existent que pendant l&rsquo;exécution de la fonction.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="exercice-2--une-fonction-qui-en-appelle-une-autre">Exercice 2 — Une fonction qui en appelle une autre<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Dans le programme suivant, trois variables différentes portent le même nom <code>n</code> : celle du programme principal, le paramètre de <code>f</code> et le paramètre de <code>double</code>.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne le double de n.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Fonction à étudier.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">n</span> <span class="o">-</span> <span class="n">m</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">+</span> <span class="n">n</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<div class="question-bloc" id="q27">
+  <div class="question-num">Q27.</div>
+  <div class="question-corps">
+<p>Sans utiliser Python, compléter le tableau d&rsquo;état ci-dessous pour les lignes 12 et 13 du programme. La colonne « En cours » indique où se trouve l&rsquo;exécution : programme principal, <code>f</code> ou <code>double</code>.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Ligne</strong></th>
+      <th class="align-left"><strong>En cours</strong></th>
+      <th class="align-left"><strong>n</strong>  (programme)</th>
+      <th class="align-left"><strong>r</strong></th>
+      <th class="align-left"><strong>n</strong>  (dans <code>f</code>)</th>
+      <th class="align-left"><strong>m</strong></th>
+      <th class="align-left"><strong>n</strong>  (dans <code>double</code>)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">12</td>
+      <td class="align-left">programme</td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Ligne</strong></th>
+      <th class="align-left"><strong>En cours</strong></th>
+      <th class="align-left"><strong>n</strong>  (programme)</th>
+      <th class="align-left"><strong>r</strong></th>
+      <th class="align-left"><strong>n</strong>  (dans <code>f</code>)</th>
+      <th class="align-left"><strong>m</strong></th>
+      <th class="align-left"><strong>n</strong>  (dans <code>double</code>)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">12</td>
+      <td class="align-left">programme</td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">13 : appel <code>f(3)</code></td>
+      <td class="align-left"><code>f</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">8 : appel <code>double(3)</code></td>
+      <td class="align-left"><code>double</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">3</td>
+    </tr>
+    <tr>
+      <td class="align-left">3</td>
+      <td class="align-left"><code>double</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">6</td>
+    </tr>
+    <tr>
+      <td class="align-left">4 : retourne <code>6</code></td>
+      <td class="align-left"><code>double</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">6</td>
+    </tr>
+    <tr>
+      <td class="align-left">8 : affectation de <code>m</code></td>
+      <td class="align-left"><code>f</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">3</td>
+      <td class="align-left">7</td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">9 : appel <code>double(7)</code></td>
+      <td class="align-left"><code>double</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">3</td>
+      <td class="align-left">7</td>
+      <td class="align-left">7</td>
+    </tr>
+    <tr>
+      <td class="align-left">3</td>
+      <td class="align-left"><code>double</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">3</td>
+      <td class="align-left">7</td>
+      <td class="align-left">14</td>
+    </tr>
+    <tr>
+      <td class="align-left">4 : retourne <code>14</code></td>
+      <td class="align-left"><code>double</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">3</td>
+      <td class="align-left">7</td>
+      <td class="align-left">14</td>
+    </tr>
+    <tr>
+      <td class="align-left">9 : affectation de <code>n</code></td>
+      <td class="align-left"><code>f</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">14</td>
+      <td class="align-left">7</td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">10 : retourne <code>7</code></td>
+      <td class="align-left"><code>f</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left">14</td>
+      <td class="align-left">7</td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">13 : affectation de <code>r</code></td>
+      <td class="align-left">programme</td>
+      <td class="align-left">3</td>
+      <td class="align-left">7</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+<p>Le <code>n</code> de <code>f</code> passe de <code>3</code> à <code>14</code>, celui de <code>double</code> de <code>3</code> à <code>6</code> : aucun des deux ne modifie le <code>n</code> du programme principal, qui vaut toujours <code>3</code>.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q28">
+  <div class="question-num">Q28.</div>
+  <div class="question-corps">
+<p>Sans construire de nouveau tableau, déterminer la valeur de <code>s</code> après la ligne 14. Quelle valeur de <code>n</code> est utilisée dans l&rsquo;expression <code>f(r) + n</code> ?</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><code>r</code> vaut <code>7</code>. Dans l&rsquo;appel <code>f(7)</code> : <code>double(7)</code> retourne <code>14</code>, donc <code>m</code> vaut <code>15</code> ; <code>double(15)</code> retourne <code>30</code>, donc le <code>n</code> de <code>f</code> vaut <code>30</code> ; l&rsquo;appel retourne <code>30 - 15</code>, soit <code>15</code>.</p>
+<p>Dans <code>f(r) + n</code>, on est dans le programme principal : c&rsquo;est son <code>n</code> qui est utilisé, et il vaut <code>3</code>. Donc <code>s = 15 + 3 = 18</code>.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q29">
+  <div class="question-num">Q29.</div>
+  <div class="question-corps">
+<p>Un élève remplace les lignes 3 et 4 par la seule instruction <code>print(2 * n)</code>. Prévoir ce qui se passe lors de l&rsquo;exécution de la ligne 13, puis vérifier.</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>L&rsquo;appel <code>double(3)</code> affiche <code>6</code> mais ne retourne aucune valeur : il retourne <code>None</code>. La ligne 8 doit alors calculer <code>None + 1</code>, ce qui provoque une erreur <code>TypeError</code>. Afficher une valeur n&rsquo;est pas la retourner : seule une valeur retournée peut être réutilisée dans un calcul.</p>
+  </div>
+</details>
+<div class="qcm" data-qcm="/premieres-nsi/chap-2/2-6-evolution-variables/#8" data-s="W1swXSxbMF1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">2 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 2</div>
+      <div class="qcm-enonce"><p>Avec les fonctions <code>double</code> et <code>f</code> de l&rsquo;exercice, que retourne <code>f(1)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-0" value="0"> <span><code>3</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-0" value="1"> <span><code>6</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-0" value="2"> <span><code>1</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>m = double(1) + 1 = 3</code>, puis <code>n = double(3) = 6</code>, et la fonction retourne <code>n - m = 6 - 3 = 3</code>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 2</div>
+      <div class="qcm-enonce"><p>Après <code>n = 3</code> puis <code>r = f(n)</code>, que vaut le <code>n</code> du programme principal ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-1" value="0"> <span><code>3</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-1" value="1"> <span><code>14</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-1" value="2"> <span><code>6</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Les paramètres <code>n</code> de <code>f</code> et de <code>double</code> sont des variables locales distinctes : aucun ne modifie le <code>n</code> du programme principal.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="exercice-3--quelle-branche-est-exécutée-">Exercice 3 — Quelle branche est exécutée ?<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Un cinéma calcule le prix d&rsquo;une place avec la fonction suivante.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">AGE_ENFANT</span> <span class="o">=</span> <span class="mi">12</span>
+</span></span><span class="line"><span class="cl"><span class="n">AGE_SENIOR</span> <span class="o">=</span> <span class="mi">65</span>
+</span></span><span class="line"><span class="cl"><span class="n">PRIX_ENFANT</span> <span class="o">=</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="n">PRIX_REDUIT</span> <span class="o">=</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="n">PRIX_NORMAL</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">tarif</span><span class="p">(</span><span class="n">age</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">etudiant</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne le prix de la place, en euros.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="n">AGE_ENFANT</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">prix</span> <span class="o">=</span> <span class="n">PRIX_ENFANT</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="n">AGE_SENIOR</span> <span class="ow">or</span> <span class="n">etudiant</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">prix</span> <span class="o">=</span> <span class="n">PRIX_REDUIT</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">prix</span> <span class="o">=</span> <span class="n">PRIX_NORMAL</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">prix</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<div class="question-bloc" id="q30">
+  <div class="question-num">Q30.</div>
+  <div class="question-corps">
+<p>Sans utiliser Python, compléter le tableau ci-dessous. Dans la colonne du milieu, écrire chaque condition évaluée, dans l&rsquo;ordre, avec les valeurs des variables et le résultat de l&rsquo;évaluation. Une condition qui n&rsquo;est pas évaluée ne doit pas apparaître.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Appel</strong></th>
+      <th class="align-left"><strong>Conditions évaluées</strong></th>
+      <th class="align-left"><strong>Valeur retournée</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"><code>tarif(8, True)</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>tarif(70, False)</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>tarif(17, True)</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>tarif(30, False)</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>tarif(12, False)</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Appel</strong></th>
+      <th class="align-left"><strong>Conditions évaluées</strong></th>
+      <th class="align-left"><strong>Valeur retournée</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"><code>tarif(8, True)</code></td>
+      <td class="align-left"><code>8 &lt; 12</code> : <code>True</code></td>
+      <td class="align-left"><code>5</code></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>tarif(70, False)</code></td>
+      <td class="align-left"><code>70 &lt; 12</code> : <code>False</code>  <code>70 &gt;= 65 or ...</code> : <code>True</code></td>
+      <td class="align-left"><code>7</code></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>tarif(17, True)</code></td>
+      <td class="align-left"><code>17 &lt; 12</code> : <code>False</code>  <code>17 &gt;= 65 or True</code> : <code>True</code></td>
+      <td class="align-left"><code>7</code></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>tarif(30, False)</code></td>
+      <td class="align-left"><code>30 &lt; 12</code> : <code>False</code>  <code>30 &gt;= 65 or False</code> : <code>False</code></td>
+      <td class="align-left"><code>10</code></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>tarif(12, False)</code></td>
+      <td class="align-left"><code>12 &lt; 12</code> : <code>False</code>  <code>12 &gt;= 65 or False</code> : <code>False</code></td>
+      <td class="align-left"><code>10</code></td>
+    </tr>
+  </tbody>
+</table>
+<p>Pour <code>tarif(70, False)</code>, <code>70 &gt;= 65</code> vaut déjà <code>True</code> : grâce à l&rsquo;évaluation en court-circuit, Python n&rsquo;a pas besoin d&rsquo;évaluer <code>etudiant</code>. Pour <code>tarif(12, False)</code>, <code>12 &lt; 12</code> est fausse : l&rsquo;inégalité est stricte.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q31">
+  <div class="question-num">Q31.</div>
+  <div class="question-corps">
+<p>Une personne de 8 ans est aussi étudiante dans une école de musique : <code>tarif(8, True)</code> retourne <code>5</code> et non <code>7</code>. Expliquer pourquoi à partir de la structure <code>if</code> / <code>elif</code> / <code>else</code>.</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Dans une structure <code>if</code> / <code>elif</code> / <code>else</code>, un seul bloc est exécuté : celui de la première condition vraie. Ici, <code>8 &lt; 12</code> est vraie, donc <code>prix</code> prend la valeur <code>5</code> et la condition du <code>elif</code> n&rsquo;est même pas évaluée.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q32">
+  <div class="question-num">Q32.</div>
+  <div class="question-corps">
+<p>Un élève remplace <code>elif</code> par <code>if</code> à la ligne 11. Le programme reste correct pour Python. Sans utiliser Python, déterminer ce que retournent alors <code>tarif(8, True)</code> et <code>tarif(8, False)</code>. Vérifier ensuite.</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Le programme contient maintenant deux alternatives indépendantes, exécutées l&rsquo;une après l&rsquo;autre : un <code>if</code> seul (lignes 9 et 10), puis un <code>if</code> / <code>else</code> (lignes 11 à 14).</p>
+<ul>
+<li><code>tarif(8, True)</code> : <code>8 &lt; 12</code> est vraie, <code>prix</code> vaut <code>5</code>. Puis <code>8 &gt;= 65 or True</code> est vraie, <code>prix</code> vaut <code>7</code>. L&rsquo;appel retourne <code>7</code>.</li>
+<li><code>tarif(8, False)</code> : <code>prix</code> vaut d&rsquo;abord <code>5</code>. Puis <code>8 &gt;= 65 or False</code> est fausse : c&rsquo;est le bloc <code>else</code> qui s&rsquo;exécute et <code>prix</code> vaut <code>10</code>. L&rsquo;appel retourne <code>10</code>, le prix normal, pour un enfant.</li>
+</ul>
+  </div>
+</details>
+<div class="qcm" data-qcm="/premieres-nsi/chap-2/2-6-evolution-variables/#9" data-s="W1sxXSxbMF0sWzFdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Avec la fonction <code>tarif</code> de l&rsquo;exercice, que retourne <code>tarif(15, True)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q9-0" value="0"> <span><code>5</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q9-0" value="1"> <span><code>7</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q9-0" value="2"> <span><code>10</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>15 &lt; 12</code> est fausse ; <code>15 &gt;= 65 or True</code> est vraie grâce à <code>etudiant</code> : le prix réduit, 7 €, s&rsquo;applique.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Que retourne <code>tarif(11, True)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q9-1" value="0"> <span><code>5</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q9-1" value="1"> <span><code>7</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q9-1" value="2"> <span><code>12</code>, c&rsquo;est-à-dire <code>5 + 7</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>11 &lt; 12</code> est vraie : le premier bloc est exécuté et les conditions suivantes ne sont même pas évaluées.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Lors de l&rsquo;appel <code>tarif(70, False)</code>, la variable <code>etudiant</code> est-elle évaluée dans la condition du <code>elif</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q9-2" value="0"> <span>Oui, toujours.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q9-2" value="1"> <span>Non : <code>70 &gt;= 65</code> vaut déjà <code>True</code>, donc <code>or</code> n&rsquo;a pas besoin d&rsquo;évaluer la suite.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>C&rsquo;est l&rsquo;évaluation en court-circuit : avec <code>or</code>, dès qu&rsquo;un opérande vaut <code>True</code>, le résultat est connu.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="exercice-4--des-if-successifs-ou-un-elif-">Exercice 4 — Des if successifs ou un elif ?<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>On compare deux versions d&rsquo;une fonction de calcul de score. En dehors de leur nom, elles ne diffèrent que par les mots-clés des lignes 5 et 7.</p>
+<div class="colonnes"><div class="colonne">
+
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajuste_a</span><span class="p">(</span><span class="n">score</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Calcule un nouveau score.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">14</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">score</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div><div class="colonne">
+
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajuste_b</span><span class="p">(</span><span class="n">score</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Calcule un nouveau score.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">score</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="mi">14</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">score</span> <span class="o">=</span> <span class="n">score</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">score</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div></div>
+
+<div class="question-bloc" id="q33">
+  <div class="question-num">Q33.</div>
+  <div class="question-corps">
+<p>Sans utiliser Python, suivre l&rsquo;appel <code>ajuste_a(9)</code> en complétant le tableau ci-dessous. Chaque ligne du tableau correspond à une ligne exécutée de la fonction. Toutes les lignes du tableau ne seront pas forcément utilisées.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Ligne</strong></th>
+      <th class="align-left"><strong>Condition testée</strong></th>
+      <th class="align-left"><strong>score</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">1</td>
+      <td class="align-left"></td>
+      <td class="align-left">9</td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Ligne</strong></th>
+      <th class="align-left"><strong>Condition testée</strong></th>
+      <th class="align-left"><strong>score</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">1</td>
+      <td class="align-left"></td>
+      <td class="align-left">9</td>
+    </tr>
+    <tr>
+      <td class="align-left">3</td>
+      <td class="align-left"><code>9 &lt; 10</code> : <code>True</code></td>
+      <td class="align-left">9</td>
+    </tr>
+    <tr>
+      <td class="align-left">4</td>
+      <td class="align-left"></td>
+      <td class="align-left">12</td>
+    </tr>
+    <tr>
+      <td class="align-left">5</td>
+      <td class="align-left"><code>12 &lt; 15</code> : <code>True</code></td>
+      <td class="align-left">12</td>
+    </tr>
+    <tr>
+      <td class="align-left">6</td>
+      <td class="align-left"></td>
+      <td class="align-left">14</td>
+    </tr>
+    <tr>
+      <td class="align-left">7</td>
+      <td class="align-left"><code>14 &gt; 14</code> : <code>False</code></td>
+      <td class="align-left">14</td>
+    </tr>
+    <tr>
+      <td class="align-left">9</td>
+      <td class="align-left"></td>
+      <td class="align-left">14</td>
+    </tr>
+  </tbody>
+</table>
+<p>L&rsquo;appel retourne <code>14</code>. La condition de la ligne 5 utilise la valeur de <code>score</code> déjà modifiée à la ligne 4 (<code>12</code>), et non la valeur de départ (<code>9</code>).</p>
+  </div>
+</details>
+<div class="question-bloc" id="q34">
+  <div class="question-num">Q34.</div>
+  <div class="question-corps">
+<p>Faire de même pour <code>ajuste_b(9)</code>, puis compléter le tableau des valeurs retournées ci-dessous.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>score de départ</strong></th>
+      <th class="align-left"><strong><code>ajuste_a</code></strong></th>
+      <th class="align-left"><strong><code>ajuste_b</code></strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">9</td>
+      <td class="align-left">14</td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">13</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">16</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Pour <code>ajuste_b(9)</code>, les lignes exécutées sont 1, 3 (<code>9 &lt; 10</code> : <code>True</code>), 4 (<code>score</code> vaut <code>12</code>) puis 9. Les deux <code>elif</code> ne sont pas évalués : l&rsquo;appel retourne <code>12</code>.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>score de départ</strong></th>
+      <th class="align-left"><strong><code>ajuste_a</code></strong></th>
+      <th class="align-left"><strong><code>ajuste_b</code></strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">9</td>
+      <td class="align-left">14</td>
+      <td class="align-left">12</td>
+    </tr>
+    <tr>
+      <td class="align-left">13</td>
+      <td class="align-left">16</td>
+      <td class="align-left">15</td>
+    </tr>
+    <tr>
+      <td class="align-left">16</td>
+      <td class="align-left">17</td>
+      <td class="align-left">17</td>
+    </tr>
+  </tbody>
+</table>
+<p>Pour <code>13</code> : dans la version A, <code>13 &lt; 15</code> est vraie et <code>score</code> devient <code>15</code> ; puis <code>15 &gt; 14</code> est vraie et <code>score</code> devient <code>16</code>. Dans la version B, seul le premier bloc dont la condition est vraie est exécuté : <code>score</code> devient <code>15</code>.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q35">
+  <div class="question-num">Q35.</div>
+  <div class="question-corps">
+<p><strong>Plus difficile.</strong> Pour quelles valeurs entières de <code>score</code>, comprises entre 0 et 20, les deux versions retournent-elles des valeurs différentes ? Justifier, puis vérifier avec une boucle dans la console.</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Dans la version B, un seul bloc est exécuté. Dans la version A, un bloc peut être exécuté puis modifier <code>score</code> de façon qu&rsquo;une condition suivante devienne vraie.</p>
+<ul>
+<li>De 0 à 9 : la version A ajoute 3 puis 2 (le score obtenu est inférieur à 15), alors que la version B ajoute seulement 3. Les résultats diffèrent.</li>
+<li>De 10 à 12 : les deux versions ajoutent 2. Dans la version A, le score obtenu (12 à 14) ne dépasse pas 14 : même résultat.</li>
+<li>13 et 14 : les deux versions ajoutent 2, mais dans la version A le score obtenu (15 ou 16) dépasse 14 et on ajoute encore 1. Les résultats diffèrent.</li>
+<li>De 15 à 20 : seule la condition <code>score &gt; 14</code> est vraie dans les deux versions : même résultat.</li>
+</ul>
+<p>Les résultats diffèrent donc pour les scores de 0 à 9, 13 et 14. Vérification :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">score</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>     <span class="k">if</span> <span class="n">ajuste_a</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="o">!=</span> <span class="n">ajuste_b</span><span class="p">(</span><span class="n">score</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>         <span class="nb">print</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">13</span> <span class="mi">14</span></span></span></code></pre></div>
+  </div>
+</details>
+<div class="qcm" data-qcm="/premieres-nsi/chap-2/2-6-evolution-variables/#10" data-s="W1sxXSxbMF1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">2 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 2</div>
+      <div class="qcm-enonce"><p>Que retourne <code>ajuste_a(13)</code> (trois <code>if</code> successifs) ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q10-0" value="0"> <span><code>15</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q10-0" value="1"> <span><code>16</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q10-0" value="2"> <span><code>14</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>13 &lt; 10</code> est fausse ; <code>13 &lt; 15</code> est vraie, donc <code>score</code> devient 15 ; puis <code>15 &gt; 14</code> est vraie, donc <code>score</code> devient 16. Chaque <code>if</code> teste la valeur déjà modifiée.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 2</div>
+      <div class="qcm-enonce"><p>Que retourne <code>ajuste_b(13)</code> (<code>if</code> / <code>elif</code> / <code>elif</code>) ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q10-1" value="0"> <span><code>15</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q10-1" value="1"> <span><code>16</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q10-1" value="2"> <span><code>14</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Dès que <code>13 &lt; 15</code> est vraie, le bloc correspondant est exécuté et les <code>elif</code> suivants sont ignorés : le score vaut 15.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="exercice-5--faire-tourner-une-boucle-à-la-main">Exercice 5 — Faire tourner une boucle à la main<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>On considère les deux fonctions suivantes.</p>
+<div class="colonnes"><div class="colonne">
+
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">mystere</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Fonction à étudier.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span></span></span></code></pre></div>
+</div><div class="colonne">
+
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">mystere_bis</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Fonction à étudier.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">s</span></span></span></code></pre></div>
+</div></div>
+
+<div class="question-bloc" id="q36">
+  <div class="question-num">Q36.</div>
+  <div class="question-corps">
+<p>Quels entiers sont produits par <code>range(1, 8, 2)</code> ? Combien d&rsquo;itérations la boucle de <code>mystere(7)</code> effectue-t-elle ?</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><code>range(1, 8, 2)</code> produit <code>1</code>, <code>3</code>, <code>5</code> et <code>7</code> : on part de 1, on avance de 2, et 8 est exclu. La boucle effectue donc 4 itérations.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q37">
+  <div class="question-num">Q37.</div>
+  <div class="question-corps">
+<p>Sans utiliser Python, compléter le tableau d&rsquo;état de l&rsquo;appel <code>mystere(7)</code>. Chaque ligne donne les valeurs à la fin d&rsquo;une itération.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Étape</strong></th>
+      <th class="align-left"><strong>i</strong></th>
+      <th class="align-left"><strong>s</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">avant la boucle</td>
+      <td class="align-left"></td>
+      <td class="align-left">0</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 1</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 2</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 4</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Étape</strong></th>
+      <th class="align-left"><strong>i</strong></th>
+      <th class="align-left"><strong>s</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">avant la boucle</td>
+      <td class="align-left"></td>
+      <td class="align-left">0</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 1</td>
+      <td class="align-left">1</td>
+      <td class="align-left">1</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 2</td>
+      <td class="align-left">3</td>
+      <td class="align-left">4</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 3</td>
+      <td class="align-left">5</td>
+      <td class="align-left">9</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 4</td>
+      <td class="align-left">7</td>
+      <td class="align-left">16</td>
+    </tr>
+  </tbody>
+</table>
+<p>L&rsquo;appel retourne <code>16</code>. Avant la boucle, <code>i</code> n&rsquo;existe pas encore : c&rsquo;est la boucle <code>for</code> qui lui donne ses valeurs.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q38">
+  <div class="question-num">Q38.</div>
+  <div class="question-corps">
+<p>Sans utiliser Python, compléter le tableau d&rsquo;état de l&rsquo;appel <code>mystere_bis(7)</code>. La condition de la boucle est évaluée au début de chaque itération : la dernière ligne correspond au test qui arrête la boucle.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Étape</strong></th>
+      <th class="align-left"><strong>Condition testée</strong></th>
+      <th class="align-left"><strong>s</strong></th>
+      <th class="align-left"><strong>i</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">avant la boucle</td>
+      <td class="align-left"></td>
+      <td class="align-left">0</td>
+      <td class="align-left">1</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 1</td>
+      <td class="align-left"><code>1 &lt;= 7</code> : <code>True</code></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 2</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 4</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">fin</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Étape</strong></th>
+      <th class="align-left"><strong>Condition testée</strong></th>
+      <th class="align-left"><strong>s</strong></th>
+      <th class="align-left"><strong>i</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">avant la boucle</td>
+      <td class="align-left"></td>
+      <td class="align-left">0</td>
+      <td class="align-left">1</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 1</td>
+      <td class="align-left"><code>1 &lt;= 7</code> : <code>True</code></td>
+      <td class="align-left">1</td>
+      <td class="align-left">3</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 2</td>
+      <td class="align-left"><code>3 &lt;= 7</code> : <code>True</code></td>
+      <td class="align-left">4</td>
+      <td class="align-left">5</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 3</td>
+      <td class="align-left"><code>5 &lt;= 7</code> : <code>True</code></td>
+      <td class="align-left">9</td>
+      <td class="align-left">7</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 4</td>
+      <td class="align-left"><code>7 &lt;= 7</code> : <code>True</code></td>
+      <td class="align-left">16</td>
+      <td class="align-left">9</td>
+    </tr>
+    <tr>
+      <td class="align-left">fin</td>
+      <td class="align-left"><code>9 &lt;= 7</code> : <code>False</code></td>
+      <td class="align-left">16</td>
+      <td class="align-left">9</td>
+    </tr>
+  </tbody>
+</table>
+<p>L&rsquo;appel retourne <code>16</code>, comme <code>mystere(7)</code>.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q39">
+  <div class="question-num">Q39.</div>
+  <div class="question-corps">
+<p>À la fin de chaque appel, quelle est la dernière valeur prise par <code>i</code> : dans <code>mystere(7)</code> ? dans <code>mystere_bis(7)</code> ? Expliquer la différence.</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Dans <code>mystere(7)</code>, <code>i</code> vaut <code>7</code> : c&rsquo;est la dernière valeur produite par <code>range</code>. Dans <code>mystere_bis(7)</code>, <code>i</code> vaut <code>9</code> : la boucle <code>while</code> ne s&rsquo;arrête que lorsque la condition devient fausse, donc après que <code>i</code> a dépassé <code>7</code>.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q40">
+  <div class="question-num">Q40.</div>
+  <div class="question-corps">
+<p>Sans utiliser Python, prévoir les valeurs de <code>mystere(8)</code> et de <code>mystere_bis(0)</code>. Combien d&rsquo;itérations sont effectuées dans le second appel ?</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><code>range(1, 9, 2)</code> produit les mêmes entiers que <code>range(1, 8, 2)</code> : <code>mystere(8)</code> retourne aussi <code>16</code>.</p>
+<p>Pour <code>mystere_bis(0)</code>, la condition <code>1 &lt;= 0</code> est fausse dès le premier test : aucune itération n&rsquo;est effectuée et l&rsquo;appel retourne <code>0</code>.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q41">
+  <div class="question-num">Q41.</div>
+  <div class="question-corps">
+<p>Quel calcul réalisent ces deux fonctions ?</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Elles retournent la somme des entiers impairs compris entre 1 et <code>n</code>. On remarque que les valeurs successives de <code>s</code> (1, 4, 9, 16) sont des carrés.</p>
+  </div>
+</details>
+<div class="qcm" data-qcm="/premieres-nsi/chap-2/2-6-evolution-variables/#11" data-s="W1swXSxbMV1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">2 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 2</div>
+      <div class="qcm-enonce"><p>Que retourne <code>mystere(5)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q11-0" value="0"> <span><code>9</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q11-0" value="1"> <span><code>15</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q11-0" value="2"> <span><code>4</code></span></label></li>
+        <li data-i="3"><label><input type="radio" name="q11-0" value="3"> <span><code>6</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>range(1, 6, 2)</code> produit 1, 3 et 5 : la fonction calcule <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&#43;</mo><mn>3</mn><mo>&#43;</mo><mn>5</mn><mo>&#61;</mo><mn>9</mn></mrow><annotation encoding="application/x-tex">1 &#43; 3 &#43; 5 &#61; 9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">9</span></span></span></span></span>, la somme des entiers impairs inférieurs ou égaux à <code>n</code>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 2</div>
+      <div class="qcm-enonce"><p>Lors de l&rsquo;appel <code>mystere_bis(5)</code>, combien de fois la condition <code>i &lt;= n</code> est-elle évaluée ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q11-1" value="0"> <span>3 fois</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q11-1" value="1"> <span>4 fois</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q11-1" value="2"> <span>5 fois</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Elle est vraie pour <code>i = 1</code>, <code>3</code> et <code>5</code>, puis évaluée une dernière fois pour <code>i = 7</code> : elle est alors fausse et la boucle s&rsquo;arrête. Cela fait 4 évaluations pour 3 itérations.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="exercice-6--fonctions-alternative-et-boucles-réunies">Exercice 6 — Fonctions, alternative et boucles réunies<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="une-boucle-non-bornée-qui-appelle-une-fonction">Une boucle non bornée qui appelle une fonction<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>On part d&rsquo;un entier strictement positif <code>n</code>. S&rsquo;il est pair, on le divise par 2 ; sinon, on le multiplie par 3 et on ajoute 1. On recommence jusqu&rsquo;à obtenir 1. La fonction <code>syracuse</code> compte le nombre d&rsquo;étapes et retient la plus grande valeur atteinte.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_pair</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne True si n est pair, False sinon.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">syracuse</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne le nombre d&#39;étapes pour atteindre 1
+</span></span></span><span class="line"><span class="cl"><span class="s2">    et la plus grande valeur atteinte.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">etapes</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">maxi</span> <span class="o">=</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">n</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">est_pair</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="n">maxi</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">maxi</span> <span class="o">=</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">        <span class="n">etapes</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">etapes</span><span class="si">}</span><span class="s2"> étapes, maximum </span><span class="si">{</span><span class="n">maxi</span><span class="si">}</span><span class="s2">&#34;</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<div class="question-bloc" id="q42">
+  <div class="question-num">Q42.</div>
+  <div class="question-corps">
+<p>Sans utiliser Python, compléter le tableau d&rsquo;état de l&rsquo;appel <code>syracuse(6)</code>. Chaque ligne donne les valeurs à la fin d&rsquo;une itération ; la colonne <code>est_pair(n)</code> contient la valeur retournée par cet appel, au début de l&rsquo;itération. Toutes les lignes ne seront pas forcément utilisées. Quelle chaîne de caractères est retournée ?</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Étape</strong></th>
+      <th class="align-left"><strong><code>est_pair(n)</code></strong></th>
+      <th class="align-left"><strong>n</strong></th>
+      <th class="align-left"><strong>maxi</strong></th>
+      <th class="align-left"><strong>etapes</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">avant la boucle</td>
+      <td class="align-left"></td>
+      <td class="align-left">6</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 1</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 2</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 4</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 5</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 6</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 7</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 8</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 9</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 10</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>Étape</strong></th>
+      <th class="align-left"><strong><code>est_pair(n)</code></strong></th>
+      <th class="align-left"><strong>n</strong></th>
+      <th class="align-left"><strong>maxi</strong></th>
+      <th class="align-left"><strong>etapes</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">avant la boucle</td>
+      <td class="align-left"></td>
+      <td class="align-left">6</td>
+      <td class="align-left">6</td>
+      <td class="align-left">0</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 1</td>
+      <td class="align-left"><code>True</code></td>
+      <td class="align-left">3</td>
+      <td class="align-left">6</td>
+      <td class="align-left">1</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 2</td>
+      <td class="align-left"><code>False</code></td>
+      <td class="align-left">10</td>
+      <td class="align-left">10</td>
+      <td class="align-left">2</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 3</td>
+      <td class="align-left"><code>True</code></td>
+      <td class="align-left">5</td>
+      <td class="align-left">10</td>
+      <td class="align-left">3</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 4</td>
+      <td class="align-left"><code>False</code></td>
+      <td class="align-left">16</td>
+      <td class="align-left">16</td>
+      <td class="align-left">4</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 5</td>
+      <td class="align-left"><code>True</code></td>
+      <td class="align-left">8</td>
+      <td class="align-left">16</td>
+      <td class="align-left">5</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 6</td>
+      <td class="align-left"><code>True</code></td>
+      <td class="align-left">4</td>
+      <td class="align-left">16</td>
+      <td class="align-left">6</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 7</td>
+      <td class="align-left"><code>True</code></td>
+      <td class="align-left">2</td>
+      <td class="align-left">16</td>
+      <td class="align-left">7</td>
+    </tr>
+    <tr>
+      <td class="align-left">itération 8</td>
+      <td class="align-left"><code>True</code></td>
+      <td class="align-left">1</td>
+      <td class="align-left">16</td>
+      <td class="align-left">8</td>
+    </tr>
+  </tbody>
+</table>
+<p>Après l&rsquo;itération 8, la condition <code>1 != 1</code> est fausse : la boucle s&rsquo;arrête. L&rsquo;appel retourne <code>'8 étapes, maximum 16'</code>. À l&rsquo;itération 1, <code>3 &gt; 6</code> est fausse : <code>maxi</code> garde la valeur <code>6</code>.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q43">
+  <div class="question-num">Q43.</div>
+  <div class="question-corps">
+<p>Sans utiliser Python, prévoir la valeur retournée par <code>syracuse(1)</code>. Combien de fois le bloc de la boucle est-il exécuté ?</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><code>maxi</code> prend la valeur <code>1</code> et <code>etapes</code> la valeur <code>0</code>. La condition <code>1 != 1</code> est fausse dès le premier test : le bloc n&rsquo;est exécuté aucune fois. L&rsquo;appel retourne <code>'0 étapes, maximum 1'</code>.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q44">
+  <div class="question-num">Q44.</div>
+  <div class="question-corps">
+<p>Un élève appelle <code>syracuse(0)</code>, alors que la fonction attend un entier strictement positif. Faire tourner à la main les deux premières itérations. Que se passe-t-il ? Quelle modification de la ligne 11 éviterait ce problème ?</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><code>0 != 1</code> est vraie ; <code>est_pair(0)</code> retourne <code>True</code>, donc <code>n</code> prend la valeur <code>0 // 2</code>, soit <code>0</code>. À l&rsquo;itération suivante, la situation est exactement la même : <code>n</code> vaut toujours <code>0</code> et ne se rapproche jamais de 1. C&rsquo;est une boucle infinie.</p>
+<p>Avec <code>while n &gt; 1:</code>, la condition <code>0 &gt; 1</code> est fausse dès le premier test et la boucle n&rsquo;est pas exécutée. Pour un entier strictement positif, les deux conditions donnent le même résultat.</p>
+  </div>
+</details>
+<h3 id="deux-boucles-imbriquées">Deux boucles imbriquées<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">motif</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Fonction à étudier.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">texte</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">texte</span> <span class="o">+=</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">texte</span> <span class="o">+=</span> <span class="s2">&#34;-&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">texte</span></span></span></code></pre></div>
+<div class="question-bloc" id="q45">
+  <div class="question-num">Q45.</div>
+  <div class="question-corps">
+<p>Sans utiliser Python, compléter le tableau d&rsquo;état de l&rsquo;appel <code>motif(3)</code>. Une ligne correspond à une instruction <code>texte += ...</code> exécutée ; la colonne <code>j</code> reste vide pour l&rsquo;instruction <code>texte += &quot;-&quot;</code>. Quelle chaîne est retournée ?</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>i</strong></th>
+      <th class="align-left"><strong>j</strong></th>
+      <th class="align-left"><strong>texte</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>i</strong></th>
+      <th class="align-left"><strong>j</strong></th>
+      <th class="align-left"><strong>texte</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">1</td>
+      <td class="align-left">0</td>
+      <td class="align-left"><code>&quot;*&quot;</code></td>
+    </tr>
+    <tr>
+      <td class="align-left">1</td>
+      <td class="align-left"></td>
+      <td class="align-left"><code>&quot;*-&quot;</code></td>
+    </tr>
+    <tr>
+      <td class="align-left">2</td>
+      <td class="align-left">0</td>
+      <td class="align-left"><code>&quot;*-*&quot;</code></td>
+    </tr>
+    <tr>
+      <td class="align-left">2</td>
+      <td class="align-left">1</td>
+      <td class="align-left"><code>&quot;*-**&quot;</code></td>
+    </tr>
+    <tr>
+      <td class="align-left">2</td>
+      <td class="align-left"></td>
+      <td class="align-left"><code>&quot;*-**-&quot;</code></td>
+    </tr>
+    <tr>
+      <td class="align-left">3</td>
+      <td class="align-left">0</td>
+      <td class="align-left"><code>&quot;*-**-*&quot;</code></td>
+    </tr>
+    <tr>
+      <td class="align-left">3</td>
+      <td class="align-left">1</td>
+      <td class="align-left"><code>&quot;*-**-**&quot;</code></td>
+    </tr>
+    <tr>
+      <td class="align-left">3</td>
+      <td class="align-left">2</td>
+      <td class="align-left"><code>&quot;*-**-***&quot;</code></td>
+    </tr>
+    <tr>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left"><code>&quot;*-**-***-&quot;</code></td>
+    </tr>
+  </tbody>
+</table>
+<p>L&rsquo;appel retourne <code>'*-**-***-'</code>. Pour chaque valeur de <code>i</code>, la boucle interne <code>for j in range(i)</code> effectue <code>i</code> itérations : elle ajoute <code>i</code> étoiles, puis l&rsquo;instruction <code>texte += &quot;-&quot;</code>, qui n&rsquo;est pas dans la boucle interne, ajoute un tiret.</p>
+  </div>
+</details>
+<div class="question-bloc" id="q46">
+  <div class="question-num">Q46.</div>
+  <div class="question-corps">
+<p>Sans utiliser Python, déterminer le nombre de caractères de la chaîne retournée par <code>motif(4)</code>. Vérifier avec <code>len(motif(4))</code>.</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><code>motif(4)</code> contient <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&#43;</mo><mn>2</mn><mo>&#43;</mo><mn>3</mn><mo>&#43;</mo><mn>4</mn><mo>&#61;</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">1 &#43; 2 &#43; 3 &#43; 4 &#61; 10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span></span> étoiles et 4 tirets, soit 14 caractères.</p>
+  </div>
+</details>
+<div class="qcm" data-qcm="/premieres-nsi/chap-2/2-6-evolution-variables/#12" data-s="W1swXSxbMF1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">2 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 2</div>
+      <div class="qcm-enonce"><p>Que retourne <code>syracuse(3)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q12-0" value="0"> <span><code>'7 étapes, maximum 16'</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q12-0" value="1"> <span><code>'7 étapes, maximum 10'</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q12-0" value="2"> <span><code>'6 étapes, maximum 16'</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>La suite est 3, 10, 5, 16, 8, 4, 2, 1 : 7 étapes, et la plus grande valeur atteinte est 16.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 2</div>
+      <div class="qcm-enonce"><p>Que retourne <code>syracuse(1)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q12-1" value="0"> <span><code>'0 étapes, maximum 1'</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q12-1" value="1"> <span><code>'1 étapes, maximum 4'</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q12-1" value="2"> <span>La fonction ne s&rsquo;arrête jamais.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>La condition <code>1 != 1</code> est fausse dès le départ : la boucle n&rsquo;effectue aucune itération.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="bilan">Bilan<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À l&rsquo;issue de cette activité, je sais…</span></div>
+  <div class="clue-body">
+<ul>
+<li>remplir un tableau d&rsquo;état en utilisant, pour chaque instruction, les valeurs des variables juste avant son exécution ;</li>
+<li>suivre un appel de fonction : le paramètre reçoit la valeur de l&rsquo;argument, les variables de la fonction disparaissent après le <code>return</code> ;</li>
+<li>expliquer pourquoi modifier un paramètre ne modifie pas la variable passée en argument ;</li>
+<li>distinguer une fonction qui retourne une valeur d&rsquo;une fonction qui l&rsquo;affiche ;</li>
+<li>repérer le seul bloc exécuté dans une structure <code>if</code> / <code>elif</code> / <code>else</code>, et la différence avec des <code>if</code> successifs ;</li>
+<li>compter les itérations d&rsquo;une boucle <code>for</code> avec <code>range</code> et d&rsquo;une boucle <code>while</code>, y compris lorsqu&rsquo;il n&rsquo;y en a aucune ;</li>
+<li>repérer une boucle infinie en faisant tourner une boucle à la main ;</li>
+<li>suivre deux boucles imbriquées.</li>
+</ul>
+
+  </div>
+</div>
+
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 16 nov. 2026
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/1%C3%A8re-sp%C3%A9-nsi/index.html">1ère Spé NSI</a></li>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+<script src="/js/qcm.js"></script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

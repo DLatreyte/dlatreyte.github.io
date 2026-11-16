@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Énoncé au format pdf Objectif Construire pas à pas avec Pyxel la simulation d’un gaz : chaque particule est un tuple, le gaz est une liste de tuples passée en paramètre aux fonctions.
+Q24. Sur un billard, une bille frappe la bande de droite. Le schéma montre sa vitesse juste avant le choc.
+Dessiner la flèche de sa vitesse juste après le choc. Lequel des deux mouvements, horizontal ou vertical, est modifié par le choc ?">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Simuler un gaz avec Pyxel :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Énoncé au format pdf Objectif Construire pas à pas avec Pyxel la simulation d’un gaz : chaque particule est un tuple, le gaz est une liste de tuples passée en paramètre aux fonctions.
+Q24. Sur un billard, une bille frappe la bande de droite. Le schéma montre sa vitesse juste avant le choc.
+Dessiner la flèche de sa vitesse juste après le choc. Lequel des deux mouvements, horizontal ou vertical, est modifié par le choc ?">
+    <meta property="og:url" content="https://dlatreyte.github.io/premieres-nsi/chap-3/3-4-gaz-pyxel/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Simuler un gaz avec Pyxel :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Énoncé au format pdf Objectif Construire pas à pas avec Pyxel la simulation d’un gaz : chaque particule est un tuple, le gaz est une liste de tuples passée en paramètre aux fonctions.
+Q24. Sur un billard, une bille frappe la bande de droite. Le schéma montre sa vitesse juste avant le choc.
+Dessiner la flèche de sa vitesse juste après le choc. Lequel des deux mouvements, horizontal ou vertical, est modifié par le choc ?">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="1ère Spécialité NSI">
+    <meta property="article:published_time" content="2026-11-16T12:00:00+04:00">
+    <meta property="article:modified_time" content="2026-11-16T12:00:00+04:00">
+    <meta property="article:tag" content="Pyxel">
+    <meta property="article:tag" content="Simulation">
+    <meta property="article:tag" content="Gaz Parfait">
+    <meta property="article:tag" content="Particule">
+    <meta property="article:tag" content="Tuple">
+    <meta property="article:tag" content="Déballage">
+    <meta itemprop="name" content="Simuler un gaz avec Pyxel :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Énoncé au format pdf Objectif Construire pas à pas avec Pyxel la simulation d’un gaz : chaque particule est un tuple, le gaz est une liste de tuples passée en paramètre aux fonctions.
+Q24. Sur un billard, une bille frappe la bande de droite. Le schéma montre sa vitesse juste avant le choc.
+Dessiner la flèche de sa vitesse juste après le choc. Lequel des deux mouvements, horizontal ou vertical, est modifié par le choc ?">
+    <meta itemprop="datePublished" content="2026-11-16T12:00:00+04:00">
+    <meta itemprop="dateModified" content="2026-11-16T12:00:00+04:00">
+    <meta itemprop="wordCount" content="3121">
+    <meta itemprop="keywords" content="Pyxel,Simulation,Gaz Parfait,Particule,Tuple,Déballage,Fonction Qui Renvoie Un Tuple,Liste De Tuples,Liste Passée en Paramètre,Lambda,Liste en Compréhension,Parcours Par Indice,Boucles Imbriquées,Rebond,Collision">
+    <title>Simuler un gaz avec Pyxel :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/premieres-nsi/chap-3/3-4-gaz-pyxel/index.html" rel="canonical" type="text/html" title="Simuler un gaz avec Pyxel :: Physique, Chimie et Informatique">
+    <link href="/premieres-nsi/chap-3/3-4-gaz-pyxel/index.xml" rel="alternate" type="application/rss&#43;xml" title="Simuler un gaz avec Pyxel :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.9c093d335cb3455111525922853877d4b3ac7a287ead8d15db22b978a233c036.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/premieres-nsi/chap-3/3-4-gaz-pyxel/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/premieres-nsi/chap-3/3-4-gaz-pyxel/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#une-particule-décrite-par-un-tuple">Une particule décrite par un tuple</a></li>
+    <li><a href="#faire-avancer-la-particule">Faire avancer la particule</a></li>
+    <li><a href="#rebondir-contre-les-murs">Rebondir contre les murs</a></li>
+    <li><a href="#un-gaz--une-liste-de-particules">Un gaz : une liste de particules</a></li>
+    <li><a href="#pour-aller-plus-loin--des-collisions-entre-particules">Pour aller plus loin : des collisions entre particules</a></li>
+    <li><a href="#défis">Défis</a></li>
+    <li><a href="#bilan">Bilan</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Premières structures de données : listes et tuples">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/index.html"><span itemprop="name">1ère Spécialité NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/chap-3/index.html"><span itemprop="name">Premières structures de données : listes et tuples</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-3/3-4-gaz-pyxel/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-3/3-3-listes-messages/index.html" title="Une liste est un objet auquel on peut passer des messages (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-pc/index.html" title="Terminale Spé. PC (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable premieres-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Premières structures de données : listes et tuples</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/boucles-imbriqu%C3%A9es/index.html">Boucles Imbriquées</a></li>
+    <li><a class="term-link" href="/tags/collision/index.html">Collision</a></li>
+    <li><a class="term-link" href="/tags/d%C3%A9ballage/index.html">Déballage</a></li>
+    <li><a class="term-link" href="/tags/fonction-qui-renvoie-un-tuple/index.html">Fonction Qui Renvoie Un Tuple</a></li>
+    <li><a class="term-link" href="/tags/gaz-parfait/index.html">Gaz Parfait</a></li>
+    <li><a class="term-link" href="/tags/lambda/index.html">Lambda</a></li>
+    <li><a class="term-link" href="/tags/liste-de-tuples/index.html">Liste De Tuples</a></li>
+    <li><a class="term-link" href="/tags/liste-en-compr%C3%A9hension/index.html">Liste en Compréhension</a></li>
+    <li><a class="term-link" href="/tags/liste-pass%C3%A9e-en-param%C3%A8tre/index.html">Liste Passée en Paramètre</a></li>
+    <li><a class="term-link" href="/tags/parcours-par-indice/index.html">Parcours Par Indice</a></li>
+    <li><a class="term-link" href="/tags/particule/index.html">Particule</a></li>
+    <li><a class="term-link" href="/tags/pyxel/index.html">Pyxel</a></li>
+    <li><a class="term-link" href="/tags/rebond/index.html">Rebond</a></li>
+    <li><a class="term-link" href="/tags/simulation/index.html">Simulation</a></li>
+    <li><a class="term-link" href="/tags/tuple/index.html">Tuple</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="simuler-un-gaz-avec-pyxel">Simuler un gaz avec Pyxel</h1>
+
+<ul>
+<li>
+<a class="remote" href="/premieres-nsi/chap-3/3-4/3-4-enonce.pdf" target="_blank">Énoncé au format pdf</a>
+
+</li>
+</ul>
+<div class="clue clue-goal" style="--accent: #e64553">
+  <div class="clue-header"><img class="clue-icon" src="/clues/flag.svg" alt="" aria-hidden="true"><span class="clue-title">Objectif</span></div>
+  <div class="clue-body">
+<p>Construire pas à pas avec Pyxel la simulation d&rsquo;un gaz : chaque particule est un tuple, le gaz est une liste de tuples passée en paramètre aux fonctions.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q24">
+  <div class="question-num">Q24.</div>
+  <div class="question-corps">
+<p>Sur un billard, une bille frappe la bande de droite. Le schéma montre sa vitesse juste avant le choc.</p>
+<p><a href="#R-image-bb95e166656994aff5591de245b67ad9" class="lightbox-link" id="R-image-bb95e166656994aff5591de245b67ad9-link"><img alt="Bille juste avant le choc" class="lazy lightbox rounded figure-image" loading="lazy" src="/premieres-nsi/chap-3/3-4/rebond-1.svg?width=35%"></a>
+<span class="lightbox-back" id="R-image-bb95e166656994aff5591de245b67ad9" role="dialog" aria-modal="true" aria-label="Bille juste avant le choc" tabindex="-1"><a href="#R-image-bb95e166656994aff5591de245b67ad9-link" class="lightbox-close" aria-label="Fermer l&#39;image agrandie"><img alt="Bille juste avant le choc" class="lazy lightbox rounded lightbox-image" loading="lazy" src="/premieres-nsi/chap-3/3-4/rebond-1.svg?width=35%"></a></span></p>
+<p>Dessiner la flèche de sa vitesse juste après le choc. Lequel des deux mouvements, horizontal ou vertical, est modifié par le choc ?</p>
+
+  </div>
+</div>
+
+
+<p>Dans un gaz, les particules avancent en ligne droite et rebondissent sur les parois comme la bille sur la bande. Le programme de départ est fourni dans Capytale. Quand une question commence par « Sans exécuter le programme », on écrit sa réponse avant de vérifier.</p>
+<h2 id="une-particule-décrite-par-un-tuple">Une particule décrite par un tuple<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Une particule est décrite par cinq entiers, rangés dans un tuple, toujours dans le même ordre :</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>indice</strong></th>
+      <th class="align-left">0</th>
+      <th class="align-left">1</th>
+      <th class="align-left">2</th>
+      <th class="align-left">3</th>
+      <th class="align-left">4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"><strong>élément</strong></td>
+      <td class="align-left"><code>x</code></td>
+      <td class="align-left"><code>y</code></td>
+      <td class="align-left"><code>vx</code></td>
+      <td class="align-left"><code>vy</code></td>
+      <td class="align-left"><code>couleur</code></td>
+    </tr>
+  </tbody>
+</table>
+<p><code>x</code> et <code>y</code> sont les coordonnées du centre, en pixels. <code>vx</code> et <code>vy</code> sont les nombres de pixels parcourus horizontalement et verticalement à chaque image. Un écran n&rsquo;a pas de demi-pixel : toutes ces valeurs sont des entiers.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pyxel</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Constantes</span>
+</span></span><span class="line"><span class="cl"><span class="n">LARGEUR</span> <span class="o">=</span> <span class="mi">160</span>    <span class="c1"># largeur de la fenêtre, en pixels</span>
+</span></span><span class="line"><span class="cl"><span class="n">HAUTEUR</span> <span class="o">=</span> <span class="mi">120</span>    <span class="c1"># hauteur de la fenêtre, en pixels</span>
+</span></span><span class="line"><span class="cl"><span class="n">RAYON</span> <span class="o">=</span> <span class="mi">3</span>        <span class="c1"># rayon d&#39;une particule, en pixels</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Type d&#39;une particule : (x, y, vx, vy, couleur)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Particule</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">dessiner_particule</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">Particule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Dessine la particule p = (x, y, vx, vy, couleur).&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">couleur</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pyxel</span><span class="o">.</span><span class="n">circ</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">RAYON</span><span class="p">,</span> <span class="n">couleur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">gaz</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Particule</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Fait avancer le gaz d&#39;une image.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="n">gaz</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Particule</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Dessine les particules du gaz.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pyxel</span><span class="o">.</span><span class="n">cls</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dessiner_particule</span><span class="p">(</span><span class="n">gaz</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Programme principal</span>
+</span></span><span class="line"><span class="cl"><span class="n">pyxel</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">LARGEUR</span><span class="p">,</span> <span class="n">HAUTEUR</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&#34;Gaz parfait&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">particules</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">)]</span>     <span class="c1"># le gaz : une seule particule pour l&#39;instant</span>
+</span></span><span class="line"><span class="cl"><span class="n">pyxel</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">update</span><span class="p">(</span><span class="n">particules</span><span class="p">),</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">draw</span><span class="p">(</span><span class="n">particules</span><span class="p">))</span></span></span></code></pre></div>
+<p>La ligne <code>Particule = tuple[...]</code> donne un nom au type d&rsquo;une particule, que l&rsquo;on utilise dans les annotations des fonctions.</p>
+<p><code>pyxel.run</code> attend deux fonctions sans paramètre. <code>lambda: update(particules)</code> est justement une fonction sans paramètre, écrite sur une ligne : à chaque image, elle appelle <code>update</code> en lui passant la liste <code>particules</code>.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Règle de ce programme</span></div>
+  <div class="clue-body">
+<p>Une fonction peut lire les <strong>constantes</strong>, écrites en majuscules (<code>LARGEUR</code>, <code>RAYON</code>&hellip;), car leur valeur ne change jamais. Elle ne lit aucune autre variable du programme principal : la liste des particules lui est toujours passée en paramètre.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q25">
+  <div class="question-num">Q25.</div>
+  <div class="question-corps">
+<p>Lancer le programme. Avec <code>particules = [(36, 60, 2, -1, 8)]</code> :</p>
+<ol>
+<li>que vaut <code>particules[0][2]</code> ? Quelle grandeur représente-t-il ?</li>
+<li>que faut-il écrire pour obtenir la couleur de la particule ?</li>
+<li>la particule va-t-elle monter ou descendre quand elle bougera ? Justifier à l&rsquo;aide du repère de Pyxel (Doc. 2,5).</li>
+</ol>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q26">
+  <div class="question-num">Q26.</div>
+  <div class="question-corps">
+<p>Modifier <code>particules</code> pour obtenir une particule verte (couleur 11), au centre de l&rsquo;écran, qui se déplacera vers la gauche de 1 pixel par image. Vérifier, puis revenir à la valeur de départ.</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-3/3-4-gaz-pyxel/#6" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Une particule est décrite par le tuple <code>(x, y, vx, vy, couleur)</code>. Avec <code>particules = [(36, 60, 2, -1, 8)]</code>, que vaut <code>particules[0][1]</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-0" value="0"> <span><code>60</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-0" value="1"> <span><code>36</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q6-0" value="2"> <span><code>(36, 60, 2, -1, 8)</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>particules[0]</code> est le tuple de la particule, et son élément d&rsquo;indice 1 est l&rsquo;ordonnée <code>y</code>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Dans Pyxel, une particule a <code>vy = -1</code>. Comment se déplace-t-elle verticalement ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-1" value="0"> <span>Elle monte.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-1" value="1"> <span>Elle descend.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Dans Pyxel, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span></span> augmente vers le bas : diminuer <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span></span> fait monter la particule.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>D&rsquo;après la règle du programme, quelles variables une fonction peut-elle lire sans les recevoir en paramètre ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-2" value="0"> <span>Les constantes écrites en majuscules, comme <code>LARGEUR</code> ou <code>RAYON</code>.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-2" value="1"> <span>Toutes les variables du programme principal.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q6-2" value="2"> <span>La liste <code>particules</code>.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>La valeur des constantes ne change jamais ; la liste des particules, elle, est toujours passée en paramètre.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="faire-avancer-la-particule">Faire avancer la particule<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Pyxel affiche 30 images par seconde et appelle <code>update(particules)</code> avant chaque image. À chaque appel, on ajoute <code>vx</code> à <code>x</code> et <code>vy</code> à <code>y</code>.</p>
+<div class="question-bloc" id="q27">
+  <div class="question-num">Q27.</div>
+  <div class="question-corps">
+<p><strong>Sans exécuter le programme.</strong> La particule part de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&#61;</mo><mn>36</mn></mrow><annotation encoding="application/x-tex">x &#61; 36</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">36</span></span></span></span></span> avec <code>vx = 2</code>. Elle touche le bord droit quand son centre atteint <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&#61;</mo><mn>159</mn><mo>−</mo><mn>3</mn><mo>&#61;</mo><mn>156</mn></mrow><annotation encoding="application/x-tex">x &#61; 159 - 3 &#61; 156</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">159</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">156</span></span></span></span></span>. Au bout de combien de temps ?</p>
+
+  </div>
+</div>
+
+
+<p>Un élève propose :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">deplacer</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">Particule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span></span></span></code></pre></div>
+<div class="question-bloc" id="q28">
+  <div class="question-num">Q28.</div>
+  <div class="question-corps">
+<p><strong>Sans exécuter le programme</strong>, prévoir ce qui se passe si on appelle <code>deplacer(particules[0])</code>. Expliquer.</p>
+
+  </div>
+</div>
+
+
+<p>La fonction doit donc fabriquer un nouveau tuple et le retourner. Pour récupérer d&rsquo;un coup les cinq éléments de <code>p</code>, on le <strong>déballe</strong> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">vx</span><span class="p">,</span> <span class="n">vy</span><span class="p">,</span> <span class="n">couleur</span> <span class="o">=</span> <span class="n">p</span>      <span class="c1"># x reçoit p[0], y reçoit p[1], etc.</span></span></span></code></pre></div>
+<p>Il faut autant de noms à gauche que d&rsquo;éléments dans le tuple.</p>
+<div class="question-bloc" id="q29">
+  <div class="question-num">Q29.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>deplacer</code> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">deplacer</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">Particule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Particule</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne la particule p après une image de déplacement.&#34;&#34;&#34;</span></span></span></code></pre></div>
+<p>Tester dans la console : <code>deplacer((36, 60, 2, -1, 8))</code> doit retourner <code>(38, 59, 2, -1, 8)</code>.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q30">
+  <div class="question-num">Q30.</div>
+  <div class="question-corps">
+<p>Dans <code>update</code>, remplacer <code>pass</code> par <code>gaz[0] = deplacer(gaz[0])</code>. <strong>Sans exécuter le programme</strong>, prévoir ce qui se passera au bout de 2 secondes, puis vérifier.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q31">
+  <div class="question-num">Q31.</div>
+  <div class="question-corps">
+<p>Un autre élève écrit dans <code>update</code> : <code>gaz = [deplacer(gaz[0])]</code>. Il n&rsquo;obtient aucune erreur, mais la particule reste immobile. Expliquer, en s&rsquo;aidant des fonctions <code>reinitialiser_1</code> et <code>reinitialiser_2</code> du Doc. 3,2.</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-3/3-4-gaz-pyxel/#7" data-s="W1swXSxbMF0sWzBdLFswXV0=">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">4 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 4</div>
+      <div class="qcm-enonce"><p>Que produit <code>deplacer(particules[0])</code> si la fonction contient l&rsquo;instruction <code>p[0] = p[0] + p[2]</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-0" value="0"> <span>Une erreur <code>TypeError</code> : un tuple n&rsquo;est pas mutable.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-0" value="1"> <span>La particule avance de <code>vx</code> pixels.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>On ne peut pas modifier un élément d&rsquo;un tuple : la fonction doit fabriquer et retourner un nouveau tuple.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 4</div>
+      <div class="qcm-enonce"><p>Que retourne <code>deplacer((36, 60, 2, -1, 8))</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-1" value="0"> <span><code>(38, 59, 2, -1, 8)</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-1" value="1"> <span><code>(38, 61, 2, -1, 8)</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-1" value="2"> <span><code>(36, 60, 2, -1, 8)</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>On ajoute <code>vx</code> à <code>x</code> et <code>vy</code> à <code>y</code> : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>36</mn><mo>&#43;</mo><mn>2</mn><mo>&#61;</mo><mn>38</mn></mrow><annotation encoding="application/x-tex">36 &#43; 2 &#61; 38</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">36</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">38</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>60</mn><mo>−</mo><mn>1</mn><mo>&#61;</mo><mn>59</mn></mrow><annotation encoding="application/x-tex">60 - 1 &#61; 59</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">60</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">59</span></span></span></span></span>. La vitesse et la couleur sont inchangées.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 4</div>
+      <div class="qcm-enonce"><p>Dans <code>update(gaz)</code>, laquelle de ces instructions fait réellement avancer la particule de la liste <code>particules</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-2" value="0"> <span><code>gaz[0] = deplacer(gaz[0])</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-2" value="1"> <span><code>gaz = [deplacer(gaz[0])]</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>gaz[0] = ...</code> modifie un élément de la liste partagée avec le programme principal. <code>gaz = [...]</code> fait seulement référencer une nouvelle liste par la variable locale <code>gaz</code>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 4 / 4</div>
+      <div class="qcm-enonce"><p>À 30 images par seconde, une particule avance de 2 pixels par image. Combien de temps met-elle à parcourir 120 pixels ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-3" value="0"> <span>2 s</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-3" value="1"> <span>60 s</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-3" value="2"> <span>4 s</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Sa vitesse vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>30</mn><mo>&#61;</mo><mn>60</mn></mrow><annotation encoding="application/x-tex">2 &#92;times 30 &#61; 60</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">30</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">60</span></span></span></span></span> px/s, d&rsquo;où <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>&#61;</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mn>120</mn><mn>60</mn></mfrac></mstyle><mo>&#61;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">t &#61; &#92;dfrac{120}{60} &#61; 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">60</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">120</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span> s.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="rebondir-contre-les-murs">Rebondir contre les murs<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Comme sur le billard, quand la particule touche le mur de droite, <code>vx</code> devient <code>-vx</code>. On complète <code>deplacer</code> : elle change d&rsquo;abord la vitesse si un mur est touché, puis fait avancer la particule. Première version, qui ne traite que le mur de droite :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">deplacer</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">Particule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Particule</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne la particule p après une image : sa vitesse change
+</span></span></span><span class="line"><span class="cl"><span class="s2">    si elle touche un mur, puis elle avance.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">vx</span><span class="p">,</span> <span class="n">vy</span><span class="p">,</span> <span class="n">couleur</span> <span class="o">=</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">x</span> <span class="o">+</span> <span class="n">RAYON</span> <span class="o">&gt;=</span> <span class="n">LARGEUR</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>      <span class="c1"># le bord droit du disque touche le mur</span>
+</span></span><span class="line"><span class="cl">        <span class="n">vx</span> <span class="o">=</span> <span class="o">-</span><span class="n">vx</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">vx</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">vy</span><span class="p">,</span> <span class="n">vx</span><span class="p">,</span> <span class="n">vy</span><span class="p">,</span> <span class="n">couleur</span><span class="p">)</span></span></span></code></pre></div>
+<div class="question-bloc" id="q32">
+  <div class="question-num">Q32.</div>
+  <div class="question-corps">
+<p>Compléter <code>deplacer</code> pour les murs de gauche, du haut et du bas, puis tester.</p>
+
+  </div>
+</div>
+
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Coups de pouce</span></div>
+  <div class="clue-body">
+<ol>
+<li>Pour les murs du haut et du bas, quelle composante de la vitesse change de signe ?</li>
+<li>Le mur du haut est la ligne <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>. Quel point du disque l&rsquo;atteint en premier ?</li>
+</ol>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q33">
+  <div class="question-num">Q33.</div>
+  <div class="question-corps">
+<p><strong>Sans ordinateur.</strong> On part de <code>particules = [(158, 60, 1, 0, 8)]</code>. Compléter le tableau avec les valeurs de <code>x</code> et <code>vx</code> après chaque appel de <code>update</code>. Que fait la particule ? Vérifier à l&rsquo;écran.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>image</strong></th>
+      <th class="align-left">départ</th>
+      <th class="align-left">1</th>
+      <th class="align-left">2</th>
+      <th class="align-left">3</th>
+      <th class="align-left">4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"><code>x</code></td>
+      <td class="align-left">158</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>vx</code></td>
+      <td class="align-left">1</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q34">
+  <div class="question-num">Q34.</div>
+  <div class="question-corps">
+<p>Modifier les quatre conditions pour qu&rsquo;une particule ne rebondisse que si elle se dirige vers le mur qu&rsquo;elle touche. Refaire le tableau sans ordinateur, puis vérifier.</p>
+
+  </div>
+</div>
+
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Un tuple n&rsquo;est pas mutable : une fonction qui « modifie » une particule fabrique et retourne un nouveau tuple. Le déballage <code>x, y, vx, vy, couleur = p</code> donne un nom à chaque élément.</p>
+<p>Lors d&rsquo;un rebond sur une paroi, la composante de la vitesse perpendiculaire à la paroi change de signe.</p>
+<p>Une fonction qui reçoit une liste en paramètre peut modifier ses éléments (<code>gaz[0] = ...</code>). Si elle affecte une nouvelle valeur au paramètre (<code>gaz = ...</code>), la liste d&rsquo;origine ne change pas.</p>
+
+  </div>
+</div>
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-3/3-4-gaz-pyxel/#8" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Une particule touche le mur du haut. Quelle composante de sa vitesse change de signe ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-0" value="0"> <span><code>vy</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-0" value="1"> <span><code>vx</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-0" value="2"> <span>Les deux.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Lors d&rsquo;un rebond, la composante de la vitesse perpendiculaire à la paroi change de signe. Le mur du haut est horizontal.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Le disque a un rayon <code>RAYON</code>. Quelle condition indique qu&rsquo;il touche le mur de gauche, d&rsquo;abscisse 0 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-1" value="0"> <span><code>x - RAYON &lt;= 0</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-1" value="1"> <span><code>x &lt;= 0</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-1" value="2"> <span><code>x + RAYON &lt;= 0</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Le point du disque le plus à gauche a pour abscisse <code>x - RAYON</code> : c&rsquo;est lui qui atteint le mur en premier.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Pourquoi ajoute-t-on la condition <code>vx &gt; 0</code> au test du mur de droite ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-2" value="0"> <span>Pour ne faire rebondir que les particules qui se dirigent vers ce mur.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-2" value="1"> <span>Pour accélérer la particule.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-2" value="2"> <span>Pour éviter une erreur <code>IndexError</code>.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Sans elle, une particule qui vient de rebondir et touche encore le mur voit sa vitesse inversée une seconde fois : elle reste coincée contre la paroi.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="un-gaz--une-liste-de-particules">Un gaz : une liste de particules<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>On veut maintenant 30 particules, tirées au hasard. <code>pyxel.rndi(a, b)</code> retourne un entier au hasard entre <code>a</code> et <code>b</code>, bornes comprises. Ajouter ces constantes au début du programme (8, 11 et 12 sont le rouge, le vert et le bleu) :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">NB_PARTICULES</span> <span class="o">=</span> <span class="mi">30</span>          <span class="c1"># nombre de particules du gaz</span>
+</span></span><span class="line"><span class="cl"><span class="n">VITESSE_MAX</span> <span class="o">=</span> <span class="mi">2</span>             <span class="c1"># valeur maximale d&#39;une composante de la vitesse</span>
+</span></span><span class="line"><span class="cl"><span class="n">COULEURS</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>      <span class="c1"># couleurs possibles</span></span></span></code></pre></div>
+<div class="question-bloc" id="q35">
+  <div class="question-num">Q35.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>nouvelle_particule</code>, puis la tester plusieurs fois dans la console :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">nouvelle_particule</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Particule</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne une particule entièrement visible, tirée au hasard.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Chaque composante de la vitesse est comprise entre -VITESSE_MAX
+</span></span></span><span class="line"><span class="cl"><span class="s2">    et VITESSE_MAX. La couleur est l&#39;un des éléments de COULEURS.&#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Coups de pouce</span></div>
+  <div class="clue-body">
+<ol>
+<li>Un disque est entièrement visible si son centre est à au moins <code>RAYON</code> pixels de chaque bord (Doc. 2,5).</li>
+<li>Pour la couleur, tirer au hasard l&rsquo;<strong>indice</strong> d&rsquo;un élément de <code>COULEURS</code>.</li>
+</ol>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q36">
+  <div class="question-num">Q36.</div>
+  <div class="question-corps">
+<p>Dans le programme principal, remplacer <code>particules = [(36, 60, 2, -1, 8)]</code> par une liste de <code>NB_PARTICULES</code> particules construite <strong>en compréhension</strong> (Doc. 3,2). Pourquoi cette ligne doit-elle se trouver après la définition de <code>nouvelle_particule</code> ?</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q37">
+  <div class="question-num">Q37.</div>
+  <div class="question-corps">
+<p>Modifier <code>draw</code> pour dessiner toutes les particules de <code>gaz</code>.</p>
+
+  </div>
+</div>
+
+
+<p>Pour faire bouger toutes les particules, un élève écrit :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">gaz</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Particule</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">gaz</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">=</span> <span class="n">deplacer</span><span class="p">(</span><span class="n">p</span><span class="p">)</span></span></span></code></pre></div>
+<div class="question-bloc" id="q38">
+  <div class="question-num">Q38.</div>
+  <div class="question-corps">
+<p><strong>Sans exécuter le programme</strong>, prévoir ce qu&rsquo;on observe. Expliquer, puis corriger.</p>
+
+  </div>
+</div>
+
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Le gaz est une <strong>liste de tuples</strong>, construite en compréhension. Pour lire ses éléments, on la parcourt par éléments. Pour les remplacer, on la parcourt par indices : <code>gaz[i] = ...</code>.</p>
+
+  </div>
+</div>
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-3/3-4-gaz-pyxel/#9" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Quelle instruction construit une liste de <code>NB_PARTICULES</code> particules tirées au hasard ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q9-0" value="0"> <span><code>[nouvelle_particule() for i in range(NB_PARTICULES)]</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q9-0" value="1"> <span><code>[nouvelle_particule()] * NB_PARTICULES</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q9-0" value="2"> <span><code>nouvelle_particule() * NB_PARTICULES</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>La compréhension appelle la fonction à chaque tour. La deuxième écriture répète <code>NB_PARTICULES</code> fois la <strong>même</strong> particule ; la troisième répète les éléments d&rsquo;un seul tuple.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Que se passe-t-il avec la boucle <code>for p in gaz: p = deplacer(p)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q9-1" value="0"> <span>Les particules restent immobiles.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q9-1" value="1"> <span>Toutes les particules avancent.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q9-1" value="2"> <span>Une erreur <code>TypeError</code>.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>p = ...</code> fait référencer un nouveau tuple par la variable <code>p</code>, mais rien n&rsquo;est rangé dans la liste. Il faut parcourir les indices : <code>gaz[i] = deplacer(gaz[i])</code>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Pour dessiner toutes les particules dans <code>draw</code>, quel parcours suffit ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q9-2" value="0"> <span>Le parcours par éléments, <code>for p in gaz:</code>, car on ne fait que lire la liste.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q9-2" value="1"> <span>Le parcours par indices est obligatoire.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>On ne modifie pas la liste : lire ses éléments un par un suffit.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="pour-aller-plus-loin--des-collisions-entre-particules">Pour aller plus loin : des collisions entre particules<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Dans un gaz réel, les particules se heurtent aussi entre elles. Deux particules se touchent si la distance entre leurs centres est inférieure ou égale à <code>2 * RAYON</code>.</p>
+<div class="question-bloc" id="q39">
+  <div class="question-num">Q39.</div>
+  <div class="question-corps">
+<p>Ajouter <code>from math import sqrt</code> au début du programme, puis écrire :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">p1</span><span class="p">:</span> <span class="n">Particule</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="n">Particule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne la distance entre les centres de p1 et p2.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">se_touchent</span><span class="p">(</span><span class="n">p1</span><span class="p">:</span> <span class="n">Particule</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="n">Particule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne True si p1 et p2 se touchent, False sinon.&#34;&#34;&#34;</span></span></span></code></pre></div>
+<p>Tester : <code>distance((0, 0, 1, 1, 8), (3, 4, 0, 0, 12))</code> doit retourner <code>5.0</code>.</p>
+
+  </div>
+</div>
+
+
+<p>Deux particules de même masse qui se heurtent de face <strong>échangent leurs vitesses</strong>. On adopte ce modèle pour toutes les collisions.</p>
+<div class="question-bloc" id="q40">
+  <div class="question-num">Q40.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>choc</code> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">choc</span><span class="p">(</span><span class="n">p1</span><span class="p">:</span> <span class="n">Particule</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="n">Particule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Particule</span><span class="p">,</span> <span class="n">Particule</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne les particules p1 et p2 après leur collision :
+</span></span></span><span class="line"><span class="cl"><span class="s2">    elles ont échangé leurs vitesses.&#34;&#34;&#34;</span></span></span></code></pre></div>
+<p>Tester : <code>choc((50, 60, 1, 0, 8), (55, 60, -1, 0, 12))</code> doit retourner <code>((50, 60, -1, 0, 8), (55, 60, 1, 0, 12))</code>.</p>
+
+  </div>
+</div>
+
+
+<p>Voici la fonction qui teste toutes les paires de particules de la liste <code>gaz</code>. Sa dernière ligne déballe le tuple retourné par <code>choc</code>, comme <code>a, b = b, a</code> (Doc. 3,1).</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">gerer_chocs</span><span class="p">(</span><span class="n">gaz</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Particule</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Fait échanger leurs vitesses aux particules de gaz qui se touchent.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">gaz</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">gaz</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p1</span> <span class="o">=</span> <span class="n">gaz</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p2</span> <span class="o">=</span> <span class="n">gaz</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">se_touchent</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">gaz</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">gaz</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">choc</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span></span></span></code></pre></div>
+<div class="question-bloc" id="q41">
+  <div class="question-num">Q41.</div>
+  <div class="question-corps">
+<ol>
+<li>Avec 3 particules, écrire tous les couples <code>(i, j)</code> testés.</li>
+<li>Pourquoi la boucle intérieure commence-t-elle à <code>i + 1</code> et non à <code>0</code> ?</li>
+</ol>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q42">
+  <div class="question-num">Q42.</div>
+  <div class="question-corps">
+<p>Ajouter l&rsquo;appel <code>gerer_chocs(gaz)</code> à la fin de <code>update</code>. Observer longuement : certaines particules restent collées. Pourquoi ? Corriger, en s&rsquo;inspirant de la correction des rebonds sur les murs.</p>
+
+  </div>
+</div>
+
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Coups de pouce</span></div>
+  <div class="clue-body">
+<ol>
+<li>Que fait <code>gerer_chocs</code> à l&rsquo;image qui suit un échange de vitesses ?</li>
+<li>Sur le mur, on n&rsquo;a fait rebondir que les particules qui s&rsquo;en approchaient. Comment savoir si deux particules se rapprochent ? On peut utiliser <code>deplacer</code> et <code>distance</code>.</li>
+</ol>
+
+  </div>
+</div>
+
+<p>Il reste un défaut : des particules rapides se traversent parfois.</p>
+<div class="question-bloc" id="q43">
+  <div class="question-num">Q43.</div>
+  <div class="question-corps">
+<p><strong>Sans ordinateur.</strong> Deux particules arrivent de face, en diagonale : <code>(50, 50, 2, 2, 8)</code> et <code>(56, 56, -2, -2, 12)</code>. À chaque image, <code>update</code> les déplace, puis appelle <code>gerer_chocs</code>. Compléter le tableau (distances arrondies au dixième), puis expliquer pourquoi les particules se traversent.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>image</strong></th>
+      <th class="align-left">départ</th>
+      <th class="align-left">1</th>
+      <th class="align-left">2</th>
+      <th class="align-left">3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">particule 1</td>
+      <td class="align-left">(50, 50)</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">particule 2</td>
+      <td class="align-left">(56, 56)</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">distance</td>
+      <td class="align-left">8,5</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>se_touchent</code></td>
+      <td class="align-left">non</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"><code>se_rapprochent</code></td>
+      <td class="align-left">oui</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+<p>Pour éviter ce chevauchement, il faut anticiper : <strong>avant</strong> de déplacer les particules, on regarde si elles vont se toucher à l&rsquo;image suivante.</p>
+<div class="question-bloc" id="q44">
+  <div class="question-num">Q44.</div>
+  <div class="question-corps">
+<p>Modifier la condition de <code>gerer_chocs</code> pour tester si les particules se toucheront après leur déplacement, puis placer l&rsquo;appel <code>gerer_chocs(gaz)</code> au début de <code>update</code>. Refaire le tableau précédent, puis vérifier à l&rsquo;écran que les particules ne se traversent presque plus.</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-3/3-4-gaz-pyxel/#10" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Avec 4 particules, combien de couples <code>(i, j)</code> la double boucle <code>for i in range(n): for j in range(i + 1, n):</code> teste-t-elle ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q10-0" value="0"> <span>6</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q10-0" value="1"> <span>12</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q10-0" value="2"> <span>16</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>(0, 1)</code>, <code>(0, 2)</code>, <code>(0, 3)</code>, <code>(1, 2)</code>, <code>(1, 3)</code> et <code>(2, 3)</code> : chaque paire n&rsquo;est testée qu&rsquo;une fois.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Pourquoi la boucle intérieure commence-t-elle à <code>i + 1</code> et non à <code>0</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q10-1" value="0"> <span>Sinon chaque paire serait testée deux fois, et le second échange de vitesses annulerait le premier.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q10-1" value="1"> <span>Pour aller plus vite, sans changer le résultat.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q10-1" value="2"> <span>Pour éviter une erreur <code>IndexError</code>.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>En partant de 0, on testerait <code>(0, 1)</code> puis <code>(1, 0)</code>. Il faut aussi éviter de tester une particule avec elle-même.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Que retourne <code>choc((50, 60, 1, 0, 8), (55, 60, -1, 0, 12))</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q10-2" value="0"> <span><code>((50, 60, -1, 0, 8), (55, 60, 1, 0, 12))</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q10-2" value="1"> <span><code>((55, 60, 1, 0, 8), (50, 60, -1, 0, 12))</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q10-2" value="2"> <span><code>((50, 60, -1, 0, 12), (55, 60, 1, 0, 8))</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Les particules échangent leurs vitesses ; elles gardent leur position et leur couleur.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="défis">Défis<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="question-bloc" id="q45">
+  <div class="question-num">Q45.</div>
+  <div class="question-corps">
+<p><strong>Défi A : le mélange de deux gaz.</strong> Au départ, les particules rouges sont dans la moitié gauche de la boîte, les bleues dans la moitié droite. Donner à <code>nouvelle_particule</code> les paramètres <code>couleur</code>, <code>x_min</code> et <code>x_max</code>, puis construire la liste. Comparer la vitesse du mélange avec et sans collisions.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q46">
+  <div class="question-num">Q46.</div>
+  <div class="question-corps">
+<p><strong>Défi B : chauffer le gaz.</strong> Chaque appui sur la touche <kbd>↑</kbd> double les deux composantes de la vitesse de toutes les particules. Que se passe-t-il après plusieurs appuis ?</p>
+
+  </div>
+</div>
+
+
+<h2 id="bilan">Bilan<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À l&rsquo;issue de cette activité, je sais…</span></div>
+  <div class="clue-body">
+<ul>
+<li>représenter un objet par un tuple et lire un élément par son indice ;</li>
+<li>expliquer pourquoi on ne peut pas modifier un élément d&rsquo;un tuple, et écrire une fonction qui retourne un nouveau tuple ;</li>
+<li>déballer un tuple pour nommer ses éléments ;</li>
+<li>construire une liste de tuples en compréhension ;</li>
+<li>choisir entre un parcours par éléments, pour lire une liste, et un parcours par indices, pour la modifier ;</li>
+<li>passer une liste en paramètre à une fonction, et expliquer pourquoi la fonction peut modifier ses éléments mais pas la remplacer ;</li>
+<li>parcourir toutes les paires d&rsquo;éléments d&rsquo;une liste avec deux boucles imbriquées ;</li>
+<li>faire tourner un programme à la main pour trouver l&rsquo;origine d&rsquo;un comportement inattendu.</li>
+</ul>
+
+  </div>
+</div>
+
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 16 nov. 2026
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/1%C3%A8re-sp%C3%A9-nsi/index.html">1ère Spé NSI</a></li>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+<script src="/js/qcm.js"></script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>
