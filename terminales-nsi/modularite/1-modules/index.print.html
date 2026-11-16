@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Ce chapitre se concentre sur les modules de Python et sur les modalités d’importation des données des modules dans l’environnement de travail.
+À retenir L’objectif de ce document est de souligner l’importance d’un code modulaire, c’est à dire d’un code qui :
+puisse être utilisé dans plusieurs programmes ; puisse être documenté précisément ; soit suffisamment compact pour être étudié avec soin et en particulier testé. Qu’est-ce qu’un module ? À retenir Un module permet d’organiser logiquement le code Python.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Modules et exceptions :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Ce chapitre se concentre sur les modules de Python et sur les modalités d’importation des données des modules dans l’environnement de travail.
+À retenir L’objectif de ce document est de souligner l’importance d’un code modulaire, c’est à dire d’un code qui :
+puisse être utilisé dans plusieurs programmes ; puisse être documenté précisément ; soit suffisamment compact pour être étudié avec soin et en particulier testé. Qu’est-ce qu’un module ? À retenir Un module permet d’organiser logiquement le code Python.">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/modularite/1-modules/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Modules et exceptions :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Ce chapitre se concentre sur les modules de Python et sur les modalités d’importation des données des modules dans l’environnement de travail.
+À retenir L’objectif de ce document est de souligner l’importance d’un code modulaire, c’est à dire d’un code qui :
+puisse être utilisé dans plusieurs programmes ; puisse être documenté précisément ; soit suffisamment compact pour être étudié avec soin et en particulier testé. Qu’est-ce qu’un module ? À retenir Un module permet d’organiser logiquement le code Python.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2020-09-15T05:06:32+04:00">
+    <meta property="article:modified_time" content="2020-09-15T05:06:32+04:00">
+    <meta property="article:tag" content="Modules">
+    <meta property="article:tag" content="Exceptions">
+    <meta itemprop="name" content="Modules et exceptions :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Ce chapitre se concentre sur les modules de Python et sur les modalités d’importation des données des modules dans l’environnement de travail.
+À retenir L’objectif de ce document est de souligner l’importance d’un code modulaire, c’est à dire d’un code qui :
+puisse être utilisé dans plusieurs programmes ; puisse être documenté précisément ; soit suffisamment compact pour être étudié avec soin et en particulier testé. Qu’est-ce qu’un module ? À retenir Un module permet d’organiser logiquement le code Python.">
+    <meta itemprop="datePublished" content="2020-09-15T05:06:32+04:00">
+    <meta itemprop="dateModified" content="2020-09-15T05:06:32+04:00">
+    <meta itemprop="wordCount" content="1893">
+    <meta itemprop="keywords" content="Modules,Exceptions">
+    <title>Modules et exceptions :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/modularite/1-modules/index.html" rel="canonical" type="text/html" title="Modules et exceptions :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/modularite/1-modules/index.xml" rel="alternate" type="application/rss&#43;xml" title="Modules et exceptions :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/modularite/1-modules/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/modularite/1-modules/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#quest-ce-quun-module">Qu&rsquo;est-ce qu&rsquo;un module ?</a></li>
+    <li><a href="#modules-et-fichiers">Modules et fichiers</a></li>
+    <li><a href="#chemin-de-recherche-et-recherche-de-fichiers">Chemin de recherche et recherche de fichiers</a></li>
+    <li><a href="#portée-des-variables-et-espaces-de-noms">Portée des variables et espaces de noms</a></li>
+    <li><a href="#import-de-modules">Import de modules</a>
+      <ul>
+        <li><a href="#linstruction-import">L’instruction <code>import</code></a></li>
+        <li><a href="#lexpression-from--import">L&rsquo;expression from &hellip; import</a></li>
+        <li><a href="#linstruction-import--as">L&rsquo;instruction import &hellip; as</a></li>
+        <li><a href="#import-vs-chargement">Import vs chargement</a></li>
+        <li><a href="#exemple-de-création-dun-module">Exemple de création d&rsquo;un module</a></li>
+      </ul>
+    </li>
+    <li><a href="#mécanisme-de-gestion-des-exceptions">Mécanisme de gestion des exceptions</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#application">Application</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Modularité et robustesse du code">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/modularite/index.html"><span itemprop="name">Modularité et robustesse du code</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/modularite/1-modules/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/modularite/index.html" title="Modularité et robustesse du code (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/modularite/2-capitalisation/index.html" title="Capitalisation d&#39;une valeur (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Modularité et robustesse du code</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/exceptions/index.html">Exceptions</a></li>
+    <li><a class="term-link" href="/tags/modules/index.html">Modules</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="modules-et-exceptions">Modules et exceptions</h1>
+
+<p>Ce chapitre se concentre sur les modules de Python et sur les modalités
+d&rsquo;importation des données des modules dans l&rsquo;environnement de travail.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>L&rsquo;objectif de ce document est de souligner l&rsquo;importance d&rsquo;un <strong>code modulaire</strong>,
+c&rsquo;est à dire d&rsquo;un code qui :</p>
+<ul>
+<li>puisse être <em>utilisé dans plusieurs programmes</em> ;</li>
+<li>puisse être <em>documenté</em> précisément ;</li>
+<li>soit suffisamment compact pour <em>être étudié avec soin</em> et en particulier <em>testé</em>.</li>
+</ul>
+
+  </div>
+</div>
+
+<h2 id="quest-ce-quun-module">Qu&rsquo;est-ce qu&rsquo;un module ?<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>Un module permet d&rsquo;organiser logiquement le code Python</em>.</p>
+
+  </div>
+</div>
+
+<ul>
+<li>Quand la taille du code augmente, il peut être pratique de le diviser en entités organisées qui
+peuvent continuer à interagir.</li>
+<li>Un module permet aussi de se créer une «  boite à outils » contenant des fonctions appelées depuis
+plusieurs programmes.</li>
+<li>Finalement, <em>un module permet de bénéficier du travail déjà effectué, maximisant ainsi la réutilisabilité du code</em>.</li>
+</ul>
+<h2 id="modules-et-fichiers">Modules et fichiers<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Si les modules représentent un moyen d&rsquo;organiser <strong>logiquement</strong> le code
+Python, les fichiers permettent quant à eux d&rsquo;organiser <strong>physiquement</strong> le
+code.</p>
+
+  </div>
+</div>
+
+<p>À cette fin, <em>chaque fichier est considéré comme un module individuel,
+et réciproquement</em>. <em>Le nom de fichier d&rsquo;un module est le nom du module
+auquel on ajoute l&rsquo;extension</em> <code>.py</code>.</p>
+<p>Un module peut contenir tout objet Python: <em>variables</em>, <em>fonctions</em>,
+<em>classes</em>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>…</mo></mrow><annotation encoding="application/x-tex">&#92;ldots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.123em;"></span><span class="minner">…</span></span></span></span></span></p>
+<h2 id="chemin-de-recherche-et-recherche-de-fichiers">Chemin de recherche et recherche de fichiers<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>L&rsquo;importation de modules requiert un processus nommé <em>chemin de recherche</em> .
+C&rsquo;est une procédure de recherche dans un <em>ensemble de répertoires (dossiers) du système
+de fichiers</em> &mdash; le résultat de cette recherche dépend donc de l&rsquo;installation de Python et du système d&rsquo;exploitation utilisé &mdash; pour trouver le fichier module:</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;/Users/mats/anaconda/lib/python35.zip&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/plat-darwin&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/lib-dynload&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/site-packages&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/site-packages/Sphinx-1.3.1-py3.5.egg&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/site-packages/aeosa&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/site-packages/setuptools-19.4-py3.5.egg&#39;</span><span class="p">]</span></span></span></code></pre></div>
+<p>Dans le cas où la recherche d&rsquo;un module échoue, une exception est levée par
+l&rsquo;interpréteur :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">xxx</span>
+</span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="ne">ImportError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;xxx&#39;</span></span></span></code></pre></div>
+<p>Puisque le <em>chemin de recherche</em> consiste à construire une liste de
+répertoires (dossiers), il est possible de la modifier. La méthode de liste <code>append()</code>
+permet d&rsquo;importer un module situé dans un répertoire absent du chemin de
+recherche:</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;/home/utilisateur/dossier-modules&#39;</span><span class="p">)</span></span></span></code></pre></div>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>Il n&rsquo;est pas nécessaire de modifier le <em>chemin de recherche</em> si le <strong>fichier
+module</strong> se trouve <em>dans le même répertoire</em> que le fichier source
+contenant le code qui importe le module.</p>
+
+  </div>
+</div>
+
+<h2 id="portée-des-variables-et-espaces-de-noms">Portée des variables et espaces de noms<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>La <em>portée</em> d&rsquo;un identificateur est la portion du programme à laquelle sa
+déclaration s&rsquo;applique. On emploie également le terme de <em>visibilité</em> .</p>
+<p><em>Les variables définies dans une fonction ont une <strong>portée locale</strong>, celles
+définies au plus haut niveau d&rsquo;un module ont une <strong>portée globale</strong></em>.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Les <strong>variables globales</strong> présentent une caractéristique notable : <em>à moins
+qu&rsquo;elles n&rsquo;aient été détruites, leur durée de vie est égale à celle du
+script qui s&rsquo;exécute</em>. En revanche, les <strong>variables locales</strong>, comme le <strong>bloc de
+pile</strong> dans lequel elles résident, <em>sont temporaires et ne
+«  vivent » que le temps pendant lequel les fonctions dans
+lesquelles elles sont définies sont actives</em>.</p>
+
+  </div>
+</div>
+
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">chaine_globale</span> <span class="o">=</span> <span class="s2">&#34;Salut&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">bonjour</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl"><span class="err">…</span>     <span class="n">chaine_locale</span> <span class="o">=</span> <span class="s2">&#34;la planète&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">…</span>     <span class="nb">print</span><span class="p">(</span><span class="n">chaine_globale</span> <span class="o">+</span> <span class="n">chaine_locale</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">Salut</span> <span class="n">la</span> <span class="n">planète</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">chaine_locale</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;chaine_locale&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span></span></span></code></pre></div>
+<img src="/terminales-nsi/chap-2/fig-2-1-1.jpg" alt="" width="80%" />
+> Durée de vie des variables locales et globales.
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>Dans le cas où une variable locale porte le même nom qu&rsquo;une variable
+globale, c&rsquo;est la variable locale qui est utilisée. <em>Python cherche d&rsquo;abord
+dans l&rsquo;espace de nom local avant de chercher dans l&rsquo;espace de nom global.</em></p>
+
+  </div>
+</div>
+
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">chaine</span> <span class="o">=</span> <span class="s2">&#34;Bonjour&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">au_revoir</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl"><span class="err">…</span>     <span class="n">chaine</span> <span class="o">=</span> <span class="s2">&#34;Au revoir&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">…</span>     <span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">au_revoir</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">Au</span> <span class="n">revoir</span></span></span></code></pre></div>
+<p>Il est donc possible de «  masquer » une variable globale, en utilisant une
+variable locale de même nom.</p>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p><em>Lorsque l&rsquo;interpréteur Python importe un module, les règles de portée
+s&rsquo;appliquent : si l&rsquo;import se situe au niveau du module, sa portée est globale,
+s&rsquo;il se situe dans une fonction, sa portée est locale</em>.</p>
+
+  </div>
+</div>
+
+<h2 id="import-de-modules">Import de modules<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="linstruction-import">L&rsquo;instruction <code>import</code><span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>L&rsquo;import d&rsquo;un module nécessite l&rsquo;emploi de l&rsquo;instruction <code>import</code>. La syntaxe
+est la suivante :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+<p>Il est possible d&rsquo;importer plusieurs modules :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span></span></span></code></pre></div>
+<p>Lorsque l&rsquo;interpréteur rencontre un <code>import</code>, le chemin de recherche est
+utilisé pour accéder au module. Si celui-ci est trouvé, il est importé. Comme annoncé ci-dessus, les
+règles de portée s&rsquo;appliquent : <em>si l&rsquo;import se situe au niveau du module, sa
+portée est <strong>globale</strong>, s&rsquo;il se situe dans une fonction, sa portée est <strong>locale</strong>.</em></p>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>L&rsquo;appel import amène le module dans l&rsquo;espace de nom, pas les objets qu&rsquo;il
+contient. La notation <code>.</code> doit être utilisée afin d&rsquo;utiliser ces objets.</p>
+
+  </div>
+</div>
+
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;name&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">posix</span></span></span></code></pre></div>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Comment accéder à la liste des objets contenus dans un module ?</span></div>
+  <div class="clue-body">
+<p>On peut utiliser la fonction <code>dir</code> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">(</span><span class="n">os</span><span class="p">)</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Comment obtenir l&rsquo;aide d&rsquo;un module ?</span></div>
+  <div class="clue-body">
+<p>On peut utiliser la fonction <code>help</code> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">help</span><span class="p">(</span><span class="n">os</span><span class="p">)</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+<img src="/terminales-nsi/chap-2/fig-2-1-2.jpg" alt="" width="80%" />
+> Résultat de l'importation du module `os`. Aucune référence à l'attribut `name` n'existe dans l'espace de nom global.
+<h4 id="comment-obtenir-la-liste-de-tous-les-modules-importés-par-un-programme">Comment obtenir la liste de tous les modules importés par un programme ?<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">()</span></span></span></code></pre></div>
+<h3 id="lexpression-from--import">L&rsquo;expression from &hellip; import<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Il est possible d&rsquo;importer des objets particuliers d&rsquo;un module dans le
+programme. <strong>L&rsquo;objet appartient alors réellement à l&rsquo;espace de nom du
+programme</strong>.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">posix</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+<h4 id="remarque">Remarque<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Ce type d&rsquo;import peut présenter de réels dangers dans un programme dont le nombre de lignes est important et dont le développement s&rsquo;effectue sur une longue durée. <em>Que se passe-t-il si, dans le programme principal, un attribut ou
+une fonction portent le même nom que l&rsquo;élément importé ?</em></p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">sinc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>     <span class="k">return</span> <span class="s1">&#39;coucou&#39;</span><span class="o">*</span><span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span> 
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">sinc</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;coucoucoucoucoucou&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="n">sinc</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">sinc</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="mf">3.8981718325193755e-17</span></span></span></code></pre></div>
+<h4 id="remarque-1">Remarque<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Il existe une façon encore plus dangereuse d&rsquo;utiliser l&rsquo;expression <code>from ... import ...</code> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="o">*</span></span></span></code></pre></div>
+<p><em>Tous les objets contenus dans le module sont alors ajoutés à l&rsquo;espace de nom
+globale du programme.</em></p>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>Éviter le plus possible la forme d&rsquo;importation : <code>from nom_module import *</code> !</p>
+
+  </div>
+</div>
+
+<h3 id="linstruction-import--as">L&rsquo;instruction import &hellip; as<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Il arrive que l&rsquo;on souhaite importer un module ou un attribut de module
+portant un nom déjà employé dans l&rsquo;application, ou que ce nom ne convienne
+pas parce qu&rsquo;il est trop long. On peut changer le nom lié localement du module
+et procéder ensuite comme avec le nom complet :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span></span></span></code></pre></div>
+<h3 id="import-vs-chargement">Import vs chargement<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Un module n&rsquo;est <em>incorporé dans l&rsquo;espace de nom global</em> qu&rsquo;une seule fois, quel que soit le nombre de fois
+où il est <em>importé</em>.</p>
+
+  </div>
+</div>
+
+<h3 id="exemple-de-création-dun-module">Exemple de création d&rsquo;un module<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<ol>
+<li>Dans le fichier <code>demo.py</code> :</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Un module de démonstration.
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Fonctions du module</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">b</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Affiche b.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;b&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">a</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Affiche a.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;a&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Attributs (variables) du module</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>              <span class="c1"># test des fonctions du module</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span>  <span class="n">b</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&#34;b&#34;</span>                  <span class="c1"># place des assert</span></span></span></code></pre></div>
+<ol start="2">
+<li>Dans l&rsquo;interpréteur intéractif, lancé depuis le dossier dans lequel on a enregistré le module <code>demo.py</code> :</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">demo</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">b</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;b&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span></span></span></code></pre></div>
+<h2 id="mécanisme-de-gestion-des-exceptions">Mécanisme de gestion des exceptions<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Lorsqu&rsquo;un problème intervient lors de l&rsquo;exécution d&rsquo;un programme (division
+par zéro, tentative d&rsquo;ouverture d&rsquo;un fichier qui n&rsquo;existe pas, erreur de
+syntaxe, etc.), l&rsquo;interpréteur passe dans un mode particulier dans lequel
+il stoppe l&rsquo;exécution du programme en cours et affiche une erreur :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="mi">7</span> <span class="o">/</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">integer</span> <span class="n">division</span> <span class="ow">or</span> <span class="n">modulo</span> <span class="n">by</span> <span class="n">zero</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;monfichier.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="ne">IOError</span><span class="p">:</span> <span class="p">[</span><span class="n">Errno</span> <span class="mi">2</span><span class="p">]</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span><span class="p">:</span> <span class="s1">&#39;monfichier.txt&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">message</span>
+</span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;message&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="kc">True</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coucou !&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl"><span class="n">File</span> <span class="s2">&#34;tm_python&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="kc">True</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coucou !&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                   <span class="o">^</span>
+</span></span><span class="line"><span class="cl"><span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">syntax</span></span></span></code></pre></div>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Message d&rsquo;erreur</span></div>
+  <div class="clue-body">
+<p>Le message affiché contient le <code>traceback</code>, c&rsquo;est à dire la pile d&rsquo;appel &mdash; le chemin parcouru par l&rsquo;interpréteur pour atteindre l&rsquo;erreur (soit la liste des fonctions traversées pour atteindre l&rsquo;erreur).<br>
+Ce message comporte le <strong>type d&rsquo;exception</strong> levée (<code>ZeroDivisionError</code>, <code>IOError</code>, <code>NameError</code>, <code>SyntaxError</code>, etc.)  et un <strong>message</strong> qui décrit le problème rencontré.</p>
+
+  </div>
+</div>
+
+<h4 id="remarque-2">Remarque<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Dans le cas d&rsquo;une erreur de syntaxe, <em>le message d&rsquo;erreur indique même où est
+détectée l&rsquo;erreur à l&rsquo;aide d&rsquo;une flèche</em> (en fait, elle se trouve
+généralement juste avant l&rsquo;endroit pointé par la flèche).</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Pour éviter que le programme ne se termine définitivement ou qu&rsquo;il se
+termine sans que la raison n&rsquo;en soit explicite, il est conseillé de <strong>gérer
+les exceptions</strong>.</p>
+
+  </div>
+</div>
+
+<h4 id="exemple-gestion-des-entrées-du-clavier">Exemple : Gestion des entrées du clavier<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrer un nombre entier :&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Oups ! Ce n&#39;est pas un nombre. Nouvelle tentative&#34;</span><span class="p">)</span></span></span></code></pre></div>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Le gestion des exceptions repose sur quelques mots clés : <code>try</code>, <code>except</code>, <code>else</code>
+et <code>finally</code> et sur une liste de types d&rsquo;exceptions dont la liste peut être
+consultée dans la <a href="https://docs.python.org/3.8/library/exceptions.html#bltin-exceptions" rel="external">documentation en ligne de Python</a> :</p>
+<ul>
+<li><code>try</code> : le bloc de code qui suit ce mot clé est exécuté séquentiellement.
+En cas de problème, l&rsquo;exécution est interrompue et l&rsquo;interpréteur passe au
+bloc d&rsquo;instructions suivant le mot clé except.</li>
+<li><code>except NomErreur</code> : ce bloc d&rsquo;instructions est exécuté si une erreur a
+été détectée dans le bloc try et si son type correspond à NomErreur.
+Plusieurs clauses except peuvent être utilisées. Il n&rsquo;est pas nécessaire
+d&rsquo;indiquer le type de l&rsquo;erreur (tous les types sont alors traités de façon
+identique).</li>
+<li><code>else</code> : cette directive permet d&rsquo;isoler dans la partie try la ou les
+instructions qui peuvent poser problème. Toutes les instructions suivantes
+(qui ne doivent donc être exécutées que si aucun problème intervient)
+peuvent être placées dans le bloc else.</li>
+<li><code>finally</code> : le bloc qui suit est exécuté dans tous les cas de figure, qu&rsquo;une
+exception ait été levée ou pas. C&rsquo;est donc ici que l&rsquo;on peut s&rsquo;assurer
+qu&rsquo;un fichier ouvert dans le bloc try est correctement fermé, quoi qu&rsquo;il
+arrive.</li>
+</ul>
+
+  </div>
+</div>
+
+<h4 id="exemple-prise-en-compte-de-plusieurs-erreurs">Exemple : Prise en compte de plusieurs erreurs<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;fichier.txt&#34;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I/O Erreur : </span><span class="si">{0}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je ne suis pas parvenu à convertir en entier la donnée.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">finally</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></span></span></code></pre></div>
+<h4 id="utilisation-de-else">Utilisation de else<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;fichier.txt&#34;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">IOError</span><span class="o">&amp;</span><span class="n">nbsp</span><span class="p">;:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je ne parviens pas à lire le fichier.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Le fichier comporte </span><span class="si">{0}</span><span class="s2"> lignes.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">finally</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></span></span></code></pre></div>
+<h4 id="les-exceptions-dans-la-définition-dune-fonction">Les exceptions dans la définition d&rsquo;une fonction<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">division</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">resultat</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Division par zero !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Le resultat est </span><span class="si">{0}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resultat</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">finally</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je suis toujours présent !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">division</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Le</span> <span class="n">resultat</span> <span class="n">est</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="n">Je</span> <span class="n">suis</span> <span class="n">toujours</span> <span class="n">présent</span> <span class="err">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">division</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Division</span> <span class="n">par</span> <span class="n">zero</span> <span class="err">!</span>
+</span></span><span class="line"><span class="cl"><span class="n">Je</span> <span class="n">suis</span> <span class="n">toujours</span> <span class="n">présent</span> <span class="err">!</span></span></span></code></pre></div>
+<p>Tout fichier manipulé doit être correctement fermé. Il n&rsquo;est donc pas
+envisageable d&rsquo;utiliser la fonction <code>open</code> sans gérer les exceptions. Utiliser
+les instructions <code>try</code>, <code>except</code> et <code>finally</code> peut cependant apparaître
+contre-productif (cela fait beaucoup de code pour une action courante). <code>with</code>
+permet de manipuler les fichiers en étant certain qu&rsquo;ils seront fermés
+correctement, <em>quoi qu&rsquo;il arrive</em>.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;fichier.txt&#34;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">ligne</span><span class="p">)</span></span></span></code></pre></div>
+<h2 id="application">Application<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
+  <div class="clue-body">
+<ol>
+<li>
+<p>Écrire un module nommé <code>convert_temp</code> contenant les fonctions réalisant les conversions entre des températures exprimées en degrés Celsius, degrés Fahrenheit et Kelvin :  <code>C2F</code>, <code>F2C</code>, <code>C2K</code>, <code>K2C</code>, <code>F2K</code> and <code>K2F</code>.</p>
+</li>
+<li>
+<p>Appeler ces fonctions depuis un autre programme.</p>
+</li>
+</ol>
+
+  </div>
+</div>
+
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 15 sept. 2020
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+    <li><a class="term-link" href="/categories/terminales-sp%C3%A9-nsi/index.html">Terminales Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

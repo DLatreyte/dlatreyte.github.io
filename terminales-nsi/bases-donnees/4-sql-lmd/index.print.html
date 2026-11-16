@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Introduction Info Le langage SQL est composé de différents sous-ensembles :
+LMD : Langage de Manipulation des données (DML, Data Manipulation Language) Permet la manipulation et la mise à jour des tables, composé de quatre ordres fondamentaux : SELECT, UPDATE, INSERT, DELETE. LDD : Langage de Définition des Données (DDL, Data Definition Language) Permet la définition et la mise à jour du schéma relationnel de la base de données (mode administration). Composé des ordres suivants : CREATE TABLE, CREATE INDEX, CREATE VIEW, DROP TABLE, DROP INDEX, DROP VIEW, ALTER TABLE. LCD : Langage de Contrôle des Données (DCL, Data Control Language) Permet de définir les contraintes d’intégrité, de gérer les accès et les autorisations (administration). Composé des ordres : GRANT, REVOKE, LOCK. Recouvre les déclencheurs (triggers), procédures cataloguées. Le programme se limite au sous-ensemble LMD. Nous serons tout de même obligés d’utiliser l’ordre de création de table CREATE TABLE.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Le langage SQL : Le langage de manipulation de données (LMD) :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Introduction Info Le langage SQL est composé de différents sous-ensembles :
+LMD : Langage de Manipulation des données (DML, Data Manipulation Language) Permet la manipulation et la mise à jour des tables, composé de quatre ordres fondamentaux : SELECT, UPDATE, INSERT, DELETE. LDD : Langage de Définition des Données (DDL, Data Definition Language) Permet la définition et la mise à jour du schéma relationnel de la base de données (mode administration). Composé des ordres suivants : CREATE TABLE, CREATE INDEX, CREATE VIEW, DROP TABLE, DROP INDEX, DROP VIEW, ALTER TABLE. LCD : Langage de Contrôle des Données (DCL, Data Control Language) Permet de définir les contraintes d’intégrité, de gérer les accès et les autorisations (administration). Composé des ordres : GRANT, REVOKE, LOCK. Recouvre les déclencheurs (triggers), procédures cataloguées. Le programme se limite au sous-ensemble LMD. Nous serons tout de même obligés d’utiliser l’ordre de création de table CREATE TABLE.">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/bases-donnees/4-sql-lmd/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Le langage SQL : Le langage de manipulation de données (LMD) :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Introduction Info Le langage SQL est composé de différents sous-ensembles :
+LMD : Langage de Manipulation des données (DML, Data Manipulation Language) Permet la manipulation et la mise à jour des tables, composé de quatre ordres fondamentaux : SELECT, UPDATE, INSERT, DELETE. LDD : Langage de Définition des Données (DDL, Data Definition Language) Permet la définition et la mise à jour du schéma relationnel de la base de données (mode administration). Composé des ordres suivants : CREATE TABLE, CREATE INDEX, CREATE VIEW, DROP TABLE, DROP INDEX, DROP VIEW, ALTER TABLE. LCD : Langage de Contrôle des Données (DCL, Data Control Language) Permet de définir les contraintes d’intégrité, de gérer les accès et les autorisations (administration). Composé des ordres : GRANT, REVOKE, LOCK. Recouvre les déclencheurs (triggers), procédures cataloguées. Le programme se limite au sous-ensemble LMD. Nous serons tout de même obligés d’utiliser l’ordre de création de table CREATE TABLE.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2021-02-04T04:29:53+04:00">
+    <meta property="article:modified_time" content="2021-02-04T04:29:53+04:00">
+    <meta itemprop="name" content="Le langage SQL : Le langage de manipulation de données (LMD) :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Introduction Info Le langage SQL est composé de différents sous-ensembles :
+LMD : Langage de Manipulation des données (DML, Data Manipulation Language) Permet la manipulation et la mise à jour des tables, composé de quatre ordres fondamentaux : SELECT, UPDATE, INSERT, DELETE. LDD : Langage de Définition des Données (DDL, Data Definition Language) Permet la définition et la mise à jour du schéma relationnel de la base de données (mode administration). Composé des ordres suivants : CREATE TABLE, CREATE INDEX, CREATE VIEW, DROP TABLE, DROP INDEX, DROP VIEW, ALTER TABLE. LCD : Langage de Contrôle des Données (DCL, Data Control Language) Permet de définir les contraintes d’intégrité, de gérer les accès et les autorisations (administration). Composé des ordres : GRANT, REVOKE, LOCK. Recouvre les déclencheurs (triggers), procédures cataloguées. Le programme se limite au sous-ensemble LMD. Nous serons tout de même obligés d’utiliser l’ordre de création de table CREATE TABLE.">
+    <meta itemprop="datePublished" content="2021-02-04T04:29:53+04:00">
+    <meta itemprop="dateModified" content="2021-02-04T04:29:53+04:00">
+    <meta itemprop="wordCount" content="2480">
+    <title>Le langage SQL : Le langage de manipulation de données (LMD) :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/bases-donnees/4-sql-lmd/index.html" rel="canonical" type="text/html" title="Le langage SQL : Le langage de manipulation de données (LMD) :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/bases-donnees/4-sql-lmd/index.xml" rel="alternate" type="application/rss&#43;xml" title="Le langage SQL : Le langage de manipulation de données (LMD) :: Physique, Chimie et Informatique">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/bases-donnees/4-sql-lmd/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/bases-donnees/4-sql-lmd/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#sqlite">SQLite</a></li>
+    <li><a href="#création-dune-première-base-de-données">Création d&rsquo;une première base de données</a></li>
+    <li><a href="#premières-requêtes--projection">Premières requêtes : Projection</a></li>
+    <li><a href="#premières-requêtes--sélection">Premières requêtes : Sélection</a>
+      <ul>
+        <li><a href="#sélections-simples">Sélections simples</a></li>
+        <li><a href="#opérateurs-de-comparaison">Opérateurs de comparaison</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercices-dapplication">Exercices d&rsquo;application</a>
+      <ul>
+        <li><a href="#les-sportifs-stars">Les sportifs stars</a></li>
+        <li><a href="#instagram">Instagram</a></li>
+      </ul>
+    </li>
+    <li><a href="#première-requêtes--ordres-sql">Première requêtes : Ordres SQL</a></li>
+    <li><a href="#première-requêtes--recherche-de-motifs-lors-dune-sélection">Première requêtes : recherche de motifs lors d&rsquo;une sélection</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#modification-des-entrées-dune-base-de-données">Modification des entrées d&rsquo;une base de données</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#exercice-dapplication-à-partir-de-données-réelles-et-conséquentes">Exercice d&rsquo;application à partir de données réelles et conséquentes</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Bases de données">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/bases-donnees/index.html"><span itemprop="name">Bases de données</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/4-sql-lmd/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/3-vers-modele-relationnel/index.html" title="Du schéma entités/associations au schéma relationnel (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/5-sql-lmd-avance/index.html" title="Le langage SQL : Le langage de manipulation de données (LMD), Compléments (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Bases de données</div>
+  <header class="headline">
+  </header>
+
+<h1 id="le-langage-sql--le-langage-de-manipulation-de-données-lmd">Le langage SQL : Le langage de manipulation de données (LMD)</h1>
+
+<h2 id="introduction">Introduction<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Le langage SQL est composé de différents sous-ensembles :</p>
+<dl>
+<dt>LMD : Langage de Manipulation des données (DML, Data Manipulation Language)</dt>
+<dd><em>Permet la manipulation et la mise à jour des tables</em>, composé de quatre ordres fondamentaux : <code>SELECT</code>, <code>UPDATE</code>, <code>INSERT</code>, <code>DELETE</code>.</dd>
+<dt>LDD : Langage de Définition des Données (DDL, Data Definition Language)</dt>
+<dd><em>Permet la définition et la mise à jour du schéma relationnel de la base de données</em> (mode administration). Composé des ordres suivants : <code>CREATE TABLE</code>, <code>CREATE INDEX</code>, <code>CREATE VIEW</code>, <code>DROP TABLE</code>, <code>DROP INDEX</code>, <code>DROP VIEW</code>, <code>ALTER TABLE</code>.</dd>
+<dt>LCD : Langage de Contrôle des Données (DCL, Data Control Language)</dt>
+<dd><em>Permet de définir les contraintes d’intégrité, de gérer les accès et les autorisations</em> (administration). Composé des ordres : <code>GRANT</code>, <code>REVOKE</code>, <code>LOCK</code>. Recouvre les déclencheurs (triggers), procédures cataloguées.</dd>
+</dl>
+
+  </div>
+</div>
+
+<p>Le programme se limite au sous-ensemble <strong>LMD</strong>. Nous serons tout de même obligés d&rsquo;utiliser l&rsquo;ordre de création de table <code>CREATE TABLE</code>.</p>
+<h2 id="sqlite">SQLite<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Dans ce cours nous utiliserons SQLite depuis l&rsquo;interface de 
+<a class="remote" href="https://repl.it/" target="_blank">Repl.it</a>
+
+.</p>
+<p>SQLite est un <strong>moteur de base de données relationnelle</strong> (sous-ensemble d&rsquo;un <strong>SGBD</strong>) accessible par le langage SQL. Contrairement aux serveurs de bases de données traditionnels, comme MySQL ou PostgreSQL, sa particularité est de ne pas reproduire le <em>schéma habituel client-serveur</em> mais de <em>fonctionner sans serveur</em> (on parle de <em>base de données « standalone » ou « embarquée »</em>). L&rsquo;intégralité de la base de données (déclarations, tables, index et données) est stockée dans un fichier indépendant de la plateforme.</p>
+<dl>
+<dt>Remarque</dt>
+<dd>On peut accéder à SQLite depuis de nombreux langages de programmation. Nous utiliserons dans un premier temps une <em>interface en ligne de commande (CLI)</em> et par la suite <em>Python</em>.</dd>
+</dl>
+<p>SQLite est le moteur de base de données le plus utilisé au monde.</p>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>Chaque SGBD possède, en plus du SQL, des commandes propres :
+<a class="remote" href="https://sqlite.org/cli.html" target="_blank">section 3 de la documentation officielle</a></p>
+<p>Ces dernières <strong>commencent toujours par un point</strong> en SQLite et <strong>ne devront pas être apprises !</strong></p>
+
+  </div>
+</div>
+
+<h2 id="création-dune-première-base-de-données">Création d&rsquo;une première base de données<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>On possède un fichier tableur contenant des informations sur quelques acteurs, parmi les plus célèbres.</p>
+<center>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center">Nom</th>
+      <th class="align-center">Prénom</th>
+      <th class="align-center">Sexe</th>
+      <th class="align-center">Pays</th>
+      <th class="align-center">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">Hanks</td>
+      <td class="align-center">Tom</td>
+      <td class="align-center">Homme</td>
+      <td class="align-center">USA</td>
+      <td class="align-center">64</td>
+    </tr>
+    <tr>
+      <td class="align-center">Holland</td>
+      <td class="align-center">Tom</td>
+      <td class="align-center">Homme</td>
+      <td class="align-center">Angleterre</td>
+      <td class="align-center">24</td>
+    </tr>
+    <tr>
+      <td class="align-center">Johansson</td>
+      <td class="align-center">Scarlett</td>
+      <td class="align-center">Femme</td>
+      <td class="align-center">USA</td>
+      <td class="align-center">36</td>
+    </tr>
+    <tr>
+      <td class="align-center">Johnson</td>
+      <td class="align-center">Dwayne</td>
+      <td class="align-center">Homme</td>
+      <td class="align-center">USA</td>
+      <td class="align-center">48</td>
+    </tr>
+    <tr>
+      <td class="align-center">Robbie</td>
+      <td class="align-center">Margot</td>
+      <td class="align-center">Femme</td>
+      <td class="align-center">Australie</td>
+      <td class="align-center">30</td>
+    </tr>
+    <tr>
+      <td class="align-center">Cotillard</td>
+      <td class="align-center">Marion</td>
+      <td class="align-center">Femme</td>
+      <td class="align-center">France</td>
+      <td class="align-center">45</td>
+    </tr>
+    <tr>
+      <td class="align-center">Gadot</td>
+      <td class="align-center">Gal</td>
+      <td class="align-center">Femme</td>
+      <td class="align-center">Israël</td>
+      <td class="align-center">35</td>
+    </tr>
+    <tr>
+      <td class="align-center">Cruise</td>
+      <td class="align-center">Tom</td>
+      <td class="align-center">Homme</td>
+      <td class="align-center">USA</td>
+      <td class="align-center">58</td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<p>On souhaite transformer ce fichier en une base de données contenant, pour l&rsquo;instant, <em>une seule relation</em>.</p>
+<ol>
+<li>Réaliser une copie de l&rsquo;
+<a class="remote" href="https://repl.it/@dlatreyte/Celebrites" target="_blank">environnement de travail sur repl.it</a>
+
+</li>
+</ol>
+<p>L&rsquo;instruction de création de la table (relation) est</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w">  </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="s2">&#34;Celebrites&#34;</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Nom</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Prenom</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Sexe</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Pays</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Age</span><span class="w"> </span><span class="nb">int</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">);</span></span></span></code></pre></div>
+<ol start="2">
+<li>
+<p>Indiquer la signification de chaque ligne de la commande.</p>
+</li>
+<li>
+<p>Incorporer la commande au fichier <code>celebrites.sql</code> et l&rsquo;exécuter.</p>
+</li>
+<li>
+<p>Afin de vérifier que la commande a bien créé une table dans <strong>la base de données qui réside pour l&rsquo;instant dans la RAM</strong>, ajouter la commande suivante au fichier <code>main.sql</code></p>
+</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="c1">-- Énumérations des tables
+</span></span></span><span class="line"><span class="cl"><span class="p">.</span><span class="n">tables</span></span></span></code></pre></div>
+<p>Relancer l&rsquo;exécution des commandes et observer le résultat dans la console.</p>
+<ol start="5">
+<li>Afin d&rsquo;examiner la structure de la table <code>Celebrites</code>, ajouter l&rsquo;une des commandes suivantes au fichier <code>main.sql</code>.</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="c1">-- Structure de la table Celebrites
+</span></span></span><span class="line"><span class="cl"><span class="p">.</span><span class="k">schema</span><span class="w"> </span><span class="s1">&#39;Celebrites&#39;</span></span></span></code></pre></div>
+<p>ou</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="c1">-- Structure de la table Celebrites
+</span></span></span><span class="line"><span class="cl"><span class="n">pragma</span><span class="w"> </span><span class="n">table_info</span><span class="p">(</span><span class="s1">&#39;Celebrites&#39;</span><span class="p">);</span></span></span></code></pre></div>
+<p>La commande permettant d&rsquo;intégrer le tuple <code>(&quot;Hanks&quot;, &quot;Tom&quot;, &quot;Homme&quot;, &quot;USA&quot;, 64)</code> à la relation <code>Celebrites</code> est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">Celebrites</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s2">&#34;Hanks&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;Tom&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;Homme&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;USA&#34;</span><span class="p">,</span><span class="w"> </span><span class="mi">64</span><span class="p">);</span></span></span></code></pre></div>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>La commande, telle qu&rsquo;elle est donnée ici, impose le respect de l&rsquo;ordre des informations dans le tuple.</p>
+
+  </div>
+</div>
+
+<ol start="6">
+<li>
+<p>Intégrer la commande précédente au fichier <code>celebrites.sql</code>. Exécuter cette commande. La sortie fait-elle apparaître le résultat de cette commande ?</p>
+</li>
+<li>
+<p>Afin de vérifier que les informations ont bien été ajoutées à la base de données, ajouter la commande suivante dans le fichier <code>main.sql</code></p>
+</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="p">;</span></span></span></code></pre></div>
+<p>Exécuter cette commande.</p>
+<ol start="8">
+<li>
+<p>Ajouter maintenant au fichier <code>celebrites.sql</code> toutes les commandes permettant de peupler la base de données.<br>
+Exécuter ces commandes.</p>
+</li>
+<li>
+<p>La base de données réside toujours en mémoire et n&rsquo;a, pour l&rsquo;instant, pas été sauvegardée dans un fichier. Ajouter la commande suivante à la fin du fichier <code>celebrites.sql</code></p>
+</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="p">.</span><span class="n">save</span><span class="w"> </span><span class="s2">&#34;cinema.sqlite&#34;</span></span></span></code></pre></div>
+<p>Vérifier que le fichier <code>cinema.sqlite</code> a bien été créé.</p>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Désormais, à la prochaine utilisation de la base de données il ne sera plus nécessaire de relancer toute la création de la base de données (ce qui pourrait être très très long dans le cas d&rsquo;une base conséquente) mais seulement la commande</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="p">.</span><span class="k">open</span><span class="w"> </span><span class="s2">&#34;cinema.sqlite&#34;</span></span></span></code></pre></div>
+<p>au début du fichier <code>main.sql</code> (qui ne devra alors plus lire le fichier <code>celebrites.sql</code>).</p>
+
+  </div>
+</div>
+
+<h2 id="premières-requêtes--projection">Premières requêtes : Projection<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>Toutes les commandes à venir devront être entrées dans le fichier <code>main.sql</code> après la commande de lecture du fichier <code>celebrites.sql</code> (ou après la commande de lecture du fichier <code>cinema.sqlite</code>).</p>
+
+  </div>
+</div>
+
+<ol start="10">
+<li>La commande <code>SELECT * FROM Celebrites;</code> est une requête. Que signifie le caractère <code>*</code> dans cette commande ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Le caractère <code>*</code> indique que l&rsquo;on souhaite que la relation retournée par la commande <code>SELECT</code> contienne tous les attributs (champs).</p>
+  </div>
+</details></li>
+</ol>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>Une <strong>projection</strong> consiste à filtrer certains
+attributs d&rsquo;une relation. Le résultat d&rsquo;une projection est une relation de
+<strong>degré</strong> inférieur à celui de la relation de départ.</em></p>
+
+  </div>
+</div>
+
+<ol start="11">
+<li>
+<p>Adapter la commande précédente de façon à obtenir tous les noms des acteurs présents dans la base de données.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Adapter la commande précédente de façon à obtenir tous les noms et sexes des acteurs présents dans la base de données.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">Sexe</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+</ol>
+<h2 id="premières-requêtes--sélection">Premières requêtes : Sélection<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="sélections-simples">Sélections simples<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>La <strong>sélection</strong> consiste à filtrer des
+enregistrements d&rsquo;une relation en fonction d&rsquo;une <strong>condition</strong>. Le
+résultat d&rsquo;une sélection est une relation de <strong>même degré</strong> mais de
+<strong>cardinalité différente</strong>.</em></p>
+<p>Une sélection s&rsquo;effectue en langage SQL à l&rsquo;aide de la clause <code>WHERE</code>.</p>
+
+  </div>
+</div>
+
+<ol start="13">
+<li>
+<p>Écrire la commande qui retourne toutes les informations relatives aux femmes présentes dans la base de données.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Sexe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Femme&#34;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Adapter la commande précédente de façon à obtenir tous les noms et prénoms des femmes présentes dans la base de données.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">prenom</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Sexe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Femme&#34;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+</ol>
+<h3 id="opérateurs-de-comparaison">Opérateurs de comparaison<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<ol start="15">
+<li>
+<p>Quels sont les noms de tous les acteurs (sans distinction de sexe) qui n&rsquo;ont pas pour pays d&rsquo;origine les USA.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Pays</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">&#34;USA&#34;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les noms des acteurs (sans distinction de sexe) qui ont plus de 40 ans ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">40</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les noms et prénoms des acteurs (sans distinction de sexe) qui ont plus de 40 ans ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">Prenom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">40</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les noms des acteurs (sans distinction de sexe) qui ont au plus 36 ans ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Age</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">36</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les noms des actrices françaises ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Sexe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Femme&#34;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Pays</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;France&#34;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les ages des acteurs américains hommes dont le prénom est Tom ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Age</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Sexe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Homme&#34;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Prenom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Tom&#34;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Pays</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;USA&#34;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les prénoms des acteurs (sans distinction de sexe) australiens ou de plus de 40 ans ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Prenom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">40</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">Pays</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Australie&#34;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+</ol>
+<h2 id="exercices-dapplication">Exercices d&rsquo;application<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="les-sportifs-stars">Les sportifs stars<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire toutes les commandes correspondant au requêtes ci-dessous pour la base de donnée se trouvant à 
+<a class="remote" href="https://repl.it/@dlatreyte/Sportifs-Stars" target="_blank">cette adresse</a>
+
+</p>
+<ol>
+<li>Donner le schéma relationnel de la base de données.</li>
+<li>Afficher les noms de tous les sportifs.</li>
+<li>Afficher les noms et prénoms de tous les sportifs.</li>
+<li>Afficher les noms, prénoms et sports de tous les sportifs.</li>
+<li>Afficher le nom des sportifs nés au mois de décembre.</li>
+<li>Afficher les noms et prénoms des sportifs nés en juin.</li>
+<li>Afficher les noms et prénoms des sportifs nés en 1981.</li>
+<li>Afficher les noms et prénoms des sportifs pratiquant le football.</li>
+</ol>
+<h3 id="instagram">Instagram<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire toutes les commandes correspondant au requêtes ci-dessous pour la base de donnée se trouvant à 
+<a class="remote" href="https://repl.it/@dlatreyte/Instagram" target="_blank">cette adresse</a>
+
+</p>
+<ol>
+<li>Donner le schéma relationnel de la base de données.</li>
+<li>Afficher toutes les informations relatives aux utilisateurs qui ne sont pas des footballeurs.</li>
+<li>Afficher toutes les informations relatives aux utilisateurs qui ont plus de 200 million followers.</li>
+<li>Afficher toutes les informations relatives des utilisateurs qui ont au plus 200 million followers.</li>
+<li>Afficher toutes les informations relatives des utilisateurs qui ont au moins 200 million followers.</li>
+<li>Afficher les prénoms, noms et « Instagram handle » des comptes qui ont au maximum 155 millions de followers.</li>
+<li>Afficher toutes les informations pour les comptes qui correspondent à des chanteurs et qui ont plus de 200 millions de followers.</li>
+<li>Afficher toutes les informations pour les comptes qui correspondent à des footballeurs ou qui ont moins de 150 millions de followers.</li>
+</ol>
+<h2 id="première-requêtes--ordres-sql">Première requêtes : Ordres SQL<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>On reprend, dans cette partie, l&rsquo;étude de la relation <code>Celebrites</code>.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>L&rsquo;opérateur <code>ORDER BY</code> est utilisé pour <em>trier le résultat d&rsquo;une projection</em>. Par défaut ce tri s&rsquo;effectue par <em>ordre croissant</em> (lexicographique ou numérique). Pour trier par ordre décroissant, il faut ajouter le mot clé <code>DESC</code>, pour trier par ordre croissant on utilise <code>ASC</code>.</p>
+
+  </div>
+</div>
+
+<ol start="22">
+<li>
+<p>Rechercher toutes les informations sur les acteurs, triées par age croissant.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Age</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Rechercher toutes les informations sur les acteurs, triées par pays d&rsquo;origine (par ordre décroissant).
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Pays</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Rechercher les noms et prénoms des acteurs triés par age et nom croissants.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">Prénom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Age</span><span class="p">,</span><span class="w"> </span><span class="n">Nom</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Rechercher les noms et prénoms des acteurs triés par age décroissant et nom croissant.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">Prénom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Age</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">Nom</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Rechercher les ages et sexes des acteurs, triés par age croissant.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Age</span><span class="p">,</span><span class="w"> </span><span class="n">Sexe</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Age</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+</ol>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>L&rsquo;opérateur <code>BETWEEN</code> est utilisé pour <em>sélectionner une valeur numérique dans un intervalle</em>.</p>
+
+  </div>
+</div>
+
+<ol start="27">
+<li>Écrire une requête qui affiche toutes les informations sur les artistes dont les ages sont compris entre 30 et 60 ans.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Age</span><span class="p">,</span><span class="w"> </span><span class="n">Sexe</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Age</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></li>
+</ol>
+<h2 id="première-requêtes--recherche-de-motifs-lors-dune-sélection">Première requêtes : recherche de motifs lors d&rsquo;une sélection<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>On reprend, dans cette partie, l&rsquo;étude de la relation <code>Celebrites</code>.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>L&rsquo;opérateur <code>LIKE</code> permet de rechercher un motif lors d&rsquo;une sélection.</p>
+
+  </div>
+</div>
+
+<ol start="28">
+<li>
+<p>Rechercher les prénoms des acteurs dont le nom commence par la lettre <code>j</code>.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Prenom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Nom</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;J%&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Rechercher les noms et prénoms des acteurs dont le sexe commence par la lettre <code>h</code>, trié par nom croissant.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">Prenom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Sexe</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;h%&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Nom</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Rechercher les noms et prénoms des acteurs dont le prénom se termine par la lettre <code>t</code>.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">Prenom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Prenom</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%t&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Rechercher les noms et prénoms des acteurs dont le prénom contient la lettre <code>a</code>.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">Prenom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Prenom</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%a%&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Rechercher les noms et prénoms des acteurs dont le pays d&rsquo;origine commence par un <code>a</code>.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">Prenom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Pays</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;a%&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Rechercher les noms et prénoms des acteurs dont le pays d&rsquo;origine se termine par un <code>l</code>.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">Prenom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Pays</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%l&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Rechercher les noms et prénoms des acteurs dont le pays d&rsquo;origine comporte un <code>a</code>.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Nom</span><span class="p">,</span><span class="w"> </span><span class="n">Prenom</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Pays</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%a%&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+</ol>
+<h4 id="exercice-dapplication--base-animaux">Exercice d&rsquo;application : base Animaux<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Écrire toutes les commandes correspondant au requêtes ci-dessous pour la base de donnée se trouvant à 
+<a class="remote" href="https://repl.it/@dlatreyte/Animaux" target="_blank">cette adresse</a>
+
+</p>
+<ol>
+<li>
+<p>Rechercher toutes les informations sur les animaux dont le nom commence par la lettre <code>p</code>.</p>
+</li>
+<li>
+<p>Rechercher toutes les informations sur les animaux dont le nom se termine par la lettre <code>e</code> et qui sont En danger.</p>
+</li>
+<li>
+<p>Rechercher toutes les informations sur les animaux dont le nom comporte la lettre <code>a</code> et qui sont Vulnérable. Le résultat doit être trié par nom (ascendant).</p>
+</li>
+<li>
+<p>Afficher le nom de tous les animaux et leur état de préservation.</p>
+</li>
+<li>
+<p>Afficher le nom de tous les animaux vulnérables par ordre décroissant de la vitesse de déplacement.</p>
+</li>
+<li>
+<p>Afficher le nom et la durée de vie moyenne des animaux dont le nom comporte un <code>e</code>. L&rsquo;affichage doit être effectué par durée de vie moyenne croissante.</p>
+</li>
+<li>
+<p>Afficher les nom, durée de vie moyenne et vitesse de déplacement des animaux dont le nom comporte un <code>o</code>, par vitesse de déplacement décroissante.</p>
+</li>
+</ol>
+<h2 id="modification-des-entrées-dune-base-de-données">Modification des entrées d&rsquo;une base de données<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>On reprend, dans cette partie, l&rsquo;étude de la relation <code>Celebrites</code>.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>L&rsquo;ordre <code>UPDATE</code> permet de modifier un enregistrement dans une table. La clause <code>WHERE</code> est utilisée pour sélectionner l&rsquo;enregistrement.</p>
+
+  </div>
+</div>
+
+<ol start="35">
+<li>
+<p>Faire en sorte que l&rsquo;age de l&rsquo;actrice Margot Robbie soit égal à 29 ans.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">Age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">29</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Robbie&#34;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details>
+Vérifier que la modification a bien été effectuée.</p>
+</li>
+<li>
+<p>Modifier le fichier contenant la base de données de façon à ce que la modification, uniquement effectuée en mémoire vive pour l&rsquo;instant, soit enregistrée de façon permanente.</p>
+</li>
+<li>
+<p>Le vrai nom de Tom Cruise est Thomas Cruise Mapother IV. Modifier l&rsquo;entrée dans la base de données.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">Nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Cruise Mapother IV&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">prenom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Thomas&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Cruise&#34;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+</ol>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>L&rsquo;ordre <code>DELETE</code> permet de supprimer un enregistrement d&rsquo;une table. Si aucune clause <code>WHERE</code> n&rsquo;est utilisée, <em>tous les enregistrements de la table sont supprimés</em>.</p>
+
+  </div>
+</div>
+
+<ol start="38">
+<li>Supprimer l&rsquo;acteur Tom Holland de la table Celebrites.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Celebrites</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">Nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Holland&#34;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></li>
+</ol>
+<h4 id="exercice-dapplication--base-superhereos-and-villains">Exercice d&rsquo;application : base Superhereos and Villains<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Écrire toutes les commandes correspondant au requêtes ci-dessous pour la base de donnée se trouvant à 
+<a class="remote" href="https://repl.it/@dlatreyte/Superheroes-and-Villains" target="_blank">cette adresse</a>
+
+</p>
+<ol>
+<li>
+<p>Écrire une requête qui affiche tous les enregistrements de la table « Superheroes and Villains ».</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche la structure de la table « Superheroes and Villains ».</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche les noms des superheroes femmes.</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche les noms et types (gentil ou méchant) des films X-Men ou Guardians of the Galaxy.</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche tous les noms des personnages par ordre alphabétique.</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche les types des personnages et leurs noms par ordre alphabétique croissant pour les types mais ordre alphabétique décroissant pour les noms.</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche les noms des personnages commençant par la lettre <code>M</code>.</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche les noms des personnages se terminant par la lettre <code>N</code>.</p>
+</li>
+<li>
+<p>Écrire une requête qui affiche les noms des personnages contenant la lettre <code>I</code>.</p>
+</li>
+<li>
+<p>Écrire une requête qui modifie le nom du personnage Groot. Le nouveau nom est Baby Groot. Afficher le résultat de cette requête.</p>
+</li>
+<li>
+<p>Écrire une requête qui supprime l&rsquo;enregistrement dont le nom est Queen of Hearts. Afficher la table pour vérifier le résultat de la requête.</p>
+</li>
+</ol>
+<h2 id="exercice-dapplication-à-partir-de-données-réelles-et-conséquentes">Exercice d&rsquo;application à partir de données réelles et conséquentes<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Le document de travail se trouve à cette adresse :
+<a class="remote" href="https://repl.it/@dlatreyte/Indicateurs-lycees-en-France" target="_blank"><a href="https://repl.it/@dlatreyte/Indicateurs-lycees-en-France" rel="external">https://repl.it/@dlatreyte/Indicateurs-lycees-en-France</a></a></p>
+
+  </div>
+</div>
+
+<p>La base de donnée contient tous les indicateurs des lycées français présentés sur le site de l’éducation nationale et dont les données sont en accès “libre” sur 
+<a class="remote" href="https://www.data.gouv.fr/fr/" target="_blank">data.gouv.fr</a>
+
+. La notice descriptive est fournie.</p>
+<ul>
+<li>Écrire 10 requêtes qui vous semblerons utiliser au mieux cette base de données.</li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 4 févr. 2021
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

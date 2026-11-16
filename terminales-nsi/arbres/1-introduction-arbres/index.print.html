@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="La notion de listes chaînées est parfaite pour structurer un ensemble d’élements destinés à être énumérés séquentiellement. Elle permet aussi d’implémenter les structures de piles et de files. Elle n’est cependant pas adaptée aux accès spécifiques à des positions données dans la séquence, puisqu’il faut alors parcourir toutes les cellules depuis le début de la liste jusqu’à la position souhaitée (complexité en O(N)O(N)O(N)).
+Document de référence pour ce cours Structures arborescentes Lorsqu’on manipule une information présentant une certaine hiérarchie, il est commun de la représenter graphiquement :">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Structures de données abstraites arborescentes : les arbres :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="La notion de listes chaînées est parfaite pour structurer un ensemble d’élements destinés à être énumérés séquentiellement. Elle permet aussi d’implémenter les structures de piles et de files. Elle n’est cependant pas adaptée aux accès spécifiques à des positions données dans la séquence, puisqu’il faut alors parcourir toutes les cellules depuis le début de la liste jusqu’à la position souhaitée (complexité en O(N)O(N)O(N)).
+Document de référence pour ce cours Structures arborescentes Lorsqu’on manipule une information présentant une certaine hiérarchie, il est commun de la représenter graphiquement :">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/arbres/1-introduction-arbres/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Structures de données abstraites arborescentes : les arbres :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="La notion de listes chaînées est parfaite pour structurer un ensemble d’élements destinés à être énumérés séquentiellement. Elle permet aussi d’implémenter les structures de piles et de files. Elle n’est cependant pas adaptée aux accès spécifiques à des positions données dans la séquence, puisqu’il faut alors parcourir toutes les cellules depuis le début de la liste jusqu’à la position souhaitée (complexité en O(N)O(N)O(N)).
+Document de référence pour ce cours Structures arborescentes Lorsqu’on manipule une information présentant une certaine hiérarchie, il est commun de la représenter graphiquement :">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2020-11-05T03:37:56+04:00">
+    <meta property="article:modified_time" content="2020-11-05T03:37:56+04:00">
+    <meta property="article:tag" content="Arbres">
+    <meta property="article:tag" content="Listes">
+    <meta itemprop="name" content="Structures de données abstraites arborescentes : les arbres :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="La notion de listes chaînées est parfaite pour structurer un ensemble d’élements destinés à être énumérés séquentiellement. Elle permet aussi d’implémenter les structures de piles et de files. Elle n’est cependant pas adaptée aux accès spécifiques à des positions données dans la séquence, puisqu’il faut alors parcourir toutes les cellules depuis le début de la liste jusqu’à la position souhaitée (complexité en O(N)O(N)O(N)).
+Document de référence pour ce cours Structures arborescentes Lorsqu’on manipule une information présentant une certaine hiérarchie, il est commun de la représenter graphiquement :">
+    <meta itemprop="datePublished" content="2020-11-05T03:37:56+04:00">
+    <meta itemprop="dateModified" content="2020-11-05T03:37:56+04:00">
+    <meta itemprop="wordCount" content="902">
+    <meta itemprop="keywords" content="Arbres,Listes">
+    <title>Structures de données abstraites arborescentes : les arbres :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/arbres/1-introduction-arbres/index.html" rel="canonical" type="text/html" title="Structures de données abstraites arborescentes : les arbres :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/arbres/1-introduction-arbres/index.xml" rel="alternate" type="application/rss&#43;xml" title="Structures de données abstraites arborescentes : les arbres :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/arbres/1-introduction-arbres/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/arbres/1-introduction-arbres/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#structures-arborescentes">Structures arborescentes</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#définitions-et-vocabulaire">Définitions et vocabulaire</a>
+      <ul>
+        <li><a href="#arbre-enraciné">Arbre (enraciné)</a></li>
+        <li><a href="#racine-noeud-branche-feuille">Racine, noeud, branche, feuille</a></li>
+        <li><a href="#profondeur-dun-nœud-hauteur-dun-nœud">Profondeur d&rsquo;un nœud, hauteur d&rsquo;un nœud</a></li>
+        <li><a href="#profondeur-dun-arbre">Profondeur d&rsquo;un arbre</a></li>
+        <li><a href="#taille-dun-arbre">Taille d&rsquo;un arbre</a></li>
+        <li><a href="#degré-dun-noeud-degré-dun-arbre">Degré d’un noeud, degré d’un arbre</a></li>
+      </ul>
+    </li>
+    <li><a href="#relation-entre-les-liste-et-les-arbres">Relation entre les liste et les arbres</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Structures hiérarchiques : les arbres">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/arbres/index.html"><span itemprop="name">Structures hiérarchiques : les arbres</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/arbres/1-introduction-arbres/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/arbres/index.html" title="Structures hiérarchiques : les arbres (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/arbres/2-arbres-binaires/index.html" title="Les arbres binaires (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Structures hiérarchiques : les arbres</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/arbres/index.html">Arbres</a></li>
+    <li><a class="term-link" href="/tags/listes/index.html">Listes</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="structures-de-données-abstraites-arborescentes--les-arbres">Structures de données abstraites arborescentes : les arbres</h1>
+
+<blockquote>
+<p>La notion de listes chaînées est parfaite pour structurer un ensemble d&rsquo;élements destinés à être énumérés séquentiellement. Elle permet aussi d&rsquo;implémenter les structures de piles et de files. <em>Elle n&rsquo;est cependant pas adaptée aux accès spécifiques à des positions données dans la séquence</em>, puisqu&rsquo;il faut alors parcourir toutes les cellules depuis le début de la liste jusqu&rsquo;à la position souhaitée (complexité en <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mclose">)</span></span></span></span></span>).</p>
+</blockquote>
+
+<a class="remote" href="https://isn-icn-ljm.pagesperso-orange.fr/NSI-TLE/co/section_chapitre3.html" target="_blank">Document de référence pour ce cours</a>
+
+
+<h2 id="structures-arborescentes">Structures arborescentes<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Lorsqu&rsquo;on manipule une information présentant une certaine hiérarchie, il est commun de la représenter graphiquement :</p>
+<h4 id="arbre-généalogique">Arbre généalogique<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-fbbeb31a2524a8bfaeb4328450d85029">
+graph TD
+    A(Jules) --&gt; B(Mireille)
+    A(Jules) --&gt; C(Gérard)
+    A(Jules) --&gt; D(Guy)
+    B --&gt; E(David)
+    E --&gt; F(Gabriel)
+    E --&gt; G(Louise)
+    C --&gt; H(Fabien)
+    D --&gt; I(Sandra)
+    D --&gt; J(Marion)
+</pre>
+<h4 id="arborescence-dun-système-de-fichier">Arborescence d&rsquo;un système de fichier<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-8a0c658093133753bb7169dcc18ef1aa">
+graph TD
+  A(/) --&gt; B(bin)
+  A --&gt; C(root)
+  A --&gt; D(home)
+  A --&gt; F(etc)
+  A --&gt; G(var)
+  A --&gt; H(usr)
+  A --&gt; I(tmp)
+  D --&gt; J(mats)
+  J --&gt; K(Documents)
+  J --&gt; L(Images)
+  J --&gt; M(Vidéos)
+  K --&gt; N(Terminale)
+  N --&gt; O(NSI)
+  N --&gt; P(PC)
+</pre>
+<h4 id="expression-mathématique">Expression mathématique<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-e35d9b40521a22463f96f774c35eddbb">
+graph TD
+  A(+) --&gt; B(*)
+  B --&gt; C(3)
+  B --&gt; D(8)
+  A --&gt; E(6)
+</pre>
+<p><div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
+  <div class="clue-body">
+<p>écrire l&rsquo;expression mathématique représentée par l&rsquo;arbre ci-dessus.</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>×</mo><mn>8</mn><mo>&#43;</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">3 &#92;times 8 &#43; 6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">6</span></span></span></span></span></p>
+  </div>
+</details></p>
+<div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
+  <div class="clue-body">
+<p>écrire l&rsquo;arbre représentant l&rsquo;expression mathématique <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mtext> </mtext><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><mn>2</mn><mi>π</mi></mrow><mi>T</mi></mfrac></mstyle><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a&#92;, sin( &#92;dfrac{2&#92;pi}{T}t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">in</span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span>.</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<img src="/terminales-nsi/chap-9/chap-9-1-1.svg" alt="" width="">
+  </div>
+</details>
+<h4 id="arbre-lexicographique">Arbre lexicographique<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Un arbre lexicographique, ou arbre en parties communes, ou dictionnaire, représente un ensemble de mots. <em>Les préfixes communs à plusieurs mots n&rsquo;apparaissent qu&rsquo;une seule fois dans l’arbre</em>.</p>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-ea43332abb58927531e408555a7ec0b0">
+graph TD
+  A(.) --&gt; B(m)
+  B --&gt; C(a)
+  C --&gt; D(i)
+  D --&gt; E(s)
+  E --&gt; F(o)
+  F --&gt; G(n)
+  D --&gt; H(t)
+  H --&gt; I(r)
+  I --&gt; J(i)
+  J --&gt; K(s)
+  K --&gt; L(e)
+  L --&gt; M(r)
+  C --&gt; N(t)
+  N --&gt; O(e)
+  O --&gt; P(l)
+  P --&gt; Q(a)
+  Q --&gt; R(t)
+  P --&gt; S(o)
+  S --&gt; T(t)
+  A --&gt; U(v)
+  U --&gt; V(a)
+  V --&gt; W(l)
+  W --&gt; X(i)
+  X --&gt; Y(s)
+  Y --&gt; Z(e)
+</pre>
+<div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
+  <div class="clue-body">
+<p>Quels sont les mots représentés dans l&rsquo;arbre ?</p>
+
+  </div>
+</div>
+
+<p><div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
+  <div class="clue-body">
+<p>Ajouter les mots « matériel » et « vallon ».</p>
+<p><strong>Remarque :</strong> ne pas différencier les lettres é et e.</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<img src="/terminales-nsi/chap-9/chap-9-1-2.svg" alt="" width="">
+  </div>
+</details></p>
+<h2 id="définitions-et-vocabulaire">Définitions et vocabulaire<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="arbre-enraciné">Arbre (enraciné)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<ul>
+<li>
+<p>Un <strong>arbre</strong> (nom complet <strong>arbre enraciné</strong>) est une <em>structure de données abstraite arborescente dans laquelle les données sont hiérarchisées depuis un <strong>nœud racine</strong>.</em></p>
+</li>
+<li>
+<p>Un arbre dont tous les nœuds sont nommés est dit <strong>étiqueté</strong>. L’étiquette (ou nom du sommet) représente la « valeur » du nœud ou bien l’information associée au nœud.</p>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<h3 id="racine-noeud-branche-feuille">Racine, noeud, branche, feuille<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<ul>
+<li>Un arbre est un ensemble organisé de <strong>nœuds</strong> dans lequel <em>chaque nœud a un <strong>père</strong>, sauf un nœud que l’on appelle le <strong>nœud racine</strong>.</em></li>
+<li><em>Si le nœud n’a pas de fils</em>, on dit que c’est une <strong>feuille</strong>.</li>
+<li>Les nœuds sont reliés par des <strong>branches</strong>.</li>
+</ul>
+
+  </div>
+</div>
+
+<p><div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
+  <div class="clue-body">
+<ul>
+<li>Nommer les nœuds puis les feuilles dans l&rsquo;arbre représenté ci-dessous.</li>
+<li>Compter le nombre de branches.</li>
+</ul>
+
+  </div>
+</div>
+
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-ca49845afdf1ae559315d8583f4b22f1">
+graph TD
+  A(a) --&gt; B(b)
+  A --&gt; C(c)
+  B --&gt; D(d)
+  B --&gt; E(e)
+  E --&gt; F(f)
+  E --&gt; G(g)
+  B --&gt; H(h)
+  H --&gt; I(i)
+</pre>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponses
+  </summary>
+  <div class="box-content">
+<ul>
+<li><strong>Nœuds</strong> internes: a (racine), b, e, h et <strong>feuilles</strong> : c, d, f, g, i.</li>
+<li>8 branches.</li>
+</ul>
+  </div>
+</details></p>
+<h3 id="profondeur-dun-nœud-hauteur-dun-nœud">Profondeur d&rsquo;un nœud, hauteur d&rsquo;un nœud<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>La <strong>profondeur</strong> d&rsquo;un nœud est sa <strong>distance à la racine</strong>.<br>
+La profondeur d&rsquo;un nœud dans un arbre est donc <strong>le nombre d&rsquo;arrêtes qu&rsquo;il faut parcourir, depuis la racine, pour parvenir au nœud</strong>.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>La <strong>hauteur</strong> d&rsquo;un nœud est <em>sa distance à la feuille la plus profonde ayant une relation de descendance avec lui</em>.<br>
+La <strong>hauteur</strong> d&rsquo;un nœud dans un arbre est donc <strong>le nombre d&rsquo;arrêtes qu&rsquo;il faut parcourir, depuis ce nœud jusqu&rsquo;à la feuille la plus profonde ayant une relation de descendance avec lui</strong>.</p>
+
+  </div>
+</div>
+
+<h3 id="profondeur-dun-arbre">Profondeur d&rsquo;un arbre<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>La <strong>hauteur</strong> (ou <strong>profondeur</strong>) d’un <em>arbre</em> est égale à <em>la profondeur du nœud le plus profond</em>.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>La hauteur d&rsquo;un arbre est très importante. En effet, la plupart des algorithmes que nous verrons dans la suite ont une <em>complexité qui dépend de la hauteur de l&rsquo;arbre</em>. Ainsi plus l&rsquo;arbre aura une hauteur élevée, plus l&rsquo;algorithme mettra de temps à s&rsquo;exécuter.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p><em>Tous les auteurs n&rsquo;utilisent pas la convention choisie dans ce cours !</em><br>
+Pour certains, la <strong>profondeur</strong> d’un <em>nœud</em> est égale au <em>nombre de nœuds qu’il faut parcourir à partir de la racine (incluse) pour parvenir au nœud</em> ; la hauteur de la racine est alors de 1.</p>
+
+  </div>
+</div>
+
+<p><div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
+  <div class="clue-body">
+<ul>
+<li>Donner la profondeur du nœud <code>e</code> dans l&rsquo;arbre représenté ci-dessus.</li>
+<li>Donner la hauteur du nœud <code>e</code> dans l&rsquo;arbre représenté ci-dessus.</li>
+<li>Quelle est la profondeur de cet arbre ?</li>
+</ul>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponses
+  </summary>
+  <div class="box-content">
+<ul>
+<li>Profondeur de <code>e</code> : 2.</li>
+<li>Hauteur de <code>e</code> : 1.</li>
+<li>Profondeur de l&rsquo;arbre : 3.</li>
+</ul>
+  </div>
+</details></p>
+<h3 id="taille-dun-arbre">Taille d&rsquo;un arbre<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>La <strong>taille</strong> d’un arbre est égale au <em>nombre de nœuds de l’arbre (nœuds internes et feuilles)</em>.</p>
+
+  </div>
+</div>
+
+<p><div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
+  <div class="clue-body">
+<ul>
+<li>Indiquer la taille de l&rsquo;arbre représenté ci-dessus.</li>
+</ul>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponses
+  </summary>
+  <div class="box-content">
+<ul>
+<li>Taille de l&rsquo;arbre : 9.</li>
+</ul>
+  </div>
+</details></p>
+<h3 id="degré-dun-noeud-degré-dun-arbre">Degré d’un noeud, degré d’un arbre<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<ul>
+<li>Le <strong>degré d’un nœud</strong> est égal au <em>nombre de ses descendants (fils)</em>.</li>
+<li>Le <strong>degré d’un arbre</strong> est égal au <em>plus grand des degrés de ses nœuds</em>.</li>
+</ul>
+
+  </div>
+</div>
+
+<p><div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
+  <div class="clue-body">
+<ul>
+<li>Quel est le degré du nœud <code>b</code> dans l&rsquo;arbre représenté ci-dessus ?</li>
+<li>Quel est le degré du nœud <code>a</code> ?</li>
+<li>Quel est le degré de l&rsquo;arbre ?</li>
+</ul>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponses
+  </summary>
+  <div class="box-content">
+<ul>
+<li>Degré de <code>b</code> : 3.</li>
+<li>Degré de <code>a</code> : 2.</li>
+<li>Degré de l&rsquo;arbre : 3.</li>
+</ul>
+  </div>
+</details></p>
+<h2 id="relation-entre-les-liste-et-les-arbres">Relation entre les liste et les arbres<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Un arbre dont tous les nœuds n’ont qu’un seul fils est en fait une liste.</p>
+
+  </div>
+</div>
+
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 5 nov. 2020
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+    <li><a class="term-link" href="/categories/terminales-sp%C3%A9-nsi/index.html">Terminales Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/js-yaml/js-yaml.min.27e5afd901466eb78e42374935cba773ca53f77b0d52eedb103b2b43f67a7f6a.js" defer></script>
+    <script src="/js/d3/d3-color.min.a12639010163230b8c130fbeb92a3a49bb5f6989a566d3664d759522db458489.js" defer></script>
+    <script src="/js/d3/d3-dispatch.min.94b3bbdb6b98dc1325a15762b051013e8253999b0e0436b27d1da17b952ba0af.js" defer></script>
+    <script src="/js/d3/d3-drag.min.158499fa8cdeef459e2ab9d01af22babd003c423a212fb24088c0f838864012b.js" defer></script>
+    <script src="/js/d3/d3-ease.min.e60a1ed750a1ad138dd18e8d3f463238113cfbf7d89685a13d19bd4e048dc3ce.js" defer></script>
+    <script src="/js/d3/d3-interpolate.min.bfc321e4c3f3b3aadc88cfe15ccb5e443abfeadef8b75c65b41c33a4d78a98ae.js" defer></script>
+    <script src="/js/d3/d3-selection.min.45daab9cf677901bcae102f3f23ca2930db3c0fb8ff9e3dbed087d9c4de921ca.js" defer></script>
+    <script src="/js/d3/d3-timer.min.911ceda305f014b6b53ca68d5c896a9a387da120cfd56a421a2c60cca2fc9b36.js" defer></script>
+    <script src="/js/d3/d3-transition.min.c248d97f6c131af7f4a12a3ff1f2ed83f1cc6c0e17fc764a198b6ee452e6621b.js" defer></script>
+    <script src="/js/d3/d3-zoom.min.4fdce9b830b78225c58e27258296084253c41a5eaf8cad9bd9ccfe3025daf1cf.js" defer></script>
+    <script src="/js/mermaid/mermaid.min.a8a6a6f805b074a8261a2825c86f99c8054acb3b35f50bb7e24a4f9f2c3c3b9f.js" defer></script>
+    <script type="application/json" id="R-mermaid-config">{}</script>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Énoncé du problème Un commerçant cherche à rendre la monnaie à ses clients de façon optimale, c’est-à-dire avec le nombre minimal de pièces et de billets.
+Dans ce problème,
+On suppose que les clients ne donnent que des sommes entières en euros (pas de centimes pour simplifier) ; Les valeurs des pièces et billets à disposition sont : 1, 2, 5, 10, 20, 50, 100, 200 et 500. On suppose que l’on a autant d’exemplaires que nécessaire de chaque pièce et billet ; Dans la suite, afin de simplifier, on désigne par « pièces » à la fois les pièces et les billets. Algorithme glouton Un client nous achète un objet qui coûte 53 euros. Il paye avec un billet de 200 euros. Il faut donc lui rendre 147 euros, par exemple un billet de 100, deux billets de 20, un billet de 5 et une pièce de 2.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Problème du rendu de monnaie :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Énoncé du problème Un commerçant cherche à rendre la monnaie à ses clients de façon optimale, c’est-à-dire avec le nombre minimal de pièces et de billets.
+Dans ce problème,
+On suppose que les clients ne donnent que des sommes entières en euros (pas de centimes pour simplifier) ; Les valeurs des pièces et billets à disposition sont : 1, 2, 5, 10, 20, 50, 100, 200 et 500. On suppose que l’on a autant d’exemplaires que nécessaire de chaque pièce et billet ; Dans la suite, afin de simplifier, on désigne par « pièces » à la fois les pièces et les billets. Algorithme glouton Un client nous achète un objet qui coûte 53 euros. Il paye avec un billet de 200 euros. Il faut donc lui rendre 147 euros, par exemple un billet de 100, deux billets de 20, un billet de 5 et une pièce de 2.">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/programmation-dynamique/2-rendu-monnaie/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Problème du rendu de monnaie :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Énoncé du problème Un commerçant cherche à rendre la monnaie à ses clients de façon optimale, c’est-à-dire avec le nombre minimal de pièces et de billets.
+Dans ce problème,
+On suppose que les clients ne donnent que des sommes entières en euros (pas de centimes pour simplifier) ; Les valeurs des pièces et billets à disposition sont : 1, 2, 5, 10, 20, 50, 100, 200 et 500. On suppose que l’on a autant d’exemplaires que nécessaire de chaque pièce et billet ; Dans la suite, afin de simplifier, on désigne par « pièces » à la fois les pièces et les billets. Algorithme glouton Un client nous achète un objet qui coûte 53 euros. Il paye avec un billet de 200 euros. Il faut donc lui rendre 147 euros, par exemple un billet de 100, deux billets de 20, un billet de 5 et une pièce de 2.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2021-02-28T05:28:54+04:00">
+    <meta property="article:modified_time" content="2021-02-28T05:28:54+04:00">
+    <meta property="article:tag" content="Programmation Dynamique">
+    <meta itemprop="name" content="Problème du rendu de monnaie :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Énoncé du problème Un commerçant cherche à rendre la monnaie à ses clients de façon optimale, c’est-à-dire avec le nombre minimal de pièces et de billets.
+Dans ce problème,
+On suppose que les clients ne donnent que des sommes entières en euros (pas de centimes pour simplifier) ; Les valeurs des pièces et billets à disposition sont : 1, 2, 5, 10, 20, 50, 100, 200 et 500. On suppose que l’on a autant d’exemplaires que nécessaire de chaque pièce et billet ; Dans la suite, afin de simplifier, on désigne par « pièces » à la fois les pièces et les billets. Algorithme glouton Un client nous achète un objet qui coûte 53 euros. Il paye avec un billet de 200 euros. Il faut donc lui rendre 147 euros, par exemple un billet de 100, deux billets de 20, un billet de 5 et une pièce de 2.">
+    <meta itemprop="datePublished" content="2021-02-28T05:28:54+04:00">
+    <meta itemprop="dateModified" content="2021-02-28T05:28:54+04:00">
+    <meta itemprop="wordCount" content="2103">
+    <meta itemprop="keywords" content="Programmation Dynamique">
+    <title>Problème du rendu de monnaie :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/programmation-dynamique/2-rendu-monnaie/index.html" rel="canonical" type="text/html" title="Problème du rendu de monnaie :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/programmation-dynamique/2-rendu-monnaie/index.xml" rel="alternate" type="application/rss&#43;xml" title="Problème du rendu de monnaie :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/programmation-dynamique/2-rendu-monnaie/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/programmation-dynamique/2-rendu-monnaie/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#énoncé-du-problème">Énoncé du problème</a></li>
+    <li><a href="#algorithme-glouton">Algorithme glouton</a></li>
+    <li><a href="#algorithme-de-force-brute">Algorithme de force brute</a>
+      <ul>
+        <li><a href="#compléments">Compléments</a></li>
+      </ul>
+    </li>
+    <li><a href="#programmation-dynamique-mémoïsation">Programmation dynamique (mémoïsation)</a></li>
+    <li><a href="#programmation-dynamique-méthode-tabulaire">Programmation dynamique (méthode tabulaire)</a></li>
+    <li><a href="#en-résumé">En résumé</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Programmation dynamique">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/programmation-dynamique/index.html"><span itemprop="name">Programmation dynamique</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/programmation-dynamique/2-rendu-monnaie/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/programmation-dynamique/1-suite-fibonacci/index.html" title="Autour de la suite de Fibonacci (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/programmation-dynamique/3-decoupe-corde/index.html" title="Découpe d&#39;une corde (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Programmation dynamique</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/programmation-dynamique/index.html">Programmation Dynamique</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="problème-du-rendu-de-monnaie">Problème du rendu de monnaie</h1>
+
+<h2 id="énoncé-du-problème">Énoncé du problème<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Un commerçant cherche à rendre la monnaie à ses clients <strong>de façon optimale</strong>, c&rsquo;est-à-dire avec le <strong>nombre minimal de pièces et de billets</strong>.</p>
+<p>Dans ce problème,</p>
+<ul>
+<li>On suppose que les clients ne donnent que des sommes entières en euros (pas de centimes pour simplifier) ;</li>
+<li>Les valeurs des pièces et billets à disposition sont : 1, 2, 5, 10, 20, 50, 100, 200 et 500. On suppose que l&rsquo;on a autant d&rsquo;exemplaires que nécessaire de chaque pièce et billet ;</li>
+<li>Dans la suite, afin de simplifier, on désigne par « pièces » à la fois les pièces et les billets.</li>
+</ul>
+<h2 id="algorithme-glouton">Algorithme glouton<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Un client nous achète un objet qui coûte 53 euros. Il paye avec un billet de 200 euros. Il faut donc lui rendre 147 euros, par exemple un billet de 100, deux billets de 20, un billet de 5 et une pièce de 2.</p>
+<p>Afin de <strong>minimiser le nombre de pièces à rendre</strong>, on peut suivre la stratégie suivante :</p>
+<ul>
+<li>On commence par rendre la pièce de plus grande valeur possible ;</li>
+<li>On déduit cette valeur de la somme (encore) à rendre ;</li>
+<li>On recommence, jusqu&rsquo;à obtenir une somme nulle.</li>
+</ul>
+<p>En procédant ainsi, <strong>on résout le problème étape par étape</strong> et <strong>un choix optimal est effectué à chacune de ces étapes</strong> (la pièce de plus grande valeur). <em>Cet algorithme fait parti de la catégorie des <strong>algorithmes gloutons</strong> : chercher la solution optimale à partir d&rsquo;optima locaux.</em></p>
+<!-- <div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>Le corrigé se trouve à cette adresse :
+<a class="remote" href="https://repl.it/@dlatreyte/rendudemonnaie" target="_blank"><a href="https://repl.it/@dlatreyte/rendudemonnaie" rel="external">https://repl.it/@dlatreyte/rendudemonnaie</a></a></p>
+
+  </div>
+</div>
+ -->
+<!--
+1. Importer le module typing au début du fichier :
+
+```python
+from typing import List
+```
+-->
+<ol>
+<li>Préparer le code suivant et étudier sa structure :</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># valeurs des pièces</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pieces</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">prix</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Quel est le prix ? &#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">client</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Combien le client donne-t-il ? &#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">a_rendre</span> <span class="o">=</span> <span class="n">somme_a_rendre</span><span class="p">(</span><span class="n">prix</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">comment</span> <span class="o">=</span> <span class="n">pieces_a_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">,</span> <span class="n">pieces</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">comment</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2"> piece(s) de </span><span class="si">{</span><span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&#34;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">))]</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Je dois rendre : </span><span class="si">{</span><span class="n">a_rendre</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Je donne donc : </span><span class="si">{</span><span class="n">reponse</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre></div>
+<ol start="2">
+<li>Définir la fonction <code>somme_a_rendre</code> dont la spécification est :</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">somme_a_rendre</span><span class="p">(</span><span class="n">prix</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">montant_client</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine la somme à rendre à partir du prix et du montant donné par
+</span></span></span><span class="line"><span class="cl"><span class="s2">    le client.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">somme_a_rendre</span><span class="p">(</span><span class="n">prix</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">montant_client</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine la somme à rendre à partir du prix et
+</span></span></span><span class="line"><span class="cl"><span class="s2">    du montant donné par le client.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">montant_client</span> <span class="o">-</span> <span class="n">prix</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="3">
+<li>Définir la fonction <code>pieces_a_rendre</code> dont la spécification est :</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pieces_a_rendre</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine les pièces (et leur nombre) à choisir pour rendre la somme
+</span></span></span><span class="line"><span class="cl"><span class="s2">    passée en argument.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Utilise la division euclidienne et le modulo de façon à pouvoir
+</span></span></span><span class="line"><span class="cl"><span class="s2">    traiter tous les cas.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pieces_a_rendre</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine les pièces (et leur nombre) à choisir
+</span></span></span><span class="line"><span class="cl"><span class="s2">    pour rendre la somme passée en argument.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Utilise la division euclidienne et le modulo de
+</span></span></span><span class="line"><span class="cl"><span class="s2">    façon à pouvoir traiter tous les cas.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    On reçoit : pieces = [1, 2, 5, 10, 20]
+</span></span></span><span class="line"><span class="cl"><span class="s2">    On retourne : a_rendre = [x, z, y, a, b]
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a_rendre</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nbre</span> <span class="o">=</span> <span class="n">somme</span> <span class="o">//</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">somme</span> <span class="o">=</span> <span class="n">somme</span> <span class="o">%</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a_rendre</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nbre</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pieces_a_rendre_2</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a_rendre</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">somme</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nbre</span> <span class="o">=</span> <span class="n">somme</span> <span class="o">//</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">somme</span> <span class="o">=</span> <span class="n">somme</span> <span class="o">%</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a_rendre</span><span class="p">[</span><span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">nbre</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">a_rendre</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pieces_a_rendre_3</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a_rendre</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">somme</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nbre</span> <span class="o">=</span> <span class="n">somme</span> <span class="o">//</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">somme</span> <span class="o">=</span> <span class="n">somme</span> <span class="o">%</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a_rendre</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nbre</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">))</span></span></span></code></pre></div>
+  </div>
+</details>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Code complet
+  </summary>
+  <div class="box-content">
+<p>Le code se trouve à :
+<a class="remote" href="https://replit.com/@dlatreyte/Rendu-de-monnaie-Glouton#main.py" target="_blank">cette adresse</a></p>
+  </div>
+</details>
+<h2 id="algorithme-de-force-brute">Algorithme de force brute<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<ol>
+<li>
+<p>On note <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">nb</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">nb</span></span></span></span></span> le nombre de pièces à rendre, prises dans la liste des pièces <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&#61;</mo><mo stretchy="false">&#91;</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>10</mn><mo separator="true">,</mo><mn>20</mn><mo separator="true">,</mo><mn>50</mn><mo separator="true">,</mo><mn>100</mn><mo separator="true">,</mo><mn>200</mn><mo separator="true">,</mo><mn>500</mn><mo stretchy="false">&#93;</mo></mrow><annotation encoding="application/x-tex">p &#61; &#91;1, 2, 5, 10, 20, 50, 100, 200, 500&#93;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">&#91;</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">10</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">20</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">50</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">100</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">200</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">500</span><span class="mclose">&#93;</span></span></span></span></span>, lorsque la somme à rendre est <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span>.<br>
+Écrire la relation de récurrence que doit vérifier <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">nb</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">nb</span></span></span></span></span>.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>n</mi><mi>b</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>&#61;</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext> si </mtext><mi>x</mi><mo>&#61;</mo><mn>0</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo>&#43;</mo><mi>n</mi><mi>b</mi><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mi>p</mi><mo stretchy="false">&#91;</mo><mi>i</mi><mo stretchy="false">&#93;</mo><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext> si </mtext><mi>x</mi><mo>−</mo><mi>p</mi><mo stretchy="false">&#91;</mo><mi>i</mi><mo stretchy="false">&#93;</mo><mo>⩾</mo><mn>0</mn></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">nb(x) &#61;
+    &#92;begin{cases}
+    0 &amp; &#92;text{ si } x &#61; 0&#92;cr
+    1 &#43; nb(x - p&#91;i&#93;) &amp; &#92;text{ si } x - p&#91;i&#93; &#92;geqslant 0  &#92;cr
+    &#92;end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">nb</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:3em;vertical-align:-1.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">nb</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">p</span><span class="mopen">&#91;</span><span class="mord mathnormal">i</span><span class="mclose">&#93;)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord"> si </span></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord"> si </span></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">p</span><span class="mopen">&#91;</span><span class="mord mathnormal">i</span><span class="mclose">&#93;</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span>
+  </div>
+</details></p>
+</li>
+<li>
+<p>En fait, on cherche le nombre minimal de pièces à rendre pour la somme <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span>.
+Adapter la relation de récurrence.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>n</mi><mi>b</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>&#61;</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext> si </mtext><mi>x</mi><mo>&#61;</mo><mn>0</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mo>&#43;</mo><mi>min</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>n</mi><mi>b</mi><mo stretchy="false">(</mo><mi>x</mi><mo>−</mo><mi>p</mi><mo stretchy="false">&#91;</mo><mi>i</mi><mo stretchy="false">&#93;</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mtext> si </mtext><mi>x</mi><mo>−</mo><mi>p</mi><mo stretchy="false">&#91;</mo><mi>i</mi><mo stretchy="false">&#93;</mo><mo>⩾</mo><mn>0</mn><mtext> et </mtext><mi>i</mi><mo>∈</mo><mo stretchy="false">&#91;</mo><mn>0</mn><mo separator="true">,</mo><mtext>len</mtext><mo stretchy="false">(</mo><mi>p</mi><mo stretchy="false">)</mo><mo stretchy="false">&#91;</mo></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">nb(x) &#61;
+    &#92;begin{cases}
+    0 &amp; &#92;text{ si } x &#61; 0&#92;cr
+    1 &#43; &#92;min{(nb(x - p&#91;i&#93;))} &amp; &#92;text{ si } x - p&#91;i&#93; &#92;geqslant 0 &#92;text{ et } i &#92;in &#91;0, &#92;text{len}(p)&#91; &#92;cr
+    &#92;end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">nb</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:3em;vertical-align:-1.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mop">min</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen">(</span><span class="mord mathnormal">nb</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">p</span><span class="mopen">&#91;</span><span class="mord mathnormal">i</span><span class="mclose">&#93;))</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord"> si </span></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord"> si </span></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">p</span><span class="mopen">&#91;</span><span class="mord mathnormal">i</span><span class="mclose">&#93;</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩾</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0</span><span class="mord text"><span class="mord"> et </span></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mopen">&#91;</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">len</span></span><span class="mopen">(</span><span class="mord mathnormal">p</span><span class="mclose">)</span><span class="mopen">&#91;</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Écrire le schéma des appels récursifs pour <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>&#61;</mo><mn>11</mn></mrow><annotation encoding="application/x-tex">x&#61;11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&#61;</mo><mo stretchy="false">&#91;</mo><mn>2</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>10</mn><mo stretchy="false">&#93;</mo></mrow><annotation encoding="application/x-tex">p&#61;&#91;2,5,10&#93;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">&#91;</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">10</span><span class="mclose">&#93;</span></span></span></span></span>.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<img src="/terminales-nsi/chap-14/chap-14-2/chap-14-2-1.svg" alt="" width="100%" />
+  </div>
+</details></p>
+</li>
+<li>
+<p>Indiquer l&rsquo;avantage et l&rsquo;inconvénient de l&rsquo;algorithme par Brute Force.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Cet algorithme retourne une solution optimale mais calcule plusieurs fois les mêmes valeurs. Il est donc inutilisable si la valeur à retourner est importante.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Réfléchir au code de la fonction dont la spécification est :</p>
+</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine le nombre minimal de pièces
+</span></span></span><span class="line"><span class="cl"><span class="s2">    à rendre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme récursif.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p>Écrire le code de cette fonction.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine le nombre minimal de pièces
+</span></span></span><span class="line"><span class="cl"><span class="s2">    à rendre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme récursif.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">a_rendre</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">nb_min</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&#34;inf&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">a_rendre</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">nb</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span> <span class="o">-</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pieces</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">nb</span> <span class="o">&lt;=</span> <span class="n">nb_min</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">nb_min</span> <span class="o">=</span> <span class="n">nb</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nb_min</span></span></span></code></pre></div>
+  </div>
+</details></p>
+<ol start="6">
+<li>Tester le code pour une somme à rendre de 13 puis de 130. Le résultat confirme-t-il la réponse à la question 4 ?</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Code complet
+  </summary>
+  <div class="box-content">
+<p>Le code se trouve à :
+<a class="remote" href="https://replit.com/@dlatreyte/Rendu-de-monnaie-Brute-Force" target="_blank">cette adresse</a></p>
+  </div>
+</details>
+<h3 id="compléments">Compléments<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<ol start="7">
+<li>On souhaite maintenant écrire le code de la fonction <code>pieces_a_rendre</code> dont la spécification est :</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pieces_a_rendre</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">serie</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">series</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine toutes les combinaisons de pièces qui permettent de rendre la somme somme.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    pieces est le tuple des pièces disponibles.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    series est la liste des pièces à rendre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    series est la liste des listes des pièces à rendre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<h4 id="remarque">Remarque<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>On peut bien sur créer une fonction enveloppe qui ne prendrait que la somme et la liste des pièces disponibles en argument et retournerait la liste des listes de pièces.</p>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">pieces_a_rendre</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">serie</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">series</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine toutes les combinaisons de pièces qui permettent de rendre la somme somme.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">somme</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">series</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">piece</span> <span class="ow">in</span> <span class="n">pieces</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">piece</span> <span class="o">&gt;</span> <span class="n">somme</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Sauvegarde de la liste des pièces pour le retour arrière</span>
+</span></span><span class="line"><span class="cl">        <span class="n">serie_sauv</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">serie</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">piece</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pieces_a_rendre</span><span class="p">(</span><span class="n">somme</span> <span class="o">-</span> <span class="n">piece</span><span class="p">,</span> <span class="n">pieces</span><span class="p">,</span> <span class="n">serie</span><span class="p">,</span> <span class="n">series</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">serie</span> <span class="o">=</span> <span class="n">serie_sauv</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="8">
+<li>
+<p>Tester le code pour une somme à rendre de 13 puis de 130. Obtient-on rapidement un résultat pour cette dernière valeur ?</p>
+</li>
+<li>
+<p>Comment déterminer le nombre minimum de pièces à retourner ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Le nombre minimum de pièces est égal à la plus petite longueur des listes éléments de la liste <code>series</code>.</p>
+  </div>
+</details></p>
+</li>
+</ol>
+<h2 id="programmation-dynamique-mémoïsation">Programmation dynamique (mémoïsation)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<ol>
+<li>
+<p>Rappeler quel est l&rsquo;objectif de la programmation dynamique.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>La <strong>programmation dynamique</strong>, comme la méthode <strong>diviser-pour-régner</strong>, <em>résout des problèmes en combinant des solutions de sous-problèmes</em>.</p>
+<ul>
+<li><em>Les algorithmes <strong>diviser-pour-régner</strong> partitionnent le problème en sous-problèmes indépendants qu’ils résolvent récursivement, puis combinent leurs solutions pour résoudre le problème initial</em>.</li>
+<li><em>La <strong>programmation dynamique</strong>, quant à elle, peut s’appliquer même lorsque les sous-problèmes ne sont pas indépendants</em>, c’est-à-dire lorsque des sous-problèmes ont des sous-sous-problèmes communs.
+Dans ce cas, un algorithme diviser-pour-régner fait plus de travail que nécessaire, en résolvant plusieurs fois le sous-sous-problème commun. Un algorithme de programmation dynamique <strong>résout chaque sous-sous-problème une seule fois et mémorise sa réponse dans un tableau</strong>, évitant ainsi le recalcul de la solution chaque fois que le sous-sous-problème est rencontré.</li>
+</ul>
+<p>La programmation dynamique est, en général, appliquée aux <strong>problèmes d’optimisation</strong>. Dans ce type de problèmes, il peut y avoir de nombreuses solutions possibles. Chaque solution a une valeur, et on souhaite trouver une solution ayant la <strong>valeur optimale</strong> (<strong>minimale</strong> ou <strong>maximale</strong>). Une telle solution est une solution optimale au problème, et non pas la solution optimale, puisqu’il peut y avoir plusieurs solutions qui donnent la valeur optimale.</p>
+  </div>
+</div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Le manque d&rsquo;efficacité de la méthode force brute a pour origine les multiples calculs redondants. Mettre en œuvre la méthode de <strong>mémoïsation</strong> afin d&rsquo;améliorer l&rsquo;efficacité du code de la fonction <code>nb_rendre</code>.</p>
+</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine le nombre minimal de pièces
+</span></span></span><span class="line"><span class="cl"><span class="s2">    à rendre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme récursif avec mémoïsation.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dic_a_rendre</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">dic</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Version mémoïsée de la fonction nb_rendre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">a_rendre</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dic</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="n">nb_min</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&#34;inf&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pieces</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">a_rendre</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">nb</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">_nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span> <span class="o">-</span> <span class="n">pieces</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pieces</span><span class="p">,</span> <span class="n">dic</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="n">nb</span> <span class="o">&lt;=</span> <span class="n">nb_min</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">nb_min</span> <span class="o">=</span> <span class="n">nb</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">dic</span><span class="p">[</span><span class="n">a_rendre</span><span class="p">]</span> <span class="o">=</span> <span class="n">nb_min</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">dic</span><span class="p">[</span><span class="n">a_rendre</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">_nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">,</span> <span class="n">pieces</span><span class="p">,</span> <span class="n">dic_a_rendre</span><span class="p">)</span></span></span></code></pre></div>
+  </div>
+</details>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Code complet
+  </summary>
+  <div class="box-content">
+<p>Le code se trouve à :
+<a class="remote" href="https://replit.com/@dlatreyte/Rendu-de-monnaie-Programmation-dynamique-1" target="_blank">cette adresse</a></p>
+  </div>
+</details>
+<h2 id="programmation-dynamique-méthode-tabulaire">Programmation dynamique (méthode tabulaire)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<ol>
+<li>Rappeler quel est l&rsquo;objectif de la programmation dynamique.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>La <strong>programmation dynamique</strong>, comme la méthode <strong>diviser-pour-régner</strong>, <em>résout des problèmes en combinant des solutions de sous-problèmes</em>.</p>
+<ul>
+<li><em>Les algorithmes <strong>diviser-pour-régner</strong> partitionnent le problème en sous-problèmes indépendants qu’ils résolvent récursivement, puis combinent leurs solutions pour résoudre le problème initial</em>.</li>
+<li><em>La <strong>programmation dynamique</strong>, quant à elle, peut s’appliquer même lorsque les sous-problèmes ne sont pas indépendants</em>, c’est-à-dire lorsque des sous-problèmes ont des sous-sous-problèmes communs.
+Dans ce cas, un algorithme diviser-pour-régner fait plus de travail que nécessaire, en résolvant plusieurs fois le sous-sous-problème commun. Un algorithme de programmation dynamique <strong>résout chaque sous-sous-problème une seule fois et mémorise sa réponse dans un tableau</strong>, évitant ainsi le recalcul de la solution chaque fois que le sous-sous-problème est rencontré.</li>
+</ul>
+<p>La programmation dynamique est, en général, appliquée aux <strong>problèmes d’optimisation</strong>. Dans ce type de problèmes, il peut y avoir de nombreuses solutions possibles. Chaque solution a une valeur, et on souhaite trouver une solution ayant la <strong>valeur optimale</strong> (<strong>minimale</strong> ou <strong>maximale</strong>). Une telle solution est une solution optimale au problème, et non pas la solution optimale, puisqu’il peut y avoir plusieurs solutions qui donnent la valeur optimale.</p>
+  </div>
+</div>
+  </div>
+</details></li>
+</ol>
+<!--
+2. On note $nb[i][j]$ le *nombre optimal de pièces à rendre pour une somme à rendre* $j$ et $i$ types de pièces.
+Ce nombre est vérifie la relation de récurrence :
+$$
+    nb[i][j] =
+    \begin{cases}
+    0 & \text{ si } j = 0\cr
+    0 & \text{ si } i = 0\cr
+    min(nb[i-1][j] ; 1 + nb[i][j - \text{piece}[i]]) & \text{ si } j - \text{pieces}[i] \geqslant 0  \cr
+    nb[i-1][j] & \text{ si } j - \text{pieces}[i] < 0 \cr
+    \end{cases}
+$$
+
+    Justifier cette relation.
+
+3. Représenter le tableau $nb$ pour une somme à rendre de 12 euros.
+
+4. Quelle est le nombre de pièces optimal en utilisant la programmation dynamique ?
+
+5. Écrire le code de la fonction `sol_dynamique` dont la spécification est :
+
+```python
+def construction_nb(somme: int, pieces: List[int]) -> List[List[int]]:
+    """
+    Construit le tableau dynamique nb définit par la relation de récurrence donnée.
+    """
+```
+
+6. Quelle est la complexité de cet algorithme ?
+
+7. À partir du tableau de la question 8, indiquer comment retrouver le découpage conduisant à la solution.
+
+7. Écrire la fonction `recherche_sol` dont la spécification est :
+
+```python
+def recherche_sol(
+    somme: int, pieces: List[int], nb: List[List[int]]
+) -> Tuple[int, Dict[int:int]]:
+    """
+    Recherche la solution et toutes les pièces à rendre pour cette solution.
+    La valeur retournée a pour forme (somme, {piece: nombre})
+    """
+```
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Code complet
+  </summary>
+  <div class="box-content">
+<p>Le code se trouve à :
+<a class="remote" href="https://replit.com/@dlatreyte/Rendu-de-monnaie-dynamique-1" target="_blank">cette adresse</a></p>
+  </div>
+</details>
+
+-->
+<ol start="2">
+<li>Le manque d&rsquo;efficacité de la méthode force brute a pour origine les multiples calculs redondants. Mettre en œuvre la méthode de <strong>ascendante</strong> afin d&rsquo;améliorer l&rsquo;efficacité du code de la fonction <code>nb_rendre</code>.</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">nb_rendre</span><span class="p">(</span><span class="n">a_rendre</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine le nombre minimal de pièces
+</span></span></span><span class="line"><span class="cl"><span class="s2">    à rendre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme itératif, méthode ascendante.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbres</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s2">&#34;inf&#34;</span><span class="p">)]</span> <span class="o">*</span> <span class="p">(</span><span class="n">a_rendre</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Tableau des valeurs</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbres</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">somme</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nbres</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">piece</span> <span class="ow">in</span> <span class="n">pieces</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">somme</span> <span class="o">-</span> <span class="n">piece</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">nbres</span><span class="p">[</span><span class="n">somme</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbres</span><span class="p">[</span><span class="n">sommes</span><span class="p">],</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">nbres</span><span class="p">[</span><span class="n">somme</span> <span class="o">-</span> <span class="n">piece</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nbres</span><span class="p">[</span><span class="n">a_rendre</span><span class="p">]</span></span></span></code></pre></div>
+  </div>
+</details>
+<h2 id="en-résumé">En résumé<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Rendu de monnaie - Nombre de pièces à rendre - Toutes les méthodes
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Les mille et unes façon de rendre la monnaie.
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">glouton</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le nombre de pièces nécessaires pour
+</span></span></span><span class="line"><span class="cl"><span class="s2">    rendre la monnaie pour somme.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Méthode gloutonne, pièces est censé être trié
+</span></span></span><span class="line"><span class="cl"><span class="s2">    dans le sens décroissant.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbre</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># nombre de pièces à rendre</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">piece</span> <span class="ow">in</span> <span class="n">pieces</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nbre</span> <span class="o">+=</span> <span class="n">somme</span> <span class="o">//</span> <span class="n">piece</span>
+</span></span><span class="line"><span class="cl">        <span class="n">somme</span> <span class="o">=</span> <span class="n">somme</span> <span class="o">%</span> <span class="n">piece</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nbre</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">force_brute</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le nombre de pièces nécessaires pour
+</span></span></span><span class="line"><span class="cl"><span class="s2">    rendre la monnaie pour somme.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Méthode force brute.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">somme</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">nbre_min</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&#34;inf&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">piece</span> <span class="ow">in</span> <span class="n">pieces</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">somme</span> <span class="o">-</span> <span class="n">piece</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">nbre_new</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">force_brute</span><span class="p">(</span><span class="n">somme</span> <span class="o">-</span> <span class="n">piece</span><span class="p">,</span> <span class="n">pieces</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">nbre_new</span> <span class="o">&lt;</span> <span class="n">nbre_min</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">nbre_min</span> <span class="o">=</span> <span class="n">nbre_new</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nbre_min</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">memoisation</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le nombre de pièces nécessaires pour
+</span></span></span><span class="line"><span class="cl"><span class="s2">    rendre la monnaie pour somme.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Programmation dynamique : mémoïsation.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">somme</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">memo</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nbre_min</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&#34;inf&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">piece</span> <span class="ow">in</span> <span class="n">pieces</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">somme</span> <span class="o">-</span> <span class="n">piece</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">nbre_new</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">memoisation</span><span class="p">(</span><span class="n">somme</span> <span class="o">-</span> <span class="n">piece</span><span class="p">,</span> <span class="n">pieces</span><span class="p">,</span> <span class="n">memo</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">nbre_new</span> <span class="o">&lt;</span> <span class="n">nbre_min</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">nbre_min</span> <span class="o">=</span> <span class="n">nbre_new</span>
+</span></span><span class="line"><span class="cl">        <span class="n">memo</span><span class="p">[</span><span class="n">somme</span><span class="p">]</span> <span class="o">=</span> <span class="n">nbre_min</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">memo</span><span class="p">[</span><span class="n">somme</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">tabulaire</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le nombre de pièces nécessaires pour
+</span></span></span><span class="line"><span class="cl"><span class="s2">    rendre la monnaie pour somme.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Programmation dynamique : méthode tabulaire.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Fonction enveloppe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbre_pour_somme</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="s2">&#34;inf&#34;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">somme</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbre_pour_somme</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_tabulaire</span><span class="p">(</span><span class="n">somme</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pieces</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">nbre_pour_somme</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Mise en œuvre de la méthode tabulaire.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">somme_a_rendre</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">somme</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">piece</span> <span class="ow">in</span> <span class="n">pieces</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="n">somme_a_rendre</span> <span class="o">-</span> <span class="n">piece</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">nbre</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">nbre_pour_somme</span><span class="p">[</span><span class="n">somme_a_rendre</span> <span class="o">-</span> <span class="n">piece</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="n">nbre</span> <span class="o">&lt;</span> <span class="n">nbre_pour_somme</span><span class="p">[</span><span class="n">somme_a_rendre</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">nbre_pour_somme</span><span class="p">[</span><span class="n">somme_a_rendre</span><span class="p">]</span> <span class="o">=</span> <span class="n">nbre</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">nbre_pour_somme</span><span class="p">[</span><span class="n">somme</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">_tabulaire</span><span class="p">(</span><span class="n">somme</span><span class="p">,</span> <span class="n">pieces</span><span class="p">,</span> <span class="n">nbre_pour_somme</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">somme_a_rendre</span> <span class="o">=</span> <span class="mi">60</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pieces</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">nbres_pieces</span> <span class="o">=</span> <span class="n">glouton</span><span class="p">(</span><span class="n">somme_a_rendre</span><span class="p">,</span> <span class="n">pieces</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Méthode gloutonne pour rendre </span><span class="si">{</span><span class="n">somme_a_rendre</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">nbres_pieces</span><span class="si">}</span><span class="s2"> pieces.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">nbres_pieces</span> <span class="o">=</span> <span class="n">force_brute</span><span class="p">(</span><span class="n">somme_a_rendre</span><span class="p">,</span> <span class="n">pieces</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Méthode force-brute pour rendre </span><span class="si">{</span><span class="n">somme_a_rendre</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">nbres_pieces</span><span class="si">}</span><span class="s2"> pieces.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">nbres_pieces</span> <span class="o">=</span> <span class="n">memoisation</span><span class="p">(</span><span class="n">somme_a_rendre</span><span class="p">,</span> <span class="n">pieces</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Méthode mémoïsation pour rendre </span><span class="si">{</span><span class="n">somme_a_rendre</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">nbres_pieces</span><span class="si">}</span><span class="s2"> pieces.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">nbres_pieces</span> <span class="o">=</span> <span class="n">tabulaire</span><span class="p">(</span><span class="n">somme_a_rendre</span><span class="p">,</span> <span class="n">pieces</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Méthode tabulaire pour rendre </span><span class="si">{</span><span class="n">somme_a_rendre</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">nbres_pieces</span><span class="si">}</span><span class="s2"> pieces.&#34;</span><span class="p">)</span></span></span></code></pre></div>
+  </div>
+</details>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 28 févr. 2021
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/terminales-sp%C3%A9-nsi/index.html">Terminales Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

@@ -1,0 +1,663 @@
+:root[data-r-theme-variant='zen-auto'],
+:root[data-r-theme-variant='relearn-auto'],
+:root[data-r-theme-variant='zen-light'],
+:root[data-r-theme-variant='zen-dark'],
+:root[data-r-theme-variant='relearn-light'],
+:root[data-r-theme-variant='relearn-dark'],
+:root[data-r-theme-variant^='my-custom-'] {
+&:root {
+  /* relearn-light */
+  --PRIMARY-color: rgba( 125, 201, 3, 1 ); /* brand primary color */
+  --PRIMARY-HOVER-color: rgba( 99, 159, 2, 1 ); /* brand primary hover color */
+  --SECONDARY-color: rgba( 72, 106, 201, 1 ); /* brand secondary color */
+  --SECONDARY-HOVER-color: rgba( 32, 40, 145, 1 ); /* brand secondary hover color */
+  --ACCENT-color: rgba( 255, 102, 78, 1 ); /* brand accent color, used for search highlights */
+  --ACCENT-HOVER-color: rgba( 226, 85, 64, 1 ); /* brand accent hover color */
+  --MENU-HEADER-color: rgba( 40, 40, 40, 1 ); /* color of menu header */
+  --MENU-SEARCH-color: rgba( 224, 224, 224, 1 ); /* text and icon color of search box */
+  --MENU-SEARCH-BG-color: rgba( 50, 50, 50, 1 ); /* background color of search box */
+  --MENU-SEARCH-BORDER-color: rgba( 224, 224, 224, 1 ); /* border color of search box */
+  --MENU-HOME-LINK-color: rgba( 64, 64, 64, 1 ); /* home button color if configured */
+  --MENU-HOME-LINK-HOVER-color: rgba( 0, 0, 0, 1 ); /* hovered home button color if configured */
+  --MENU-SECTIONS-BG-color: rgba( 40, 40, 40, 1 ); /* background of the menu; this is NOT just a color value but can be a complete CSS background definition including gradients, etc. */
+  --MENU-SECTIONS-ACTIVE-BG-color: rgba( 33, 33, 33, 1 ); /* background color of the active menu section */
+  --MENU-SECTIONS-LINK-color: rgba( 179, 179, 179, 1 ); /* link color of menu topics */
+  --MENU-SECTIONS-LINK-HOVER-color: rgba( 255, 255, 255, 1 ); /* hovered link color of menu topics */
+  --MENU-SECTION-ACTIVE-CATEGORY-color: rgba( 68, 68, 68, 1 ); /* text color of the displayed menu topic */
+  --MENU-SECTION-SEPARATOR-color: rgba( 96, 96, 96, 1 ); /* separator color between menus */
+  --MAIN-BG-color: rgba( 255, 255, 255, 1 ); /* background color of content */
+  --MAIN-TEXT-color: rgba( 38, 38, 38, 1 ); /* text color of content and titles */
+  --MAIN-TITLES-TEXT-color: rgba( 16, 16, 16, 1 ); /* text color of titles and transparent box titles */
+  --CODE-theme: relearn-light; /* name of the chroma stylesheet file */
+  --CODE-BLOCK-color: rgba( 39, 40, 34, 1 ); /* fallback text color of block code; should be adjusted to your selected chroma style */
+  --CODE-BLOCK-BG-color: rgba( 248, 248, 248, 1 ); /* fallback background color of block code; should be adjusted to your selected chroma style */
+  --CODE-INLINE-color: rgba( 94, 94, 94, 1 ); /* text color of inline code */
+  --CODE-INLINE-BG-color: rgba( 255, 250, 233, 1 ); /* background color of inline code */
+  --CODE-INLINE-BORDER-color: rgba( 248, 232, 200, 1 ); /* border color of inline code */
+  --BROWSER-theme: light; /* name of the theme for controls drawn by the browser like form fields */
+  --MERMAID-theme: redux-color; /* name of the default Mermaid theme for this variant, can be overridden in your project configuration */
+  --OPENAPI-theme: light; /* name of the default OpenAPI theme for this variant, can be overridden in your project configuration */
+  --OPENAPI-CODE-theme: idea; /* name of the default OpenAPI code theme for this variant, can be overridden in your project configuration */
+  --BOX-CAPTION-color: rgba( 255, 255, 255, 1 ); /* text color of colored box titles */
+  --BOX-BG-color: rgba( 255, 255, 255, .833 ); /* background color of colored boxes */
+  --BOX-TEXT-color: rgba( 16, 16, 16, 1 ); /* text color of colored box content */
+  --BOX-NEUTRAL-color: rgba( 208, 208, 208, 1 ); /* background color of neutral boxes */
+}
+
+  #R-logo.R-default:not(:has(> .logo-image[data-r-logo-variant~='relearn-light'])):not(:has(> .logo-title)) { display: none; }
+  #R-logo.R-default > .logo-image[data-r-logo-variant~='relearn-light'] { display: initial; }
+  #R-logo.R-default:has(> .logo-image[data-r-logo-variant~='relearn-light']) + search { margin-bottom: 1rem; }
+}
+:root[data-r-theme-variant='zen-auto']:root,
+:root[data-r-theme-variant='relearn-auto']:root,
+:root[data-r-theme-variant='zen-light']:root,
+:root[data-r-theme-variant='zen-dark']:root,
+:root[data-r-theme-variant='relearn-light']:root,
+:root[data-r-theme-variant='relearn-dark']:root,
+:root[data-r-theme-variant^='my-custom-']:root {
+  --BOX-ACCENT-color: initial;
+  --BOX-ACCENT-TEXT-color: initial;
+  --BOX-ACCENT-CAPTION-color: initial;
+  --BOX-ACCENT-BG-color: initial;
+  --BOX-BLUE-color: initial;
+  --BOX-BLUE-TEXT-color: initial;
+  --BOX-BLUE-CAPTION-color: initial;
+  --BOX-BLUE-BG-color: initial;
+  --BOX-CAUTION-color: initial;
+  --BOX-CAUTION-TEXT-color: initial;
+  --BOX-CAUTION-CAPTION-color: initial;
+  --BOX-CAUTION-BG-color: initial;
+  --BOX-CODE-color: initial;
+  --BOX-CODE-TEXT-color: initial;
+  --BOX-CODE-CAPTION-color: initial;
+  --BOX-CODE-BG-color: initial;
+  --BOX-CYAN-color: initial;
+  --BOX-CYAN-TEXT-color: initial;
+  --BOX-CYAN-CAPTION-color: initial;
+  --BOX-CYAN-BG-color: initial;
+  --BOX-GREEN-color: initial;
+  --BOX-GREEN-TEXT-color: initial;
+  --BOX-GREEN-CAPTION-color: initial;
+  --BOX-GREEN-BG-color: initial;
+  --BOX-GREY-color: initial;
+  --BOX-GREY-TEXT-color: initial;
+  --BOX-GREY-CAPTION-color: initial;
+  --BOX-GREY-BG-color: initial;
+  --BOX-IMPORTANT-color: initial;
+  --BOX-IMPORTANT-TEXT-color: initial;
+  --BOX-IMPORTANT-CAPTION-color: initial;
+  --BOX-IMPORTANT-BG-color: initial;
+  --BOX-INFO-color: initial;
+  --BOX-INFO-TEXT-color: initial;
+  --BOX-INFO-CAPTION-color: initial;
+  --BOX-INFO-BG-color: initial;
+  --BOX-INLINE-color: initial;
+  --BOX-INLINE-TEXT-color: initial;
+  --BOX-INLINE-CAPTION-color: initial;
+  --BOX-INLINE-BG-color: initial;
+  --BOX-MAGENTA-color: initial;
+  --BOX-MAGENTA-TEXT-color: initial;
+  --BOX-MAGENTA-CAPTION-color: initial;
+  --BOX-MAGENTA-BG-color: initial;
+  --BOX-NEUTRAL-color: initial;
+  --BOX-NEUTRAL-TEXT-color: initial;
+  --BOX-NEUTRAL-CAPTION-color: initial;
+  --BOX-NEUTRAL-BG-color: initial;
+  --BOX-NOTE-color: initial;
+  --BOX-NOTE-TEXT-color: initial;
+  --BOX-NOTE-CAPTION-color: initial;
+  --BOX-NOTE-BG-color: initial;
+  --BOX-ORANGE-color: initial;
+  --BOX-ORANGE-TEXT-color: initial;
+  --BOX-ORANGE-CAPTION-color: initial;
+  --BOX-ORANGE-BG-color: initial;
+  --BOX-PRIMARY-color: initial;
+  --BOX-PRIMARY-TEXT-color: initial;
+  --BOX-PRIMARY-CAPTION-color: initial;
+  --BOX-PRIMARY-BG-color: initial;
+  --BOX-PURPLE-color: initial;
+  --BOX-PURPLE-TEXT-color: initial;
+  --BOX-PURPLE-CAPTION-color: initial;
+  --BOX-PURPLE-BG-color: initial;
+  --BOX-RED-color: initial;
+  --BOX-RED-TEXT-color: initial;
+  --BOX-RED-CAPTION-color: initial;
+  --BOX-RED-BG-color: initial;
+  --BOX-SECONDARY-color: initial;
+  --BOX-SECONDARY-TEXT-color: initial;
+  --BOX-SECONDARY-CAPTION-color: initial;
+  --BOX-SECONDARY-BG-color: initial;
+  --BOX-TIP-color: initial;
+  --BOX-TIP-TEXT-color: initial;
+  --BOX-TIP-CAPTION-color: initial;
+  --BOX-TIP-BG-color: initial;
+  --BOX-TRANSPARENT-color: initial;
+  --BOX-TRANSPARENT-TEXT-color: initial;
+  --BOX-TRANSPARENT-CAPTION-color: initial;
+  --BOX-TRANSPARENT-BG-color: initial;
+  --BOX-WARNING-color: initial;
+  --BOX-WARNING-TEXT-color: initial;
+  --BOX-WARNING-CAPTION-color: initial;
+  --BOX-WARNING-BG-color: initial;
+  --BOX-YELLOW-color: initial;
+  --BOX-YELLOW-TEXT-color: initial;
+  --BOX-YELLOW-CAPTION-color: initial;
+  --BOX-YELLOW-BG-color: initial;
+}
+:root[data-r-theme-variant='zen-auto']:root,
+:root[data-r-theme-variant='relearn-auto']:root,
+:root[data-r-theme-variant='zen-light']:root,
+:root[data-r-theme-variant='zen-dark']:root,
+:root[data-r-theme-variant='relearn-light']:root,
+:root[data-r-theme-variant='relearn-dark']:root,
+:root[data-r-theme-variant^='my-custom-']:root {
+  /* applied on top of the print variant; sets every value that depends on a
+     light or dark background, so nothing of a dark variant reaches the paper;
+     initial falls back to the theme's default; the values of every box style
+     not given here are reset to initial by the theme; the menu is not printed,
+     so its values are left alone, except for the logo, which the topbar shows */
+  --PRIMARY-color: rgba( 125, 201, 3, 1 ); /* brand primary color */
+  --PRIMARY-HOVER-color: rgba( 99, 159, 2, 1 ); /* brand primary hover color */
+  --SECONDARY-color: rgba( 72, 106, 201, 1 ); /* brand secondary color */
+  --SECONDARY-HOVER-color: rgba( 32, 40, 145, 1 ); /* brand secondary hover color */
+  --ACCENT-color: rgba( 255, 102, 78, 1 ); /* brand accent color, used for search highlights */
+  --ACCENT-HOVER-color: rgba( 226, 85, 64, 1 ); /* brand accent hover color */
+  --TOPBAR-BG-color: rgba( 255, 255, 255, 1 ); /* background color of topbar */
+  --TOPBAR-TEXT-color: initial; /* text color of topbar */
+  --TOPBAR-SEPARATOR-color: initial; /* separator color of topbar */
+  --TOPBAR-OVERLAY-BG-color: initial; /* background color of topbar overlays */
+  --TOPBAR-LINK-color: initial; /* link color of topbar */
+  --TOPBAR-LINK-HOVER-color: initial; /* hovered link color of topbar */
+  --TOPBAR-BUTTON-color: initial; /* button color of topbar */
+  --TOPBAR-BUTTON-HOVER-color: initial; /* hovered button color of topbar */
+  --TOPBAR-SCROLLBAR-THUMB-color: initial; /* scrollbar thumb color of topbar */
+  --TOPBAR-SCROLLBAR-THUMB-HOVER-color: initial; /* hovered scrollbar thumb color of topbar */
+  --TOPBAR-SCROLLBAR-TRACK-color: initial; /* scrollbar track color of topbar */
+  --TOPBAR-SCROLLBAR-TRACK-HOVER-color: initial; /* hovered scrollbar track color of topbar */
+  --MAIN-TOPBAR-BORDER-color: rgba( 221, 221, 221, 1 ); /* border color between topbar and content */
+  --LOGO-LINK-color: rgba( 0, 0, 0, 1 ); /* link color of the logo title */
+  --LOGO-LINK-HOVER-color: initial; /* hovered link color of the logo title */
+  --LOGO-IMAGE-color: initial; /* color of a monochrome SVG logo */
+  --LOGO-IMAGE-HOVER-color: initial; /* hovered color of a monochrome SVG logo */
+  --MAIN-LINK-color: rgba( 0, 0, 0, 1 ); /* link color of content */
+  --MAIN-LINK-HOVER-color: initial; /* hovered link color of content */
+  --MAIN-BUTTON-color: initial; /* button color of content */
+  --MAIN-BUTTON-HOVER-color: initial; /* hovered button color of content */
+  --MAIN-BG-color: rgba( 255, 255, 255, 1 ); /* background color of content */
+  --MAIN-SCROLLBAR-THUMB-color: initial; /* scrollbar thumb color of content */
+  --MAIN-SCROLLBAR-THUMB-HOVER-color: initial; /* hovered scrollbar thumb color of content */
+  --MAIN-SCROLLBAR-TRACK-color: initial; /* scrollbar track color of content */
+  --MAIN-SCROLLBAR-TRACK-HOVER-color: initial; /* hovered scrollbar track color of content */
+  --MAIN-TEXT-color: rgba( 0, 0, 0, 1 ); /* text color of content and titles */
+  --MAIN-TITLES-TEXT-color: rgba( 0, 0, 0, 1 ); /* text color of titles and transparent box titles */
+  --MAIN-TITLES-H1-TEXT-color: initial; /* text color of h1 titles */
+  --MAIN-TITLES-H1-color: initial; /* former name of the text color of h1 titles */
+  --MAIN-TITLES-H2-TEXT-color: initial; /* text color of h2-h6 titles */
+  --MAIN-TITLES-H2-color: initial; /* former name of the text color of h2-h6 titles */
+  --MAIN-TITLES-H3-TEXT-color: initial; /* text color of h3-h6 titles */
+  --MAIN-TITLES-H3-color: initial; /* former name of the text color of h3-h6 titles */
+  --MAIN-TITLES-H4-TEXT-color: initial; /* text color of h4-h6 titles */
+  --MAIN-TITLES-H4-color: initial; /* former name of the text color of h4-h6 titles */
+  --MAIN-TITLES-H5-TEXT-color: initial; /* text color of h5-h6 titles */
+  --MAIN-TITLES-H5-color: initial; /* former name of the text color of h5-h6 titles */
+  --MAIN-TITLES-H6-TEXT-color: initial; /* text color of h6 titles */
+  --MAIN-TITLES-H6-color: initial; /* former name of the text color of h6 titles */
+  --CODE-theme: relearn-light; /* name of the chroma stylesheet file */
+  --CODE-BLOCK-color: rgba( 0, 0, 0, 1 ); /* fallback text color of block code; should be adjusted to your selected chroma style */
+  --CODE-BLOCK-BG-color: rgba( 255, 255, 255, 1 ); /* fallback background color of block code; should be adjusted to your selected chroma style */
+  --CODE-BLOCK-BORDER-color: rgba( 0, 0, 0, 1 ); /* border color of block code */
+  --CODE-BLOCK-SCROLLBAR-THUMB-color: initial; /* scrollbar thumb color of block code */
+  --CODE-BLOCK-SCROLLBAR-THUMB-HOVER-color: initial; /* hovered scrollbar thumb color of block code */
+  --CODE-BLOCK-SCROLLBAR-TRACK-color: initial; /* scrollbar track color of block code */
+  --CODE-BLOCK-SCROLLBAR-TRACK-HOVER-color: initial; /* hovered scrollbar track color of block code */
+  --MAIN-CODE-color: initial; /* former name of the text color of block code */
+  --MAIN-CODE-BG-color: initial; /* former name of the background color of block code */
+  --CODE-INLINE-color: rgba( 0, 0, 0, 1 ); /* text color of inline code */
+  --CODE-INLINE-BG-color: rgba( 255, 255, 255, 1 ); /* background color of inline code */
+  --CODE-INLINE-BORDER-color: rgba( 0, 0, 0, 1 ); /* border color of inline code */
+  --BROWSER-theme: light; /* name of the theme for controls drawn by the browser like form fields */
+  --MERMAID-theme: redux-color; /* name of the default Mermaid theme for this variant, can be overridden in your project configuration */
+  --OPENAPI-theme: light; /* name of the default OpenAPI theme for this variant, can be overridden in your project configuration */
+  --SWAGGER-theme: initial; /* former name of the default OpenAPI theme */
+  --OPENAPI-CODE-theme: idea; /* name of the default OpenAPI code theme for this variant, can be overridden in your project configuration */
+  --TAG-BG-color: initial; /* background color of tags */
+  --BOX-CAPTION-color: rgba( 0, 0, 0, 1 ); /* text color of colored box titles */
+  --BOX-BG-color: rgba( 255, 255, 255, 1 ); /* background color of colored boxes */
+  --BOX-TEXT-color: rgba( 0, 0, 0, 1 ); /* text color of colored box content */
+  --BOX-BLUE-color: rgba( 48, 117, 229, 1 ); /* background color of blue boxes */
+  --BOX-CYAN-color: rgba( 45, 190, 200, 1 ); /* background color of cyan boxes */
+  --BOX-GREEN-color: rgba( 42, 178, 24, 1 ); /* background color of green boxes */
+  --BOX-GREY-color: rgba( 160, 160, 160, 1 ); /* background color of grey boxes */
+  --BOX-MAGENTA-color: rgba( 229, 50, 210, 1 ); /* background color of magenta boxes */
+  --BOX-ORANGE-color: rgba( 207, 110, 0, 1 ); /* background color of orange boxes */
+  --BOX-PURPLE-color: rgba( 150, 91, 248, 1 ); /* background color of purple boxes */
+  --BOX-RED-color: rgba( 224, 62, 62, 1 ); /* background color of red boxes */
+  --BOX-YELLOW-color: rgba( 185, 143, 0, 1 ); /* background color of yellow boxes */
+  --BOX-NEUTRAL-color: rgba( 208, 208, 208, 1 ); /* background color of neutral boxes */
+  --BOX-CODE-color: initial; /* background color of code boxes */
+}
+
+:root[data-r-theme-variant='zen-auto'],
+:root[data-r-theme-variant='relearn-auto'],
+:root[data-r-theme-variant='zen-light'],
+:root[data-r-theme-variant='zen-dark'],
+:root[data-r-theme-variant='relearn-light'],
+:root[data-r-theme-variant='relearn-dark'],
+:root[data-r-theme-variant^='my-custom-'] {
+/* Generated using: hugo gen chromastyles --style monokailight */
+/* Adjusted by hand: background-color of Background and PreWrapper set to #f8f8f8 */
+
+/* Background */ .bg { color:#272822;background-color:#f8f8f8; }
+/* PreWrapper */ .chroma { color:#272822;background-color:#f8f8f8; }
+/* Error */ .chroma .err { color:#960050 }
+/* LineLink */ .chroma .lnlinks { outline:none;text-decoration:none;color:inherit }
+/* LineTableTD */ .chroma .lntd { vertical-align:top;padding:0;margin:0;border:0; }
+/* LineTable */ .chroma .lntable { border-spacing:0;padding:0;margin:0;border:0; }
+/* LineHighlight */ .chroma .hl { background-color:#e1e1e1 }
+/* LineNumbersTable */ .chroma .lnt { white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f }
+/* LineNumbers */ .chroma .ln { white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f }
+/* Line */ .chroma .line { display:flex; }
+/* Keyword */ .chroma .k { color:#00a8c8 }
+/* KeywordConstant */ .chroma .kc { color:#00a8c8 }
+/* KeywordDeclaration */ .chroma .kd { color:#00a8c8 }
+/* KeywordNamespace */ .chroma .kn { color:#f92672 }
+/* KeywordPseudo */ .chroma .kp { color:#00a8c8 }
+/* KeywordReserved */ .chroma .kr { color:#00a8c8 }
+/* KeywordType */ .chroma .kt { color:#00a8c8 }
+/* Name */ .chroma .n { color:#111 }
+/* NameAttribute */ .chroma .na { color:#75af00 }
+/* NameClass */ .chroma .nc { color:#75af00 }
+/* NameConstant */ .chroma .no { color:#00a8c8 }
+/* NameDecorator */ .chroma .nd { color:#75af00 }
+/* NameEntity */ .chroma .ni { color:#111 }
+/* NameException */ .chroma .ne { color:#75af00 }
+/* NameLabel */ .chroma .nl { color:#111 }
+/* NameNamespace */ .chroma .nn { color:#111 }
+/* NameOther */ .chroma .nx { color:#75af00 }
+/* NameProperty */ .chroma .py { color:#111 }
+/* NameTag */ .chroma .nt { color:#f92672 }
+/* NameBuiltin */ .chroma .nb { color:#111 }
+/* NameBuiltinPseudo */ .chroma .bp { color:#111 }
+/* NameVariable */ .chroma .nv { color:#111 }
+/* NameVariableClass */ .chroma .vc { color:#111 }
+/* NameVariableGlobal */ .chroma .vg { color:#111 }
+/* NameVariableInstance */ .chroma .vi { color:#111 }
+/* NameVariableMagic */ .chroma .vm { color:#111 }
+/* NameFunction */ .chroma .nf { color:#75af00 }
+/* NameFunctionMagic */ .chroma .fm { color:#75af00 }
+/* Literal */ .chroma .l { color:#ae81ff }
+/* LiteralDate */ .chroma .ld { color:#d88200 }
+/* LiteralString */ .chroma .s { color:#d88200 }
+/* LiteralStringAffix */ .chroma .sa { color:#d88200 }
+/* LiteralStringBacktick */ .chroma .sb { color:#d88200 }
+/* LiteralStringChar */ .chroma .sc { color:#d88200 }
+/* LiteralStringDelimiter */ .chroma .dl { color:#d88200 }
+/* LiteralStringDoc */ .chroma .sd { color:#d88200 }
+/* LiteralStringDouble */ .chroma .s2 { color:#d88200 }
+/* LiteralStringEscape */ .chroma .se { color:#8045ff }
+/* LiteralStringHeredoc */ .chroma .sh { color:#d88200 }
+/* LiteralStringInterpol */ .chroma .si { color:#d88200 }
+/* LiteralStringOther */ .chroma .sx { color:#d88200 }
+/* LiteralStringRegex */ .chroma .sr { color:#d88200 }
+/* LiteralStringSingle */ .chroma .s1 { color:#d88200 }
+/* LiteralStringSymbol */ .chroma .ss { color:#d88200 }
+/* LiteralNumber */ .chroma .m { color:#ae81ff }
+/* LiteralNumberBin */ .chroma .mb { color:#ae81ff }
+/* LiteralNumberFloat */ .chroma .mf { color:#ae81ff }
+/* LiteralNumberHex */ .chroma .mh { color:#ae81ff }
+/* LiteralNumberInteger */ .chroma .mi { color:#ae81ff }
+/* LiteralNumberIntegerLong */ .chroma .il { color:#ae81ff }
+/* LiteralNumberOct */ .chroma .mo { color:#ae81ff }
+/* Operator */ .chroma .o { color:#f92672 }
+/* OperatorWord */ .chroma .ow { color:#f92672 }
+/* Punctuation */ .chroma .p { color:#111 }
+/* Comment */ .chroma .c { color:#a7a187 }
+/* CommentHashbang */ .chroma .ch { color:#a7a187 }
+/* CommentMultiline */ .chroma .cm { color:#a7a187 }
+/* CommentSingle */ .chroma .c1 { color:#a7a187 }
+/* CommentSpecial */ .chroma .cs { color:#a7a187 }
+/* CommentPreproc */ .chroma .cp { color:#a7a187 }
+/* CommentPreprocFile */ .chroma .cpf { color:#a7a187 }
+/* GenericEmph */ .chroma .ge { font-style:italic }
+/* GenericStrong */ .chroma .gs { font-weight:bold }
+
+}
+:root[data-r-theme-variant='zen-auto'],
+:root[data-r-theme-variant='relearn-auto'],
+:root[data-r-theme-variant='zen-light'],
+:root[data-r-theme-variant='zen-dark'],
+:root[data-r-theme-variant='relearn-light'],
+:root[data-r-theme-variant='relearn-dark'],
+:root[data-r-theme-variant^='my-custom-'] {
+  --INTERNAL-PRINT-VARIANT-MERMAID-theme: redux-color;
+  --INTERNAL-PRINT-VARIANT-OPENAPI-theme: light;
+  --INTERNAL-PRINT-VARIANT-OPENAPI-CODE-theme: idea;
+}
+:root {
+  --print-divider-color: color-mix(in srgb, var(--INTERNAL-MAIN-TEXT-color) 60%, var(--INTERNAL-MAIN-BG-color));
+}
+
+#R-skiplink,
+#R-sidebar {
+  display: none;
+}
+#R-body {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+@media screen {
+  /* on paper the page fills whatever the reader chose; on screen it is shown
+     as wide as a portrait A4 sheet without the browser's print margins */
+  #R-body {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 190mm !important;
+    min-width: 0 !important;
+  }
+}
+#R-body #navigation {
+  display: none;
+}
+html {
+  font-size: 8.763pt;
+}
+#R-body #R-topbar {
+  /* the logo closes the topbar outside of its wrapper, so it is the topbar
+     itself that carries the background */
+  background-color: var(--INTERNAL-TOPBAR-BG-color);
+  border-radius: 0;
+  display: flex;
+  /* inset like the content below by the padding of the main area */
+  margin-inline: 3.25rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+#R-body #R-topbar > .topbar-wrapper {
+  /* a background of its own would be painted over the border of the topbar,
+     unlike the logo next to it, and cover the line where rounded to the pixels
+     of the paper */
+  background: none;
+  flex: 1 1 0;
+  min-width: 0;
+}
+/* the menu is not printed, so its logo closes the topbar instead; it must never
+   grow the topbar, so it has a fixed image height and a single line title,
+   whatever layout and line breaks are set for the menu. it is shown in full,
+   the breadcrumbs take what is left */
+#R-topbar > #R-logo {
+  align-self: center;
+  flex: none;
+  margin-block: 0;
+  margin-inline-start: 1rem;
+}
+#R-topbar > #R-logo.R-default {
+  flex-direction: row;
+  /* the text size of the topbar, so the title is as big as the breadcrumbs */
+  font-size: inherit;
+  width: auto;
+}
+#R-topbar > #R-logo.R-default .logo-image {
+  width: auto;
+}
+/* every image of the logo, also of a logo.html of the site's own */
+#R-topbar > #R-logo :is(img, svg):not(svg *) {
+  /* the image effects of the content never reach the logo in the menu, so
+     they must not here either */
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  height: 1.5rem;
+  max-width: none;
+  width: auto;
+}
+#R-topbar > #R-logo.R-default .logo-title {
+  font-size: 1em;
+  white-space: nowrap;
+}
+/* the breadcrumbs are centered by their capitals like the title, so both
+   stand on the same line where they share their font */
+#R-body .topbar-breadcrumbs {
+  padding-block: calc((1lh - 1cap) / 2);
+  /* they start where the breadcrumbs of the following printed pages do */
+  padding-inline-start: 0;
+  text-box: trim-both cap alphabetic;
+}
+#R-body .topbar-button {
+  /* we don't need the buttons while printing */
+  /* we need !important to turn off JS topbar button handling setting element styles */
+  display: none !important;
+}
+@media screen {
+  :where(.menu-s-width) #R-body .topbar-breadcrumbs {
+    visibility: visible;
+  }
+}
+
+code.copy-to-clipboard-code:has(+ .inline-copy-to-clipboard-button):after,
+.inline-copy-to-clipboard-button.btn {
+  display: none;
+}
+
+#R-body .actionbar {
+  display: none;
+}
+
+#toast-container {
+  display: none;
+}
+
+blockquote::before,
+figure.quote::before {
+  background-color: var(--print-divider-color);
+}
+blockquote p,
+blockquote cite,
+#R-body figure.quote > figcaption {
+  /* nothing is toned down, as that costs contrast */
+  color: var(--INTERNAL-MAIN-TEXT-color);
+  opacity: 1;
+}
+#R-body .anchor {
+  display: none;
+}
+
+/* a light grey line gets lost on paper, so every frame is drawn in the color
+   of the text; this includes the styles without a color of their own, which
+   fall back to the light grey of the neutral boxes, but not the grey and
+   neutral styles, whose color is the author's choice */
+table::after,
+kbd,
+#R-body :is(svg, img):not(.lightbox-image).border,
+.card-container .card,
+.box.cstyle:is(.default, .initial, .action),
+.btn.cstyle:is(.default, .initial, .transparent, .action) > * {
+  border-color: var(--INTERNAL-MAIN-TEXT-color);
+}
+/* what a tab fills, its background covers, so its color only shows as its
+   frame */
+#R-body .tab-panel-style.cstyle:is(.default, .initial, .transparent, .code),
+#R-body .tab-panel-style.cstyle.code.tab-nav-button:not(.active) {
+  --VARIABLE-BOX-color: var(--INTERNAL-MAIN-TEXT-color);
+}
+i.cstyle:is(.default, .initial, .action) {
+  color: var(--INTERNAL-MAIN-TEXT-color);
+}
+kbd {
+  box-shadow: 0 0.0625rem 0 0.0625rem var(--INTERNAL-MAIN-TEXT-color);
+}
+/* a line that only divides would weigh the page down in black, and it can't be
+   drawn thinner, as browsers round it up to a whole pixel; a dark grey still
+   prints dense enough not to get lost */
+#R-body #R-topbar,
+hr,
+th,
+thead td,
+td {
+  border-bottom-color: var(--print-divider-color);
+}
+th,
+thead td,
+td {
+  border-inline-end-color: var(--print-divider-color);
+}
+#R-body hr {
+  border-bottom-width: 1px;
+  /* rounded, a line is smoothed instead of drawn on whole pixels, and so
+     comes out lighter than the other dividers of the same color */
+  border-radius: 0;
+}
+#R-body pre:not(.mermaid) {
+  /* the variant's colors of block code win over the ones of its syntax highlighting style */
+  background-color: var(--INTERNAL-CODE-BLOCK-BG-color);
+  color: var(--INTERNAL-CODE-BLOCK-color);
+}
+
+#R-body #R-main {
+  overflow: visible; /* turn off scrolling, so the whole content is printed */
+  /* reset paddings for chapters in screen */
+  padding: 0 3.25rem 4rem 3.25rem;
+}
+
+#R-body #R-main h1 {
+  border-bottom: 1px solid var(--print-divider-color);
+  font-size: 3.25rem;
+  margin-bottom: 2rem;
+  /* each font places its letters elsewhere in the line, so the heading only
+     keeps its capitals to its baseline and sits centered between its dividers
+     by equal room above and below, whatever the font */
+  margin-top: 2.25rem;
+  padding-bottom: 2.25rem;
+  text-box: trim-both cap alphabetic;
+}
+
+/* Pages and children shortcode */
+:is(.pages-tree, .pages-sections, .children-type-group, .children-type-tree) li > p + p,
+:is(.pages-list, .children-type-flat) li > p {
+  font-size: 1rem;
+}
+
+/* each printed page starts with the breadcrumbs leading to it above a divider */
+.article-breadcrumbs {
+  border-bottom: 1px solid var(--print-divider-color);
+  padding-bottom: 0.75rem;
+}
+#R-main > .flex-block-wrapper > article:not(.card):first-of-type > .article-breadcrumbs {
+  /* the topbar shows them for the first printed page, next to the logo */
+  display: none;
+}
+
+.footline {
+  margin-top: 1.5rem;
+}
+
+/* the dividers of the printed pages sit between them, so the last one adds a
+   divider of its own to close the printout; the pages of a section follow its
+   own page, nested into one section each, so the last is the article that is
+   the last one on each of these levels */
+:is(#R-main > .flex-block-wrapper, section) > article:not(.card):last-child:not(#R-main > .flex-block-wrapper section:not(:last-child) *)::after {
+  border-top: 1px solid var(--print-divider-color);
+  content: '';
+  display: block;
+  margin-top: 0.75rem;
+}
+
+h1 + .footline {
+  /* if we have no content in the page we remove the footer as it is of no real value in print */
+  display: none;
+}
+
+#R-body #R-main .headline a,
+#R-body #R-main .footline a,
+#R-body #R-main .btn a {
+  text-decoration: none;
+}
+#R-body #R-main a {
+  /* in print we want to distinguish links in our content from
+    normal text even if printed black/white;
+    don't use a.highlight in selector to also get links that are
+    put as HTML into markdown */
+  text-decoration-line: underline;
+}
+#R-topbar {
+  /* the header is sticky which is not suitable for print; */
+  position: initial;
+}
+#R-body .topbar-sidebar-divider {
+  /* there is no menu to divide from; what is left of its pixel compensation
+     would widen the spacing between the logo and the breadcrumbs */
+  display: none;
+}
+article .R-taxonomy {
+  display: none;
+}
+mark.search {
+  background: inherit;
+  color: inherit;
+}
+.mermaid.zoom:hover {
+  border-color: transparent;
+}
+#R-body .tab-nav-button.active > .tab-nav-text {
+  /* a line covered exactly still shines through at its edge on paper, so the cover reaches beyond it */
+  margin-bottom: -2px;
+  padding-bottom: 2px;
+}
+
+/* a card is as tall as the tallest one of its row, and never cut off, as paper
+   can't scroll it */
+.card-container {
+  align-items: stretch;
+}
+.card-container .card {
+  break-inside: avoid;
+  height: 100%;
+  max-height: none;
+  min-height: 0;
+}
+@media print and (orientation: landscape) {
+  /* portrait paper is about as wide as the content of a screen, which the
+     number of columns is set for; landscape paper is half as wide again, so it
+     shows half as many columns again */
+  .card-columnize-1 {
+    --card-columns: 2;
+  }
+  .card-columnize-2 {
+    --card-columns: 3;
+  }
+  .card-columnize-3,
+  .card-columnize-4 {
+    --card-columns: 5;
+  }
+}
+
+article:not(.card) {
+  break-before: page;
+  /* sets the next printed page apart where no paper does; at the end of a
+     sheet the margin is dropped */
+  margin-bottom: 4rem;
+}
+#R-main > .flex-block-wrapper > article:not(.card):first-of-type {
+  /* keep the printed page on the same paper as the topbar */
+  break-before: avoid;
+}
+
+#R-body #R-main .flex-block-wrapper {
+  /* the paper sets the width, so the content fills it in portrait and
+     landscape alike */
+  max-width: none;
+  width: 100%;
+}
+
+#R-body #R-main > .flex-block-wrapper article.narrow > p {
+  font-size: 1.015625rem;
+  text-align: start;
+}
+
+#R-body #R-main > .flex-block-wrapper article.narrow > .article-subheading {
+  /* leads the heading, so it takes the room above it, the same way */
+  margin-top: 2.25rem;
+  text-box: trim-both cap alphabetic;
+}

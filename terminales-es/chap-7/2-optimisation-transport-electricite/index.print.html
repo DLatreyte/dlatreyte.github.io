@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Réseaux électriques et graphes Modélisation d’un réseau électrique Un réseau électrique fait apparaître :
+des sources (centrale nucléaire, station photovoltaïque, centrale géothermique, …) ; des cibles (usines, villes, villages, particuliers, …) ; des équipements intermédiaires, qui assurent les liaison entre les réseaux, ou alors l’élévation ou l’abaissement de la tension électrique (transformateurs). Si on représente chaque entité évoquée ci-dessus par un point et les câbles qui les relient par des traits, on forme une structure qu’on appelle graphe en mathmétique (ou en informatique).">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Optimisation du transport de l&#39;électricité :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Réseaux électriques et graphes Modélisation d’un réseau électrique Un réseau électrique fait apparaître :
+des sources (centrale nucléaire, station photovoltaïque, centrale géothermique, …) ; des cibles (usines, villes, villages, particuliers, …) ; des équipements intermédiaires, qui assurent les liaison entre les réseaux, ou alors l’élévation ou l’abaissement de la tension électrique (transformateurs). Si on représente chaque entité évoquée ci-dessus par un point et les câbles qui les relient par des traits, on forme une structure qu’on appelle graphe en mathmétique (ou en informatique).">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-es/chap-7/2-optimisation-transport-electricite/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Optimisation du transport de l&#39;électricité :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Réseaux électriques et graphes Modélisation d’un réseau électrique Un réseau électrique fait apparaître :
+des sources (centrale nucléaire, station photovoltaïque, centrale géothermique, …) ; des cibles (usines, villes, villages, particuliers, …) ; des équipements intermédiaires, qui assurent les liaison entre les réseaux, ou alors l’élévation ou l’abaissement de la tension électrique (transformateurs). Si on représente chaque entité évoquée ci-dessus par un point et les câbles qui les relient par des traits, on forme une structure qu’on appelle graphe en mathmétique (ou en informatique).">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminale Enseignement Scientifique">
+    <meta property="article:published_time" content="2021-01-28T05:07:41+04:00">
+    <meta property="article:modified_time" content="2021-01-28T05:07:41+04:00">
+    <meta itemprop="name" content="Optimisation du transport de l&#39;électricité :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Réseaux électriques et graphes Modélisation d’un réseau électrique Un réseau électrique fait apparaître :
+des sources (centrale nucléaire, station photovoltaïque, centrale géothermique, …) ; des cibles (usines, villes, villages, particuliers, …) ; des équipements intermédiaires, qui assurent les liaison entre les réseaux, ou alors l’élévation ou l’abaissement de la tension électrique (transformateurs). Si on représente chaque entité évoquée ci-dessus par un point et les câbles qui les relient par des traits, on forme une structure qu’on appelle graphe en mathmétique (ou en informatique).">
+    <meta itemprop="datePublished" content="2021-01-28T05:07:41+04:00">
+    <meta itemprop="dateModified" content="2021-01-28T05:07:41+04:00">
+    <meta itemprop="wordCount" content="1507">
+    <meta itemprop="keywords" content="Terminale Enseignement Scientifique">
+    <title>Optimisation du transport de l&#39;électricité :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-es/chap-7/2-optimisation-transport-electricite/index.html" rel="canonical" type="text/html" title="Optimisation du transport de l&#39;électricité :: Physique, Chimie et Informatique">
+    <link href="/terminales-es/chap-7/2-optimisation-transport-electricite/index.xml" rel="alternate" type="application/rss&#43;xml" title="Optimisation du transport de l&#39;électricité :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-es/chap-7/2-optimisation-transport-electricite/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-es/chap-7/2-optimisation-transport-electricite/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#réseaux-électriques-et-graphes">Réseaux électriques et graphes</a>
+      <ul>
+        <li><a href="#modélisation-dun-réseau-électrique">Modélisation d&rsquo;un réseau électrique</a></li>
+        <li><a href="#un-peu-dhistoire--les-ponts-de-königsberg">Un peu d&rsquo;histoire : Les Ponts de Königsberg</a></li>
+        <li><a href="#quest-ce-quun-graphe-">Qu&rsquo;est-ce qu&rsquo;un graphe ?</a></li>
+        <li><a href="#modélisation-dun-réseau-électrique-1">Modélisation d&rsquo;un réseau électrique</a></li>
+      </ul>
+    </li>
+    <li><a href="#minimiser-les-pertes-pour-la-distribution-dénergie">Minimiser les pertes pour la distribution d&rsquo;énergie</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminale Enseignement Scientifique &gt; Optimisation du transport de l’électricité">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-es/index.html"><span itemprop="name">Terminale Enseignement Scientifique</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-es/chap-7/index.html"><span itemprop="name">Optimisation du transport de l’électricité</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-es/chap-7/2-optimisation-transport-electricite/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-es/chap-7/1-effet-joule/index.html" title="L&#39;effet Joule (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-es/chap-7/3-exercices/index.html" title="Exercices du chapitre (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-es">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminale Enseignement Scientifique &gt; Optimisation du transport de l’électricité</div>
+  <header class="headline">
+  </header>
+
+<h1 id="optimisation-du-transport-de-lélectricité">Optimisation du transport de l&#39;électricité</h1>
+
+<h2 id="réseaux-électriques-et-graphes">Réseaux électriques et graphes<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="modélisation-dun-réseau-électrique">Modélisation d&rsquo;un réseau électrique<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<img src="/terminales-es/chap-7/chap-7-2/chap-7-2-1.png" alt="" width="50%" style="float: right; padding-left: 15px;" />
+<p>Un réseau électrique fait apparaître :</p>
+<ul>
+<li>des <strong>sources</strong> (centrale nucléaire, station photovoltaïque, centrale géothermique, &hellip;) ;</li>
+<li>des <strong>cibles</strong> (usines, villes, villages, particuliers, &hellip;) ;</li>
+<li>des <strong>équipements intermédiaires</strong>, qui assurent les liaison entre les réseaux, ou alors l&rsquo;élévation ou l&rsquo;abaissement de la tension électrique (<strong>transformateurs</strong>).</li>
+</ul>
+<p>Si on représente chaque entité évoquée ci-dessus par un point et les câbles qui les relient par des traits, on forme une structure qu&rsquo;on appelle <strong>graphe</strong> en mathmétique (ou en informatique).</p>
+<h3 id="un-peu-dhistoire--les-ponts-de-königsberg">Un peu d&rsquo;histoire : Les Ponts de Königsberg<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>La ville de Königsberg (aujourd&rsquo;hui Kaliningrad en Russie) est construite autour de deux îles situées sur le Pregel et reliées entre elles par un pont. Six autres ponts relient les rives de la rivière à l&rsquo;une ou l&rsquo;autre des deux îles.
+<img src="/terminales-es/chap-7/chap-7-2/chap-7-2-3.png" alt="" width="50%" /></p>
+<blockquote>
+<p>Existe-t-il une promenade dans les rues de Königsberg permettant, à partir d&rsquo;un point de départ au choix, de <em>passer une et une seule fois par chaque pont</em>, et de <em>revenir à son point de départ</em>, étant entendu qu&rsquo;on ne peut traverser le Pregel qu&rsquo;en passant sur les ponts ?</p>
+</blockquote>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse (intuitive)
+  </summary>
+  <div class="box-content">
+<p>Non. Si une telle promenade existait, chaque quartier devrait être relié à un nombre pair de ponts : un premier pour arriver dans le quartier, un second pour quitter le quartier.</p>
+  </div>
+</details>
+<blockquote>
+<p>Existe-t-il une promenade dans les rues de Königsberg permettant, à partir d&rsquo;un point de départ au choix, de <em>passer une et une seule fois par chaque pont</em> ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse (intuitive)
+  </summary>
+  <div class="box-content">
+<p>Non. Si une telle promenade existait, les quartiers, à l&rsquo;exception des quartiers de départ et d&rsquo;arrivée, devraient être reliés à un nombre pair de ponts : un premier pour arriver dans le quartier, un second pour quitter le quartier.</p>
+  </div>
+</details></p>
+</blockquote>
+<p><strong>Comment Euler a-t-il résolu le problème en 1735 ?</strong><br>
+Il a représenté les quartiers par des nœuds et les ponts par des arêtes et cherché si un parcours passant par toutes les arêtes une et une seule fois existait.
+<img src="/terminales-es/chap-7/chap-7-2/chap-7-2-4.png" alt="" width="50%" /></p>
+<h3 id="quest-ce-quun-graphe-">Qu&rsquo;est-ce qu&rsquo;un graphe ?<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Graphe</span></div>
+  <div class="clue-body">
+<ul>
+<li>
+<p>Un <strong>graphe non orienté</strong> est constitué d’un ensemble de points, appelés <strong>nœuds</strong>, et d’un ensemble de <strong>couples de nœuds distincts</strong> appelés <strong>arêtes</strong>.</p>
+</li>
+<li>
+<p>Un <strong>graphe orienté</strong> est constitué d’un ensemble de points, appelés <strong>nœuds</strong>, et d’un ensemble de <strong>couples de nœuds distincts</strong> appelés <strong>arcs</strong>. <em>Les arcs sont alors représentés par des flèches</em>.</p>
+</li>
+<li>
+<p>Un graphe, orienté ou non peut être <strong>pondéré par des valeurs numériques</strong> affectées à ses arêtes ou à ses arcs.</p>
+</li>
+<li>
+<p>On appelle parcours dans un graphe un chemin qui relie deux nœuds.</p>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<p>Dans le cas d’un graphe pondéré, la valeur numérique associée à une arête (poids) peut être la distance entre ses deux extrémités ou le coût pour aller de l’une à l’autre.</p>
+<p>De nombreux problèmes d’optimisation sur les graphes ont été étudiés, l’un des plus connus étant celui du 
+<a class="remote" href="https://fr.wikipedia.org/wiki/Probl%c3%a8me_du_voyageur_de_commerce" target="_blank">voyageur de commerce</a>
+
+ : <em>« Étant donné une liste de villes, et des distances entre toutes les paires de villes, déterminer un plus court chemin qui visite chaque ville une et une seule fois et qui termine dans la ville de départ. »</em><br>
+Ce problème est encore un domaine actif de recherche et il existe seulement des algorithmes imparfaits qui ne trouvent pas toujours le meilleur chemin.</p>
+<h4 id="exemples-de-modélisations-de-situations-par-des-graphes">Exemples de modélisations de situations par des graphes<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<ul>
+<li>Routage de l&rsquo;information sur internet ;</li>
+<li>Relations entre personnes dans les réseaux sociaux ;</li>
+<li>Réseau autoroutier ;</li>
+<li>Réseau ferré ;</li>
+<li>&hellip;</li>
+</ul>
+<p><div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
+  <div class="clue-body">
+<p>Pour chacun des graphes ci-dessous, indiquer le nombre de nœuds, d&rsquo;arêtes (ou d&rsquo;arcs), s&rsquo;il est orienté ou pas, s&rsquo;il est pondéré ou pas.
+<img src="/terminales-es/chap-7/chap-7-2/chap-7-2-2.png" alt="" width="60%" /></p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponses
+  </summary>
+  <div class="box-content">
+<p>a) Graphe non orienté constitué de 4 nœuds et de 5 arêtes.
+b) Graphe non orienté constitué de 4 nœuds et de 7 arêtes (graphe du problème des
+<a class="remote" href="https://fr.wikipedia.org/wiki/Probl%c3%a8me_des_sept_ponts_de_K%c3%b6nigsberg" target="_blank">7 ponts de Königsberg</a></p>
+<p>).
+c) Graphe orienté constitué de 4 nœuds et 6 arcs.
+d) Graphe orienté et pondéré constitué de 4 nœuds et 5 arcs.</p>
+  </div>
+</details></p>
+<h3 id="modélisation-dun-réseau-électrique-1">Modélisation d&rsquo;un réseau électrique<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">La répartition des courants électriques dans un réseau doit satisfaire plusieurs contraintes</span></div>
+  <div class="clue-body">
+<ul>
+<li>L’intensité du courant électrique qui quitte une source ne peut pas dépasser sa capacité de production ;</li>
+<li>L’intensité totale du courant électrique qui entre dans chaque nœud doit être égale à l’intensité du courant électrique qui en sort (c’est la <strong>loi des nœuds</strong>) ;</li>
+<li>L’intensité du courant électrique qui arrive au niveau de chaque cible est fixée par ses besoins en énergie électrique.</li>
+</ul>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Modélisation d&rsquo;un réseau électrique</span></div>
+  <div class="clue-body">
+<p>Un <strong>réseau électrique</strong> peut être modélisé par un <strong>graphe pondéré et orienté</strong>. Les sommets du graphe représentent les sources, les cibles et un certain nombre de nœuds intermédiaires. Les arcs du graphe représentent les lignes électriques, elles <strong>sont pondérées par l’intensité du courant électrique</strong> dans le câble et orientées par le sens du courant (des sources vers les cibles).</p>
+
+  </div>
+</div>
+
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>Le problème d&rsquo;optimisation du transport du courant électrique est donc un <strong>problème d&rsquo;optimisation sous contrainte</strong>.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Application</span></div>
+  <div class="clue-body">
+<p><a class="remote" href="https://www.lelivrescolaire.fr/page/10663400?docId=2e7BWRI03T0y579PXQ9RS" target="_blank">Livre Scolaire</a></p>
+<p>Une île comporte quatre villes. Pour répondre aux besoins énergétiques de ces quatre villes, un champ éolien, une centrale marémotrice et une centrale thermique ont été construits.</p>
+<p>La répartition du courant se fait par l’intermédiaire de deux postes de distribution reliés entre eux. La centrale marémotrice et le champ éolien sont chacun reliés à un poste différent. La centrale thermique est reliée au même poste que le champ éolien. Deux villes sont connectées à un poste et les deux autres villes à l’autre.</p>
+<p><strong>Travail :</strong> Construire le graphe modélisant le réseau électrique. En particulier, identifier les différents sommets du graphe, les différents arcs du graphe et le sens des arcs.</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<img src="/terminales-es/chap-7/chap-7-2/chap-7-2-5.png" alt="" width="80%" />
+<ul>
+<li>Les quatre villes, les deux postes de distribution, le champ éolien, la centrale thermique et la centrale marémotrice constituent les sommets du graphe.</li>
+<li>La ville 1 et la ville 2 sont reliées au poste de distribution 1 par un arc orienté vers la ville (le poste distribue l’électricité).</li>
+<li>La ville 3 et la ville 4 sont reliées au poste de distribution 2 par un arc orienté vers la ville (le poste distribue l’électricité).</li>
+<li>Le champ éolien et la centrale thermique sont reliés au poste de distribution 1 par un arc orienté vers le poste (les centrales distribuent l’électricité vers le poste).</li>
+<li>La centrale marémotrice est reliée au poste de distribution 2 par un arc orienté vers le poste (la centrale distribue l’électricité vers le poste).</li>
+<li>Les postes de distribution sont reliés par un arc non orienté, afin d’assurer le transport de l&rsquo;électricité vers les 4 villes à partir des 3 centrales de production de l’électricité.</li>
+</ul>
+  </div>
+</details>
+<h2 id="minimiser-les-pertes-pour-la-distribution-dénergie">Minimiser les pertes pour la distribution d&rsquo;énergie<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
+  <div class="clue-body">
+<p>Deux villes de moyenne montagne sont connectées à l’ensemble du réseau, mais l’électricité provient essentiellement de deux sources : une centrale hydroélectrique et une petite centrale à charbon.
+Avant d’arriver aux villes, l’électricité passe par un poste électrique qui répartit le courant électrique en fonction des besoins.</p>
+<p>On cherche ici à déterminer l’intensité du courant dans toutes les branches du réseau avec le minimum de perte d’énergie lors du transport de l’électricité.</p>
+
+  </div>
+</div>
+
+<ol>
+<li>Construire le graphe modélisant le réseau électrique.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<img src="/terminales-es/chap-7/chap-7-2/chap-7-2-6.png" alt="" width="80%" />
+  </div>
+</details></li>
+</ol>
+<ul>
+<li>La tension au sein du réseau étudié est de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20</mn><mtext> </mtext><mrow><mi mathvariant="normal">k</mi><mi mathvariant="normal">V</mi></mrow></mrow><annotation encoding="application/x-tex">&#92;pu{20 kV}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord"><span class="mord">20</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord mathrm" style="margin-right:0.0139em;">kV</span></span></span></span></span></span></span>.</li>
+<li>La longueur des lignes reliant la centrale hydroélectrique au poste électrique est deux fois plus grande que celle reliant la centrale à charbon au poste électrique. La résistance est donc aussi deux fois plus grande. La résistance des autres branches est négligée.</li>
+<li>La ville 1 a besoin d’une puissance électrique moyenne de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4,0</mn><mtext> </mtext><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">W</mi></mrow></mrow><annotation encoding="application/x-tex">&#92;pu{4,0 MW}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord">4</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">0</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord mathrm" style="margin-right:0.0139em;">MW</span></span></span></span></span></span></span>.</li>
+<li>La ville 2 a besoin d’une puissance électrique moyenne de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1,0</mn><mtext> </mtext><mrow><mi mathvariant="normal">M</mi><mi mathvariant="normal">W</mi></mrow></mrow><annotation encoding="application/x-tex">&#92;pu{1,0 MW}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord">1</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">0</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord mathrm" style="margin-right:0.0139em;">MW</span></span></span></span></span></span></span>.</li>
+<li>La valeur de la résistance des lignes reliant la centrale à charbon au poste de distribution est arbitrairement prise comme valant <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mtext> </mtext><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">&#92;pu{1 &#92;Omega}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord">1</span><span class="mspace nobreak"> </span><span class="mord mathrm">Ω</span></span></span></span></span></span>.</li>
+</ul>
+<ol start="2">
+<li>
+<p>Compléter le graphe avec les informations ci-dessus.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<img src="/terminales-es/chap-7/chap-7-2/chap-7-2-7.png" alt="" width="90%" />
+  </div>
+</details></p>
+</li>
+<li>
+<p>Déterminer la valeur des intensité <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">I&#95;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">I&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> des courants qui arrivent dans les villes 1 et 2.<br>
+<strong>Aide.</strong> Utiliser les deux informations que l&rsquo;on possède pour chacune des villes.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>&#61;</mo><mi>U</mi><mi>I</mi></mrow><annotation encoding="application/x-tex">P &#61; UI</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span></span></span></span></span>, donc <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>&#61;</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mi>P</mi><mi>U</mi></mfrac></mstyle></mrow><annotation encoding="application/x-tex">I &#61; &#92;dfrac{P}{U}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">U</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>.</p>
+<ul>
+<li><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mn>1</mn></msub><mo>&#61;</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><mn>4,0</mn><mo>⋅</mo><msup><mn>10</mn><mn>6</mn></msup><mtext> </mtext><mi mathvariant="normal">W</mi></mrow><mrow><mn>2,0</mn><mo>⋅</mo><msup><mn>10</mn><mn>4</mn></msup><mtext> </mtext><mi mathvariant="normal">V</mi></mrow></mfrac></mstyle><mo>&#61;</mo><mrow><mn>2,0</mn><mo>⋅</mo><msup><mn>10</mn><mn>2</mn></msup><mtext> </mtext><mi mathvariant="normal">A</mi></mrow></mrow><annotation encoding="application/x-tex">I&#95;1 &#61; &#92;dfrac{&#92;pu{4,0e6 W}}{&#92;pu{2,0e4 V}}&#61;&#92;pu{2,0e2 A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.3715em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">2</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span><span class="mspace nobreak"> </span><span class="mord mathrm" style="margin-right:0.0139em;">V</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">4</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span><span class="mspace nobreak"> </span><span class="mord mathrm" style="margin-right:0.0139em;">W</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0085em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord">2</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace nobreak"> </span><span class="mord mathrm">A</span></span></span></span></span></span>.</li>
+<li><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mn>2</mn></msub><mo>&#61;</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mrow><mn>1,0</mn><mo>⋅</mo><msup><mn>10</mn><mn>6</mn></msup><mtext> </mtext><mi mathvariant="normal">W</mi></mrow><mrow><mn>2,0</mn><mo>⋅</mo><msup><mn>10</mn><mn>4</mn></msup><mtext> </mtext><mi mathvariant="normal">V</mi></mrow></mfrac></mstyle><mo>&#61;</mo><mrow><mn>5,0</mn><mo>⋅</mo><msup><mn>10</mn><mn>1</mn></msup><mtext> </mtext><mi mathvariant="normal">A</mi></mrow></mrow><annotation encoding="application/x-tex">I&#95;2 &#61; &#92;dfrac{&#92;pu{1,0e6 W}}{&#92;pu{2,0e4 V}}&#61;&#92;pu{5,0e1 A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.3715em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">2</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span><span class="mspace nobreak"> </span><span class="mord mathrm" style="margin-right:0.0139em;">V</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">1</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">6</span></span></span></span></span></span></span></span></span><span class="mspace nobreak"> </span><span class="mord mathrm" style="margin-right:0.0139em;">W</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0085em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord">5</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace nobreak"> </span><span class="mord mathrm">A</span></span></span></span></span></span>.</li>
+</ul>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Écrire la loi des nœuds au niveau du poste de distribution.<br>
+On note <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>C</mi></msub></mrow><annotation encoding="application/x-tex">I&#95;C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>H</mi></msub></mrow><annotation encoding="application/x-tex">I&#95;H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0813em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> les intensités des courants électriques qui quittent les centrales à charbon et hydroélectrique.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>C</mi></msub><mo>&#43;</mo><msub><mi>I</mi><mi>H</mi></msub><mo>&#61;</mo><msub><mi>I</mi><mn>1</mn></msub><mo>&#43;</mo><msub><mi>I</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">I&#95;C &#43; I&#95;H &#61; I&#95;1 &#43; I&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0813em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Écrire l&rsquo;expression de la puissance joule totale dissipée, en fonction de la seule variable <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>C</mi></msub></mrow><annotation encoding="application/x-tex">I&#95;C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<ul>
+<li><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>T</mi></msub><mo>&#61;</mo><msub><mi>P</mi><mi>C</mi></msub><mo>&#43;</mo><msub><mi>P</mi><mi>H</mi></msub><mo>&#61;</mo><msub><mi>R</mi><mi>C</mi></msub><mtext> </mtext><msubsup><mi>I</mi><mi>C</mi><mn>2</mn></msubsup><mo>&#43;</mo><msub><mi>R</mi><mi>H</mi></msub><mtext> </mtext><msubsup><mi>I</mi><mi>H</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">P&#95;T &#61; P&#95;C &#43; P&#95;H &#61; R&#95;C &#92;, I&#95;C&#94;2 &#43; R&#95;H &#92;, I&#95;H&#94;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0813em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0894em;vertical-align:-0.2753em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.4247em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2753em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0894em;vertical-align:-0.2753em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0813em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.4247em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0813em;">H</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2753em;"><span></span></span></span></span></span></span></span></span></span></span>.</li>
+<li>Comme <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>H</mi></msub><mo>&#61;</mo><msub><mi>I</mi><mn>1</mn></msub><mo>&#43;</mo><msub><mi>I</mi><mn>2</mn></msub><mo>−</mo><msub><mi>I</mi><mi>C</mi></msub><mo>&#61;</mo><mi>A</mi><mo>−</mo><msub><mi>I</mi><mi>C</mi></msub></mrow><annotation encoding="application/x-tex">I&#95;H &#61; I&#95;1 &#43; I&#95;2 - I&#95;C &#61; A - I&#95;C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0813em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> avec <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>&#61;</mo><msub><mi>I</mi><mn>1</mn></msub><mo>&#43;</mo><msub><mi>I</mi><mn>2</mn></msub><mo>&#61;</mo><mrow><mn>2</mn><mo>⋅</mo><msup><mn>10</mn><mn>2</mn></msup><mtext> </mtext><mi mathvariant="normal">A</mi></mrow><mo>&#43;</mo><mrow><mn>5</mn><mo>⋅</mo><msup><mn>10</mn><mn>1</mn></msup><mtext> </mtext><mi mathvariant="normal">A</mi></mrow><mo>&#61;</mo><mrow><mn>2,5</mn><mo>⋅</mo><msup><mn>10</mn><mn>2</mn></msup><mtext> </mtext><mi mathvariant="normal">A</mi></mrow></mrow><annotation encoding="application/x-tex">A &#61; I&#95;1 &#43; I&#95;2 &#61; &#92;pu{2e2 A} &#43; &#92;pu{5e1 A} &#61; &#92;pu{2,5e2 A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace nobreak"> </span><span class="mord mathrm">A</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace nobreak"> </span><span class="mord mathrm">A</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0085em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord">2</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace nobreak"> </span><span class="mord mathrm">A</span></span></span></span></span></span>,
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>P</mi><mi>T</mi></msub><mo>&#61;</mo><msub><mi>R</mi><mi>C</mi></msub><mtext> </mtext><msubsup><mi>I</mi><mi>C</mi><mn>2</mn></msubsup><mo>&#43;</mo><msub><mi>R</mi><mi>H</mi></msub><mtext> </mtext><mo stretchy="false">(</mo><mi>A</mi><mo>−</mo><msub><mi>I</mi><mi>C</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">P&#95;T &#61; R&#95;C &#92;, I&#95;C&#94;2 &#43; R&#95;H &#92;, (A - I&#95;C)&#94;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1111em;vertical-align:-0.247em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-2.453em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0813em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.1141em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Que faut-il faire pour minimiser l&rsquo;énergie perdue lors du transport de l&rsquo;électricité ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Le minimumn de l&rsquo;énergie perdue lors du transport correspond à la minimisation de la fonction <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>T</mi></msub><mo stretchy="false">(</mo><msub><mi>I</mi><mi>C</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P&#95;T(I&#95;C)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Compléter le code Python à 
+<a class="remote" href="https://repl.it/@dlatreyte/Minimisation-Puissance-Joule-Eleves" target="_blank">cette adresse</a>
+
+ afin de tracer la fonction <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>T</mi></msub><mo stretchy="false">(</mo><msub><mi>I</mi><mi>C</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P&#95;T(I&#95;C)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>. En déduire la valeur de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>C</mi></msub></mrow><annotation encoding="application/x-tex">I&#95;C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> qui minimise l&rsquo;énergie perdue.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><a class="remote" href="https://repl.it/@dlatreyte/Minimisation-Puissance-Joule" target="_blank">Code corrigé</a></p>
+<img src="/terminales-es/chap-7/chap-7-2/chap-7-2-8.png" alt="" width="90%" />
+La puissance dissipée est minimale pour $I_C = \pu{165 A}$.
+  </div>
+</details></p>
+</li>
+</ol>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 28 janv. 2021
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/terminale-enseignement-scientifique/index.html">Terminale Enseignement Scientifique</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

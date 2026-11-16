@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="&#34;&#34;&#34; Simulation du suivi conductimétrique pour le titrage du sérum physiologique. &#34;&#34;&#34; import matplotlib.pyplot as plt import csv from scipy.stats import linregress class Ion: &#34;&#34;&#34; Définition d&#39;un ion à prendre en compte dans le calcul de la conductivité d&#39;une solution. &#34;&#34;&#34; def __init__(self, nom, conduc=0, charge=0, n=0): self.nom = nom self.charge = charge # Charge électrique (multiple de e) self.conductivite = conduc # Conductivité molaire ionique self.quantite = n # Quantité de matière (moles) @property def quantite(self): return self._quantite @quantite.setter def quantite(self, n): if n &lt; 0: self._quantite = 0 else: self._quantite = n def info(self): chaine = &#34;Nom : {}\n&#34;.format(self.nom) chaine &#43;= &#34;Charge électrique : {}e\n&#34;.format(self.charge) chaine &#43;= &#34;Quantité de matière : {} mol\n&#34;.format(self.quantite) return chaine class Solution: &#34;&#34;&#34; Définition d&#39;une solution ionique. &#34;&#34;&#34; def __init__(self, liste_ions=[], volume=0): self.ions = liste_ions self.volume = volume def conductivite(self): conduc = 0 for ion in self.ions: contrib = ion.conductivite * ion.quantite / self.volume conduc &#43;= contrib return conduc def creation_fichier_resultat(nom_fichier, entete_x, entete_y, list_x, list_y): with open(nom_fichier, &#34;w&#34;) as fichier: writer = csv.writer(fichier, dialect=&#34;excel&#34;) writer.writerow([entete_x, entete_y]) for i in range(len(list_x)): writer.writerow((list_x[i], list_y[i])) def affichage(list_v, list_conduc, list_regres): # Création d&#39;une figure fig = plt.figure() # Création d&#39;une sous-figure ax = fig.add_subplot(111) # Affichage des données ax.plot(list_v, list_conduc, &#34;ro&#34;) ax.plot(list_v, list_regres, &#34;b-&#34;) # Limites pour l&#39;axe des abscisses ax.set_xlim(min(list_v) - 1e-3, max(list_v) &#43; 1e-3) # Utilisation de l&#39;écriture scientifique pour les valeurs ax.ticklabel_format(axis=&#34;both&#34;, style=&#34;sci&#34;, scilimits=(0, 0)) # Label de l&#39;axe des abscisses ax.set_xlabel(r&#34;$V_2$ (L)&#34;) # Label de l&#39;axe des ordonnées ax.set_ylabel(r&#34;$\sigma$ ($\mathrm{S}\cdot\mathrm{m}^{-1}$)&#34;) # Affichage de la grille ax.grid() # Légende ax.set_title(r&#34;Suivi conductimétrique sans effet de dilution&#34;) # Sauvegarde de la figure fig.savefig(&#34;conductimetrie_01.pdf&#34;) # Affichage de la figure plt.show() def determination_intervalles(liste1, liste2): &#34;&#34;&#34; Fonction qui, à partir de la liste liste1, possédant des valeurs décroissantes puis croissantes, retourne un tuple constitué de quatre listes ; la première ne contenant que les valeurs décroissantes, la deuxième les valeurs croissantes de la liste 1. Les deux autres listes correspondent aux parties correspondantes de la liste 2. &#34;&#34;&#34; indice_du_min = liste1.index(min(liste1)) liste1_1 = liste1[0:indice_du_min] liste1_2 = liste1[indice_du_min:] liste2_1 = liste2[0:indice_du_min] liste2_2 = liste2[indice_du_min:] return (liste2_1, liste1_1, liste2_2, liste1_2) def regression_lineaire(vol_1, conduc_1, vol_2, conduc_2): lr1 = linregress(vol_1, conduc_1) lr2 = linregress(vol_2, conduc_2) drl = [] for vol in vol_1: drl.append(lr1[0] * vol &#43; lr1[1]) for vol in vol_2: drl.append(lr2[0] * vol &#43; lr2[1]) return drl def main(): C = 3.2e-2 # Concentration des ions chlorure V = 10e-3 # Volume de sérum physiologique C2 = 2e-2 # Concentration des ions argent V2_max = 24 # Volume maximal de titrant versé (en mL) V_eau = 0.100 # Volume d&#39;eau ajouté xE = C * V # Avancement à l&#39;équivalence ion_argent = Ion(&#34;ion argent&#34;, 6.2e-3, 1) ion_chlorure = Ion(&#34;ion chlorure&#34;, 7.6e-3, -1) ion_sodium = Ion(&#34;ion sodium&#34;, 5.0e-3, 1, C * V) ion_nitrate = Ion(&#34;ion nitrate&#34;, 7.1e-3, -1) sol = Solution([ion_argent, ion_chlorure, ion_sodium, ion_nitrate]) # Volumes de titrant versés volumes = [i * 1e-3 for i in range(V2_max &#43; 1)] conduc = [] # valeurs des conductivités dans la solution for V2 in volumes: n2 = C2 * V2 ion_argent.quantite = n2 - xE ion_chlorure.quantite = C * V - n2 ion_nitrate.quantite = n2 # Partie à adapter si on veut montrer l&#39;effet de la dilution sol.volume = V_eau &#43; V &#43; V2 conduc.append(sol.conductivite()) creation_fichier_resultat( &#34;valeurs.csv&#34;, &#34;Volumes (L)&#34;, &#34;Conductivité (S.m^-1)&#34;, volumes, conduc ) vol_1, conduc_1, vol_2, conduc_2 = determination_intervalles(conduc, volumes) droites_regression = regression_lineaire(vol_1, conduc_1, vol_2, conduc_2) affichage(volumes, conduc, droites_regression) print(volumes) print(vol_1, vol_2) main()">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Simulation d&#39;un titrage conductimétrique :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="&#34;&#34;&#34; Simulation du suivi conductimétrique pour le titrage du sérum physiologique. &#34;&#34;&#34; import matplotlib.pyplot as plt import csv from scipy.stats import linregress class Ion: &#34;&#34;&#34; Définition d&#39;un ion à prendre en compte dans le calcul de la conductivité d&#39;une solution. &#34;&#34;&#34; def __init__(self, nom, conduc=0, charge=0, n=0): self.nom = nom self.charge = charge # Charge électrique (multiple de e) self.conductivite = conduc # Conductivité molaire ionique self.quantite = n # Quantité de matière (moles) @property def quantite(self): return self._quantite @quantite.setter def quantite(self, n): if n &lt; 0: self._quantite = 0 else: self._quantite = n def info(self): chaine = &#34;Nom : {}\n&#34;.format(self.nom) chaine &#43;= &#34;Charge électrique : {}e\n&#34;.format(self.charge) chaine &#43;= &#34;Quantité de matière : {} mol\n&#34;.format(self.quantite) return chaine class Solution: &#34;&#34;&#34; Définition d&#39;une solution ionique. &#34;&#34;&#34; def __init__(self, liste_ions=[], volume=0): self.ions = liste_ions self.volume = volume def conductivite(self): conduc = 0 for ion in self.ions: contrib = ion.conductivite * ion.quantite / self.volume conduc &#43;= contrib return conduc def creation_fichier_resultat(nom_fichier, entete_x, entete_y, list_x, list_y): with open(nom_fichier, &#34;w&#34;) as fichier: writer = csv.writer(fichier, dialect=&#34;excel&#34;) writer.writerow([entete_x, entete_y]) for i in range(len(list_x)): writer.writerow((list_x[i], list_y[i])) def affichage(list_v, list_conduc, list_regres): # Création d&#39;une figure fig = plt.figure() # Création d&#39;une sous-figure ax = fig.add_subplot(111) # Affichage des données ax.plot(list_v, list_conduc, &#34;ro&#34;) ax.plot(list_v, list_regres, &#34;b-&#34;) # Limites pour l&#39;axe des abscisses ax.set_xlim(min(list_v) - 1e-3, max(list_v) &#43; 1e-3) # Utilisation de l&#39;écriture scientifique pour les valeurs ax.ticklabel_format(axis=&#34;both&#34;, style=&#34;sci&#34;, scilimits=(0, 0)) # Label de l&#39;axe des abscisses ax.set_xlabel(r&#34;$V_2$ (L)&#34;) # Label de l&#39;axe des ordonnées ax.set_ylabel(r&#34;$\sigma$ ($\mathrm{S}\cdot\mathrm{m}^{-1}$)&#34;) # Affichage de la grille ax.grid() # Légende ax.set_title(r&#34;Suivi conductimétrique sans effet de dilution&#34;) # Sauvegarde de la figure fig.savefig(&#34;conductimetrie_01.pdf&#34;) # Affichage de la figure plt.show() def determination_intervalles(liste1, liste2): &#34;&#34;&#34; Fonction qui, à partir de la liste liste1, possédant des valeurs décroissantes puis croissantes, retourne un tuple constitué de quatre listes ; la première ne contenant que les valeurs décroissantes, la deuxième les valeurs croissantes de la liste 1. Les deux autres listes correspondent aux parties correspondantes de la liste 2. &#34;&#34;&#34; indice_du_min = liste1.index(min(liste1)) liste1_1 = liste1[0:indice_du_min] liste1_2 = liste1[indice_du_min:] liste2_1 = liste2[0:indice_du_min] liste2_2 = liste2[indice_du_min:] return (liste2_1, liste1_1, liste2_2, liste1_2) def regression_lineaire(vol_1, conduc_1, vol_2, conduc_2): lr1 = linregress(vol_1, conduc_1) lr2 = linregress(vol_2, conduc_2) drl = [] for vol in vol_1: drl.append(lr1[0] * vol &#43; lr1[1]) for vol in vol_2: drl.append(lr2[0] * vol &#43; lr2[1]) return drl def main(): C = 3.2e-2 # Concentration des ions chlorure V = 10e-3 # Volume de sérum physiologique C2 = 2e-2 # Concentration des ions argent V2_max = 24 # Volume maximal de titrant versé (en mL) V_eau = 0.100 # Volume d&#39;eau ajouté xE = C * V # Avancement à l&#39;équivalence ion_argent = Ion(&#34;ion argent&#34;, 6.2e-3, 1) ion_chlorure = Ion(&#34;ion chlorure&#34;, 7.6e-3, -1) ion_sodium = Ion(&#34;ion sodium&#34;, 5.0e-3, 1, C * V) ion_nitrate = Ion(&#34;ion nitrate&#34;, 7.1e-3, -1) sol = Solution([ion_argent, ion_chlorure, ion_sodium, ion_nitrate]) # Volumes de titrant versés volumes = [i * 1e-3 for i in range(V2_max &#43; 1)] conduc = [] # valeurs des conductivités dans la solution for V2 in volumes: n2 = C2 * V2 ion_argent.quantite = n2 - xE ion_chlorure.quantite = C * V - n2 ion_nitrate.quantite = n2 # Partie à adapter si on veut montrer l&#39;effet de la dilution sol.volume = V_eau &#43; V &#43; V2 conduc.append(sol.conductivite()) creation_fichier_resultat( &#34;valeurs.csv&#34;, &#34;Volumes (L)&#34;, &#34;Conductivité (S.m^-1)&#34;, volumes, conduc ) vol_1, conduc_1, vol_2, conduc_2 = determination_intervalles(conduc, volumes) droites_regression = regression_lineaire(vol_1, conduc_1, vol_2, conduc_2) affichage(volumes, conduc, droites_regression) print(volumes) print(vol_1, vol_2) main()">
+    <meta property="og:url" content="https://dlatreyte.github.io/programmation/simulation-titrage-conductimetrique/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Simulation d&#39;un titrage conductimétrique :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="&#34;&#34;&#34; Simulation du suivi conductimétrique pour le titrage du sérum physiologique. &#34;&#34;&#34; import matplotlib.pyplot as plt import csv from scipy.stats import linregress class Ion: &#34;&#34;&#34; Définition d&#39;un ion à prendre en compte dans le calcul de la conductivité d&#39;une solution. &#34;&#34;&#34; def __init__(self, nom, conduc=0, charge=0, n=0): self.nom = nom self.charge = charge # Charge électrique (multiple de e) self.conductivite = conduc # Conductivité molaire ionique self.quantite = n # Quantité de matière (moles) @property def quantite(self): return self._quantite @quantite.setter def quantite(self, n): if n &lt; 0: self._quantite = 0 else: self._quantite = n def info(self): chaine = &#34;Nom : {}\n&#34;.format(self.nom) chaine &#43;= &#34;Charge électrique : {}e\n&#34;.format(self.charge) chaine &#43;= &#34;Quantité de matière : {} mol\n&#34;.format(self.quantite) return chaine class Solution: &#34;&#34;&#34; Définition d&#39;une solution ionique. &#34;&#34;&#34; def __init__(self, liste_ions=[], volume=0): self.ions = liste_ions self.volume = volume def conductivite(self): conduc = 0 for ion in self.ions: contrib = ion.conductivite * ion.quantite / self.volume conduc &#43;= contrib return conduc def creation_fichier_resultat(nom_fichier, entete_x, entete_y, list_x, list_y): with open(nom_fichier, &#34;w&#34;) as fichier: writer = csv.writer(fichier, dialect=&#34;excel&#34;) writer.writerow([entete_x, entete_y]) for i in range(len(list_x)): writer.writerow((list_x[i], list_y[i])) def affichage(list_v, list_conduc, list_regres): # Création d&#39;une figure fig = plt.figure() # Création d&#39;une sous-figure ax = fig.add_subplot(111) # Affichage des données ax.plot(list_v, list_conduc, &#34;ro&#34;) ax.plot(list_v, list_regres, &#34;b-&#34;) # Limites pour l&#39;axe des abscisses ax.set_xlim(min(list_v) - 1e-3, max(list_v) &#43; 1e-3) # Utilisation de l&#39;écriture scientifique pour les valeurs ax.ticklabel_format(axis=&#34;both&#34;, style=&#34;sci&#34;, scilimits=(0, 0)) # Label de l&#39;axe des abscisses ax.set_xlabel(r&#34;$V_2$ (L)&#34;) # Label de l&#39;axe des ordonnées ax.set_ylabel(r&#34;$\sigma$ ($\mathrm{S}\cdot\mathrm{m}^{-1}$)&#34;) # Affichage de la grille ax.grid() # Légende ax.set_title(r&#34;Suivi conductimétrique sans effet de dilution&#34;) # Sauvegarde de la figure fig.savefig(&#34;conductimetrie_01.pdf&#34;) # Affichage de la figure plt.show() def determination_intervalles(liste1, liste2): &#34;&#34;&#34; Fonction qui, à partir de la liste liste1, possédant des valeurs décroissantes puis croissantes, retourne un tuple constitué de quatre listes ; la première ne contenant que les valeurs décroissantes, la deuxième les valeurs croissantes de la liste 1. Les deux autres listes correspondent aux parties correspondantes de la liste 2. &#34;&#34;&#34; indice_du_min = liste1.index(min(liste1)) liste1_1 = liste1[0:indice_du_min] liste1_2 = liste1[indice_du_min:] liste2_1 = liste2[0:indice_du_min] liste2_2 = liste2[indice_du_min:] return (liste2_1, liste1_1, liste2_2, liste1_2) def regression_lineaire(vol_1, conduc_1, vol_2, conduc_2): lr1 = linregress(vol_1, conduc_1) lr2 = linregress(vol_2, conduc_2) drl = [] for vol in vol_1: drl.append(lr1[0] * vol &#43; lr1[1]) for vol in vol_2: drl.append(lr2[0] * vol &#43; lr2[1]) return drl def main(): C = 3.2e-2 # Concentration des ions chlorure V = 10e-3 # Volume de sérum physiologique C2 = 2e-2 # Concentration des ions argent V2_max = 24 # Volume maximal de titrant versé (en mL) V_eau = 0.100 # Volume d&#39;eau ajouté xE = C * V # Avancement à l&#39;équivalence ion_argent = Ion(&#34;ion argent&#34;, 6.2e-3, 1) ion_chlorure = Ion(&#34;ion chlorure&#34;, 7.6e-3, -1) ion_sodium = Ion(&#34;ion sodium&#34;, 5.0e-3, 1, C * V) ion_nitrate = Ion(&#34;ion nitrate&#34;, 7.1e-3, -1) sol = Solution([ion_argent, ion_chlorure, ion_sodium, ion_nitrate]) # Volumes de titrant versés volumes = [i * 1e-3 for i in range(V2_max &#43; 1)] conduc = [] # valeurs des conductivités dans la solution for V2 in volumes: n2 = C2 * V2 ion_argent.quantite = n2 - xE ion_chlorure.quantite = C * V - n2 ion_nitrate.quantite = n2 # Partie à adapter si on veut montrer l&#39;effet de la dilution sol.volume = V_eau &#43; V &#43; V2 conduc.append(sol.conductivite()) creation_fichier_resultat( &#34;valeurs.csv&#34;, &#34;Volumes (L)&#34;, &#34;Conductivité (S.m^-1)&#34;, volumes, conduc ) vol_1, conduc_1, vol_2, conduc_2 = determination_intervalles(conduc, volumes) droites_regression = regression_lineaire(vol_1, conduc_1, vol_2, conduc_2) affichage(volumes, conduc, droites_regression) print(volumes) print(vol_1, vol_2) main()">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Programmation">
+    <meta property="article:published_time" content="2020-10-11T20:53:53+04:00">
+    <meta property="article:modified_time" content="2020-10-11T20:53:53+04:00">
+    <meta itemprop="name" content="Simulation d&#39;un titrage conductimétrique :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="&#34;&#34;&#34; Simulation du suivi conductimétrique pour le titrage du sérum physiologique. &#34;&#34;&#34; import matplotlib.pyplot as plt import csv from scipy.stats import linregress class Ion: &#34;&#34;&#34; Définition d&#39;un ion à prendre en compte dans le calcul de la conductivité d&#39;une solution. &#34;&#34;&#34; def __init__(self, nom, conduc=0, charge=0, n=0): self.nom = nom self.charge = charge # Charge électrique (multiple de e) self.conductivite = conduc # Conductivité molaire ionique self.quantite = n # Quantité de matière (moles) @property def quantite(self): return self._quantite @quantite.setter def quantite(self, n): if n &lt; 0: self._quantite = 0 else: self._quantite = n def info(self): chaine = &#34;Nom : {}\n&#34;.format(self.nom) chaine &#43;= &#34;Charge électrique : {}e\n&#34;.format(self.charge) chaine &#43;= &#34;Quantité de matière : {} mol\n&#34;.format(self.quantite) return chaine class Solution: &#34;&#34;&#34; Définition d&#39;une solution ionique. &#34;&#34;&#34; def __init__(self, liste_ions=[], volume=0): self.ions = liste_ions self.volume = volume def conductivite(self): conduc = 0 for ion in self.ions: contrib = ion.conductivite * ion.quantite / self.volume conduc &#43;= contrib return conduc def creation_fichier_resultat(nom_fichier, entete_x, entete_y, list_x, list_y): with open(nom_fichier, &#34;w&#34;) as fichier: writer = csv.writer(fichier, dialect=&#34;excel&#34;) writer.writerow([entete_x, entete_y]) for i in range(len(list_x)): writer.writerow((list_x[i], list_y[i])) def affichage(list_v, list_conduc, list_regres): # Création d&#39;une figure fig = plt.figure() # Création d&#39;une sous-figure ax = fig.add_subplot(111) # Affichage des données ax.plot(list_v, list_conduc, &#34;ro&#34;) ax.plot(list_v, list_regres, &#34;b-&#34;) # Limites pour l&#39;axe des abscisses ax.set_xlim(min(list_v) - 1e-3, max(list_v) &#43; 1e-3) # Utilisation de l&#39;écriture scientifique pour les valeurs ax.ticklabel_format(axis=&#34;both&#34;, style=&#34;sci&#34;, scilimits=(0, 0)) # Label de l&#39;axe des abscisses ax.set_xlabel(r&#34;$V_2$ (L)&#34;) # Label de l&#39;axe des ordonnées ax.set_ylabel(r&#34;$\sigma$ ($\mathrm{S}\cdot\mathrm{m}^{-1}$)&#34;) # Affichage de la grille ax.grid() # Légende ax.set_title(r&#34;Suivi conductimétrique sans effet de dilution&#34;) # Sauvegarde de la figure fig.savefig(&#34;conductimetrie_01.pdf&#34;) # Affichage de la figure plt.show() def determination_intervalles(liste1, liste2): &#34;&#34;&#34; Fonction qui, à partir de la liste liste1, possédant des valeurs décroissantes puis croissantes, retourne un tuple constitué de quatre listes ; la première ne contenant que les valeurs décroissantes, la deuxième les valeurs croissantes de la liste 1. Les deux autres listes correspondent aux parties correspondantes de la liste 2. &#34;&#34;&#34; indice_du_min = liste1.index(min(liste1)) liste1_1 = liste1[0:indice_du_min] liste1_2 = liste1[indice_du_min:] liste2_1 = liste2[0:indice_du_min] liste2_2 = liste2[indice_du_min:] return (liste2_1, liste1_1, liste2_2, liste1_2) def regression_lineaire(vol_1, conduc_1, vol_2, conduc_2): lr1 = linregress(vol_1, conduc_1) lr2 = linregress(vol_2, conduc_2) drl = [] for vol in vol_1: drl.append(lr1[0] * vol &#43; lr1[1]) for vol in vol_2: drl.append(lr2[0] * vol &#43; lr2[1]) return drl def main(): C = 3.2e-2 # Concentration des ions chlorure V = 10e-3 # Volume de sérum physiologique C2 = 2e-2 # Concentration des ions argent V2_max = 24 # Volume maximal de titrant versé (en mL) V_eau = 0.100 # Volume d&#39;eau ajouté xE = C * V # Avancement à l&#39;équivalence ion_argent = Ion(&#34;ion argent&#34;, 6.2e-3, 1) ion_chlorure = Ion(&#34;ion chlorure&#34;, 7.6e-3, -1) ion_sodium = Ion(&#34;ion sodium&#34;, 5.0e-3, 1, C * V) ion_nitrate = Ion(&#34;ion nitrate&#34;, 7.1e-3, -1) sol = Solution([ion_argent, ion_chlorure, ion_sodium, ion_nitrate]) # Volumes de titrant versés volumes = [i * 1e-3 for i in range(V2_max &#43; 1)] conduc = [] # valeurs des conductivités dans la solution for V2 in volumes: n2 = C2 * V2 ion_argent.quantite = n2 - xE ion_chlorure.quantite = C * V - n2 ion_nitrate.quantite = n2 # Partie à adapter si on veut montrer l&#39;effet de la dilution sol.volume = V_eau &#43; V &#43; V2 conduc.append(sol.conductivite()) creation_fichier_resultat( &#34;valeurs.csv&#34;, &#34;Volumes (L)&#34;, &#34;Conductivité (S.m^-1)&#34;, volumes, conduc ) vol_1, conduc_1, vol_2, conduc_2 = determination_intervalles(conduc, volumes) droites_regression = regression_lineaire(vol_1, conduc_1, vol_2, conduc_2) affichage(volumes, conduc, droites_regression) print(volumes) print(vol_1, vol_2) main()">
+    <meta itemprop="datePublished" content="2020-10-11T20:53:53+04:00">
+    <meta itemprop="dateModified" content="2020-10-11T20:53:53+04:00">
+    <meta itemprop="wordCount" content="570">
+    <title>Simulation d&#39;un titrage conductimétrique :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/programmation/simulation-titrage-conductimetrique/index.html" rel="canonical" type="text/html" title="Simulation d&#39;un titrage conductimétrique :: Physique, Chimie et Informatique">
+    <link href="/programmation/simulation-titrage-conductimetrique/index.xml" rel="alternate" type="application/rss&#43;xml" title="Simulation d&#39;un titrage conductimétrique :: Physique, Chimie et Informatique">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/programmation/simulation-titrage-conductimetrique/index.html",
+      "relBasePath": "../..",
+      "relBaseUri": "../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/programmation/simulation-titrage-conductimetrique/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Programmation">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/programmation/index.html"><span itemprop="name">Programmation</span></a><meta itemprop="position" content="2"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/programmation/simulation-titrage-conductimetrique/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/programmation/numpy-vecteur/index.html" title="Utilisation de numpy pour créer et gérer des vecteurs (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/programmation/schemas_derivation/index.html" title="Illustration des différents schemas pour la dérivation numérique (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable programmation">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Programmation</div>
+  <header class="headline">
+  </header>
+
+<h1 id="simulation-dun-titrage-conductimétrique">Simulation d&#39;un titrage conductimétrique</h1>
+
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Simulation du suivi conductimétrique pour le titrage
+</span></span></span><span class="line"><span class="cl"><span class="s2">du sérum physiologique.
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">csv</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">linregress</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Ion</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Définition d&#39;un ion à prendre en compte dans le
+</span></span></span><span class="line"><span class="cl"><span class="s2">    calcul de la conductivité d&#39;une solution.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nom</span><span class="p">,</span> <span class="n">conduc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">nom</span> <span class="o">=</span> <span class="n">nom</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">charge</span> <span class="o">=</span> <span class="n">charge</span>  <span class="c1"># Charge électrique (multiple de e)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">conductivite</span> <span class="o">=</span> <span class="n">conduc</span>  <span class="c1"># Conductivité molaire ionique</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">quantite</span> <span class="o">=</span> <span class="n">n</span>  <span class="c1"># Quantité de matière (moles)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@property</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">quantite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_quantite</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@quantite.setter</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">quantite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">_quantite</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">_quantite</span> <span class="o">=</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">=</span> <span class="s2">&#34;Nom : </span><span class="si">{}</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nom</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">+=</span> <span class="s2">&#34;Charge électrique : </span><span class="si">{}</span><span class="s2">e</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">charge</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">+=</span> <span class="s2">&#34;Quantité de matière : </span><span class="si">{}</span><span class="s2"> mol</span><span class="se">\n</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">quantite</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">chaine</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Définition d&#39;une solution ionique.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">liste_ions</span><span class="o">=</span><span class="p">[],</span> <span class="n">volume</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">ions</span> <span class="o">=</span> <span class="n">liste_ions</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="n">volume</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">conductivite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">conduc</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">ion</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ions</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">contrib</span> <span class="o">=</span> <span class="n">ion</span><span class="o">.</span><span class="n">conductivite</span> <span class="o">*</span> <span class="n">ion</span><span class="o">.</span><span class="n">quantite</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span>
+</span></span><span class="line"><span class="cl">            <span class="n">conduc</span> <span class="o">+=</span> <span class="n">contrib</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">conduc</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">creation_fichier_resultat</span><span class="p">(</span><span class="n">nom_fichier</span><span class="p">,</span> <span class="n">entete_x</span><span class="p">,</span> <span class="n">entete_y</span><span class="p">,</span> <span class="n">list_x</span><span class="p">,</span> <span class="n">list_y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">nom_fichier</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fichier</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">fichier</span><span class="p">,</span> <span class="n">dialect</span><span class="o">=</span><span class="s2">&#34;excel&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">entete_x</span><span class="p">,</span> <span class="n">entete_y</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_x</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">((</span><span class="n">list_x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">list_y</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">affichage</span><span class="p">(</span><span class="n">list_v</span><span class="p">,</span> <span class="n">list_conduc</span><span class="p">,</span> <span class="n">list_regres</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Création d&#39;une figure</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Création d&#39;une sous-figure</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Affichage des données</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">list_v</span><span class="p">,</span> <span class="n">list_conduc</span><span class="p">,</span> <span class="s2">&#34;ro&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">list_v</span><span class="p">,</span> <span class="n">list_regres</span><span class="p">,</span> <span class="s2">&#34;b-&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Limites pour l&#39;axe des abscisses</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">list_v</span><span class="p">)</span> <span class="o">-</span> <span class="mf">1e-3</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">list_v</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Utilisation de l&#39;écriture scientifique pour les valeurs</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&#34;both&#34;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&#34;sci&#34;</span><span class="p">,</span> <span class="n">scilimits</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Label de l&#39;axe des abscisses</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;$V_2$ (L)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Label de l&#39;axe des ordonnées</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;$\sigma$ ($\mathrm</span><span class="si">{S}</span><span class="s2">\cdot\mathrm</span><span class="si">{m}</span><span class="s2">^{-1}$)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Affichage de la grille</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Légende</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Suivi conductimétrique sans effet de dilution&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Sauvegarde de la figure</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&#34;conductimetrie_01.pdf&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Affichage de la figure</span>
+</span></span><span class="line"><span class="cl">    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">determination_intervalles</span><span class="p">(</span><span class="n">liste1</span><span class="p">,</span> <span class="n">liste2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Fonction qui, à partir de la liste liste1, possédant des valeurs
+</span></span></span><span class="line"><span class="cl"><span class="s2">    décroissantes puis croissantes, retourne un tuple constitué de quatre
+</span></span></span><span class="line"><span class="cl"><span class="s2">    listes ; la première ne contenant que les valeurs décroissantes, la
+</span></span></span><span class="line"><span class="cl"><span class="s2">    deuxième les valeurs croissantes de la liste 1. Les deux autres listes
+</span></span></span><span class="line"><span class="cl"><span class="s2">    correspondent aux parties correspondantes de la liste 2.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">indice_du_min</span> <span class="o">=</span> <span class="n">liste1</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">liste1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">liste1_1</span> <span class="o">=</span> <span class="n">liste1</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">indice_du_min</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">liste1_2</span> <span class="o">=</span> <span class="n">liste1</span><span class="p">[</span><span class="n">indice_du_min</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">liste2_1</span> <span class="o">=</span> <span class="n">liste2</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">indice_du_min</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">liste2_2</span> <span class="o">=</span> <span class="n">liste2</span><span class="p">[</span><span class="n">indice_du_min</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">liste2_1</span><span class="p">,</span> <span class="n">liste1_1</span><span class="p">,</span> <span class="n">liste2_2</span><span class="p">,</span> <span class="n">liste1_2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">regression_lineaire</span><span class="p">(</span><span class="n">vol_1</span><span class="p">,</span> <span class="n">conduc_1</span><span class="p">,</span> <span class="n">vol_2</span><span class="p">,</span> <span class="n">conduc_2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lr1</span> <span class="o">=</span> <span class="n">linregress</span><span class="p">(</span><span class="n">vol_1</span><span class="p">,</span> <span class="n">conduc_1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lr2</span> <span class="o">=</span> <span class="n">linregress</span><span class="p">(</span><span class="n">vol_2</span><span class="p">,</span> <span class="n">conduc_2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">drl</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">vol</span> <span class="ow">in</span> <span class="n">vol_1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">drl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lr1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">vol</span> <span class="o">+</span> <span class="n">lr1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">vol</span> <span class="ow">in</span> <span class="n">vol_2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">drl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lr2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">vol</span> <span class="o">+</span> <span class="n">lr2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">drl</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">C</span> <span class="o">=</span> <span class="mf">3.2e-2</span>  <span class="c1"># Concentration des ions chlorure</span>
+</span></span><span class="line"><span class="cl">    <span class="n">V</span> <span class="o">=</span> <span class="mf">10e-3</span>  <span class="c1"># Volume de sérum physiologique</span>
+</span></span><span class="line"><span class="cl">    <span class="n">C2</span> <span class="o">=</span> <span class="mf">2e-2</span>  <span class="c1"># Concentration des ions argent</span>
+</span></span><span class="line"><span class="cl">    <span class="n">V2_max</span> <span class="o">=</span> <span class="mi">24</span>  <span class="c1"># Volume maximal de titrant versé (en mL)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">V_eau</span> <span class="o">=</span> <span class="mf">0.100</span>  <span class="c1"># Volume d&#39;eau ajouté</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xE</span> <span class="o">=</span> <span class="n">C</span> <span class="o">*</span> <span class="n">V</span>  <span class="c1"># Avancement à l&#39;équivalence</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ion_argent</span> <span class="o">=</span> <span class="n">Ion</span><span class="p">(</span><span class="s2">&#34;ion argent&#34;</span><span class="p">,</span> <span class="mf">6.2e-3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ion_chlorure</span> <span class="o">=</span> <span class="n">Ion</span><span class="p">(</span><span class="s2">&#34;ion chlorure&#34;</span><span class="p">,</span> <span class="mf">7.6e-3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ion_sodium</span> <span class="o">=</span> <span class="n">Ion</span><span class="p">(</span><span class="s2">&#34;ion sodium&#34;</span><span class="p">,</span> <span class="mf">5.0e-3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">C</span> <span class="o">*</span> <span class="n">V</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ion_nitrate</span> <span class="o">=</span> <span class="n">Ion</span><span class="p">(</span><span class="s2">&#34;ion nitrate&#34;</span><span class="p">,</span> <span class="mf">7.1e-3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">sol</span> <span class="o">=</span> <span class="n">Solution</span><span class="p">([</span><span class="n">ion_argent</span><span class="p">,</span> <span class="n">ion_chlorure</span><span class="p">,</span> <span class="n">ion_sodium</span><span class="p">,</span> <span class="n">ion_nitrate</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Volumes de titrant versés</span>
+</span></span><span class="line"><span class="cl">    <span class="n">volumes</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="mf">1e-3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">V2_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">conduc</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># valeurs des conductivités dans la solution</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">V2</span> <span class="ow">in</span> <span class="n">volumes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n2</span> <span class="o">=</span> <span class="n">C2</span> <span class="o">*</span> <span class="n">V2</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ion_argent</span><span class="o">.</span><span class="n">quantite</span> <span class="o">=</span> <span class="n">n2</span> <span class="o">-</span> <span class="n">xE</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ion_chlorure</span><span class="o">.</span><span class="n">quantite</span> <span class="o">=</span> <span class="n">C</span> <span class="o">*</span> <span class="n">V</span> <span class="o">-</span> <span class="n">n2</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ion_nitrate</span><span class="o">.</span><span class="n">quantite</span> <span class="o">=</span> <span class="n">n2</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Partie à adapter si on veut montrer l&#39;effet de la dilution</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sol</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="n">V_eau</span> <span class="o">+</span> <span class="n">V</span> <span class="o">+</span> <span class="n">V2</span>
+</span></span><span class="line"><span class="cl">        <span class="n">conduc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">conductivite</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">creation_fichier_resultat</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;valeurs.csv&#34;</span><span class="p">,</span> <span class="s2">&#34;Volumes (L)&#34;</span><span class="p">,</span> <span class="s2">&#34;Conductivité (S.m^-1)&#34;</span><span class="p">,</span> <span class="n">volumes</span><span class="p">,</span> <span class="n">conduc</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">vol_1</span><span class="p">,</span> <span class="n">conduc_1</span><span class="p">,</span> <span class="n">vol_2</span><span class="p">,</span> <span class="n">conduc_2</span> <span class="o">=</span> <span class="n">determination_intervalles</span><span class="p">(</span><span class="n">conduc</span><span class="p">,</span> <span class="n">volumes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">droites_regression</span> <span class="o">=</span> <span class="n">regression_lineaire</span><span class="p">(</span><span class="n">vol_1</span><span class="p">,</span> <span class="n">conduc_1</span><span class="p">,</span> <span class="n">vol_2</span><span class="p">,</span> <span class="n">conduc_2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">affichage</span><span class="p">(</span><span class="n">volumes</span><span class="p">,</span> <span class="n">conduc</span><span class="p">,</span> <span class="n">droites_regression</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">volumes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">vol_1</span><span class="p">,</span> <span class="n">vol_2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">main</span><span class="p">()</span></span></span></code></pre></div>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 11 oct. 2020
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

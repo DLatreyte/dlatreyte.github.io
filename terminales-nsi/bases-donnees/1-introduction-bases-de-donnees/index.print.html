@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Qu’est-ce qu’une base de données ? Le nombre d’informations disponibles et les moyen de les diffuser sont en constante progression. La croissance du Web a encore accru ce développement en fournissant l’accès à des bases de données gigantesques et très diverses par l’intermédiaire d’une interface commune (Amazon, Google, Facebook, ...).">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Introduction aux bases de données :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Qu’est-ce qu’une base de données ? Le nombre d’informations disponibles et les moyen de les diffuser sont en constante progression. La croissance du Web a encore accru ce développement en fournissant l’accès à des bases de données gigantesques et très diverses par l’intermédiaire d’une interface commune (Amazon, Google, Facebook, ...).">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/bases-donnees/1-introduction-bases-de-donnees/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Introduction aux bases de données :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Qu’est-ce qu’une base de données ? Le nombre d’informations disponibles et les moyen de les diffuser sont en constante progression. La croissance du Web a encore accru ce développement en fournissant l’accès à des bases de données gigantesques et très diverses par l’intermédiaire d’une interface commune (Amazon, Google, Facebook, ...).">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2021-01-31T04:39:04+04:00">
+    <meta property="article:modified_time" content="2021-01-31T04:39:04+04:00">
+    <meta itemprop="name" content="Introduction aux bases de données :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Qu’est-ce qu’une base de données ? Le nombre d’informations disponibles et les moyen de les diffuser sont en constante progression. La croissance du Web a encore accru ce développement en fournissant l’accès à des bases de données gigantesques et très diverses par l’intermédiaire d’une interface commune (Amazon, Google, Facebook, ...).">
+    <meta itemprop="datePublished" content="2021-01-31T04:39:04+04:00">
+    <meta itemprop="dateModified" content="2021-01-31T04:39:04+04:00">
+    <meta itemprop="wordCount" content="2711">
+    <meta itemprop="keywords" content="Terminales Spé NSI,Informatique">
+    <title>Introduction aux bases de données :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/bases-donnees/1-introduction-bases-de-donnees/index.html" rel="canonical" type="text/html" title="Introduction aux bases de données :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/bases-donnees/1-introduction-bases-de-donnees/index.xml" rel="alternate" type="application/rss&#43;xml" title="Introduction aux bases de données :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/bases-donnees/1-introduction-bases-de-donnees/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/bases-donnees/1-introduction-bases-de-donnees/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#quest-ce-quune-base-de-données-">Qu&rsquo;est-ce qu&rsquo;une base de données ?</a>
+      <ul>
+        <li><a href="#notion-de-base-de-données">Notion de base de données</a></li>
+        <li><a href="#utilisation-dune-base-de-données">Utilisation d&rsquo;une base de données</a></li>
+        <li><a href="#qualité-dune-base-de-données">Qualité d&rsquo;une base de données</a></li>
+        <li><a href="#modèles-de-données">Modèles de données</a></li>
+      </ul>
+    </li>
+    <li><a href="#présentation-du-modèle-relationnel">Présentation du modèle relationnel</a>
+      <ul>
+        <li><a href="#quest-ce-quune-relation-">Qu&rsquo;est-ce qu&rsquo;une relation ?</a></li>
+        <li><a href="#quest-ce-que-le-calcul-relationnel-">Qu&rsquo;est-ce que le calcul relationnel ?</a></li>
+        <li><a href="#quest-ce-quune-vue-">Qu&rsquo;est-ce qu&rsquo;une vue ?</a></li>
+        <li><a href="#quest-ce-que-le-langage-sql-">Qu&rsquo;est-ce que le langage SQL ?</a></li>
+      </ul>
+    </li>
+    <li><a href="#systèmes-de-gestion-de-bases-de-données">Systèmes de gestion de bases de données</a>
+      <ul>
+        <li><a href="#rendre-efficace-la-recherche-dune-information-dans-un-fichier-informatique-nest-pas-simple">Rendre efficace la recherche d&rsquo;une information dans un fichier informatique n&rsquo;est pas simple</a></li>
+        <li><a href="#fonctionnalités-dun-sgbd">Fonctionnalités d&rsquo;un SGBD</a></li>
+        <li><a href="#transactions">Transactions</a></li>
+        <li><a href="#architectures">Architectures</a></li>
+      </ul>
+    </li>
+    <li><a href="#étapes-de-la-conception-de-bases-de-données">Étapes de la conception de bases de données</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Bases de données">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/bases-donnees/index.html"><span itemprop="name">Bases de données</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/1-introduction-bases-de-donnees/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/index.html" title="Bases de données (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/2-entite-association/index.html" title="Le modèle Entités/Associations (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Bases de données</div>
+  <header class="headline">
+  </header>
+
+<h1 id="introduction-aux-bases-de-données">Introduction aux bases de données</h1>
+
+<h2 id="quest-ce-quune-base-de-données-">Qu&rsquo;est-ce qu&rsquo;une base de données ?<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Le nombre d&rsquo;informations disponibles et les moyen de les diffuser sont en constante progression. La croissance du Web a encore accru ce développement en fournissant l&rsquo;accès à des bases de données gigantesques et très diverses par l&rsquo;intermédiaire d&rsquo;une interface commune (Amazon, Google, Facebook, ...).</p>
+<h3 id="notion-de-base-de-données">Notion de base de données<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Tout le monde a une <em>idée naturelle</em> de ce que peut être une base de donnée, nous stockons, sur nos disques durs, non seulement des fichiers musicaux, mais aussi <em>des informations relatives à ces derniers</em> : noms des
+artistes, des albums, dates d&rsquo;enregistrements, noms et numéros des morceaux, parfois noms des musiciens, ...</p>
+<p>On remarque qu&rsquo;une caractéristique des données contenues dans une base de données est <strong>qu&rsquo;elles doivent posséder un lien entre elles</strong>. En effet, <strong>des données choisies au hasard ne peuvent clairement pas constituer une base de données</strong>. <em>Une base de données est donc une représentation partielle et (très) simplifiée du monde réel, obtenue par <strong>un processus de modélisation</strong>.</em></p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>Une base de données est un ensemble d&rsquo;informations
+<strong>structurées</strong> et <strong>organisées</strong>, mémorisées sur un support permanent.</em></p>
+
+  </div>
+</div>
+
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>La définition d&rsquo;une base de données n&rsquo;indique pas <em>comment sont stockées les informations</em>, <em>une organisation consistant en l&rsquo;utilisation de
+fichiers pourrait tout à fait convenir</em>. Cependant, <em>bien que simple à mettre en œuvre</em>, cette solution pose de nombreux problèmes :</p>
+<dl>
+<dt>Lourdeur d&rsquo;accès aux données</dt>
+<dd>
+<p>En pratique, pour chaque accès aux données (lecture ou écriture), il faut écrire un programme.</p>
+</dd>
+<dt>Manque de sécurité</dt>
+<dd>
+<p>Si tout programmeur peut accéder aux données, il est impossible d&rsquo;assurer leur <em>intégrité</em>.</p>
+</dd>
+<dt>Pas de contrôle de concurrence</dt>
+<dd>
+<p>Si plusieurs utilisateurs accèdent au mêmes fichiers, en même temps, des problèmes de concurrence d&rsquo;accès se posent : quelle modification sera retenue ? quelle valeur sera lue ?</p>
+</dd>
+</dl>
+
+  </div>
+</div>
+
+<p>Pour manipuler une base de données, on utilise donc généralement un logiciel spécialisé : un <strong>SGBD</strong> (<strong>Système de Gestion de Bases de Données</strong>)[^2].</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>On appelle SGBD (<em>Système de Gestion de Bases de
+Données</em>) un logiciel complexe, de haut niveau, qui permet de manipuler les informations stockées dans une base de données.</em></p>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>On appelle « Système d&rsquo;information » l&rsquo;ensemble
+composé par les bases de données et le SGBD.</em></p>
+
+  </div>
+</div>
+
+<h3 id="utilisation-dune-base-de-données">Utilisation d&rsquo;une base de données<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>La création d&rsquo;une base de données s&rsquo;effectue avec un objectif : <em>elle doit permettre de retrouver de l&rsquo;information par son contenu en se fondant sur des <strong>critères de recherche</strong></em>. Par exemple, en 1959, dans
+quels morceaux et quel(s) album(s) de Miles Davis apparaît John Coltrane ?</p>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>La grande différence entre une base de données et un programme écrit pour lire des information dans des fichiers, est qu&rsquo;une base de donnée doit permettre de répondre à des questions auxquelles ses concepteurs
+n&rsquo;avaient pas forcément pensé.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>Une base de données doit permettre d&rsquo;assurer
+l&rsquo;indépendance entre les données et leur traitement.</em></p>
+
+  </div>
+</div>
+
+<p>Pour réaliser l&rsquo;indépendance annoncée dans la définition précédente, on associe à la base de données une description que l&rsquo;on appelle <strong>métadonnée</strong> (ou <strong>catalogue</strong>). <em>Cette description décrit la structure
+interne de la base de données</em>[^3]. En plus de la structure et du type des données, on stocke également à cet endroit les informations concernant les règles de cohérence des données (cf. section suivante sur la qualité d&rsquo;une base de données).</p>
+<center>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center">NumCD</th>
+      <th class="align-center">Titre</th>
+      <th class="align-center">Interprète</th>
+      <th class="align-center">Label</th>
+      <th class="align-center">Année</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">1</td>
+      <td class="align-center">Bring On the Night</td>
+      <td class="align-center">Sting</td>
+      <td class="align-center"></td>
+      <td class="align-center">1986</td>
+    </tr>
+    <tr>
+      <td class="align-center">3</td>
+      <td class="align-center">Superstition</td>
+      <td class="align-center">Stevie Wonder</td>
+      <td class="align-center">Motown</td>
+      <td class="align-center">1972</td>
+    </tr>
+    <tr>
+      <td class="align-center">2</td>
+      <td class="align-center"> Paranoid Android</td>
+      <td class="align-center">Radiohead</td>
+      <td class="align-center">Parlophone</td>
+      <td class="align-center">1997</td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<blockquote>
+<p><em>Extrait d&rsquo;une base de données pour une collection de CD musicaux.</em></p>
+</blockquote>
+<p>Dans l&rsquo;exemple donné dans le <strong>Tableau 1.</strong>, en plus des informations, la base de données contiendrait les métadonnées suivantes :</p>
+<ul>
+<li>
+<p>« NumCD » est un nombre entier supérieur à 1 ;</p>
+</li>
+<li>
+<p>« Titre » est une chaîne de caractères de taille 50 ;</p>
+</li>
+<li>
+<p>« Interprète » est une chaîne de caractères de taille 30 ;</p>
+</li>
+<li>
+<p>« Label » est une chaîne de caractères de taille 20 ;</p>
+</li>
+<li>
+<p>« Année » est un nombre entier supérieur à 1900 et inférieur à l&rsquo;année en cours.</p>
+</li>
+</ul>
+<dl>
+<dt>Remarque</dt>
+<dd>On note que tous les « <em>champs</em> » ne sont pas forcément renseignés dans l&rsquo;exemple donné.</dd>
+</dl>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>On doit donc retenir que l&rsquo;utilisateur ou l&rsquo;application utilisatrice du système d&rsquo;information ne doit pas avoir connaissance de la structure interne de ce dernier pour l&rsquo;interroger, on réalise <strong>une abstraction des données</strong>. C&rsquo;est la raison pour laquelle on utilise <em>une description des données sous la forme d&rsquo;un <strong>modèle</strong></em> pour permettre une restitution la plus efficace possible de l&rsquo;information.</p>
+
+  </div>
+</div>
+
+<h3 id="qualité-dune-base-de-données">Qualité d&rsquo;une base de données<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>L&rsquo;un des objectifs de création d&rsquo;une base de données est de pouvoir retrouver les données par leur contenu. Il faut donc s&rsquo;assurer que ces dernières sont de « bonne qualité ».</p>
+<dl>
+<dt>Cohérence des données contenues dans la base</dt>
+<dd>
+<p>Par exemple, si un champ doit contenir la qualité d&rsquo;une personne sous la forme « Monsieur », « Madame », « Mademoiselle », l&rsquo;entrée de « M. » doit être impossible de façon à ne pas induire des erreurs de recherche sur ce Champ.</p>
+</dd>
+<dt>Absence de redondance</dt>
+<dd>
+<p>Dans un carnet d&rsquo;adresses le stockage du nom de la ville et du code postal <em>pour chaque personne</em> représente une redondance : la même information est stockée plusieurs fois, ce qui consomme de la place inutilement.</p>
+</dd>
+</dl>
+
+  </div>
+</div>
+
+<p>Le <strong>modèle relationnel</strong> des données s&rsquo;accompagne d&rsquo;outils qui permettent de détecter, dans une certaine mesure, les problèmes présentés dans cette section.</p>
+<h3 id="modèles-de-données">Modèles de données<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>Les modèles de données correspondent à la <strong>manière
+de structurer l&rsquo;information</strong> dans une base de données.</em></p>
+
+  </div>
+</div>
+
+<p>Ces modèles reposent sur des recherches initiées à partir des années 1960. Parmi tous les modèles développés et utilisés, on ne présentera ici (très succinctement) que deux modèles : le <em>modèle hiérarchique</em> et le <em>modèle relationnel</em>.</p>
+<h4 id="modèle-hiérarchique">Modèle hiérarchique<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>Ce modèle n&rsquo;est présenté ici qu&rsquo;à des fins historiques. Il n&rsquo;est pas au programme.</p>
+
+  </div>
+</div>
+
+<p>Ce modèle est l&rsquo;un des plus anciens modèles. À l&rsquo;époque de sa définition, le traitement de l&rsquo;information était encore très lié à <em>l&rsquo;organisation des fichiers sur une machine</em>. Les modèles conceptuels des données étaient donc des <em>graphes</em> ou des <em>arbres</em>.</p>
+<img src="/terminales-nsi/chap-13/chap-13-1/chap-13-1-1.png" alt="" width="50%" />
+<p>Le modèle « hiérarchique » propose donc une classification arborescente des données, à la manière d&rsquo;une classification scientifique. <strong>Dans ce modèle, chaque enregistrement n&rsquo;a qu&rsquo;un seul possesseur, ce qui limite les modélisations de la réalité possibles</strong>.</p>
+<p>Des SGBD de type « hiérarchique » ou « réseau » (extension du modèle précédent permettant des relations transversales) sont toujours utilisés, pour des raisons d&rsquo;efficacité, lorsque la structure de données s&rsquo;y prête.</p>
+<p>Le système d&rsquo;exploitation Windows utilise « <em>une base de registre</em> » pour stocker tous les paramètres de configuration (système et logiciels). Le modèle de données choisi est le modèle « hiérarchique ».
+La donnée <code>Favoris</code>, par exemple, a pour chemin : <code>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Applets\Regedit\Favorite</code> (on peut accéder à cette donnée grâce au logiciel <code>Regedit</code>).</p>
+<h4 id="modèle-relationnel">Modèle relationnel<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Ce modèle a été proposé en 1970 par E. F. Codd dans un article resté célèbre : « A Relational Model of Data for Large Shared Data Banks ». Il cherchait à créer un langage d&rsquo;interrogation de bases de données plus
+proche du langage naturel. Dans cette optique, il a fondé sa recherche sur des concepts mathématiques rigoureux, tels que <em>la théorie des ensembles</em> et <em>la logique du premier ordre</em>.</p>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Le modèle « relationnel » permet de modéliser les informations contenues dans les bases de données en utilisant des <strong>relations</strong>, c&rsquo;est à dire un <em>ensemble d&rsquo;attributs</em>.</p>
+
+  </div>
+</div>
+
+<h2 id="présentation-du-modèle-relationnel">Présentation du modèle relationnel<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="quest-ce-quune-relation-">Qu&rsquo;est-ce qu&rsquo;une relation ?<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>On appelle <strong>relation</strong> un</em>objet de la vie réelle<em>auquel on attache un <strong>ensemble d&rsquo;attributs</strong>.<br>
+Par exemple, un employé possède un nom, un prénom, un matricule, travaille dans un service et a été embauché à une certaine date.</em></p>
+<ul>
+<li>
+<p><em>Chaque instance d&rsquo;une relation est appelée un <strong>tuple</strong> ou <strong>n-uplet</strong> (en français).</em></p>
+</li>
+<li>
+<p><em>Les relations sont d&rsquo;ordinaire représentées sous la forme de <strong>tables à deux dimensions</strong>, et on confond les deux concepts. On confond de même ligne dans la table et tuple.</em></p>
+</li>
+<li>
+<p><em>Par définition, <strong>chaque tuple d&rsquo;une relation est unique</strong>, et est identifié par un attribut ou une combinaison de plusieurs attributs qui forme la <strong>clef primaire</strong>.</em></p>
+</li>
+<li>
+<p><em>L&rsquo;ordre des tuples dans la relation n&rsquo;est pas significatif.</em></p>
+</li>
+<li>
+<p><em>Le nombre de champs de la relation s&rsquo;appelle le <strong>degré</strong> de la relation tandis que le nombre de tuples dans la relation s&rsquo;appelle la <strong>cardinalité</strong> de la relation.</em></p>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<dl>
+<dt>Exemple</dt>
+<dd>Base de données formée par deux relations.</dd>
+</dl>
+<center>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center">Titre</th>
+      <th class="align-center">Directeur</th>
+      <th class="align-center">Acteur</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">Casablanca</td>
+      <td class="align-center">M. Curtiz</td>
+      <td class="align-center">Humphrey Bogart</td>
+    </tr>
+    <tr>
+      <td class="align-center">Casablanca</td>
+      <td class="align-center">M. Curtiz</td>
+      <td class="align-center">Peter Lore</td>
+    </tr>
+    <tr>
+      <td class="align-center">Les 400 coups</td>
+      <td class="align-center">F. Truffaut</td>
+      <td class="align-center">J.-P. Leaud</td>
+    </tr>
+    <tr>
+      <td class="align-center">Star Wars</td>
+      <td class="align-center">G. Lucas</td>
+      <td class="align-center">Harrison Ford</td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<blockquote>
+<p>Relation <code>Film</code></p>
+</blockquote>
+<center>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center">Titre</th>
+      <th class="align-center"> Salle</th>
+      <th class="align-center">Heure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">Casablanca</td>
+      <td class="align-center">Lucernaire</td>
+      <td class="align-center">19:00</td>
+    </tr>
+    <tr>
+      <td class="align-center">Casablanca</td>
+      <td class="align-center">Studio</td>
+      <td class="align-center">20:00</td>
+    </tr>
+    <tr>
+      <td class="align-center">Les 400 coups</td>
+      <td class="align-center">Sel</td>
+      <td class="align-center">20:30</td>
+    </tr>
+    <tr>
+      <td class="align-center">Star Wars</td>
+      <td class="align-center">Sel</td>
+      <td class="align-center">22:15</td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<blockquote>
+<p>Relation <code>Séance</code></p>
+</blockquote>
+<ol>
+<li>
+<p>Quelle est la cardinalité de la relation <code>Film</code> ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>La cardinalité d&rsquo;une relation est le nombre de tuples (ou de lignes) qu&rsquo;elle renferme. Ici la cardinalité est égale à 4.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quel est le degré de la relation <code>Séance</code> ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Le degré d&rsquo;une relation est le nombre de champs qui la définissent. Ici, c&rsquo;est 3.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les attributs (champs) de la relation <code>Film</code> ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Les attributs de la relation <code>Film</code> sont : <code>Titre</code>, <code>Directeur</code>, <code>Acteur</code>.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Indiquer un tuple de la relation <code>Séance</code>.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>LA cardinatlité de la relation étant égale à 4, on a le choix entre 4 réponses. <code>(Casablanca, Lucernaire, 19:00)</code> fait partie de ces réponses possibles.</p>
+  </div>
+</details></p>
+</li>
+</ol>
+<h3 id="quest-ce-que-le-calcul-relationnel-">Qu&rsquo;est-ce que le calcul relationnel ?<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>On accède aux données en utilisant comme langage le <em>calcul relationnel</em>. Le calcul relationnel (très fortement inspiré de la logique du premier ordre en mathématique) s&rsquo;appuie sur des <em>variables</em>, des <em>prédicats</em>, des <em>connecteurs logiques</em> (<strong>Et</strong>, <strong>Ou</strong>, <strong>Implique</strong>, ...) et des <em>quantificateurs existentiels</em> (<strong>Il existe</strong>, <strong>Pour tout</strong>, ...).</p>
+
+  </div>
+</div>
+
+<dl>
+<dt>Exemple</dt>
+<dd><ul>
+<li>Existe-t-il un film ayant pour acteur Humphrey Bogart diffusé au cinéma Studio ?</li>
+</ul>
+</dd>
+</dl>
+<ul>
+<li>Existe-t-il au moins un film de M. Curtiz projeté au cinéma Sel ?</li>
+<li>F. Truffaut a-t-il fait tourner l&rsquo;acteur Harrison Ford ?</li>
+</ul>
+<h3 id="quest-ce-quune-vue-">Qu&rsquo;est-ce qu&rsquo;une vue ?<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Les relations constituant la base de données sont complétées à l&rsquo;aide de vues :</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>Une <strong>vue</strong> est une relation, qui au lieu d&rsquo;être
+stockée dans la base de données, est le résultat d&rsquo;une requête.</em></p>
+<p><em>Une vue peut ensuite être réutilisée exactement comme s&rsquo;il s&rsquo;agissait d&rsquo;une relation stockée dans la base de données.</em></p>
+
+  </div>
+</div>
+
+<ol start="5">
+<li>Quelles sont les films, les salles et les horaires des séances dans lesquels on peut trouver l&rsquo;acteur Humphrey Bogart ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>La réponse à cette requête est une vue :</p>
+<center>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center"></th>
+      <th class="align-center"></th>
+      <th class="align-center"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">Casablanca</td>
+      <td class="align-center">Lucernaire</td>
+      <td class="align-center">19:00</td>
+    </tr>
+    <tr>
+      <td class="align-center">Casablanca</td>
+      <td class="align-center">Studio</td>
+      <td class="align-center">20:00</td>
+    </tr>
+  </tbody>
+</table>
+</center>
+  </div>
+</details></li>
+</ol>
+<h3 id="quest-ce-que-le-langage-sql-">Qu&rsquo;est-ce que le langage SQL ?<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Toujours dans le cadre de sa recherche, Codd a mis au point, en même temps que le modèle de données relationnel, un langage d&rsquo;interrogation des données <code>SEQUEL</code>, qui est par la suite devenu <code>SQL</code> (<em>Structured Query Language</em>). La normalisation du langage SQL, dès 1986 par l&rsquo;ANSI (institut de normalisation américain), puis par l&rsquo;ISO (organisation internationale de la normalisation) a assuré, pour une grande partie, le
+succès du modèle relationnel. Les requêtes écrites pour un SGBD fonctionnent en général sans trop de modifications avec un autre SGBD.</p>
+<dl>
+<dt>Exemple</dt>
+<dd>Traduction en langage <code>SQL</code> de l&rsquo;interrogation de la question 5.</dd>
+</dl>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">Titre</span><span class="p">,</span><span class="w"> </span><span class="n">Salle</span><span class="p">,</span><span class="w"> </span><span class="n">Heure</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">Film</span><span class="w"> </span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="n">Séance</span><span class="w"> </span><span class="n">S</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w">  </span><span class="n">F</span><span class="p">.</span><span class="n">Titre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">S</span><span class="p">.</span><span class="n">Titre</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Acteur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Humphrey  Bogart&#34;</span><span class="p">;</span></span></span></code></pre></div>
+<h2 id="systèmes-de-gestion-de-bases-de-données">Systèmes de gestion de bases de données<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Les SGBD sont des systèmes complexes qu&rsquo;il n&rsquo;est pas question de décrire en détail.</p>
+<h3 id="rendre-efficace-la-recherche-dune-information-dans-un-fichier-informatique-nest-pas-simple">Rendre efficace la recherche d&rsquo;une information dans un fichier informatique n&rsquo;est pas simple<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Comme on l&rsquo;a déjà vu cette année, lorsqu&rsquo;on utilise un fichier pour stocker de l&rsquo;information, il est nécessaire de prévoir un <em>découpage de celui-ci par <strong>enregistrements</strong>, souvent de taille fixe</em>.
+Pour passer d&rsquo;un enregistrement à l&rsquo;autre, il faut alors avancer la « tête de lecture » de la taille d&rsquo;un enregistrement.</p>
+<img src="/terminales-nsi/chap-13/chap-13-1/chap-13-1-2.png" alt="" width="80%" />
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Dans une base de données, <em>on recherche les données par leur contenu</em>. Pour retrouver l&rsquo;une d&rsquo;entre elles, <em>il faut donc parcourir tous les enregistrements un à un (recherche séquentielle) et en examiner le contenu</em>, ce qui est relativement peu efficace.</p>
+<p>Une alternative à ce parcours séquentiel est la construction <em>de tables descriptives</em> afin d&rsquo;accélérer l&rsquo;accès aux données :</p>
+<ul>
+<li>
+<p>Une première table permet l&rsquo;accès direct à un enregistrement par une <em>« clé » associée à l&rsquo;adresse mémoire de l&rsquo;enregistrement</em>.</p>
+</li>
+<li>
+<p>Une seconde table contient l&rsquo;<em>ordre relatif des enregistrements</em> ordonnés suivant <em>les valeurs d&rsquo;un champ</em> : on appelle cette table un <strong>index</strong>. Cette seconde table permet d&rsquo;employer des méthodes de recherche par le contenu du champ indexé beaucoup plus performantes. <em>La recherche dichotomique</em> est l&rsquo;une d&rsquo;entre elles.</p>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<img src="/terminales-nsi/chap-13/chap-13-1/chap-13-1-3.png" alt="" width="80%" />
+<p>On voit, à travers ce simple exemple de recherche du contenu d&rsquo;un enregistrement, qu&rsquo;un SGBD doit implémenter des algorithmes sophistiqués.</p>
+<h3 id="fonctionnalités-dun-sgbd">Fonctionnalités d&rsquo;un SGBD<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Pour concevoir et organiser les fonctionnalités d&rsquo;un SGBD on peut s&rsquo;appuyer sur un modèle en trois-couches dont l&rsquo;objectif est d&rsquo;obtenir, <em>une indépendance entre les données et les traitements</em> :</p>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<dl>
+<dt>Niveau interne ou physique</dt>
+<dd>
+<p>C&rsquo;est le niveau le plus proche du matériel. À ce niveau, on gère :</p>
+<ul>
+<li>
+<p>le stockage dans les fichiers des données, du schéma, des index, ... ;</p>
+</li>
+<li>
+<p>le partage des données et la gestion de la concurrence d&rsquo;accès ;</p>
+</li>
+<li>
+<p>la reprise sur panne (<em>fiabilité</em>) ;</p>
+</li>
+<li>
+<p>la distribution des données et l&rsquo;interopérabilité (accès aux réseaux).</p>
+</li>
+</ul>
+</dd>
+<dt>Niveau conceptuel ou logique</dt>
+<dd>
+<p>À ce niveau, on :</p>
+<ul>
+<li>
+<p>définit la structure des données : <em>Langage de Description des Données</em> (LDD) ;</p>
+</li>
+<li>
+<p>définit comment les données peuvent être consultées et mises à jour : <em>Langage de Requêtes</em> (LR) et <em>Langage de Manipulation des Données</em> (LMD) ;</p>
+</li>
+<li>
+<p>gère la confidentialité (<em>sécurité</em>, <em>droits d&rsquo;accès aux données à travers le réseau</em>, ...) ;</p>
+</li>
+<li>
+<p>maintient l&rsquo;<em>intégrité</em> des données.</p>
+</li>
+</ul>
+</dd>
+<dt>Niveau externe</dt>
+<dd>
+<p>Le niveau externe sert à décrire les « vues » des utilisateurs, c&rsquo;est à dire le <em>schéma de visualisation des données</em>, qui est différent pour chaque catégorie d&rsquo;utilisateur. C&rsquo;est à ce niveau qu&rsquo;on retrouve le langage SQL.</p>
+</dd>
+</dl>
+
+  </div>
+</div>
+
+<p>Ce découpage permet de modifier un sous-niveau sans toucher aux deux autres.</p>
+<h3 id="transactions">Transactions<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>On appelle <strong>transaction</strong> toute opération de
+modification des données dans la base de données.</em></p>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>Une <strong>transaction relationnelle</strong> garantit qu&rsquo;une
+séquence d&rsquo;opérations se réalise correctement, par exemple en empêchant qu&rsquo;une somme d&rsquo;argent ne s&rsquo;évanouisse dans la nature (avec un compte en
+banque débité sans qu&rsquo;un autre ne soit crédité). Même une panne ne doit pas pouvoir conduire à une exécution incorrecte.</em></p>
+
+  </div>
+</div>
+
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Les <em>transactions</em> doivent posséder les propriétés suivantes :</p>
+<dl>
+<dt>Atomicité</dt>
+<dd>
+<p><em>Une transaction est effectuée en totalité ou abandonnée.</em></p>
+</dd>
+<dt>Cohérence</dt>
+<dd>
+<p><em>Une transaction doit s&rsquo;effectuer d&rsquo;un état cohérent de la base vers un autre état cohérent</em>.</p>
+</dd>
+<dt>Isolement</dt>
+<dd>
+<p><em>Des transactions différentes ne doivent pas interférer.</em></p>
+</dd>
+<dt>Durabilité</dt>
+<dd>
+<p><em>La transaction a des effets permanents, même en cas de panne.</em></p>
+</dd>
+</dl>
+
+  </div>
+</div>
+
+<h3 id="architectures">Architectures<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<dl>
+<dt>Architecture à deux niveaux Client/Serveur</dt>
+<dd>
+<p>L&rsquo;architecture à deux niveaux, appelée <strong>architecture 2-tiers</strong>
+(tier signifie niveau, étage en anglais), caractérise les systèmes Clients/Serveurs dans lesquels le <em>client</em> demande une ressource que le <em>serveur</em> fournit directement.</p>
+<p>La relation est donc directe entre le serveur et le client.</p>
+</dd>
+<dt>Architecture à trois niveaux</dt>
+<dd>
+<p>Dans l&rsquo;architecture à 3 niveaux, appelée <strong>architecture 3-tiers</strong>,
+il existe un niveau intermédiaire, c&rsquo;est-à-dire que l&rsquo;on a généralement une architecture partagée entre :</p>
+<ul>
+<li>
+<p><em>Le client</em>, qui demande les ressources ;</p>
+</li>
+<li>
+<p><em>Le serveur d&rsquo;application</em> (<em>Middleware</em>), qui reçoit les demandes, interroge le serveur et retourne les réponses (après avoir éventuellement effectué un traitement) ;</p>
+</li>
+<li>
+<p><em>Le serveur secondaire</em> (généralement le SGBD), qui répond aux requêtes du serveur d&rsquo;application.</p>
+</li>
+</ul>
+</dd>
+</dl>
+
+  </div>
+</div>
+
+<p>Dans l&rsquo;architecture à 3 niveaux, chaque serveur (niveaux 1 et 2) ffectue <em>une tâche (un service) spécialisée</em>. Ainsi, un serveur peut utiliser les services d&rsquo;un ou plusieurs autres serveurs afin de fournir son propre service. Par conséquent, l&rsquo;architecture à trois niveaux est potentiellement une architecture à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span> niveaux.</p>
+<h4 id="comparaison-des-deux-types-darchitectures">Comparaison des deux types d&rsquo;architectures<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>L&rsquo;architecture à deux niveaux est donc une architecture Client/Serveur dans laquelle le serveur est polyvalent, c&rsquo;est-à-dire qu&rsquo;il est capable de fournir directement l&rsquo;ensemble des ressources demandées par le client.</p>
+<p>Dans l&rsquo;architecture à trois niveaux par contre, les applications au niveau serveur sont délocalisées, c&rsquo;est-à-dire que chaque serveur est spécialisé dans une tâche (serveur web et serveur de base de données par
+exemple).
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Ainsi, l&rsquo;architecture à trois niveaux permet :</p>
+<ul>
+<li>
+<p>une plus grande flexibilité/souplesse ;</p>
+</li>
+<li>
+<p>une plus grande sécurité (la sécurité peut être définie au niveau de chaque service) ;</p>
+</li>
+<li>
+<p>de meilleures performances (les tâches sont partagées).</p>
+</li>
+</ul>
+
+  </div>
+</div>
+</p>
+<h2 id="étapes-de-la-conception-de-bases-de-données">Étapes de la conception de bases de données<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>On peut décomposer le processus de conception d&rsquo;une base de données en plusieurs étapes :</p>
+<ul>
+<li>
+<p>Analyse du système du monde réel à modéliser ;</p>
+</li>
+<li>
+<p>Mise en forme du modèle pour l&rsquo;intégrer dans le SGBD ;</p>
+</li>
+<li>
+<p>Création effective dans le SGBD des structures et leur remplissage.</p>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<img src="/terminales-nsi/chap-13/chap-13-1/chap-13-1-4.png" alt="" width="90%" />
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 31 janv. 2021
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+    <li><a class="term-link" href="/categories/terminales-sp%C3%A9-nsi/index.html">Terminales Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

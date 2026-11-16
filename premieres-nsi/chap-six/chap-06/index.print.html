@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Ce chapitre reprend l’étude de structures de contrôles, c’est à dire d’instructions qui permettent de modifier le « flot d’exécution implicite » d’un programme.
+Après les structures conditionnelles (ou alternatives), les structures itératives (ou boucles) sont introduites.
+Structures itératives Les boucles sont des instructions répétitives. Comme les tests conditionnels, elles nécessitent la définition de blocs d’instructions. Les instructions de ces blocs sont répétées tant qu’une condition d’arrêt n’est pas vérifiée. Chaque passage dans la boucle s’appelle une itération.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Contrôle du flot d’exécution d’un programme, les structures itératives :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Ce chapitre reprend l’étude de structures de contrôles, c’est à dire d’instructions qui permettent de modifier le « flot d’exécution implicite » d’un programme.
+Après les structures conditionnelles (ou alternatives), les structures itératives (ou boucles) sont introduites.
+Structures itératives Les boucles sont des instructions répétitives. Comme les tests conditionnels, elles nécessitent la définition de blocs d’instructions. Les instructions de ces blocs sont répétées tant qu’une condition d’arrêt n’est pas vérifiée. Chaque passage dans la boucle s’appelle une itération.">
+    <meta property="og:url" content="https://dlatreyte.github.io/premieres-nsi/chap-six/chap-06/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Contrôle du flot d’exécution d’un programme, les structures itératives :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Ce chapitre reprend l’étude de structures de contrôles, c’est à dire d’instructions qui permettent de modifier le « flot d’exécution implicite » d’un programme.
+Après les structures conditionnelles (ou alternatives), les structures itératives (ou boucles) sont introduites.
+Structures itératives Les boucles sont des instructions répétitives. Comme les tests conditionnels, elles nécessitent la définition de blocs d’instructions. Les instructions de ces blocs sont répétées tant qu’une condition d’arrêt n’est pas vérifiée. Chaque passage dans la boucle s’appelle une itération.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="1ère Spécialité NSI">
+    <meta property="article:published_time" content="2019-09-28T17:41:06+04:00">
+    <meta property="article:modified_time" content="2019-09-28T17:41:06+04:00">
+    <meta property="article:tag" content="Boucles">
+    <meta itemprop="name" content="Contrôle du flot d’exécution d’un programme, les structures itératives :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Ce chapitre reprend l’étude de structures de contrôles, c’est à dire d’instructions qui permettent de modifier le « flot d’exécution implicite » d’un programme.
+Après les structures conditionnelles (ou alternatives), les structures itératives (ou boucles) sont introduites.
+Structures itératives Les boucles sont des instructions répétitives. Comme les tests conditionnels, elles nécessitent la définition de blocs d’instructions. Les instructions de ces blocs sont répétées tant qu’une condition d’arrêt n’est pas vérifiée. Chaque passage dans la boucle s’appelle une itération.">
+    <meta itemprop="datePublished" content="2019-09-28T17:41:06+04:00">
+    <meta itemprop="dateModified" content="2019-09-28T17:41:06+04:00">
+    <meta itemprop="wordCount" content="5442">
+    <meta itemprop="keywords" content="Boucles">
+    <title>Contrôle du flot d’exécution d’un programme, les structures itératives :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/premieres-nsi/chap-six/chap-06/index.html" rel="canonical" type="text/html" title="Contrôle du flot d’exécution d’un programme, les structures itératives :: Physique, Chimie et Informatique">
+    <link href="/premieres-nsi/chap-six/chap-06/index.xml" rel="alternate" type="application/rss&#43;xml" title="Contrôle du flot d’exécution d’un programme, les structures itératives :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/premieres-nsi/chap-six/chap-06/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+
+  </head>
+  <body class="mobile-support print" data-origin="/premieres-nsi/chap-six/chap-06/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#structures-itératives">Structures itératives</a></li>
+    <li><a href="#la-boucle-tant-que-linstruction-while">La boucle <strong>Tant que</strong>, l’instruction <strong>while</strong></a>
+      <ul>
+        <li><a href="#présentation">Présentation</a></li>
+        <li><a href="#syntaxe-de-la-boucle-tant-que-en-python">Syntaxe de la boucle <strong>Tant que</strong> en Python</a></li>
+      </ul>
+    </li>
+    <li><a href="#la-boucle-pour-en-fait-pour-chaque">La boucle <strong>Pour</strong> (en fait <strong>Pour Chaque</strong>)</a>
+      <ul>
+        <li><a href="#présentation-1">Présentation</a></li>
+        <li><a href="#syntaxe-en-python">Syntaxe en Python</a></li>
+        <li><a href="#litérateur-range">L’itérateur <strong>range</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#les-instructions-break-et-continue">Les instructions <strong>break</strong> et <strong>continue</strong></a>
+      <ul>
+        <li><a href="#break"><strong>break</strong></a></li>
+        <li><a href="#continue"><strong>continue</strong></a></li>
+        <li><a href="#en-résumé">En résumé</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercices-du-chapitre-version-while">Exercices du chapitre (version <strong>while</strong>)</a>
+      <ul>
+        <li><a href="#exercice-1">Exercice 1</a></li>
+        <li><a href="#exercice-2">Exercice 2</a></li>
+        <li><a href="#exercice-3">Exercice 3</a></li>
+        <li><a href="#exercice-4">Exercice 4</a></li>
+        <li><a href="#exercice-5">Exercice 5</a></li>
+        <li><a href="#exercice-6">Exercice 6</a></li>
+        <li><a href="#exercice-7">Exercice 7</a></li>
+        <li><a href="#exercice-8">Exercice 8</a></li>
+        <li><a href="#exercice-9">Exercice 9</a></li>
+        <li><a href="#exercice-10">Exercice 10</a></li>
+        <li><a href="#exercice-11">Exercice 11</a></li>
+        <li><a href="#exercice-12">Exercice 12</a></li>
+        <li><a href="#exercice-13">Exercice 13</a></li>
+        <li><a href="#exercice-14">Exercice 14</a></li>
+        <li><a href="#exercice-15">Exercice 15</a></li>
+        <li><a href="#exercice-16">Exercice 16</a></li>
+        <li><a href="#exercice-17">Exercice 17</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercices-du-chapitre-version-for">Exercices du chapitre (version <strong>for</strong>)</a></li>
+    <li><a href="#exercices-de-réflexion-du-chapitre">Exercices de réflexion du chapitre</a>
+      <ul>
+        <li><a href="#exercice---calendrier-très-difficile">Exercice  : Calendrier (très difficile)###</a></li>
+        <li><a href="#exercice--le-taxi-de-ramanujan">Exercice : Le taxi de Ramanujan###</a></li>
+        <li><a href="#exercice--code-isbn">Exercice : Code ISBN</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; 1ère Spécialité NSI">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/index.html"><span itemprop="name">1ère Spécialité NSI</span></a><meta itemprop="position" content="2"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-six/chap-06/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-sept/chap-7/index.html" title="Quelques dessins simples avec une tortue (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-quatre/chap-04/index.html" title="Contrôle du flot d’exécution d’un programme, les structures conditionnelles (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable page">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; 1ère Spécialité NSI</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/boucles/index.html">Boucles</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="contrôle-du-flot-dexécution-dun-programme-les-structures-itératives">Contrôle du flot d’exécution d’un programme, les structures itératives</h1>
+
+<p>Ce chapitre reprend l&rsquo;étude de structures de contrôles, c&rsquo;est à dire d&rsquo;instructions qui permettent de modifier le « flot d&rsquo;exécution implicite » d&rsquo;un programme.</p>
+<p>Après les <strong>structures conditionnelles</strong> (ou <strong>alternatives</strong>), les <strong>structures itératives</strong> (ou <strong>boucles</strong>) sont introduites.</p>
+<h2 id="structures-itératives">Structures itératives<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Les boucles sont des <em>instructions répétitives</em>. Comme les tests conditionnels, elles nécessitent la définition de <strong>blocs d’instructions</strong>.
+Les instructions de ces blocs sont répétées tant qu&rsquo;une <strong>condition d’arrêt</strong> n&rsquo;est pas vérifiée.
+Chaque passage dans la boucle s&rsquo;appelle une <strong>itération</strong>.</p>
+<p>Les langages de programmation proposent généralement deux types de boucles, les <strong>boucles déterministes</strong> et les <strong>boucles non déterministes</strong> :</p>
+<ul>
+<li>
+<p>Une <strong>boucle déterministe</strong> (ou boucle <strong>Pour</strong>) est une boucle <em>dont on connaît à l’avance le nombre d’itérations</em>.<br />Une boucle <strong>Pour</strong> utilise une variable pour compter le nombre d&rsquo;itérations effectuées : le <strong>compteur de boucle</strong>.</p>
+</li>
+<li>
+<p>Une boucle <strong>non déterministe</strong> (ou <strong>boucle conditionnelle</strong>) est une boucle <em>dont on ne connaît pas à l’avance le nombre d’itérations</em>. La boucle s&rsquo;arrête <em>si une condition d’arrêt intervient</em> mais on ne sait pas à l&rsquo;avance quand ! <br />Les boucles non déterministes les plus courantes sont les boucles <strong>Tant Que</strong>, <strong>Faire Tant Que</strong> et <strong>Répéter Jusqu’à</strong>.</p>
+</li>
+</ul>
+<dl>
+<dt>Remarques.</dt>
+<dd>Pour ce qui concerne les boucles non déterministes, le langage Python ne possède que la boucle <strong>Tant que</strong>.</dd>
+<dd>L’implémentation de la boucle déterministe <strong>Pour</strong> dans Python est particulière, c’est en fait une boucle <strong>Pour chaque</strong>.</dd>
+<dd>Faire « tourner une boucle à la main » est le seul moyen fiable pour bien comprendre son fonctionnement. On applique méthodiquement les instructions et on compare les résultats obtenus à chaque itération avec les valeurs espérées.</dd>
+<dd>Il est nécessaire de porter une grande attention à la condition d’arrêt d’une boucle non déterministe. Si cette dernière n’est jamais réalisée, on parle de « boucle infinie », c’est à dire d’un processus qui se répète infiniment.*même jamais</dd>
+<dd><em>Une boucle non déterministe peut être utilisée à la place d’une boucle déterministe. Le contraire n’est pas vrai</em>.</dd>
+</dl>
+<h2 id="la-boucle-tant-que-linstruction-while">La boucle <strong>Tant que</strong>, l’instruction <strong>while</strong><span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="présentation">Présentation<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>L’expression conditionnelle d’une boucle <strong>Tant que</strong> est évaluée <em>au début de chaque itération</em>, ce qui permet de l’exécuter un nombre quelconque de fois. Il est même possible que les instructions contenues dans cette structure ne soient jamais exécutées <em>si l’expression booléenne vaut <strong>Faux</strong> dès sa première évaluation</em>.</p>
+<p>Les instructions d’une boucle <strong>Tant que</strong> sont exécutées tant que l’expression booléenne est évaluée à <strong>Vrai</strong>.</p>
+<p><div class="colonnes"><div class="colonne">
+
+<img src="/premieres-nsi/chap-six/while-avec-compteur-autonome.svg" width="100%" />
+</div><div class="colonne">
+
+<img src="/premieres-nsi/chap-six/while-sans-compteur-autonome.svg" width="100%" />
+</div></div>
+</p>
+<h3 id="syntaxe-de-la-boucle-tant-que-en-python">Syntaxe de la boucle <strong>Tant que</strong> en Python<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">while</span> <span class="n">expression_booléenne</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">instructions</span> <span class="n">à</span> <span class="n">répéter</span></span></span></code></pre></div>
+<h2 id="la-boucle-pour-en-fait-pour-chaque">La boucle <strong>Pour</strong> (en fait <strong>Pour Chaque</strong>)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="présentation-1">Présentation<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>La boucle <strong>Pour Chaque</strong> s’écrit <code>for</code> en Python. Cette structure de boucle n’existe pas dans tous les langages. Dans la plupart des langages l’instruction <code>for</code> implémente la boucle <strong>Pour</strong>.</p>
+<p>Les domaines d’application de cette boucle sont, par exemple, <em>le parcours des tableaux</em>, puisqu’on connaît le nombre de cases qui les constituent, ou <em>les traitements de données</em>, leur nombre étant connu à l&rsquo;avance.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>À l’issue de chaque itération la valeur du compteur est incrémentée automatiquement.</p>
+
+  </div>
+</div>
+
+<h3 id="syntaxe-en-python">Syntaxe en Python<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>La syntaxe de la boucle <strong>Pour chaque</strong> en Python est illustrée sur un exemple. La fonction ci-dessous retourne une chaîne de caractères formée de la liste des éléments de la table du nombre <code>n</code> passé en argument.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">table_de</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">element</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>  <span class="c1"># Transformation d&#39;un nombre en chaîne</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>La variable qui sert de compteur de boucle (<code>element</code> dans l’exemple précédent) <strong>ne doit jamais être modifiée dans la boucle</strong>, ce qui exclut la possibilité de changer sa valeur par une affectation. <em>Dans le cas contraire, le comportement de la boucle est indéterminé ; elle peut très bien s’arrêter immédiatement, comme devenir infinie</em>.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>a boucle <code>for</code> <em>parcourt les éléments d’un itérable (comme une séquence ou un itérateur) et se termine quand tous les éléments sont épuisés</em>. Sa syntaxe est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">itérable</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">suite_à_répéter</span></span></span></code></pre></div>
+<p>À chaque itération, la variable d’itération <code>element</code> prend <em>la valeur de l’élément courant de l’itérable</em> (séquence, itérateur ou tout objet supportant l’itération) pour pouvoir l’utiliser dans le bloc <code>suite_à_répéter</code>.</p>
+
+  </div>
+</div>
+
+<h3 id="litérateur-range">L&rsquo;itérateur <strong>range</strong><span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>L’itérateur <code>range</code> permet d’utiliser l’instruction <code>for</code> du langage Python d’une façon comparable à celle des autres langages, c’est à dire <strong>en incrémentant une variable et en arrêtant la boucle une fois qu’une valeur a été atteinte, ou qu’une condition n’est plus satisfaite</strong>.</p>
+<p>L’itérateur <code>range</code> génère à la volée, et selon le besoin, <strong>des nombres entiers compris entre une valeur de départ <code>début</code> et une valeur finale <code>fin</code>, par pas de <code>pas</code></strong>. La syntaxe de ce générateur peut prendre trois formes :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="nb">range</span><span class="p">(</span><span class="n">debut</span><span class="p">,</span> <span class="n">fin</span><span class="p">,</span> <span class="n">pas</span><span class="p">)</span></span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="nb">range</span><span class="p">(</span><span class="n">debut</span><span class="p">,</span> <span class="n">fin</span><span class="p">)</span></span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="nb">range</span><span class="p">(</span><span class="n">fin</span><span class="p">)</span></span></span></code></pre></div>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>De façon générale, tous les intervalles, en Python, sont du type <strong>[debut, fin[</strong>.</p>
+
+  </div>
+</div>
+
+<p>**Exemples. **</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>    
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>             <span class="c1"># 10 ne fait pas parti des nombres générés</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>      
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>             <span class="c1"># un pas de 1 n&#39;a pas à être précisé</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>     
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="mi">4</span> <span class="mi">7</span>                         <span class="c1"># incrémentation par pas de 3</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>   <span class="c1"># si un seul argument, c&#39;est la limite supérieure             </span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>           <span class="c1"># limite supérieure = nombre de termes ici</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="mi">10</span> <span class="mi">9</span> <span class="mi">8</span> <span class="mi">7</span> <span class="mi">6</span> <span class="mi">5</span> <span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span>            <span class="c1"># le pas peut être négatif (suite décroissante)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>   
+</span></span><span class="line"><span class="cl"><span class="mi">10</span> <span class="mi">7</span> <span class="mi">4</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">2</span> <span class="o">-</span><span class="mi">5</span> <span class="o">-</span><span class="mi">8</span> <span class="o">-</span><span class="mi">11</span> <span class="o">-</span><span class="mi">14</span>     <span class="c1"># nombres générés peuvent être négatifs</span></span></span></code></pre></div>
+<h2 id="les-instructions-break-et-continue">Les instructions <strong>break</strong> et <strong>continue</strong><span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="break"><strong>break</strong><span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>L’instruction <code>break</code> <strong>met fin à la boucle courante et reprend l’exécution à la première instruction qui suit la structure itérative</strong>. On l’utilise généralement quand une condition externe est déclenchée (habituellement en testant avec une instruction <code>if</code>), exigeant une sortie immédiate de la boucle. Elle s’utilise aussi bien dans les boucles <strong>Pour que</strong> dans les boucles <strong>Tant Que</strong>.</p>
+<p>L’instruction <code>break</code> est très utile pour quitter des « <em>boucles infinies</em> », créées par exemple à l’aide de l’entête : <code>while True:</code>.</p>
+<p><strong>Exemple.</strong> Les fonctions ci-dessous déterminent (par une méthode loin d’être efficace) le plus grand diviseur d’un nombre entré par l’utilisateur (variable <code>nbre</code>). On teste tous les nombres qui pourraient être des diviseurs du nombre, en utilisant la variable <code>diviseur</code> et en la décrémentant d’une unité pour chaque valeur qui ne divise pas le nombre. Le premier nombre qui divise exactement <code>nbre</code> est le plus grand diviseur. <em>Ce nombre trouvé, il est inutile de poursuivre la boucle</em>, on la quitte grâce à l’instruction <code>break</code>. Les deux fonctions utilisent les deux structures de boucles implémentées en Python ; <code>break</code> peut donc être utilisée quelle que soit la boucle.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">plus_grand_diviseur</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">diviseur</span> <span class="o">=</span> <span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">diviseur</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="n">diviseur</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;Le plus grand diviseur de </span><span class="si">{}</span><span class="s2"> est </span><span class="si">{}</span><span class="s2">.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nbre</span><span class="p">,</span> <span class="n">diviseur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">plus_grand_diviseur_2</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">diviseur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;Le plus grand diviseur de </span><span class="si">{}</span><span class="s2"> est </span><span class="si">{}</span><span class="s2">.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nbre</span><span class="p">,</span> <span class="n">diviseur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+<h3 id="continue"><strong>continue</strong><span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>L’instruction <code>continue</code> <strong>termine ou ignore le reste des instructions de l’itération courante</strong> et remonte au début : <em>le test pour une boucle non déterministe, l’itération suivante (s’il reste des itérations à parcourir) pour une boucle déterministe.</em></p>
+<p><strong>Exemple.</strong> La fonction ci-dessous fournit une illustration (peut pertinente il est vrai !) de l’utilisation de l’instruction <code>continue</code> en retournant une chaîne de caractères constituée de tous les nombres qui ne divisent pas un nombre passé en argument.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">non_diviseur</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">diviseur</span> <span class="o">=</span> <span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">diviseur</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">diviseur</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diviseur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">diviseur</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">non_diviseur_2</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">diviseur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diviseur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+<p><strong>Remarque.</strong> Comme dit en introduction de ces codes, l’exemple choisi n’est pas très pertinent, on peut écrire plus clairement (sans utiliser continue):</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">non_diviseur_2</span><span class="p">(</span><span class="n">nbre</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">diviseur</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">nbre</span> <span class="o">%</span> <span class="n">diviseur</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">diviseur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+<p>Les deux fonctions dans l’exemple ci-dessus utilisent les deux structures de boucles implémentées en Python ; <code>continue</code> <em>peut donc être utilisée quelle que soit la boucle</em>.</p>
+<h3 id="en-résumé">En résumé<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<img src="/premieres-nsi/chap-six/break-continue-autonome.svg" width="90%" />
+<h2 id="exercices-du-chapitre-version-while">Exercices du chapitre (version <strong>while</strong>)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p><strong>Remarque.</strong> Dans cette première série d&rsquo;exercices n&rsquo;utiliser que la structure <strong>Tant que</strong>.</p>
+<h3 id="exercice-1">Exercice 1<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Soit la fonction suivante :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">inconnue</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Fonction dont il faut déterminer l&#39;action.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">r</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b</span> <span class="o">=</span> <span class="n">r</span>
+</span></span><span class="line"><span class="cl">        <span class="n">r</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">b</span></span></span></code></pre></div>
+<ol>
+<li>Examiner le code, repérer les instructions concernées par la boucle et déterminer l&rsquo;instruction de fin de boucle.</li>
+<li>Quelle est l&rsquo;instruction qui permet de modifier le résultat de l&rsquo;évaluation du test de sortie de boucle ?</li>
+<li>En supposant que la fonction soit appelée avec les valeurs 30 et 42, exécuter le programme à la main et déterminer la valeur retournée. Pour s&rsquo;aider, construire un tableau d&rsquo;évolution du contenu de chaque variable utilisée. <br /> Vérifier le résultat obtenu en exécutant le programme.</li>
+<li>Visualiser le fonctionnement de cette fonction à l&rsquo;aide du « débuggeur » intégré au logiciel Thonny.</li>
+<li>En supposant que la fonction soit appelée avec les valeurs 35 et 6, exécuter le programme à la main et déterminer la valeur retournée. Pour s&rsquo;aider, construire un tableau d&rsquo;évolution du contenu de chaque variable utilisée. <br /> Vérifier le résultat obtenu en exécutant le programme.</li>
+<li>Quel est le calcul réalisé par ce programme ?</li>
+</ol>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<ol>
+<li>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"></code></pre></div>
+</li>
+</ol>
+<p>while r != 0:
+a = b
+b = r
+r = a % b</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Fin de boucle lorsque $r=0$.
+</span></span><span class="line"><span class="cl">2. Instruction qui permet de modifier le résultat de l&#39;évaluation de l&#39;expression  booléenne : `r = a % b`.
+</span></span><span class="line"><span class="cl">3. Valeur retournée : 6
+</span></span><span class="line"><span class="cl">4.  Touches **Ctrl + F5**. 
+</span></span><span class="line"><span class="cl">5. Valeur retournée : 1
+</span></span><span class="line"><span class="cl">6. Cette fonction détermine le pgcd des deux nombres.</span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-2">Exercice 2<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Soit la fonction suivante :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">inconnue_deux</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34; Fonction dont il faut déterminer l&#39;action. &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">a</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b</span> <span class="o">*=</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">b</span></span></span></code></pre></div>
+<ol>
+<li>Examiner le code, repérer les instructions concernées par la boucle et déterminer l&rsquo;instruction de fin de boucle.</li>
+<li>Quelle est l&rsquo;instruction qui permet de modifier le résultat de l&rsquo;évaluation du test de sortie de boucle ?</li>
+<li>Quelle est la valeur initiale de la variable <code>i</code> et quelle est sa valeur en sortie de boucle ? Combien de tours sont réalisés ?</li>
+<li>En supposant que la fonction soit appelée avec la valeur 6, exécuter le programme à la main et déterminer la valeur retournée. Pour s&rsquo;aider, construire un tableau d&rsquo;évolution du contenu de chaque variable utilisée. <br /> Vérifier le résultat obtenu en exécutant le programme.</li>
+<li>Visualiser le fonctionnement de cette fonction à l&rsquo;aide du « débuggeur » intégré au logiciel Thonny.</li>
+<li>Quel est le calcul réalisé par ce programme ?</li>
+</ol>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<ol>
+<li>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"></code></pre></div>
+</li>
+</ol>
+<p>while i &lt;= a:
+b *= i
+i += 1</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Fin de boucle lorsque $i = a + 1$.
+</span></span><span class="line"><span class="cl">2. Instruction qui permet de modifier le résultat de l&#39;évaluation de l&#39;expression  booléenne : `i += 1`.
+</span></span><span class="line"><span class="cl">3. Valeur retournée : 720
+</span></span><span class="line"><span class="cl">4.  Touches **Ctrl + F5**.
+</span></span><span class="line"><span class="cl">5. Cette fonction retourne le résultat du calcul : $1\times 2\times 3\times\ldots\times a$, c&#39;est à dire la factorielle de $a$, $a!$.</span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-3">Exercice 3<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire et exécuter une fonction qui retourne une chaîne de caractères formée par une suite de 12 nombres entiers dont chaque terme est égal au triple du terme précédent, à partir du premier entier a passé en argument.
+La spécification de la fonction est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">triple_du_precedent</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères formée par une suite de 12
+</span></span></span><span class="line"><span class="cl"><span class="s2">    entiers dont chaque terme est égal au triple du précédent,
+</span></span></span><span class="line"><span class="cl"><span class="s2">    à partir du premier entier a, positif,  passé en argument.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; triple_du_precedent(1)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;1 3 9 27 81 243 729 2187 6561 19683 59049 177147 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; triple_du_precedent(5)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;5 15 45 135 405 1215 3645 10935 32805 98415 295245 885735 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">triple_du_precedent</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères formée par une suite de 12
+</span></span></span><span class="line"><span class="cl"><span class="s2">    entiers dont chaque terme est égal au triple du précédent,
+</span></span></span><span class="line"><span class="cl"><span class="s2">    à partir du premier entier a, positif,  passé en argument.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; triple_du_precedent(1)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;1 3 9 27 81 243 729 2187 6561 19683 59049 177147 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; triple_du_precedent(5)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;5 15 45 135 405 1215 3645 10935 32805 98415 295245 885735 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  <span class="c1"># Initialisation de la chaîne à retourner</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compteur</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Initialisation du compteur</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_max_compteur</span> <span class="o">=</span> <span class="mi">12</span>  <span class="c1"># Valeur maximale pour le compteur</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">compteur</span> <span class="o">&lt;=</span> <span class="n">val_max_compteur</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>  <span class="c1"># Ajout de chaque nombre à la chaîne</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span> <span class="o">*=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">        <span class="n">compteur</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-4">Exercice 4<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire et exécuter une fonction qui retourne une chaîne de caractères formée par une suite des 10 premiers termes de la table de multiplication d&rsquo;un entier a passé en argument.
+La spécification de la fonction est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">multiplication</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères formées des 10 premiers
+</span></span></span><span class="line"><span class="cl"><span class="s2">    nombres de la table de multiplication de a.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication(7)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;7 14 21 28 35 42 49 56 63 70 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">multiplication</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères formées des 10 premiers
+</span></span></span><span class="line"><span class="cl"><span class="s2">    nombres de la table de multiplication de a.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication(7)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;7 14 21 28 35 42 49 56 63 70 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compteur</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_max_compteur</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">compteur</span> <span class="o">&lt;=</span> <span class="n">val_max_compteur</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">compteur</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">compteur</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-5">Exercice 5<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire et exécuter une fonction qui retourne une chaîne de caractères formée par une suite des 10 premiers termes de la table de multiplication d&rsquo;un entier a passé en argument en signalant au passage (à l&rsquo;aide d&rsquo;un astérisque) ceux qui sont des multiples de 3.
+La spécification de la fonction est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">multiplication_multiple_trois</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères formées des 10 premiers
+</span></span></span><span class="line"><span class="cl"><span class="s2">    nombres de la table de multiplication de a en signalant au
+</span></span></span><span class="line"><span class="cl"><span class="s2">    passage ceux qui sont des multiples de 3.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication_multiple_trois(2)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;2 4 6* 8 10 12* 14 16 18* 20 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication_multiple_trois(7)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;7 14 21* 28 35 42* 49 56 63* 70 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">multiplication_multiple_trois</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères formées des 10 premiers
+</span></span></span><span class="line"><span class="cl"><span class="s2">    nombres de la table de multiplication de a en signalant au
+</span></span></span><span class="line"><span class="cl"><span class="s2">    passage ceux qui sont des multiples de 3.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication_multiple_trois(2)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;2 4 6* 8 10 12* 14 16 18* 20 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication_multiple_trois(7)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;7 14 21* 28 35 42* 49 56 63* 70 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  <span class="c1"># Initialisation de la chaîne à retourner</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compteur</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_max_compteur</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">compteur</span> <span class="o">&lt;=</span> <span class="n">val_max_compteur</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">valeur</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">compteur</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">valeur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">valeur</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># si multiple de 3</span>
+</span></span><span class="line"><span class="cl">            <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;*&#34;</span>  <span class="c1"># ajouter astérisque</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34; &#34;</span>  <span class="c1"># pour séparer les valeurs</span>
+</span></span><span class="line"><span class="cl">        <span class="n">compteur</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-6">Exercice 6<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire et exécuter une fonction qui calcule les 50 premiers termes de la table de multiplication d&rsquo;un nombre a passé en argument mais qui retourne une chaîne de caractères formée seulement par ceux qui sont des multiples de 7.
+La spécification de la fonction est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">multiplication_multiple_sept</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcule les 50 premiers termes de la table de a mais retourne
+</span></span></span><span class="line"><span class="cl"><span class="s2">    une chaîne de caractères contenant uniquement les multiples de 7.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication_multiple_sept(2)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;14 28 42 56 70 84 98 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication_multiple_sept(9)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;63 126 189 252 315 378 441 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">multiplication_multiple_sept</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcule les 50 premiers termes de la table de a mais retourne
+</span></span></span><span class="line"><span class="cl"><span class="s2">    une chaîne de caractères contenant uniquement les multiples de 7.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication_multiple_sept(2)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;14 28 42 56 70 84 98 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication_multiple_sept(9)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;63 126 189 252 315 378 441 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  <span class="c1"># Initialisation de la chaîne à retourner</span>
+</span></span><span class="line"><span class="cl">    <span class="n">compteur</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_max_compteur</span> <span class="o">=</span> <span class="mi">50</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">compteur</span> <span class="o">&lt;=</span> <span class="n">val_max_compteur</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">valeur</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">compteur</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">valeur</span> <span class="o">%</span> <span class="mi">7</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># si multiple de 3</span>
+</span></span><span class="line"><span class="cl">            <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">valeur</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>  <span class="c1"># ajouter valeur</span>
+</span></span><span class="line"><span class="cl">        <span class="n">compteur</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-7">Exercice 7<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire et exécuter une fonction qui calcule et retourne une chaîne de caractères formée de la liste des diviseurs du nombre passé en argument.
+La spécification de la fonction est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">diviseurs</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères formée de la liste des diviseurs
+</span></span></span><span class="line"><span class="cl"><span class="s2">    de a.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; diviseurs(18)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;18 9 6 3 2 1 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">diviseurs</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères formée de la liste des diviseurs
+</span></span></span><span class="line"><span class="cl"><span class="s2">    de a.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; diviseurs(18)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;18 9 6 3 2 1 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">a</span> <span class="o">%</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-8">Exercice 8<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire une fonction qui retourne une chaîne de caractère formée des 10 premiers termes de la table de multiplication de 1 à 10. Le caractère de passage à la ligne <code>\n</code> doit être utilisé afin de séparer les différentes tables (de 2, de 3, &hellip;).</p>
+<p><strong>Remarque :</strong> Utiliser deux boucles imbriquées.</p>
+<p>La spécification de la fonction est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">table_multiplication</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la table de multiplication des nombres de 1 à 10.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p><strong>Remarque :</strong> Afin de visualiser le résultat sous forme d&rsquo;un tableau, utiliser l&rsquo;instruction suivante, <strong>dans la console</strong>, pour tester la fonction :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">table_multiplication</span><span class="p">())</span></span></span></code></pre></div>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">table_multiplication</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la table de multiplication des nombres de 1 à 10.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Compteur 1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Compteur 2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_max</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">val_max</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">val_max</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-9">Exercice 9<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire et exécuter une fonction qui demande 10 nombres à l&rsquo;utilisateur et qui détermine lequel est le plus grand et lequel est le plus petit. Les deux résultats sont retournés au sein d&rsquo;une unique chaîne de caractères.</p>
+<p><strong>Remarque :</strong> la fonction qui permet de récupérer <em>du texte</em> entré au clavier est <code>input</code> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez votre valeur : &#34;</span><span class="p">))</span></span></span></code></pre></div>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>La fonction <code>input</code> retourne <strong>toujours</strong> une chaîne de caractères. Il est donc <em>nécessaire d&rsquo;effectuer une conversion</em> si ce que l&rsquo;utilisateur a entré est d&rsquo;un autre type.</p>
+
+  </div>
+</div>
+
+<p>La specification de la fonction est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">plus_grand_plus_petit</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Demande à l&#39;utilisateur d&#39;entrer 10 valeurs et retourne une
+</span></span></span><span class="line"><span class="cl"><span class="s2">    chaîne de caractères formée des deux valeurs max et min.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">plus_grand_plus_petit</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Demande à l&#39;utilisateur d&#39;entrer 10 valeurs et retourne une
+</span></span></span><span class="line"><span class="cl"><span class="s2">    chaîne de caractères formée des deux valeurs max et min.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la valeur 1 : &#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">valeur_plus_grande</span> <span class="o">=</span> <span class="n">valeur</span>
+</span></span><span class="line"><span class="cl">    <span class="n">valeur_plus_petite</span> <span class="o">=</span> <span class="n">valeur</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbre_valeurs</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Compteur</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nbre_valeurs</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la valeur </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">valeur</span> <span class="o">&gt;</span> <span class="n">valeur_plus_grande</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">valeur_plus_grande</span> <span class="o">=</span> <span class="n">valeur</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">valeur</span> <span class="o">&lt;</span> <span class="n">valeur_plus_petite</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">valeur_plus_petite</span> <span class="o">=</span> <span class="n">valeur</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;max : </span><span class="si">{}</span><span class="s2">, min : </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">valeur_plus_grande</span><span class="p">,</span> <span class="n">valeur_plus_petite</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-10">Exercice 10<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Reprendre l&rsquo;exercice précédent mais en faisant en sorte que le nombre de valeurs demandées à l&rsquo;utilisateur soit passé en argument à la fonction.</p>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">plus_grand_plus_petit</span><span class="p">(</span><span class="n">nbre_valeurs</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Demande à l&#39;utilisateur d&#39;entrer nbre_valeurs valeurs et retourne une
+</span></span></span><span class="line"><span class="cl"><span class="s2">    chaîne de caractères formée des deux valeurs max et min.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la valeur 1 : &#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">valeur_plus_grande</span> <span class="o">=</span> <span class="n">valeur</span>
+</span></span><span class="line"><span class="cl">    <span class="n">valeur_plus_petite</span> <span class="o">=</span> <span class="n">valeur</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Compteur</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nbre_valeurs</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la valeur </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">valeur</span> <span class="o">&gt;</span> <span class="n">valeur_plus_grande</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">valeur_plus_grande</span> <span class="o">=</span> <span class="n">valeur</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">valeur</span> <span class="o">&lt;</span> <span class="n">valeur_plus_petite</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">valeur_plus_petite</span> <span class="o">=</span> <span class="n">valeur</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;max : </span><span class="si">{}</span><span class="s2">, min : </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">valeur_plus_grande</span><span class="p">,</span> <span class="n">valeur_plus_petite</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-11">Exercice 11<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire et exécuter une fonction qui demande à l&rsquo;utilisateur d&rsquo;entrer 10
+notes et qui retourne la moyenne de ces notes.
+La spécification de la fonction est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">moyenne</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Demande 10 notes à l&#39;utilisateur et retourne la moyenne.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">moyenne</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Demande 10 notes à l&#39;utilisateur et retourne la moyenne.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">somme</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initialisation de la somme</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbre_notes</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Compteur</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nbre_notes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">note</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la note </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">somme</span> <span class="o">+=</span> <span class="n">note</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">somme</span> <span class="o">/</span> <span class="n">nbre_notes</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-12">Exercice 12<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Modifier le programme précédent de façon à ce que le nombre de notes à prendre en compte soit passé en argument de la fonction.</p>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">moyenne</span><span class="p">(</span><span class="n">nbre_notes</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Demande nbre_notes notes à l&#39;utilisateur et retourne la moyenne.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">somme</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initialisation de la somme</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Compteur</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nbre_notes</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">note</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la note </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">somme</span> <span class="o">+=</span> <span class="n">note</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">somme</span> <span class="o">/</span> <span class="n">nbre_notes</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-13">Exercice 13<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Modifier le programme précédent de façon à ce que l&rsquo;utilisateur n&rsquo;ait pas à indiquer le nombre de notes qu&rsquo;il souhaite saisir. Une note négative terminer la saisie.</p>
+<p><strong>Remarque :</strong> la fonction doit afficher le nombre de notes saisies, elle retourne donc une chaîne de caractères.</p>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">moyenne_ter</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Demande des notes à l&#39;utilisateur et retourne la moyenne. La saisie
+</span></span></span><span class="line"><span class="cl"><span class="s2">    cesse lorsque la note entrée est négative.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">somme</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbre_notes</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">note</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la note </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nbre_notes</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">note</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="n">somme</span> <span class="o">+=</span> <span class="n">note</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nbre_notes</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;Nbre de notes : </span><span class="si">{}</span><span class="s2">, moyenne : </span><span class="si">{:.2f}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nbre_notes</span><span class="p">,</span> <span class="n">somme</span> <span class="o">/</span> <span class="n">nbre_notes</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-14">Exercice 14<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire et exécuter une fonction qui simule un tirage du Loto (s&rsquo;aider de l&rsquo;exercice 12 du chapitre 02).
+La spécification de la fonction est</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">loto_naif</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne 6 entiers sélectionnés aléatoirement dans l&#39;intervalle
+</span></span></span><span class="line"><span class="cl"><span class="s2">    [1, 49].
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p><strong>Remarque.</strong> Normalement, lorsqu&rsquo;un numéro est tiré, il ne peut pas apparaître à nouveau. On acceptera cependant qu&rsquo;un même numéro puisse apparaitre plusieurs fois puisqu&rsquo;on ne connaît pas encore de structure de contrôle qui permet de facilement « stocker » plusieurs valeurs.</p>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">loto_naif</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne 6 entiers sélectionnés aléatoirement dans l&#39;intervalle
+</span></span></span><span class="line"><span class="cl"><span class="s2">    [1, 49].
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Compteur</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbre_boules</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># Valeur max du compteur</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nbre_boules</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">boule</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">49</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">boule</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># Incrémentation du compteur</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-15">Exercice 15<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire et exécuter une fonction qui tire au hasard un nombre entier compris entre 1 et 50 et demande à l&rsquo;utilisateur de le deviner.</p>
+<p>Cette fonction doit indiquer à l&rsquo;utilisateur si sa tentative est trop grande ou trop petite et quitter dès l&rsquo;instant où il a deviné le nombre en indiquant le nombre de tentatives.</p>
+<p><strong>Remarque.</strong> La fonction ne doit rien retourner, elle doit utiliser la fonction <code>print</code> pour <em>afficher</em> à l&rsquo;écran les informations. Sa spécification est</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">devine</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Déterminer aléatoirement un nombre compris en 1 et 49 et demande à l&#39;utilisateur
+</span></span></span><span class="line"><span class="cl"><span class="s2">    de le deviner.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    La fonction affiche des messages qui aident l&#39;utilisateur dans recherche et quitte
+</span></span></span><span class="line"><span class="cl"><span class="s2">    dès que cette dernière est fructueuse.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">devine</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Déterminer aléatoirement un nombre compris en 1 et 49 et demande à l&#39;utilisateur
+</span></span></span><span class="line"><span class="cl"><span class="s2">    de le deviner.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    La fonction affiche des messages qui aident l&#39;utilisateur dans recherche et quitte
+</span></span></span><span class="line"><span class="cl"><span class="s2">    dès que cette dernière est fructueuse.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">nbre_a_deviner</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">nbre_tentatives</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nbre</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Proposition n° </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">nbre_tentatives</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nbre_tentatives</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">nbre</span> <span class="o">==</span> <span class="n">nbre_a_deviner</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;Bravo, le nombre a été deviné en </span><span class="si">{}</span><span class="s2"> tentatives.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">nbre_tentatives</span>
+</span></span><span class="line"><span class="cl">                <span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">nbre</span> <span class="o">&gt;</span> <span class="n">nbre_a_deviner</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Trop grand !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Trop petit ! &#34;</span><span class="p">)</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-16">Exercice 16<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire et exécuter une fonction qui affiche l&rsquo;alphabet à l&rsquo;endroit si elle reçoit l&rsquo;argument <code>&quot;croissant&quot;</code> ou à l&rsquo;envers si elle reçoit l&rsquo;argument <code>&quot;decroissant&quot;</code>.</p>
+<p><strong>Remarque.</strong> On peut obtenir le code décimal d&rsquo;un caractère à l&rsquo;aide de la fonction <code>ord</code>. À l&rsquo;opposé, le caractère correspondant à un entier naturel dans la table ASCII est obtenu (si possible) à l&rsquo;aide de la fonction <code>chr</code>.</p>
+<p>La spécification de la fonction est</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">alphabet</span><span class="p">(</span><span class="n">sens</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne les lettres de l&#39;alphabet en fonction de la chaîne de caractères
+</span></span></span><span class="line"><span class="cl"><span class="s2">    passée en argument.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Les valeurs possibles pour cet argument sont &#39;croissant&#39; ou &#39;decroissant&#39;.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">alphabet</span><span class="p">(</span><span class="n">sens</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne les lettres de l&#39;alphabet en fonction de la chaîne de caractères
+</span></span></span><span class="line"><span class="cl"><span class="s2">    passée en argument.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Les valeurs possibles pour cet argument sont &#39;croissant&#39; ou &#39;decroissant&#39;.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbre_lettres</span> <span class="o">=</span> <span class="mi">26</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Compteur</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">sens</span> <span class="o">==</span> <span class="s2">&#34;croissant&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">indice</span> <span class="o">=</span> <span class="mi">97</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">sens</span> <span class="o">==</span> <span class="s2">&#34;decroissant&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">indice</span> <span class="o">=</span> <span class="mi">122</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Il faut choisir &#39;croissant&#39; ou &#39;decroissant&#39;.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">nbre_lettres</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">indice</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">sens</span> <span class="o">==</span> <span class="s2">&#34;croissant&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">indice</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">indice</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+  </div>
+</details>
+<h3 id="exercice-17">Exercice 17<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire et exécuter une fonction qui détermine les <em>n</em> premiers termes de la « suite de Fibonacci » définie par :
+</p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>u</mi><mn>1</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>&#61;</mo><mn>1</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>u</mi><mn>2</mn></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>&#61;</mo><mn>1</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>u</mi><mi>n</mi></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>&#61;</mo><msub><mi>u</mi><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>&#43;</mo><msub><mi>u</mi><mrow><mi>n</mi><mo>−</mo><mn>2</mn></mrow></msub><mtext> pour </mtext><mi>n</mi><mo>&gt;</mo><mn>2</mn></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">&#92;begin{aligned} u&#95;1 &amp;&#61; 1&#92;&#92; u&#95;2 &amp;&#61; 1&#92;&#92; u&#95;n &amp;&#61; u&#95;{n-1} &#43; u&#95;{n-2} &#92;text{ pour } n &gt; 2 &#92;end{aligned}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:4.2em;vertical-align:-1.85em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.35em;"><span style="top:-4.51em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-1.51em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.85em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.35em;"><span style="top:-4.51em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1</span></span></span><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1</span></span></span><span style="top:-1.51em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mord text"><span class="mord"> pour </span></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.85em;"><span></span></span></span></span></span></span></span></span></span></span></span></span><p>Cette fonction doit recevoir en argument la valeur de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> et retourner la suite de nombres sous forme de chaîne de caractères. Spécification de la fonction :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fibo</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne les n premiers termes de la suite de Fibonacci.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solution</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fibo</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne les n premiers termes de la suite de Fibonacci.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;1&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;1 1&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">u</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># u_{n-2}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">v</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># u_{n-1}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;1 1 &#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rang</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="n">rang</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">w</span> <span class="o">=</span> <span class="n">u</span> <span class="o">+</span> <span class="n">v</span>  <span class="c1"># u_{n}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">u</span> <span class="o">=</span> <span class="n">v</span>  <span class="c1"># Mise à jour de u_{n-2}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">v</span> <span class="o">=</span> <span class="n">w</span>  <span class="c1"># Mise à jour de u_{n-1}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">rang</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span></span></span></code></pre></div>
+  </div>
+</details>
+<h2 id="exercices-du-chapitre-version-for">Exercices du chapitre (version <strong>for</strong>)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Reprendre les exercices 3, 4, 5, 6, 7, 9, 10, 11, 12, 14, 16 de la section précédente et les ré-écrire à l’aide de l’instruction <code>for</code>.</p>
+<hr>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <strong>Solutions</strong>
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">triple_du_precedent</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères formée par une suite de 12
+</span></span></span><span class="line"><span class="cl"><span class="s2">    entiers dont chaque terme est égal au triple du précédent,
+</span></span></span><span class="line"><span class="cl"><span class="s2">    à partir du premier entier a, positif,  passé en argument.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; triple_du_precedent(1)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;1 3 9 27 81 243 729 2187 6561 19683 59049 177147 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; triple_du_precedent(5)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;5 15 45 135 405 1215 3645 10935 32805 98415 295245 885735 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  <span class="c1"># Initialisation de la chaîne à retourner</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_max_compteur</span> <span class="o">=</span> <span class="mi">12</span>  <span class="c1"># Valeur maximale pour le compteur</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">val_max_compteur</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span> <span class="o">*=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">multiplication</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères formées des 10 premiers
+</span></span></span><span class="line"><span class="cl"><span class="s2">    nombres de la table de multiplication de a.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication(7)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;7 14 21 28 35 42 49 56 63 70 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  <span class="c1"># Initialisation de la chaîne à retourner</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_max_compteur</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">val_max_compteur</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">multiplication_multiple_trois</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères formées des 10 premiers
+</span></span></span><span class="line"><span class="cl"><span class="s2">    nombres de la table de multiplication de a en signalant au
+</span></span></span><span class="line"><span class="cl"><span class="s2">    passage ceux qui sont des multiples de 3.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication_multiple_trois(2)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;2 4 6* 8 10 12* 14 16 18* 20 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication_multiple_trois(7)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;7 14 21* 28 35 42* 49 56 63* 70 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  <span class="c1"># Initialisation de la chaîne à retourner</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_max_compteur</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">val_max_compteur</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">valeur</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">valeur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">valeur</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># si multiple de 3</span>
+</span></span><span class="line"><span class="cl">            <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;*&#34;</span>  <span class="c1"># ajouter astérisque</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34; &#34;</span>  <span class="c1"># pour séparer les valeurs</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">multiplication_multiple_sept</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Calcule les 50 premiers termes de la table de a mais retourne
+</span></span></span><span class="line"><span class="cl"><span class="s2">    une chaîne de caractères contenant uniquement les multiples de 7.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication_multiple_sept(2)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;14 28 42 56 70 84 98 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; multiplication_multiple_sept(9)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;63 126 189 252 315 378 441 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>  <span class="c1"># Initialisation de la chaîne à retourner</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_max_compteur</span> <span class="o">=</span> <span class="mi">50</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">val_max_compteur</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">valeur</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">valeur</span> <span class="o">%</span> <span class="mi">7</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># si multiple de 3</span>
+</span></span><span class="line"><span class="cl">            <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">valeur</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>  <span class="c1"># ajouter valeur</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">diviseurs</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères formée de la liste des diviseurs
+</span></span></span><span class="line"><span class="cl"><span class="s2">    de a.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; diviseurs(18)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;18 9 6 3 2 1 &#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">a</span> <span class="o">%</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">reponse</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">table_multiplication</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la table de multiplication des nombres de 1 à 10.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_max</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">val_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">val_max</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">reponse</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">plus_grand_plus_petit</span><span class="p">(</span><span class="n">nbre_valeurs</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Demande à l&#39;utilisateur d&#39;entrer nbre_valeurs valeurs et retourne une
+</span></span></span><span class="line"><span class="cl"><span class="s2">    chaîne de caractères formée des deux valeurs max et min.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la valeur 1 : &#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">valeur_plus_grande</span> <span class="o">=</span> <span class="n">valeur</span>
+</span></span><span class="line"><span class="cl">    <span class="n">valeur_plus_petite</span> <span class="o">=</span> <span class="n">valeur</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">nbre_valeurs</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">valeur</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrez la valeur </span><span class="si">{}</span><span class="s2"> : &#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">valeur</span> <span class="o">&gt;</span> <span class="n">valeur_plus_grande</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">valeur_plus_grande</span> <span class="o">=</span> <span class="n">valeur</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="n">valeur</span> <span class="o">&lt;</span> <span class="n">valeur_plus_petite</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">valeur_plus_petite</span> <span class="o">=</span> <span class="n">valeur</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">reponse</span> <span class="o">=</span> <span class="s2">&#34;max : </span><span class="si">{}</span><span class="s2">, min : </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">valeur_plus_grande</span><span class="p">,</span> <span class="n">valeur_plus_petite</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">reponse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">import</span> <span class="nn">doctest</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">doctest</span><span class="o">.</span><span class="n">testmod</span><span class="p">()</span></span></span></code></pre></div>
+  </div>
+</details>
+<h2 id="exercices-de-réflexion-du-chapitre">Exercices de réflexion du chapitre<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="exercice---calendrier-très-difficile">Exercice  : Calendrier (très difficile)###<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Écrire et exécuter une fonction qui affiche un calendrier qui va du 1er janvier 2001 au 31 décembre 3000.</p>
+<p><strong>Description</strong></p>
+<ul>
+<li>
+<p>Les années multiples de quatre sont bissextiles, sauf les années multiples de cent qui ne le sont pas, à l&rsquo;exception des années multiples de quatre cents qui le sont. Ainsi, 2100, 2200, 2300, 2500, 2600, 2700, 2900 et 3000 ne sont pas bissextiles mais 2400 et 2800 le sont.</p>
+</li>
+<li>
+<p>Ajouter à ce calendrier le nombre de jours écoulés depuis le début du calendrier.</p>
+</li>
+<li>
+<p>Ajouter à ce calendrier le jour de la semaine.</p>
+</li>
+</ul>
+<p><strong>Exemple de sortie.</strong></p>
+<p>1 lundi 1 janvier 2001
+2 mardi 2 janvier 2001
+&hellip;
+365241 mardi 30 décembre 3000
+365242 mercredi 31 décembre 3000</p>
+<h3 id="exercice--le-taxi-de-ramanujan">Exercice : Le taxi de Ramanujan###<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Srinivasa Ramanujan était un mathématicien indien célèbre pour son intuition dans la manipulation des nombres. Alors que le mathématicien anglais G. H. Hardy lui rendait visite, ce dernier remarqua que le numéro du taxi dans lequel ils se déplaçaient était 1729 : « <em>Voilà un nombre sans relief !</em> », déclara-t-il alors.  Ramanujan répondit aussitôt : « <em>Pas du tout Hardy ! Pas du tout ! C&rsquo;est au contraire un nombre très intéressant. C&rsquo;est le plus petit nombre que l&rsquo;on peut exprimer comme la somme de deux nombres au cube, et ce de deux façons différentes !</em> »</p>
+<p>L&rsquo;objectif de la fonction que vous allez écrire est de trouver la liste de tous les entiers plus petits (ou égaux à) qu&rsquo;un nombre <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span> &mdash; choisi par l&rsquo;utilisateur &mdash; qui peuvent être exprimés comme la somme de deux nombres au cube, de deux façons différentes.</p>
+<p>En d&rsquo;autres termes, le problème consiste à trouver quatre entiers <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span></span>, plus petits que <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span>, tels que <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>a</mi><mn>3</mn></msup><mo>&#43;</mo><msup><mi>b</mi><mn>3</mn></msup><mo>&#61;</mo><msup><mi>c</mi><mn>3</mn></msup><mo>&#43;</mo><msup><mi>d</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">a&#94;3 &#43; b&#94;3 &#61; c&#94;3 &#43; d&#94;3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span>.</p>
+<p><strong>Aide.</strong> Utiliser quatre boucles imbriquées.</p>
+<h3 id="exercice--code-isbn">Exercice : Code ISBN<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>L&rsquo;« International Standard Book Number » (ISBN) est un code à dix chiffres qui identifie de manière unique un livre. Le chiffre le plus à droite de ce code est <em>la somme de contrôle</em> (<a href="http://fr.wikipedia.org/wiki/Somme_de_contr%C3%B4le" rel="external">Wikipedia</a>) : il est calculé, de manière unique, à partir des valeurs des neuf autres chiffres. Sa valeur est telle que <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mn>1</mn></msub><mo>&#43;</mo><mn>2</mn><msub><mi>d</mi><mn>2</mn></msub><mo>&#43;</mo><mn>3</mn><msub><mi>d</mi><mn>3</mn></msub><mo>&#43;</mo><mo>…</mo><mo>&#43;</mo><mn>10</mn><msub><mi>d</mi><mn>10</mn></msub></mrow><annotation encoding="application/x-tex">d&#95;1 &#43; 2 d&#95;2 &#43; 3 d&#95;3 &#43; &#92;ldots &#43; 10 d&#95;{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord">2</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord">10</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> soit un multiple de 11 (ici <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>d</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">d&#95;i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> représente la valeur du i<sub>ème</sub> chiffre du code, en partant de la droite).</p>
+<p><strong>Exemple.</strong> La <em>la somme de contrôle</em> du code commençant par 020131452 est 5 puisque 5 est la seule valeur de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span> comprise entre 0 et 10 (exclu) telle que </p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>10</mn><mo>⋅</mo><mn>0</mn><mo>&#43;</mo><mn>9</mn><mo>⋅</mo><mn>2</mn><mo>&#43;</mo><mn>8</mn><mo>⋅</mo><mn>0</mn><mo>&#43;</mo><mn>7</mn><mo>⋅</mo><mn>1</mn><mo>&#43;</mo><mn>6</mn><mo>×</mo><mn>3</mn><mo>&#43;</mo><mn>5</mn><mo>×</mo><mn>1</mn><mo>&#43;</mo><mn>4</mn><mo>×</mo><mn>4</mn><mo>&#43;</mo><mn>3</mn><mo>×</mo><mn>5</mn><mo>&#43;</mo><mn>2</mn><mo>×</mo><mn>2</mn><mo>&#43;</mo><mn>1</mn><mo>×</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">10 &#92;cdot 0 &#43; 9 &#92;cdot 2 &#43; 8 &#92;cdot 0 &#43; 7 &#92;cdot 1 &#43; 6 &#92;times 3 &#43; 5 &#92;times 1 &#43; 4 &#92;times 4 &#43; 3 &#92;times 5&#43; 2 &#92;times 2 &#43; 1 &#92;times x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">10</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">9</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span></span><p> soit un multiple de 11.</p>
+<p>Écrire une fonction qui demande à l&rsquo;utilisateur les 9 premiers chiffres d&rsquo;un code ISBN et qui retourne le code ISBN sous forme d&rsquo;une chaîne de caractères.</p>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 28 sept. 2019
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/premi%C3%A8re-sp%C3%A9-nsi/index.html">Première Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

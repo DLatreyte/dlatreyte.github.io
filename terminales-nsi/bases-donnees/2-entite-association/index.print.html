@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Avertissement Le modèle Entités/Associations en tant que tel n’est pas au programme. Par contre il me semble utile afin de vous faire comprendre comment on modèle le réel et on parvient au final à un schéma relationnel.
+L’objectif de ce chapitre n’est donc pas la conception de schémas E/A mais plutôt leur compréhension et leur interprétation.
+Ce chapitre présente la première étape du processus de modélisation du monde réel. On commence par recueillir les informations à intégrer dans la base de donnée puis on les transcrit sous une forme qui nous permettra, dans le prochain chapitre, à passer au modèle relationnel (choix de la structure de la base, clés, ...).">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Le modèle Entités/Associations :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Avertissement Le modèle Entités/Associations en tant que tel n’est pas au programme. Par contre il me semble utile afin de vous faire comprendre comment on modèle le réel et on parvient au final à un schéma relationnel.
+L’objectif de ce chapitre n’est donc pas la conception de schémas E/A mais plutôt leur compréhension et leur interprétation.
+Ce chapitre présente la première étape du processus de modélisation du monde réel. On commence par recueillir les informations à intégrer dans la base de donnée puis on les transcrit sous une forme qui nous permettra, dans le prochain chapitre, à passer au modèle relationnel (choix de la structure de la base, clés, ...).">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/bases-donnees/2-entite-association/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Le modèle Entités/Associations :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Avertissement Le modèle Entités/Associations en tant que tel n’est pas au programme. Par contre il me semble utile afin de vous faire comprendre comment on modèle le réel et on parvient au final à un schéma relationnel.
+L’objectif de ce chapitre n’est donc pas la conception de schémas E/A mais plutôt leur compréhension et leur interprétation.
+Ce chapitre présente la première étape du processus de modélisation du monde réel. On commence par recueillir les informations à intégrer dans la base de donnée puis on les transcrit sous une forme qui nous permettra, dans le prochain chapitre, à passer au modèle relationnel (choix de la structure de la base, clés, ...).">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2021-02-02T05:04:55+04:00">
+    <meta property="article:modified_time" content="2021-02-02T05:04:55+04:00">
+    <meta itemprop="name" content="Le modèle Entités/Associations :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Avertissement Le modèle Entités/Associations en tant que tel n’est pas au programme. Par contre il me semble utile afin de vous faire comprendre comment on modèle le réel et on parvient au final à un schéma relationnel.
+L’objectif de ce chapitre n’est donc pas la conception de schémas E/A mais plutôt leur compréhension et leur interprétation.
+Ce chapitre présente la première étape du processus de modélisation du monde réel. On commence par recueillir les informations à intégrer dans la base de donnée puis on les transcrit sous une forme qui nous permettra, dans le prochain chapitre, à passer au modèle relationnel (choix de la structure de la base, clés, ...).">
+    <meta itemprop="datePublished" content="2021-02-02T05:04:55+04:00">
+    <meta itemprop="dateModified" content="2021-02-02T05:04:55+04:00">
+    <meta itemprop="wordCount" content="2522">
+    <meta itemprop="keywords" content="Terminales Spé NSI,Informatique">
+    <title>Le modèle Entités/Associations :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/bases-donnees/2-entite-association/index.html" rel="canonical" type="text/html" title="Le modèle Entités/Associations :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/bases-donnees/2-entite-association/index.xml" rel="alternate" type="application/rss&#43;xml" title="Le modèle Entités/Associations :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/bases-donnees/2-entite-association/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/bases-donnees/2-entite-association/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#principes-généraux">Principes généraux</a>
+      <ul>
+        <li><a href="#problèmes-lorsque-la-structure-de-la-base-na-pas-été-pensée">Problèmes lorsque la structure de la base n&rsquo;a pas été pensée</a></li>
+        <li><a href="#un-exemple-de-structure-de-base-pensée">Un exemple de structure de base pensée</a></li>
+      </ul>
+    </li>
+    <li><a href="#le-modèle-ea-présentation-informelle">Le modèle E/A : présentation informelle</a></li>
+    <li><a href="#le-modèle">Le modèle</a>
+      <ul>
+        <li><a href="#entités-attributs-et-identifiants">Entités, attributs et identifiants</a></li>
+        <li><a href="#associations-binaires">Associations binaires</a></li>
+      </ul>
+    </li>
+    <li><a href="#exercice">Exercice</a>
+      <ul>
+        <li><a href="#exercice-1--choix-dun-identifiant">Exercice 1 : choix d&rsquo;un identifiant</a></li>
+        <li><a href="#exercice-2--identification-des-entités-et-des-associations">Exercice 2 : identification des entités et des associations</a></li>
+        <li><a href="#exercice-3--description-du-monde-réel-à-partir-des-cardinalités">Exercice 3 : description du monde réel à partir des cardinalités</a></li>
+        <li><a href="#exercice-4--cardinalités">Exercice 4 : cardinalités</a></li>
+        <li><a href="#exercice-5--tournoi-de-tennis">Exercice 5 : tournoi de tennis</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Bases de données">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/bases-donnees/index.html"><span itemprop="name">Bases de données</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/2-entite-association/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/1-introduction-bases-de-donnees/index.html" title="Introduction aux bases de données (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/3-vers-modele-relationnel/index.html" title="Du schéma entités/associations au schéma relationnel (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Bases de données</div>
+  <header class="headline">
+  </header>
+
+<h1 id="le-modèle-entitésassociations">Le modèle Entités/Associations</h1>
+
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>Le modèle Entités/Associations en tant que tel n&rsquo;est pas au programme. Par contre il me semble utile afin de vous faire comprendre comment on modèle le réel et on parvient au final à un schéma relationnel.</p>
+<p><strong>L&rsquo;objectif de ce chapitre n&rsquo;est donc pas la conception de schémas E/A mais plutôt leur compréhension et leur interprétation.</strong></p>
+
+  </div>
+</div>
+
+<p>Ce chapitre présente la première étape du processus de modélisation du
+monde réel. On commence par recueillir les informations à intégrer dans
+la base de donnée puis on les transcrit sous une forme qui nous
+permettra, dans le prochain chapitre, à passer au <em>modèle relationnel</em>
+(choix de la structure de la base, clés, ...).</p>
+<h2 id="principes-généraux">Principes généraux<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Dans un schéma E/A, on distingue les <strong>entités</strong> qui constituent la base
+de données, et les <strong>associations</strong> entre ces entités. <em>Pour illustrer le
+besoin de cette distinction</em>, on commence traditionnellement par
+illustrer les problèmes qui ne manquent pas de survenir lorsqu&rsquo;on traite
+une base relationnelle comme un simple fichier texte, sans se soucier de
+lui donner une structure correcte.</p>
+<h3 id="problèmes-lorsque-la-structure-de-la-base-na-pas-été-pensée">Problèmes lorsque la structure de la base n&rsquo;a pas été pensée<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>On commence généralement par créer et étudier une <strong>base</strong> se
+limitant à la <strong>table</strong> suivante :</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center">titre</th>
+      <th class="align-center">annee</th>
+      <th class="align-center">nom_realisateur</th>
+      <th class="align-center">prenom_realisateur</th>
+      <th class="align-center">annee_naissance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">Alien</td>
+      <td class="align-center">1979</td>
+      <td class="align-center">Scott</td>
+      <td class="align-center">Ridley</td>
+      <td class="align-center">1943</td>
+    </tr>
+    <tr>
+      <td class="align-center">Vertigo</td>
+      <td class="align-center">1958</td>
+      <td class="align-center">Hitchcock</td>
+      <td class="align-center">Alfred</td>
+      <td class="align-center">1899</td>
+    </tr>
+    <tr>
+      <td class="align-center">Psychose</td>
+      <td class="align-center">1960</td>
+      <td class="align-center">Hitchcock</td>
+      <td class="align-center">Alfred</td>
+      <td class="align-center">1899</td>
+    </tr>
+    <tr>
+      <td class="align-center">Kagemusha</td>
+      <td class="align-center">1980</td>
+      <td class="align-center">Kurosawa</td>
+      <td class="align-center">Akira</td>
+      <td class="align-center">1910</td>
+    </tr>
+    <tr>
+      <td class="align-center">Volte-face</td>
+      <td class="align-center">1997</td>
+      <td class="align-center">Woo</td>
+      <td class="align-center">John</td>
+      <td class="align-center">1946</td>
+    </tr>
+    <tr>
+      <td class="align-center">Pulp Fiction</td>
+      <td class="align-center">1995</td>
+      <td class="align-center">Tarantino</td>
+      <td class="align-center">Quentin</td>
+      <td class="align-center"></td>
+    </tr>
+    <tr>
+      <td class="align-center">Titanic</td>
+      <td class="align-center">1997</td>
+      <td class="align-center">Cameron</td>
+      <td class="align-center">James</td>
+      <td class="align-center">1954</td>
+    </tr>
+    <tr>
+      <td class="align-center">Sacrifice</td>
+      <td class="align-center">1986</td>
+      <td class="align-center">Tarkovski</td>
+      <td class="align-center">Andrei</td>
+      <td class="align-center">1932</td>
+    </tr>
+    <tr>
+      <td class="align-center">Inglourious Basterds</td>
+      <td class="align-center">2009</td>
+      <td class="align-center">Tarantino</td>
+      <td class="align-center">Quentin</td>
+      <td class="align-center">1963</td>
+    </tr>
+    <tr>
+      <td class="align-center">Reservoir Dogs</td>
+      <td class="align-center">1992</td>
+      <td class="align-center">Tarantino</td>
+      <td class="align-center"></td>
+      <td class="align-center">1963</td>
+    </tr>
+    <tr>
+      <td class="align-center">Avatar</td>
+      <td class="align-center">2009   Cameron</td>
+      <td class="align-center">James</td>
+      <td class="align-center">1954</td>
+      <td class="align-center"></td>
+    </tr>
+    <tr>
+      <td class="align-center">Arizona Dream</td>
+      <td class="align-center"></td>
+      <td class="align-center">1993</td>
+      <td class="align-center">Kusturica</td>
+      <td class="align-center">Emir</td>
+    </tr>
+    <tr>
+      <td class="align-center">Le Ruban blanc</td>
+      <td class="align-center">2009</td>
+      <td class="align-center">Haneke</td>
+      <td class="align-center">Michael</td>
+      <td class="align-center">1942</td>
+    </tr>
+  </tbody>
+</table>
+<blockquote>
+<p><strong>Table FilmSimple.</strong></p>
+</blockquote>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>La conception de cette base soufre de graves défauts :</p>
+<h4 id="anomalies-lors-dune-insertion">Anomalies lors d&rsquo;une insertion<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p><em>Qu&rsquo;est-ce qui distingue deux films différents ?</em><br>
+La conception de cette base ne permet pas de répondre à cette
+question puisqu&rsquo;on peut insérer deux films de même nom mais de
+réalisateurs différents, par exemple.<br>
+Une bonne conception
+nécessiterait <em>un choix</em> : Deux films peuvent-ils avoir le même
+titre ? Si non, un film peut-être repéré par son titre, si oui, il
+reste à définir ce qui identifiera un film.</p>
+<h4 id="anomalies-lors-dune-modification">Anomalies lors d&rsquo;une modification<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Les données sont incohérentes car il manque une date de naissance et
+un prénom. Toute modification de la table peut conduire à une telle
+incohérence. De plus, ces modifications doivent être effectuées
+plusieurs fois, sans contrôle de cohérence.</p>
+<p>Pour finir, le Tarantino de « Reservoir Dogs » est-il le même que
+celui de « Pulp Fiction » ?</p>
+<h4 id="anomalies-lors-dune-destruction">Anomalies lors d&rsquo;une destruction<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Toute destruction d&rsquo;un enregistrement retire les renseignements sur
+le film <em>et</em> sur le réalisateur : supprimer l&rsquo;entrée de
+« Volte-face » efface tout renseignement sur John Woo.</p>
+
+  </div>
+</div>
+
+<p>On remarque que <em>c&rsquo;est la présence de la même information à plusieurs
+endroits</em> qui est à l&rsquo;origine de pratiquement tous les problèmes.</p>
+<h3 id="un-exemple-de-structure-de-base-pensée">Un exemple de structure de base pensée<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Pour éviter les anomalies énumérées ci-dessus, il faut :</p>
+<ol>
+<li>
+<p><em>Être capable de représenter individuellement les films et les
+réalisateurs, de manière à ce qu&rsquo;une action sur l&rsquo;un n&rsquo;entraîne pas
+systématiquement une action sur l&rsquo;autre ;</em></p>
+</li>
+<li>
+<p><em>Définir une méthode <strong>d&rsquo;identification</strong> d&rsquo;un film ou d&rsquo;un
+réalisateur, qui permette d&rsquo;assurer que la même information est
+représentée une seule fois ;</em></p>
+</li>
+<li>
+<p><em>Préserver le lien entre les films et les réalisateurs, mais sans
+introduire de redondance.</em></p>
+</li>
+</ol>
+
+  </div>
+</div>
+
+<p>Les deux premièrs problèmes nécessitent, pour être résolus, d&rsquo;effectuer
+des choix. Par exemple : <em>deux films ne peuvent pas avoir le même titre mais deux
+réalisateurs peuvent avoir le même nom</em>. Afin de pouvoir identifier les
+réalisateurs, on doit alors <em>leur attribuer un identifiant unique</em>.</p>
+<div class="colonnes"><div class="colonne">
+
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>titre</strong></th>
+      <th class="align-center">annee</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">Alien</td>
+      <td class="align-center">1979</td>
+    </tr>
+    <tr>
+      <td class="align-left">Vertigo</td>
+      <td class="align-center">1958</td>
+    </tr>
+    <tr>
+      <td class="align-left">Psychose</td>
+      <td class="align-center">1960</td>
+    </tr>
+    <tr>
+      <td class="align-left">Kagemusha</td>
+      <td class="align-center">1980</td>
+    </tr>
+    <tr>
+      <td class="align-left">Volte-face</td>
+      <td class="align-center">1997</td>
+    </tr>
+    <tr>
+      <td class="align-left">Pulp Fiction</td>
+      <td class="align-center">1995</td>
+    </tr>
+    <tr>
+      <td class="align-left">Titanic</td>
+      <td class="align-center">1997</td>
+    </tr>
+    <tr>
+      <td class="align-left">Sacrifice</td>
+      <td class="align-center">1986</td>
+    </tr>
+    <tr>
+      <td class="align-left">Inglourious Basterds</td>
+      <td class="align-center">2009</td>
+    </tr>
+    <tr>
+      <td class="align-left">Reservoir Dogs</td>
+      <td class="align-center">1992</td>
+    </tr>
+    <tr>
+      <td class="align-left">Avatar</td>
+      <td class="align-center">2009</td>
+    </tr>
+    <tr>
+      <td class="align-left">Arizona Dream</td>
+      <td class="align-center">1993</td>
+    </tr>
+    <tr>
+      <td class="align-left">Le Ruban blanc</td>
+      <td class="align-center">2009</td>
+    </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>Table des films
+</div><div class="colonne">
+</p>
+</blockquote>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center"><strong>id</strong></th>
+      <th class="align-center">nom_realisateur</th>
+      <th class="align-center">prenom_realisateur</th>
+      <th class="align-center">annee_naissance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">1</td>
+      <td class="align-center">Scott</td>
+      <td class="align-center">Ridley</td>
+      <td class="align-center">1943</td>
+    </tr>
+    <tr>
+      <td class="align-center">2</td>
+      <td class="align-center">Hitchcock</td>
+      <td class="align-center">Alfred</td>
+      <td class="align-center">1899</td>
+    </tr>
+    <tr>
+      <td class="align-center">3</td>
+      <td class="align-center">Kurosawa</td>
+      <td class="align-center">Akira</td>
+      <td class="align-center">1910</td>
+    </tr>
+    <tr>
+      <td class="align-center">4</td>
+      <td class="align-center">Woo</td>
+      <td class="align-center">John</td>
+      <td class="align-center">1946</td>
+    </tr>
+    <tr>
+      <td class="align-center">5</td>
+      <td class="align-center">Tarantino</td>
+      <td class="align-center">Quentin</td>
+      <td class="align-center">1963</td>
+    </tr>
+    <tr>
+      <td class="align-center">6</td>
+      <td class="align-center">Cameron</td>
+      <td class="align-center">James</td>
+      <td class="align-center">1954</td>
+    </tr>
+    <tr>
+      <td class="align-center">7</td>
+      <td class="align-center">Tarkovski</td>
+      <td class="align-center">Andrei</td>
+      <td class="align-center">1932</td>
+    </tr>
+    <tr>
+      <td class="align-center">8</td>
+      <td class="align-center">Kusturica</td>
+      <td class="align-center">Emir</td>
+      <td class="align-center">1954</td>
+    </tr>
+    <tr>
+      <td class="align-center">9</td>
+      <td class="align-center">Haneke</td>
+      <td class="align-center">Michael</td>
+      <td class="align-center">1942</td>
+    </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>Table des réalisateurs
+</div></div>
+</p>
+</blockquote>
+<p>Dans les tables ci-dessus, <em>les identifiants (ou <strong>clés</strong>) sont
+représentés en gras</em>.</p>
+<h4 id="premier-progrès">Premier progrès<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Il n&rsquo;y a maintenant plus de redondance dans la base de données.</p>
+<h4 id="problème">Problème<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Il n&rsquo;existe aucun lien entre les deux tables. Comment savoir qui a réalisé « Le Ruban blanc » ?</p>
+<p>On ajoute alors un attribut dans la table <em>Films</em> :
+<div class="colonnes"><div class="colonne">
+</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>titre</strong></th>
+      <th class="align-center">annee</th>
+      <th class="align-center">id_rea</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">Alien</td>
+      <td class="align-center">1979</td>
+      <td class="align-center">1</td>
+    </tr>
+    <tr>
+      <td class="align-left">Vertigo</td>
+      <td class="align-center">1958</td>
+      <td class="align-center">2</td>
+    </tr>
+    <tr>
+      <td class="align-left">Psychose</td>
+      <td class="align-center">1960</td>
+      <td class="align-center">2</td>
+    </tr>
+    <tr>
+      <td class="align-left">Kagemusha</td>
+      <td class="align-center">1980</td>
+      <td class="align-center">3</td>
+    </tr>
+    <tr>
+      <td class="align-left">Volte-face</td>
+      <td class="align-center">1997</td>
+      <td class="align-center">4</td>
+    </tr>
+    <tr>
+      <td class="align-left">Pulp Fiction</td>
+      <td class="align-center">1995</td>
+      <td class="align-center">5</td>
+    </tr>
+    <tr>
+      <td class="align-left">Titanic</td>
+      <td class="align-center">1997</td>
+      <td class="align-center">6</td>
+    </tr>
+    <tr>
+      <td class="align-left">Sacrifice</td>
+      <td class="align-center">1986</td>
+      <td class="align-center">7</td>
+    </tr>
+    <tr>
+      <td class="align-left">Inglourious Basterds</td>
+      <td class="align-center">2009</td>
+      <td class="align-center">5</td>
+    </tr>
+    <tr>
+      <td class="align-left">Reservoir Dogs</td>
+      <td class="align-center">1992</td>
+      <td class="align-center">5</td>
+    </tr>
+    <tr>
+      <td class="align-left">Avatar</td>
+      <td class="align-center">2009</td>
+      <td class="align-center">6</td>
+    </tr>
+    <tr>
+      <td class="align-left">Arizona Dream</td>
+      <td class="align-center">1993</td>
+      <td class="align-center">8</td>
+    </tr>
+    <tr>
+      <td class="align-left">Le Ruban blanc</td>
+      <td class="align-center">2009</td>
+      <td class="align-center">9</td>
+    </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>Table des films
+</div><div class="colonne">
+</p>
+</blockquote>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center"><strong>id</strong></th>
+      <th class="align-center">nom_realisateur</th>
+      <th class="align-center">prenom_realisateur</th>
+      <th class="align-center">annee_naissance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">1</td>
+      <td class="align-center">Scott</td>
+      <td class="align-center">Ridley</td>
+      <td class="align-center">1943</td>
+    </tr>
+    <tr>
+      <td class="align-center">2</td>
+      <td class="align-center">Hitchcock</td>
+      <td class="align-center">Alfred</td>
+      <td class="align-center">1899</td>
+    </tr>
+    <tr>
+      <td class="align-center">3</td>
+      <td class="align-center">Kurosawa</td>
+      <td class="align-center">Akira</td>
+      <td class="align-center">1910</td>
+    </tr>
+    <tr>
+      <td class="align-center">4</td>
+      <td class="align-center">Woo</td>
+      <td class="align-center">John</td>
+      <td class="align-center">1946</td>
+    </tr>
+    <tr>
+      <td class="align-center">5</td>
+      <td class="align-center">Tarantino</td>
+      <td class="align-center">Quentin</td>
+      <td class="align-center">1963</td>
+    </tr>
+    <tr>
+      <td class="align-center">6</td>
+      <td class="align-center">Cameron</td>
+      <td class="align-center">James</td>
+      <td class="align-center">1954</td>
+    </tr>
+    <tr>
+      <td class="align-center">7</td>
+      <td class="align-center">Tarkovski</td>
+      <td class="align-center">Andrei</td>
+      <td class="align-center">1932</td>
+    </tr>
+    <tr>
+      <td class="align-center">8</td>
+      <td class="align-center">Kusturica</td>
+      <td class="align-center">Emir</td>
+      <td class="align-center">1954</td>
+    </tr>
+    <tr>
+      <td class="align-center">9</td>
+      <td class="align-center">Haneke</td>
+      <td class="align-center">Michael</td>
+      <td class="align-center">1942</td>
+    </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>Table des réalisateurs
+</div></div>
+</p>
+</blockquote>
+<p>Cette représentation est correcte : <strong>la redondance est réduite au minimum</strong>
+puisque seule la clé identifiant un réalisateur apparaît dans deux
+tables (on parle de <em><strong>clé primaire</strong> dans la cas de la table des
+réalisateurs et de <strong>clé étrangère</strong> dans le cas de la table des films</em>). On
+peut vérifier que les anomalies relevées dans la section précédente ont
+disparu : <em>on sait ce qui identifie un film</em>, <em>on sait ce qui identifie un réalisateur</em> ; <em>toute modification n&rsquo;affecte que l&rsquo;instance visée</em> ; <em>on peut détruire l&rsquo;entrée
+d&rsquo;un film sans affecter celle de son réalisateur</em>.</p>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p><em>La modélisation E/A offre une méthode simple pour parvenir au résultat
+ci-dessus sans avoir à écrire les tables, même dans des cas bien plus
+complexes que celui présenté ici.</em></p>
+
+  </div>
+</div>
+
+<h2 id="le-modèle-ea-présentation-informelle">Le modèle E/A : présentation informelle<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<img src="/terminales-nsi/chap-13/chap-13-2/Films.svg" alt="" width="60%" />
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Un schéma E/A réalise une <em>abstraction</em> de l&rsquo;application étudiée, pertinente relativement <em>aux objectifs visés et choix effectués</em>. On distingue :</p>
+<ol>
+<li>
+<p>des <strong>entités</strong>, représentées par des rectangles, ici <em>Film</em>, <em>Artiste</em>, <em>Internaute</em> et <em>Pays</em> ;</p>
+</li>
+<li>
+<p>des <strong>associations entre entités</strong> représentées par des liens entre ces rectangles</p>
+</li>
+</ol>
+<p>Chaque entité est caractérisée par un ensemble d&rsquo;<em>attributs</em>, parmi lesquels <em>un ou plusieurs forment l&rsquo;identifiant unique</em> (souligné sur la figure ci-dessus).</p>
+
+  </div>
+</div>
+
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Les <strong>associations</strong> sont caractérisées par des <strong>cardinalités</strong>. La notation « 0,* » sur le lien <em>Réalise</em> du côté de l&rsquo;entité <em>Film</em> signifie qu&rsquo;un artiste peut réaliser 0 ou plusieurs films. <em>La
+cardinalité est essentielle même si elle est forcément discutable puisque résultat d&rsquo;un choix de conception</em>.</p>
+<p>Les <strong>cardinalités</strong> sont notées à l&rsquo;aide de deux chiffres : celui de droite indique la <em>cardinalité maximale</em> (elle vaut généralement 1 ou *), celui de gauche indique la <em>cardinalité minimale</em>.</p>
+
+  </div>
+</div>
+
+<p>La notation « 0,1 » pour l&rsquo;association <em>Réalise</em> indique que l&rsquo;on s&rsquo;autorise à ne pas connaître le réalisateur du film, « 1,1 » entre <em>Film</em> et <em>Pays</em> indique, au contraire, que l&rsquo;on doit toujours connaître le pays
+producteur du film.</p>
+<p>Il existe quelques raccourcis :</p>
+<ul>
+<li>
+<p>La notation « * » est équivalente à « 0,* » ;</p>
+</li>
+<li>
+<p>La notation « 1 » est équivalente à « 1,1 ».</p>
+</li>
+</ul>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p><em>Un schéma E/A est totalement indépendant de tout choix
+d&rsquo;implémentation. Il n&rsquo;est pas question de type, de structure de données, d&rsquo;algorithme, de langage, ... C&rsquo;est, en théorie, la partie la plus stable d&rsquo;une application utilisant des bases de données.</em></p>
+
+  </div>
+</div>
+
+<h2 id="le-modèle">Le modèle<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Le modèle E/A, conçu en 1976, est à la base de la plupart des méthodes de conception. La syntaxe utilisée ici est celle de la méthode UML.</p>
+<h3 id="entités-attributs-et-identifiants">Entités, attributs et identifiants<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>La première étape d&rsquo;une conception consiste à identifier les entités tiles.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>On désigne par <strong>entité</strong> tout objet identifiable et pertinent pour l&rsquo;application.</em></p>
+
+  </div>
+</div>
+
+<p>La notion <em>d&rsquo;identité</em> est primordiale, c&rsquo;est elle qui permet de distinguer les entités les unes des autres, et donc de dire qu&rsquo;une information est redondante ou qu&rsquo;elle ne l&rsquo;est pas. <em>Il est indispensable de prévoir un moyen technique pour pouvoir effectuer cette distinction entre entités au niveau de la base de données</em> : on parle
+<strong>d&rsquo;identifiant</strong> ou de <strong>clé</strong>.</p>
+<h4 id="attributs">Attributs<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Les entités sont caractérisées par des <strong>propriétés</strong> ou <strong>attributs</strong> : le titre (du film), le nom (de l&rsquo;acteur), sa date de naissance, ... Un attribut est désigné par un <em>nom</em> et prend ses valeurs dans un domaine énumérable, comme les entiers, les chaînes de caractères, les dates,
+etc.</p>
+<p><em>Il est important de noter que, selon cette définition, un attribut prend une valeur et une seule</em>. On dit que les attributs sont <em>atomiques</em>.</p>
+<h4 id="types-dentités">Types d&rsquo;entités<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Il est maintenant possible de décrire plus précisément les entités par leur type :</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>Le type d&rsquo;une entité est composé des éléments
+suivants :</em></p>
+<ol>
+<li>
+<p><em>son nom ;</em></p>
+</li>
+<li>
+<p><em>la liste de ses attributs avec (optionnellement) le domaine où l&rsquo;attribut prend ses valeurs : les entiers, les chaînes de caractères, ... ;</em></p>
+</li>
+<li>
+<p><em>l&rsquo;indication de (ou des) attribut(s) permettant d&rsquo;identifier l&rsquo;entité : ils constituent la clé.</em></p>
+</li>
+</ol>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>Une <strong>clé</strong> est un sous-ensemble d&rsquo;attributs minimal d&rsquo;une entité permettant d&rsquo;identifier de manière unique cette entité.</em></p>
+
+  </div>
+</div>
+
+<p>Un internaute est caractérisé par plusieurs attributs : son email, son nom, son prénom, ... L&rsquo;émail constitue une <strong>clé naturelle</strong> puisqu&rsquo;on ne trouve pas, en principe, deux internautes ayant la même adresse
+électronique. L&rsquo;identification par nom est impossible, mais on pourrait cependant utiliser la paire <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>nom</mtext><mo separator="true">,</mo><mrow><mtext>pr</mtext><mover accent="true"><mtext>e</mtext><mo>ˊ</mo></mover><mtext>nom</mtext></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(&#92;text{nom}, &#92;text{prénom})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">nom</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">pr</span><span class="mord katex-accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">e</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˊ</span></span></span></span></span></span></span><span class="mord">nom</span></span><span class="mclose">)</span></span></span></span></span>. Il est cependant conseillé d&rsquo;éviter d&rsquo;utiliser une telle structure de clé car elle pose
+des problèmes de performances et complique les manipulations SQL par la suite.</p>
+<p>Il est possible d&rsquo;avoir plusieurs clés pour un même ensemble d&rsquo;entités.
+Dans ce cas, on en choisit une comme <strong>clé primaire</strong>, et les autres, comme <strong>clés secondaires</strong>.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Les caractéristiques d&rsquo;une clé primaire devraient être :</p>
+<ol>
+<li>
+<p>Sa valeur doit apparaître de façon évidente dans le schéma E/A ;</p>
+</li>
+<li>
+<p>On ne doit jamais avoir à ressentir le besoin de modifier cet attribut ;</p>
+</li>
+<li>
+<p>Pour des raisons de performance, sa taille de stockage doit être la plus petite possible.</p>
+</li>
+</ol>
+
+  </div>
+</div>
+
+<h4 id="remarque">Remarque<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Dans la conception choisie, dans l&rsquo;exemple de la base <em>Film</em>, il a été décidé que deux films ne pouvaient pas avoir le même titre : ce dernier est donc un bon candidat pour être la clé de la table. Quelle clé aurait-il
+fallu choisir si l&rsquo;on avait accepté que deux films aient le même titre ? Il aurait été nécessaire d&rsquo;introduire un champ abstrait, nommé par exemple, destiné à tenir le rôle de clé.</p>
+<h3 id="associations-binaires">Associations binaires<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>Une association binaire lie deux entités.</em></p>
+
+  </div>
+</div>
+
+<img src="/terminales-nsi/chap-13/chap-13-2/Association.png" alt="" width="80%" />
+<p>On remarque, sur la schéma ci-dessus, que :</p>
+<ul>
+<li>
+<p>certains réalisateurs mettent en scène plusieurs films ;</p>
+</li>
+<li>
+<p>inversement, un film est mis en scène par un réalisateur, au maximum.</p>
+</li>
+</ul>
+<p>L&rsquo;association, pour être la plus explicite possible, doit donc faire apparaître ces différences.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>La cardinalité d&rsquo;une association est une paire <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">&#91;</mo><mi>min</mi><mo>⁡</mo><mo separator="true">,</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">&#93;</mo></mrow><annotation encoding="application/x-tex">&#91;&#92;min, &#92;max&#93;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">&#91;</span><span class="mop">min</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">max</span><span class="mclose">&#93;</span></span></span></span></span> telle que :</em></p>
+<ol>
+<li>
+<p><em>Le symbole <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>max</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">&#92;max</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mop">max</span></span></span></span></span>(<em>cardinalité maximale</em>) désigne le nombre maximal de fois où une entité peut intervenir dans l&rsquo;association.</em></p>
+<p><em>En général, ce nombre est 1 (au plus une fois) ou <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> (plusieurs fois, nombre indéterminé), noté par le symbole « * ».</em></p>
+</li>
+<li>
+<p><em>Le symbole <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>min</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">&#92;min</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6679em;"></span><span class="mop">min</span></span></span></span></span>(cardinalité minimale) désigne le nombre minimal de fois où une entité peut intervenir dans la relation. En général, ce nombre est 1 (au moins une fois) ou 0.</em></p>
+</li>
+</ol>
+
+  </div>
+</div>
+
+<p>Les cardinalités maximales sont plus importantes que les cardinalités minimales ou, plus précisément, elles s&rsquo;avèrent plus difficiles à remettre en cause, une fois que le schéma de base est constitué. <em>Les cardinalités n&rsquo;expriment pas une vérité absolue, mais des choix de
+conception.</em></p>
+<img src="/terminales-nsi/chap-13/chap-13-2/Association2.svg" alt="" width="60%" />
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Dans la notation UML, on indique les cardinalités aux deux extrémités d&rsquo;un lien d&rsquo;association entre deux types d&rsquo;entités <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>A</mi></msub></mrow><annotation encoding="application/x-tex">T&#95;A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">T&#95;B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>. <em>Les cardinalités de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>A</mi></msub></mrow><annotation encoding="application/x-tex">T&#95;A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> sont placées à l&rsquo;extrémité du liant allant de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>A</mi></msub></mrow><annotation encoding="application/x-tex">T&#95;A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> vers <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">T&#95;B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> alors que les cardinalités pour <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">T&#95;B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> sont placées à
+l&rsquo;extrémité du lien allant de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">T&#95;B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> vers <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mi>A</mi></msub></mrow><annotation encoding="application/x-tex">T&#95;A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>.</em></p>
+
+  </div>
+</div>
+
+<p>L&rsquo;association <em>Réalise</em> se lit : un réalisateur réalise zéro, un ou plusieurs films ; un film est réalisé par zéro ou au maximum un réalisateur.</p>
+<h4 id="remarque-1">Remarque<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Le schéma ci-dessus ne fait pas apparaître l&rsquo;entité <em>Réalisateur</em> mais l&rsquo;entité <em>Artiste</em>. De plus deux associations relient ces entités.<br>
+Quelle conception a pu entraîner un tel schéma ? En réalité, un réalisateur peut être acteur dans un film ; il est donc préférable de regrouper les acteurs et les réalisateurs dans type d&rsquo;entité plus
+général : <em>Artiste</em>. L&rsquo;association <em>Réalise</em> ne peut donc plus modéliser le lien entre les entités <em>Film</em> et <em>Artiste</em> ; il est alors nécessaire de créer l&rsquo;association <em>Joue</em>. On obtient le schéma ci-dessous :</p>
+<h4 id="remarque-2">Remarque<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Dans le cas d&rsquo;associations avec des cardinalités multiples de chaque côté, <em>on peut être obligé de lier des attributs à une association</em> (par exemple l&rsquo;association <em>Joue</em> a pour attribut le <em>rôle</em>). En effet, <em><strong>un attribut ne pouvant prendre qu&rsquo;une et une seule valeur</strong></em>, on ne peut pas associer l&rsquo;attribut <em>rôle</em> à l&rsquo;entité <em>Artiste</em> puisqu&rsquo;un acteur
+peut jouer dans plusieurs films (il existe fort peu de chances qu&rsquo;il tienne toujours le même rôle !). <em>Seules les associations ayant des cardinalités multiples de chaque côté peuvent porter des attributs</em>.</p>
+<p>Une association étant définie par un <em>ensemble</em> de couples d&rsquo;entités, on peut donc se demander comment la caractériser.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>La clé d&rsquo;une association (binaire) entre un type
+d&rsquo;entité <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">E&#95;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> et un type d&rsquo;entité <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">E&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> est le couple constitué de la clé <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">c&#95;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">E&#95;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> et de la clé <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">c&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">E&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>.</em></p>
+
+  </div>
+</div>
+
+<p>En pratique, cette définition est trop contraignante car on peut vouloir
+autoriser deux entités à être liées plus d&rsquo;une fois dans une
+association. Par exemple, un internaute peut être amené à noter
+plusieurs fois un film, en conservant l&rsquo;historique de ces notations. Une
+association binaire entre <em>Internaute</em> et <em>Film</em> est impossible : on ne
+peut définir qu&rsquo;un seul lien entre un film donné et un internaute donné !</p>
+<p>Pour résoudre ce problème, il est nécessaire d&rsquo;introduire des types fictifs et des associations multiples, ... ce que nous ne ferons pas dans ce cours.</p>
+<h2 id="exercice">Exercice<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="exercice-1--choix-dun-identifiant">Exercice 1 : choix d&rsquo;un identifiant<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>On considère l&rsquo;entité ci-après, qui décrit des salles de cinémas. Les attributs de cette entité sont les suivants :</p>
+<ul>
+<li>nom de la salle ;</li>
+<li>nom du cinéma ;</li>
+<li>ville du cinéma ;</li>
+<li>nombre de places ;</li>
+<li>taille de l&rsquo;écran.</li>
+</ul>
+<p>Que peut-on proposer comme identifiant (clé) pour cette entité ?</p>
+<h3 id="exercice-2--identification-des-entités-et-des-associations">Exercice 2 : identification des entités et des associations<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<ol>
+<li>
+<p>On veut modéliser l&rsquo;activité de vente de billets pour un théâtre. Quelles entités et quelles associations pourrait-on créer ?</p>
+</li>
+<li>
+<p>Proposer des attributs et les identifiants (clés) pertinents pour décrire ces entités et ces associations.</p>
+</li>
+</ol>
+<h3 id="exercice-3--description-du-monde-réel-à-partir-des-cardinalités">Exercice 3 : description du monde réel à partir des cardinalités<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>On donne le schéma E/A d&rsquo;un séminaire.</p>
+<img src="/terminales-nsi/chap-13/chap-13-2/Seminaire.svg" alt="" width="60%" />
+<p>Quelle description peut-on faire du lien entre les différentes entités à partir des cardinalités ?</p>
+<h3 id="exercice-4--cardinalités">Exercice 4 : cardinalités<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>On donne le schéma E/A d&rsquo;une bibliothèque.</p>
+<img src="/terminales-nsi/chap-13/chap-13-2/Bibilotheque.svg" alt="" width="60%" />
+<p>Quelles questions faut-il poser aux utilisateurs de la base de données pour déterminer les cardinalités des associations ? Proposer une réponse à ces questions et en déduire les cardinalités pour chaque entité.</p>
+<h3 id="exercice-5--tournoi-de-tennis">Exercice 5 : tournoi de tennis<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Le schéma suivant représente des rencontres dans un tournoi de tennis :</p>
+<img src="/terminales-nsi/chap-13/chap-13-2/Tennis.svg" alt="" width="60%" />
+<ol>
+<li>
+<p>Peut-on jouer des matchs de double ?</p>
+</li>
+<li>
+<p>Un joueur peut-il gagner un match sans y avoir participé ?</p>
+</li>
+<li>
+<p>Peut-il y avoir deux matchs sur le même terrain à la même heure ?</p>
+</li>
+<li>
+<p>Connaissant un joueur, peut-on découvrir sur quels terrains il a joué ?</p>
+</li>
+</ol>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 2 févr. 2021
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+    <li><a class="term-link" href="/categories/terminales-sp%C3%A9-nsi/index.html">Terminales Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

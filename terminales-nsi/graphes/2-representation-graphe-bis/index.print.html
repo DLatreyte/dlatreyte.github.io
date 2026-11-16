@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Plusieurs modes de représentation peuvent être implémentés pour stocker des graphes : matrices d’adjacence (ou sommet-sommet), listes des voisins, des successeurs ou des prédécesseurs. Lors de cette séance nous allons écrire les classes réalisant ces implémentations.
+Structure de graphe basée sur une liste d’adjacence Écrire le code de la méthode __init__ de la classe Sommet dont la spécification est :
+def __init__(self: Sommet, val: str) -&gt; None: &#34;&#34;&#34; Initialisation d&#39;un sommet. &#34;&#34;&#34; Remarque : La classe Sommet possède deux attributs :
+val représente la valeur du sommet ou son étiquette. Cet attribut est de type chaîne de caractères (str) ; adj représente la liste des sommets adjacents au sommet, instance de la classe. Cet attribut référence une liste de sommets ; lors de l’initialisation d’un sommet il doit référencer une liste vide.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Représentation d&#39;un graphe en informatique :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Plusieurs modes de représentation peuvent être implémentés pour stocker des graphes : matrices d’adjacence (ou sommet-sommet), listes des voisins, des successeurs ou des prédécesseurs. Lors de cette séance nous allons écrire les classes réalisant ces implémentations.
+Structure de graphe basée sur une liste d’adjacence Écrire le code de la méthode __init__ de la classe Sommet dont la spécification est :
+def __init__(self: Sommet, val: str) -&gt; None: &#34;&#34;&#34; Initialisation d&#39;un sommet. &#34;&#34;&#34; Remarque : La classe Sommet possède deux attributs :
+val représente la valeur du sommet ou son étiquette. Cet attribut est de type chaîne de caractères (str) ; adj représente la liste des sommets adjacents au sommet, instance de la classe. Cet attribut référence une liste de sommets ; lors de l’initialisation d’un sommet il doit référencer une liste vide.">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/graphes/2-representation-graphe-bis/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Représentation d&#39;un graphe en informatique :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Plusieurs modes de représentation peuvent être implémentés pour stocker des graphes : matrices d’adjacence (ou sommet-sommet), listes des voisins, des successeurs ou des prédécesseurs. Lors de cette séance nous allons écrire les classes réalisant ces implémentations.
+Structure de graphe basée sur une liste d’adjacence Écrire le code de la méthode __init__ de la classe Sommet dont la spécification est :
+def __init__(self: Sommet, val: str) -&gt; None: &#34;&#34;&#34; Initialisation d&#39;un sommet. &#34;&#34;&#34; Remarque : La classe Sommet possède deux attributs :
+val représente la valeur du sommet ou son étiquette. Cet attribut est de type chaîne de caractères (str) ; adj représente la liste des sommets adjacents au sommet, instance de la classe. Cet attribut référence une liste de sommets ; lors de l’initialisation d’un sommet il doit référencer une liste vide.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2024-03-19T19:48:53+04:00">
+    <meta property="article:modified_time" content="2024-03-19T19:48:53+04:00">
+    <meta property="article:tag" content="Graphe">
+    <meta property="article:tag" content="Structure De Données">
+    <meta itemprop="name" content="Représentation d&#39;un graphe en informatique :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Plusieurs modes de représentation peuvent être implémentés pour stocker des graphes : matrices d’adjacence (ou sommet-sommet), listes des voisins, des successeurs ou des prédécesseurs. Lors de cette séance nous allons écrire les classes réalisant ces implémentations.
+Structure de graphe basée sur une liste d’adjacence Écrire le code de la méthode __init__ de la classe Sommet dont la spécification est :
+def __init__(self: Sommet, val: str) -&gt; None: &#34;&#34;&#34; Initialisation d&#39;un sommet. &#34;&#34;&#34; Remarque : La classe Sommet possède deux attributs :
+val représente la valeur du sommet ou son étiquette. Cet attribut est de type chaîne de caractères (str) ; adj représente la liste des sommets adjacents au sommet, instance de la classe. Cet attribut référence une liste de sommets ; lors de l’initialisation d’un sommet il doit référencer une liste vide.">
+    <meta itemprop="datePublished" content="2024-03-19T19:48:53+04:00">
+    <meta itemprop="dateModified" content="2024-03-19T19:48:53+04:00">
+    <meta itemprop="wordCount" content="1664">
+    <meta itemprop="keywords" content="Graphe,Structure De Données">
+    <title>Représentation d&#39;un graphe en informatique :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/graphes/2-representation-graphe-bis/index.html" rel="canonical" type="text/html" title="Représentation d&#39;un graphe en informatique :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/graphes/2-representation-graphe-bis/index.xml" rel="alternate" type="application/rss&#43;xml" title="Représentation d&#39;un graphe en informatique :: Physique, Chimie et Informatique">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/graphes/2-representation-graphe-bis/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/graphes/2-representation-graphe-bis/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Les graphes">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/graphes/index.html"><span itemprop="name">Les graphes</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/graphes/2-representation-graphe-bis/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/graphes/1-graphes-structure-de-donnees/index.html" title="Les graphes : structure de données (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/graphes/2-representation-graphe/index.html" title="Représentation d&#39;un graphe en informatique (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Les graphes</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/graphe/index.html">Graphe</a></li>
+    <li><a class="term-link" href="/tags/structure-de-donn%C3%A9es/index.html">Structure De Données</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="représentation-dun-graphe-en-informatique">Représentation d&#39;un graphe en informatique</h1>
+
+<blockquote>
+<p>Plusieurs modes de représentation peuvent être implémentés pour stocker des graphes : <em>matrices d’adjacence (ou sommet-sommet), listes des voisins, des successeurs ou des prédécesseurs</em>. Lors de cette séance nous allons écrire les classes réalisant ces implémentations.</p>
+</blockquote>
+<h4 id="structure-de-graphe-basée-sur-une-liste-dadjacence">Structure de graphe basée sur une liste d&rsquo;adjacence<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<ol>
+<li>
+<p>Écrire le code de la méthode <code>__init__</code> de la classe <code>Sommet</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Sommet</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Initialisation d&#39;un sommet.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p><strong>Remarque</strong> : La classe <code>Sommet</code> possède deux attributs :</p>
+<ul>
+<li><code>val</code> représente la valeur du sommet ou son étiquette. Cet attribut est de type chaîne de caractères (<code>str</code>) ;</li>
+<li><code>adj</code> représente la liste des sommets adjacents au sommet, instance de la classe. Cet attribut référence une liste de sommets ; lors de l&rsquo;initialisation d&rsquo;un sommet il doit référencer une liste vide.</li>
+</ul>
+</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Sommet</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Représentation d&#39;un sommet.
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Sommet</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Initialisation du sommet.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">adj</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Sommets adjacents</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="2">
+<li>
+<p>Ajouter au code de la classe <code>Sommet</code> la re-définition de la méthode <code>__repr__</code> donnée ci-dessous :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Sommet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rep</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34; : [&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adj</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">sommet</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adj</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">rep</span> <span class="o">+=</span> <span class="s2">&#34;, &#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rep</span> <span class="o">+=</span> <span class="s2">&#34;]&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">rep</span></span></span></code></pre></div>
+<p>Cette méthode permet de représenter un sommet sous la forme d&rsquo;une chaîne de caractères.</p>
+</li>
+<li>
+<p>Tester la définition de la classe <code>Sommet</code> en ajoutant les lignes de code suivantes au fichier :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s1</span> <span class="o">=</span> <span class="n">Sommet</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s2</span> <span class="o">=</span> <span class="n">Sommet</span><span class="p">(</span><span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s3</span> <span class="o">=</span> <span class="n">Sommet</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s1</span><span class="o">.</span><span class="n">adj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">s1</span><span class="o">.</span><span class="n">adj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span></span></span></code></pre></div>
+</li>
+<li>
+<p>Écrire le code de la méthode <code>__init__</code> de la classe <code>Graphe</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">valeurs</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    La liste des sommets peut être passée dans une
+</span></span></span><span class="line"><span class="cl"><span class="s2">    chaîne de caractères. Chaque sommet doit alors être
+</span></span></span><span class="line"><span class="cl"><span class="s2">    séparé du précédent par une virgule.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Hypothèse : chaque sommet n&#39;est présent qu&#39;une seule
+</span></span></span><span class="line"><span class="cl"><span class="s2">    fois dans valeurs.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p><strong>Remarque :</strong> La classe <code>Sommet</code> possède un seul attribut, <code>sommets</code>. Ce dernier référence une liste d&rsquo;objets de type <code>Sommet</code>. Cette liste est initialement :</p>
+<ul>
+<li>
+<p>Soit vide,</p>
+</li>
+<li>
+<p>Soit constituée des sommets passés en argument lors de l&rsquo;initialisation d&rsquo;un objet de type <code>Graphe</code>.</p>
+</li>
+</ul>
+</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Graphe</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Représentation du graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">valeurs</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">        La liste des sommets peut être passée dans une
+</span></span></span><span class="line"><span class="cl"><span class="s2">        chaîne de caractères. Chaque sommet doit être
+</span></span></span><span class="line"><span class="cl"><span class="s2">        séparé du précédent par une virgule.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Hypothèse : chaque sommet n&#39;est présent qu&#39;une seule
+</span></span></span><span class="line"><span class="cl"><span class="s2">        fois dans valeurs.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># liste des sommets</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">valeurs</span> <span class="o">!=</span> <span class="s2">&#34;&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="n">valeurs</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;,&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Sommet</span><span class="p">(</span><span class="n">sommet</span><span class="p">))</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="5">
+<li>
+<p>Ajouter au code de la classe <code>Graphe</code> la re-définition de la méthode <code>__repr__</code> donnée ci-dessous :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Représentation du graphe sous forme d&#39;une chaîne de
+</span></span></span><span class="line"><span class="cl"><span class="s2">    caractères.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rep</span> <span class="o">=</span> <span class="s2">&#34;{&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">+=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">sommet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Ajout de la virgule sauf dernier tour</span>
+</span></span><span class="line"><span class="cl">            <span class="n">rep</span> <span class="o">+=</span> <span class="s2">&#34;, &#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rep</span> <span class="o">+=</span> <span class="s2">&#34;}&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">rep</span></span></span></code></pre></div>
+<p>Cette méthode permet de représenter un graphe sous la forme d&rsquo;une chaîne de caractères.</p>
+</li>
+<li>
+<p>Tester la définition de la classe <code>Graphe</code> à l&rsquo;aide du code suivant, <em>sous les lignes de code de la question 3</em> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">g1</span> <span class="o">=</span> <span class="n">Graphe</span><span class="p">(</span><span class="s2">&#34;a,b,c,d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span></span></span></code></pre></div>
+</li>
+<li>
+<p>Écrire le code de la méthode <code>existe_sommet</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">existe_sommet</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Vérifie que le sommet s existe bien dans le graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">existe_sommet</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Vérifie que le sommet s existe bien dans le graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sommet_present</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Sommet pas présent</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">:</span>  <span class="c1"># sommet référence un objet</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">sommet</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">s</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sommet_present</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">sommet_present</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="8">
+<li>
+<p>Tester le code précédent en ajoutant les instructions suivantes, <em>à la fin du fichier</em> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Sommet g présent dans le graphe : </span><span class="si">{</span><span class="n">g1</span><span class="o">.</span><span class="n">existe_sommet</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Sommet a présent dans le graphe : </span><span class="si">{</span><span class="n">g1</span><span class="o">.</span><span class="n">existe_sommet</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre></div>
+</li>
+<li>
+<p>Écrire le code de la méthode <code>ajout_sommet</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajout_sommet</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajout du sommet de valeur val au graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Si le sommet est déjà présent dans le graphe une exception
+</span></span></span><span class="line"><span class="cl"><span class="s2">    est levée.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajout_sommet</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajout du sommet de valeur val.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Si le sommet est déjà présent dans le graphe une exception
+</span></span></span><span class="line"><span class="cl"><span class="s2">    est levée.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_sommet</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Sommet déjà présent dans le graphe !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Sommet</span><span class="p">(</span><span class="n">val</span><span class="p">))</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="10">
+<li>
+<p>Tester le code précédent en ajoutant les instructions suivantes, <em>à la fin du fichier</em> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">g1</span><span class="o">.</span><span class="n">ajout_sommet</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span></span></span></code></pre></div>
+</li>
+<li>
+<p>Écrire le code de la méthode <code>recuperation_sommet</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">recuperation_sommet</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sommet</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">       Récupère l&#39;objet de type sommet, présent dans la liste
+</span></span></span><span class="line"><span class="cl"><span class="s2">    sommets, dont la valeur/étiquette est s.
+</span></span></span><span class="line"><span class="cl"><span class="s2">       Lève une exception si le sommet n&#39;existe pas.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+</li>
+</ol>
+<p>​ <strong>Remarque :</strong> Cette méthode simplifie l&rsquo;écriture des méthodes suivantes.</p>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">recuperation_sommet</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sommet</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Récupère le sommet de valeur s.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Lève une exception si le sommet n&#39;existe pas.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_sommet</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Le sommet </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2"> n&#39;existe pas.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="n">objet_sommet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	    <span class="k">if</span> <span class="n">objet_sommet</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">s</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	        <span class="k">return</span> <span class="n">objet_sommet</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="12">
+<li>
+<p>Écrire le code de la fonction <code>existe_arete</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">existe_arête</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">s2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine si l&#39;arête {s1, s2} existe dans le graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ne vérifie pas l&#39;existence de l&#39;arête {s2, s1}.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Lève une exception si l&#39;un des sommets n&#39;existe pas.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">existe_arête</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">s2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine si l&#39;arête {s1, s2} existe dans le graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ne vérifie pas l&#39;existence de l&#39;arête {s2, s1}.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Lève une exception si l&#39;un des sommets n&#39;existe pas.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">objet_sommet_depart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="n">objet_sommet_arrivee</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">objet_sommet_arrivee</span> <span class="ow">in</span> <span class="n">objet_sommet_depart</span><span class="o">.</span><span class="n">adj</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="13">
+<li>
+<p>Écrire le code de la fonction <code>ajout_arete</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajout_arete</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">s2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajoute l&#39;arête (ou l&#39;arc) {s1, s2} au graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Si les sommets n&#39;existent pas, on lève une exception.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Si l&#39;arête existe déjà, on lève une exception.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ne crée pas l&#39;arête {s2, s1}.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajout_arete</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">s2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajoute l&#39;arête (ou l&#39;arc) {s1, s2} au graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Si les sommets n&#39;existent pas, on lève une exception.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Si l&#39;arête existe déjà, on lève une exception.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ne crée pas l&#39;arête {s2, s1}.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># L&#39;arête existe-t-elle déjà ?</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_arête</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&#34;Arête existe déjà !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Récupération des sommets</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sommet_depart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sommet_destination</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Ajout du sommet s2 à la liste des adjacents de s1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sommet_depart</span><span class="o">.</span><span class="n">adj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sommet_destination</span><span class="p">)</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="14">
+<li>
+<p>Tester le code précédent en ajoutant les instructions suivantes, <em>à la fin du fichier</em> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">g1</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">g1</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">g1</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;e&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># g1.ajout_arete(&#34;a&#34;, &#34;b&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="n">g1</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="s2">&#34;e&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">g1</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span></span></span></code></pre></div>
+</li>
+<li>
+<p>Écrire le code de la fonction <code>est_non_oriente</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_non_oriente</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine si le graphe est non orienté.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_non_oriente</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine si le graphe est non orienté.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">sommet1</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">sommet2</span> <span class="ow">in</span> <span class="n">sommet1</span><span class="o">.</span><span class="n">adj</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">existe_arête</span><span class="p">(</span><span class="n">sommet2</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">sommet1</span><span class="o">.</span><span class="n">val</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">True</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="16">
+<li>
+<p>Tester le code précédent en ajoutant les instructions suivantes, <em>à la fin du fichier</em> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Le graphe est non orienté : </span><span class="si">{</span><span class="n">g1</span><span class="o">.</span><span class="n">est_non_oriente</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">g1</span><span class="o">.</span><span class="n">ajout_arete</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Le graphe est non orienté : </span><span class="si">{</span><span class="n">g1</span><span class="o">.</span><span class="n">est_non_oriente</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre></div>
+</li>
+<li>
+<p>On souhaite maintenant écrire le code de la fonction <code>construction_matrice</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">construction_matrice</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Construction de la matrice sommet - sommet du graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p>Compléter le code suivant :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">construction_matrice</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Construction de la matrice sommet - sommet du graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_sommets_ordonnees</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">sommet</span><span class="o">.</span><span class="n">val</span> <span class="k">for</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">matrice</span> <span class="o">=</span> <span class="o">.....</span>  <span class="c1"># Initialisation de la matrice</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">nom_sommet</span> <span class="ow">in</span> <span class="n">val_sommets_ordonnees</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Récupération de l&#39;objet de type sommet associé au nom</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sommet</span> <span class="o">=</span> <span class="o">.....</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Récupération des noms des sommets adjacents</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nom_sommets_adjacents</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sommet_adj</span><span class="o">.</span><span class="n">val</span> <span class="k">for</span> <span class="n">sommet_adj</span> <span class="ow">in</span> <span class="n">sommet</span><span class="o">.</span><span class="n">adj</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">ligne_matrice</span> <span class="o">=</span> <span class="o">.....</span>         <span class="c1"># Initialisation de la ligne de la matrice</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">val_sommets_ordonnees</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">val_sommets_ordonnees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">nom_sommets_adjacents</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="o">......</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="o">......</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.....</span>  <span class="c1"># Ajout de la ligne à la matrice</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">matrice</span></span></span></code></pre></div>
+</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">construction_matrice</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Construction de la matrice sommet - sommet du graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">val_sommets_ordonnees</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">sommet</span><span class="o">.</span><span class="n">val</span> <span class="k">for</span> <span class="n">sommet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sommets</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">matrice</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Initialisation de la matrice</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">nom_sommet</span> <span class="ow">in</span> <span class="n">val_sommets_ordonnees</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Récupération de l&#39;objet de type sommet associé au nom</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sommet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recuperation_sommet</span><span class="p">(</span><span class="n">nom_sommet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Récupération des noms des sommets adjacents</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nom_sommets_adjacents</span> <span class="o">=</span> <span class="p">[</span><span class="n">sommet_adj</span><span class="o">.</span><span class="n">val</span> <span class="k">for</span> <span class="n">sommet_adj</span> <span class="ow">in</span> <span class="n">sommet</span><span class="o">.</span><span class="n">adj</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">ligne_matrice</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Initialisation de la ligne de la matrice</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">val_sommets_ordonnees</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">val_sommets_ordonnees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">nom_sommets_adjacents</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ligne_matrice</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ligne_matrice</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">matrice</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ligne_matrice</span><span class="p">)</span>  <span class="c1"># Ajout de la ligne à la matrice</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">matrice</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="18">
+<li>
+<p>Tester le code précédent en ajoutant les instructions suivantes, <em>à la fin du fichier</em> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Matrice : </span><span class="si">{</span><span class="n">g1</span><span class="o">.</span><span class="n">construction_matrice</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span></span></span></code></pre></div>
+</li>
+<li>
+<p>Écrire le code de la méthode <code>representation_matrice</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">representation_matrice</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères qui permet un
+</span></span></span><span class="line"><span class="cl"><span class="s2">    affichage classique de la matrice (lignes x colonnes).
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p>Tester le code.</p>
+</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">representation_matrice</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne une chaîne de caractères qui permet un
+</span></span></span><span class="line"><span class="cl"><span class="s2">    affichage classique de la matrice (lignes x colonnes).
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">matrice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construction_matrice</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">rep</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nbre</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrice</span><span class="p">)</span>  <span class="c1"># nombre de lignes et de colonnes</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbre</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">rep</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">matrice</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rep</span> <span class="o">+=</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">rep</span></span></span></code></pre></div>
+  </div>
+</details>
+<h4 id="extensions-possibles">Extensions possibles<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Il est possible de compléter la classe en définissant les méthodes suivantes :</p>
+<ul>
+<li>
+<p><code>taille</code>, de spécification :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">taille</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le nombre de sommets dans le graphe.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+</li>
+<li>
+<p><code>rend_non_oriente</code>, de spécification :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">rend_non_oriente</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Assure que pour toute arête {s1, s2} il existe une
+</span></span></span><span class="line"><span class="cl"><span class="s2">    arête {s2, s1}. Si ce n&#39;est pas le cas, cette arête
+</span></span></span><span class="line"><span class="cl"><span class="s2">    est créée.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+</li>
+<li>
+<p><code>suppression_arete</code>, de spécification :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">suppression_arete</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">s2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Supprime l&#39;arête {s1, s2} si elle existe, lève une exception
+</span></span></span><span class="line"><span class="cl"><span class="s2">    dans le cas contraire.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+</li>
+<li>
+<p><code>suppression_sommet</code>, de spécification :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">suppression_sommet</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">Graphe</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Supprime le sommet s s&#39;il existe, lève une exception dans
+</span></span></span><span class="line"><span class="cl"><span class="s2">    le cas contraire.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    S&#39;assure avant la suppression du sommet que toute arrête
+</span></span></span><span class="line"><span class="cl"><span class="s2">    dans laquelle il intervient est supprimée.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+</li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 19 mars 2024
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+    <li><a class="term-link" href="/categories/terminales-sp%C3%A9-nsi/index.html">Terminales Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

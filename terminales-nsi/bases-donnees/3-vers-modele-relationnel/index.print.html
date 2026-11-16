@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Concepts relationnels Modèle relationnel Le modèle relationnel tire son nom de la notion de relation mathématique entre les éléments. Chacun de ces éléments peut prendre des valeurs dans un ensemble défini.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Du schéma entités/associations au schéma relationnel :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Concepts relationnels Modèle relationnel Le modèle relationnel tire son nom de la notion de relation mathématique entre les éléments. Chacun de ces éléments peut prendre des valeurs dans un ensemble défini.">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/bases-donnees/3-vers-modele-relationnel/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Du schéma entités/associations au schéma relationnel :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Concepts relationnels Modèle relationnel Le modèle relationnel tire son nom de la notion de relation mathématique entre les éléments. Chacun de ces éléments peut prendre des valeurs dans un ensemble défini.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2021-02-02T04:31:48+04:00">
+    <meta property="article:modified_time" content="2021-02-02T04:31:48+04:00">
+    <meta itemprop="name" content="Du schéma entités/associations au schéma relationnel :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Concepts relationnels Modèle relationnel Le modèle relationnel tire son nom de la notion de relation mathématique entre les éléments. Chacun de ces éléments peut prendre des valeurs dans un ensemble défini.">
+    <meta itemprop="datePublished" content="2021-02-02T04:31:48+04:00">
+    <meta itemprop="dateModified" content="2021-02-02T04:31:48+04:00">
+    <meta itemprop="wordCount" content="3538">
+    <meta itemprop="keywords" content="Terminales Spé NSI,Informatique">
+    <title>Du schéma entités/associations au schéma relationnel :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/bases-donnees/3-vers-modele-relationnel/index.html" rel="canonical" type="text/html" title="Du schéma entités/associations au schéma relationnel :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/bases-donnees/3-vers-modele-relationnel/index.xml" rel="alternate" type="application/rss&#43;xml" title="Du schéma entités/associations au schéma relationnel :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/bases-donnees/3-vers-modele-relationnel/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/bases-donnees/3-vers-modele-relationnel/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#concepts-relationnels">Concepts relationnels</a>
+      <ul>
+        <li><a href="#modèle-relationnel">Modèle relationnel</a></li>
+      </ul>
+    </li>
+    <li><a href="#notion-de-clé-dune-relation-et-dépendance-fonctionnelle">Notion de clé d&rsquo;une relation et dépendance fonctionnelle</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#opérations-relationnelles-de-base">Opérations relationnelles de base</a>
+      <ul>
+        <li><a href="#projection">Projection</a></li>
+        <li><a href="#sélection-ou-restriction">Sélection (ou restriction)</a></li>
+        <li><a href="#division-cartésienne">Division Cartésienne</a></li>
+      </ul>
+    </li>
+    <li><a href="#création-dun-alias-renommage">Création d&rsquo;un alias, renommage</a></li>
+    <li><a href="#jointure">Jointure</a></li>
+    <li><a href="#fonctions-de-calculs-et-dagrégation">Fonctions de calculs et d&rsquo;agrégation</a>
+      <ul>
+        <li><a href="#fonctions-de-calculs">Fonctions de calculs</a></li>
+        <li><a href="#agrégats-ou-groupage">Agrégats ou groupage</a></li>
+      </ul>
+    </li>
+    <li><a href="#marque"><strong>Marque</strong></a>
+      <ul>
+        <li><a href="#restriction-sur-le-résultat-dune-requête-agrégative">Restriction sur le résultat d&rsquo;une requête agrégative</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Bases de données">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/bases-donnees/index.html"><span itemprop="name">Bases de données</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/3-vers-modele-relationnel/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/2-entite-association/index.html" title="Le modèle Entités/Associations (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/4-sql-lmd/index.html" title="Le langage SQL : Le langage de manipulation de données (LMD) (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Bases de données</div>
+  <header class="headline">
+  </header>
+
+<h1 id="du-schéma-entitésassociations-au-schéma-relationnel">Du schéma entités/associations au schéma relationnel</h1>
+
+<h2 id="concepts-relationnels">Concepts relationnels<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="modèle-relationnel">Modèle relationnel<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Le modèle relationnel tire son nom de la notion de <em>relation</em>
+mathématique entre les éléments. Chacun de ces éléments peut prendre des
+valeurs dans un ensemble défini.</p>
+<p>Par exemple, les appareils électroménagers d&rsquo;une cuisine peuvent être
+contenus dans l&rsquo;ensemble des valeurs suivantes : {<em>Réfrigérateur</em>,
+<em>Cuisinière</em>, <em>Hotte</em>, <em>Robot</em>, <em>Lave-vaisselle</em>}. On peut, par ailleurs,
+aussi considérer l&rsquo;ensemble des couleurs que peuvent prendre ces
+appareils : {<em>Rouge</em>, <em>Vert</em>, <em>Bleu</em>, <em>Jaune</em>, <em>Blanc</em>, <em>Noir</em>, <em>Rose</em>}.
+Les combinaisons possibles entre les appareils et les couleurs sont au
+nombre de 35. Parmi toutes ces combinaisons possibles, on effectue une
+sélection qui représente la description d&rsquo;une cuisine :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">(Réfrigérateur, Rouge)
+</span></span><span class="line"><span class="cl">(Robot, Mauve)
+</span></span><span class="line"><span class="cl">(Cuisinière, Jaune)
+</span></span><span class="line"><span class="cl">(Lave-vaisselle, Rouge)</span></span></code></pre></div>
+<p>Cet ensemble de couples de valeurs liées entre elles, que l&rsquo;on nomme
+<strong>tuples</strong> dans le modèle relationnel, représente la
+<strong>relation</strong> entre les éléments « Appareil » et « Couleur ». On
+désigne les éléments constitutifs de ces tuples par les termes
+<strong>attributs</strong> (ou <strong>champs</strong>).</p>
+<p>On peut écrire formellement la relation à partir de son schéma
+relationnel : <code>ma_cuisine(Appareil, Couleur)</code>. Cette écriture représente le <strong>schéma relationnel</strong> de
+la relation <code>ma_cuisine</code>. Les valeurs énoncées précédemment pour les champs
+représentent leurs <strong>domaines</strong>, c&rsquo;est à dire <em>les ensembles de toutes
+les valeurs possibles pour un champ</em>.</p>
+<p>On voit, à partir de cet exemple, qu&rsquo;il est nécessaire de préciser les
+concepts qui seront utilisés dans la suite de ce chapitre.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>Un <strong>schéma relationnel</strong> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span></span></span></span></span> est formé par un
+ensemble fini de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> attributs <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>&#61;</mo><mo stretchy="false">{</mo><msub><mi>u</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>u</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">U &#61; &#92;{ u&#95;1, &#92;ldots, u&#95;n &#92;}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span></span>. On le note
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">&#91;</mo><msub><mi>u</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>u</mi><mi>n</mi></msub><mo stretchy="false">&#93;</mo></mrow><annotation encoding="application/x-tex">R &#91;u&#95;1, &#92;ldots, u&#95;n&#93;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mopen">&#91;</span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">&#93;</span></span></span></span></span> ou <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">&#91;</mo><mi>U</mi><mo stretchy="false">&#93;</mo></mrow><annotation encoding="application/x-tex">R &#91;U&#93;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mopen">&#91;</span><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="mclose">&#93;</span></span></span></span></span>.</em></p>
+
+  </div>
+</div>
+
+<ol>
+<li>Quel est le schéma relationnel de la relation <code>ma_cuisine</code> ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Le schéma relationnel de la relation <code>ma_cuisine</code> est <code>ma_cuisine(Appareil, Couleur)</code>.</p>
+  </div>
+</details></li>
+</ol>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>L&rsquo;<strong>arité</strong> (ou <strong>degré</strong>) d&rsquo;un schéma relationnel <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span></span></span></span></span> est égale à son</em>nombre d&rsquo;attributs*.*</p>
+
+  </div>
+</div>
+
+<ol start="2">
+<li>Quelle est l&rsquo;arité du schéma <code>ma_cuisine(Appareil, Couleur)</code> ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>L&rsquo;arité du schéma <code>ma_cuisine(Appareil, Couleur)</code> est 2.</p>
+  </div>
+</details></li>
+</ol>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p><em>Un <strong>schéma de base de donnée</strong> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">R&#95;B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> est un ensemble
+fini de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span></span> schémas relationnels. On le note
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>B</mi></msub><mo stretchy="false">{</mo><msub><mi>R</mi><mn>1</mn></msub><mo stretchy="false">&#91;</mo><msub><mi>U</mi><mn>1</mn></msub><mo stretchy="false">&#93;</mo><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>R</mi><mi>p</mi></msub><mo stretchy="false">&#91;</mo><msub><mi>U</mi><mi>p</mi></msub><mo stretchy="false">&#93;</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">R&#95;B &#92;{ R&#95;1 &#91;U&#95;1&#93;, &#92;ldots, R&#95;p &#91;U&#95;p&#93; &#92;}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">&#91;</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">&#93;</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">&#91;</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.109em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">&#93;}</span></span></span></span></span>.</em></p>
+
+  </div>
+</div>
+
+<ol start="3">
+<li>On donne le schéma de base de donnée suivant :\</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Rb { Lecteur(Num_carte, Nom, Num_établissement), 
+</span></span><span class="line"><span class="cl">     Établissement(Num_établissement, Ville, Nom) }</span></span></code></pre></div>
+<ol start="3">
+<li>
+<p>De combien de schémas relationnels ce schéma de base de données est-il constitué ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Ce schéma de base de donnée et constitué de deux schéma relationnel : <code>Lecteur</code> et <code>Établissement</code>.</p>
+  </div>
+</details></p>
+</li>
+<li></li>
+</ol>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><msub><mi>R</mi><mi>B</mi></msub></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo stretchy="false">{</mo><mtext>Lecteur</mtext><mrow><mo fence="true">(</mo><mtext>Numero&#95;carte</mtext><mo separator="true">,</mo><mtext>Nom</mtext><mo separator="true">,</mo><mtext>Numero&#95;Etablissement</mtext><mo fence="true">)</mo></mrow><mo separator="true">,</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mrow><mover accent="true"><mtext>E</mtext><mo>ˊ</mo></mover><mtext>tablissement</mtext></mrow><mrow><mo fence="true">(</mo><mrow><mtext>Num&#95;</mtext><mover accent="true"><mtext>E</mtext><mo>ˊ</mo></mover><mtext>tablissement</mtext></mrow><mo separator="true">,</mo><mtext>Ville</mtext><mo separator="true">,</mo><mtext>Nom&#95;Etablissement</mtext><mo fence="true">)</mo></mrow><mo stretchy="false">}</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">&#92;begin{aligned}
+        R&#95;B &amp; &#92;{ &#92;text{Lecteur} &#92;left( &#92;text{Numero&#92;&#95;carte}
+        , &#92;text{Nom}, &#92;text{Numero&#92;&#95;Etablissement} &#92;right) ,&#92;cr
+        &amp;  &#92;text{Établissement} &#92;left( &#92;text{Num&#92;&#95;Établissement}, &#92;text{Ville}, &#92;text{Nom&#92;&#95;Etablissement} &#92;right) &#92;}
+    &#92;end{aligned}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:3.31em;vertical-align:-1.405em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.905em;"><span style="top:-4.205em;"><span class="pstrut" style="height:3.15em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.395em;"><span class="pstrut" style="height:3.15em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.405em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.905em;"><span style="top:-4.205em;"><span class="pstrut" style="height:3.15em;"></span><span class="mord"><span class="mord"></span><span class="mopen">{</span><span class="mord text"><span class="mord">Lecteur</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mord text"><span class="mord">Numero&#95;carte</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">Nom</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">Numero&#95;Etablissement</span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span></span></span><span style="top:-2.395em;"><span class="pstrut" style="height:3.15em;"></span><span class="mord"><span class="mord"></span><span class="mord text"><span class="mord katex-accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9468em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">E</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˊ</span></span></span></span></span></span></span><span class="mord">tablissement</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord text"><span class="mord">Num&#95;</span><span class="mord katex-accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9468em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">E</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˊ</span></span></span></span></span></span></span><span class="mord">tablissement</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">Ville</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">Nom&#95;Etablissement</span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mclose">}</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.405em;"><span></span></span></span></span></span></span></span></span></span></span></span></span><p>::: {.definition}
+<strong>Definition 5</strong>. <em>Un <strong>n-uplet</strong> (ou tuple) <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span></span></span></span></span> sur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">U</span></span></span></span></span> est une
+fonction de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">U</span></span></span></span></span> dans <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathcolor="#cc0000"><mtext>&#92;ensuremath</mtext></mstyle><mi mathvariant="normal">dom</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">&#92;ensuremath{&#92;operatorname{dom}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text" style="color:#cc0000;"><span class="mord" style="color:#cc0000;">&#92;ensuremath</span></span><span class="mord"><span class="mop"><span class="mord mathrm">dom</span></span></span></span></span></span></span>. Si <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span></span></span></span></span> est un
+n-uplet sur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">U</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>ϵ</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">A &#92;epsilon U</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal">ϵ</span><span class="mord mathnormal" style="margin-right:0.109em;">U</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">u (A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">u</span><span class="mopen">(</span><span class="mord mathnormal">A</span><span class="mclose">)</span></span></span></span></span> est la valeur de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi></mrow><annotation encoding="application/x-tex">u</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">u</span></span></span></span></span> pour
+l&rsquo;attribut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span></span>.</em></p>
+<p><em>L&rsquo;écriture d&rsquo;un n-uplet peut préciser les attributs : (Appareil :
+Robot, Couleur : Mauve).</em>
+:::</p>
+<p>::: {.definition}
+<strong>Definition 6</strong>. <em>Une <strong>relation</strong>, ou <strong>instance d&rsquo;un schéma
+relationnel</strong> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo stretchy="false">&#91;</mo><mi>U</mi><mo stretchy="false">&#93;</mo></mrow><annotation encoding="application/x-tex">R &#91;U&#93;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mopen">&#91;</span><span class="mord mathnormal" style="margin-right:0.109em;">U</span><span class="mclose">&#93;</span></span></span></span></span>, est un ensemble fini <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span></span></span></span></span> de n-uplets sur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">U</span></span></span></span></span>. La
+cardinalité de la relation est égale à celle de l&rsquo;ensemble <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span></span></span></span></span>.</em></p>
+<p><em>Une <strong>relation</strong> est donc totalement décrite par :</em></p>
+<ul>
+<li>
+<p><em>le schéma relationnel ;</em></p>
+</li>
+<li>
+<p><em>les domaines des différents champs ;</em></p>
+</li>
+<li>
+<p><em>les tuples ou n-uplets qui la constituent.</em></p>
+</li>
+</ul>
+<p><em>On représente une relation par une table, correspondant à la notion de
+tableau. Les tuples correspondent aux lignes et les attributs de la
+relation aux colonnes.</em></p>
+<p><em><strong>Une relation étant constituée d&rsquo;un ensemble de n-uplets, ceux-ci
+doivent y être tous différents.</strong></em>
+:::</p>
+<p>La relation (cf. tableau 1) est d&rsquo;arité 2 et de cardinalité 4.</p>
+<pre><code>**Appareil**    **Couleur**
+</code></pre>
+<hr>
+<p>Réfrigérateur       Rouge
+Robot           Mauve
+Cuisinière        Jaune
+Lave-vaisselle      Rouge</p>
+<p>: <em>Relation</em></p>
+<p>::: {.definition}
+<strong>Definition 7</strong>. <em>Une <strong>base de données</strong> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span></span></span></span></span>, ou <strong>instance d&rsquo;un
+schéma de base de données</strong> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">R&#95;B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>, est une fonction, dont l&rsquo;ensemble de
+définition est un schéma de base de données <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">R&#95;B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>, telle que pour tout
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mi>ϵ</mi><msub><mi>R</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">r
+  &#92;epsilon R&#95;B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal">ϵ</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo stretchy="false">(</mo><mi>r</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">B (r)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mclose">)</span></span></span></span></span> est une relation.</em></p>
+<p><em>Une base de données est donc un ensemble de relations reliées entre
+elles par des liens sémantiques.</em>
+:::</p>
+<h2 id="notion-de-clé-dune-relation-et-dépendance-fonctionnelle">Notion de clé d&rsquo;une relation et dépendance fonctionnelle<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Lorsqu&rsquo;on utilise une base de données, il est nécessaire d&rsquo;accéder à un
+enregistrement par le contenu d&rsquo;un ou de plusieurs champs. On nomme
+<em><strong>clé</strong></em> d&rsquo;une relation un champ, ou un ensemble de champs, qui permet
+d&rsquo;<em>identifier précisément un enregistrement.</em> Une relation peut
+comprendre plusieurs clés possibles ; ce sont les <em>clés candidates</em>.</p>
+<p>::: {.definition}
+<strong>Definition 8</strong>. <em>On appelle <strong>clé primaire</strong> d&rsquo;une relation la clé
+minimale parmi toutes les clés candidates de la relation. Une clés
+primaire doit toujours contenir une valeur et celle-ci doit être unique
+pour chacun des enregistrements de la relation</em>
+:::</p>
+<p>Dans l&rsquo;exemple de la relation , le choix de la clé n&rsquo;est pas simple
+car :</p>
+<ul>
+<li>
+<p>Plusieurs appareils différents peuvent être de même couleur ;</p>
+</li>
+<li>
+<p>Une cuisine peut comporter plusieurs réfrigérateurs, robots, ...</p>
+</li>
+</ul>
+<p>Pourrait-on envisager d&rsquo;utiliser le couple (appareil, couleur) comme clé
+? La réponse est toujours négative, les réfrigérateurs présents dans la
+pièce peuvent être de même couleur.</p>
+<p>Pour désigner une clé (primaire), il faut donc prendre en compte le «
+sens » des données contenues dans la relation. <em>Si aucun champ ne peut
+constituer une clé, il est nécessaire d&rsquo;introduire un champ formel, tel
+qu&rsquo;un identifiant numérique.</em></p>
+<p>::: {.definition}
+<strong>Definition 9</strong>. <em>Une <strong>dépendance fonctionnelle</strong> existe entre deux
+ensembles de champs si les valeurs contenues dans l&rsquo;un des ensembles de
+champs permettent de déterminer les valeurs contenues dans l&rsquo;autre
+ensemble.</em>
+:::</p>
+<p>Les dépendances fonctionnelles expriment la relation de hiérarchie qui
+existe entre les champs.</p>
+<p>::: {#relation-lecteur}
+<strong>Numero_carte</strong>    <strong>Nom</strong>    <strong>Age</strong>   <strong>Ville</strong>       <strong>Etablissement</strong></p>
+<hr>
+<pre><code>      1             Henri       10        Paris        Université Sorbonne
+      2           Stanislas     34        Paris        Université Jussieu
+      3           Henriette     44        Lyon              CHU Bron
+      4           Dominique     19        Nancy        Université Poincaré
+      5           Isabelle      56        Nancy               INPL
+      6            Olivier      51      Marseille   Université Saint Charles
+      7             Henri       98        Paris        Université Sorbonne
+      8            Jérôme       23        Nancy               INPL
+      9           Laurence      34      Bordeaux    Université Victor Segalen
+      10          Christian     41        Paris                ENS
+      11           Antoine      16      Marseille   Université Saint Charles
+      12          Laurence      34        Paris        Université Jussieu
+</code></pre>
+<p>: <em>Relation lecteur(Numero_carte, Nom, Age, Ville,
+Etablissement)</em>[</p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>r</mi><mi>e</mi><mi>l</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>−</mo><mi>l</mi><mi>e</mi><mi>c</mi><mi>t</mi><mi>e</mi><mi>u</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">relation-lecteur</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">ec</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span></span></span><p>]{#relation-lecteur
+label=&ldquo;relation-lecteur&rdquo;}
+:::</p>
+<p>Si l&rsquo;on examine les données de la relation , <strong>Tableau
+<a href="/terminales-nsi/bases-donnees/3-vers-modele-relationnel/index.html#relation-lecteur">1</a>{reference-type=&ldquo;ref&rdquo;
+reference=&ldquo;relation-lecteur&rdquo;}.</strong>, on remarque :</p>
+<ul>
+<li>
+<p>qu&rsquo;il ne peut y avoir de dépendance fonctionnelle entre les
+ensembles (Ville, Etablissement) et (Nom, Age). En effet, le couple
+(Laurence, 34) correspond aux deux couples (Paris, Université de
+Jussieu) et (Bordeaux, Université Victor Segalen).</p>
+<p><em>À un couple (Ville, Etablissement) ne correspond donc pas un unique
+couple (Nom, Age).</em></p>
+</li>
+<li>
+<p>que si l&rsquo;on suppose qu&rsquo;un établissement n&rsquo;est situé que dans une
+seule ville, il existe une dépendance fonctionnelle entre le champ «
+Etablissement » et le champ « Ville ».</p>
+<p><em>À une valeur du champ « Etablissement » correspond une et une seule
+valeur du champ « Ville ». Cette valeur n&rsquo;est cependant pas unique.</em></p>
+</li>
+<li>
+<p>La valeur du champ « Numero_carte » est unique pour chacun des
+enregistrements. Ses valeurs sont identifiantes pour tous les champs
+de la relation. Chaque champ dépend fonctionnellement de ce champ.
+Ses valeurs ne sont jamais vides, c&rsquo;est une clé candidate !</p>
+<p>Comme c&rsquo;est aussi la seule clé de la relation, ce champ constitue la
+<strong>clé primaire</strong>.</p>
+</li>
+</ul>
+<p>Tous les champs qui ne font pas partie d&rsquo;une clé candidate d&rsquo;une
+relation possèdent des dépendances fonctionnelles avec cette clé.</p>
+<p><em>On indique la clé primaire d&rsquo;un schéma relationnel en soulignant le
+champ, dans le schéma relationnel</em> : lecteur([Numero_carte]{.ul}, Nom,
+Age, Ville, Etablissement).</p>
+<h1 id="langage-sql">Langage SQL<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h1>
+<p>SQL est un langage déclaratif qui permet d&rsquo;interroger une base de
+données par l&rsquo;intermédiaire d&rsquo;un SGBD sans se soucier de la
+représentation interne (physique) des données, de leur localisation, des
+chemins d&rsquo;accès ou des algorithmes nécessaires. À ce titre, il s&rsquo;adresse
+à une large communauté d&rsquo;utilisateurs potentiels, pas seulement aux
+informaticiens. On peut l&rsquo;utiliser de manière interactive, mais
+également en association avec des interfaces graphiques, ou des langages
+de programmation (comme Python).</p>
+<p>Le langage SQL est composé de différents sous-ensembles :</p>
+<dl>
+<dt>LMD</dt>
+<dd>
+<p>Langage de Manipulation des données (DML, Data Manipulation
+Language).</p>
+<p>Il permet la <em>manipulation</em> et la <em>mise à jour des tables</em>, et est
+composé de quatre ordres fondamentaux : , , , .</p>
+</dd>
+<dt>LDD</dt>
+<dd>
+<p>Langage de Définition des Données (DDL, Data Definition Language).</p>
+<p>Il permet la <em>définition</em> et la <em>mise à jour du schéma relationnel</em>
+de la base de données (mode administration). Il est composé des
+ordres suivants : , , , , , , .</p>
+</dd>
+<dt>LCD</dt>
+<dd>
+<p>Langage de Contrôle des Données (DCL, Data Control Language).</p>
+<p>Il permet de définir les contraintes d&rsquo;intégrité, de gérer les accès
+et les autorisations (administration). Il est composé des ordres : ,
+, .</p>
+</dd>
+</dl>
+<p>Le programme cette année se limite au langage de manipulation des
+données et plus particulièrement à l&rsquo;ordre .</p>
+<h1 id="opérations-de-lalgèbre-relationnelle-et-traductions-en-langage-sql">Opérations de l&rsquo;algèbre relationnelle et traductions en langage SQL<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h1>
+<p>La manipulation de données dans le modèle relationnel se fait à l&rsquo;aide
+d&rsquo;opérations formelles reposant sur des concepts mathématiques issus de
+la théorie des ensembles : c&rsquo;est <strong>l&rsquo;algèbre relationnelle</strong>.</p>
+<p>::: {.definition}
+<strong>Definition 10</strong>. <em>L&rsquo;<strong>algèbre relationnelle</strong> consiste en un petit
+nombre d&rsquo;opérations de base qui, <strong>appliquées à des relations,
+produisent de nouvelles relations</strong>. Ces opérations peuvent être
+composées pour construire des expressions algébriques de plus en plus
+complexes.</em>
+:::</p>
+<h2 id="opérations-relationnelles-de-base">Opérations relationnelles de base<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="projection">Projection<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>::: {.definition}
+<strong>Definition 11</strong>. <em>La <strong>projection</strong> consiste à filtrer certains
+attributs de la relation, ce qui donne au résultat une relation de
+<strong>degré</strong> inférieur à celui de la relation de départ.</em></p>
+<p><em>Pour <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span></span></span></span></span> une relation de schéma relationnel <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo stretchy="false">&#91;</mo><msub><mi>A</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">&#93;</mo></mrow><annotation encoding="application/x-tex">I &#91;A&#95;{1 }, &#92;ldots
+  , A&#95;n&#93;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mopen">&#91;</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">&#93;</span></span></span></span></span>, si <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>⩽</mo><mi>i</mi><mo>&lt;</mo><mi>j</mi><mo>⩽</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">1 &#92;leqslant i &lt; j &#92;leqslant n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7811em;vertical-align:-0.1367em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6986em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span>,
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mrow><msub><mi>A</mi><mi>i</mi></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>A</mi><mi>j</mi></msub></mrow></msub><mo stretchy="false">(</mo><mi>I</mi><mo stretchy="false">)</mo><mo>&#61;</mo><mo stretchy="false">{</mo><mo stretchy="false">(</mo><msub><mi>A</mi><mi>i</mi></msub><mo>:</mo><mi>t</mi><mo stretchy="false">(</mo><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>A</mi><mi>j</mi></msub><mo>:</mo><mi>t</mi><mo stretchy="false">(</mo><msub><mi>A</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi><mi>t</mi><mi>ϵ</mi><mi>I</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">&#92;pi&#95;{A&#95;i, &#92;ldots, A&#95;j} (I) &#61; &#92;{ (A&#95;i : t (A&#95;i), &#92;ldots , A&#95;j : t
+     (A&#95;j)) &#124; t &#92;epsilon I &#92;}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0973em;vertical-align:-0.3473em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mpunct mtight">,</span><span class="minner mtight">…</span><span class="mpunct mtight">,</span><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2819em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3473em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{(</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0572em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mclose">))</span><span class="mord">∣</span><span class="mord mathnormal">t</span><span class="mord mathnormal">ϵ</span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mclose">}</span></span></span></span></span></em>
+:::</p>
+<pre><code>**Nom**    **Ville**
+</code></pre>
+<hr>
+<pre><code> Henri       Paris
+</code></pre>
+<p>Stanislas     Paris
+Henriette     Lyon
+Dominique     Nancy
+Isabelle      Nancy
+Olivier    Marseille
+Henri       Paris
+Jérôme       Nancy
+Laurence    Bordeaux
+Christian     Paris
+Antoine    Marseille
+Laurence      Paris</p>
+<p>: <em>Projection</em> <em><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mtext>Nom,Ville</mtext></msub><mo stretchy="false">(</mo><mtext>lecteur</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">&#92;pi&#95;{&#92;text{Nom,Ville}}
+    (&#92;text{lecteur})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Nom,Ville</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">lecteur</span></span><span class="mclose">)</span></span></span></span></span></em></p>
+<dl>
+<dt>En langage SQL</dt>
+<dd>
+<p><code>SELECT``\</code>{=latex}<code>Nom,Ville``\</code>{=latex}<code>FROM``\</code>{=latex}<code>lecteur``\</code>{=latex}<code>;</code></p>
+</dd>
+</dl>
+<h3 id="sélection-ou-restriction">Sélection (ou restriction)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>::: {.definition}
+<strong>Definition 12</strong>. <em>La <strong>sélection</strong> consiste à filtrer des
+enregistrements de la relation en fonction d&rsquo;une <strong>condition</strong>. Le
+résultat d&rsquo;une sélection est une relation de <strong>même degré</strong> mais de
+<strong>cardinalité différente</strong>.</em></p>
+<p><em>Pour <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span></span></span></span></span> une relation de schéma relationnel <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo stretchy="false">&#91;</mo><msub><mi>A</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>A</mi><mi>n</mi></msub><mo stretchy="false">&#93;</mo></mrow><annotation encoding="application/x-tex">I &#91;A&#95;{1 }, &#92;ldots
+  , A&#95;n&#93;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mopen">&#91;</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">&#93;</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>ϵ</mi><mstyle mathcolor="#cc0000"><mtext>&#92;ensuremath</mtext></mstyle><mi mathvariant="normal">dom</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">a &#92;epsilon &#92;ensuremath{&#92;operatorname{dom}} (A&#95;i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">ϵ</span><span class="mord text" style="color:#cc0000;"><span class="mord" style="color:#cc0000;">&#92;ensuremath</span></span><span class="mord"><span class="mop"><span class="mord mathrm">dom</span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>,
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mrow><msub><mi>A</mi><mi>i</mi></msub><mo>&#61;</mo><mi>a</mi></mrow></msub><mo stretchy="false">(</mo><mi>I</mi><mo stretchy="false">)</mo><mo>&#61;</mo><mo stretchy="false">{</mo><mi>t</mi><mi>ϵ</mi><mi>I</mi><mi mathvariant="normal">∣</mi><mi>t</mi><mo stretchy="false">(</mo><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>&#61;</mo><mi>a</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">&#92;sigma&#95;{A&#95;i &#61; a} (I) &#61; &#92;{ t &#92;epsilon I &#124; t (A&#95;i) &#61; a &#92;}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0001em;vertical-align:-0.2501em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mrel mtight">&#61;</span><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2501em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">t</span><span class="mord mathnormal">ϵ</span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mord">∣</span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mclose">}</span></span></span></span></span></em>
+:::</p>
+<p><strong>Numero_carte</strong>   <strong>Nom</strong>    <strong>Age</strong>   <strong>Ville</strong>      <strong>Etablissement</strong></p>
+<hr>
+<pre><code>      5           Isabelle     56        Nancy               INPL
+      6           Olivier      51      Marseille   Université Saint Charles
+      7            Henri       98        Paris       Université Sorbonne
+</code></pre>
+<p>: <em>Selection <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mrow><mtext>Age</mtext><mo>&gt;</mo><mn>50</mn></mrow></msub><mo stretchy="false">(</mo><mtext>lecteur</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">&#92;sigma&#95;{&#92;text{Age} &gt; 50} (&#92;text{lecteur})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Age</span></span><span class="mrel mtight">&gt;</span><span class="mord mtight">50</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">lecteur</span></span><span class="mclose">)</span></span></span></span></span></em></p>
+<p><strong>Numero_carte</strong>   <strong>Nom</strong>   <strong>Age</strong>   <strong>Ville</strong>    <strong>Etablissement</strong></p>
+<hr>
+<pre><code>      1            Henri      10        Paris     Université Sorbonne
+      7            Henri      98        Paris     Université Sorbonne
+</code></pre>
+<p>: <em>Selection <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>σ</mi><mrow><mtext>Nom</mtext><mo>&#61;</mo><mtext>”Henri”</mtext></mrow></msub><mo stretchy="false">(</mo><mtext>lecteur</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">&#92;sigma&#95;{&#92;text{Nom} &#61; &#92;text{&#x27;&#x27;Henri&#x27;&#x27;}}
+    (&#92;text{lecteur})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Nom</span></span><span class="mrel mtight">&#61;</span><span class="mord text mtight"><span class="mord mtight">”Henri”</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">lecteur</span></span><span class="mclose">)</span></span></span></span></span></em></p>
+<p>Intuitivement, dans une représentation de type table, une sélection
+conserve uniquement les enregistrements vérifiant la condition.</p>
+<dl>
+<dt>En langage SQL</dt>
+<dd>
+<p><code>SELECT``\</code>{=latex}<code>*``\</code>{=latex}<code>FROM``\</code>{=latex}<code>lecteur``\</code>{=latex}<code>WHERE``\</code>{=latex}<code>Age``\</code>{=latex}<code>&gt;``\</code>{=latex}<code>50``\</code>{=latex}<code>;</code></p>
+</dd>
+</dl>
+<h4 id="affichage-de-tous-les-enregistrements-dune-relation">Affichage de tous les enregistrements d&rsquo;une relation<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<h4 id="composition-dune-sélection-et-dune-projection">Composition d&rsquo;une sélection et d&rsquo;une projection<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Une sélection sur une relation formant une nouvelle relation, il est
+possible de « passer » cette dernière en argument d&rsquo;une opération de
+projection. La composition se note :
+</p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>π</mi><mtext>champs</mtext></msub><mo stretchy="false">(</mo><msub><mi>σ</mi><mtext>contrainte</mtext></msub><mo stretchy="false">(</mo><mtext>relation</mtext><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">&#92;pi&#95;{&#92;text{champs}}  (&#92;sigma&#95;{&#92;text{contrainte}}  (&#92;text{relation}))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">champs</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">contrainte</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">relation</span></span><span class="mclose">))</span></span></span></span></span></span><p><strong>Nom</strong>    <strong>Ville</strong></p>
+<hr>
+<p>Isabelle     Nancy
+Olivier    Marseille
+Henri       Paris</p>
+<p>: <em>Combinaison d&rsquo;une sélection et d&rsquo;une projection
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mrow><mtext>Nom</mtext><mo separator="true">,</mo><mtext>Ville</mtext></mrow></msub><mo stretchy="false">(</mo><msub><mi>σ</mi><mrow><mtext>Age</mtext><mo>&gt;</mo><mn>50</mn></mrow></msub><mo stretchy="false">(</mo><mtext>lecteur</mtext><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">&#92;pi&#95;{&#92;text{Nom}, &#92;text{Ville}} (&#92;sigma&#95;{&#92;text{Age} &gt; 50}
+    (&#92;text{lecteur}))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Nom</span></span><span class="mpunct mtight">,</span><span class="mord text mtight"><span class="mord mtight">Ville</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Age</span></span><span class="mrel mtight">&gt;</span><span class="mord mtight">50</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">lecteur</span></span><span class="mclose">))</span></span></span></span></span></em></p>
+<dl>
+<dt>En langage SQL</dt>
+<dd>
+<p><code>SELECT``\</code>{=latex}<code>Nom,Ville``\</code>{=latex}<code>FROM``\</code>{=latex}<code>lecteur``\</code>{=latex}<code>WHERE``\</code>{=latex}<code>Age&gt;50``\</code>{=latex}<code>;</code></p>
+</dd>
+</dl>
+<h4 id="opérateurs-de-comparaison-et-connecteurs-logiques-de-sql">Opérateurs de comparaison et connecteurs logiques de SQL<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<p>Ci-dessous sont présentés quelques opérateurs et connecteurs qui
+apparaissent très fréquemment dans les requêtes SQL. Pour une liste plus
+exhaustive et davantage d&rsquo;exemples, consulter <a href="http://sql.sh" rel="external">http://sql.sh</a>.</p>
+<p><strong>Opérateur</strong>   <strong>Signification</strong></p>
+<hr>
+<pre><code>    $=$              Égal
+   $&lt; &gt;$           Différent
+    \&lt;             Inférieur
+    $&gt;$            Supérieur
+   $&lt; =$       Inférieur ou égal
+   $&gt; =$       Supérieur ou égal
+
+ **Signification**
+</code></pre>
+<hr>
+<pre><code> Appartient à un intervalle
+ Appartient à un ensemble
+ Teste si le champ contient une donnée
+ Compare des chaînes de caractères
+
+  **Nom**        **Instrument**
+</code></pre>
+<hr>
+<p>Jaco Pastorius   Basse électrique
+Bill Evans          Piano</p>
+<pre><code> Appareil      Couleur        Nom            Instrument
+</code></pre>
+<hr>
+<p>Réfrigérateur    rouge    Jaco Pastorius   Basse électrique
+Réfrigérateur    rouge      Bill Evans          Piano
+Robot        mauve    Jaco Pastorius   Basse électrique
+Robot        mauve      Bill Evans          Piano
+Cuisinière      jaune    Jaco Pastorius   Basse électrique
+Cuisinière      jaune      Bill Evans          Piano</p>
+<p>: <em><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>ma&#95;cuisine</mtext><mo>×</mo><mtext>musicien</mtext></mrow><annotation encoding="application/x-tex">&#92;text{ma&#92;&#95;cuisine} &#92;times &#92;text{musicien}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.9779em;vertical-align:-0.31em;"></span><span class="mord text"><span class="mord">ma&#95;cuisine</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6679em;"></span><span class="mord text"><span class="mord">musicien</span></span></span></span></span></span></em></p>
+<p>L&rsquo;exemple précédent a été choisi de façon à illustrer que le résultat
+d&rsquo;un produit cartésien peut n&rsquo;avoir aucun sens dans la réalité.</p>
+<dl>
+<dt>En langage SQL</dt>
+<dd>
+<p>il n&rsquo;est pas nécessaire d&rsquo;utiliser un quelconque mot clé ; il faut
+requérir toutes les colonnes depuis les deux tables.</p>
+</dd>
+</dl>
+<h3 id="division-cartésienne">Division Cartésienne<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>La division cartésienne est le pendant du produit cartésien, tout comme
+la division euclidienne est le pendant du produit sur des entiers : si
+on note <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span></span></span></span></span> deux relations (ou tables), alors <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>÷</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">A &#92;div B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span></span></span></span></span> est la
+« plus grande » relation (au sens de l&rsquo;inclusion) telle que le produit
+cartésien avec <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span></span></span></span></span> redonne (presque) <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span></span>. Formellement, c&rsquo;est la plus
+grande relation telle qu&rsquo;il existe une relation <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span></span> vérifiant :
+</p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">&#91;</mo><mo stretchy="false">(</mo><mi>A</mi><mo>÷</mo><mi>B</mi><mo stretchy="false">)</mo><mo>×</mo><mi>B</mi><mo stretchy="false">&#93;</mo><mo>∪</mo><mi>C</mi><mo>&#61;</mo><mi>A</mi><mtext>     et     </mtext><mo stretchy="false">&#91;</mo><mo stretchy="false">(</mo><mi>A</mi><mo>÷</mo><mi>B</mi><mo stretchy="false">)</mo><mo>×</mo><mi>B</mi><mo stretchy="false">&#93;</mo><mo>∩</mo><mi>C</mi><mo>&#61;</mo><mi mathvariant="normal">∅</mi></mrow><annotation encoding="application/x-tex">&#91;(A &#92;div B) &#92;times B&#93; &#92;cup C &#61; A &#92;text{ &#92; &#92; &#92; &#92; et &#92; &#92; &#92; &#92; } &#91;(A &#92;div B)
+   &#92;times B&#93; &#92;cap C &#61; &#92;varnothing</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">&#91;(</span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">&#93;</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">A</span><span class="mord text"><span class="mord">     et     </span></span><span class="mopen">&#91;(</span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mclose">&#93;</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6633em;vertical-align:-0.0817em;"></span><span class="mord amsrm">∅</span></span></span></span></span></span><p> Il n&rsquo;existe pas en langage SQL
+d&rsquo;opérateur permettant d&rsquo;implémenter directement la division
+cartésienne.</p>
+<h2 id="création-dun-alias-renommage">Création d&rsquo;un alias, renommage<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Il peut être pénible d&rsquo;utiliser, dans les requêtes, des noms de champs
+définis de manière complexe, ou, tout simplement, nommés de façon pas
+très parlante. On peut alors définir un <em>alias</em> pour renommer
+<em>temporairement</em> un champ (et même une table).</p>
+<p>::: {.definition}
+<strong>Definition 13</strong>. <em>Un renommage pour un ensemble fini d&rsquo;attributs U est
+une fonction injective de U dans l&rsquo;ensemble att que l&rsquo;on notera
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>→</mo><msub><mi>B</mi><mn>1</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>A</mi><mi>n</mi></msub><mo>→</mo><msub><mi>B</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">A&#95;1 &#92;rightarrow B&#95;1, ..., A&#95;n
+  &#92;rightarrow B&#95;n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>.</em></p>
+<p><em>L&rsquo;opération de renommage
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ρ</mi><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>→</mo><msub><mi>B</mi><mn>1</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>A</mi><mi>n</mi></msub><mo>→</mo><msub><mi>B</mi><mi>n</mi></msub></mrow></msub></mrow><annotation encoding="application/x-tex">&#92;rho&#95;{A&#95;1 &#92;rightarrow B&#95;1, ..., A&#95;n &#92;rightarrow
+  B&#95;n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7167em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mrel mtight">→</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0502em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mpunct mtight">,</span><span class="mord mtight">...</span><span class="mpunct mtight">,</span><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mrel mtight">→</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.0502em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span> transforme une relation <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span></span></span></span></span> sur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mn>1</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>A</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">A&#95;1, ..., A&#95;n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> en une relation
+sur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>B</mi><mn>1</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>B</mi><mi>n</mi></msub></mrow><annotation encoding="application/x-tex">B&#95;1, ..., B&#95;n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> de de telle sorte que :
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ρ</mi><mrow><msub><mi>A</mi><mn>1</mn></msub><mo>→</mo><msub><mi>B</mi><mn>1</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>A</mi><mi>n</mi></msub><mo>→</mo><msub><mi>B</mi><mi>n</mi></msub></mrow></msub><mo stretchy="false">(</mo><mi>I</mi><mo stretchy="false">)</mo><mo>&#61;</mo><mrow><mo fence="true">{</mo><mi>v</mi><mtext>sur</mtext><msub><mi>B</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>B</mi><mi>n</mi></msub><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∃</mi><mi>u</mi><mi>ϵ</mi><mi>I</mi><mo separator="true">,</mo><mi>v</mi><mo stretchy="false">(</mo><msub><mi>B</mi><mi>i</mi></msub><mo fence="true">)</mo></mrow><mo>&#61;</mo><mi>u</mi><mo stretchy="false">(</mo><msub><mi>A</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mtext>pour tout </mtext><mi>i</mi><mi>ϵ</mi><mo stretchy="false">&#91;</mo><mn>1</mn><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">&#93;</mo><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">&#92;rho&#95;{A&#95;1 &#92;rightarrow B&#95;1, ..., A&#95;n &#92;rightarrow B&#95;n} (I) &#61; &#92;left&#92;{ v
+     &#92;text{sur} B&#95;1, &#92;ldots, B&#95;n  &#124; &#92;exists u &#92;epsilon I, v (B&#95;i &#92;right) &#61; u
+     (A&#95;i)  &#92;text{pour tout } i &#92;epsilon &#91;1 , n&#93;  &#92;}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0361em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mrel mtight">→</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:-0.0502em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mpunct mtight">,</span><span class="mord mtight">...</span><span class="mpunct mtight">,</span><span class="mord mtight"><span class="mord mathnormal mtight">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mrel mtight">→</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.0502em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="katex-sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">{</span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mord text"><span class="mord">sur</span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">∣∃</span><span class="mord mathnormal">u</span><span class="mord mathnormal">ϵ</span><span class="mord mathnormal" style="margin-right:0.0785em;">I</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0502em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">u</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord text"><span class="mord">pour tout </span></span><span class="mord mathnormal">i</span><span class="mord mathnormal">ϵ</span><span class="mopen">&#91;</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">&#93;}</span></span></span></span></span></em>
+:::</p>
+<p>La création d&rsquo;un alias permet de faciliter grandement la lecture d&rsquo;une
+requête. Cette opération se note :</p>
+<p><strong>Badge</strong>   <strong>Nom</strong>    <strong>Ville</strong></p>
+<hr>
+<pre><code>   7        Henri       Paris
+   6       Olivier    Marseille
+   5       Isabelle     Nancy
+</code></pre>
+<p>: <em><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ρ</mi><mrow><mtext>Numero&#95;carte</mtext><mo>→</mo><mtext>Badge</mtext></mrow></msub><mo stretchy="false">(</mo><msub><mi>π</mi><mrow><mtext>Numero&#95;carte</mtext><mo separator="true">,</mo><mtext>Nom</mtext><mo separator="true">,</mo><mtext>Ville</mtext></mrow></msub><mo stretchy="false">(</mo><msub><mi>σ</mi><mrow><mtext>Age</mtext><mo>&gt;</mo><mn>50</mn></mrow></msub><mo stretchy="false">(</mo><mtext>lecteur</mtext><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">&#92;rho&#95;{&#92;text{Numero&#92;&#95;carte} &#92;rightarrow &#92;text{Badge}}
+    (&#92;pi&#95;{&#92;text{Numero&#92;&#95;carte}, &#92;text{Nom}, &#92;text{Ville}} (&#92;sigma&#95;{&#92;text{Age} &gt;
+    50} (&#92;text{lecteur})))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.117em;vertical-align:-0.367em;"></span><span class="mord"><span class="mord mathnormal">ρ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Numero&#95;carte</span></span><span class="mrel mtight">→</span><span class="mord text mtight"><span class="mord mtight">Badge</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.367em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Numero&#95;carte</span></span><span class="mpunct mtight">,</span><span class="mord text mtight"><span class="mord mtight">Nom</span></span><span class="mpunct mtight">,</span><span class="mord text mtight"><span class="mord mtight">Ville</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.367em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Age</span></span><span class="mrel mtight">&gt;</span><span class="mord mtight">50</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord text"><span class="mord">lecteur</span></span><span class="mclose">)))</span></span></span></span></span></em></p>
+<dl>
+<dt>En langage SQL</dt>
+<dd>
+<p>on utilise le mot clé , immédiatement après le nom du champ, pour
+introduire l&rsquo;alias.</p>
+</dd>
+</dl>
+<p>Dans l&rsquo;exemple précédent, on a illustré l&rsquo;utilisation de la clause «  »
+qui permet de trier les résultats suivant l&rsquo;ordre (<em>par défaut
+ascendant</em>) défini par certains champs (ici le mot clé indique que c&rsquo;est
+l&rsquo;ordre descendant qui a été choisi).</p>
+<h2 id="jointure">Jointure<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p><em>La <strong>jointure</strong> est l&rsquo;opération fondamentale de l&rsquo;algèbre relationnelle
+qui permet d&rsquo;exprimer le sens du lien entre les relations, dans le monde
+réel</em>. Conformément au programme, on ne présente ici que l&rsquo;opération de
+<em><strong>jointure symétrique</strong></em>.</p>
+<p>::: {.definition}
+<strong>Definition 14</strong>. <em>Une <strong>jointure</strong> permet d&rsquo;associer plusieurs
+relations dans une même requête. Le résultat de cette requête est une
+relation de <strong>degré supérieur</strong> aux degrés de chacune des relations de
+départ. L&rsquo;opération de jointure est <strong>symétrique</strong> et <strong>associative</strong>.</em></p>
+<p><em>La liaison entre les relations s&rsquo;effectue par le contenu commun d&rsquo;un
+champ (<strong>champs de jointure</strong>).</em></p>
+<p><em>La jointure des relations et selon une certaine contrainte se note :
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>table1</mtext><mo>⊳</mo><mspace width="-0.5em"/><msub><mo>⊲</mo><mtext>contrainte</mtext></msub><mtext>table2    ou    table1</mtext><mo stretchy="false">&#91;</mo><mstyle mathcolor="#cc0000"><mtext>&#92;ensuremath</mtext></mstyle><mi mathvariant="normal">contrainte</mi><mo>⁡</mo><mo stretchy="false">&#93;</mo><mtext>table2</mtext></mrow><annotation encoding="application/x-tex">&#92;text{table1} &#92;vartriangleright &#92;hspace{-0.5em}
+     &#92;vartriangleleft&#95;{&#92;text{contrainte}} &#92;text{table2}  &#92;text{ &#92; &#92; &#92; ou &#92; &#92; &#92;
+     }  &#92;text{table1} &#91;&#92;ensuremath{&#92;operatorname{contrainte}}&#93;  &#92;text{table2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7296em;vertical-align:-0.0352em;"></span><span class="mord text"><span class="mord">table1</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⊳</span><span class="mspace" style="margin-right:-0.5em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6999em;vertical-align:-0.15em;"></span><span class="mrel"><span class="mrel amsrm">⊲</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3175em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">contrainte</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">table2</span></span><span class="mord text"><span class="mord">    ou    </span></span><span class="mord text"><span class="mord">table1</span></span><span class="mopen">&#91;</span><span class="mord text" style="color:#cc0000;"><span class="mord" style="color:#cc0000;">&#92;ensuremath</span></span><span class="mord"><span class="mop"><span class="mord mathrm">contrainte</span></span></span><span class="mclose">&#93;</span><span class="mord text"><span class="mord">table2</span></span></span></span></span></span></em>
+:::</p>
+<p>Il est bien évidemment possible d&rsquo;<em>associer une jointure à une
+projection et une sélection</em>. <em>Ces associations doivent être prises en
+compte lors de la détermination du <strong>degré</strong> et de la <strong>cardinalité</strong> de
+la relation finale</em>.</p>
+<p>::: {#tab:jointure}
+<strong>Numero_carte</strong>    <strong>Nom</strong>    <strong>Num_Etablissement</strong></p>
+<hr>
+<pre><code>      1             Henri               1
+      2           Stanislas             2
+      3           Henriette             1
+</code></pre>
+<p>: <em>Relation Lecteur_bis(<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder accentunder="true"><mtext>Numero&#95;carte</mtext><mo stretchy="true">‾</mo></munder></mrow><annotation encoding="application/x-tex">&#92;underline{&#92;text{Numero&#92;&#95;carte}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.1933em;vertical-align:-0.51em;"></span><span class="mord katex-underline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.53em;"><span class="pstrut" style="height:3em;"></span><span class="underline-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Numero&#95;carte</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.51em;"><span></span></span></span></span></span></span></span></span></span>, Nom,
+Numero_Etablissement)</em>[</p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>t</mi><mi>a</mi><mi>b</mi><mo>:</mo><mi>j</mi><mi>o</mi><mi>i</mi><mi>n</mi><mi>t</mi><mi>u</mi><mi>r</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">tab:jointure</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">ab</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mord mathnormal">o</span><span class="mord mathnormal">in</span><span class="mord mathnormal">t</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mord mathnormal">e</span></span></span></span></span></span><p>]{#tab:jointure
+label=&ldquo;tab:jointure&rdquo;}
+:::</p>
+<p><strong>Num_Etablissement</strong>   <strong>Ville</strong>   <strong>Nom_Etablissement</strong></p>
+<hr>
+<pre><code>         1               Paris      Université Jussieu
+         2               Lyon            CHU Bron
+         3               Nancy      Université Poincaré
+         4               Paris      Université Sorbonne
+</code></pre>
+<p>: <em>Relation Etablissement(<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder accentunder="true"><mtext>Num&#95;Etablissement</mtext><mo stretchy="true">‾</mo></munder></mrow><annotation encoding="application/x-tex">&#92;underline{&#92;text{Num&#92;&#95;Etablissement}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.2044em;vertical-align:-0.51em;"></span><span class="mord katex-underline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-2.53em;"><span class="pstrut" style="height:3em;"></span><span class="underline-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord">Num&#95;Etablissement</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.51em;"><span></span></span></span></span></span></span></span></span></span>,
+Ville, Nom_Etablissement)</em></p>
+<p>Même si l&rsquo;on ne dispose pas du modèle conceptuel associé, on constate
+que l&rsquo;on peut relier les deux relations par le champ «  ». Les
+informations concernant l&rsquo;établissement de la relation «  » sont
+stockées dans la relation «  » dont la clé est le champ «  »<em>. Pour
+obtenir la liste des lecteurs ainsi que les informations concernant leur
+établissement, on effectue une jointure entre ces relations sur le champ
+«  ».</em></p>
+<p>Schéma de la base de données prenant en compte la jointure : Dans la
+relation l&rsquo;attribut est une <em>clé étrangère</em>.</p>
+<p><strong>Numero_carte</strong>    <strong>Nom</strong>    <strong>Num_Etablissement</strong>   <strong>Num_Etablissement</strong>   <strong>Ville</strong>   <strong>Nom_Etablissement</strong></p>
+<hr>
+<pre><code>      1             Henri               1                       1               Paris      Université Jussieu
+      2           Stanislas             2                       2               Lyon            CHU Bron
+      3           Henriette             1                       1               Paris      Université Jussieu
+</code></pre>
+<p>: <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Lecteur&#95;bis</mtext><mo>⊳</mo><mspace width="-0.5em"/><msub><mo>⊲</mo><mrow><mtext>Num&#95;Etablissement</mtext><mo>&#61;</mo><mtext>Num&#95;Etablissement</mtext></mrow></msub><mtext>Etablissement</mtext></mrow><annotation encoding="application/x-tex">&#92;text{Lecteur&#92;&#95;bis} &#92;vartriangleright &#92;hspace{-0.5em}
+    &#92;vartriangleleft&#95;{&#92;text{Num&#92;&#95;Etablissement} &#61; &#92;text{Num&#92;&#95;Etablissement}}
+    &#92;text{Etablissement}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0044em;vertical-align:-0.31em;"></span><span class="mord text"><span class="mord">Lecteur&#95;bis</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⊳</span><span class="mspace" style="margin-right:-0.5em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.9169em;vertical-align:-0.367em;"></span><span class="mrel"><span class="mrel amsrm">⊲</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Num&#95;Etablissement</span></span><span class="mrel mtight">&#61;</span><span class="mord text mtight"><span class="mord mtight">Num&#95;Etablissement</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.367em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord text"><span class="mord">Etablissement</span></span></span></span></span></span></p>
+<p>Le champ «  » figure deux fois dans la relation résultat de la jointure
+car la première occurrence provient de la relation «  » alors que la
+seconde provient de la relation «  ».</p>
+<p>Afin de ne conserver qu&rsquo;<em>une occurrence des <strong>champs de jointure</strong></em>, on
+peut réaliser une <em><strong>projection</strong></em> :</p>
+<p><strong>Numero_carte</strong>    <strong>Nom</strong>    <strong>Num_Etablissement</strong>   <strong>Ville</strong>   <strong>Nom_Etablissement</strong></p>
+<hr>
+<pre><code>      1             Henri               1               Paris      Université Jussieu
+      2           Stanislas             2               Lyon            CHU Bron
+      3           Henriette             1               Paris      Université Jussieu
+</code></pre>
+<p>:  <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mrow><mtext>Numero&#95;carte</mtext><mo separator="true">,</mo><mtext>Nom</mtext><mo separator="true">,</mo><mtext>Num&#95;Etablissement</mtext><mo separator="true">,</mo><mtext>Ville</mtext><mo separator="true">,</mo><mtext>Nom&#95;Etablissement</mtext></mrow></msub><mrow><mo fence="true">(</mo><mtext>Lecteur&#95;bis</mtext><mo>⊳</mo><mspace width="-0.5em"/><msub><mo>⊲</mo><mrow><mtext>Num&#95;Etablissement</mtext><mo>&#61;</mo><mtext>Num&#95;Etablissement</mtext></mrow></msub><mtext>Etablissement</mtext><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">&#92;pi&#95;{&#92;text{Numero&#92;&#95;carte}, &#92;text{Nom}, &#92;text{Num&#92;&#95;Etablissement},
+    &#92;text{Ville}, &#92;text{Nom&#92;&#95;Etablissement}}  &#92;left( &#92;text{Lecteur&#92;&#95;bis}
+    &#92;vartriangleright &#92;hspace{-0.5em}
+    &#92;vartriangleleft&#95;{&#92;text{Num&#92;&#95;Etablissement} &#61; &#92;text{Num&#92;&#95;Etablissement}}
+    &#92;text{Etablissement} &#92;right)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.217em;vertical-align:-0.367em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Numero&#95;carte</span></span><span class="mpunct mtight">,</span><span class="mord text mtight"><span class="mord mtight">Nom</span></span><span class="mpunct mtight">,</span><span class="mord text mtight"><span class="mord mtight">Num&#95;Etablissement</span></span><span class="mpunct mtight">,</span><span class="mord text mtight"><span class="mord mtight">Ville</span></span><span class="mpunct mtight">,</span><span class="mord text mtight"><span class="mord mtight">Nom&#95;Etablissement</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.367em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mord text"><span class="mord">Lecteur&#95;bis</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⊳</span><span class="mspace" style="margin-right:-0.5em;"></span><span class="mrel"><span class="mrel amsrm">⊲</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Num&#95;Etablissement</span></span><span class="mrel mtight">&#61;</span><span class="mord text mtight"><span class="mord mtight">Num&#95;Etablissement</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.367em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord text"><span class="mord">Etablissement</span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span></span></span></span></span></p>
+<p>Cette opération, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>jointure</mtext><mo>&#43;</mo><mtext>projection</mtext></mrow><annotation encoding="application/x-tex">&#92;text{jointure} &#43; &#92;text{projection}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8623em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">jointure</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8623em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">projection</span></span></span></span></span></span>, est parfois
+appelée <em>jointure naturelle</em>.</p>
+<p>Les champs de jointure ne doivent pas nécessairement être nommés à
+l&rsquo;identique. Nous verrons comment les différentier dans la partie « En
+langage SQL », page .</p>
+<p><em>On peut considérer l&rsquo;opération de jointure comme une sélection sur le
+produit cartésien des deux relations.</em> On ne conserve que les lignes
+dont le contenu du champ sur lequel s&rsquo;effectue la jointure est égal.</p>
+<p><strong>Numero_carte</strong>    <strong>Nom</strong>    <strong>Num_Etablissement</strong>   <strong>Num_Etablissement</strong>   <strong>Ville</strong>   <strong>Nom_Etablissement</strong></p>
+<hr>
+<pre><code>      1             Henri               1                       1               Paris      Université Jussieu
+      1             Henri               1                       2               Lyon            CHU Bron
+      1             Henri               1                       3               Nancy      Université Poincaré
+      1             Henri               1                       4               Paris      Université Sorbonne
+      2           Stanislas             2                       1               Paris      Université Jussieu
+      2           Stanislas             2                       2               Lyon            CHU Bron
+      2           Stanislas             2                       3               Nancy      Université Poincaré
+      2           Stanislas             2                       4               Paris      Université Sorbonne
+      3           Henriette             1                       1               Paris      Université Jussieu
+      3           Henriette             1                       2               Lyon            CHU Bron
+      3           Henriette             1                       3               Nancy      Université Poincaré
+      3           Henriette             1                       4               Paris      Université Sorbonne
+</code></pre>
+<p>: <em><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>Lecteur&#95;bis</mtext><mo>⊳</mo><mspace width="-0.5em"/><msub><mo>⊲</mo><mrow><mtext>Num&#95;Etablissement</mtext><mo>&#61;</mo><mtext>Num&#95;Etablissement</mtext></mrow></msub><mtext>Etablissement</mtext></mrow><annotation encoding="application/x-tex">&#92;text{Lecteur&#92;&#95;bis} &#92;vartriangleright &#92;hspace{-0.5em}
+    &#92;vartriangleleft&#95;{&#92;text{Num&#92;&#95;Etablissement} &#61; &#92;text{Num&#92;&#95;Etablissement}}
+    &#92;text{Etablissement}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0044em;vertical-align:-0.31em;"></span><span class="mord text"><span class="mord">Lecteur&#95;bis</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel amsrm">⊳</span><span class="mspace" style="margin-right:-0.5em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.9169em;vertical-align:-0.367em;"></span><span class="mrel"><span class="mrel amsrm">⊲</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">Num&#95;Etablissement</span></span><span class="mrel mtight">&#61;</span><span class="mord text mtight"><span class="mord mtight">Num&#95;Etablissement</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.367em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord text"><span class="mord">Etablissement</span></span></span></span></span></span></em> <em>Les lignes grisées sont celles qui sont
+sélectionnées lors d&rsquo;une jointure.</em></p>
+<dl>
+<dt>En langage SQL</dt>
+<dd>
+<p>il existe deux façons de réaliser une opération de jointure en SQL :</p>
+<ul>
+<li>
+<p>la première est basée sur l&rsquo;idée qu&rsquo;<em>une opération de jointure
+peut être considérée comme une sélection sur le produit
+cartésien des deux relations</em> :</p>
+<p><em>Avec une projection :</em></p>
+<p>Le traitement de la requête n&rsquo;est cependant pas, dans ce cas,
+optimal au niveau du SGBD.</p>
+</li>
+<li>
+<p>la seconde méthode utilise l&rsquo;opérateur de jointure  :</p>
+<p><em>Avec une projection :</em></p>
+</li>
+</ul>
+<p>On remarque qu&rsquo;<em>un champ est défini de façon unique grâce à la
+concaténation du nom de la relation et de celui du champ</em> :
+.[</p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>c</mi><mi>h</mi><mi>a</mi><mi>m</mi><mi>p</mi><mo>−</mo><mi>n</mi><mi>o</mi><mi>m</mi><mo>−</mo><mi>u</mi><mi>n</mi><mi>i</mi><mi>q</mi><mi>u</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">champ-nom-unique</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">c</span><span class="mord mathnormal">ham</span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal">o</span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">u</span><span class="mord mathnormal">ni</span><span class="mord mathnormal" style="margin-right:0.0359em;">q</span><span class="mord mathnormal">u</span><span class="mord mathnormal">e</span></span></span></span></span></span><p>]{#champ-nom-unique label=&ldquo;champ-nom-unique&rdquo;}</p>
+<p>Si les champs portent des noms différents, il n&rsquo;est pas nécessaire
+de préciser de quelle relation ils sont issus.</p>
+</dd>
+</dl>
+<h2 id="fonctions-de-calculs-et-dagrégation">Fonctions de calculs et d&rsquo;agrégation<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Une règle, dans le domaine des bases de données, est que tout ce qui
+peut se calculer ne doit pas être stocké dans la base. <em>On évite ainsi
+la perte de place et l&rsquo;incohérence qui peut découler du stockage
+d&rsquo;informations redondantes</em>.</p>
+<h3 id="fonctions-de-calculs">Fonctions de calculs<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Le langage SQL ne possède pas d&rsquo;instruction d&rsquo;itération ; il possède
+cependant des <em>fonctions simples de traitement des données d&rsquo;une
+colonne</em> (les calculs plus complexes doivent être effectués à l&rsquo;aide
+d&rsquo;un langage de programmation comme Python).</p>
+<p><strong>Fonction</strong>  <strong>Opération</strong></p>
+<hr>
+<pre><code>             Comptage du nombre d'enregistrements de la table
+             Maximum des éléments d'une colonne
+             Minimum des éléments d'une colonne
+             Moyenne des éléments d'une colonne
+             Somme des éléments d'une colonne
+</code></pre>
+<p>: <em>Fonctions statistiques de SQL</em></p>
+<p>Détermination de l&rsquo;age moyen des lecteurs</p>
+<p>:</p>
+<dl>
+<dt>Comptage du nombre de lecteurs</dt>
+<dd>
+<p>Dans le cas de la fonction , il n&rsquo;est pas nécessaire de préciser le
+champ puisque cette fonction s&rsquo;applique à la relation toute entière.</p>
+</dd>
+</dl>
+<h3 id="agrégats-ou-groupage">Agrégats ou groupage<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>::: {.definition}
+<strong>Definition 15</strong>. <em>Les opérations d&rsquo;« agrégation » (ou de groupage)
+regroupent les enregistrements d&rsquo;une relation par valeurs contenues dans
+une colonne.</em></p>
+<p><em>On applique généralement des opérations de calcul sur les
+« sous-tables » ainsi créées.</em>
+:::</p>
+<p><strong>NumVoit</strong>   <strong>Marque</strong>   <strong>Type</strong>   <strong>Couleur</strong></p>
+<hr>
+<pre><code>    1         Peugeot       404         Rouge
+    2         Citroen        SM         Noire
+    3           Opel         GT        Blanche
+    4         Peugeot       403        Blanche
+    5         Renault      Alpine       Rose
+    6         Renault     Floride       Bleue
+    7         Peugeot       806        Blanche
+</code></pre>
+<p>: <em>Relation Voiture(NumVoit,Marque,Type,Couleur)</em></p>
+<dl>
+<dt>Affichage des différentes marques</dt>
+<dd>
+<p>Pour réaliser cette opération avec SQL, on utilise le mot clé suivi
+du nom de la colonne sur laquelle s&rsquo;effectue l&rsquo;agrégat.</p>
+<p><code>SELECT``\ </code>{=latex}<code>Marque``\ </code>{=latex}<code>FROM``\ </code>{=latex}<code>Voiture``\ </code>{=latex}<code>GROUP``\ </code>{=latex}<code>BY``\ </code>{=latex}<code>Marque;</code></p>
+</dd>
+</dl>
+<h2 id="marque"><strong>Marque</strong><span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<pre><code>Peugeot
+Citroen
+  Opel
+Renault
+</code></pre>
+<p>: <em>Différentes marques de voitures</em></p>
+<dl>
+<dt>Affichage du nombre de voitures des différentes marques</dt>
+<dd>
+<p>Lors de cette opération, la fonction est appliquée à chaque
+« sous-tables » créée.</p>
+<p><code>SELECT``\ </code>{=latex}<code>Marque,``\ </code>{=latex}<code>COUNT(*)``\ </code>{=latex}<code>AS``\ </code>{=latex}<code>Compte``\ </code>{=latex}<code>FROM``\ </code>{=latex}<code>Voiture``\ </code>{=latex}<code>GROUP``\ </code>{=latex}<code>BY``\ </code>{=latex}<code>Marque``\ </code>{=latex}<code>;</code></p>
+</dd>
+</dl>
+<p><strong>Marque</strong>   <strong>Compte</strong></p>
+<hr>
+<pre><code>Peugeot         3
+Citroen         1
+  Opel          1
+Renault         2
+</code></pre>
+<p>: <em>Comptage du nombre de voitures, pour chaque marque</em></p>
+<p>Affichage de l&rsquo;age moyen des lecteurs, par université de la relation</p>
+<p>:</p>
+<h3 id="restriction-sur-le-résultat-dune-requête-agrégative">Restriction sur le résultat d&rsquo;une requête agrégative<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Le résultat de l&rsquo;opération de groupage peut lui-même être filtré : on
+effectue une sélection des lignes par rapport au contenu des colonnes
+obtenues dans la table résultat de la recherche groupée.</p>
+<dl>
+<dt>Calcul du nombre de voitures par marque dont le nombre est supérieur à 1</dt>
+<dd>
+<p><code>SELECT``\</code>{=latex}<code>Marque,``\</code>{=latex}<code>COUNT(*)``\</code>{=latex}<code>AS``\</code>{=latex}<code>Compte</code><br>
+<code>FROM``\</code>{=latex}<code>Voiture</code><br>
+<code>GROUP``\</code>{=latex}<code>BY``\</code>{=latex}<code>Marque</code><br>
+<code>HAVING``\</code>{=latex}<code>Compte``\</code>{=latex}<code>&gt;``\</code>{=latex}<code>1``\</code>{=latex}<code>;</code></p>
+</dd>
+</dl>
+<p><strong>Marque</strong>   <strong>Compte</strong></p>
+<hr>
+<pre><code>Peugeot         3
+Renault         2
+</code></pre>
+<p>: <em>Comptage du nombre de voitures, pour chaque marque, si le nombre
+est supérieur à 1</em></p>
+<p><em>Le mot clé permet d&rsquo;effectuer une sélection sur le résultat de
+l&rsquo;opération de groupage. Le mot clé opère une sélection sur les
+enregistrements de la table avant l&rsquo;opération de groupage.</em></p>
+<dl>
+<dt>Calcul du nombre de voitures, par marque, dont la couleur n&rsquo;est pas « Rouge »</dt>
+<dd>
+<p><code>SELECT``\</code>{=latex}<code>Marque,``\</code>{=latex}<code>COUNT(*)``\</code>{=latex}<code>AS``\</code>{=latex}<code>Compte</code><br>
+<code>FROM``\</code>{=latex}<code>Voiture</code><br>
+<code>WHERE``\</code>{=latex}<code>NOT``\</code>{=latex}<code>(Couleur``\</code>{=latex}<code>=``\</code>{=latex}<code>’Rouge’)</code><br>
+<code>GROUP``\</code>{=latex}<code>BY``\</code>{=latex}<code>Marque</code></p>
+<p><em><strong>enregistrement</strong></em>.</p>
+</dd>
+</dl>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 2 févr. 2021
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+    <li><a class="term-link" href="/categories/terminales-sp%C3%A9-nsi/index.html">Terminales Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

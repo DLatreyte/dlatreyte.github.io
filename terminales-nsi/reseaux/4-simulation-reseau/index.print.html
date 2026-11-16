@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="L’objectif de cette séance est de mettre en pratique les concepts rappelés lors des séances précédentes et d’introduire la notion de routage.
+Info Télécharger le logiciel Filius
+Attention : Choisir la langue lors de la première ouverture du logiciel. En cas d’erreur, supprimer le dossier .filius contenant les paramètres de langues se trouvant dans C:\Users\nom d’utilisateur sur le réseau\AppData\Local\.filius (sous windows).
+Construction d’un réseau local En mode conception, créer le réseau local suivant : Configurer chaque ordinateur : Mode conception ⟶\longrightarrow⟶ Clic droit sur l’ordinateur ⟶\longrightarrow⟶ Configurer.
+Remarque : le masque de sous-réseau doit être 255.255.255.0.
+Sélectionner « Utiliser l’adresse IP comme nom ».
+Ralentir les animations de façon à pouvoir visualiser le chemin des trames : ramener le curseur placé juste à droite du bouton Simulation à 1 %.
+Sur l’ordinateur portable installer les outils en ligne de commande : Mode simulation ⟶\longrightarrow⟶ Clic gauche ⟶\longrightarrow⟶ Installation des logiciels ⟶\longrightarrow⟶ Ligne de commande ⟶\longrightarrow⟶ Appliquer les modifications.
+À quoi correspond la table arp ? Réponse La table arp donne la correspondance entre les adresses MAC, seules utilisées sur un réseau local, et les adresses IP, définies par les administrateurs réseau.
+Lancer la commande arp -a et examiner son retour. Que nous apprend-elle ? Réponse Adresse IP Adresse MAC 255.255.255.255 FF:FF:FF:FF:FF:FF Par défaut, on a juste l&#39;adresse MAC de diffusion (broadcast). Lancer la commande ping 192.168.0.11. À quoi sert cette commande ? Réponse La commande ping permet de tester si une liaison réseau vers une machine que l’on sait allumée et fonctionnelle existe ou pas. Des paquets sont envoyés vers cette dernière ; elle les retourne alors tels quels (echo).
+Décrire la circulation des trames observables lors de la simulation. Réponse Dans un premier temps tous les cables s’allument, ce qui témoigne d’un mécanisme de diffusion. Par la suite, seuls les cables reliant les deux machines qui dialoguent au switch s’allument. Le switch (commutateur) permet un dialogue direct entre ces machines. Lancer à nouveau la commande arp -a. Quelle information supplémentaire la table arp contient-elle ? Réponse Adresse IP Adresse MAC 255.255.255.255 FF:FF:FF:FF:FF:FF 192.168.0.11 0C:84:62:DD:1B:C4 La table `arp` contient désormais une entrée pour l&#39;ordinateur d&#39;adresse IP 192.168.0.11. Remarque. Vous n’obtiendrez pas forcément les mêmes adresses MAC lors de votre simulation. Visualiser l’historique du traffic : Clic droit sur l’ordinateur ⟶\longrightarrow⟶ Afficher les échanges de données.
+Décrire avec précision la méthode utilisée pour découvrir quel est l’ordinateur d’adresse IP 192.168.0.11 sur le réseau. Réponse L’ordinateur portable forme et envoie une trame diffusée sur tout le réseau local (broadcast) qui contient : Pour la couche de liaison (niveau 2) : Adresse MAC source : son adresse MAC Adresse MAC destination : adresse MAC de diffusion (l’adresse MAC de l’ordinateur distant est encore inconnue à ce stade) Pour la couche réseau (niveau 3) : IP source : son adresse IP IP destination : l’adresse IP de l’ordinateur distant Protocole : ARP Commentaire : Qui a pour adresse IP 192.168.0.11 ? L’ordinateur distant forme et envoie une trame potentiellement diffusée sur tout le réseau local (broadcast) qui contient : Pour la couche de liaison (niveau 2) : Adresse MAC source : son adresse MAC Adresse MAC destination : adresse MAC de l’ordinateur portable Pour la couche réseau (niveau 3) : IP source : son adresse IP IP destination : l’adresse IP de l’ordinateur portable Protocole : ARP Commentaire : C’est moi et mon adresse MAC est … À ce stade de la communication, la découverte est terminée et on passe à un autre protocole.
+Pourquoi voit-on, dans certains messages, une adresse MAC valant FF:FF:FF:FF:FF:FF ? Réponse Il s’agit de l’adresse MAC de diffusion (broadcast).
+À quel niveau du modèle OSI le protocole arp intervient-il ? Réponse Niveau 3, couche réseau. Ce protocole fait cependant le lien entre les informations de la couche 2 et celles de la couche 3. On dit parfois que ce protocole appartient à la couche 2 1/22\, 1/221/2.
+À quel niveau du modèle OSI intervient la commande ping ? Réponse Le protocole ICMP intervient au niveau 3, couche réseau.
+Examiner la table SAT du switch : Clic gauche sur le switch. Que nous apprend cette table ? Réponse Cette table indique quel port il faut emprunter pour accéder aux ordinateurs dont l’adresse MAC a été repérée.
+Expliquer pourquoi on dit qu’« un commutateur (switch) limite le domaine de collision mais pas le domaine de diffusion ». Réponse À retenir Au niveau de la couche 2 du modèle OSI, aucune notion de connexion entre deux machines n’existe ; les segments sont diffusés sur tout le réseau et sont reçus aussi bien par la machine destinataire (qui traite alors l’information) que par celles qui ne le sont pas. Le processus de découverte de l’adresse MAC de la machine destinataire se fait forcément par diffusion. Un commutateur doit permettre ce mécanisme. Par la suite, le switch s’assure que les segments destinés à une machine soient directement dirigés vers le port qui conduit à la machine destinataire ; il évite donc une diffusion à tout le réseau et les éventuelles collisions entre segments qui pourraient intervenir. Reprendre les manipulations précédentes en utilisant encore la commande ping vers une nouvelle machine. Vérifier le remplissage des tables arp et SAT.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Simulation de réseaux :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="L’objectif de cette séance est de mettre en pratique les concepts rappelés lors des séances précédentes et d’introduire la notion de routage.
+Info Télécharger le logiciel Filius
+Attention : Choisir la langue lors de la première ouverture du logiciel. En cas d’erreur, supprimer le dossier .filius contenant les paramètres de langues se trouvant dans C:\Users\nom d’utilisateur sur le réseau\AppData\Local\.filius (sous windows).
+Construction d’un réseau local En mode conception, créer le réseau local suivant : Configurer chaque ordinateur : Mode conception ⟶\longrightarrow⟶ Clic droit sur l’ordinateur ⟶\longrightarrow⟶ Configurer.
+Remarque : le masque de sous-réseau doit être 255.255.255.0.
+Sélectionner « Utiliser l’adresse IP comme nom ».
+Ralentir les animations de façon à pouvoir visualiser le chemin des trames : ramener le curseur placé juste à droite du bouton Simulation à 1 %.
+Sur l’ordinateur portable installer les outils en ligne de commande : Mode simulation ⟶\longrightarrow⟶ Clic gauche ⟶\longrightarrow⟶ Installation des logiciels ⟶\longrightarrow⟶ Ligne de commande ⟶\longrightarrow⟶ Appliquer les modifications.
+À quoi correspond la table arp ? Réponse La table arp donne la correspondance entre les adresses MAC, seules utilisées sur un réseau local, et les adresses IP, définies par les administrateurs réseau.
+Lancer la commande arp -a et examiner son retour. Que nous apprend-elle ? Réponse Adresse IP Adresse MAC 255.255.255.255 FF:FF:FF:FF:FF:FF Par défaut, on a juste l&#39;adresse MAC de diffusion (broadcast). Lancer la commande ping 192.168.0.11. À quoi sert cette commande ? Réponse La commande ping permet de tester si une liaison réseau vers une machine que l’on sait allumée et fonctionnelle existe ou pas. Des paquets sont envoyés vers cette dernière ; elle les retourne alors tels quels (echo).
+Décrire la circulation des trames observables lors de la simulation. Réponse Dans un premier temps tous les cables s’allument, ce qui témoigne d’un mécanisme de diffusion. Par la suite, seuls les cables reliant les deux machines qui dialoguent au switch s’allument. Le switch (commutateur) permet un dialogue direct entre ces machines. Lancer à nouveau la commande arp -a. Quelle information supplémentaire la table arp contient-elle ? Réponse Adresse IP Adresse MAC 255.255.255.255 FF:FF:FF:FF:FF:FF 192.168.0.11 0C:84:62:DD:1B:C4 La table `arp` contient désormais une entrée pour l&#39;ordinateur d&#39;adresse IP 192.168.0.11. Remarque. Vous n’obtiendrez pas forcément les mêmes adresses MAC lors de votre simulation. Visualiser l’historique du traffic : Clic droit sur l’ordinateur ⟶\longrightarrow⟶ Afficher les échanges de données.
+Décrire avec précision la méthode utilisée pour découvrir quel est l’ordinateur d’adresse IP 192.168.0.11 sur le réseau. Réponse L’ordinateur portable forme et envoie une trame diffusée sur tout le réseau local (broadcast) qui contient : Pour la couche de liaison (niveau 2) : Adresse MAC source : son adresse MAC Adresse MAC destination : adresse MAC de diffusion (l’adresse MAC de l’ordinateur distant est encore inconnue à ce stade) Pour la couche réseau (niveau 3) : IP source : son adresse IP IP destination : l’adresse IP de l’ordinateur distant Protocole : ARP Commentaire : Qui a pour adresse IP 192.168.0.11 ? L’ordinateur distant forme et envoie une trame potentiellement diffusée sur tout le réseau local (broadcast) qui contient : Pour la couche de liaison (niveau 2) : Adresse MAC source : son adresse MAC Adresse MAC destination : adresse MAC de l’ordinateur portable Pour la couche réseau (niveau 3) : IP source : son adresse IP IP destination : l’adresse IP de l’ordinateur portable Protocole : ARP Commentaire : C’est moi et mon adresse MAC est … À ce stade de la communication, la découverte est terminée et on passe à un autre protocole.
+Pourquoi voit-on, dans certains messages, une adresse MAC valant FF:FF:FF:FF:FF:FF ? Réponse Il s’agit de l’adresse MAC de diffusion (broadcast).
+À quel niveau du modèle OSI le protocole arp intervient-il ? Réponse Niveau 3, couche réseau. Ce protocole fait cependant le lien entre les informations de la couche 2 et celles de la couche 3. On dit parfois que ce protocole appartient à la couche 2 1/22\, 1/221/2.
+À quel niveau du modèle OSI intervient la commande ping ? Réponse Le protocole ICMP intervient au niveau 3, couche réseau.
+Examiner la table SAT du switch : Clic gauche sur le switch. Que nous apprend cette table ? Réponse Cette table indique quel port il faut emprunter pour accéder aux ordinateurs dont l’adresse MAC a été repérée.
+Expliquer pourquoi on dit qu’« un commutateur (switch) limite le domaine de collision mais pas le domaine de diffusion ». Réponse À retenir Au niveau de la couche 2 du modèle OSI, aucune notion de connexion entre deux machines n’existe ; les segments sont diffusés sur tout le réseau et sont reçus aussi bien par la machine destinataire (qui traite alors l’information) que par celles qui ne le sont pas. Le processus de découverte de l’adresse MAC de la machine destinataire se fait forcément par diffusion. Un commutateur doit permettre ce mécanisme. Par la suite, le switch s’assure que les segments destinés à une machine soient directement dirigés vers le port qui conduit à la machine destinataire ; il évite donc une diffusion à tout le réseau et les éventuelles collisions entre segments qui pourraient intervenir. Reprendre les manipulations précédentes en utilisant encore la commande ping vers une nouvelle machine. Vérifier le remplissage des tables arp et SAT.">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/reseaux/4-simulation-reseau/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Simulation de réseaux :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="L’objectif de cette séance est de mettre en pratique les concepts rappelés lors des séances précédentes et d’introduire la notion de routage.
+Info Télécharger le logiciel Filius
+Attention : Choisir la langue lors de la première ouverture du logiciel. En cas d’erreur, supprimer le dossier .filius contenant les paramètres de langues se trouvant dans C:\Users\nom d’utilisateur sur le réseau\AppData\Local\.filius (sous windows).
+Construction d’un réseau local En mode conception, créer le réseau local suivant : Configurer chaque ordinateur : Mode conception ⟶\longrightarrow⟶ Clic droit sur l’ordinateur ⟶\longrightarrow⟶ Configurer.
+Remarque : le masque de sous-réseau doit être 255.255.255.0.
+Sélectionner « Utiliser l’adresse IP comme nom ».
+Ralentir les animations de façon à pouvoir visualiser le chemin des trames : ramener le curseur placé juste à droite du bouton Simulation à 1 %.
+Sur l’ordinateur portable installer les outils en ligne de commande : Mode simulation ⟶\longrightarrow⟶ Clic gauche ⟶\longrightarrow⟶ Installation des logiciels ⟶\longrightarrow⟶ Ligne de commande ⟶\longrightarrow⟶ Appliquer les modifications.
+À quoi correspond la table arp ? Réponse La table arp donne la correspondance entre les adresses MAC, seules utilisées sur un réseau local, et les adresses IP, définies par les administrateurs réseau.
+Lancer la commande arp -a et examiner son retour. Que nous apprend-elle ? Réponse Adresse IP Adresse MAC 255.255.255.255 FF:FF:FF:FF:FF:FF Par défaut, on a juste l&#39;adresse MAC de diffusion (broadcast). Lancer la commande ping 192.168.0.11. À quoi sert cette commande ? Réponse La commande ping permet de tester si une liaison réseau vers une machine que l’on sait allumée et fonctionnelle existe ou pas. Des paquets sont envoyés vers cette dernière ; elle les retourne alors tels quels (echo).
+Décrire la circulation des trames observables lors de la simulation. Réponse Dans un premier temps tous les cables s’allument, ce qui témoigne d’un mécanisme de diffusion. Par la suite, seuls les cables reliant les deux machines qui dialoguent au switch s’allument. Le switch (commutateur) permet un dialogue direct entre ces machines. Lancer à nouveau la commande arp -a. Quelle information supplémentaire la table arp contient-elle ? Réponse Adresse IP Adresse MAC 255.255.255.255 FF:FF:FF:FF:FF:FF 192.168.0.11 0C:84:62:DD:1B:C4 La table `arp` contient désormais une entrée pour l&#39;ordinateur d&#39;adresse IP 192.168.0.11. Remarque. Vous n’obtiendrez pas forcément les mêmes adresses MAC lors de votre simulation. Visualiser l’historique du traffic : Clic droit sur l’ordinateur ⟶\longrightarrow⟶ Afficher les échanges de données.
+Décrire avec précision la méthode utilisée pour découvrir quel est l’ordinateur d’adresse IP 192.168.0.11 sur le réseau. Réponse L’ordinateur portable forme et envoie une trame diffusée sur tout le réseau local (broadcast) qui contient : Pour la couche de liaison (niveau 2) : Adresse MAC source : son adresse MAC Adresse MAC destination : adresse MAC de diffusion (l’adresse MAC de l’ordinateur distant est encore inconnue à ce stade) Pour la couche réseau (niveau 3) : IP source : son adresse IP IP destination : l’adresse IP de l’ordinateur distant Protocole : ARP Commentaire : Qui a pour adresse IP 192.168.0.11 ? L’ordinateur distant forme et envoie une trame potentiellement diffusée sur tout le réseau local (broadcast) qui contient : Pour la couche de liaison (niveau 2) : Adresse MAC source : son adresse MAC Adresse MAC destination : adresse MAC de l’ordinateur portable Pour la couche réseau (niveau 3) : IP source : son adresse IP IP destination : l’adresse IP de l’ordinateur portable Protocole : ARP Commentaire : C’est moi et mon adresse MAC est … À ce stade de la communication, la découverte est terminée et on passe à un autre protocole.
+Pourquoi voit-on, dans certains messages, une adresse MAC valant FF:FF:FF:FF:FF:FF ? Réponse Il s’agit de l’adresse MAC de diffusion (broadcast).
+À quel niveau du modèle OSI le protocole arp intervient-il ? Réponse Niveau 3, couche réseau. Ce protocole fait cependant le lien entre les informations de la couche 2 et celles de la couche 3. On dit parfois que ce protocole appartient à la couche 2 1/22\, 1/221/2.
+À quel niveau du modèle OSI intervient la commande ping ? Réponse Le protocole ICMP intervient au niveau 3, couche réseau.
+Examiner la table SAT du switch : Clic gauche sur le switch. Que nous apprend cette table ? Réponse Cette table indique quel port il faut emprunter pour accéder aux ordinateurs dont l’adresse MAC a été repérée.
+Expliquer pourquoi on dit qu’« un commutateur (switch) limite le domaine de collision mais pas le domaine de diffusion ». Réponse À retenir Au niveau de la couche 2 du modèle OSI, aucune notion de connexion entre deux machines n’existe ; les segments sont diffusés sur tout le réseau et sont reçus aussi bien par la machine destinataire (qui traite alors l’information) que par celles qui ne le sont pas. Le processus de découverte de l’adresse MAC de la machine destinataire se fait forcément par diffusion. Un commutateur doit permettre ce mécanisme. Par la suite, le switch s’assure que les segments destinés à une machine soient directement dirigés vers le port qui conduit à la machine destinataire ; il évite donc une diffusion à tout le réseau et les éventuelles collisions entre segments qui pourraient intervenir. Reprendre les manipulations précédentes en utilisant encore la commande ping vers une nouvelle machine. Vérifier le remplissage des tables arp et SAT.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2020-12-06T04:35:41+04:00">
+    <meta property="article:modified_time" content="2020-12-06T04:35:41+04:00">
+    <meta property="article:tag" content="Réseaux">
+    <meta property="article:tag" content="IP">
+    <meta property="article:tag" content="Adressage">
+    <meta property="article:tag" content="TCP">
+    <meta property="article:tag" content="Ethernet">
+    <meta property="article:tag" content="Routage">
+    <meta itemprop="name" content="Simulation de réseaux :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="L’objectif de cette séance est de mettre en pratique les concepts rappelés lors des séances précédentes et d’introduire la notion de routage.
+Info Télécharger le logiciel Filius
+Attention : Choisir la langue lors de la première ouverture du logiciel. En cas d’erreur, supprimer le dossier .filius contenant les paramètres de langues se trouvant dans C:\Users\nom d’utilisateur sur le réseau\AppData\Local\.filius (sous windows).
+Construction d’un réseau local En mode conception, créer le réseau local suivant : Configurer chaque ordinateur : Mode conception ⟶\longrightarrow⟶ Clic droit sur l’ordinateur ⟶\longrightarrow⟶ Configurer.
+Remarque : le masque de sous-réseau doit être 255.255.255.0.
+Sélectionner « Utiliser l’adresse IP comme nom ».
+Ralentir les animations de façon à pouvoir visualiser le chemin des trames : ramener le curseur placé juste à droite du bouton Simulation à 1 %.
+Sur l’ordinateur portable installer les outils en ligne de commande : Mode simulation ⟶\longrightarrow⟶ Clic gauche ⟶\longrightarrow⟶ Installation des logiciels ⟶\longrightarrow⟶ Ligne de commande ⟶\longrightarrow⟶ Appliquer les modifications.
+À quoi correspond la table arp ? Réponse La table arp donne la correspondance entre les adresses MAC, seules utilisées sur un réseau local, et les adresses IP, définies par les administrateurs réseau.
+Lancer la commande arp -a et examiner son retour. Que nous apprend-elle ? Réponse Adresse IP Adresse MAC 255.255.255.255 FF:FF:FF:FF:FF:FF Par défaut, on a juste l&#39;adresse MAC de diffusion (broadcast). Lancer la commande ping 192.168.0.11. À quoi sert cette commande ? Réponse La commande ping permet de tester si une liaison réseau vers une machine que l’on sait allumée et fonctionnelle existe ou pas. Des paquets sont envoyés vers cette dernière ; elle les retourne alors tels quels (echo).
+Décrire la circulation des trames observables lors de la simulation. Réponse Dans un premier temps tous les cables s’allument, ce qui témoigne d’un mécanisme de diffusion. Par la suite, seuls les cables reliant les deux machines qui dialoguent au switch s’allument. Le switch (commutateur) permet un dialogue direct entre ces machines. Lancer à nouveau la commande arp -a. Quelle information supplémentaire la table arp contient-elle ? Réponse Adresse IP Adresse MAC 255.255.255.255 FF:FF:FF:FF:FF:FF 192.168.0.11 0C:84:62:DD:1B:C4 La table `arp` contient désormais une entrée pour l&#39;ordinateur d&#39;adresse IP 192.168.0.11. Remarque. Vous n’obtiendrez pas forcément les mêmes adresses MAC lors de votre simulation. Visualiser l’historique du traffic : Clic droit sur l’ordinateur ⟶\longrightarrow⟶ Afficher les échanges de données.
+Décrire avec précision la méthode utilisée pour découvrir quel est l’ordinateur d’adresse IP 192.168.0.11 sur le réseau. Réponse L’ordinateur portable forme et envoie une trame diffusée sur tout le réseau local (broadcast) qui contient : Pour la couche de liaison (niveau 2) : Adresse MAC source : son adresse MAC Adresse MAC destination : adresse MAC de diffusion (l’adresse MAC de l’ordinateur distant est encore inconnue à ce stade) Pour la couche réseau (niveau 3) : IP source : son adresse IP IP destination : l’adresse IP de l’ordinateur distant Protocole : ARP Commentaire : Qui a pour adresse IP 192.168.0.11 ? L’ordinateur distant forme et envoie une trame potentiellement diffusée sur tout le réseau local (broadcast) qui contient : Pour la couche de liaison (niveau 2) : Adresse MAC source : son adresse MAC Adresse MAC destination : adresse MAC de l’ordinateur portable Pour la couche réseau (niveau 3) : IP source : son adresse IP IP destination : l’adresse IP de l’ordinateur portable Protocole : ARP Commentaire : C’est moi et mon adresse MAC est … À ce stade de la communication, la découverte est terminée et on passe à un autre protocole.
+Pourquoi voit-on, dans certains messages, une adresse MAC valant FF:FF:FF:FF:FF:FF ? Réponse Il s’agit de l’adresse MAC de diffusion (broadcast).
+À quel niveau du modèle OSI le protocole arp intervient-il ? Réponse Niveau 3, couche réseau. Ce protocole fait cependant le lien entre les informations de la couche 2 et celles de la couche 3. On dit parfois que ce protocole appartient à la couche 2 1/22\, 1/221/2.
+À quel niveau du modèle OSI intervient la commande ping ? Réponse Le protocole ICMP intervient au niveau 3, couche réseau.
+Examiner la table SAT du switch : Clic gauche sur le switch. Que nous apprend cette table ? Réponse Cette table indique quel port il faut emprunter pour accéder aux ordinateurs dont l’adresse MAC a été repérée.
+Expliquer pourquoi on dit qu’« un commutateur (switch) limite le domaine de collision mais pas le domaine de diffusion ». Réponse À retenir Au niveau de la couche 2 du modèle OSI, aucune notion de connexion entre deux machines n’existe ; les segments sont diffusés sur tout le réseau et sont reçus aussi bien par la machine destinataire (qui traite alors l’information) que par celles qui ne le sont pas. Le processus de découverte de l’adresse MAC de la machine destinataire se fait forcément par diffusion. Un commutateur doit permettre ce mécanisme. Par la suite, le switch s’assure que les segments destinés à une machine soient directement dirigés vers le port qui conduit à la machine destinataire ; il évite donc une diffusion à tout le réseau et les éventuelles collisions entre segments qui pourraient intervenir. Reprendre les manipulations précédentes en utilisant encore la commande ping vers une nouvelle machine. Vérifier le remplissage des tables arp et SAT.">
+    <meta itemprop="datePublished" content="2020-12-06T04:35:41+04:00">
+    <meta itemprop="dateModified" content="2020-12-06T04:35:41+04:00">
+    <meta itemprop="wordCount" content="1801">
+    <meta itemprop="keywords" content="Réseaux,IP,Adressage,TCP,Ethernet,Routage">
+    <title>Simulation de réseaux :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/reseaux/4-simulation-reseau/index.html" rel="canonical" type="text/html" title="Simulation de réseaux :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/reseaux/4-simulation-reseau/index.xml" rel="alternate" type="application/rss&#43;xml" title="Simulation de réseaux :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/reseaux/4-simulation-reseau/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/reseaux/4-simulation-reseau/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#construction-dun-réseau-local">Construction d&rsquo;un réseau local</a></li>
+    <li><a href="#communication-entre-deux-réseaux">Communication entre deux réseaux</a></li>
+    <li><a href="#réseaux-étendus">Réseaux étendus</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Les réseaux">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/reseaux/index.html"><span itemprop="name">Les réseaux</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/reseaux/4-simulation-reseau/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/reseaux/3-analyse-tcp/index.html" title="Analyse du protocole de transport TCP (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/reseaux/5-routage/index.html" title="Le routage entre réseaux IP (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Les réseaux</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/adressage/index.html">Adressage</a></li>
+    <li><a class="term-link" href="/tags/ethernet/index.html">Ethernet</a></li>
+    <li><a class="term-link" href="/tags/ip/index.html">IP</a></li>
+    <li><a class="term-link" href="/tags/r%C3%A9seaux/index.html">Réseaux</a></li>
+    <li><a class="term-link" href="/tags/routage/index.html">Routage</a></li>
+    <li><a class="term-link" href="/tags/tcp/index.html">TCP</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="simulation-de-réseaux">Simulation de réseaux</h1>
+
+<blockquote>
+<p>L&rsquo;objectif de cette séance est de mettre en pratique les concepts rappelés lors des séances précédentes et d&rsquo;introduire la notion de routage.</p>
+</blockquote>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<ul>
+<li>
+<p>Télécharger le logiciel
+<a class="remote" href="https://www.lernsoftware-filius.de/Herunterladen" target="_blank">Filius</a></p>
+</li>
+<li>
+<p><strong>Attention :</strong> Choisir la langue lors de la première ouverture du logiciel. En cas d’erreur, supprimer le dossier <code>.filius</code> contenant les paramètres de langues se trouvant dans <code>C:\Users\nom d’utilisateur sur le réseau\AppData\Local\.filius</code> (sous windows).</p>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<h2 id="construction-dun-réseau-local">Construction d&rsquo;un réseau local<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<ol>
+<li>
+<p>En <code>mode conception</code>, créer le réseau local suivant :
+<img src="/terminales-nsi/chap-11/chap-11-4-1.png" alt="" width="" /></p>
+</li>
+<li>
+<p>Configurer chaque ordinateur : <code>Mode conception</code> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⟶</mo></mrow><annotation encoding="application/x-tex">&#92;longrightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟶</span></span></span></span></span> <code>Clic droit</code> sur l&rsquo;ordinateur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⟶</mo></mrow><annotation encoding="application/x-tex">&#92;longrightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟶</span></span></span></span></span> <code>Configurer</code>.<br>
+<em>Remarque :</em> le masque de sous-réseau doit être <code>255.255.255.0</code>.</p>
+</li>
+<li>
+<p>Sélectionner « Utiliser l&rsquo;adresse IP comme nom ».</p>
+</li>
+<li>
+<p>Ralentir les animations de façon à pouvoir visualiser le chemin des trames : ramener le curseur placé juste à droite du bouton <code>Simulation</code> à 1 %.</p>
+</li>
+<li>
+<p>Sur l&rsquo;ordinateur portable installer les outils en ligne de commande : <code>Mode simulation</code> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⟶</mo></mrow><annotation encoding="application/x-tex">&#92;longrightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟶</span></span></span></span></span> <code>Clic gauche</code> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⟶</mo></mrow><annotation encoding="application/x-tex">&#92;longrightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟶</span></span></span></span></span> <code>Installation des logiciels</code> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⟶</mo></mrow><annotation encoding="application/x-tex">&#92;longrightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟶</span></span></span></span></span> <code>Ligne de commande</code> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⟶</mo></mrow><annotation encoding="application/x-tex">&#92;longrightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟶</span></span></span></span></span> <code>Appliquer les modifications</code>.</p>
+</li>
+<li>
+<p>À quoi correspond la table <code>arp</code> ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>La table <code>arp</code> donne la correspondance entre les adresses MAC, seules utilisées sur un réseau local, et les adresses IP, définies par les administrateurs réseau.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Lancer la commande <code>arp -a</code> et examiner son retour. Que nous apprend-elle ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<center>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center">Adresse IP</th>
+      <th class="align-center">Adresse MAC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">255.255.255.255</td>
+      <td class="align-center">FF:FF:FF:FF:FF:FF</td>
+    </tr>
+  </tbody>
+</table>
+</center>
+Par défaut, on a juste l'adresse MAC de diffusion (broadcast).
+  </div>
+</details></p>
+</li>
+<li>
+<p>Lancer la commande <code>ping 192.168.0.11</code>. À quoi sert cette commande ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>La commande <code>ping</code> permet de tester si une liaison réseau vers une machine que l&rsquo;on sait allumée et fonctionnelle existe ou pas. Des paquets sont envoyés vers cette dernière ; elle les retourne alors tels quels (echo).</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Décrire la circulation des trames observables lors de la simulation.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<ul>
+<li>Dans un premier temps tous les cables s&rsquo;allument, ce qui témoigne d&rsquo;un mécanisme de <strong>diffusion</strong>.</li>
+<li>Par la suite, seuls les cables reliant les deux machines qui dialoguent au switch s&rsquo;allument. <strong>Le switch (commutateur) permet un dialogue direct entre ces machines</strong>.</li>
+</ul>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Lancer à nouveau la commande <code>arp -a</code>. Quelle information supplémentaire la table <code>arp</code> contient-elle ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<center>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center">Adresse IP</th>
+      <th class="align-center">Adresse MAC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">255.255.255.255</td>
+      <td class="align-center">FF:FF:FF:FF:FF:FF</td>
+    </tr>
+    <tr>
+      <td class="align-center">192.168.0.11</td>
+      <td class="align-center">0C:84:62:DD:1B:C4</td>
+    </tr>
+  </tbody>
+</table>
+</center>
+La table `arp` contient désormais une entrée pour l'ordinateur d'adresse IP 192.168.0.11.
+<dl>
+<dt>Remarque.</dt>
+<dd>Vous n&rsquo;obtiendrez pas forcément les mêmes adresses MAC lors de votre simulation.</dd>
+</dl>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Visualiser l&rsquo;historique du traffic : <code>Clic droit</code> sur l&rsquo;ordinateur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⟶</mo></mrow><annotation encoding="application/x-tex">&#92;longrightarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.522em;vertical-align:-0.011em;"></span><span class="mrel">⟶</span></span></span></span></span> <code>Afficher les échanges de données</code>.<br>
+Décrire avec précision la méthode utilisée pour découvrir quel est l&rsquo;ordinateur d&rsquo;adresse IP 192.168.0.11 sur le réseau.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<ul>
+<li>L&rsquo;ordinateur portable forme et envoie une trame <em>diffusée sur tout le réseau local (broadcast)</em> qui contient :
+<ul>
+<li>Pour la couche de liaison (niveau 2) :
+<ul>
+<li>Adresse MAC source : son adresse MAC</li>
+<li>Adresse MAC destination : adresse MAC de diffusion (l&rsquo;adresse MAC de l&rsquo;ordinateur distant est encore inconnue à ce stade)</li>
+</ul>
+</li>
+<li>Pour la couche réseau (niveau 3) :
+<ul>
+<li>IP source : son adresse IP</li>
+<li>IP destination  : l&rsquo;adresse IP de l&rsquo;ordinateur distant</li>
+<li>Protocole : ARP</li>
+<li>Commentaire : Qui a pour adresse IP 192.168.0.11 ?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>L&rsquo;ordinateur distant forme et envoie une trame <strong>potentiellement</strong> <em>diffusée sur tout le réseau local (broadcast)</em> qui contient :
+<ul>
+<li>Pour la couche de liaison (niveau 2) :
+<ul>
+<li>Adresse MAC source : son adresse MAC</li>
+<li>Adresse MAC destination : adresse MAC de l&rsquo;ordinateur portable</li>
+</ul>
+</li>
+<li>Pour la couche réseau (niveau 3) :
+<ul>
+<li>IP source : son adresse IP</li>
+<li>IP destination  : l&rsquo;adresse IP de l&rsquo;ordinateur portable</li>
+<li>Protocole : ARP</li>
+<li>Commentaire : C&rsquo;est moi et mon adresse MAC est &hellip;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>À ce stade de la communication, la découverte est terminée et on passe à un autre protocole.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Pourquoi voit-on, dans certains messages, une adresse MAC valant FF:FF:FF:FF:FF:FF  ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Il s&rsquo;agit de l&rsquo;adresse MAC de diffusion (broadcast).</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>À quel niveau du modèle OSI le protocole <code>arp</code> intervient-il ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Niveau 3, couche réseau. Ce protocole fait cependant le lien entre les informations de la couche 2 et celles de la couche 3. On dit parfois que ce protocole appartient à la couche <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mtext> </mtext><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">2&#92;, 1/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1/2</span></span></span></span></span>.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>À quel niveau du modèle OSI intervient la commande <code>ping</code> ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Le protocole ICMP intervient au niveau 3, couche réseau.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Examiner la table SAT du switch : <code>Clic gauche</code> sur le switch.
+Que nous apprend cette table ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Cette table indique quel port il faut emprunter pour accéder aux ordinateurs dont l&rsquo;adresse MAC a été repérée.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Expliquer pourquoi on dit qu&rsquo;« <strong>un commutateur (switch) limite le domaine de collision mais pas le domaine de diffusion</strong> ».
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<ul>
+<li>Au niveau de la couche 2 du modèle OSI, aucune notion de connexion entre deux machines n&rsquo;existe ; les segments sont diffusés sur tout le réseau et sont reçus aussi bien par la machine destinataire (qui traite alors l&rsquo;information) que par celles qui ne le sont pas.</li>
+<li>Le processus de découverte de l&rsquo;adresse MAC de la machine destinataire se fait forcément par diffusion. Un commutateur doit permettre ce mécanisme.</li>
+<li>Par la suite, le switch s&rsquo;assure que les segments destinés à une machine soient directement dirigés vers le port qui conduit à la machine destinataire ; il évite donc une diffusion à tout le réseau et les éventuelles collisions entre segments qui pourraient intervenir.</li>
+</ul>
+  </div>
+</div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Reprendre les manipulations précédentes en utilisant encore la commande <code>ping</code> vers une nouvelle machine. Vérifier le remplissage des tables <code>arp</code> et <code>SAT</code>.</p>
+</li>
+</ol>
+<h2 id="communication-entre-deux-réseaux">Communication entre deux réseaux<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<ol start="18">
+<li>Créer le réseau local suivant :
+<img src="/terminales-nsi/chap-11/chap-11-4-2.png" alt="" width="" /></li>
+</ol>
+<p>Les masques de sous-réseau sont :</p>
+<ul>
+<li><code>255.255.255.0</code> pour le sous-réseau connecté au switch A ;</li>
+<li><code>255.255.0.0</code> pour le sous-réseau connecté au switch B.</li>
+</ul>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<ul>
+<li>Pour pouvoir communiquer sur un même réseau, deux hôtes doivent avoir la même adresse réseau (IP).</li>
+<li>Pour pouvoir communiquer entre deux réseaux différents, il faut passer par une routeur (ou passerelle), qui lui, possède plusieurs cartes réseau, et donc plusieurs adresses IP.</li>
+</ul>
+
+  </div>
+</div>
+
+<ol start="19">
+<li>
+<p>Lancer la commande <code>ping</code> depuis un ordinateur du sous-réseau A vers un ordinateur du sous-réseau B. Observer et justifier le résultat.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Il est impossible d&rsquo;atteindre un ordinateur du sous-réseau B depuis un ordinateur du sous-réseau A car ils n&rsquo;appartiennent pas au même réseau et parce que le routeur n&rsquo;a pas encore été configuré.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Configurer le routeur afin qu&rsquo;il route les paquets entre les deux sous-réseaux et tenter à nouveau l&rsquo;expérience de la question 18. La communication est-elle bien établie ?
+<strong>Remarque :</strong> Choisir l&rsquo;adresse <code>192.168.0.254</code> pour l&rsquo;interface qui est dans le sous-réseau de gauche et <code>172.16.255.254</code> pour celle qui est dans le sous-réseau de droite.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>La communication est toujours impossible.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Afin de comprendre pourquoi la communication entre les machines des deux sous-réseaux est toujours impossible, sur l&rsquo;ordinateur du sous-réseau A, lancer la commande <code>route</code>. Examiner le résultat et identifier le problème.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<center>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center">Destination</th>
+      <th class="align-center">Masque</th>
+      <th class="align-center">Passerelle</th>
+      <th class="align-center">Interface</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">192.168.0.10</td>
+      <td class="align-center">255.255.255.255</td>
+      <td class="align-center">127.0.0.1</td>
+      <td class="align-center">127.0.0.1</td>
+    </tr>
+    <tr>
+      <td class="align-center">192.168.0.0</td>
+      <td class="align-center">255.255.255.0</td>
+      <td class="align-center">192.168.0.10</td>
+      <td class="align-center">192.168.0.10</td>
+    </tr>
+    <tr>
+      <td class="align-center">127.0.0.1</td>
+      <td class="align-center">255.0.0.0</td>
+      <td class="align-center">127.0.0.1</td>
+      <td class="align-center">127.0.0.1</td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<p>L&rsquo;ordinateur ne connaît pas la route vers le sous-réseau B.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Configurer l&rsquo;ordinateur afin que la communication avec l&rsquo;autre sous-réseau soit possible.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Il faut ajouter à la main une nouvelle route (ce qui sera fait un peu plus tard) ou définir la « passerelle par défaut », c&rsquo;est à dire la passerelle qui sera utilisée chaque fois que l&rsquo;ordinateur ne saura pas quoi faire.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Lancer à nouveau la commande <code>ping</code> et examiner le résultat.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>La communication n&rsquo;a toujours pas lieu.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Que faut-il faire pour que la communication entre les deux ordinateurs puisse enfin s&rsquo;établir ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>L&rsquo;ordinateur du sous-réseau B doit lui aussi avoir une passerelle définie.</p>
+  </div>
+</details></p>
+</li>
+</ol>
+<p>Associer une passerelle à tous les ordinateurs.</p>
+<ol start="25">
+<li>
+<p>Examiner la table <code>arp</code> de l&rsquo;ordinateur du sous-réseau A qui vient de communiquer avec l&rsquo;ordinateur du sous-réseau B. Existe-t-il une entrée pour l&rsquo;ordinateur du sous-réseau B ? À quel ordinateur est associée l&rsquo;entrée présente dans la table ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Il n&rsquo;existe aucune entrée pour l&rsquo;ordinateur du sous-réseau B mais une entrée pour l&rsquo;interface du routeur appartenant au sous-réseau A.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>La couche de liaison ne définit <strong>aucune connexion directe entre deux ordinateurs</strong>. Les ordinateurs envoient toujours des <strong>trames</strong> (niveau 2) sur le réseau local. Lorsque l&rsquo;ordinateur destinataire ne se trouve pas sur le réseau local, c&rsquo;est au routeur d&rsquo;acheminer correctement les <strong>paquets</strong> (niveau 3).</p>
+  </div>
+</div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>De la même façon, examiner la table <code>arp</code> de l&rsquo;ordinateur du sous-réseau B qui vient de communiquer avec l&rsquo;ordinateur du sous-réseau A. Existe-t-il une entrée pour l&rsquo;ordinateur du sous-réseau A ? À quel ordinateur est associée l&rsquo;entrée présente dans la table ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Il n&rsquo;existe aucune entrée pour l&rsquo;ordinateur du sous-réseau A mais une entrée pour l&rsquo;interface du routeur appartenant au sous-réseau B.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelle conclusion peut-on déduire des deux observations précédentes ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Les trames ne traversent pas les routeurs et ne peuvent pas se propager dans des réseaux différents.</p>
+  </div>
+</div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Lancer la commande <code>traceroute</code> vers l&rsquo;ordinateur du sous-réseau B. À quoi correspond le retour de cette commande ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><code>traceroute</code> donne le chemin suivi par les paquets.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelle première action doit effectuer un ordinateur qui doit envoyer un <strong>paquet</strong> sur un réseau qui n&rsquo;est pas celui auquel il appartient ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>L&rsquo;ordinateur doit dans un premier temps déterminer l&rsquo;adresse MAC du routeur (passerelle) sur son réseau.</p>
+<p>Cette étape nécessite la diffusion d&rsquo;une trame de découverte tel qu&rsquo;expliqué dans les premières étapes de ce document.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelles informations contiennent la trame et le paquet formés et envoyés par un ordinateur qui doit envoyer un <strong>paquet</strong> sur un réseau qui n&rsquo;est pas celui auquel il appartient ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<ul>
+<li>Trame (couche de liaison ou niveau 2 du modèle OSI):
+<ul>
+<li>Addresse MAC source : son adresse MAC</li>
+<li>Adresse MAC de destination : l&rsquo;adresse MAC du <strong>routeur</strong></li>
+</ul>
+</li>
+<li>Paquet (couche réseau ou niveau 3 du modèle OSI) :
+<ul>
+<li>Addresse IP source : son adresse IP</li>
+<li>Addresse IP de destination : l&rsquo;adresse IP de l&rsquo;<strong>ordinateur appartenant à l&rsquo;autre sous-réseau</strong></li>
+</ul>
+</li>
+</ul>
+  </div>
+</div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelles actions un routeur effectue-t-il lorsqu&rsquo;il reçoit une <strong>trame</strong> ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<ul>
+<li>Le routeur déconstruit la trame ;</li>
+<li>Le routeur lit l&rsquo;adresse IP de destination du paquet en lisant l&rsquo;entête de ce paquet ;</li>
+<li>Le routeur prend une décision de routage ;</li>
+<li>Le routeur recontruit une trame qui encapsule le paquet et contient comme adresse MAC source son adresse MAC et comme addresse MAC de destination celle de l&rsquo;ordinateur cible si ce dernier appartient au même sous-réseau que le routeur ou alors l&rsquo;adresse MAC du prochain routeur.</li>
+</ul>
+  </div>
+</div>
+  </div>
+</details></p>
+</li>
+</ol>
+<h2 id="réseaux-étendus">Réseaux étendus<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Télécharger le fichier de configuration du
+<a class="remote" href="/terminales-nsi/chap-11/chap-11-4-3.fls" target="_blank">réseau étendu</a></p>
+
+  </div>
+</div>
+
+<ol start="32">
+<li>
+<p>Lancer la commande <code>traceroute</code> depuis l&rsquo;ordinateur M14 vers l&rsquo;ordinateur M9. Noter la route empruntée par les paquets.</p>
+</li>
+<li>
+<p>Afin de simuler une panne, supprimer le câble réseau qui relie le routeur F au routeur E et lancer à nouveau la commande <code>traceroute</code>. Les paquets issus de M14 parviennent-ils toujours en M9 ?</p>
+</li>
+</ol>
+<dl>
+<dt>Remarque.</dt>
+<dd>Cela peut ne pas fonctionner du premier coup, car la mise à jour des tables de routage n’est pas immédiate. Pour remédier à cela, faire un <code>ping</code> entre M14 et M9, si cela ne fonctionne pas (timeout), attendre quelques secondes et recommencer.</dd>
+</dl>
+<ol start="34">
+<li>Ouvrir les tables de routage de tous les routeurs qui sont intervenus dans la communication et expliquer le fonctionnement de ces tables.</li>
+</ol>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 6 déc. 2020
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+    <li><a class="term-link" href="/categories/terminales-sp%C3%A9-nsi/index.html">Terminales Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

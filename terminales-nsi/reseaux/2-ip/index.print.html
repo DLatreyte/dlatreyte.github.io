@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="L’adresse IPv4 d’un réseau est 192.168.56.0/24. Combien de bits sont-ils dédiés à la partie réseau ? Combien de machines peut-on incorporer à ce réseau ? Réponse 24 bits sont réservés au réseau dans l’adresse. Une adresse IPv4 étant composée de 32 bits, il reste 8 bits pour l’adressage des machines dans ce réseau. Avec ces 8 bits on peut créer 28=2562^8 = 25628=256 adresses différentes, pour 28−2=2542^8 - 2 = 25428−2=254 ordinateurs.
+Remarque : L’adresse avec tous les bits de la partie host positionnés à 0 est l’adresse du réseau et l’adresse avec tous les bits de la partie host positionnés à 1 est l’adresse de diffusion (broadcast).
+Quel est le masque de réseau de l’adresse de la question 1 ? Réponse Masque : 255.255.255.0, traduction décimale de 11111111.11111111.11111111.00000000
+Quelle est la première adresse utilisable sur le réseau de la question 1 ? La dernière ? Réponse Première adresse (pour machine) : 192.168.56.1 Dernière adresse (pour machine) : 192.168.56.254. Écrire l’adresse IPv4 222.1.1.20, de masque 255.255.255.192 en notation CIDR. Réponse 192=(11000000)2192 = (11000000)_{2}192=(11000000)2​, donc le masque s’écrit 11111111.11111111.11111111.11000000. 26 bits sont utilisés pour la partie réseau. L’adresse s’écrit donc 222.1.1.20/26.
+Écrire l’adresse IPv4 135.1.1.25, de masque 255.255.248.0 en notation CIDR. Réponse 248=(1111 1000)2248 = \left( 1111 \; 1000 \right)_{2}248=(11111000)2​, donc le masque s’écrit 11111111.11111111.11111000.00000000. 21 bits sont utilisés pour la partie réseau. L’adresse s’écrit donc 135.1.1.25/21.
+Un fournisseur d’accès a alloué l’adresse réseau de classe C : 211.1.1.0 à une compagnie. Cette dernière utilisant le masque réseau de la classe C : 255.255.255.0, combien d’ordinateurs peut-elle connecter au réseau ? Réponse Il reste 8 bits pour la partie hôte, donc 28−2=2542^8 - 2 = 25428−2=254 ordinateurs peuvent être connectés au réseau.
+Sur un ordinateur dont le système d’exploitation est Linux, la commande ifconfig retourne l’adresse IPv4 172.16.20.234 et le masque 255.255.0.0. Quelle est l’adresse réseau du réseau auquel cet ordinateur appartient ? Réponse Méthode pour déterminer l’adresse réseau :
+Adresse : 10101100.00010000.00010100.11101010 &amp; Masque : 11111111.11111111.00000000.00000000 Réseau : 10101100.00010000.00000000.00000000 soit 172.16.0.0. Combien d’ordinateurs peut-on incorporer au réseau de la question précédente ? Réponse 16 bits sont réservés à la partie host. On peut donc incorporer 216−2=65 5342^{16} - 2 = \pu{65 534}216−2=65 534 ordinateurs à ce réseau.
+L’adresse IPv4 d’un ordinateur est 172.16.20.234/22. Combien d’ordinateurs peut-on incorporer à ce réseau ? Réponse Il reste 10 bits pour la partie host, soit 210=10242^{10} = 1024210=1024 adresses. On peut donc construire 1022 adresses utilisables pour des ordinateurs.
+Quelle est la première adresse utilisable sur le réseau de la question précédente ? La dernière ? Réponse La réponse à cette question nécessite tout d’abord de déterminer l’adresse réseau :
+Adresse : 10101100.00010000.00010100.11101010 &amp; Masque : 11111111.11111111.11111100.00000000 Réseau : 10101100.00010000.00010100.00000000 soit 172.16.20.0.
+La première adresse utilisable est donc : 10101100.00010000.00010100.00000001, soit 172.16.20.01. La dernière est : 10101100.00010000.00010111.11111110, soit 172.16.23.254. Un fournisseur d’accès a alloué l’adresse réseau de classe A : 29.0.0.0 à une compagnie. Cette dernière doit posséder au moins 20 sous-réseaux comportant chacun au maximum 160 machines. Le responsable informatique hésite entre les deux masques de réseau suivants pour l’adressage des sous-réseaux : 255.255.0.0 et 255.255.255.0. Ces masques conviennent-ils tous les deux ?">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Adressage IPv4 :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="L’adresse IPv4 d’un réseau est 192.168.56.0/24. Combien de bits sont-ils dédiés à la partie réseau ? Combien de machines peut-on incorporer à ce réseau ? Réponse 24 bits sont réservés au réseau dans l’adresse. Une adresse IPv4 étant composée de 32 bits, il reste 8 bits pour l’adressage des machines dans ce réseau. Avec ces 8 bits on peut créer 28=2562^8 = 25628=256 adresses différentes, pour 28−2=2542^8 - 2 = 25428−2=254 ordinateurs.
+Remarque : L’adresse avec tous les bits de la partie host positionnés à 0 est l’adresse du réseau et l’adresse avec tous les bits de la partie host positionnés à 1 est l’adresse de diffusion (broadcast).
+Quel est le masque de réseau de l’adresse de la question 1 ? Réponse Masque : 255.255.255.0, traduction décimale de 11111111.11111111.11111111.00000000
+Quelle est la première adresse utilisable sur le réseau de la question 1 ? La dernière ? Réponse Première adresse (pour machine) : 192.168.56.1 Dernière adresse (pour machine) : 192.168.56.254. Écrire l’adresse IPv4 222.1.1.20, de masque 255.255.255.192 en notation CIDR. Réponse 192=(11000000)2192 = (11000000)_{2}192=(11000000)2​, donc le masque s’écrit 11111111.11111111.11111111.11000000. 26 bits sont utilisés pour la partie réseau. L’adresse s’écrit donc 222.1.1.20/26.
+Écrire l’adresse IPv4 135.1.1.25, de masque 255.255.248.0 en notation CIDR. Réponse 248=(1111 1000)2248 = \left( 1111 \; 1000 \right)_{2}248=(11111000)2​, donc le masque s’écrit 11111111.11111111.11111000.00000000. 21 bits sont utilisés pour la partie réseau. L’adresse s’écrit donc 135.1.1.25/21.
+Un fournisseur d’accès a alloué l’adresse réseau de classe C : 211.1.1.0 à une compagnie. Cette dernière utilisant le masque réseau de la classe C : 255.255.255.0, combien d’ordinateurs peut-elle connecter au réseau ? Réponse Il reste 8 bits pour la partie hôte, donc 28−2=2542^8 - 2 = 25428−2=254 ordinateurs peuvent être connectés au réseau.
+Sur un ordinateur dont le système d’exploitation est Linux, la commande ifconfig retourne l’adresse IPv4 172.16.20.234 et le masque 255.255.0.0. Quelle est l’adresse réseau du réseau auquel cet ordinateur appartient ? Réponse Méthode pour déterminer l’adresse réseau :
+Adresse : 10101100.00010000.00010100.11101010 &amp; Masque : 11111111.11111111.00000000.00000000 Réseau : 10101100.00010000.00000000.00000000 soit 172.16.0.0. Combien d’ordinateurs peut-on incorporer au réseau de la question précédente ? Réponse 16 bits sont réservés à la partie host. On peut donc incorporer 216−2=65 5342^{16} - 2 = \pu{65 534}216−2=65 534 ordinateurs à ce réseau.
+L’adresse IPv4 d’un ordinateur est 172.16.20.234/22. Combien d’ordinateurs peut-on incorporer à ce réseau ? Réponse Il reste 10 bits pour la partie host, soit 210=10242^{10} = 1024210=1024 adresses. On peut donc construire 1022 adresses utilisables pour des ordinateurs.
+Quelle est la première adresse utilisable sur le réseau de la question précédente ? La dernière ? Réponse La réponse à cette question nécessite tout d’abord de déterminer l’adresse réseau :
+Adresse : 10101100.00010000.00010100.11101010 &amp; Masque : 11111111.11111111.11111100.00000000 Réseau : 10101100.00010000.00010100.00000000 soit 172.16.20.0.
+La première adresse utilisable est donc : 10101100.00010000.00010100.00000001, soit 172.16.20.01. La dernière est : 10101100.00010000.00010111.11111110, soit 172.16.23.254. Un fournisseur d’accès a alloué l’adresse réseau de classe A : 29.0.0.0 à une compagnie. Cette dernière doit posséder au moins 20 sous-réseaux comportant chacun au maximum 160 machines. Le responsable informatique hésite entre les deux masques de réseau suivants pour l’adressage des sous-réseaux : 255.255.0.0 et 255.255.255.0. Ces masques conviennent-ils tous les deux ?">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/reseaux/2-ip/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Adressage IPv4 :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="L’adresse IPv4 d’un réseau est 192.168.56.0/24. Combien de bits sont-ils dédiés à la partie réseau ? Combien de machines peut-on incorporer à ce réseau ? Réponse 24 bits sont réservés au réseau dans l’adresse. Une adresse IPv4 étant composée de 32 bits, il reste 8 bits pour l’adressage des machines dans ce réseau. Avec ces 8 bits on peut créer 28=2562^8 = 25628=256 adresses différentes, pour 28−2=2542^8 - 2 = 25428−2=254 ordinateurs.
+Remarque : L’adresse avec tous les bits de la partie host positionnés à 0 est l’adresse du réseau et l’adresse avec tous les bits de la partie host positionnés à 1 est l’adresse de diffusion (broadcast).
+Quel est le masque de réseau de l’adresse de la question 1 ? Réponse Masque : 255.255.255.0, traduction décimale de 11111111.11111111.11111111.00000000
+Quelle est la première adresse utilisable sur le réseau de la question 1 ? La dernière ? Réponse Première adresse (pour machine) : 192.168.56.1 Dernière adresse (pour machine) : 192.168.56.254. Écrire l’adresse IPv4 222.1.1.20, de masque 255.255.255.192 en notation CIDR. Réponse 192=(11000000)2192 = (11000000)_{2}192=(11000000)2​, donc le masque s’écrit 11111111.11111111.11111111.11000000. 26 bits sont utilisés pour la partie réseau. L’adresse s’écrit donc 222.1.1.20/26.
+Écrire l’adresse IPv4 135.1.1.25, de masque 255.255.248.0 en notation CIDR. Réponse 248=(1111 1000)2248 = \left( 1111 \; 1000 \right)_{2}248=(11111000)2​, donc le masque s’écrit 11111111.11111111.11111000.00000000. 21 bits sont utilisés pour la partie réseau. L’adresse s’écrit donc 135.1.1.25/21.
+Un fournisseur d’accès a alloué l’adresse réseau de classe C : 211.1.1.0 à une compagnie. Cette dernière utilisant le masque réseau de la classe C : 255.255.255.0, combien d’ordinateurs peut-elle connecter au réseau ? Réponse Il reste 8 bits pour la partie hôte, donc 28−2=2542^8 - 2 = 25428−2=254 ordinateurs peuvent être connectés au réseau.
+Sur un ordinateur dont le système d’exploitation est Linux, la commande ifconfig retourne l’adresse IPv4 172.16.20.234 et le masque 255.255.0.0. Quelle est l’adresse réseau du réseau auquel cet ordinateur appartient ? Réponse Méthode pour déterminer l’adresse réseau :
+Adresse : 10101100.00010000.00010100.11101010 &amp; Masque : 11111111.11111111.00000000.00000000 Réseau : 10101100.00010000.00000000.00000000 soit 172.16.0.0. Combien d’ordinateurs peut-on incorporer au réseau de la question précédente ? Réponse 16 bits sont réservés à la partie host. On peut donc incorporer 216−2=65 5342^{16} - 2 = \pu{65 534}216−2=65 534 ordinateurs à ce réseau.
+L’adresse IPv4 d’un ordinateur est 172.16.20.234/22. Combien d’ordinateurs peut-on incorporer à ce réseau ? Réponse Il reste 10 bits pour la partie host, soit 210=10242^{10} = 1024210=1024 adresses. On peut donc construire 1022 adresses utilisables pour des ordinateurs.
+Quelle est la première adresse utilisable sur le réseau de la question précédente ? La dernière ? Réponse La réponse à cette question nécessite tout d’abord de déterminer l’adresse réseau :
+Adresse : 10101100.00010000.00010100.11101010 &amp; Masque : 11111111.11111111.11111100.00000000 Réseau : 10101100.00010000.00010100.00000000 soit 172.16.20.0.
+La première adresse utilisable est donc : 10101100.00010000.00010100.00000001, soit 172.16.20.01. La dernière est : 10101100.00010000.00010111.11111110, soit 172.16.23.254. Un fournisseur d’accès a alloué l’adresse réseau de classe A : 29.0.0.0 à une compagnie. Cette dernière doit posséder au moins 20 sous-réseaux comportant chacun au maximum 160 machines. Le responsable informatique hésite entre les deux masques de réseau suivants pour l’adressage des sous-réseaux : 255.255.0.0 et 255.255.255.0. Ces masques conviennent-ils tous les deux ?">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2020-11-26T06:16:49+04:00">
+    <meta property="article:modified_time" content="2020-11-26T06:16:49+04:00">
+    <meta property="article:tag" content="Réseaux">
+    <meta property="article:tag" content="IP">
+    <meta property="article:tag" content="Adressage">
+    <meta itemprop="name" content="Adressage IPv4 :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="L’adresse IPv4 d’un réseau est 192.168.56.0/24. Combien de bits sont-ils dédiés à la partie réseau ? Combien de machines peut-on incorporer à ce réseau ? Réponse 24 bits sont réservés au réseau dans l’adresse. Une adresse IPv4 étant composée de 32 bits, il reste 8 bits pour l’adressage des machines dans ce réseau. Avec ces 8 bits on peut créer 28=2562^8 = 25628=256 adresses différentes, pour 28−2=2542^8 - 2 = 25428−2=254 ordinateurs.
+Remarque : L’adresse avec tous les bits de la partie host positionnés à 0 est l’adresse du réseau et l’adresse avec tous les bits de la partie host positionnés à 1 est l’adresse de diffusion (broadcast).
+Quel est le masque de réseau de l’adresse de la question 1 ? Réponse Masque : 255.255.255.0, traduction décimale de 11111111.11111111.11111111.00000000
+Quelle est la première adresse utilisable sur le réseau de la question 1 ? La dernière ? Réponse Première adresse (pour machine) : 192.168.56.1 Dernière adresse (pour machine) : 192.168.56.254. Écrire l’adresse IPv4 222.1.1.20, de masque 255.255.255.192 en notation CIDR. Réponse 192=(11000000)2192 = (11000000)_{2}192=(11000000)2​, donc le masque s’écrit 11111111.11111111.11111111.11000000. 26 bits sont utilisés pour la partie réseau. L’adresse s’écrit donc 222.1.1.20/26.
+Écrire l’adresse IPv4 135.1.1.25, de masque 255.255.248.0 en notation CIDR. Réponse 248=(1111 1000)2248 = \left( 1111 \; 1000 \right)_{2}248=(11111000)2​, donc le masque s’écrit 11111111.11111111.11111000.00000000. 21 bits sont utilisés pour la partie réseau. L’adresse s’écrit donc 135.1.1.25/21.
+Un fournisseur d’accès a alloué l’adresse réseau de classe C : 211.1.1.0 à une compagnie. Cette dernière utilisant le masque réseau de la classe C : 255.255.255.0, combien d’ordinateurs peut-elle connecter au réseau ? Réponse Il reste 8 bits pour la partie hôte, donc 28−2=2542^8 - 2 = 25428−2=254 ordinateurs peuvent être connectés au réseau.
+Sur un ordinateur dont le système d’exploitation est Linux, la commande ifconfig retourne l’adresse IPv4 172.16.20.234 et le masque 255.255.0.0. Quelle est l’adresse réseau du réseau auquel cet ordinateur appartient ? Réponse Méthode pour déterminer l’adresse réseau :
+Adresse : 10101100.00010000.00010100.11101010 &amp; Masque : 11111111.11111111.00000000.00000000 Réseau : 10101100.00010000.00000000.00000000 soit 172.16.0.0. Combien d’ordinateurs peut-on incorporer au réseau de la question précédente ? Réponse 16 bits sont réservés à la partie host. On peut donc incorporer 216−2=65 5342^{16} - 2 = \pu{65 534}216−2=65 534 ordinateurs à ce réseau.
+L’adresse IPv4 d’un ordinateur est 172.16.20.234/22. Combien d’ordinateurs peut-on incorporer à ce réseau ? Réponse Il reste 10 bits pour la partie host, soit 210=10242^{10} = 1024210=1024 adresses. On peut donc construire 1022 adresses utilisables pour des ordinateurs.
+Quelle est la première adresse utilisable sur le réseau de la question précédente ? La dernière ? Réponse La réponse à cette question nécessite tout d’abord de déterminer l’adresse réseau :
+Adresse : 10101100.00010000.00010100.11101010 &amp; Masque : 11111111.11111111.11111100.00000000 Réseau : 10101100.00010000.00010100.00000000 soit 172.16.20.0.
+La première adresse utilisable est donc : 10101100.00010000.00010100.00000001, soit 172.16.20.01. La dernière est : 10101100.00010000.00010111.11111110, soit 172.16.23.254. Un fournisseur d’accès a alloué l’adresse réseau de classe A : 29.0.0.0 à une compagnie. Cette dernière doit posséder au moins 20 sous-réseaux comportant chacun au maximum 160 machines. Le responsable informatique hésite entre les deux masques de réseau suivants pour l’adressage des sous-réseaux : 255.255.0.0 et 255.255.255.0. Ces masques conviennent-ils tous les deux ?">
+    <meta itemprop="datePublished" content="2020-11-26T06:16:49+04:00">
+    <meta itemprop="dateModified" content="2020-11-26T06:16:49+04:00">
+    <meta itemprop="wordCount" content="946">
+    <meta itemprop="keywords" content="Réseaux,IP,Adressage">
+    <title>Adressage IPv4 :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/reseaux/2-ip/index.html" rel="canonical" type="text/html" title="Adressage IPv4 :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/reseaux/2-ip/index.xml" rel="alternate" type="application/rss&#43;xml" title="Adressage IPv4 :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/reseaux/2-ip/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/reseaux/2-ip/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Les réseaux">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/reseaux/index.html"><span itemprop="name">Les réseaux</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/reseaux/2-ip/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/reseaux/1-modelisation-reseaux/index.html" title="Modélisation des réseaux (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/reseaux/3-analyse-tcp/index.html" title="Analyse du protocole de transport TCP (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Les réseaux</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/adressage/index.html">Adressage</a></li>
+    <li><a class="term-link" href="/tags/ip/index.html">IP</a></li>
+    <li><a class="term-link" href="/tags/r%C3%A9seaux/index.html">Réseaux</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="adressage-ipv4">Adressage IPv4</h1>
+
+<ol>
+<li>
+<p>L&rsquo;adresse IPv4 d&rsquo;un réseau est 192.168.56.0/24. Combien de bits sont-ils
+dédiés à la partie réseau ? Combien de machines peut-on incorporer à ce
+réseau ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>24 bits sont réservés au réseau dans l&rsquo;adresse. Une adresse IPv4 étant
+composée de 32 bits, il reste 8 bits pour l&rsquo;adressage des machines dans ce
+réseau. Avec ces 8 bits on peut créer <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>&#61;</mo><mn>256</mn></mrow><annotation encoding="application/x-tex">2&#94;8 &#61; 256</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">256</span></span></span></span></span> adresses différentes, pour
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>−</mo><mn>2</mn><mo>&#61;</mo><mn>254</mn></mrow><annotation encoding="application/x-tex">2&#94;8 - 2 &#61; 254</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">254</span></span></span></span></span> ordinateurs.</p>
+<p><strong>Remarque :</strong> L&rsquo;adresse avec tous les bits de la partie host positionnés à 0 est l&rsquo;adresse du réseau et l&rsquo;adresse avec tous les bits de la partie host positionnés à 1
+est l&rsquo;adresse de diffusion (broadcast).</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quel est le masque de réseau de l&rsquo;adresse de la question 1 ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Masque : 255.255.255.0, traduction décimale de
+<code>11111111.11111111.11111111.00000000</code></p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelle est la première adresse utilisable sur le réseau de la question 1 ?
+La dernière ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<ul>
+<li>Première adresse (pour machine) : 192.168.56.1</li>
+<li>Dernière adresse (pour machine) : 192.168.56.254.</li>
+</ul>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Écrire l&rsquo;adresse IPv4 222.1.1.20, de masque 255.255.255.192 en notation CIDR.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>192</mn><mo>&#61;</mo><mo stretchy="false">(</mo><mn>11000000</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">192 &#61; (11000000)&#95;{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">192</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">11000000</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>, donc le masque s&rsquo;écrit
+<code>11111111.11111111.11111111.11000000</code>. 26 bits sont utilisés pour la partie
+réseau. L&rsquo;adresse s&rsquo;écrit donc 222.1.1.20/26.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Écrire l&rsquo;adresse IPv4 135.1.1.25, de masque 255.255.248.0 en notation CIDR.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>248</mn><mo>&#61;</mo><msub><mrow><mo fence="true">(</mo><mn>1111</mn><mtext>  </mtext><mn>1000</mn><mo fence="true">)</mo></mrow><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">248 &#61; &#92;left( 1111 &#92;; 1000 &#92;right)&#95;{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">248</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0497em;vertical-align:-0.2997em;"></span><span class="minner"><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord">1111</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1000</span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.4003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span></span></span></span></span>, donc le masque s&rsquo;écrit
+<code>11111111.11111111.11111000.00000000</code>. 21 bits sont utilisés pour la partie
+réseau. L&rsquo;adresse s&rsquo;écrit donc 135.1.1.25/21.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Un fournisseur d&rsquo;accès a alloué l&rsquo;adresse réseau de classe C : 211.1.1.0 à
+une compagnie. Cette dernière utilisant le masque réseau de la classe C :
+255.255.255.0, combien d&rsquo;ordinateurs peut-elle connecter au réseau ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Il reste 8 bits pour la partie hôte, donc <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>−</mo><mn>2</mn><mo>&#61;</mo><mn>254</mn></mrow><annotation encoding="application/x-tex">2&#94;8 - 2 &#61; 254</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">254</span></span></span></span></span> ordinateurs peuvent
+être connectés au réseau.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Sur un ordinateur dont le système d&rsquo;exploitation est <code>Linux</code>, la commande
+<code>ifconfig</code> retourne l&rsquo;adresse IPv4 172.16.20.234 et le masque 255.255.0.0.
+Quelle est l&rsquo;adresse réseau du réseau auquel cet ordinateur appartient ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Méthode pour déterminer l&rsquo;adresse réseau :</p>
+<center>
+<table>
+  <thead>
+    <tr>
+      <th class="align-right"></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-right"></td>
+      <td>Adresse :</td>
+      <td><code>10101100.00010000.00010100.11101010</code></td>
+    </tr>
+    <tr>
+      <td class="align-right">&amp;</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="align-right"></td>
+      <td>Masque :</td>
+      <td><code>11111111.11111111.00000000.00000000</code></td>
+    </tr>
+    <tr>
+      <td class="align-right"></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="align-right"></td>
+      <td>Réseau :</td>
+      <td><code>10101100.00010000.00000000.00000000</code></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+soit 172.16.0.0.
+  </div>
+</details></p>
+</li>
+<li>
+<p>Combien d&rsquo;ordinateurs peut-on incorporer au réseau de la question
+précédente ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>16 bits sont réservés à la partie host. On peut donc incorporer <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>16</mn></msup><mo>−</mo><mn>2</mn><mo>&#61;</mo><mrow><mn>65</mn><mtext> </mtext><mn>534</mn></mrow></mrow><annotation encoding="application/x-tex">2&#94;{16} - 2
+&#61; &#92;pu{65 534}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord"><span class="mord">65</span><span class="mspace nobreak"> </span><span class="mord"><span class="mord mathrm">534</span></span></span></span></span></span></span> ordinateurs à ce réseau.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>L&rsquo;adresse IPv4 d&rsquo;un ordinateur est 172.16.20.234/22. Combien d&rsquo;ordinateurs
+peut-on incorporer à ce réseau ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Il reste 10 bits pour la partie host, soit <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>10</mn></msup><mo>&#61;</mo><mn>1024</mn></mrow><annotation encoding="application/x-tex">2&#94;{10} &#61; 1024</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">10</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1024</span></span></span></span></span> adresses. On peut
+donc construire 1022 adresses utilisables pour des ordinateurs.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelle est la première adresse utilisable sur le réseau de la question
+précédente ? La dernière ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>La réponse à cette question nécessite tout d&rsquo;abord de déterminer l&rsquo;adresse
+réseau :</p>
+<center>
+<table>
+  <thead>
+    <tr>
+      <th class="align-right"></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-right"></td>
+      <td>Adresse :</td>
+      <td><code>10101100.00010000.00010100.11101010</code></td>
+    </tr>
+    <tr>
+      <td class="align-right">&amp;</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="align-right"></td>
+      <td>Masque :</td>
+      <td><code>11111111.11111111.11111100.00000000</code></td>
+    </tr>
+    <tr>
+      <td class="align-right"></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="align-right"></td>
+      <td>Réseau :</td>
+      <td><code>10101100.00010000.00010100.00000000</code></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<p>soit 172.16.20.0.</p>
+<ul>
+<li>La première adresse utilisable est donc : <code>10101100.00010000.00010100.00000001</code>, soit 172.16.20.01.</li>
+<li>La dernière est : <code>10101100.00010000.00010111.11111110</code>, soit 172.16.23.254.</li>
+</ul>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Un fournisseur d&rsquo;accès a alloué l&rsquo;adresse réseau de classe A : 29.0.0.0 à
+une compagnie. Cette dernière doit posséder au moins 20 sous-réseaux
+comportant chacun au maximum 160 machines. Le responsable informatique hésite
+entre les deux masques de réseau suivants pour l&rsquo;adressage des sous-réseaux :
+255.255.0.0 et 255.255.255.0. Ces masques conviennent-ils tous les deux ?</p>
+</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><strong>Rappel :</strong>  dans un réseau de classe A 8 bits sont réservés à la partie
+réseau, le masque est donc 255.0.0.0.</p>
+<ul>
+<li>Si le masque 255.255.0.0 est utilisé pour créer les sous-réseaux, les 8 bits réseau supplémentaires, par rapport au masque fourni par le fournisseur d&rsquo;accès, permettent de créer <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>&#61;</mo><mn>256</mn></mrow><annotation encoding="application/x-tex">2&#94;8 &#61; 256</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">256</span></span></span></span></span> sous-réseaux et les 16 bits restants permettent d&rsquo;intégrer <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>16</mn></msup><mo>−</mo><mn>2</mn><mo>&#61;</mo><mn>65</mn><mtext>  </mtext><mn>534</mn></mrow><annotation encoding="application/x-tex">2&#94;{16} - 2 &#61; 65 &#92;; 534</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">65</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">534</span></span></span></span></span> machines.</li>
+<li>Si le masque 255.255.255.0 est utilisé pour créer les sous-réseaux, les 16 bits réseau supplémentaires permettent de créer <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>16</mn></msup><mo>&#61;</mo><mn>65</mn><mtext>  </mtext><mn>536</mn></mrow><annotation encoding="application/x-tex">2&#94;{16} &#61; 65 &#92;; 536</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">65</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">536</span></span></span></span></span> sous-réseaux et les 8 bits restants permettent d&rsquo;intégrer <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>−</mo><mn>2</mn><mo>&#61;</mo><mn>254</mn></mrow><annotation encoding="application/x-tex">2&#94;8 - 2 &#61; 254</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">254</span></span></span></span></span> machines.</li>
+</ul>
+<p>Les deux solutions envisagées conviennent donc.</p>
+  </div>
+</details>
+<ol start="12">
+<li>Un fournisseur d&rsquo;accès a alloué l&rsquo;adresse réseau de classe B : 135.1.0.0 à
+une compagnie. Cette dernière doit posséder 4 sous-réseaux comportant chacun
+environ 200 machines. Déterminer le masque de réseau le plus simple
+permettant de réaliser l&rsquo;adressage attendu.</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><strong>Rappel :</strong>  dans un réseau de classe B 16 bits sont réservés à la partie
+réseau, le masque est donc 255.255.0.0.</p>
+<ul>
+<li>Puisqu&rsquo;il faut réserver environ 200 adresses pour les machines, 8 bits doivent être utilisés. Cela donne comme masque réseau 255.255.255.0.</li>
+<li>À partir du masque précédent, on constate que 8 bits supplémentaire sont utilisés, par rapport au masque fourni par le fournisseur d&rsquo;accès, pour les sous-réseaux. Comme <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>&#61;</mo><mn>256</mn><mo>&gt;</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">2&#94;8 &#61; 256 &gt; 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">256</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span></span>, on peut donc bien créer les 4 sous-réseaux attendus. Le plus simple est
+donc de choisir le masque : 255.255.255.0.</li>
+</ul>
+  </div>
+</details>
+<ol start="13">
+<li>Un fournisseur d&rsquo;accès a alloué l&rsquo;adresse réseau de classe C : 205.11.2.0
+à une compagnie qui doit créer 30 sous-réseaux. Quel masque de sous-réseau
+permet de maximiser le nombre d&rsquo;ordinateurs sur chaque sous-réseaux ?</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Le masque du réseau est : 255.255.255.0 puisqu&rsquo;il s&rsquo;agit d&rsquo;un réseau de
+classe C.
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>4</mn></msup><mo>&#61;</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">2&#94;4 &#61; 16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">16</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>5</mn></msup><mo>&#61;</mo><mn>32</mn></mrow><annotation encoding="application/x-tex">2&#94;5 &#61; 32</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">32</span></span></span></span></span>. Il faut donc réserver 5 bits supplémentaires, pour la création des sous-réseaux. En réserver davantage diminuerait le nombre d&rsquo;ordinateurs dans chacun des sous-réseaux. Le masque de sous-réseau à utiliser est donc 255.255.255.248 (les 5 bits de poids le plus importants sont positionnés à 1 : <code>11111111.11111111.11111111.11111000</code>).</p>
+  </div>
+</details>
+<ol start="14">
+<li>Combien d&rsquo;ordinateurs pourront être connectés à chacun des sous-réseaux de
+la question précédente ?</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Il reste 3 bits pour la partie hôte, donc <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>3</mn></msup><mo>−</mo><mn>2</mn><mo>&#61;</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">2&#94;3 - 2 &#61; 6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">6</span></span></span></span></span> adresses pour des
+ordinateurs.</p>
+  </div>
+</details>
+<ol start="15">
+<li>Quelle sera l&rsquo;adresse du troisième ordinateur du second
+sous-réseau ?</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>On applique le masque <code>11111111.11111111.11111111.11111000</code> à l&rsquo;adresse de réseau <code>11001101.00001011.00000010.00000000</code>.</p>
+<ul>
+<li>Le premier sous-réseau a donc pour adresse <code>11001101.00001011.00000010.00001000</code> et celle du second sous réseau <code>11001101.00001011.00000010.00010000</code> soit 205.11.2.16.</li>
+<li>L&rsquo;adresse du troisième ordinateur est <code>11001101.00001011.00000010.00010011</code> soit 205.11.2.19.</li>
+</ul>
+  </div>
+</details>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 26 nov. 2020
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+    <li><a class="term-link" href="/categories/terminales-sp%C3%A9-nsi/index.html">Terminales Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Le tri fusion d’un tableau Description du tri Dans cette partie, nous allons essayer de comprendre les principes sur lesquels s’appuie ce tri. Son implémentation, pour des tableaux ou des listes chaînées, sera développée dans les prochaines sections.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Le tri fusion :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Le tri fusion d’un tableau Description du tri Dans cette partie, nous allons essayer de comprendre les principes sur lesquels s’appuie ce tri. Son implémentation, pour des tableaux ou des listes chaînées, sera développée dans les prochaines sections.">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/diviser-pour-regner/1-tri-fusion/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Le tri fusion :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Le tri fusion d’un tableau Description du tri Dans cette partie, nous allons essayer de comprendre les principes sur lesquels s’appuie ce tri. Son implémentation, pour des tableaux ou des listes chaînées, sera développée dans les prochaines sections.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2020-11-18T17:12:24+04:00">
+    <meta property="article:modified_time" content="2020-11-18T17:12:24+04:00">
+    <meta property="article:tag" content="Diviser Pour Régner">
+    <meta property="article:tag" content="Tri">
+    <meta itemprop="name" content="Le tri fusion :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Le tri fusion d’un tableau Description du tri Dans cette partie, nous allons essayer de comprendre les principes sur lesquels s’appuie ce tri. Son implémentation, pour des tableaux ou des listes chaînées, sera développée dans les prochaines sections.">
+    <meta itemprop="datePublished" content="2020-11-18T17:12:24+04:00">
+    <meta itemprop="dateModified" content="2020-11-18T17:12:24+04:00">
+    <meta itemprop="wordCount" content="2356">
+    <meta itemprop="keywords" content="Diviser Pour Régner,Tri">
+    <title>Le tri fusion :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/diviser-pour-regner/1-tri-fusion/index.html" rel="canonical" type="text/html" title="Le tri fusion :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/diviser-pour-regner/1-tri-fusion/index.xml" rel="alternate" type="application/rss&#43;xml" title="Le tri fusion :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/diviser-pour-regner/1-tri-fusion/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/diviser-pour-regner/1-tri-fusion/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#le-tri-fusion-dun-tableau">Le tri fusion d&rsquo;un tableau</a>
+      <ul>
+        <li><a href="#description-du-tri">Description du tri</a></li>
+        <li><a href="#décomposition-de-lexécution-de-lalgorithme">Décomposition de l&rsquo;exécution de l&rsquo;algorithme</a></li>
+      </ul>
+    </li>
+    <li><a href="#implémentation-du-tri-fusion-pour-un-tableau">Implémentation du tri fusion pour un tableau</a></li>
+    <li><a href="#le-tri-fusion-dune-liste-chaînée">Le tri fusion d&rsquo;une liste chaînée</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Méthode « Diviser pour régner »">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/diviser-pour-regner/index.html"><span itemprop="name">Méthode « Diviser pour régner »</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/diviser-pour-regner/1-tri-fusion/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/diviser-pour-regner/0-decomposition-pb/index.html" title="Décomposition d&#39;un problème en sous-problèmes (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/diviser-pour-regner/2-minmax/index.html" title="Recherche des plus grand et petit éléments dans un tableau (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Méthode « Diviser pour régner »</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/diviser-pour-r%C3%A9gner/index.html">Diviser Pour Régner</a></li>
+    <li><a class="term-link" href="/tags/tri/index.html">Tri</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="le-tri-fusion">Le tri fusion</h1>
+
+<h2 id="le-tri-fusion-dun-tableau">Le tri fusion d&rsquo;un tableau<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="description-du-tri">Description du tri<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Dans cette partie, nous allons essayer de comprendre les principes sur lesquels s&rsquo;appuie ce tri. Son implémentation, pour des tableaux ou des listes chaînées, sera développée dans les prochaines sections.</p>
+<p>Le tri fusion s&rsquo;appuie sur la méthode <strong>Diviser pour régner</strong> pour trier les <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> éléments d&rsquo;une séquence <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span></span> :</p>
+<ol>
+<li>
+<p><strong>Diviser :</strong> Si la séquence <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span></span> est composée de 0 ou un élément, retourner <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span></span> immédiatement ; cette séquence est déjà triée. Si la séquence <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span></span> est composée de plus de deux éléments, la diviser en deux sous-séquences <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">S&#95;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">S&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> contenant chacune environ la moitié des éléments de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span></span> ; donc <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">S&#95;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> est formée des <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo fence="true">⌊</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mi>n</mi><mn>2</mn></mfrac></mstyle><mo fence="true">⌋</mo></mrow><annotation encoding="application/x-tex">&#92;left&#92;lfloor &#92;dfrac{n}{2} &#92;right&#92;rfloor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.836em;vertical-align:-0.686em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">⌊</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">⌋</span></span></span></span></span></span></span> premiers éléments de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span></span> contient les <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo fence="true">⌈</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mi>n</mi><mn>2</mn></mfrac></mstyle><mo fence="true">⌉</mo></mrow><annotation encoding="application/x-tex">&#92;left&#92;lceil &#92;dfrac{n}{2} &#92;right&#92;rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.836em;vertical-align:-0.686em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">⌈</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span></span> derniers éléments de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span></span>.</p>
+</li>
+<li>
+<p><strong>Régner :</strong> Trier récursivement <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">S&#95;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">S&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>.</p>
+</li>
+<li>
+<p><strong>Combiner :</strong> Reformer la séquence <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span></span> en combinant, dans l&rsquo;ordre, les éléments des séquences triées <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">S&#95;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>S</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">S&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0576em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>.</p>
+</li>
+</ol>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<ul>
+<li><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo fence="true">⌊</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mi>n</mi><mn>2</mn></mfrac></mstyle><mo fence="true">⌋</mo></mrow><annotation encoding="application/x-tex">&#92;left&#92;lfloor &#92;dfrac{n}{2} &#92;right&#92;rfloor</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.836em;vertical-align:-0.686em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">⌊</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">⌋</span></span></span></span></span></span></span> est la notation mathématique pour l&rsquo;opération en Python <code>n // 2</code>, c&rsquo;est à dire <em>le plus grand entier inférieur au résultat de la division de</em> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> <em>par 2</em>.</li>
+<li><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo fence="true">⌈</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mi>n</mi><mn>2</mn></mfrac></mstyle><mo fence="true">⌉</mo></mrow><annotation encoding="application/x-tex">&#92;left&#92;lceil &#92;dfrac{n}{2} &#92;right&#92;rceil</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.836em;vertical-align:-0.686em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">⌈</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">⌉</span></span></span></span></span></span></span> est la notation mathématique pour l&rsquo;opération en Python <code>n // 2 + 1</code>, c&rsquo;est à dire pour <em>le plus petit entier supérieur au résultat de la division de</em> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> <em>par 2</em>.</li>
+</ul>
+
+  </div>
+</div>
+
+<p>Pour bien comprendre la méthode employée, le plus simple est de construire un arbre binaire dans lequel chaque nœud est le résultat d&rsquo;un appel récursif.</p>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-f305fe6a4eb0f690850535a5e0602c85">
+flowchart TD
+    S(&#34;85 &amp;nbsp;&amp;nbsp; 24  &amp;nbsp;&amp;nbsp;  63  &amp;nbsp;&amp;nbsp;  45  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) --&gt; S1(&#34;85  &amp;nbsp;&amp;nbsp;  24  &amp;nbsp;&amp;nbsp;  63  &amp;nbsp;&amp;nbsp;  45&#34;)
+    S --&gt; S2(&#34;17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;)
+    S1 --&gt; S11(&#34;85  &amp;nbsp;&amp;nbsp;  24&#34;)
+    S1 --&gt; S12(&#34;63  &amp;nbsp;&amp;nbsp;  45&#34;)
+    S11 --&gt; S111((&#34;85&#34;))
+    S11 --&gt; S112((&#34;24&#34;))
+    S12 --&gt; S121((&#34;63&#34;))
+    S12 --&gt; S122((&#34;45&#34;))
+    S2 --&gt; S21(&#34;17  &amp;nbsp;&amp;nbsp;  31&#34;)
+    S21 --&gt; S211((17))
+    S21 --&gt; S212((31))
+    S2 --&gt; S22(&#34;96  &amp;nbsp;&amp;nbsp; 50&#34;)
+    S22 --&gt; S221((96))
+    S22 --&gt; S222((50))
+</pre>
+<blockquote>
+<p>Résultats des différents appels récursifs (Partie <strong>Diviser</strong>).</p>
+</blockquote>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-edb0c64a3962428af0c43b67de7be1d3">
+flowchart BT
+    S111((85)) --&gt; S11(&#34;24 &amp;nbsp;&amp;nbsp; 85&#34;)
+    S112((24)) --&gt; S11
+    S121((63)) --&gt; S12(&#34;45 &amp;nbsp;&amp;nbsp; 63&#34;)
+    S122((45)) --&gt; S12
+    S11 --&gt; S1(&#34;24 &amp;nbsp;&amp;nbsp; 45 &amp;nbsp;&amp;nbsp; 63 &amp;nbsp;&amp;nbsp; 85&#34;)
+    S12 --&gt; S1
+    S1 --&gt; S(&#34;17 &amp;nbsp;&amp;nbsp; 24 &amp;nbsp;&amp;nbsp; 31 &amp;nbsp;&amp;nbsp; 45 &amp;nbsp;&amp;nbsp; 50 &amp;nbsp;&amp;nbsp; 63 &amp;nbsp;&amp;nbsp; 85 &amp;nbsp;&amp;nbsp; 96&#34;)
+    S211((17)) --&gt; S21(&#34;17 &amp;nbsp;&amp;nbsp; 31&#34;)
+    S212((31)) --&gt; S21
+    S221((96)) --&gt; S22(&#34;50 &amp;nbsp;&amp;nbsp; 96&#34;)
+    S222((50)) --&gt; S22
+    S21 --&gt; S2(&#34;17 &amp;nbsp;&amp;nbsp; 31 &amp;nbsp;&amp;nbsp; 50 &amp;nbsp;&amp;nbsp; 96&#34;)
+    S22 --&gt; S2
+    S2 --&gt; S
+</pre>
+<blockquote>
+<p>Résultats progressifs après les étapes <strong>Régner</strong> et <strong>Fusionner</strong>.</p>
+</blockquote>
+<h3 id="décomposition-de-lexécution-de-lalgorithme">Décomposition de l&rsquo;exécution de l&rsquo;algorithme<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<hr>
+<h4 id="légende">Légende<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+<ul>
+<li><em>Chaque nœud représente un appel récursif</em> ;</li>
+<li><strong>Nœud avec une bordure en pointilles :</strong> <em>appels récursifs non encore effectués</em> ;</li>
+<li><strong>Nœud avec une bordure en gras :</strong> <em>appel récursif en cours</em> ;</li>
+<li><strong>Nœud vide avec une bordure :</strong> <em>partie déjà traitée</em> ;</li>
+<li><strong>Nœud en partie vide (contenant tout de même des valeurs) :</strong> <em>appels récursifs en attente</em>.</li>
+</ul>
+<hr>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-4442df31d0d6b6419fd905006c4292b8">
+flowchart TD
+    S(&#34;85 &amp;nbsp;&amp;nbsp; 24  &amp;nbsp;&amp;nbsp;  63  &amp;nbsp;&amp;nbsp;  45  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) -.- S1(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp; — &amp;nbsp;&amp;nbsp;  —&#34;)
+    S -.- S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 -.- S11(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 -.- S12(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S11 -.- S111((&#34;—&#34;))
+    S11 -.- S112((&#34;—&#34;))
+    S12 -.- S121((&#34;—&#34;))
+    S12 -.- S122((&#34;—&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S1,S2,S11,S12,S21,S22,S111,S112,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-482e5f9d7734fef6f3cb5fcd99686247">
+flowchart TD
+    S(&#34;— &amp;nbsp;&amp;nbsp; —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) --&gt; S1(&#34;85  &amp;nbsp;&amp;nbsp;  24  &amp;nbsp;&amp;nbsp; 63 &amp;nbsp;&amp;nbsp;  45&#34;)
+    S -.- S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 -.- S11(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 -.- S12(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S11 -.- S111((&#34;—&#34;))
+    S11 -.- S112((&#34;—&#34;))
+    S12 -.- S121((&#34;—&#34;))
+    S12 -.- S122((&#34;—&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S11,S12,S21,S22,S111,S112,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S1 gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-55d3c1bb4431a6ce486b67108edd7fa8">
+flowchart TD
+    S(&#34;— &amp;nbsp;&amp;nbsp; —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) --&gt; S1(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp; 63 &amp;nbsp;&amp;nbsp;  45&#34;)
+    S -.- S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 --&gt; S11(&#34;85  &amp;nbsp;&amp;nbsp;  24&#34;)
+    S1 -.- S12(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S11 -.- S111((&#34;—&#34;))
+    S11 -.- S112((&#34;—&#34;))
+    S12 -.- S121((&#34;—&#34;))
+    S12 -.- S122((&#34;—&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S12,S21,S22,S111,S112,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S11 gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-cf91e8bc738533a1603ff9eec1d92825">
+flowchart TD
+    S(&#34;— &amp;nbsp;&amp;nbsp; —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) --&gt; S1(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp; 63 &amp;nbsp;&amp;nbsp;  45&#34;)
+    S -.- S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 --&gt; S11(&#34;—  &amp;nbsp;&amp;nbsp;  24&#34;)
+    S1 -.- S12(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S11 --&gt; S111((&#34;85&#34;))
+    S11 -.- S112((&#34;—&#34;))
+    S12 -.- S121((&#34;—&#34;))
+    S12 -.- S122((&#34;—&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S12,S21,S22,S112,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S111 gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-f738a9e186f8e510351d9898e40d76b5">
+flowchart TD
+    S(&#34;— &amp;nbsp;&amp;nbsp; —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) --&gt; S1(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp; 63 &amp;nbsp;&amp;nbsp;  45&#34;)
+    S -.- S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 --&gt; S11(&#34;85  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 -.- S12(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S11 &lt;--&gt; S111((&#34;—&#34;))
+    S11 --&gt; S112((&#34;24&#34;))
+    S12 -.- S121((&#34;—&#34;))
+    S12 -.- S122((&#34;—&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S12,S21,S22,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S112 gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-309f2db17f31292c22c0635fdd988e2e">
+flowchart TD
+    S(&#34;— &amp;nbsp;&amp;nbsp; —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) --&gt; S1(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp; 63 &amp;nbsp;&amp;nbsp;  45&#34;)
+    S -.- S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 --&gt; S11(&#34;24 &amp;nbsp;&amp;nbsp;  85&#34;)
+    S1 -.- S12(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S11 &lt;--&gt; S111((&#34;—&#34;))
+    S11 &lt;--&gt; S112((&#34;—&#34;))
+    S12 -.- S121((&#34;—&#34;))
+    S12 -.- S122((&#34;—&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S12,S21,S22,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S11 gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-ec5d3ded82ec1612b817cceb7715b996">
+flowchart TD
+    S(&#34;— &amp;nbsp;&amp;nbsp; —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) --&gt; S1(&#34;24  &amp;nbsp;&amp;nbsp;  85  &amp;nbsp;&amp;nbsp; 63 &amp;nbsp;&amp;nbsp;  45&#34;)
+    S -.- S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 &lt;--&gt; S11(&#34;— &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 -.- S12(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S11 &lt;--&gt; S111((&#34;—&#34;))
+    S11 &lt;--&gt; S112((&#34;—&#34;))
+    S12 -.- S121((&#34;—&#34;))
+    S12 -.- S122((&#34;—&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S12,S21,S22,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S1 gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-6e5fb9d31559ef867f0bc8acf6784129">
+flowchart TD
+    S(&#34;— &amp;nbsp;&amp;nbsp; —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) --&gt; S1(&#34;24  &amp;nbsp;&amp;nbsp;  85  &amp;nbsp;&amp;nbsp; — &amp;nbsp;&amp;nbsp;  —&#34;)
+    S -.- S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 &lt;--&gt; S11(&#34;— &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 --&gt; S12(&#34;63  &amp;nbsp;&amp;nbsp;  45&#34;)
+    S11 &lt;--&gt; S111((&#34;—&#34;))
+    S11 &lt;--&gt; S112((&#34;—&#34;))
+    S12 -.- S121((&#34;—&#34;))
+    S12 -.- S122((&#34;—&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S21,S22,S121,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S12 gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-5e5b76ec029ad32c14c064b373bb89bf">
+flowchart TD
+    S(&#34;— &amp;nbsp;&amp;nbsp; —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) --&gt; S1(&#34;24  &amp;nbsp;&amp;nbsp;  85  &amp;nbsp;&amp;nbsp; — &amp;nbsp;&amp;nbsp;  —&#34;)
+    S -.- S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 &lt;--&gt; S11(&#34;— &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 --&gt; S12(&#34;—  &amp;nbsp;&amp;nbsp;  45&#34;)
+    S11 &lt;--&gt; S111((&#34;—&#34;))
+    S11 &lt;--&gt; S112((&#34;—&#34;))
+    S12 --&gt; S121((&#34;63&#34;))
+    S12 -.- S122((&#34;—&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S21,S22,S122,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S121 gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-677aa2488621b5c0ce6a58db99a71565">
+flowchart TD
+    S(&#34;— &amp;nbsp;&amp;nbsp; —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) --&gt; S1(&#34;24  &amp;nbsp;&amp;nbsp;  85  &amp;nbsp;&amp;nbsp; — &amp;nbsp;&amp;nbsp;  —&#34;)
+    S -.- S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 &lt;--&gt; S11(&#34;— &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 --&gt; S12(&#34;63  &amp;nbsp;&amp;nbsp; —&#34;)
+    S11 &lt;--&gt; S111((&#34;—&#34;))
+    S11 &lt;--&gt; S112((&#34;—&#34;))
+    S12 &lt;--&gt; S121((&#34;—&#34;))
+    S12 --&gt; S122((&#34;45&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S21,S22,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S122 gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-8581fccd8550e053838971ecd36fa5a9">
+flowchart TD
+    S(&#34;— &amp;nbsp;&amp;nbsp; —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) --&gt; S1(&#34;24  &amp;nbsp;&amp;nbsp;  85  &amp;nbsp;&amp;nbsp; — &amp;nbsp;&amp;nbsp;  —&#34;)
+    S -.- S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 &lt;--&gt; S11(&#34;— &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 --&gt; S12(&#34;45  &amp;nbsp;&amp;nbsp; 63&#34;)
+    S11 &lt;--&gt; S111((&#34;—&#34;))
+    S11 &lt;--&gt; S112((&#34;—&#34;))
+    S12 &lt;--&gt; S121((&#34;—&#34;))
+    S12 &lt;--&gt; S122((&#34;—&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S21,S22,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S12 gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-b1c35ea4694eaf765f304d4960db99d2">
+flowchart TD
+    S(&#34;— &amp;nbsp;&amp;nbsp; —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;) --&gt; S1(&#34;24  &amp;nbsp;&amp;nbsp;  45  &amp;nbsp;&amp;nbsp; 63 &amp;nbsp;&amp;nbsp;  85&#34;)
+    S -.- S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 &lt;--&gt; S11(&#34;— &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 &lt;--&gt; S12(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S11 &lt;--&gt; S111((&#34;—&#34;))
+    S11 &lt;--&gt; S112((&#34;—&#34;))
+    S12 &lt;--&gt; S121((&#34;—&#34;))
+    S12 &lt;--&gt; S122((&#34;—&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S2,S21,S22,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S1 gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-80d739059a854b11f3c8444699850906">
+flowchart TD
+    S(&#34;24 &amp;nbsp;&amp;nbsp; 45  &amp;nbsp;&amp;nbsp;  63  &amp;nbsp;&amp;nbsp;  85  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;) &lt;--&gt; S1(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp; — &amp;nbsp;&amp;nbsp;  —&#34;)
+    S --&gt; S2(&#34;17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  96  &amp;nbsp;&amp;nbsp;  50&#34;)
+    S1 &lt;--&gt; S11(&#34;— &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 &lt;--&gt; S12(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S11 &lt;--&gt; S111((&#34;—&#34;))
+    S11 &lt;--&gt; S112((&#34;—&#34;))
+    S12 &lt;--&gt; S121((&#34;—&#34;))
+    S12 &lt;--&gt; S122((&#34;—&#34;))
+    S2 -.- S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 -.- S211((&#34;—&#34;))
+    S21 -.- S212((&#34;—&#34;))
+    S2 -.- S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 -.- S221((&#34;—&#34;))
+    S22 -.- S222((&#34;—&#34;))
+    classDef pointillet stroke-dasharray: 5 5;
+    class S21,S22,S211,S212,S221,S222 pointillet;
+    classDef gras stroke-width:3px;
+    class S2 gras;
+</pre>
+<center>
+<strong>... et après quelques appels supplémentaires...</strong>
+</center>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-0152fe87830a66307cd61b61993c430e">
+flowchart TD
+    S(&#34;24 &amp;nbsp;&amp;nbsp; 45  &amp;nbsp;&amp;nbsp;  63  &amp;nbsp;&amp;nbsp;  85  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;) &lt;--&gt; S1(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp; — &amp;nbsp;&amp;nbsp;  —&#34;)
+    S --&gt; S2(&#34;17  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  50  &amp;nbsp;&amp;nbsp;  96&#34;)
+    S1 &lt;--&gt; S11(&#34;— &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 &lt;--&gt; S12(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S11 &lt;--&gt; S111((&#34;—&#34;))
+    S11 &lt;--&gt; S112((&#34;—&#34;))
+    S12 &lt;--&gt; S121((&#34;—&#34;))
+    S12 &lt;--&gt; S122((&#34;—&#34;))
+    S2 &lt;--&gt; S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 &lt;--&gt; S211((&#34;—&#34;))
+    S21 &lt;--&gt; S212((&#34;—&#34;))
+    S2 &lt;--&gt; S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 &lt;--&gt; S221((&#34;—&#34;))
+    S22 &lt;--&gt; S222((&#34;—&#34;))
+
+    classDef gras stroke-width:3px;
+    class S2 gras;
+</pre>
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-5ce8bc273bf100999bf5ed928634ce12">
+flowchart TD
+    S(&#34;17 &amp;nbsp;&amp;nbsp; 24  &amp;nbsp;&amp;nbsp;  31  &amp;nbsp;&amp;nbsp;  45  &amp;nbsp;&amp;nbsp;  50  &amp;nbsp;&amp;nbsp;  63  &amp;nbsp;&amp;nbsp;  85  &amp;nbsp;&amp;nbsp;  96&#34;) &lt;--&gt; S1(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp; — &amp;nbsp;&amp;nbsp;  —&#34;)
+    S &lt;--&gt; S2(&#34;—  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 &lt;--&gt; S11(&#34;— &amp;nbsp;&amp;nbsp;  —&#34;)
+    S1 &lt;--&gt; S12(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S11 &lt;--&gt; S111((&#34;—&#34;))
+    S11 &lt;--&gt; S112((&#34;—&#34;))
+    S12 &lt;--&gt; S121((&#34;—&#34;))
+    S12 &lt;--&gt; S122((&#34;—&#34;))
+    S2 &lt;--&gt; S21(&#34;—  &amp;nbsp;&amp;nbsp;  —&#34;)
+    S21 &lt;--&gt; S211((&#34;—&#34;))
+    S21 &lt;--&gt; S212((&#34;—&#34;))
+    S2 &lt;--&gt; S22(&#34;—  &amp;nbsp;&amp;nbsp; —&#34;)
+    S22 &lt;--&gt; S221((&#34;—&#34;))
+    S22 &lt;--&gt; S222((&#34;—&#34;))
+
+    classDef gras stroke-width:3px;
+    class S gras;
+</pre>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>On peut montrer que la <em>hauteur de l&rsquo;arbre des appels récursifs</em> est voisine (en fonction de la définition choisie pour la hauteur) de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">&#92;log&#95;2 (n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span> où <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> est le nombre d&rsquo;éléments dans la séquence.</p>
+
+  </div>
+</div>
+
+<h2 id="implémentation-du-tri-fusion-pour-un-tableau">Implémentation du tri fusion pour un tableau<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<ol>
+<li>Étudier le code suivant et remplacer les &hellip; pour chaque numéro.</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">tri_fusion</span><span class="p">(</span><span class="n">S</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Implémentation du tri fusion.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    La liste S est modifiée en place.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>  <span class="c1"># ... (0)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># ... (1)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Diviser, Régner, Combiner ? ... (2)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">milieu</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S1</span> <span class="o">=</span> <span class="n">S</span><span class="p">[:</span><span class="n">milieu</span><span class="p">]</span>  <span class="c1"># .... (3)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S2</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">milieu</span><span class="p">:]</span>  <span class="c1"># .... (4)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Diviser, Régner, Combiner ? ... (5)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tri_fusion</span><span class="p">(</span><span class="n">S1</span><span class="p">)</span>  <span class="c1"># ... (6)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tri_fusion</span><span class="p">(</span><span class="n">S2</span><span class="p">)</span>  <span class="c1"># ... (7)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Diviser, Régner, Combiner ? ... (8)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fusion</span><span class="p">(</span><span class="n">S1</span><span class="p">,</span> <span class="n">S2</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>  <span class="c1"># ... (9)</span></span></span></code></pre></div>
+<ol start="2">
+<li>Étudier le code suivant et expliquer comment s&rsquo;effectue la fusion.</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fusion</span><span class="p">(</span><span class="n">S1</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">S2</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">S</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Combine les éléments des deux listes S1 et S2 dans la liste S (en place).
+</span></span></span><span class="line"><span class="cl"><span class="s2">    i est le nombre d&#39;élément(s) de S1 copié(s) dans S.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    j est le nombre d&#39;élément(s) de S2 copié(s) dans S.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    On doit donc avoir i + j &lt;= len(S).
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">j</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">S2</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">S1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">S1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">S2</span><span class="p">[</span><span class="n">j</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">S</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">S1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">S</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">S2</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span></span></span></code></pre></div>
+<ol start="3">
+<li>Étudier le comportement du programme complet à l&rsquo;aide de pythontutor.
+Construire la liste à l&rsquo;aide de l&rsquo;instruction :</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">liste</span> <span class="o">=</span> <span class="p">[</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span></span></span></code></pre></div>
+<ol start="4">
+<li>
+<p>Quelle est la complexité de la fonction <code>fusion</code> ?</p>
+</li>
+<li>
+<p>Essayer d&rsquo;évaluer la complexité de l&rsquo;algorithme sans faire de calcul.</p>
+</li>
+</ol>
+<hr>
+
+<hr>
+<h2 id="le-tri-fusion-dune-liste-chaînée">Le tri fusion d&rsquo;une liste chaînée<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Dans cette section, on cherche à adapter l&rsquo;algorithme de tri fusion à une liste chaînée.</p>
+<ol>
+<li>
+<p>Écrire le code de la classe <code>Cellule</code> permettant d&rsquo;implémenter une liste chaînée. Cette classe sert juste de structure et définit les champs <code>valeur</code>, de type <code>int</code>, et <code>suivant</code>, de type <code>Cellule</code>, initialisé à <code>None</code>.
+</p>
+</li>
+<li>
+<p>Dans la partie principale du programme, écrire le code qui crée la liste chaînée <code>[14, 11, 2, 35, 9, 1]</code>.
+</p>
+</li>
+<li>
+<p>Définir le code de la fonction <code>tri_fusion</code> dont la spécification est</p>
+</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">tri_fusion</span><span class="p">(</span><span class="n">lst</span><span class="p">:</span> <span class="n">Cellule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Cellule</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Implémente l&#39;algorithme de tri-fusion.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Une nouvelle liste chaînée est créée.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p>Cette fonction doit utiliser la fonction <code>coupe</code> (définie un peu plus bas), qui découpe une liste chaînée en deux sous-listes, et la fonction <code>fusion</code> (définie elle aussi un peu plus bas) qui réalise la fusion de deux listes triées.</p>
+<p>La fonction <code>tri_fusion</code> doit mettre en œuvre le principe « Diviser pour régner ».</p>
+
+<ol start="4">
+<li>Définir la fonction <code>coupe</code> dont la spécification est</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">coupe</span><span class="p">(</span><span class="n">lst</span><span class="p">:</span> <span class="n">Cellule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Cellule</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Découpe la liste L2 est deux sous-listes de même
+</span></span></span><span class="line"><span class="cl"><span class="s2">    longueur à un élément près.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+<ol start="5">
+<li>Définir la fonction <code>fusion</code> dont la spécification est</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fusion</span><span class="p">(</span><span class="n">l1</span><span class="p">:</span> <span class="n">Cellule</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="n">Cellule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Cellule</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Réalise la fusion des deux listes l1 et l2
+</span></span></span><span class="line"><span class="cl"><span class="s2">    triées.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Algorithme récursif.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 18 nov. 2020
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/terminales-sp%C3%A9-nsi/index.html">Terminales Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/js-yaml/js-yaml.min.27e5afd901466eb78e42374935cba773ca53f77b0d52eedb103b2b43f67a7f6a.js" defer></script>
+    <script src="/js/d3/d3-color.min.a12639010163230b8c130fbeb92a3a49bb5f6989a566d3664d759522db458489.js" defer></script>
+    <script src="/js/d3/d3-dispatch.min.94b3bbdb6b98dc1325a15762b051013e8253999b0e0436b27d1da17b952ba0af.js" defer></script>
+    <script src="/js/d3/d3-drag.min.158499fa8cdeef459e2ab9d01af22babd003c423a212fb24088c0f838864012b.js" defer></script>
+    <script src="/js/d3/d3-ease.min.e60a1ed750a1ad138dd18e8d3f463238113cfbf7d89685a13d19bd4e048dc3ce.js" defer></script>
+    <script src="/js/d3/d3-interpolate.min.bfc321e4c3f3b3aadc88cfe15ccb5e443abfeadef8b75c65b41c33a4d78a98ae.js" defer></script>
+    <script src="/js/d3/d3-selection.min.45daab9cf677901bcae102f3f23ca2930db3c0fb8ff9e3dbed087d9c4de921ca.js" defer></script>
+    <script src="/js/d3/d3-timer.min.911ceda305f014b6b53ca68d5c896a9a387da120cfd56a421a2c60cca2fc9b36.js" defer></script>
+    <script src="/js/d3/d3-transition.min.c248d97f6c131af7f4a12a3ff1f2ed83f1cc6c0e17fc764a198b6ee452e6621b.js" defer></script>
+    <script src="/js/d3/d3-zoom.min.4fdce9b830b78225c58e27258296084253c41a5eaf8cad9bd9ccfe3025daf1cf.js" defer></script>
+    <script src="/js/mermaid/mermaid.min.a8a6a6f805b074a8261a2825c86f99c8054acb3b35f50bb7e24a4f9f2c3c3b9f.js" defer></script>
+    <script type="application/json" id="R-mermaid-config">{}</script>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

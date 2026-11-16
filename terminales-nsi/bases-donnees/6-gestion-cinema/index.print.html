@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="L’objectif de cette séance est de mettre en œuvre tous les concepts du chapitre.
+La base de donnée accessible à cette adresse simule de façon simplifiée la gestion d’un cinéma.
+Étudier la structure de chacune des relations de la base et établir son schéma relationnel.
+En particulier, faire apparaître les clés primaires et les clés étrangères. Réponse Quelles sont les tables de la base ? .tables Quelle est la structure de chacune de ces relations ? pragma table_info(&#39;film&#39;); pragma table_info(&#39;projection&#39;); pragma table_info(&#39;categorie&#39;); Rappel : ces commandes sont spécifiques à SQLite et ne sont pas au programme. Il est cependant utile de les connaître.
+Afficher le contenu de chacune des relations. Réponse SELECT * FROM film; SELECT * FROM projection; SELECT * FROM categorie; Quelles sont les différentes catégories de film ? Réponse SELECT codecat, libcat FROM categorie; Quelles sont les noms des salles du cinéma triés dans l’ordre alphabétique ? Réponse SELECT DISTINCT salle FROM projection ORDER BY salle; Quels sont les films (numéro, titre, durée) projetés au cinéma ? Réponse SELECT DISTINCT film.numfilm, titre, duree FROM film, projection WHERE film.numfilm = projection.numfilm; ou
+SELECT DISTINCT f.numfilm, titre, duree FROM film f, projection p WHERE f.numfilm = p.numfilm; ou
+Quels sont les salles qui ont des séances à 11h00 ? Réponse SELECT DISTINCT salle FROM projection WHERE seance = &#39;11h00&#39;; Quelle est le titre et la durée du film numéro 20 ? Réponse SELECT titre, duree FROM film WHERE numfilm = 20; Quelle est le titre et la durée (en heure) du film numéro 20 ? Réponse SELECT titre, (duree/60) FROM film WHERE numfilm = 20; Quels sont les noms des films diffusés en salle Sud qui durent entre 60 et 120 minutes ? Réponse SELECT DISTINCT titre FROM film, projection WHERE film.numfilm = projection.numfilm AND salle = &#39;Sud&#39; AND duree BETWEEN 60 AND 120; Combien il y a-t-il de films dans la base (dans une colonne nommée : Total films) ? Réponse SELECT COUNT(*) AS &#39;Total films&#39; FROM film; Combien il y a-t-il de films produits par Universal dans la base ? Réponse SELECT production, COUNT(numfilm) AS &#39;Nbre films&#39; FROM film WHERE production = (SELECT production FROM film WHERE production = &#34;Universal&#34;); Combien il y a-t-il de films dans la catégorie documentaire (libellé catégorie, nombre de films) ? Réponse SELECT COUNT(*) AS &#39;Nbre films&#39; FROM film f JOIN categorie c ON f.codecat = c.codecat WHERE libcat = &#34;documentaire&#34;; Quels sont les titres des films de 140 minutes et produits par UGC ? Réponse SELECT titre FROM film WHERE duree = 140 AND production = &#39;UGC&#39;; Quels sont les titres des films commençant par C ou L (triés par ordre alphabétique) ? Réponse SELECT titre FROM film WHERE titre LIKE &#39;C%&#39; OR titre LIKE &#39;L%&#39; ORDER BY titre; Quels sont les titres des films qui ne commencent pas par la lettre U (triés alphabétiquement) ? Réponse SELECT titre FROM film WHERE titre NOT LIKE &#39;U%&#39; ORDER BY titre; Quels sont les titres et la durée des films qui ne sont pas diffusés en salle nord ? Réponse SELECT DISTINCT titre, duree FROM film, projection WHERE film.numfilm = projection.numfilm AND salle != &#39;Nord&#39;; Quels sont les titres des films diffusés à 11h dans les salles Nord ou Centrale ? Réponse SELECT DISTINCT titre FROM film, projection WHERE film.numfilm=projection.numfilm AND seance LIKE &#39;11h%&#39; AND salle IN (&#39;Nord&#39;,&#39;Centrale&#39;); ou
+SELECT DISTINCT titre FROM film f JOIN projection p ON f.numfilm = p.numfilm WHERE seance = &#39;11h00&#39; AND (salle = &#39;Nord&#39; OR salle = &#39;Centrale&#39;); Quelle est la durée moyenne des films de la base ? Réponse SELECT AVG(duree) FROM film ; Quelle est la séance du film diffusé le plus tôt dans la journée du 18/11 ? Réponse SELECT MIN(seance) AS &#39;Première séance&#39; FROM projection WHERE date = &#39;2005/11/18&#39;; Quel est le numéro et le titre des films qui ont la même durée que le film numéro 71 ?
+Utiliser deux requêtes imbriquées. Réponse SELECT numfilm, titre FROM film WHERE duree = (SELECT duree FROM film WHERE numfilm = 71); Quel est le numéro et le titre des films de la même catégorie que Super Mondet XII ?
+Utiliser deux requêtes imbriquées. Réponse SELECT numfilm, titre FROM film WHERE codecat = (SELECT codecat FROM film WHERE titre = &#39;Super Mondet XII&#39;); Quels sont les titres des films diffusés aux horaires suivants : 11h00, 13h10 et 14h50 ? Réponse SELECT DISTINCT titre FROM film f, projection p WHERE f.numfilm = p.numfilm AND seance IN (&#39;11h00&#39;,&#39;13h10&#39;,&#39;14h50&#39;); ou
+SELECT DISTINCT titre FROM film f JOIN projection p ON f.numfilm = p.numfilm WHERE seance IN (&#39;11h00&#39;, &#39;13h10&#39;, &#39;14h50&#39;); Quels sont les films (numéro et titre) plus longs que la moyenne de tous les films ?
+Utiliser deux requêtes imbriquées. Réponse SELECT numfilm, titre FROM film WHERE duree &gt; (SELECT AVG(duree) FROM film); Quels films (numéro, salle et séance) sont programmés aux mêmes horaires ?
+Utiliser une autojointure. Réponse SELECT DISTINCT p1.numfilm, p1.salle, p1.seance FROM projection p1, projection p2 WHERE p1.seance = p2.seance AND p1.numfilm != p2.numfilm; Quelle est le titre, la salle, la séance et la durée (en heure) des films projeté. En utilisant la fonction ROUND(,&lt;nb décimales&gt;) ? Réponse SELECT titre, salle, seance, ROUND(duree/60.,1) AS &#39;duree&#39; FROM film f, projection p WHERE f.numfilm = p.numfilm; Quels sont les films (numéro et titre) qui n’ont pas été diffusés ? Réponse SELECT DISTINCT titre, f.numfilm FROM film f, projection p WHERE f.numfilm NOT IN ( SELECT f.numfilm FROM film f, projection p WHERE f.numfilm = p.numfilm ); Quel est le film le plus diffusé ? Réponse">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Gestion d&#39;une salle de cinéma :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="L’objectif de cette séance est de mettre en œuvre tous les concepts du chapitre.
+La base de donnée accessible à cette adresse simule de façon simplifiée la gestion d’un cinéma.
+Étudier la structure de chacune des relations de la base et établir son schéma relationnel.
+En particulier, faire apparaître les clés primaires et les clés étrangères. Réponse Quelles sont les tables de la base ? .tables Quelle est la structure de chacune de ces relations ? pragma table_info(&#39;film&#39;); pragma table_info(&#39;projection&#39;); pragma table_info(&#39;categorie&#39;); Rappel : ces commandes sont spécifiques à SQLite et ne sont pas au programme. Il est cependant utile de les connaître.
+Afficher le contenu de chacune des relations. Réponse SELECT * FROM film; SELECT * FROM projection; SELECT * FROM categorie; Quelles sont les différentes catégories de film ? Réponse SELECT codecat, libcat FROM categorie; Quelles sont les noms des salles du cinéma triés dans l’ordre alphabétique ? Réponse SELECT DISTINCT salle FROM projection ORDER BY salle; Quels sont les films (numéro, titre, durée) projetés au cinéma ? Réponse SELECT DISTINCT film.numfilm, titre, duree FROM film, projection WHERE film.numfilm = projection.numfilm; ou
+SELECT DISTINCT f.numfilm, titre, duree FROM film f, projection p WHERE f.numfilm = p.numfilm; ou
+Quels sont les salles qui ont des séances à 11h00 ? Réponse SELECT DISTINCT salle FROM projection WHERE seance = &#39;11h00&#39;; Quelle est le titre et la durée du film numéro 20 ? Réponse SELECT titre, duree FROM film WHERE numfilm = 20; Quelle est le titre et la durée (en heure) du film numéro 20 ? Réponse SELECT titre, (duree/60) FROM film WHERE numfilm = 20; Quels sont les noms des films diffusés en salle Sud qui durent entre 60 et 120 minutes ? Réponse SELECT DISTINCT titre FROM film, projection WHERE film.numfilm = projection.numfilm AND salle = &#39;Sud&#39; AND duree BETWEEN 60 AND 120; Combien il y a-t-il de films dans la base (dans une colonne nommée : Total films) ? Réponse SELECT COUNT(*) AS &#39;Total films&#39; FROM film; Combien il y a-t-il de films produits par Universal dans la base ? Réponse SELECT production, COUNT(numfilm) AS &#39;Nbre films&#39; FROM film WHERE production = (SELECT production FROM film WHERE production = &#34;Universal&#34;); Combien il y a-t-il de films dans la catégorie documentaire (libellé catégorie, nombre de films) ? Réponse SELECT COUNT(*) AS &#39;Nbre films&#39; FROM film f JOIN categorie c ON f.codecat = c.codecat WHERE libcat = &#34;documentaire&#34;; Quels sont les titres des films de 140 minutes et produits par UGC ? Réponse SELECT titre FROM film WHERE duree = 140 AND production = &#39;UGC&#39;; Quels sont les titres des films commençant par C ou L (triés par ordre alphabétique) ? Réponse SELECT titre FROM film WHERE titre LIKE &#39;C%&#39; OR titre LIKE &#39;L%&#39; ORDER BY titre; Quels sont les titres des films qui ne commencent pas par la lettre U (triés alphabétiquement) ? Réponse SELECT titre FROM film WHERE titre NOT LIKE &#39;U%&#39; ORDER BY titre; Quels sont les titres et la durée des films qui ne sont pas diffusés en salle nord ? Réponse SELECT DISTINCT titre, duree FROM film, projection WHERE film.numfilm = projection.numfilm AND salle != &#39;Nord&#39;; Quels sont les titres des films diffusés à 11h dans les salles Nord ou Centrale ? Réponse SELECT DISTINCT titre FROM film, projection WHERE film.numfilm=projection.numfilm AND seance LIKE &#39;11h%&#39; AND salle IN (&#39;Nord&#39;,&#39;Centrale&#39;); ou
+SELECT DISTINCT titre FROM film f JOIN projection p ON f.numfilm = p.numfilm WHERE seance = &#39;11h00&#39; AND (salle = &#39;Nord&#39; OR salle = &#39;Centrale&#39;); Quelle est la durée moyenne des films de la base ? Réponse SELECT AVG(duree) FROM film ; Quelle est la séance du film diffusé le plus tôt dans la journée du 18/11 ? Réponse SELECT MIN(seance) AS &#39;Première séance&#39; FROM projection WHERE date = &#39;2005/11/18&#39;; Quel est le numéro et le titre des films qui ont la même durée que le film numéro 71 ?
+Utiliser deux requêtes imbriquées. Réponse SELECT numfilm, titre FROM film WHERE duree = (SELECT duree FROM film WHERE numfilm = 71); Quel est le numéro et le titre des films de la même catégorie que Super Mondet XII ?
+Utiliser deux requêtes imbriquées. Réponse SELECT numfilm, titre FROM film WHERE codecat = (SELECT codecat FROM film WHERE titre = &#39;Super Mondet XII&#39;); Quels sont les titres des films diffusés aux horaires suivants : 11h00, 13h10 et 14h50 ? Réponse SELECT DISTINCT titre FROM film f, projection p WHERE f.numfilm = p.numfilm AND seance IN (&#39;11h00&#39;,&#39;13h10&#39;,&#39;14h50&#39;); ou
+SELECT DISTINCT titre FROM film f JOIN projection p ON f.numfilm = p.numfilm WHERE seance IN (&#39;11h00&#39;, &#39;13h10&#39;, &#39;14h50&#39;); Quels sont les films (numéro et titre) plus longs que la moyenne de tous les films ?
+Utiliser deux requêtes imbriquées. Réponse SELECT numfilm, titre FROM film WHERE duree &gt; (SELECT AVG(duree) FROM film); Quels films (numéro, salle et séance) sont programmés aux mêmes horaires ?
+Utiliser une autojointure. Réponse SELECT DISTINCT p1.numfilm, p1.salle, p1.seance FROM projection p1, projection p2 WHERE p1.seance = p2.seance AND p1.numfilm != p2.numfilm; Quelle est le titre, la salle, la séance et la durée (en heure) des films projeté. En utilisant la fonction ROUND(,&lt;nb décimales&gt;) ? Réponse SELECT titre, salle, seance, ROUND(duree/60.,1) AS &#39;duree&#39; FROM film f, projection p WHERE f.numfilm = p.numfilm; Quels sont les films (numéro et titre) qui n’ont pas été diffusés ? Réponse SELECT DISTINCT titre, f.numfilm FROM film f, projection p WHERE f.numfilm NOT IN ( SELECT f.numfilm FROM film f, projection p WHERE f.numfilm = p.numfilm ); Quel est le film le plus diffusé ? Réponse">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/bases-donnees/6-gestion-cinema/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Gestion d&#39;une salle de cinéma :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="L’objectif de cette séance est de mettre en œuvre tous les concepts du chapitre.
+La base de donnée accessible à cette adresse simule de façon simplifiée la gestion d’un cinéma.
+Étudier la structure de chacune des relations de la base et établir son schéma relationnel.
+En particulier, faire apparaître les clés primaires et les clés étrangères. Réponse Quelles sont les tables de la base ? .tables Quelle est la structure de chacune de ces relations ? pragma table_info(&#39;film&#39;); pragma table_info(&#39;projection&#39;); pragma table_info(&#39;categorie&#39;); Rappel : ces commandes sont spécifiques à SQLite et ne sont pas au programme. Il est cependant utile de les connaître.
+Afficher le contenu de chacune des relations. Réponse SELECT * FROM film; SELECT * FROM projection; SELECT * FROM categorie; Quelles sont les différentes catégories de film ? Réponse SELECT codecat, libcat FROM categorie; Quelles sont les noms des salles du cinéma triés dans l’ordre alphabétique ? Réponse SELECT DISTINCT salle FROM projection ORDER BY salle; Quels sont les films (numéro, titre, durée) projetés au cinéma ? Réponse SELECT DISTINCT film.numfilm, titre, duree FROM film, projection WHERE film.numfilm = projection.numfilm; ou
+SELECT DISTINCT f.numfilm, titre, duree FROM film f, projection p WHERE f.numfilm = p.numfilm; ou
+Quels sont les salles qui ont des séances à 11h00 ? Réponse SELECT DISTINCT salle FROM projection WHERE seance = &#39;11h00&#39;; Quelle est le titre et la durée du film numéro 20 ? Réponse SELECT titre, duree FROM film WHERE numfilm = 20; Quelle est le titre et la durée (en heure) du film numéro 20 ? Réponse SELECT titre, (duree/60) FROM film WHERE numfilm = 20; Quels sont les noms des films diffusés en salle Sud qui durent entre 60 et 120 minutes ? Réponse SELECT DISTINCT titre FROM film, projection WHERE film.numfilm = projection.numfilm AND salle = &#39;Sud&#39; AND duree BETWEEN 60 AND 120; Combien il y a-t-il de films dans la base (dans une colonne nommée : Total films) ? Réponse SELECT COUNT(*) AS &#39;Total films&#39; FROM film; Combien il y a-t-il de films produits par Universal dans la base ? Réponse SELECT production, COUNT(numfilm) AS &#39;Nbre films&#39; FROM film WHERE production = (SELECT production FROM film WHERE production = &#34;Universal&#34;); Combien il y a-t-il de films dans la catégorie documentaire (libellé catégorie, nombre de films) ? Réponse SELECT COUNT(*) AS &#39;Nbre films&#39; FROM film f JOIN categorie c ON f.codecat = c.codecat WHERE libcat = &#34;documentaire&#34;; Quels sont les titres des films de 140 minutes et produits par UGC ? Réponse SELECT titre FROM film WHERE duree = 140 AND production = &#39;UGC&#39;; Quels sont les titres des films commençant par C ou L (triés par ordre alphabétique) ? Réponse SELECT titre FROM film WHERE titre LIKE &#39;C%&#39; OR titre LIKE &#39;L%&#39; ORDER BY titre; Quels sont les titres des films qui ne commencent pas par la lettre U (triés alphabétiquement) ? Réponse SELECT titre FROM film WHERE titre NOT LIKE &#39;U%&#39; ORDER BY titre; Quels sont les titres et la durée des films qui ne sont pas diffusés en salle nord ? Réponse SELECT DISTINCT titre, duree FROM film, projection WHERE film.numfilm = projection.numfilm AND salle != &#39;Nord&#39;; Quels sont les titres des films diffusés à 11h dans les salles Nord ou Centrale ? Réponse SELECT DISTINCT titre FROM film, projection WHERE film.numfilm=projection.numfilm AND seance LIKE &#39;11h%&#39; AND salle IN (&#39;Nord&#39;,&#39;Centrale&#39;); ou
+SELECT DISTINCT titre FROM film f JOIN projection p ON f.numfilm = p.numfilm WHERE seance = &#39;11h00&#39; AND (salle = &#39;Nord&#39; OR salle = &#39;Centrale&#39;); Quelle est la durée moyenne des films de la base ? Réponse SELECT AVG(duree) FROM film ; Quelle est la séance du film diffusé le plus tôt dans la journée du 18/11 ? Réponse SELECT MIN(seance) AS &#39;Première séance&#39; FROM projection WHERE date = &#39;2005/11/18&#39;; Quel est le numéro et le titre des films qui ont la même durée que le film numéro 71 ?
+Utiliser deux requêtes imbriquées. Réponse SELECT numfilm, titre FROM film WHERE duree = (SELECT duree FROM film WHERE numfilm = 71); Quel est le numéro et le titre des films de la même catégorie que Super Mondet XII ?
+Utiliser deux requêtes imbriquées. Réponse SELECT numfilm, titre FROM film WHERE codecat = (SELECT codecat FROM film WHERE titre = &#39;Super Mondet XII&#39;); Quels sont les titres des films diffusés aux horaires suivants : 11h00, 13h10 et 14h50 ? Réponse SELECT DISTINCT titre FROM film f, projection p WHERE f.numfilm = p.numfilm AND seance IN (&#39;11h00&#39;,&#39;13h10&#39;,&#39;14h50&#39;); ou
+SELECT DISTINCT titre FROM film f JOIN projection p ON f.numfilm = p.numfilm WHERE seance IN (&#39;11h00&#39;, &#39;13h10&#39;, &#39;14h50&#39;); Quels sont les films (numéro et titre) plus longs que la moyenne de tous les films ?
+Utiliser deux requêtes imbriquées. Réponse SELECT numfilm, titre FROM film WHERE duree &gt; (SELECT AVG(duree) FROM film); Quels films (numéro, salle et séance) sont programmés aux mêmes horaires ?
+Utiliser une autojointure. Réponse SELECT DISTINCT p1.numfilm, p1.salle, p1.seance FROM projection p1, projection p2 WHERE p1.seance = p2.seance AND p1.numfilm != p2.numfilm; Quelle est le titre, la salle, la séance et la durée (en heure) des films projeté. En utilisant la fonction ROUND(,&lt;nb décimales&gt;) ? Réponse SELECT titre, salle, seance, ROUND(duree/60.,1) AS &#39;duree&#39; FROM film f, projection p WHERE f.numfilm = p.numfilm; Quels sont les films (numéro et titre) qui n’ont pas été diffusés ? Réponse SELECT DISTINCT titre, f.numfilm FROM film f, projection p WHERE f.numfilm NOT IN ( SELECT f.numfilm FROM film f, projection p WHERE f.numfilm = p.numfilm ); Quel est le film le plus diffusé ? Réponse">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2021-02-09T05:50:34+04:00">
+    <meta property="article:modified_time" content="2021-02-09T05:50:34+04:00">
+    <meta itemprop="name" content="Gestion d&#39;une salle de cinéma :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="L’objectif de cette séance est de mettre en œuvre tous les concepts du chapitre.
+La base de donnée accessible à cette adresse simule de façon simplifiée la gestion d’un cinéma.
+Étudier la structure de chacune des relations de la base et établir son schéma relationnel.
+En particulier, faire apparaître les clés primaires et les clés étrangères. Réponse Quelles sont les tables de la base ? .tables Quelle est la structure de chacune de ces relations ? pragma table_info(&#39;film&#39;); pragma table_info(&#39;projection&#39;); pragma table_info(&#39;categorie&#39;); Rappel : ces commandes sont spécifiques à SQLite et ne sont pas au programme. Il est cependant utile de les connaître.
+Afficher le contenu de chacune des relations. Réponse SELECT * FROM film; SELECT * FROM projection; SELECT * FROM categorie; Quelles sont les différentes catégories de film ? Réponse SELECT codecat, libcat FROM categorie; Quelles sont les noms des salles du cinéma triés dans l’ordre alphabétique ? Réponse SELECT DISTINCT salle FROM projection ORDER BY salle; Quels sont les films (numéro, titre, durée) projetés au cinéma ? Réponse SELECT DISTINCT film.numfilm, titre, duree FROM film, projection WHERE film.numfilm = projection.numfilm; ou
+SELECT DISTINCT f.numfilm, titre, duree FROM film f, projection p WHERE f.numfilm = p.numfilm; ou
+Quels sont les salles qui ont des séances à 11h00 ? Réponse SELECT DISTINCT salle FROM projection WHERE seance = &#39;11h00&#39;; Quelle est le titre et la durée du film numéro 20 ? Réponse SELECT titre, duree FROM film WHERE numfilm = 20; Quelle est le titre et la durée (en heure) du film numéro 20 ? Réponse SELECT titre, (duree/60) FROM film WHERE numfilm = 20; Quels sont les noms des films diffusés en salle Sud qui durent entre 60 et 120 minutes ? Réponse SELECT DISTINCT titre FROM film, projection WHERE film.numfilm = projection.numfilm AND salle = &#39;Sud&#39; AND duree BETWEEN 60 AND 120; Combien il y a-t-il de films dans la base (dans une colonne nommée : Total films) ? Réponse SELECT COUNT(*) AS &#39;Total films&#39; FROM film; Combien il y a-t-il de films produits par Universal dans la base ? Réponse SELECT production, COUNT(numfilm) AS &#39;Nbre films&#39; FROM film WHERE production = (SELECT production FROM film WHERE production = &#34;Universal&#34;); Combien il y a-t-il de films dans la catégorie documentaire (libellé catégorie, nombre de films) ? Réponse SELECT COUNT(*) AS &#39;Nbre films&#39; FROM film f JOIN categorie c ON f.codecat = c.codecat WHERE libcat = &#34;documentaire&#34;; Quels sont les titres des films de 140 minutes et produits par UGC ? Réponse SELECT titre FROM film WHERE duree = 140 AND production = &#39;UGC&#39;; Quels sont les titres des films commençant par C ou L (triés par ordre alphabétique) ? Réponse SELECT titre FROM film WHERE titre LIKE &#39;C%&#39; OR titre LIKE &#39;L%&#39; ORDER BY titre; Quels sont les titres des films qui ne commencent pas par la lettre U (triés alphabétiquement) ? Réponse SELECT titre FROM film WHERE titre NOT LIKE &#39;U%&#39; ORDER BY titre; Quels sont les titres et la durée des films qui ne sont pas diffusés en salle nord ? Réponse SELECT DISTINCT titre, duree FROM film, projection WHERE film.numfilm = projection.numfilm AND salle != &#39;Nord&#39;; Quels sont les titres des films diffusés à 11h dans les salles Nord ou Centrale ? Réponse SELECT DISTINCT titre FROM film, projection WHERE film.numfilm=projection.numfilm AND seance LIKE &#39;11h%&#39; AND salle IN (&#39;Nord&#39;,&#39;Centrale&#39;); ou
+SELECT DISTINCT titre FROM film f JOIN projection p ON f.numfilm = p.numfilm WHERE seance = &#39;11h00&#39; AND (salle = &#39;Nord&#39; OR salle = &#39;Centrale&#39;); Quelle est la durée moyenne des films de la base ? Réponse SELECT AVG(duree) FROM film ; Quelle est la séance du film diffusé le plus tôt dans la journée du 18/11 ? Réponse SELECT MIN(seance) AS &#39;Première séance&#39; FROM projection WHERE date = &#39;2005/11/18&#39;; Quel est le numéro et le titre des films qui ont la même durée que le film numéro 71 ?
+Utiliser deux requêtes imbriquées. Réponse SELECT numfilm, titre FROM film WHERE duree = (SELECT duree FROM film WHERE numfilm = 71); Quel est le numéro et le titre des films de la même catégorie que Super Mondet XII ?
+Utiliser deux requêtes imbriquées. Réponse SELECT numfilm, titre FROM film WHERE codecat = (SELECT codecat FROM film WHERE titre = &#39;Super Mondet XII&#39;); Quels sont les titres des films diffusés aux horaires suivants : 11h00, 13h10 et 14h50 ? Réponse SELECT DISTINCT titre FROM film f, projection p WHERE f.numfilm = p.numfilm AND seance IN (&#39;11h00&#39;,&#39;13h10&#39;,&#39;14h50&#39;); ou
+SELECT DISTINCT titre FROM film f JOIN projection p ON f.numfilm = p.numfilm WHERE seance IN (&#39;11h00&#39;, &#39;13h10&#39;, &#39;14h50&#39;); Quels sont les films (numéro et titre) plus longs que la moyenne de tous les films ?
+Utiliser deux requêtes imbriquées. Réponse SELECT numfilm, titre FROM film WHERE duree &gt; (SELECT AVG(duree) FROM film); Quels films (numéro, salle et séance) sont programmés aux mêmes horaires ?
+Utiliser une autojointure. Réponse SELECT DISTINCT p1.numfilm, p1.salle, p1.seance FROM projection p1, projection p2 WHERE p1.seance = p2.seance AND p1.numfilm != p2.numfilm; Quelle est le titre, la salle, la séance et la durée (en heure) des films projeté. En utilisant la fonction ROUND(,&lt;nb décimales&gt;) ? Réponse SELECT titre, salle, seance, ROUND(duree/60.,1) AS &#39;duree&#39; FROM film f, projection p WHERE f.numfilm = p.numfilm; Quels sont les films (numéro et titre) qui n’ont pas été diffusés ? Réponse SELECT DISTINCT titre, f.numfilm FROM film f, projection p WHERE f.numfilm NOT IN ( SELECT f.numfilm FROM film f, projection p WHERE f.numfilm = p.numfilm ); Quel est le film le plus diffusé ? Réponse">
+    <meta itemprop="datePublished" content="2021-02-09T05:50:34+04:00">
+    <meta itemprop="dateModified" content="2021-02-09T05:50:34+04:00">
+    <meta itemprop="wordCount" content="1264">
+    <title>Gestion d&#39;une salle de cinéma :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/bases-donnees/6-gestion-cinema/index.html" rel="canonical" type="text/html" title="Gestion d&#39;une salle de cinéma :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/bases-donnees/6-gestion-cinema/index.xml" rel="alternate" type="application/rss&#43;xml" title="Gestion d&#39;une salle de cinéma :: Physique, Chimie et Informatique">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/bases-donnees/6-gestion-cinema/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/bases-donnees/6-gestion-cinema/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Bases de données">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/bases-donnees/index.html"><span itemprop="name">Bases de données</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/6-gestion-cinema/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/5-sql-lmd-avance/index.html" title="Le langage SQL : Le langage de manipulation de données (LMD), Compléments (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/bases-donnees/7-murder-mystery/index.html" title="SQL Murder Mystery (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Bases de données</div>
+  <header class="headline">
+  </header>
+
+<h1 id="gestion-dune-salle-de-cinéma">Gestion d&#39;une salle de cinéma</h1>
+
+<blockquote>
+<p>L&rsquo;objectif de cette séance est de mettre en œuvre tous les concepts du chapitre.</p>
+</blockquote>
+<p>La base de donnée accessible à 
+<a class="remote" href="https://repl.it/@dlatreyte/Cinema" target="_blank">cette adresse</a>
+
+ simule de façon simplifiée la gestion d&rsquo;un cinéma.</p>
+<ol>
+<li>
+<p>Étudier la structure de chacune des relations de la base et établir son schéma relationnel.<br>
+En particulier, faire apparaître les clés primaires et les clés étrangères.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<ul>
+<li>Quelles sont les tables de la base ?</li>
+</ul>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="p">.</span><span class="n">tables</span></span></span></code></pre></div>
+<ul>
+<li>Quelle est la structure de chacune de ces relations ?</li>
+</ul>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="n">pragma</span><span class="w"> </span><span class="n">table_info</span><span class="p">(</span><span class="s1">&#39;film&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">pragma</span><span class="w"> </span><span class="n">table_info</span><span class="p">(</span><span class="s1">&#39;projection&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">pragma</span><span class="w"> </span><span class="n">table_info</span><span class="p">(</span><span class="s1">&#39;categorie&#39;</span><span class="p">);</span></span></span></code></pre></div>
+<p><strong>Rappel :</strong> ces commandes sont spécifiques à SQLite et ne sont pas au programme. Il est cependant utile de les connaître.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Afficher le contenu de chacune des relations.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">projection</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">categorie</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelles sont les différentes catégories de film ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">codecat</span><span class="p">,</span><span class="w"> </span><span class="n">libcat</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">categorie</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelles sont les noms des salles du cinéma triés dans l&rsquo;ordre alphabétique ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">salle</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">salle</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les films (numéro, titre, durée) projetés au cinéma ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">film</span><span class="p">.</span><span class="n">numfilm</span><span class="p">,</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">duree</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="p">,</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">film</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">projection</span><span class="p">.</span><span class="n">numfilm</span><span class="p">;</span></span></span></code></pre></div>
+<p>ou</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">numfilm</span><span class="p">,</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">duree</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="n">p</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">numfilm</span><span class="p">;</span></span></span></code></pre></div>
+<p>ou</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les salles qui ont des séances à 11h00 ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">salle</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">seance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;11h00&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelle est le titre et la durée du film numéro 20 ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">duree</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelle est le titre et la durée (en heure) du film numéro 20 ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">duree</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les noms des films diffusés en salle Sud qui durent entre 60 et 120 minutes ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">titre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="p">,</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">film</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">projection</span><span class="p">.</span><span class="n">numfilm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">AND</span><span class="w"> </span><span class="n">salle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Sud&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">AND</span><span class="w"> </span><span class="n">duree</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">120</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Combien il y a-t-il de films dans la base (dans une colonne nommée : Total films) ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Total films&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Combien il y a-t-il de films produits par Universal dans la base ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">production</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">numfilm</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Nbre films&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">production</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">production</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">production</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Universal&#34;</span><span class="p">);</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Combien il y a-t-il de films dans la catégorie documentaire (libellé catégorie, nombre de films) ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Nbre films&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">JOIN</span><span class="w"> </span><span class="n">categorie</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">codecat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">codecat</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">libcat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;documentaire&#34;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les titres des films de 140 minutes et produits par UGC ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">titre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">duree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">140</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">AND</span><span class="w"> </span><span class="n">production</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;UGC&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les titres des films commençant par C ou L (triés par ordre alphabétique) ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">titre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;C%&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">OR</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;L%&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">titre</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les titres des films qui ne commencent pas par la lettre U (triés alphabétiquement) ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">titre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;U%&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">titre</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les titres et la durée des films qui ne sont pas diffusés en salle nord ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">duree</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="p">,</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">film</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">projection</span><span class="p">.</span><span class="n">numfilm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">AND</span><span class="w"> </span><span class="n">salle</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;Nord&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les titres des films diffusés à 11h dans les salles Nord ou Centrale ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">titre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="p">,</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">film</span><span class="p">.</span><span class="n">numfilm</span><span class="o">=</span><span class="n">projection</span><span class="p">.</span><span class="n">numfilm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">AND</span><span class="w"> </span><span class="n">seance</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;11h%&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">AND</span><span class="w"> </span><span class="n">salle</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Nord&#39;</span><span class="p">,</span><span class="s1">&#39;Centrale&#39;</span><span class="p">);</span></span></span></code></pre></div>
+<p>ou</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">titre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">JOIN</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">seance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;11h00&#39;</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">AND</span><span class="w"> </span><span class="p">(</span><span class="n">salle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Nord&#39;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">salle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Centrale&#39;</span><span class="p">);</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelle est la durée moyenne des films de la base ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">duree</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelle est la séance du film diffusé le plus tôt dans la journée du 18/11 ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">seance</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;Première séance&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2005/11/18&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quel est le numéro et le titre des films qui ont la même durée que le film numéro 71 ?<br>
+Utiliser deux requêtes imbriquées.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">numfilm</span><span class="p">,</span><span class="w"> </span><span class="n">titre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">duree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">duree</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">               </span><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">               </span><span class="k">WHERE</span><span class="w"> </span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">71</span><span class="p">);</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quel est le numéro et le titre des films de la même catégorie que Super Mondet XII ?<br>
+Utiliser deux requêtes imbriquées.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">numfilm</span><span class="p">,</span><span class="w"> </span><span class="n">titre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">codecat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">codecat</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                 </span><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                 </span><span class="k">WHERE</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Super Mondet XII&#39;</span><span class="p">);</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les titres des films diffusés aux horaires suivants : 11h00, 13h10 et 14h50 ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">titre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="n">p</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">numfilm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">AND</span><span class="w"> </span><span class="n">seance</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;11h00&#39;</span><span class="p">,</span><span class="s1">&#39;13h10&#39;</span><span class="p">,</span><span class="s1">&#39;14h50&#39;</span><span class="p">);</span></span></span></code></pre></div>
+<p>ou</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">titre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="k">JOIN</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">numfilm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">seance</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;11h00&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;13h10&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;14h50&#39;</span><span class="p">);</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les films (numéro et titre) plus longs que la moyenne de tous les films ?<br>
+Utiliser deux requêtes imbriquées.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">numfilm</span><span class="p">,</span><span class="w"> </span><span class="n">titre</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">duree</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">duree</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">               </span><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="p">);</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels films (numéro, salle et séance) sont programmés aux mêmes horaires ?<br>
+Utiliser une autojointure.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="n">numfilm</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="n">salle</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="n">seance</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="n">p2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="n">seance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">seance</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">AND</span><span class="w"> </span><span class="n">p1</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">numfilm</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quelle est le titre, la salle, la séance et la durée (en heure) des films projeté. En utilisant la fonction ROUND(<champ ou formule>,&lt;nb décimales&gt;) ?
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">salle</span><span class="p">,</span><span class="w"> </span><span class="n">seance</span><span class="p">,</span><span class="w"> </span><span class="n">ROUND</span><span class="p">(</span><span class="n">duree</span><span class="o">/</span><span class="mi">60</span><span class="p">.,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;duree&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="n">p</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">numfilm</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quels sont les films (numéro et titre) qui n’ont pas été diffusés ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">numfilm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="n">p</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">numfilm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">film</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="n">p</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">numfilm</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">);</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Quel est le film le plus diffusé ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"></code></pre></div>
+  </div>
+</details></p>
+</li>
+</ol>
+<p>On souhaite maintenant ajouter l&rsquo;attribut <code>tarif</code> à la relation <code>projection</code>. Exécuter la commande suivante :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">projection</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">tarif</span><span class="w"> </span><span class="nb">float</span><span class="p">;</span></span></span></code></pre></div>
+<ol start="28">
+<li>Vérifier que la structure de la relation <code>projection</code> a bien été modifiée.</li>
+</ol>
+<p>On fait la supposition que le tarif des films dépend du film, de la salle, de la séance et de la date de projection. Le tarif exprime le tarif de base.</p>
+<ol start="29">
+<li>
+<p>Mettre à jour la table projection en fixant un tarif de base à 5 € pour la salle nord, 8 € pour la salle centrale, 6.5 € pour la salle sud.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">tarif</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">.</span><span class="mi">00</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">salle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Nord&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">tarif</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">.</span><span class="mi">00</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">salle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Centrale&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">tarif</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">.</span><span class="mi">50</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">salle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Sud&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Une erreur s’est glissée dans la table projection : l’horaire de 13h10 est à remplacer par 19h30 pour la salle sud.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">Projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">seance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;19h30&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">seance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;13h10&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">AND</span><span class="w"> </span><span class="n">salle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&#34;Sud&#34;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Mettre à jour la table projection en ajoutant 1 € au prix des films dont les séances sont à 14h50 et 2 € au prix des films dont les séances sont à 19h30.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">Projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">tarif</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tarif</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">seance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;14h50&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">Projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">tarif</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tarif</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">seance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;19h30&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Mettre à jour la table projection en augmentant de 10% le tarif des films projectés le 18/11.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">tarif</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tarif</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2005/11/18&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Mettre à jour la table projection en augmentant de 25% le tarif des films n°10 et n°50.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">UPDATE</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">SET</span><span class="w"> </span><span class="n">tarif</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tarif</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">25</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;10&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">OR</span><span class="w"> </span><span class="n">numfilm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;50&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Mettre à jour la table film en ajoutant les films suivants :</p>
+<ul>
+<li>89, Les fourmis de l’espace (documentaire), produit par UGC, 130 minutes.</li>
+<li>90, Jet Set (comédie), produit par Paramounth, 100 minutes.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;89&#39;</span><span class="p">,</span><span class="s1">&#39;Les fourmis de l’espace&#39;</span><span class="p">,</span><span class="s1">&#39;130&#39;</span><span class="p">,</span><span class="s1">&#39;UGC&#39;</span><span class="p">,</span><span class="s1">&#39;DOCU&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">film</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;90&#39;</span><span class="p">,</span><span class="s1">&#39;Jet Set&#39;</span><span class="p">,</span><span class="s1">&#39;100&#39;</span><span class="p">,</span><span class="s1">&#39;Paramounth&#39;</span><span class="p">,</span><span class="s1">&#39;COMD&#39;</span><span class="p">);</span></span></span></code></pre></div>
+  </div>
+</details></li>
+</ul>
+</li>
+<li>
+<p>Effacer les enregistrements en date du 17-11-2005.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">projection</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">WHERE</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2005/11/17&#39;</span><span class="p">;</span></span></span></code></pre></div>
+  </div>
+</details></p>
+</li>
+</ol>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 9 févr. 2021
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

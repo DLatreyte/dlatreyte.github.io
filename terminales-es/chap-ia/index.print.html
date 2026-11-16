@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Doc. : Cours IA
+Doc. : Comment apprendre à une machine ?
+Doc. : Exemples de méthodes d’apprentissage">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="L’être humain peut-il externaliser son « intelligence » ? :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Doc. : Cours IA
+Doc. : Comment apprendre à une machine ?
+Doc. : Exemples de méthodes d’apprentissage">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-es/chap-ia/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="L’être humain peut-il externaliser son « intelligence » ? :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Doc. : Cours IA
+Doc. : Comment apprendre à une machine ?
+Doc. : Exemples de méthodes d’apprentissage">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="website">
+    <meta itemprop="name" content="L’être humain peut-il externaliser son « intelligence » ? :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Doc. : Cours IA
+Doc. : Comment apprendre à une machine ?
+Doc. : Exemples de méthodes d’apprentissage">
+    <meta itemprop="datePublished" content="2023-03-01T22:31:26+04:00">
+    <meta itemprop="dateModified" content="2023-03-01T22:31:26+04:00">
+    <meta itemprop="wordCount" content="18">
+    <title>L’être humain peut-il externaliser son « intelligence » ? :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-es/chap-ia/index.html" rel="canonical" type="text/html" title="L’être humain peut-il externaliser son « intelligence » ? :: Physique, Chimie et Informatique">
+    <link href="/terminales-es/chap-ia/index.xml" rel="alternate" type="application/rss&#43;xml" title="L’être humain peut-il externaliser son « intelligence » ? :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-es/chap-ia/index.html",
+      "relBasePath": "../..",
+      "relBaseUri": "../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-es/chap-ia/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminale Enseignement Scientifique">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-es/index.html"><span itemprop="name">Terminale Enseignement Scientifique</span></a><meta itemprop="position" content="2"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-es/chap-ia/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-es/chap-8/2-mix-energetique/index.html" title="Vers un mix énergétique pour le village d&#39;Eklaugy (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-es/chap-ia/1-apprentissage/index.html" title="Teachable Machine : reconnaître une position (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-es">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminale Enseignement Scientifique</div>
+  <header class="headline">
+  </header>
+
+<h1 id="lêtre-humain-peut-il-externaliser-son--intelligence--">L’être humain peut-il externaliser son « intelligence » ?</h1>
+
+<ul>
+<li>
+<p><strong>Doc. :</strong> <a href="https://www.remnote.com/a/intelligence-artificielle-introduction/63fe14481b724daa608c4a84" rel="external"><em>Cours IA</em></a></p>
+</li>
+<li>
+<p><strong>Doc. :</strong> <a href="/terminales-es/chap-ia/1-apprentissage/index.html"><em>Comment apprendre à une machine ?</em></a></p>
+</li>
+<li>
+<p><strong>Doc. :</strong> <a href="/terminales-es/chap-ia/2-apprentissage-mathematique/index.html"><em>Exemples de méthodes d&rsquo;apprentissage</em></a></p>
+</li>
+</ul>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 1 mars 2023
+  </footer>
+</article>
+          <section>
+            <h1 class="a11y-only">Sous-sections de L’être humain peut-il externaliser son « intelligence » ?</h1>
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminale Enseignement Scientifique &gt; L’être humain peut-il externaliser son « intelligence » ?</div>
+  <header class="headline">
+  </header>
+
+<h1 id="teachable-machine--reconnaître-une-position">Teachable Machine : reconnaître une position</h1>
+
+<blockquote>
+<p>L&rsquo;objectif de cette séance est de montrer comment on peut apprendre à un <strong>modèle d&rsquo;apprentissage</strong> à reconnaître une position. Le logiciel utilisé est Teachable Machine et <strong>l&rsquo;apprentissage aura pour objectif de faire en sorte que le logiciel puisse déterminer si on se tient droit, ou si on est incliné vers la gauche ou vers la droite</strong>.</p>
+</blockquote>
+<h2 id="préparation">Préparation<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<ol>
+<li>
+<p>Accéder au <a href="https://teachablemachine.withgoogle.com" target="_blank">logiciel en ligne</a></p>
+</li>
+<li>
+<p>Cliquer sur « Commencer ».</p>
+</li>
+<li>
+<p>Choisir « Projet posture ».</p>
+</li>
+</ol>
+<h2 id="entraînement">Entraînement<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Trois postures doivent être définies :
+- « Sans inclinaison »,
+- « Inclinaison à gauche »,
+- « Inclinaison à droite ».</p>
+<ol start="4">
+<li>
+<p>Renommer la classe d&rsquo;apprentissage « Class 1 » en « Sans inclinaison » et la classe d&rsquo;apprentissage « Class 2 » en « Inclinaison à gauche ».</p>
+</li>
+<li>
+<p>Ajouter une classe d&rsquo;apprentissage et la renommer en « Inclinaison à droite ».</p>
+</li>
+<li>
+<p>Sélectionner la webcam de la classe « Sans inclinaison ».<br>
+Se rendre dans la partie « configuration » (icône en forme de roue dentellée) et désactiver « Maintenir pour enregistrer ».<br>
+Enregistrer les paramètres.</p>
+</li>
+<li>
+<p>Assis sur sa chaise, se tenir droit et lancer l&rsquo;enregistrement.<br>
+Il est possible d&rsquo;un petit peu bouger pendant l&rsquo;enregistrement.</p>
+</li>
+<li>
+<p>Sélectionner la webcam de la classe « Inclinaison à gauche ».<br>
+Lancer l&rsquo;enregistrement et effectuer des petits mouvement en se penchant vers la gauche, en restant assis sur sa chaise.<br>
+<em>Attention à toujours rester dans le champ de la caméra.</em></p>
+</li>
+<li>
+<p>Sélectionner la webcam de la classe « Inclinaison à droite ».<br>
+Lancer l&rsquo;enregistrement et effectuer des petits mouvement en se penchant vers la droite, en restant assis sur sa chaise.<br>
+<em>Attention à toujours rester dans le champ de la caméra.</em></p>
+</li>
+<li>
+<p>Dans la partie « Entraînement », cliquer sur « Entraîner le modèle » et attendre que l&rsquo;apprentissage se termine.</p>
+</li>
+<li>
+<p>Tester le modèle. Ce modèle fonctionne-t-il correctement ?</p>
+</li>
+<li>
+<p>Se lever et reculer, tout en restant dans le champ de la caméra. Effectuer de nouveaux tests. Le modèle fonctionne-t-il toujours correctement ?</p>
+</li>
+<li>
+<p>Comment faire en sorte que le modèle fonctionne aussi si on est debout ?</p>
+</li>
+<li>
+<p>Effectuer les modifications dans l&rsquo;entraînement du modèle et le tester à nouveau.</p>
+</li>
+<li>
+<p>Se faire remplacer par une autre personne. Le modèle fonctionne-t-il toujours aussi bien ?</p>
+</li>
+</ol>
+<h2 id="ouverture">Ouverture<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<ol start="16">
+<li>Expliquer comment on pourrait utiliser ce logiciel pour lui apprendre à déterminer si une banane est trop verte pour être mangée, est mûre ou est sur le point de ne plus être comestible. Donner en particulier les classes d&rsquo;apprentissage qu&rsquo;il faudrait utiliser.</li>
+</ol>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 1 mars 2023
+  </footer>
+</article>
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminale Enseignement Scientifique &gt; L’être humain peut-il externaliser son « intelligence » ?</div>
+  <header class="headline">
+  </header>
+
+<h1 id="exemples-de-méthodes-dapprentissage">Exemples de méthodes d’apprentissage</h1>
+
+<blockquote>
+<p>Différentes méthodes sont ici présentées dans des contextes simples (nombre limité de données). L’objectif pédagogique est de faire comprendre les méthodes mathématiques utilisées dans un cadre beaucoup plus complexe (notamment quant au nombre de données utilisées) en intelligence artificielle.</p>
+</blockquote>
+<h2 id="les-courbes-dajustement">Les courbes d’ajustement<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Cette méthode repose sur un <strong>traitement statistique des données</strong> :</p>
+<ul>
+<li>celles-ci, fournies lors de la phase d’apprentissage, <em>peuvent être représentées par un nuage de points</em>.</li>
+<li>Des méthodes statistiques permettent d’<em>ajuster ce nuage par une courbe</em> (droite, parabole, exponentielle).</li>
+<li>Les <em>paramètres de cette courbe sont déterminés à l’aide des données</em> : c’est la <strong>phase d’entraînement</strong>.</li>
+<li>La connaissance de cette courbe permet alors de prédire des valeurs pour des points de mesure absents : c’est la <strong>phase d’inférence</strong>.</li>
+</ul>
+
+  </div>
+</div>
+
+<h3 id="évolution-du-prix-du-metre-carré-dans-le-6e-arrondissement-de-paris">Évolution du prix du mètre-carré dans le 6e arrondissement de Paris<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center">Année <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">x&#95;i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></th>
+      <th class="align-center">0</th>
+      <th class="align-center">1</th>
+      <th class="align-center">2</th>
+      <th class="align-center">3</th>
+      <th class="align-center">4</th>
+      <th class="align-center">5</th>
+      <th class="align-center">6</th>
+      <th class="align-center">7</th>
+      <th class="align-center">8</th>
+      <th class="align-center">9</th>
+      <th class="align-center">10</th>
+      <th class="align-center">11</th>
+      <th class="align-center">12</th>
+      <th class="align-center">13</th>
+      <th class="align-center">14</th>
+      <th class="align-center">15</th>
+      <th class="align-center">16</th>
+      <th class="align-center">17</th>
+      <th class="align-center">18</th>
+      <th class="align-center">19</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">Prix <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">y&#95;i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></td>
+      <td class="align-center">4562</td>
+      <td class="align-center">5270</td>
+      <td class="align-center">5400</td>
+      <td class="align-center">6020</td>
+      <td class="align-center">6460</td>
+      <td class="align-center">7360</td>
+      <td class="align-center">8090</td>
+      <td class="align-center">8840</td>
+      <td class="align-center">9830</td>
+      <td class="align-center">10100</td>
+      <td class="align-center">9690</td>
+      <td class="align-center">11870</td>
+      <td class="align-center">12400</td>
+      <td class="align-center">12250</td>
+      <td class="align-center">11820</td>
+      <td class="align-center">11280</td>
+      <td class="align-center">12150</td>
+      <td class="align-center">12320</td>
+      <td class="align-center">12530</td>
+      <td class="align-center">13880</td>
+    </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>Évolution du prix du mètre carré dans le 6ème arrondissement de Paris (année 0 en 2000).</p>
+</blockquote>
+<p>Les données antérieures à l’année 2020 constituent des données à partir desquelles on détermine l’équation d’une courbe approchant les données.</p>
+<ol>
+<li>
+<p>Tracer le nuage de points à l&rsquo;aide d&rsquo;un tableur.</p>
+</li>
+<li>
+<p>Justifier qu&rsquo;il peut être ajusté par une droite.</p>
+</li>
+</ol>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Lorsqu&rsquo;un nuage de points peut être ajusté par une droite, on parle de régression linéaire.</p>
+
+  </div>
+</div>
+
+<ol start="3">
+<li>
+<p>Établir les caractéristiques de la courbe de tendance (de la droite donc).</p>
+</li>
+<li>
+<p>Estimer le prix du mètre carré dans le 6ème arrondissement en 2020.</p>
+</li>
+<li>
+<p>De la même façon, estimer le prix du mètre carré dans le 6ème arrondissement en 1999.</p>
+</li>
+</ol>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Comment la droite d&rsquo;ajustement est-elle déterminée ?</span></div>
+  <div class="clue-body">
+<p>La droite d&rsquo;ajustement est la droite qui passe par des valeurs aux points de mesures au plus près des vraies valeurs mesurées, dans un sens mathématique bien précis, celui des moindres carrés. Si on note <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>&#61;</mo><mi>a</mi><mi>x</mi><mo>&#43;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">y&#61;ax&#43;b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> l&rsquo;équation de la droite, on veut minimiser la somme des carrés des différences entres les vraies valeurs <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">y&#95;i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> et leurs prédictions par la droite <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><msub><mi>x</mi><mi>i</mi></msub><mo>&#43;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a x&#95;i &#43; b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span>, soit trouver <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> qui minimisent <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mo>∑</mo><mrow><mi>i</mi><mo>&#61;</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><mo stretchy="false">(</mo><mi>a</mi><msub><mi>x</mi><mi>i</mi></msub><mo>&#43;</mo><mi>b</mi><mo stretchy="false">)</mo><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">&#92;sum&#95;{i&#61;1}&#94;n (y&#95;i - (ax&#95;i&#43;b))&#94;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.104em;vertical-align:-0.2997em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8043em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">&#61;</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>.</p>
+<p>Il convient de remarquer que la plupart des algorithmes d&rsquo;apprentissage consistent à déterminer les valeurs des paramètres pour minimser l&rsquo;erreur effectuée par la fonction de classification ou de régression qui est en train d&rsquo;être apprise : on parle d&rsquo;<strong>optimisation</strong>.</p>
+
+  </div>
+</div>
+
+<h2 id="lalgorithme-des-plus-proches-voisins">L&rsquo;algorithme des plus proches voisins<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="modèle-simplifié">Modèle simplifié<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>On suppose que les données d’apprentissage sont classifiées en deux catégories (<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi></mrow><annotation encoding="application/x-tex">M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">M</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span></span></span></span></span>). On veut placer dans l’une ou l’autre de ces deux catégories une donnée nouvelle. Pour cela, on calcule sa distance à chacune des données déjà étiquetées et on lui attribue la catégorie de son plus proche voisin.</p>
+<h3 id="exemple-dutilisation-dans-le-dépistage-automatique-dune-tumeur-maligne">Exemple d’utilisation dans le dépistage automatique d’une tumeur maligne<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>On se propose de répartir en deux catégories (Maligne, Bénigne) des tumeurs du
+sein dont on connaît un certain nombre de caractéristiques. Dans la réalité, un tel diagnostic automatique est effectué à partir de données d’apprentissage portant sur une cinquantaine de caractéristiques mesurées sur un échantillon d’un millier de tumeurs déjà étiquetées « Maligne » ou « Bénigne ». Dans un souci de simplification, on se restreint ici
+à 2 caractéristiques (diamètre et concavité) mesurées sur un panel de 10 patientes.</p>
+<center>
+<table>
+  <thead>
+    <tr>
+      <th class="align-center">Diamètre moyen (mm)</th>
+      <th class="align-center">Concavité moyenne</th>
+      <th class="align-center">Catégorie</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-center">13,2</td>
+      <td class="align-center">8,3</td>
+      <td class="align-center">Bénigne</td>
+    </tr>
+    <tr>
+      <td class="align-center">18,7</td>
+      <td class="align-center">19,7</td>
+      <td class="align-center">Bénigne</td>
+    </tr>
+    <tr>
+      <td class="align-center">8,2</td>
+      <td class="align-center">15,9</td>
+      <td class="align-center">Maligne</td>
+    </tr>
+    <tr>
+      <td class="align-center">13,2</td>
+      <td class="align-center">9</td>
+      <td class="align-center">Bénigne</td>
+    </tr>
+    <tr>
+      <td class="align-center">13,5</td>
+      <td class="align-center">4,8</td>
+      <td class="align-center">Maligne</td>
+    </tr>
+    <tr>
+      <td class="align-center">11,8</td>
+      <td class="align-center">1,7</td>
+      <td class="align-center">Maligne</td>
+    </tr>
+    <tr>
+      <td class="align-center">13,6</td>
+      <td class="align-center">1,9</td>
+      <td class="align-center">Maligne</td>
+    </tr>
+    <tr>
+      <td class="align-center">12</td>
+      <td class="align-center">2</td>
+      <td class="align-center">Maligne</td>
+    </tr>
+    <tr>
+      <td class="align-center">18,2</td>
+      <td class="align-center">17,7</td>
+      <td class="align-center">Bénigne</td>
+    </tr>
+    <tr>
+      <td class="align-center">12</td>
+      <td class="align-center">6,6</td>
+      <td class="align-center">Maligne</td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<p>On considère une nouvelle tumeur de diamètre et de concavité connues et on cherche à savoir si elle est maligne ou bénigne.</p>
+<h3 id="méthode-du-plus-proche-voisin">Méthode du plus proche voisin<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>On cherche parmi les données (triangles rouges pour les tumeurs malignes et losanges bleus pour les tumeurs bénignes) celle qui est la plus proche de la nouvelle donnée à catégoriser (point vert). On lui attribue la catégorie de son plus proche voisin.</p>
+<!--
+<a href="https://www.geogebra.org/m/wwj9zm97" target="_blank">Accès à l'appliquette en ligne</a>
+-->
+<iframe scrolling="no" title="Copie de Illustration de la méthode du plus proche voisin" src="https://www.geogebra.org/material/iframe/id/vbmnddfv/width/1305/height/668/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="1305px" height="668px" style="border:0px;"> </iframe>
+<ol>
+<li>
+<p>On considère une nouvelle tumeur ayant un diamètre de 10 mm et une concavité de 12. Comment l&rsquo;algorithme la classe-t-elle ?
+<strong>Déplacer le point vert.</strong></p>
+</li>
+<li>
+<p>Sélectionner « Coloriage » et « Frontière », puis déplacer le point vert.<br>
+Peut-on mettre en évidence deux régions bien spécifiques de l&rsquo;espace ?</p>
+</li>
+</ol>
+<h3 id="méthode-des-5-plus-proches-voisins">Méthode des 5 plus proches voisins<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<iframe scrolling="no" title="Illustration de la méthode des 5 plus proches voisins" src="https://www.geogebra.org/material/iframe/id/yphmup2w/width/502/height/747/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="502px" height="747px" style="border:0px;"> </iframe>
+<p>La méthode peut être généralisée à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span></span> plus proches voisins. Il suffit de considérer les <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span></span> voisins les plus proches, d’identifier la catégorie à laquelle appartient la majorité de ces voisins et d’affecter au nouveau point cette catégorie.</p>
+<ol start="3">
+<li>On considère une nouvelle tumeur ayant un diamètre de 10 mm et une concavité de 12. Comment l&rsquo;algorithme la classe-t-elle ?
+<strong>Déplacer le point vert.</strong></li>
+</ol>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 6 mars 2023
+  </footer>
+</article>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

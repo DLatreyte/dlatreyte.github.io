@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Recherche d’un élément dans un tableau La recherche d’éléments dans un tableau a déjà été évoquée en classe de première. Les deux algorithmes mis en œuvre à cette occasion, la recherche linéaire et la recherche dichotomique, utilisaient des boucles.
+L’objectif de cette séance est de rapidement revoir ces algorithmes et de mettre en œuvres des algorithmes récursifs de même complexité. Quatre algorithmes de recherche vont donc être implémentés :">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Recherche d&#39;un élément dans un tableau : algorithmes itératifs et récursifs :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Recherche d’un élément dans un tableau La recherche d’éléments dans un tableau a déjà été évoquée en classe de première. Les deux algorithmes mis en œuvre à cette occasion, la recherche linéaire et la recherche dichotomique, utilisaient des boucles.
+L’objectif de cette séance est de rapidement revoir ces algorithmes et de mettre en œuvres des algorithmes récursifs de même complexité. Quatre algorithmes de recherche vont donc être implémentés :">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/recursivite/1-3-recursivite-recherches/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Recherche d&#39;un élément dans un tableau : algorithmes itératifs et récursifs :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Recherche d’un élément dans un tableau La recherche d’éléments dans un tableau a déjà été évoquée en classe de première. Les deux algorithmes mis en œuvre à cette occasion, la recherche linéaire et la recherche dichotomique, utilisaient des boucles.
+L’objectif de cette séance est de rapidement revoir ces algorithmes et de mettre en œuvres des algorithmes récursifs de même complexité. Quatre algorithmes de recherche vont donc être implémentés :">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2020-09-09T21:33:15+04:00">
+    <meta property="article:modified_time" content="2020-09-09T21:33:15+04:00">
+    <meta property="article:tag" content="Récursivité">
+    <meta property="article:tag" content="Recherche Linéaire">
+    <meta property="article:tag" content="Recherche Dichotomique">
+    <meta property="article:tag" content="Complexité">
+    <meta property="article:tag" content="Terminaison">
+    <meta property="article:tag" content="Correction">
+    <meta itemprop="name" content="Recherche d&#39;un élément dans un tableau : algorithmes itératifs et récursifs :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Recherche d’un élément dans un tableau La recherche d’éléments dans un tableau a déjà été évoquée en classe de première. Les deux algorithmes mis en œuvre à cette occasion, la recherche linéaire et la recherche dichotomique, utilisaient des boucles.
+L’objectif de cette séance est de rapidement revoir ces algorithmes et de mettre en œuvres des algorithmes récursifs de même complexité. Quatre algorithmes de recherche vont donc être implémentés :">
+    <meta itemprop="datePublished" content="2020-09-09T21:33:15+04:00">
+    <meta itemprop="dateModified" content="2020-09-09T21:33:15+04:00">
+    <meta itemprop="wordCount" content="1889">
+    <meta itemprop="keywords" content="Récursivité,Recherche Linéaire,Recherche Dichotomique,Complexité,Terminaison,Correction">
+    <title>Recherche d&#39;un élément dans un tableau : algorithmes itératifs et récursifs :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/recursivite/1-3-recursivite-recherches/index.html" rel="canonical" type="text/html" title="Recherche d&#39;un élément dans un tableau : algorithmes itératifs et récursifs :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/recursivite/1-3-recursivite-recherches/index.xml" rel="alternate" type="application/rss&#43;xml" title="Recherche d&#39;un élément dans un tableau : algorithmes itératifs et récursifs :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/recursivite/1-3-recursivite-recherches/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/recursivite/1-3-recursivite-recherches/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#recherche-dun-élément-dans-un-tableau">Recherche d&rsquo;un élément dans un tableau</a></li>
+    <li><a href="#travail-à-faire">Travail à faire</a></li>
+    <li><a href="#recherche-séquentielle-ou-linéaire">Recherche séquentielle (ou linéaire)</a>
+      <ul>
+        <li><a href="#recherche-séquentielle-itérative">Recherche séquentielle itérative</a></li>
+        <li><a href="#recherche-séquentielle-récursive">Recherche séquentielle récursive</a></li>
+      </ul>
+    </li>
+    <li><a href="#recherche-dichotomique">Recherche dichotomique</a>
+      <ul>
+        <li><a href="#recherche-dichotomique-itérative">Recherche dichotomique itérative</a></li>
+        <li><a href="#recherche-dichotomique-récursive">Recherche dichotomique récursive</a></li>
+      </ul>
+    </li>
+    <li><a href="#application">Application</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Récursivité">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/recursivite/index.html"><span itemprop="name">Récursivité</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/recursivite/1-3-recursivite-recherches/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/recursivite/1-2-recursivite-chaines-listes/index.html" title="La récursivité appliquée aux chaînes de caractères et aux listes (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/recursivite/1-4-rappels-algorithmique/index.html" title="Rappels d&#39;algorithmique (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Récursivité</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/complexit%C3%A9/index.html">Complexité</a></li>
+    <li><a class="term-link" href="/tags/correction/index.html">Correction</a></li>
+    <li><a class="term-link" href="/tags/recherche-dichotomique/index.html">Recherche Dichotomique</a></li>
+    <li><a class="term-link" href="/tags/recherche-lin%C3%A9aire/index.html">Recherche Linéaire</a></li>
+    <li><a class="term-link" href="/tags/r%C3%A9cursivit%C3%A9/index.html">Récursivité</a></li>
+    <li><a class="term-link" href="/tags/terminaison/index.html">Terminaison</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="recherche-dun-élément-dans-un-tableau--algorithmes-itératifs-et-récursifs">Recherche d&#39;un élément dans un tableau : algorithmes itératifs et récursifs</h1>
+
+<h2 id="recherche-dun-élément-dans-un-tableau">Recherche d&rsquo;un élément dans un tableau<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>La recherche d&rsquo;éléments dans un tableau a déjà été évoquée en classe de première. Les deux algorithmes mis en œuvre à cette occasion, la <strong>recherche linéaire</strong> et la <strong>recherche dichotomique</strong>, utilisaient des boucles.<br>
+L&rsquo;objectif de cette séance est de rapidement revoir ces algorithmes et de mettre en œuvres des algorithmes récursifs de même complexité. Quatre algorithmes de recherche vont donc être implémentés :</p>
+<ul>
+<li><em>La recherche linéaire itérative</em> ;</li>
+<li><em>La recherche linéaire récursive</em> ;</li>
+<li><em>La recherche dichotomique itérative</em> ;</li>
+<li><em>La recherche dichotomique récursive</em>.</li>
+</ul>
+<h2 id="travail-à-faire">Travail à faire<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<ul>
+<li>Implémenter en Python les cinq algorithmes suivants et répondre aux questions.
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>Penser à donner la <strong>spécification</strong> de chacune des fonctions et écrire une <strong>série des tests</strong> pour chacune d&rsquo;elles.</p>
+
+  </div>
+</div>
+</li>
+</ul>
+<!--
+- Un corrigé se trouve à cette adresse&nbsp;: 
+<a class="remote" href="https://repl.it/join/azqimfmv-dlatreyte" target="_blank">https://repl.it/join/azqimfmv-dlatreyte</a>
+
+
+-->
+<h2 id="recherche-séquentielle-ou-linéaire">Recherche séquentielle (ou linéaire)<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>La <strong>recherche séquentielle (ou linéaire)</strong>  consiste à
+<em>comparer la valeur recherchée à toutes les valeurs présentes dans le tableau</em>.</p>
+
+  </div>
+</div>
+
+<h3 id="recherche-séquentielle-itérative">Recherche séquentielle itérative<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Algorithme 1</span></div>
+  <div class="clue-body">
+<p><strong>Fonction :</strong> recherche(tab, valeur)<br>
+<strong>Action :</strong> recherche la valeur « valeur » dans le tableau « tab »<br>
+<strong>Début</strong><br>
+<span style="margin-left: 2em">i ⟵ 0  </span><br />
+<span style="margin-left: 2em">i_val ⟵ -1  </span><br />
+<span style="margin-left: 2em">nb ⟵ Longueur(tab)  </span><br />
+<span style="margin-left: 2em"><strong>TantQue</strong> i &lt; nb <em>Faire</em>    </span><br />
+<span style="margin-left: 4em"><strong>Si</strong> tab[i] = valeur <strong>Alors</strong>  </span><br />
+<span style="margin-left: 6em">i_val ⟵ i  </span><br />
+<span style="margin-left: 4em"><strong>FinSi</strong>  </span><br />
+<span style="margin-left: 4em">i ⟵ i + 1  </span><br />
+<span style="margin-left: 2em"><strong>FinTantQue</strong>  </span><br />
+<span style="margin-left: 2em"><strong>Renvoyer</strong> i_val  </span><br />
+<strong>Fin</strong></p>
+
+  </div>
+</div>
+
+<ol>
+<li>
+<p>Décrire le fonctionnement de l&rsquo;algorithme pour les valeurs <code>tab = [1, 8, 3, 5, 9]</code> et <code>val = 3</code>.
+
+
+<div role="note" aria-labelledby="R-box-label-b2845043becb3e55e99104aec52216be" class="box cstyle callout grey">
+  <div id="R-box-label-b2845043becb3e55e99104aec52216be" class="box-label">
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </div>
+</div></p>
+</li>
+<li>
+<p>Démontrer que l&rsquo;algorithme se termine.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Pour démontrer que l&rsquo;algorithme se termine il faut définir un variant de boucle car c&rsquo;est au niveau
+de la boucle TantQue qu&rsquo;un problème peut intervenir.</p>
+<p>La fonction dont l&rsquo;expression est <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>&#61;</mo><mi>n</mi><mi>b</mi><mo>−</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">f(i) &#61; nb -i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">nb</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span></span> est-elle un variant de boucle ?</p>
+<ul>
+<li><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">nb</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">nb</span></span></span></span></span> sont des entiers naturels. De plus la boucle « tourne » tant que <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>&lt;</mo><mi>n</mi><mi>b</mi></mrow><annotation encoding="application/x-tex">i&lt;nb</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6986em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">nb</span></span></span></span></span>.
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span></span></span></span></span> est donc un entier naturel.</li>
+<li><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mi>i</mi><mrow><mi>k</mi><mo>&#43;</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>i</mi><mi>k</mi></msub><mo stretchy="false">)</mo><mo>&#61;</mo><mi>n</mi><mi>b</mi><mo>−</mo><msub><mi>i</mi><mrow><mi>k</mi><mo>&#43;</mo><mn>1</mn></mrow></msub><mo>−</mo><mo stretchy="false">(</mo><mi>n</mi><mi>b</mi><mo>−</mo><msub><mi>i</mi><mi>k</mi></msub><mo stretchy="false">)</mo><mo>&#61;</mo><msub><mi>i</mi><mi>k</mi></msub><mo>−</mo><msub><mi>i</mi><mrow><mi>k</mi><mo>&#43;</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">f(i&#95;{k&#43;1}) - f(i&#95;k) &#61; nb - i&#95;{k&#43;1} - ( nb - i&#95;{k} ) &#61; i&#95;{k} - i&#95;{k&#43;1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mbin mtight">&#43;</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">nb</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8679em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mbin mtight">&#43;</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">nb</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8095em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8679em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mbin mtight">&#43;</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span></span></span></span>. Comme
+<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mrow><mi>k</mi><mo>&#43;</mo><mn>1</mn></mrow></msub><mo>&#61;</mo><msub><mi>i</mi><mi>k</mi></msub><mo>&#43;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i&#95;{k&#43;1} &#61; i&#95;{k} &#43; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8679em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mbin mtight">&#43;</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8095em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><msub><mi>i</mi><mrow><mi>k</mi><mo>&#43;</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>i</mi><mi>k</mi></msub><mo stretchy="false">)</mo><mo>&#61;</mo><msub><mi>i</mi><mi>k</mi></msub><mo>−</mo><mo stretchy="false">(</mo><msub><mi>i</mi><mi>k</mi></msub><mo>&#43;</mo><mn>1</mn><mo stretchy="false">)</mo><mo>&#61;</mo><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">f(i&#95;{k&#43;1}) - f(i&#95;k) &#61; i&#95;{k} - (i&#95;{k} &#43; 1) &#61; -1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span><span class="mbin mtight">&#43;</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8095em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></span>. La fonction
+est décroissante.</li>
+</ul>
+<p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span></span> est une fonction qui retourne forcément un entier naturel et qui est décroissante ;
+elle est donc bornée par la valeur 0, c&rsquo;est un variant de boucle.</p>
+<p>L&rsquo;algorithme se termine.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Démontrer que l&rsquo;algorithme est correct.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Pour déterminer qu&rsquo;un algorithme qui comporte une boucle est correct, il faut trouver
+un invariant de boucle.</p>
+<p>On peut par exemple dire que « La valeur recherchée n&rsquo;est pas présente dans les éléments du tableau d&rsquo;indices 0 à i-1, où i est l&rsquo;indice courant. »</p>
+<ul>
+<li><strong>Initialisation :</strong> Avant la première itération, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">i &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>, donc l&rsquo;invariant est vrai trivialement car aucun élément n&rsquo;a encore été examiné.</li>
+<li><strong>Conservation :</strong> À chaque itération, on vérifie si l&rsquo;élément à l&rsquo;indice <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span></span> est la valeur recherchée. Si ce n&rsquo;est pas le cas, on passe à l&rsquo;élément suivant <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>&#43;</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i &#43; 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span>. Ainsi, on sait que la valeur recherchée n&rsquo;est pas dans les éléments précédents.</li>
+<li><strong>Terminaison :</strong> La boucle se termine soit quand on trouve la valeur (auquel cas l&rsquo;invariant n&rsquo;est plus nécessaire), soit quand on a parcouru tout le tableau sans la trouver (auquel cas l&rsquo;invariant assure que la valeur n&rsquo;est pas dans le tableau).</li>
+</ul>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Démontrer que l&rsquo;algorithme est en O(N).
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>L&rsquo;algorithme contient une boucle dont le nombre de tours est, dans le pire des cas,
+égal au nombre d&rsquo;éléments dans la liste. La complexité est donc linéaire, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span>.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Comment pourrait-on améliorer l&rsquo;efficacité de cet algorithme ?
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Il faudrait quitter la boucle dès l&rsquo;instant où la valeur a été trouvée, si elle
+est bien présente dans la liste.</p>
+  </div>
+</details></p>
+</li>
+</ol>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Algorithme 2</span></div>
+  <div class="clue-body">
+<p><strong>Fonction :</strong> recherche(tab, valeur)<br>
+<strong>Action :</strong> recherche de la valeur « valeur » dans le tableau « tab »<br>
+<strong>Début</strong><br>
+<span style="margin-left: 2em">trouvé ⟵ Faux  </span><br />
+<span style="margin-left: 2em">i ⟵ 0  </span><br />
+<span style="margin-left: 2em"><strong>TantQue</strong> i &lt; nb et (Non trouvé) <strong>Faire</strong>  </span><br />
+<span style="margin-left: 4em"><strong>Si</strong> tab[i] = valeur <strong>Alors</strong>  </span><br />
+<span style="margin-left: 8em">trouvé ⟵ Vrai  </span><br />
+<span style="margin-left: 4em"><strong>Sinon</strong>  </span><br />
+<span style="margin-left: 8em">i ⟵ i + 1  </span><br />
+<span style="margin-left: 4em"><strong>FinSi</strong>  </span><br />
+<span style="margin-left: 2em"><strong>FinTantQue</strong>  </span><br />
+<span style="margin-left: 2em"><strong>Si</strong> trouvé = Vrai <strong>Alors</strong>  </span><br />
+<span style="margin-left: 4em"><strong>Renvoyer</strong> i  </span><br />
+<span style="margin-left: 2em"><strong>Sinon</strong>  </span><br />
+<span style="margin-left: 4em"><strong>Renvoyer</strong> -1  </span><br />
+<strong>Fin</strong></p>
+
+  </div>
+</div>
+
+<ol start="6">
+<li>Expliquer pourquoi l&rsquo;algorithme 2 est plus efficace que l&rsquo;algorithme 1.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>On quitte la boucle dès l&rsquo;instant où la valeur a été trouvée, si elle
+est bien présente dans la liste.</p>
+  </div>
+</details></li>
+</ol>
+<h3 id="recherche-séquentielle-récursive">Recherche séquentielle récursive<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Algorithme 3</span></div>
+  <div class="clue-body">
+<p><strong>Fonction :</strong> recherche(tab, valeur, i)<br>
+<strong>Action :</strong> recherche la valeur « valeur » dans le tableau « tab » à l&rsquo;aide de l&rsquo;indice i.<br>
+<strong>Début</strong><br>
+<span style="margin-left: 2em">nb ⟵ <strong>Longueur</strong>(tab)  </span><br />
+<span style="margin-left: 2em"><strong>Si</strong> i == nb <strong>Alors</strong>  </span><br />
+<span style="margin-left: 4em"><strong>Renvoyer</strong> -1  </span><br />
+<span style="margin-left: 2em"><strong>Sinon</strong>    </span><br />
+<span style="margin-left: 4em"><strong>Si</strong> tab[i] = valeur <strong>Alors</strong>  </span><br />
+<span style="margin-left: 6em"><strong>Renvoyer</strong> i  </span><br />
+<span style="margin-left: 4em"><strong>Sinon</strong>  </span><br />
+<span style="margin-left: 6em"><strong>Renvoyer</strong> recherche(tab, valeur, i + 1)  </span><br />
+<span style="margin-left: 4em"><strong>FinSi</strong>  </span><br />
+<span style="margin-left: 2em"><strong>FinSi</strong>  </span><br />
+<strong>Fin</strong></p>
+
+  </div>
+</div>
+
+<ol start="7">
+<li>Décrire le fonctionnement de l&rsquo;algorithme pour les valeurs <code>tab = [1, 8, 3, 5, 9]</code>, <code>i = 0</code> et <code>val = 3</code>.<br>
+Établir, en particulier, l&rsquo;arbre des appels.</li>
+</ol>
+<h2 id="recherche-dichotomique">Recherche dichotomique<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Dès que le nombre de données devient important, la recherche séquentielle n&rsquo;est plus envisageable. Sa complexité en <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mclose">)</span></span></span></span></span> pénalise les autres traitements qui l&rsquo;utilisent. Il faut diminuer le temps de traitement par l&rsquo;emploi d&rsquo;algorithmes plus performants, comme celui de la <strong>recherche dichotomique</strong>.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>La <strong>recherche dichotomique</strong> est basée sur le principe de « diviser pour régner ». On divise l&rsquo;ensemble de recherche en deux sous-ensembles égaux. On détermine ensuite dans quel sous-ensemble doit se trouver la valeur recherchée, puis on poursuit la recherche dans ce sous-ensemble.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>Le préalable à la méthode de recherche dichotomique est de disposer d&rsquo;un <strong>ensemble trié</strong> de données, car la détermination du sous-ensemble dans lequel se poursuit la recherche se fait par comparaison entre la valeur recherchée et les valeurs de début et de ﬁn du sous-ensemble.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>La division par deux de l&rsquo;ensemble de données de recherche à chaque appel indique que la complexité est en <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(&#92;log N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mclose">)</span></span></span></span></span>.</p>
+
+  </div>
+</div>
+
+<h3 id="recherche-dichotomique-itérative">Recherche dichotomique itérative<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Algorithme 4</span></div>
+  <div class="clue-body">
+<p><strong>Fonction :</strong> recherche(tab, valeur)<br>
+<strong>Action :</strong> recherche la valeur « valeur » dans le tableau « tab »<br>
+<strong>Début</strong>
+<span style="margin-left: 2em">trouvé ⟵ FAUX  </span><br />
+<span style="margin-left: 2em">résultat ⟵ -1  </span><br />
+<span style="margin-left: 2em">gauche ⟵ 0  </span><br />
+<span style="margin-left: 2em">droite ⟵ <strong>Longueur</strong>(tab) - 1  </span><br />
+<span style="margin-left: 2em"><strong>TantQue</strong>  (gauche &lt;= droite) ET (NON trouvé) <strong>Faire</strong> </span><br />
+<span style="margin-left: 4em">milieu ⟵ (droite + gauche) // 2 </span><br />
+<span style="margin-left: 4em"><strong>Si</strong> tab[milieu] = valeur <strong>Alors</strong>  </span><br />
+<span style="margin-left: 6em">resultat ⟵ milieu  </span><br />
+<span style="margin-left: 6em">trouvé ⟵ VRAI  </span><br />
+<span style="margin-left: 4em"><strong>SinonSi</strong> tab[milieu] &lt; valeur <strong>Alors</strong> </span><br />
+<span style="margin-left: 6em">gauche ⟵ milieu + 1  </span><br />
+<span style="margin-left: 4em"><strong>Sinon</strong> </span><br />
+<span style="margin-left: 6em">droite ⟵ milieu - 1  </span><br />
+<span style="margin-left: 4em"><strong>FinSi</strong> </span><br />
+<span style="margin-left: 2em"><strong>FinTantQue</strong>  </span><br />
+<span style="margin-left: 2em"><strong>Renvoyer</strong> résultat  </span><br />
+<strong>Fin</strong></p>
+
+  </div>
+</div>
+
+<ol start="8">
+<li>
+<p>Décrire le fonctionnement de l&rsquo;algorithme pour les valeurs <code>tab = [1, 3, 5, 8, 9]</code> et <code>val = 3</code>.
+
+
+<div role="note" aria-labelledby="R-box-label-78b014a526fa9690dc45dc701e363de3" class="box cstyle callout grey">
+  <div id="R-box-label-78b014a526fa9690dc45dc701e363de3" class="box-label">
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </div>
+</div></p>
+</li>
+<li>
+<p>Démontrer que l&rsquo;algorithme se termine.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<ul>
+<li><strong>Variant de boucle :</strong> <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>g</mi><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">)</mo><mo>&#61;</mo><mi>d</mi><mo>−</mo><mi>g</mi><mo>&#43;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">f(g, d) &#61; d - g &#43; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span> où <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span></span> signifie « droite » et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi></mrow><annotation encoding="application/x-tex">g</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span></span></span></span></span> « gauche ».</li>
+<li>Au début, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">g &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>&#61;</mo><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">d &#61; n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span> (où <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> est la taille du tableau).
+Le variant initial est donc <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span>, qui est un entier naturel.</li>
+<li>À chaque itération, on a trois cas :
+<ul>
+<li>Si l&rsquo;élément est trouvé, la boucle se termine.</li>
+<li>Si l&rsquo;élément cherché est plus grand que le milieu, on met à jour <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>&#61;</mo><mi>m</mi><mo>&#43;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">g &#61; m &#43; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></li>
+<li>Si l&rsquo;élément cherché est plus petit que le milieu, on met à jour <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>&#61;</mo><mi>m</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">d &#61; m - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>
+Dans les deux derniers cas, la taille de l&rsquo;intervalle est réduite de moitié (ou presque).
+Donc, le variant diminue strictement à chaque itération.</li>
+</ul>
+</li>
+</ul>
+<p>Puisque le variant est initialement positif, diminue strictement à chaque itération, et que la boucle se termine quand il atteint 0 ou 1, on peut conclure que l&rsquo;algorithme se termine toujours en un nombre fini d&rsquo;étapes.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Démontrer que l&rsquo;algorithme est correct.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p><strong>Invariant de boucle :</strong> À chaque itération de la boucle, l&rsquo;élément recherché, s&rsquo;il est présent dans le tableau, se trouve dans la sous-section de l&rsquo;intervalle [gauche, droite], où :</p>
+<ul>
+<li>
+<p>gauche est l&rsquo;indice de début de l&rsquo;intervalle actuel,</p>
+</li>
+<li>
+<p>droite est l&rsquo;indice de fin de l&rsquo;intervalle actuel.</p>
+</li>
+<li>
+<p><strong>Initialisation (avant la première itération)</strong></p>
+</li>
+</ul>
+<p>Initialement, les indices gauche et droite sont positionnés de telle sorte que :</p>
+<ul>
+<li>gauche = 0, qui représente le premier indice du tableau.</li>
+<li>droite = n - 1, qui représente le dernier indice du tableau.
+Ainsi, avant la première itération, l&rsquo;élément recherché se trouve potentiellement dans l&rsquo;intervalle entier du tableau [0, n - 1], ce qui respecte bien l&rsquo;invariant de boucle.</li>
+</ul>
+<p>Conclusion : L&rsquo;invariant est vérifié avant la première itération.</p>
+<ul>
+<li><strong>Conservation (pendant l&rsquo;itération)</strong></li>
+</ul>
+<p>Supposons que l&rsquo;invariant soit vrai au début d&rsquo;une itération, c&rsquo;est-à-dire que si l&rsquo;élément recherché est présent, il se trouve dans l&rsquo;intervalle [gauche, droite].</p>
+<p>L&rsquo;algorithme calcule ensuite l&rsquo;indice médian : milieu</p>
+<p>Il compare l&rsquo;élément à l&rsquo;indice milieu avec l&rsquo;élément recherché x :</p>
+<ul>
+<li><em>Si l&rsquo;élément au milieu est égal à x :</em> L&rsquo;algorithme s&rsquo;arrête, et l&rsquo;élément est trouvé, ce qui n&rsquo;est pas en contradiction avec l&rsquo;invariant.</li>
+<li><em>Si l&rsquo;élément au milieu est strictement inférieur à x :</em> L&rsquo;algorithme met à jour la borne gauche : gauche = milieu + 1
+Cela signifie que x ne peut pas se trouver dans la sous-partie gauche du tableau (de l&rsquo;indice gauche à milieu), car les éléments dans cette partie sont tous inférieurs à x. Par conséquent, l&rsquo;élément recherché, s&rsquo;il existe, se trouve dans le nouvel intervalle [gauche, droite], et l&rsquo;invariant est préservé.</li>
+<li><em>Si l&rsquo;élément au milieu est strictement supérieur à x :</em> L&rsquo;algorithme met à jour la borne droite : droite = milieu − 1
+Cela signifie que x ne peut pas se trouver dans la sous-partie droite du tableau (de milieu à droite), car les éléments dans cette partie sont tous supérieurs à x. Par conséquent, l&rsquo;élément recherché, s&rsquo;il existe, se trouve dans le nouvel intervalle [gauche, droite], et l&rsquo;invariant est préservé.</li>
+</ul>
+<p>Conclusion : L&rsquo;invariant est préservé à chaque itération.</p>
+<ul>
+<li><strong>Terminaison</strong></li>
+</ul>
+<p>La boucle se termine lorsque l&rsquo;intervalle devient vide, c&rsquo;est-à-dire lorsque gauche &gt; droite. Cela signifie que l&rsquo;élément recherché n&rsquo;existe pas dans le tableau (sinon, il aurait été trouvé lors des itérations précédentes).</p>
+<p>Ainsi, lorsque l&rsquo;algorithme se termine :</p>
+<ul>
+<li>Soit il a trouvé l&rsquo;élément recherché, ce qui est cohérent avec l&rsquo;invariant.</li>
+<li>Soit l&rsquo;intervalle est vide, et donc l&rsquo;élément n&rsquo;est pas présent dans le tableau, ce qui est également conforme à l&rsquo;invariant, car l&rsquo;invariant stipule seulement que si l&rsquo;élément est présent, il se trouve dans l&rsquo;intervalle.</li>
+</ul>
+<p>Conclusion : À la fin de l&rsquo;algorithme, l&rsquo;invariant reste valide et garantit que le résultat final est correct.</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Démontrer que l&rsquo;algorithme est en <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(&#92;log&#95;2 N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mop"><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mclose">)</span></span></span></span></span>.
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>L&rsquo;algorithme fonctionne en divisant l&rsquo;intervalle de recherche par 2 à chaque itération. Ainsi, si le tableau contient <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> éléments, après une itération, la taille de l&rsquo;intervalle est réduite à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">n/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord">/2</span></span></span></span></span>, puis <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi mathvariant="normal">/</mi><mn>4</mn></mrow><annotation encoding="application/x-tex">n/4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord">/4</span></span></span></span></span>, et ainsi de suite. En général, après <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span></span> itérations, la taille de l&rsquo;intervalle est réduite à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi mathvariant="normal">/</mi><msup><mn>2</mn><mi>k</mi></msup></mrow><annotation encoding="application/x-tex">n / 2&#94;k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.0991em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord">/</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8491em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span></span></span></span></span></span></span></span>.</p>
+<p>L&rsquo;algorithme se termine lorsque l&rsquo;intervalle ne contient plus qu&rsquo;un seul élément, ce qui se produit lorsque :
+</p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mstyle scriptlevel="0" displaystyle="true"><mfrac><mi>n</mi><msup><mn>2</mn><mi>k</mi></msup></mfrac></mstyle><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">&#92;dfrac{n}{2&#94;k} &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.7936em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7751em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0315em;">k</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></span><p>
+En résolvant cette équation, on obtient :
+</p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>k</mi><mo>&#61;</mo><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">k &#61; &#92;log&#95;2(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span></span><p>
+Cela signifie que l&rsquo;algorithme effectue au plus <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">&#92;log&#95;2(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span> itérations pour un tableau de taille <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span>.</p>
+  </div>
+</details></p>
+</li>
+</ol>
+<h3 id="recherche-dichotomique-récursive">Recherche dichotomique récursive<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Algorithme 5</span></div>
+  <div class="clue-body">
+<p><strong>Fonction :</strong> recherche(tab, valeur, gauche, droite)<br>
+<strong>Action :</strong> recherche la valeur « valeur » dans le tableau « tab »<br>
+<strong>Début</strong>
+<span style="margin-left: 2em"><strong>Si</strong> gauche &gt; droite <strong>Alors</strong>  </span><br />
+<span style="margin-left: 4em"><strong>Renvoyer</strong> -1  </span><br />
+<span style="margin-left: 2em"><strong>Sinon</strong>  </span><br />
+<span style="margin-left: 4em">milieu ⟵ (droite + gauche) // 2 </span><br />
+<span style="margin-left: 4em"><strong>Si</strong> tab[milieu] = valeur <strong>Alors</strong>  </span><br />
+<span style="margin-left: 6em"><strong>Renvoyer</strong> milieu  </span><br />
+<span style="margin-left: 4em"><strong>SinonSi</strong>  tab[milieu] &lt; valeur </span><br />
+<span style="margin-left: 6em"><strong>Renvoyer</strong> recherche(tab, valeur, milieu + 1, droite)</span><br />
+<span style="margin-left: 4em"><strong>Sinon</strong>  </span><br />
+<span style="margin-left: 6em"><strong>Renvoyer</strong> recherche(tab, valeur, gauche, milieu - 1) </span><br />
+<span style="margin-left: 4em"><strong>FinSi</strong> </span><br />
+<span style="margin-left: 2em"><strong>FinSi</strong> </span><br />
+<strong>Fin</strong></p>
+
+  </div>
+</div>
+
+<ol start="12">
+<li>Décrire le fonctionnement de l&rsquo;algorithme pour les valeurs <code>tab = [1, 3, 5, 8, 9]</code>, <code>gauche = 0</code>, <code>droite = 4</code>, et <code>val = 3</code>.
+
+
+<div role="note" aria-labelledby="R-box-label-c187fbda7fd77276837693e7e416cb98" class="box cstyle callout grey">
+  <div id="R-box-label-c187fbda7fd77276837693e7e416cb98" class="box-label">
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </div>
+</div></li>
+</ol>
+<h2 id="application">Application<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-task" style="--accent: #8839ef">
+  <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
+  <div class="clue-body">
+<p>Écrire un programme de devinette : l&rsquo;utilisateur choisit un nombre au hasard (compris entre 1 et 50) et l&rsquo;ordinateur doit découvrir ce nombre. Faire en sorte que le nombre de tentatives de l&rsquo;ordinateur lui permette de trouver la bonne valeur à coup sur (choisir de façon pertinente ce nombre).</p>
+
+  </div>
+</div>
+
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 9 sept. 2020
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+    <li><a class="term-link" href="/categories/terminales-sp%C3%A9-nsi/index.html">Terminales Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

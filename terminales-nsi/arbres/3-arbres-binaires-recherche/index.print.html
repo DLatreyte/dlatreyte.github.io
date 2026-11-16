@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Introduction Info Quelle structure de données permet :
+d’organiser les données selon un ordre donné (numérique, lexicographique, etc.) ; d’effectuer des recherches le plus efficacement possible ; d’accéder à, d’insérer ou de supprimer les données le plus efficacement possible. Tableaux Propriétés On peut ordonner des données dans un tableau mais l’algorithme de tri le plus rapide, pour un jeu de données aléatoires, est en O(n log⁡n)O(n \; \log n)O(nlogn) ; On peut accéder à une donnée en O(1)O(1)O(1) ; On peut rechercher une valeur efficacement en utilisant la dichotomie (si le tableau est trié !) : O(log⁡n)O(\log n)O(logn) ; Supprimer ou insérer une valeur n’est pas très efficace : O(n)O(n)O(n) (sauf à la fin du tableau). Dictionnaires Propriétés Accéder à, supprimer et insérer une valeur se fait très efficacement : O(1)O(1)O(1) ; Les données ne sont pas ordonnées. Remarque Dans la suite de ce document, on considérera que les valeurs des nœuds sont des entiers. À retenir Un arbre binaire de recherche, ou ABR, est un arbre binaire avec la propriété suivante : quel que soit le nœud xxx, tous les nœuds situés dans le sous-arbre gauche de xxx ont une valeur inférieure à la valeur du nœud xxx, et tous ceux situés dans son sous-arbre droit ont une valeur supérieure à la valeur du nœud xxx.
+Remarque La définition précédente est récursive.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Arbres Binaires Recherche :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Introduction Info Quelle structure de données permet :
+d’organiser les données selon un ordre donné (numérique, lexicographique, etc.) ; d’effectuer des recherches le plus efficacement possible ; d’accéder à, d’insérer ou de supprimer les données le plus efficacement possible. Tableaux Propriétés On peut ordonner des données dans un tableau mais l’algorithme de tri le plus rapide, pour un jeu de données aléatoires, est en O(n log⁡n)O(n \; \log n)O(nlogn) ; On peut accéder à une donnée en O(1)O(1)O(1) ; On peut rechercher une valeur efficacement en utilisant la dichotomie (si le tableau est trié !) : O(log⁡n)O(\log n)O(logn) ; Supprimer ou insérer une valeur n’est pas très efficace : O(n)O(n)O(n) (sauf à la fin du tableau). Dictionnaires Propriétés Accéder à, supprimer et insérer une valeur se fait très efficacement : O(1)O(1)O(1) ; Les données ne sont pas ordonnées. Remarque Dans la suite de ce document, on considérera que les valeurs des nœuds sont des entiers. À retenir Un arbre binaire de recherche, ou ABR, est un arbre binaire avec la propriété suivante : quel que soit le nœud xxx, tous les nœuds situés dans le sous-arbre gauche de xxx ont une valeur inférieure à la valeur du nœud xxx, et tous ceux situés dans son sous-arbre droit ont une valeur supérieure à la valeur du nœud xxx.
+Remarque La définition précédente est récursive.">
+    <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/arbres/3-arbres-binaires-recherche/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Arbres Binaires Recherche :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Introduction Info Quelle structure de données permet :
+d’organiser les données selon un ordre donné (numérique, lexicographique, etc.) ; d’effectuer des recherches le plus efficacement possible ; d’accéder à, d’insérer ou de supprimer les données le plus efficacement possible. Tableaux Propriétés On peut ordonner des données dans un tableau mais l’algorithme de tri le plus rapide, pour un jeu de données aléatoires, est en O(n log⁡n)O(n \; \log n)O(nlogn) ; On peut accéder à une donnée en O(1)O(1)O(1) ; On peut rechercher une valeur efficacement en utilisant la dichotomie (si le tableau est trié !) : O(log⁡n)O(\log n)O(logn) ; Supprimer ou insérer une valeur n’est pas très efficace : O(n)O(n)O(n) (sauf à la fin du tableau). Dictionnaires Propriétés Accéder à, supprimer et insérer une valeur se fait très efficacement : O(1)O(1)O(1) ; Les données ne sont pas ordonnées. Remarque Dans la suite de ce document, on considérera que les valeurs des nœuds sont des entiers. À retenir Un arbre binaire de recherche, ou ABR, est un arbre binaire avec la propriété suivante : quel que soit le nœud xxx, tous les nœuds situés dans le sous-arbre gauche de xxx ont une valeur inférieure à la valeur du nœud xxx, et tous ceux situés dans son sous-arbre droit ont une valeur supérieure à la valeur du nœud xxx.
+Remarque La définition précédente est récursive.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Terminales Spé. NSI">
+    <meta property="article:published_time" content="2020-11-10T05:04:12+04:00">
+    <meta property="article:modified_time" content="2020-11-10T05:04:12+04:00">
+    <meta property="article:tag" content="Arbres">
+    <meta property="article:tag" content="Arbres Binaires">
+    <meta property="article:tag" content="Arbres Binaires De Recherche">
+    <meta itemprop="name" content="Arbres Binaires Recherche :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Introduction Info Quelle structure de données permet :
+d’organiser les données selon un ordre donné (numérique, lexicographique, etc.) ; d’effectuer des recherches le plus efficacement possible ; d’accéder à, d’insérer ou de supprimer les données le plus efficacement possible. Tableaux Propriétés On peut ordonner des données dans un tableau mais l’algorithme de tri le plus rapide, pour un jeu de données aléatoires, est en O(n log⁡n)O(n \; \log n)O(nlogn) ; On peut accéder à une donnée en O(1)O(1)O(1) ; On peut rechercher une valeur efficacement en utilisant la dichotomie (si le tableau est trié !) : O(log⁡n)O(\log n)O(logn) ; Supprimer ou insérer une valeur n’est pas très efficace : O(n)O(n)O(n) (sauf à la fin du tableau). Dictionnaires Propriétés Accéder à, supprimer et insérer une valeur se fait très efficacement : O(1)O(1)O(1) ; Les données ne sont pas ordonnées. Remarque Dans la suite de ce document, on considérera que les valeurs des nœuds sont des entiers. À retenir Un arbre binaire de recherche, ou ABR, est un arbre binaire avec la propriété suivante : quel que soit le nœud xxx, tous les nœuds situés dans le sous-arbre gauche de xxx ont une valeur inférieure à la valeur du nœud xxx, et tous ceux situés dans son sous-arbre droit ont une valeur supérieure à la valeur du nœud xxx.
+Remarque La définition précédente est récursive.">
+    <meta itemprop="datePublished" content="2020-11-10T05:04:12+04:00">
+    <meta itemprop="dateModified" content="2020-11-10T05:04:12+04:00">
+    <meta itemprop="wordCount" content="1329">
+    <meta itemprop="keywords" content="Arbres,Arbres Binaires,Arbres Binaires De Recherche">
+    <title>Arbres Binaires Recherche :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/terminales-nsi/arbres/3-arbres-binaires-recherche/index.html" rel="canonical" type="text/html" title="Arbres Binaires Recherche :: Physique, Chimie et Informatique">
+    <link href="/terminales-nsi/arbres/3-arbres-binaires-recherche/index.xml" rel="alternate" type="application/rss&#43;xml" title="Arbres Binaires Recherche :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.3098ebad7318cdc021ef46245fa281d18296c61db105bb24e7f8eb517eab8ff9.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/terminales-nsi/arbres/3-arbres-binaires-recherche/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/terminales-nsi/arbres/3-arbres-binaires-recherche/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#introduction">Introduction</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#un-abr-est-un-arbre-binaire">Un ABR est un arbre binaire</a></li>
+    <li><a href="#recherche-dans-un-abr">Recherche dans un ABR</a></li>
+    <li><a href="#ajout-dune-valeur-dans-un-abr">Ajout d&rsquo;une valeur dans un ABR</a></li>
+    <li><a href="#utilisation-dun-arbre-binaire-de-recherche">Utilisation d&rsquo;un arbre binaire de recherche</a></li>
+    <li><a href="#corrigé">Corrigé</a></li>
+    <li><a href="#à-retenir">À retenir</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Structures hiérarchiques : les arbres">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/index.html"><span itemprop="name">Terminales Spé. NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/terminales-nsi/arbres/index.html"><span itemprop="name">Structures hiérarchiques : les arbres</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/arbres/3-arbres-binaires-recherche/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/arbres/2-arbres-binaires/index.html" title="Les arbres binaires (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/terminales-nsi/arbres/4-codage-huffman/index.html" title="Le codage de Huffman (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable terminales-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; Terminales Spé. NSI &gt; Structures hiérarchiques : les arbres</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/arbres/index.html">Arbres</a></li>
+    <li><a class="term-link" href="/tags/arbres-binaires/index.html">Arbres Binaires</a></li>
+    <li><a class="term-link" href="/tags/arbres-binaires-de-recherche/index.html">Arbres Binaires De Recherche</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="arbres-binaires-recherche">Arbres Binaires Recherche</h1>
+
+<h2 id="introduction">Introduction<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Quelle structure de données permet :</p>
+<ul>
+<li>d&rsquo;organiser les données selon un ordre donné (numérique, lexicographique, etc.) ;</li>
+<li>d&rsquo;effectuer des recherches le plus efficacement possible ;</li>
+<li>d&rsquo;accéder à, d&rsquo;insérer ou de supprimer les données le plus efficacement possible.</li>
+</ul>
+
+  </div>
+</div>
+
+<h4 id="tableaux">Tableaux<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Propriétés
+  </summary>
+  <div class="box-content">
+<ul>
+<li>On peut ordonner des données dans un tableau mais l&rsquo;algorithme de tri le plus rapide, pour un jeu de données aléatoires, est en <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mtext>  </mtext><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n &#92;; &#92;log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span> ;</li>
+<li>On peut accéder à une donnée en <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span> ;</li>
+<li>On peut rechercher une valeur efficacement en utilisant la dichotomie (si le tableau est trié !) : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(&#92;log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span> ;</li>
+<li>Supprimer ou insérer une valeur n&rsquo;est pas très efficace : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span> (sauf à la fin du tableau).</li>
+</ul>
+  </div>
+</details>
+<h4 id="dictionnaires">Dictionnaires<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Propriétés
+  </summary>
+  <div class="box-content">
+<ul>
+<li>Accéder à, supprimer et insérer une valeur se fait très efficacement : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></span> ;</li>
+<li><em>Les données ne sont pas ordonnées</em>.</li>
+</ul>
+  </div>
+</details>
+<dl>
+<dt>Remarque</dt>
+<dd>Dans la suite de ce document, on considérera que les valeurs des nœuds sont des entiers.</dd>
+</dl>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Un <strong>arbre binaire de recherche</strong>, ou <strong>ABR</strong>, est un arbre binaire avec la propriété suivante : quel que soit le nœud <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span>, <strong>tous les nœuds situés dans le sous-arbre gauche</strong> de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span> ont une <strong>valeur inférieure à la valeur</strong> du nœud <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span>, et <strong>tous ceux situés dans son sous-arbre droit</strong> ont une <strong>valeur supérieure à la valeur</strong> du nœud <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span>.</p>
+<dl>
+<dt>Remarque</dt>
+<dd>La définition précédente est <strong>récursive</strong>.</dd>
+</dl>
+
+  </div>
+</div>
+
+<ol>
+<li>
+<p>Cet arbre binaire est-il un arbre binaire de recherche ?
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-8fab384ed76dcc19d54847898c7e7bc8">
+graph TD
+    A(3) --- B(1)
+    B --- C(None)
+    B --- D(2)
+    D --- E(None)
+    D --- F(None)
+    A --- G(4)
+    G --- H(None)
+    G --- I(None)
+</pre>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>oui</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Cet arbre binaire est-il un arbre binaire de recherche ?
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-829bd76030adeb635a326c727ab46e93">
+graph TD
+    A(3) --- B(2)
+    B --- C(1)
+    C --- D(None)
+    C --- E(None)
+    B --- F(None)
+    A --- G(4)
+    G --- H(None)
+    G --- I(None)
+</pre>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>oui</p>
+  </div>
+</details></p>
+</li>
+<li>
+<p>Cet arbre binaire est-il un arbre binaire de recherche ?
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-cc59ce9a90d86de5659b535fbd90947e">
+graph TD
+   A(3) --- B(2)
+    B --- C(None)
+    B --- D(1)
+    D --- E(None)
+    D --- F(None)
+    A --- G(4)
+    G --- H(None)
+    G --- I(None)
+</pre></p>
+</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Non ! La propriété est bien vérifiée pour la racine mais pas pour le sous-arbre gauche.<br>
+La définition est récursive !</p>
+  </div>
+</details>
+<div class="clue clue-info" style="--accent: #04a5e5">
+  <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
+  <div class="clue-body">
+<p>Les ABR servent à maintenir un ensemble de valeurs ordonnées, avec une meilleure complexité qu’une liste chaînée par exemple. On commence par la recherche d’un élément. La structure de l’ABR permet d’éviter de le parcourir en entier.</p>
+
+  </div>
+</div>
+
+<h2 id="un-abr-est-un-arbre-binaire">Un ABR est un arbre binaire<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<p>Le paradigme de programmation utilisé ci-dessous est le paradigme impératif : on crée dans un premier temps une structure élémentaire à l&rsquo;aide d&rsquo;une classe et on définit ensuite des fonctions qui manipulent cette structure.<br>
+On ne crée pas de structure arbre binaire (accompagnée de méthodes).</p>
+
+  </div>
+</div>
+
+<ol start="4">
+<li>
+<p>Pour représenter un ABR, on va à nouveau utiliser la classe <code>Noeud</code>. Écrire à nouveau le code de cette classe.<br>
+<strong>Les contraintes sur les valeurs des nœuds ne sont pas codées dans la classe</strong>.</p>
+</li>
+<li>
+<p>À quel arbre binaire de recherche ce code correspond-il ?</p>
+</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># Création d&#39;un arbre binaire de recherche</span>
+</span></span><span class="line"><span class="cl"><span class="nv">arbre</span> <span class="o">=</span> Noeud<span class="o">(</span>10<span class="o">)</span>
+</span></span><span class="line"><span class="cl">arbre.gauche <span class="o">=</span> Noeud<span class="o">(</span>5<span class="o">)</span>
+</span></span><span class="line"><span class="cl">arbre.droit <span class="o">=</span> Noeud<span class="o">(</span>15<span class="o">)</span>
+</span></span><span class="line"><span class="cl">arbre.gauche.gauche <span class="o">=</span> Noeud<span class="o">(</span>3<span class="o">)</span>
+</span></span><span class="line"><span class="cl">arbre.gauche.droit <span class="o">=</span> Noeud<span class="o">(</span>8<span class="o">)</span>
+</span></span><span class="line"><span class="cl">arbre.droit.gauche <span class="o">=</span> Noeud<span class="o">(</span>12<span class="o">)</span>
+</span></span><span class="line"><span class="cl">arbre.droit.droit <span class="o">=</span> Noeud<span class="o">(</span>18<span class="o">)</span></span></span></code></pre></div>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<pre class="mermaid actionbar-wrapper align-center " data-lightbox-id="R-mermaid-f0ab188d44ef814c72716c0d61704735">
+graph TD
+    A(10) --- B(5)
+    A --- C(15)
+    B --- D(3)
+    B --- E(8)
+    C --- F(12)
+    C --- I(18)
+</pre>
+  </div>
+</details>
+<ol start="5">
+<li>Écrire à nouveau les spécifications des fonctions <code>taille</code>, <code>hauteur</code> et <code>parcours</code> (parcours infixe).</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Teste si le noeud passé en argument est vide ou pas.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Teste si un arbre est vide.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">n</span> <span class="o">==</span> <span class="kc">None</span></span></span></code></pre></div>
+  </div>
+</details>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hauteur</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la hauteur de l&#39;arbre binaire de recherche a.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hauteur</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la profondeur de l&#39;arbre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Cas de base : si le nœud est vide, il n&#39;est pas dans l&#39;arbre.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Recherche récursive dans les sous-arbres gauche et droit.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arbre_gauche</span> <span class="o">=</span> <span class="n">hauteur</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arbre_droit</span> <span class="o">=</span> <span class="n">hauteur</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Détermine la profondeur</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">arbre_gauche</span><span class="p">,</span> <span class="n">arbre_droit</span><span class="p">)</span></span></span></code></pre></div>
+  </div>
+</details>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">taille</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le nombre de noeuds dans l&#39;arbre binaire de recherche.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">taille</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le nombre de noeud dans l&#39;arbre.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Cas de base : un arbre vide ne contient aucun noeud.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Recherche récursive dans les sous-arbres gauche et droit.</span>
+</span></span><span class="line"><span class="cl">        <span class="n">taille_gauche</span> <span class="o">=</span> <span class="n">taille</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">taille_droit</span> <span class="o">=</span> <span class="n">taille</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Calcul de la taille</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">taille_gauche</span> <span class="o">+</span> <span class="n">taille_droit</span></span></span></code></pre></div>
+  </div>
+</details>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">parcours</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Parcours infixe de l&#39;arbre
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">parcours_inf</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Parcours en profondeur infixe d&#39;un arbre binaire.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Cas de base : On atteint un noeud vide</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Appel récursif à gauche, valeur du nœud, appel récursif à droite</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">=</span> <span class="n">parcours_inf</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">gauche</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">valeur</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">chaine</span> <span class="o">+=</span> <span class="n">parcours_inf</span><span class="p">(</span><span class="n">n</span><span class="o">.</span><span class="n">droit</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">chaine</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="6">
+<li>Vérifier que la fonction <code>parcours</code> affiche les valeurs dans l&rsquo;ordre croissant.</li>
+</ol>
+<div class="clue clue-warning" style="--accent: #df8e1d">
+  <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
+  <div class="clue-body">
+<dl>
+<dt>Rappel</dt>
+<dd><em>On peut voir le <strong>parcours infixe</strong> comme la <strong>projection de l&rsquo;arbre sur une droite</strong>.</em></dd>
+</dl>
+
+  </div>
+</div>
+
+<h2 id="recherche-dans-un-abr">Recherche dans un ABR<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<ol start="7">
+<li>Écrire le code de la fonction <code>appartient</code> dont la spécification est</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine si la valeur x apparaît dans l&#39;arbre a.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">appartient</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine si la valeur x apparaît dans l&#39;abr a.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">est_vide</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Cas de base : on parvient à un noeud vide,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># la valeur n&#39;est pas présente</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">a</span><span class="o">.</span><span class="n">valeur</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># Cas de base : on parvient au noeud recherché</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Appels récursifs</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">a</span><span class="o">.</span><span class="n">valeur</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">appartient</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">gauche</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">appartient</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">droit</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span></span></span></code></pre></div>
+  </div>
+</details>
+<ol start="8">
+<li>Quelle est la complexité de cette recherche ?</li>
+</ol>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>La complexité du pire cas de la fonction <code>appartient</code> dépend de la hauteur de l&rsquo;arbre binaire de recherche (ABR).</p>
+<ul>
+<li>Dans le pire des cas, l&rsquo;arbre peut être déséquilibré au point de ressembler à une liste chaînée. Dans un tel scénario, la complexité de la recherche est <strong>linéaire</strong> par rapport au nombre total de nœuds dans l&rsquo;arbre.<br>
+Complexité : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span>.</li>
+<li>Si on écarte ce cas extrême, l&rsquo;arbre binaire de recherche (ABR) est plus ou moins équilibré et la hauteur est de l&rsquo;ordre du logrithme du nombre de nœuds.<br>
+Complexité : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(&#92;log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.0139em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></span>.</li>
+</ul>
+  </div>
+</details>
+<h2 id="ajout-dune-valeur-dans-un-abr">Ajout d&rsquo;une valeur dans un ABR<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<ol start="9">
+<li>
+<p>Envisager un ABR et, à la main, ajouter un élément.</p>
+</li>
+<li>
+<p>Quel peut-être le code de la fonction <code>ajoute</code> dont la spécification est</p>
+</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajoute</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajoute x à l&#39;arbre a (en place).
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    HYPOTHÈSE : a n&#39;est pas l&#39;arbre vide.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<ol start="11">
+<li>
+<p>Quelle est la complexité de cette fonction ?</p>
+</li>
+<li>
+<p>Pour résoudre le problème de l&rsquo;ajout d&rsquo;une valeur à un arbre initialement vide et/ou pour ne pas modifier un arbre déjà constitué, il est possible de programmer la fonction <code>ajoute_copie</code> dont la spécification est</p>
+</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">ajoute_copie</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Noeud</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Ajoute la valeur x à l&#39;ABR n. Un nouvel arbre est créé.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<p>Écrire le code de cette fonction.</p>
+<h2 id="utilisation-dun-arbre-binaire-de-recherche">Utilisation d&rsquo;un arbre binaire de recherche<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<ol start="13">
+<li>Créer la fonction <code>plus_petit_element</code> dont la spécification est</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">plus_petit_element</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le plus petit élément de l&#39;arbre binaire de recherche a.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Lève une exception si l&#39;arbre est vide.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<ol start="14">
+<li>Créer la fonction <code>plus_grand_element</code> dont la spécification est</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">plus_grand_element</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le plus grand élément de l&#39;arbre binaire de recherche a.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Lève une exception si l&#39;arbre est vide.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<ol start="15">
+<li>Créer la fonction <code>est_abr</code> dont la spécification est</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">est_abr</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">Noeud</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Détermine si l&#39;arbre a est un arbre binaire de recherche.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<h2 id="corrigé">Corrigé<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+
+<a class="remote" href="https://repl.it/@dlatreyte/Arbre-binaire-de-recherche" target="_blank">Corrigé de l&#39;activité</a>
+
+
+<h2 id="à-retenir">À retenir<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Un <strong>arbre binaire de recherche</strong> est un arbre binaire contenant des <strong>valeurs ordonnées</strong>, tel que tout nœud contient une valeur plus grande (respectivement plus grande ou égale) que les valeurs de tous les nœuds situés dans son sous-arbre gauche. Cette organisation permet de procéder par <strong>dichotomie</strong>, en n&rsquo;ayant à considérer qu&rsquo;un seul sous-arbre pendant une opération.
+Lorsqu&rsquo;ils sont <strong>équilibrés</strong>, les arbres binaires de recherche constituent une méthode très efficace pour stocker et rechercher de l&rsquo;information.</p>
+
+  </div>
+</div>
+
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 10 nov. 2020
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+    <li><a class="term-link" href="/categories/terminales-sp%C3%A9-nsi/index.html">Terminales Spé NSI</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/js-yaml/js-yaml.min.27e5afd901466eb78e42374935cba773ca53f77b0d52eedb103b2b43f67a7f6a.js" defer></script>
+    <script src="/js/d3/d3-color.min.a12639010163230b8c130fbeb92a3a49bb5f6989a566d3664d759522db458489.js" defer></script>
+    <script src="/js/d3/d3-dispatch.min.94b3bbdb6b98dc1325a15762b051013e8253999b0e0436b27d1da17b952ba0af.js" defer></script>
+    <script src="/js/d3/d3-drag.min.158499fa8cdeef459e2ab9d01af22babd003c423a212fb24088c0f838864012b.js" defer></script>
+    <script src="/js/d3/d3-ease.min.e60a1ed750a1ad138dd18e8d3f463238113cfbf7d89685a13d19bd4e048dc3ce.js" defer></script>
+    <script src="/js/d3/d3-interpolate.min.bfc321e4c3f3b3aadc88cfe15ccb5e443abfeadef8b75c65b41c33a4d78a98ae.js" defer></script>
+    <script src="/js/d3/d3-selection.min.45daab9cf677901bcae102f3f23ca2930db3c0fb8ff9e3dbed087d9c4de921ca.js" defer></script>
+    <script src="/js/d3/d3-timer.min.911ceda305f014b6b53ca68d5c896a9a387da120cfd56a421a2c60cca2fc9b36.js" defer></script>
+    <script src="/js/d3/d3-transition.min.c248d97f6c131af7f4a12a3ff1f2ed83f1cc6c0e17fc764a198b6ee452e6621b.js" defer></script>
+    <script src="/js/d3/d3-zoom.min.4fdce9b830b78225c58e27258296084253c41a5eaf8cad9bd9ccfe3025daf1cf.js" defer></script>
+    <script src="/js/mermaid/mermaid.min.a8a6a6f805b074a8261a2825c86f99c8054acb3b35f50bb7e24a4f9f2c3c3b9f.js" defer></script>
+    <script type="application/json" id="R-mermaid-config">{}</script>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>
