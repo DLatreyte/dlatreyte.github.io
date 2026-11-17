@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Énoncé au format pdf Objectif Comprendre pourquoi un ordinateur ne peut écrire la plupart des nombres à virgule que de façon approchée, et en tirer une règle de programmation : ne jamais tester l’égalité de deux flottants.
+Q12. Sans utiliser l’ordinateur, prévoir ce qu’affiche Python pour l’instruction 0.1 &#43; 0.2 == 0.3. Vérifier ensuite dans la console, puis afficher 0.1 &#43; 0.2.
+Les nombres à virgule sont représentés en Python par le type float. Le mot vient de l’anglais floating point, « virgule flottante ». Pour comprendre ce qui se passe, il faut d’abord savoir écrire un nombre à virgule en base 2.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Les nombres flottants :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Énoncé au format pdf Objectif Comprendre pourquoi un ordinateur ne peut écrire la plupart des nombres à virgule que de façon approchée, et en tirer une règle de programmation : ne jamais tester l’égalité de deux flottants.
+Q12. Sans utiliser l’ordinateur, prévoir ce qu’affiche Python pour l’instruction 0.1 &#43; 0.2 == 0.3. Vérifier ensuite dans la console, puis afficher 0.1 &#43; 0.2.
+Les nombres à virgule sont représentés en Python par le type float. Le mot vient de l’anglais floating point, « virgule flottante ». Pour comprendre ce qui se passe, il faut d’abord savoir écrire un nombre à virgule en base 2.">
+    <meta property="og:url" content="https://dlatreyte.github.io/premieres-nsi/chap-4/4-5-flottants/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Les nombres flottants :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Énoncé au format pdf Objectif Comprendre pourquoi un ordinateur ne peut écrire la plupart des nombres à virgule que de façon approchée, et en tirer une règle de programmation : ne jamais tester l’égalité de deux flottants.
+Q12. Sans utiliser l’ordinateur, prévoir ce qu’affiche Python pour l’instruction 0.1 &#43; 0.2 == 0.3. Vérifier ensuite dans la console, puis afficher 0.1 &#43; 0.2.
+Les nombres à virgule sont représentés en Python par le type float. Le mot vient de l’anglais floating point, « virgule flottante ». Pour comprendre ce qui se passe, il faut d’abord savoir écrire un nombre à virgule en base 2.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="1ère Spécialité NSI">
+    <meta property="article:published_time" content="2026-11-17T06:00:00+04:00">
+    <meta property="article:modified_time" content="2026-11-17T06:00:00+04:00">
+    <meta property="article:tag" content="Nombre Réel">
+    <meta property="article:tag" content="Flottant">
+    <meta property="article:tag" content="Float">
+    <meta property="article:tag" content="Virgule en Base 2">
+    <meta property="article:tag" content="Multiplications Successives">
+    <meta property="article:tag" content="Écriture Périodique">
+    <meta itemprop="name" content="Les nombres flottants :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Énoncé au format pdf Objectif Comprendre pourquoi un ordinateur ne peut écrire la plupart des nombres à virgule que de façon approchée, et en tirer une règle de programmation : ne jamais tester l’égalité de deux flottants.
+Q12. Sans utiliser l’ordinateur, prévoir ce qu’affiche Python pour l’instruction 0.1 &#43; 0.2 == 0.3. Vérifier ensuite dans la console, puis afficher 0.1 &#43; 0.2.
+Les nombres à virgule sont représentés en Python par le type float. Le mot vient de l’anglais floating point, « virgule flottante ». Pour comprendre ce qui se passe, il faut d’abord savoir écrire un nombre à virgule en base 2.">
+    <meta itemprop="datePublished" content="2026-11-17T06:00:00+04:00">
+    <meta itemprop="dateModified" content="2026-11-17T06:00:00+04:00">
+    <meta itemprop="wordCount" content="1819">
+    <meta itemprop="keywords" content="Nombre Réel,Flottant,Float,Virgule en Base 2,Multiplications Successives,Écriture Périodique,Arrondi,Égalité De Flottants">
+    <title>Les nombres flottants :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/premieres-nsi/chap-4/4-5-flottants/index.html" rel="canonical" type="text/html" title="Les nombres flottants :: Physique, Chimie et Informatique">
+    <link href="/premieres-nsi/chap-4/4-5-flottants/index.xml" rel="alternate" type="application/rss&#43;xml" title="Les nombres flottants :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.e732bbba73bf9e41e5adf06924af4a5ca88a0b828e4860c447d21788d54ede16.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/premieres-nsi/chap-4/4-5-flottants/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/premieres-nsi/chap-4/4-5-flottants/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#des-chiffres-après-la-virgule-en-base-2">Des chiffres après la virgule en base 2</a></li>
+    <li><a href="#écrire-un-nombre-à-virgule-en-base-2">Écrire un nombre à virgule en base 2</a></li>
+    <li><a href="#ce-que-lordinateur-range-vraiment">Ce que l&rsquo;ordinateur range vraiment</a></li>
+    <li><a href="#programmer-avec-des-flottants">Programmer avec des flottants</a></li>
+    <li><a href="#bilan">Bilan</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Représentation et manipulation des nombres par un ordinateur">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/index.html"><span itemprop="name">1ère Spécialité NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/chap-4/index.html"><span itemprop="name">Représentation et manipulation des nombres par un ordinateur</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-4/4-5-flottants/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-4/4-4-booleens-addition/index.html" title="Booléens et addition binaire (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-4/4-6-exercices/index.html" title="Exercices (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable premieres-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Représentation et manipulation des nombres par un ordinateur</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/arrondi/index.html">Arrondi</a></li>
+    <li><a class="term-link" href="/tags/%C3%A9criture-p%C3%A9riodique/index.html">Écriture Périodique</a></li>
+    <li><a class="term-link" href="/tags/%C3%A9galit%C3%A9-de-flottants/index.html">Égalité De Flottants</a></li>
+    <li><a class="term-link" href="/tags/float/index.html">Float</a></li>
+    <li><a class="term-link" href="/tags/flottant/index.html">Flottant</a></li>
+    <li><a class="term-link" href="/tags/multiplications-successives/index.html">Multiplications Successives</a></li>
+    <li><a class="term-link" href="/tags/nombre-r%C3%A9el/index.html">Nombre Réel</a></li>
+    <li><a class="term-link" href="/tags/virgule-en-base-2/index.html">Virgule en Base 2</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="les-nombres-flottants">Les nombres flottants</h1>
+
+<ul>
+<li>
+<a class="remote" href="/premieres-nsi/chap-4/4-5/4-5-enonce.pdf" target="_blank">Énoncé au format pdf</a>
+
+</li>
+</ul>
+<div class="clue clue-goal" style="--accent: #e64553">
+  <div class="clue-header"><img class="clue-icon" src="/clues/flag.svg" alt="" aria-hidden="true"><span class="clue-title">Objectif</span></div>
+  <div class="clue-body">
+<p>Comprendre pourquoi un ordinateur ne peut écrire la plupart des nombres à virgule que de façon approchée, et en tirer une règle de programmation : ne jamais tester l&rsquo;égalité de deux flottants.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q12">
+  <div class="question-num">Q12.</div>
+  <div class="question-corps">
+<p>Sans utiliser l&rsquo;ordinateur, prévoir ce qu&rsquo;affiche Python pour l&rsquo;instruction <code>0.1 + 0.2 == 0.3</code>. Vérifier ensuite dans la console, puis afficher <code>0.1 + 0.2</code>.</p>
+
+  </div>
+</div>
+
+
+<p>Les nombres à virgule sont représentés en Python par le type <code>float</code>. Le mot vient de l&rsquo;anglais <em>floating point</em>, « virgule flottante ». Pour comprendre ce qui se passe, il faut d&rsquo;abord savoir écrire un nombre à virgule en base 2.</p>
+<h2 id="des-chiffres-après-la-virgule-en-base-2">Des chiffres après la virgule en base 2<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>En base 10, les chiffres après la virgule ont pour poids <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>&#61;</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>10</mn></mrow><annotation encoding="application/x-tex">10&#94;{-1} &#61; 1/10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/10</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>2</mn></mrow></msup><mo>&#61;</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>100</mn></mrow><annotation encoding="application/x-tex">10&#94;{-2} &#61; 1/100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/100</span></span></span></span></span>, etc. : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,375</mtext><mo>&#61;</mo><mn>3</mn><mi mathvariant="normal">/</mi><mn>10</mn><mo>&#43;</mo><mn>7</mn><mi mathvariant="normal">/</mi><mn>100</mn><mo>&#43;</mo><mn>5</mn><mi mathvariant="normal">/</mi><mn>1000</mn></mrow><annotation encoding="application/x-tex">&#92;text{0,375} &#61; 3/10 &#43; 7/100 &#43; 5/1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,375</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3/10</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">7/100</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">5/1000</span></span></span></span></span>.</p>
+<p>En base 2, on prolonge de la même façon les poids vers la droite de la virgule, en divisant chaque fois par 2 :</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>poids</strong></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">2&#94;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>0</mn></msup></mrow><annotation encoding="application/x-tex">2&#94;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span></th>
+      <th class="align-left"><strong>,</strong></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2&#94;{-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>2</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2&#94;{-2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">2&#94;{-3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span></span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"><strong>valeur</strong></td>
+      <td class="align-left">2</td>
+      <td class="align-left">1</td>
+      <td class="align-left"><strong>,</strong></td>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>&#61;</mo><mtext>0,5</mtext></mrow><annotation encoding="application/x-tex">1/2 &#61; &#92;text{0,5}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,5</span></span></span></span></span></span></td>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>4</mn><mo>&#61;</mo><mtext>0,25</mtext></mrow><annotation encoding="application/x-tex">1/4 &#61; &#92;text{0,25}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,25</span></span></span></span></span></span></td>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>8</mn><mo>&#61;</mo><mtext>0,125</mtext></mrow><annotation encoding="application/x-tex">1/8 &#61; &#92;text{0,125}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/8</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,125</span></span></span></span></span></span></td>
+    </tr>
+  </tbody>
+</table>
+<p>Par exemple, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>0,101</mtext><msub><mo stretchy="false">)</mo><mn>2</mn></msub><mo>&#61;</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>&#43;</mo><mn>0</mn><mi mathvariant="normal">/</mi><mn>4</mn><mo>&#43;</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>8</mn><mo>&#61;</mo><mtext>0,5</mtext><mo>&#43;</mo><mtext>0,125</mtext><mo>&#61;</mo><mtext>0,625</mtext></mrow><annotation encoding="application/x-tex">(&#92;text{0,101})&#95;2 &#61; 1/2 &#43; 0/4 &#43; 1/8 &#61; &#92;text{0,5} &#43; &#92;text{0,125} &#61; &#92;text{0,625}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">0,101</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0/4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/8</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,5</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,125</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,625</span></span></span></span></span></span>.</p>
+<div class="question-bloc" id="q13">
+  <div class="question-num">Q13.</div>
+  <div class="question-corps">
+<p>Calculer la valeur décimale de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>0,11</mtext><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{0,11})&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">0,11</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>, de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>0,01</mtext><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{0,01})&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">0,01</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> et de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>10,1</mtext><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{10,1})&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">10,1</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>.</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-5-flottants/#5" data-s="W1swXSxbMF1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">2 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 2</div>
+      <div class="qcm-enonce"><p>Quel est le poids du premier chiffre après la virgule en base 2 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q5-0" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>&#61;</mo><mtext>0,5</mtext></mrow><annotation encoding="application/x-tex">2&#94;{-1} &#61; &#92;text{0,5}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,5</span></span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q5-0" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>&#61;</mo><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">10&#94;{-1} &#61; &#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q5-0" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>1</mn></msup><mo>&#61;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2&#94;{1} &#61; 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>On prolonge les poids vers la droite de la virgule en divisant chaque fois par 2.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 2</div>
+      <div class="qcm-enonce"><p>Que vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>0,011</mtext><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{0,011})&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">0,011</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> en base 10 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q5-1" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,375</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,375}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,375</span></span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q5-1" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,011</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,011}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,011</span></span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q5-1" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,75</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,75}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,75</span></span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>×</mo><mtext>0,5</mtext><mo>&#43;</mo><mn>1</mn><mo>×</mo><mtext>0,25</mtext><mo>&#43;</mo><mn>1</mn><mo>×</mo><mtext>0,125</mtext><mo>&#61;</mo><mtext>0,375</mtext></mrow><annotation encoding="application/x-tex">0 &#92;times &#92;text{0,5} &#43; 1 &#92;times &#92;text{0,25} &#43; 1 &#92;times &#92;text{0,125} &#61; &#92;text{0,375}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,5</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,25</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,125</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,375</span></span></span></span></span></span>.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="écrire-un-nombre-à-virgule-en-base-2">Écrire un nombre à virgule en base 2<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Pour la partie entière, on utilise la méthode des divisions successives (Doc. 4,1). Pour la partie après la virgule, on fait l&rsquo;inverse : on multiplie par 2. Chaque multiplication fait passer un chiffre binaire devant la virgule.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Exemple résolu : écrire 0,625 en base 2</span></div>
+  <div class="clue-body">
+<p>On multiplie par 2. La partie entière du résultat donne le chiffre suivant ; on continue avec la partie après la virgule :</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>calcul</strong></th>
+      <th class="align-left"><strong>chiffre obtenu</strong></th>
+      <th class="align-left"><strong>on continue avec</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,625</mtext><mo>×</mo><mn>2</mn><mo>&#61;</mo><mtext>1,25</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,625} &#92;times 2 &#61; &#92;text{1,25}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,625</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">1,25</span></span></span></span></span></span></td>
+      <td class="align-left"><strong>1</strong></td>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,25</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,25}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,25</span></span></span></span></span></span></td>
+    </tr>
+    <tr>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,25</mtext><mo>×</mo><mn>2</mn><mo>&#61;</mo><mtext>0,5</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,25} &#92;times 2 &#61; &#92;text{0,5}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,25</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,5</span></span></span></span></span></span></td>
+      <td class="align-left"><strong>0</strong></td>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,5</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,5}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,5</span></span></span></span></span></span></td>
+    </tr>
+    <tr>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,5</mtext><mo>×</mo><mn>2</mn><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">&#92;text{0,5} &#92;times 2 &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,5</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></td>
+      <td class="align-left"><strong>1</strong></td>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span> : on s&rsquo;arrête</td>
+    </tr>
+  </tbody>
+</table>
+<p>Les chiffres se lisent cette fois <strong>de haut en bas</strong> : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,625</mtext><mo>&#61;</mo><mo stretchy="false">(</mo><mtext>0,101</mtext><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">&#92;text{0,625} &#61; (&#92;text{0,101})&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,625</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">0,101</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>. On retrouve le résultat de la partie 1.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q14">
+  <div class="question-num">Q14.</div>
+  <div class="question-corps">
+<p>Écrire <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,25</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,25}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,25</span></span></span></span></span></span> puis <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,75</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,75}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,75</span></span></span></span></span></span> en base 2 par la méthode des multiplications successives.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q15">
+  <div class="question-num">Q15.</div>
+  <div class="question-corps">
+<p>Appliquer la méthode à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span>. Effectuer au moins six multiplications. Que remarque-t-on ?</p>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Coup de pouce</span></div>
+  <div class="clue-body">
+<p>Après quelques étapes, on retombe sur un nombre déjà rencontré. Que va-t-il se passer ensuite ?</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q16">
+  <div class="question-num">Q16.</div>
+  <div class="question-corps">
+<p>En base 10, on sait déjà qu&rsquo;un nombre simple peut avoir une écriture infinie : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn><mo>&#61;</mo><mtext>0,333</mtext><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">1/3 &#61; &#92;text{0,333}...</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,333</span></span><span class="mord">...</span></span></span></span></span></p>
+<ol>
+<li>Écrire <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">1/3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/3</span></span></span></span></span> en base 2 en partant de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn><mo>×</mo><mn>2</mn><mo>&#61;</mo><mn>2</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">1/3 &#92;times 2 &#61; 2/3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2/3</span></span></span></span></span>. Travailler avec des fractions.</li>
+<li>Proposer une explication : pourquoi <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,25</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,25}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,25</span></span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,625</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,625}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,625</span></span></span></span></span></span> ont-ils une écriture finie en base 2, mais pas <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span> ?</li>
+</ol>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-5-flottants/#6" data-s="W1swXSxbMCwxXSxbMF1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Quelle est l&rsquo;écriture de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,5</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,5}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,5</span></span></span></span></span></span> en base 2 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-0" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>0,1</mtext><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{0,1})&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">0,1</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-0" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>0,101</mtext><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{0,101})&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">0,101</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q6-0" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>0,01</mtext><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{0,01})&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">0,01</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,5</mtext><mo>×</mo><mn>2</mn><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">&#92;text{0,5} &#92;times 2 &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,5</span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span> : on obtient le chiffre 1, puis la partie après la virgule est nulle et on s&rsquo;arrête.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="multiple" hidden>
+      <div class="qcm-num">Question 2 / 3 <em>(plusieurs réponses possibles)</em></div>
+      <div class="qcm-enonce"><p>Quels nombres ont une écriture <strong>finie</strong> en base 2 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="checkbox" name="q6-1" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,75</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,75}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,75</span></span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="checkbox" name="q6-1" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,625</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,625}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,625</span></span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="checkbox" name="q6-1" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span></span></label></li>
+        <li data-i="3"><label><input type="checkbox" name="q6-1" value="3"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">1/3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/3</span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,75</mtext><mo>&#61;</mo><mn>3</mn><mi mathvariant="normal">/</mi><mn>4</mn></mrow><annotation encoding="application/x-tex">&#92;text{0,75} &#61; 3/4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,75</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3/4</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,625</mtext><mo>&#61;</mo><mn>5</mn><mi mathvariant="normal">/</mi><mn>8</mn></mrow><annotation encoding="application/x-tex">&#92;text{0,625} &#61; 5/8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,625</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">5/8</span></span></span></span></span> ont un dénominateur qui est une puissance de 2. Les dénominateurs de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext><mo>&#61;</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>10</mn></mrow><annotation encoding="application/x-tex">&#92;text{0,1} &#61; 1/10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/10</span></span></span></span></span> et de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">1/3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/3</span></span></span></span></span> contiennent un autre facteur que 2.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Dans la méthode des multiplications successives, dans quel ordre lit-on les chiffres obtenus ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-2" value="0"> <span>De haut en bas, dans l&rsquo;ordre où on les obtient.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-2" value="1"> <span>De bas en haut, comme pour les divisions successives.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Chaque multiplication par 2 fait passer devant la virgule le chiffre suivant : le premier obtenu est le premier après la virgule.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="ce-que-lordinateur-range-vraiment">Ce que l&rsquo;ordinateur range vraiment<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Un flottant Python est rangé sur 64 bits. Le nombre est écrit en base 2 sous une forme qui rappelle l&rsquo;écriture scientifique : des chiffres significatifs, appelés <strong>mantisse</strong>, multipliés par une puissance de 2. Le nombre de chiffres de la mantisse est limité. Une écriture binaire infinie, comme celle de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span>, doit donc être <strong>coupée</strong> : l&rsquo;ordinateur range le nombre le plus proche de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span> qu&rsquo;il sait écrire, mais pas <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span> lui-même.</p>
+<div class="question-bloc" id="q17">
+  <div class="question-num">Q17.</div>
+  <div class="question-corps">
+<p>Python arrondit l&rsquo;affichage des flottants pour qu&rsquo;il soit lisible. On peut demander davantage de chiffres avec une f-string (Doc. 2,2). Exécuter :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="mf">0.1</span><span class="si">:</span><span class="s2">.20f</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="mf">0.25</span><span class="si">:</span><span class="s2">.20f</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span><span class="si">:</span><span class="s2">.20f</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="mf">0.3</span><span class="si">:</span><span class="s2">.20f</span><span class="si">}</span><span class="s2">&#34;</span></span></span></code></pre></div>
+<p>Expliquer à l&rsquo;aide de ces résultats pourquoi <code>0.1 + 0.2 == 0.3</code> vaut <code>False</code>.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q18">
+  <div class="question-num">Q18.</div>
+  <div class="question-corps">
+<p>Prévoir, puis vérifier : <code>0.5 + 0.25 == 0.75</code>. Le résultat contredit-il la règle « il ne faut pas tester l&rsquo;égalité de deux flottants » ?</p>
+
+  </div>
+</div>
+
+
+<p>Ces petites erreurs peuvent avoir des conséquences graves. Le 25 février 1991, pendant la guerre du Golfe, une batterie de missiles Patriot n&rsquo;a pas intercepté un missile Scud, qui a tué 28 soldats à Dhahran, en Arabie saoudite. L&rsquo;horloge du système comptait le temps en dixièmes de seconde, et la valeur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span> était rangée sur 24 bits, donc tronquée : à chaque dixième de seconde, l&rsquo;horloge prenait un retard d&rsquo;environ <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,000</mtext><mtext> </mtext><mn>000</mn><mtext> </mtext><mn>095</mn></mrow><annotation encoding="application/x-tex">&#92;text{0,000} &#92;, 000 &#92;, 095</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,000</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">000</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">095</span></span></span></span></span> s.</p>
+<div class="question-bloc" id="q19">
+  <div class="question-num">Q19.</div>
+  <div class="question-corps">
+<p>La batterie fonctionnait sans interruption depuis 100 heures. Combien de dixièmes de seconde l&rsquo;horloge avait-elle comptés ? Quel était alors son retard ? Un Scud vole à environ <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mtext> </mtext><mn>676</mn></mrow><annotation encoding="application/x-tex">1 &#92;, 676</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">676</span></span></span></span></span> m/s : quelle distance parcourt-il pendant ce retard ?</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-5-flottants/#7" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Pourquoi <code>0.1 + 0.2 == 0.3</code> vaut-il <code>False</code> en Python ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-0" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,2</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,2</span></span></span></span></span></span> ont une écriture binaire infinie : la machine range des valeurs approchées, et leur somme n&rsquo;est pas le flottant le plus proche de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,3</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,3</span></span></span></span></span></span>.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-0" value="1"> <span>Python fait une erreur dans les additions de flottants.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-0" value="2"> <span>L&rsquo;opérateur <code>==</code> ne fonctionne pas avec les flottants.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Le calcul est fait correctement, mais sur des valeurs déjà arrondies : on compare deux nombres réellement différents.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Que vaut <code>0.5 + 0.25 == 0.75</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-1" value="0"> <span><code>True</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-1" value="1"> <span><code>False</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Ces trois nombres s&rsquo;écrivent exactement en base 2 : le calcul est exact. Cela ne permet pas pour autant de tester l&rsquo;égalité de flottants en général.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Pourquoi l&rsquo;horloge du système Patriot avait-elle pris du retard ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-2" value="0"> <span>La valeur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span>, rangée sur 24 bits, était tronquée, et cette petite erreur s&rsquo;est répétée à chaque dixième de seconde.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-2" value="1"> <span>Le compteur de dixièmes de seconde avait subi un dépassement de capacité.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-2" value="2"> <span>Le système avait été redémarré.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Une erreur d&rsquo;environ <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,000</mtext><mtext> </mtext><mn>000</mn><mtext> </mtext><mn>095</mn></mrow><annotation encoding="application/x-tex">&#92;text{0,000} &#92;, 000 &#92;, 095</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,000</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">000</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">095</span></span></span></span></span> s, répétée des millions de fois en 100 heures, a donné un retard d&rsquo;environ <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,34</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,34}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,34</span></span></span></span></span></span> s.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="programmer-avec-des-flottants">Programmer avec des flottants<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="question-bloc" id="q20">
+  <div class="question-num">Q20.</div>
+  <div class="question-corps">
+<p>On considère le programme suivant :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.1</span></span></span></code></pre></div>
+<ol>
+<li>Combien d&rsquo;itérations l&rsquo;auteur de ce programme pensait-il faire ?</li>
+<li>Expliquer pourquoi la boucle ne s&rsquo;arrête jamais. Ne pas l&rsquo;exécuter telle quelle ; pour le vérifier, exécuter plutôt :</li>
+</ol>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<p>Pour comparer deux flottants, on ne teste pas leur égalité. On vérifie que leur écart est très petit, par exemple inférieur à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>9</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10&#94;{-9}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span></span></span>. La fonction <code>abs</code> donne la valeur absolue d&rsquo;un nombre, et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>9</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10&#94;{-9}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">9</span></span></span></span></span></span></span></span></span></span></span></span></span> s&rsquo;écrit <code>1e-9</code> en Python.</p>
+<div class="question-bloc" id="q21">
+  <div class="question-num">Q21.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>sont_proches</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sont_proches</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne True si l&#39;écart entre a et b est strictement
+</span></span></span><span class="line"><span class="cl"><span class="s2">    inférieur à 1e-9, False sinon.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; sont_proches(0.1 + 0.2, 0.3)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    True
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; sont_proches(0.3, 0.31)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    False
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q22">
+  <div class="question-num">Q22.</div>
+  <div class="question-corps">
+<p>Réécrire la boucle de la question précédente pour qu&rsquo;elle effectue exactement 10 itérations et que <code>x</code> prenne les valeurs <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span> ; <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,2</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,2</span></span></span></span></span></span> ; … ; <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span> aussi précisément que possible. Justifier le choix.</p>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Coup de pouce</span></div>
+  <div class="clue-body">
+<p>Les entiers, eux, sont toujours exacts en Python. Quelle variable pourrait compter les itérations sans erreur ?</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-5-flottants/#8" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Pourquoi la boucle <code>x = 0</code>, <code>while x != 1: x = x + 0.1</code> ne s&rsquo;arrête-t-elle jamais ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-0" value="0"> <span>Après 10 additions, <code>x</code> vaut <code>0.9999999999999999</code>, puis il dépasse 1 sans jamais lui être égal.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-0" value="1"> <span>Parce que <code>0.1</code> est un entier.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-0" value="2"> <span>Parce que la condition <code>x != 1</code> est mal écrite.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Les erreurs d&rsquo;arrondi s&rsquo;accumulent : la condition d&rsquo;arrêt <code>x == 1</code> n&rsquo;est jamais remplie.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Quel test compare correctement deux flottants <code>a</code> et <code>b</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-1" value="0"> <span><code>abs(a - b) &lt; 1e-9</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-1" value="1"> <span><code>a == b</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-1" value="2"> <span><code>a - b &lt; 1e-9</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Sans la valeur absolue, <code>a - b &lt; 1e-9</code> est vrai dès que <code>a</code> est plus petit que <code>b</code>, même de beaucoup.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Pour faire prendre à <code>x</code> les valeurs <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span> ; <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,2</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,2</span></span></span></span></span></span> ; … ; <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, quelle boucle est la plus précise ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-2" value="0"> <span><code>for i in range(1, 11): x = i / 10</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-2" value="1"> <span><code>for i in range(10): x = x + 0.1</code>, avec <code>x = 0</code> au départ</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Le compteur entier est exact, et chaque valeur de <code>x</code> ne subit qu&rsquo;un seul arrondi : les erreurs ne s&rsquo;accumulent pas.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="bilan">Bilan<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À l&rsquo;issue de cette activité, je sais…</span></div>
+  <div class="clue-body">
+<ul>
+<li>calculer la valeur décimale d&rsquo;un nombre à virgule écrit en base 2 ;</li>
+<li>écrire un nombre comme <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,25</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,25}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,25</span></span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span> ou <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow><annotation encoding="application/x-tex">1/3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/3</span></span></span></span></span> en base 2 par la méthode des multiplications successives ;</li>
+<li>expliquer pourquoi certains nombres, comme <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>0,1</mtext></mrow><annotation encoding="application/x-tex">&#92;text{0,1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">0,1</span></span></span></span></span></span>, ont une écriture binaire infinie et ne sont rangés en machine que de façon approchée ;</li>
+<li>expliquer pourquoi <code>0.1 + 0.2 == 0.3</code> vaut <code>False</code> ;</li>
+<li>éviter de tester l&rsquo;égalité de deux flottants, et comparer leur écart à une petite valeur ;</li>
+<li>préférer un compteur entier à l&rsquo;accumulation de flottants pour contrôler une boucle.</li>
+</ul>
+
+  </div>
+</div>
+
+<p>Le Doc. 4,6 propose des exercices qui mêlent toutes les représentations étudiées dans ce chapitre.</p>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 17 nov. 2026
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/1%C3%A8re-sp%C3%A9-nsi/index.html">1ère Spé NSI</a></li>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+<script src="/js/qcm.js"></script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

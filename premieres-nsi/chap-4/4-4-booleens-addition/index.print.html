@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Énoncé au format pdf Objectif Dresser la table de vérité d’une expression booléenne, découvrir le ou exclusif, et s’en servir pour programmer l’addition binaire de deux octets, comme le fait un circuit du processeur.
+Q12. Un processeur additionne deux bits aaa et bbb. Combien de cas différents peut-il rencontrer ? Pour chacun, écrire le résultat de a&#43;ba &#43; ba&#43;b en base 2. Combien de bits faut-il pour écrire ce résultat ?">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Booléens et addition binaire :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Énoncé au format pdf Objectif Dresser la table de vérité d’une expression booléenne, découvrir le ou exclusif, et s’en servir pour programmer l’addition binaire de deux octets, comme le fait un circuit du processeur.
+Q12. Un processeur additionne deux bits aaa et bbb. Combien de cas différents peut-il rencontrer ? Pour chacun, écrire le résultat de a&#43;ba &#43; ba&#43;b en base 2. Combien de bits faut-il pour écrire ce résultat ?">
+    <meta property="og:url" content="https://dlatreyte.github.io/premieres-nsi/chap-4/4-4-booleens-addition/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Booléens et addition binaire :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Énoncé au format pdf Objectif Dresser la table de vérité d’une expression booléenne, découvrir le ou exclusif, et s’en servir pour programmer l’addition binaire de deux octets, comme le fait un circuit du processeur.
+Q12. Un processeur additionne deux bits aaa et bbb. Combien de cas différents peut-il rencontrer ? Pour chacun, écrire le résultat de a&#43;ba &#43; ba&#43;b en base 2. Combien de bits faut-il pour écrire ce résultat ?">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="1ère Spécialité NSI">
+    <meta property="article:published_time" content="2026-11-17T06:00:00+04:00">
+    <meta property="article:modified_time" content="2026-11-17T06:00:00+04:00">
+    <meta property="article:tag" content="Booléen">
+    <meta property="article:tag" content="Table De Vérité">
+    <meta property="article:tag" content="And">
+    <meta property="article:tag" content="Or">
+    <meta property="article:tag" content="Not">
+    <meta property="article:tag" content="Ou Exclusif">
+    <meta itemprop="name" content="Booléens et addition binaire :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Énoncé au format pdf Objectif Dresser la table de vérité d’une expression booléenne, découvrir le ou exclusif, et s’en servir pour programmer l’addition binaire de deux octets, comme le fait un circuit du processeur.
+Q12. Un processeur additionne deux bits aaa et bbb. Combien de cas différents peut-il rencontrer ? Pour chacun, écrire le résultat de a&#43;ba &#43; ba&#43;b en base 2. Combien de bits faut-il pour écrire ce résultat ?">
+    <meta itemprop="datePublished" content="2026-11-17T06:00:00+04:00">
+    <meta itemprop="dateModified" content="2026-11-17T06:00:00+04:00">
+    <meta itemprop="wordCount" content="2243">
+    <meta itemprop="keywords" content="Booléen,Table De Vérité,And,Or,Not,Ou Exclusif,Xor,Additionneur,Retenue,Évaluation Séquentielle">
+    <title>Booléens et addition binaire :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/premieres-nsi/chap-4/4-4-booleens-addition/index.html" rel="canonical" type="text/html" title="Booléens et addition binaire :: Physique, Chimie et Informatique">
+    <link href="/premieres-nsi/chap-4/4-4-booleens-addition/index.xml" rel="alternate" type="application/rss&#43;xml" title="Booléens et addition binaire :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.e732bbba73bf9e41e5adf06924af4a5ca88a0b828e4860c447d21788d54ede16.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/premieres-nsi/chap-4/4-4-booleens-addition/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/premieres-nsi/chap-4/4-4-booleens-addition/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#tables-de-vérité">Tables de vérité</a></li>
+    <li><a href="#le-ou-exclusif">Le ou exclusif</a></li>
+    <li><a href="#additionner-deux-bits-avec-des-opérateurs-booléens">Additionner deux bits avec des opérateurs booléens</a></li>
+    <li><a href="#additionner-deux-octets">Additionner deux octets</a></li>
+    <li><a href="#un-détail-qui-compte--lévaluation-séquentielle">Un détail qui compte : l&rsquo;évaluation séquentielle</a></li>
+    <li><a href="#bilan">Bilan</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Représentation et manipulation des nombres par un ordinateur">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/index.html"><span itemprop="name">1ère Spécialité NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/chap-4/index.html"><span itemprop="name">Représentation et manipulation des nombres par un ordinateur</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-4/4-4-booleens-addition/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-4/4-3-entiers-relatifs/index.html" title="Représenter les entiers relatifs (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-4/4-5-flottants/index.html" title="Les nombres flottants (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable premieres-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Représentation et manipulation des nombres par un ordinateur</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/additionneur/index.html">Additionneur</a></li>
+    <li><a class="term-link" href="/tags/and/index.html">And</a></li>
+    <li><a class="term-link" href="/tags/bool%C3%A9en/index.html">Booléen</a></li>
+    <li><a class="term-link" href="/tags/%C3%A9valuation-s%C3%A9quentielle/index.html">Évaluation Séquentielle</a></li>
+    <li><a class="term-link" href="/tags/not/index.html">Not</a></li>
+    <li><a class="term-link" href="/tags/or/index.html">Or</a></li>
+    <li><a class="term-link" href="/tags/ou-exclusif/index.html">Ou Exclusif</a></li>
+    <li><a class="term-link" href="/tags/retenue/index.html">Retenue</a></li>
+    <li><a class="term-link" href="/tags/table-de-v%C3%A9rit%C3%A9/index.html">Table De Vérité</a></li>
+    <li><a class="term-link" href="/tags/xor/index.html">Xor</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="booléens-et-addition-binaire">Booléens et addition binaire</h1>
+
+<ul>
+<li>
+<a class="remote" href="/premieres-nsi/chap-4/4-4/4-4-enonce.pdf" target="_blank">Énoncé au format pdf</a>
+
+</li>
+</ul>
+<div class="clue clue-goal" style="--accent: #e64553">
+  <div class="clue-header"><img class="clue-icon" src="/clues/flag.svg" alt="" aria-hidden="true"><span class="clue-title">Objectif</span></div>
+  <div class="clue-body">
+<p>Dresser la table de vérité d&rsquo;une expression booléenne, découvrir le ou exclusif, et s&rsquo;en servir pour programmer l&rsquo;addition binaire de deux octets, comme le fait un circuit du processeur.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q12">
+  <div class="question-num">Q12.</div>
+  <div class="question-corps">
+<p>Un processeur additionne deux bits <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span>. Combien de cas différents peut-il rencontrer ? Pour chacun, écrire le résultat de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#43;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a &#43; b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> en base 2. Combien de bits faut-il pour écrire ce résultat ?</p>
+
+  </div>
+</div>
+
+
+<h2 id="tables-de-vérité">Tables de vérité<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Un bit et un booléen sont deux façons de voir la même information : 1 correspond à <code>True</code> (vrai) et 0 à <code>False</code> (faux). En Python, <code>int(True)</code> vaut <code>1</code> et <code>bool(0)</code> vaut <code>False</code>.</p>
+<p>Les opérateurs <code>and</code>, <code>or</code> et <code>not</code> ont été rencontrés dans le Doc. 2,3. Une expression booléenne qui dépend de deux variables <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> ne peut prendre que quatre combinaisons de valeurs d&rsquo;entrée. On peut donc décrire complètement son comportement dans un tableau qui donne sa valeur pour chaque combinaison : sa <strong>table de vérité</strong>.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Exemple résolu : table de vérité de « a and b »</span></div>
+  <div class="clue-body">
+<p>On écrit toutes les combinaisons des entrées, dans l&rsquo;ordre où l&rsquo;on compte en binaire (00, 01, 10, 11), puis la valeur de l&rsquo;expression :</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span></th>
+      <th class="align-left"><code>a and b</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">0</td>
+      <td class="align-left">0</td>
+      <td class="align-left">0</td>
+    </tr>
+    <tr>
+      <td class="align-left">0</td>
+      <td class="align-left">1</td>
+      <td class="align-left">0</td>
+    </tr>
+    <tr>
+      <td class="align-left">1</td>
+      <td class="align-left">0</td>
+      <td class="align-left">0</td>
+    </tr>
+    <tr>
+      <td class="align-left">1</td>
+      <td class="align-left">1</td>
+      <td class="align-left">1</td>
+    </tr>
+  </tbody>
+</table>
+<p><code>a and b</code> n&rsquo;est vrai que si les deux entrées sont vraies.</p>
+
+  </div>
+</div>
+
+<p>Python peut produire ces tables à l&rsquo;aide de deux boucles imbriquées :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span> <span class="ow">and</span> <span class="n">b</span><span class="p">))</span></span></span></code></pre></div>
+<div class="question-bloc" id="q13">
+  <div class="question-num">Q13.</div>
+  <div class="question-corps">
+<ol>
+<li>Dresser à la main la table de vérité de <code>a or b</code> et celle de <code>not a</code>.</li>
+<li>Vérifier la table de <code>a or b</code> en modifiant le programme ci-dessus.</li>
+</ol>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q14">
+  <div class="question-num">Q14.</div>
+  <div class="question-corps">
+<p>Dresser les tables de vérité de <code>not (a and b)</code> et de <code>(not a) or (not b)</code>. Que constate-t-on ? Reformuler ce résultat par une phrase en français, en partant de : « Il est faux que <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> soient tous les deux vrais… ».</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-4-booleens-addition/#6" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Combien de lignes compte la table de vérité d&rsquo;une expression qui dépend de deux variables booléennes ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-0" value="0"> <span>4</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-0" value="1"> <span>2</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q6-0" value="2"> <span>8</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Chaque variable a deux valeurs possibles : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>2</mn><mo>&#61;</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">2 &#92;times 2 &#61; 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span></span> combinaisons, 00, 01, 10 et 11.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Pour quelles valeurs de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> l&rsquo;expression <code>a or b</code> vaut-elle 0 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-1" value="0"> <span>Seulement pour <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">b &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-1" value="1"> <span>Seulement pour <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">b &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q6-1" value="2"> <span>Dès qu&rsquo;une des deux entrées vaut 0.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>a or b</code> est vrai dès qu&rsquo;au moins une des entrées est vraie.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Quelle expression est équivalente à <code>not (a and b)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-2" value="0"> <span><code>(not a) or (not b)</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-2" value="1"> <span><code>(not a) and (not b)</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q6-2" value="2"> <span><code>not a and b</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>C&rsquo;est une des lois de De Morgan : il est faux que <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> soient tous les deux vrais signifie qu&rsquo;au moins l&rsquo;un des deux est faux. <code>(not a) and (not b)</code> ne vaut 1 que si les deux sont faux.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="le-ou-exclusif">Le ou exclusif<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Dans la langue courante, « ou » a deux sens. « Fromage ou dessert » au restaurant signifie qu&rsquo;on ne peut pas avoir les deux. L&rsquo;opérateur <code>or</code> de Python, lui, est vrai aussi quand les deux entrées sont vraies : c&rsquo;est un <strong>ou inclusif</strong>.</p>
+<p>Le <strong>ou exclusif</strong>, noté <strong>xor</strong> (de l&rsquo;anglais <em>exclusive or</em>), est vrai lorsqu&rsquo;une seule des deux entrées est vraie, mais pas les deux.</p>
+<div class="question-bloc" id="q15">
+  <div class="question-num">Q15.</div>
+  <div class="question-corps">
+<ol>
+<li>Dresser la table de vérité du ou exclusif.</li>
+<li>Pour deux booléens, le ou exclusif peut s&rsquo;écrire <code>a != b</code>. Expliquer pourquoi.</li>
+<li>Écrire une expression qui donne le ou exclusif en n&rsquo;utilisant que <code>and</code>, <code>or</code> et <code>not</code>. Vérifier sa table de vérité avec Python.</li>
+</ol>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Coup de pouce</span></div>
+  <div class="clue-body">
+<p>Traduire mot à mot : « <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> ou <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> est vrai, et il est faux que <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> soient vrais tous les deux ».</p>
+
+  </div>
+</div>
+
+
+<p>En Python, l&rsquo;opérateur <code>^</code> calcule le ou exclusif de deux entiers égaux à 0 ou 1 : <code>1 ^ 1</code> vaut <code>0</code> et <code>1 ^ 0</code> vaut <code>1</code>.</p>
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-4-booleens-addition/#7" data-s="W1swXSxbMCwxXSxbMF1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Quelles lignes de la table du ou exclusif valent 1 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-0" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#61;</mo><mn>0</mn><mo separator="true">,</mo><mi>b</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a &#61; 0, b &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#61;</mo><mn>1</mn><mo separator="true">,</mo><mi>b</mi><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a &#61; 1, b &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-0" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#61;</mo><mn>1</mn><mo separator="true">,</mo><mi>b</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a &#61; 1, b &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span> seulement</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-0" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#61;</mo><mn>0</mn><mo separator="true">,</mo><mi>b</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a &#61; 0, b &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#61;</mo><mn>1</mn><mo separator="true">,</mo><mi>b</mi><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a &#61; 1, b &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#61;</mo><mn>1</mn><mo separator="true">,</mo><mi>b</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a &#61; 1, b &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Le ou exclusif est vrai lorsqu&rsquo;une seule des deux entrées est vraie. La troisième proposition est la table de <code>or</code>, le ou inclusif.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="multiple" hidden>
+      <div class="qcm-num">Question 2 / 3 <em>(plusieurs réponses possibles)</em></div>
+      <div class="qcm-enonce"><p>Pour deux booléens <code>a</code> et <code>b</code>, quelles expressions donnent le ou exclusif ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="checkbox" name="q7-1" value="0"> <span><code>a != b</code></span></label></li>
+        <li data-i="1"><label><input type="checkbox" name="q7-1" value="1"> <span><code>(a or b) and not (a and b)</code></span></label></li>
+        <li data-i="2"><label><input type="checkbox" name="q7-1" value="2"> <span><code>a or b</code></span></label></li>
+        <li data-i="3"><label><input type="checkbox" name="q7-1" value="3"> <span><code>a == b</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Le ou exclusif est vrai exactement quand les entrées sont différentes. <code>a or b</code> est aussi vrai quand les deux entrées sont vraies.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Que vaut <code>1 ^ 1</code> en Python ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-2" value="0"> <span><code>0</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-2" value="1"> <span><code>1</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-2" value="2"> <span><code>2</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>^</code> calcule le ou exclusif : les deux entrées sont égales, le résultat vaut 0. Ce n&rsquo;est pas une puissance.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="additionner-deux-bits-avec-des-opérateurs-booléens">Additionner deux bits avec des opérateurs booléens<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="question-bloc" id="q16">
+  <div class="question-num">Q16.</div>
+  <div class="question-corps">
+<p>Compléter la table de l&rsquo;addition de deux bits <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span>, en séparant le résultat en deux bits : la somme (chiffre des unités) et la retenue. Comparer les deux colonnes de sortie aux tables de vérité déjà rencontrées.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span></th>
+      <th class="align-left"><strong>somme</strong></th>
+      <th class="align-left"><strong>retenue</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">0</td>
+      <td class="align-left">0</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">0</td>
+      <td class="align-left">1</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">1</td>
+      <td class="align-left">0</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">1</td>
+      <td class="align-left">1</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+<p>Pour additionner deux nombres de plusieurs bits, chaque colonne reçoit en plus la retenue <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span></span> venue de la colonne de droite. Il faut donc additionner <strong>trois</strong> bits. On peut démontrer que :</p>
+<ul>
+<li>la somme vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> xor <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> xor <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span></span> ;</li>
+<li>la retenue sortante vaut 1 lorsqu&rsquo;au moins deux des trois bits valent 1.</li>
+</ul>
+<div class="question-bloc" id="q17">
+  <div class="question-num">Q17.</div>
+  <div class="question-corps">
+<p>Vérifier ces deux règles sur la ligne <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">b &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, puis sur la ligne <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">b &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, en comparant avec le calcul <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#43;</mo><mi>b</mi><mo>&#43;</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">a &#43; b &#43; r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span></span> écrit en base 2.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q18">
+  <div class="question-num">Q18.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>additionne_bits</code>, qui retourne un tuple :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">additionne_bits</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la somme et la retenue de l&#39;addition des trois
+</span></span></span><span class="line"><span class="cl"><span class="s2">    bits a, b et r (chacun égal à 0 ou à 1).
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; additionne_bits(0, 1, 0)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (1, 0)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; additionne_bits(1, 1, 0)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (0, 1)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; additionne_bits(1, 1, 1)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    (1, 1)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-4-booleens-addition/#8" data-s="W1swXSxbMF0sWzAsMV1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Lorsqu&rsquo;on additionne deux bits <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span>, quelles opérations donnent la somme (chiffre des unités) et la retenue ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-0" value="0"> <span>somme <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#61;</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">&#61; a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.3669em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> xor <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> et retenue <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#61;</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">&#61; a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.3669em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> and <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-0" value="1"> <span>somme <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#61;</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">&#61; a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.3669em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> or <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> et retenue <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#61;</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">&#61; a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.3669em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> and <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-0" value="2"> <span>somme <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#61;</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">&#61; a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.3669em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> and <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span> et retenue <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#61;</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">&#61; a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.3669em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span> xor <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&#43;</mo><mn>1</mn><mo>&#61;</mo><mo stretchy="false">(</mo><mn>10</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">1 &#43; 1 &#61; (10)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">10</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> : la somme vaut 0 et la retenue 1. Seul le ou exclusif donne 0 pour la somme sur cette ligne.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>On additionne trois bits <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">b &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">r &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>. Que valent la somme et la retenue ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-1" value="0"> <span>somme 0, retenue 1</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-1" value="1"> <span>somme 1, retenue 0</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-1" value="2"> <span>somme 1, retenue 1</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&#43;</mo><mn>0</mn><mo>&#43;</mo><mn>1</mn><mo>&#61;</mo><mn>2</mn><mo>&#61;</mo><mo stretchy="false">(</mo><mn>10</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">1 &#43; 0 &#43; 1 &#61; 2 &#61; (10)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">10</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>. Avec les règles : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span> xor <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span> xor <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1 &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>, et deux bits valent 1, donc la retenue vaut 1.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="multiple" hidden>
+      <div class="qcm-num">Question 3 / 3 <em>(plusieurs réponses possibles)</em></div>
+      <div class="qcm-enonce"><p>Quelles expressions donnent la somme de trois bits <code>a</code>, <code>b</code> et <code>r</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="checkbox" name="q8-2" value="0"> <span><code>a ^ b ^ r</code></span></label></li>
+        <li data-i="1"><label><input type="checkbox" name="q8-2" value="1"> <span><code>(a + b + r) % 2</code></span></label></li>
+        <li data-i="2"><label><input type="checkbox" name="q8-2" value="2"> <span><code>(a + b + r) // 2</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>(a + b + r) // 2</code> donne la retenue, pas la somme.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="additionner-deux-octets">Additionner deux octets<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>On additionne deux octets comme on pose l&rsquo;addition à la main (Doc. 4,2) : de la droite vers la gauche, en reportant la retenue d&rsquo;une colonne sur la suivante. La retenue qui sort de la colonne de gauche est perdue, puisque le résultat est rangé sur 8 bits.</p>
+<p>Pour parcourir les indices de droite à gauche, on utilise <code>range</code> avec trois arguments : <code>range(7, -1, -1)</code> produit 7, 6, 5, …, 0.</p>
+<div class="question-bloc" id="q19">
+  <div class="question-num">Q19.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>addition</code>, qui doit utiliser <code>additionne_bits</code> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">addition</span><span class="p">(</span><span class="n">bits1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bits2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la somme sur 8 bits des octets bits1 et bits2.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    La retenue finale est perdue.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; addition(&#34;00000110&#34;, &#34;00000111&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;00001101&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; addition(&#34;11111111&#34;, &#34;00000001&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;00000000&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Coup de pouce</span></div>
+  <div class="clue-body">
+<ol>
+<li>Avant la boucle : un résultat vide et une retenue nulle.</li>
+<li>Dans la boucle, pour l&rsquo;indice <code>i</code> : convertir <code>bits1[i]</code> et <code>bits2[i]</code> en entiers, appeler <code>additionne_bits</code>, déballer le tuple obtenu.</li>
+<li>Chaque nouveau chiffre se place à gauche du résultat déjà construit.</li>
+</ol>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q20">
+  <div class="question-num">Q20.</div>
+  <div class="question-corps">
+<p>Dans le Doc. 4,3, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span></span> s&rsquo;écrit <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00000101</mn></mrow><annotation encoding="application/x-tex">00000101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">00000101</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">5</span></span></span></span></span> s&rsquo;écrit <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11111011</mn></mrow><annotation encoding="application/x-tex">11111011</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11111011</span></span></span></span></span> sur 8 bits.</p>
+<ol>
+<li>Prévoir le résultat de <code>addition(&quot;00000101&quot;, &quot;11111011&quot;)</code>, puis vérifier.</li>
+<li>Calculer <code>addition(&quot;00000011&quot;, &quot;11111011&quot;)</code>. Quel entier relatif ce résultat représente-t-il ? Le calcul est-il juste ?</li>
+</ol>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q21">
+  <div class="question-num">Q21.</div>
+  <div class="question-corps">
+<p>Recopier la fonction <code>complement_a_1</code> du Doc. 4,3, puis écrire en une ligne la fonction <code>complement_a_2</code> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">complement_a_2</span><span class="p">(</span><span class="n">bits</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne le complément à 2 de l&#39;octet bits.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; complement_a_2(&#34;00000101&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;11111011&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; complement_a_2(&#34;11111011&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;00000101&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-4-booleens-addition/#9" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Que produit <code>range(7, -1, -1)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q9-0" value="0"> <span>7, 6, 5, 4, 3, 2, 1, 0</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q9-0" value="1"> <span>7, 6, 5, 4, 3, 2, 1, 0, -1</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q9-0" value="2"> <span>-1, 0, 1, …, 7</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>On part de 7, on retire 1 à chaque fois, et la borne <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></span> est exclue.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Que retourne <code>addition(&quot;11111111&quot;, &quot;00000001&quot;)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q9-1" value="0"> <span><code>'00000000'</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q9-1" value="1"> <span><code>'100000000'</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q9-1" value="2"> <span><code>'11111111'</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Toutes les colonnes produisent une retenue, et la retenue finale est perdue : c&rsquo;est un dépassement de capacité.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>En complément à 2 sur 8 bits, quel entier relatif représente le résultat de <code>addition(&quot;00000011&quot;, &quot;11111011&quot;)</code>, c&rsquo;est-à-dire de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>&#43;</mo><mo stretchy="false">(</mo><mo>−</mo><mn>5</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">3 &#43; (-5)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">5</span><span class="mclose">)</span></span></span></span></span> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q9-2" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">2</span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q9-2" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>254</mn></mrow><annotation encoding="application/x-tex">254</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">254</span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q9-2" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Le résultat <code>'11111110'</code> commence par 1 : il est négatif et vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>254</mn><mo>−</mo><mn>256</mn><mo>&#61;</mo><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">254 - 256 &#61; -2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">254</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">256</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">2</span></span></span></span></span>. La même fonction additionne aussi les entiers négatifs.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="un-détail-qui-compte--lévaluation-séquentielle">Un détail qui compte : l&rsquo;évaluation séquentielle<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Dans le Doc. 2,3, on a vu que Python évalue <code>a and b</code> de gauche à droite et s&rsquo;arrête dès que le résultat est connu : si <code>a</code> est faux, <code>b</code> n&rsquo;est même pas évalué. De même, si <code>a</code> est vrai, <code>a or b</code> est vrai sans que <code>b</code> soit évalué. La table de vérité ne dit rien de cet ordre, mais il change le comportement d&rsquo;un programme.</p>
+<div class="question-bloc" id="q22">
+  <div class="question-num">Q22.</div>
+  <div class="question-corps">
+<p>On exécute <code>x = 0</code> dans la console. Prévoir le résultat de chacune des deux expressions, puis vérifier :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="mi">10</span> <span class="o">/</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="mi">10</span> <span class="o">/</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">0</span></span></span></code></pre></div>
+<p>D&rsquo;après leurs tables de vérité, ces deux expressions devraient être équivalentes. Pourquoi ne le sont-elles pas dans un programme ?</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-4-booleens-addition/#10" data-s="W1swXSxbMF1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">2 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 2</div>
+      <div class="qcm-enonce"><p>Avec <code>x = 0</code>, que donne <code>x != 0 and 10 / x &gt; 1</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q10-0" value="0"> <span><code>False</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q10-0" value="1"> <span>Une erreur <code>ZeroDivisionError</code>.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q10-0" value="2"> <span><code>True</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>x != 0</code> est faux : Python n&rsquo;évalue pas la suite, et le résultat est <code>False</code>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 2</div>
+      <div class="qcm-enonce"><p>Avec <code>x = 0</code>, que donne <code>10 / x &gt; 1 and x != 0</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q10-1" value="0"> <span>Une erreur <code>ZeroDivisionError</code>.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q10-1" value="1"> <span><code>False</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Python évalue de gauche à droite : la division par zéro a lieu avant que la condition <code>x != 0</code> soit examinée. On place en premier la condition qui protège la seconde.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="bilan">Bilan<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À l&rsquo;issue de cette activité, je sais…</span></div>
+  <div class="clue-body">
+<ul>
+<li>associer les bits 0 et 1 aux booléens <code>False</code> et <code>True</code> ;</li>
+<li>dresser la table de vérité d&rsquo;une expression booléenne, à la main et avec deux boucles imbriquées ;</li>
+<li>reconnaître deux expressions équivalentes en comparant leurs tables de vérité ;</li>
+<li>définir le ou exclusif et l&rsquo;écrire avec <code>!=</code>, <code>^</code> ou les opérateurs <code>and</code>, <code>or</code> et <code>not</code> ;</li>
+<li>expliquer que la somme de deux bits est un ou exclusif et la retenue un <code>and</code> ;</li>
+<li>programmer l&rsquo;addition de deux octets en propageant la retenue, et constater qu&rsquo;elle fonctionne aussi en complément à 2 ;</li>
+<li>expliquer pourquoi l&rsquo;ordre des opérandes de <code>and</code> et de <code>or</code> peut éviter une erreur.</li>
+</ul>
+
+  </div>
+</div>
+
+<p>Dans le Doc. 4,5, on quitte les entiers pour les nombres à virgule, et on découvre pourquoi <code>0.1 + 0.2</code> n&rsquo;est pas égal à <code>0.3</code>.</p>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 17 nov. 2026
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/1%C3%A8re-sp%C3%A9-nsi/index.html">1ère Spé NSI</a></li>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+<script src="/js/qcm.js"></script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

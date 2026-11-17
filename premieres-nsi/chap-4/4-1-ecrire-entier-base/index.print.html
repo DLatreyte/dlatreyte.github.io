@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Énoncé au format pdf Objectif Comprendre comment un ordinateur, qui ne manipule que des 0 et des 1, écrit un nombre entier, et savoir passer de l’écriture en base 10 à l’écriture en base 2 ou en base 16, à la main puis avec Python.
+Q15. Un tee-shirt porte l’inscription : « Il y a 10 sortes de personnes : celles qui comprennent le binaire et les autres. » Combien de sortes de personnes la phrase énumère-t-elle vraiment ? Que peut bien valoir « 10 » pour que la phrase soit juste ?">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Écrire un entier dans une base :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Énoncé au format pdf Objectif Comprendre comment un ordinateur, qui ne manipule que des 0 et des 1, écrit un nombre entier, et savoir passer de l’écriture en base 10 à l’écriture en base 2 ou en base 16, à la main puis avec Python.
+Q15. Un tee-shirt porte l’inscription : « Il y a 10 sortes de personnes : celles qui comprennent le binaire et les autres. » Combien de sortes de personnes la phrase énumère-t-elle vraiment ? Que peut bien valoir « 10 » pour que la phrase soit juste ?">
+    <meta property="og:url" content="https://dlatreyte.github.io/premieres-nsi/chap-4/4-1-ecrire-entier-base/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Écrire un entier dans une base :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Énoncé au format pdf Objectif Comprendre comment un ordinateur, qui ne manipule que des 0 et des 1, écrit un nombre entier, et savoir passer de l’écriture en base 10 à l’écriture en base 2 ou en base 16, à la main puis avec Python.
+Q15. Un tee-shirt porte l’inscription : « Il y a 10 sortes de personnes : celles qui comprennent le binaire et les autres. » Combien de sortes de personnes la phrase énumère-t-elle vraiment ? Que peut bien valoir « 10 » pour que la phrase soit juste ?">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="1ère Spécialité NSI">
+    <meta property="article:published_time" content="2026-11-17T06:00:00+04:00">
+    <meta property="article:modified_time" content="2026-11-17T06:00:00+04:00">
+    <meta property="article:tag" content="Bit">
+    <meta property="article:tag" content="Base 10">
+    <meta property="article:tag" content="Base 2">
+    <meta property="article:tag" content="Base 16">
+    <meta property="article:tag" content="Binaire">
+    <meta property="article:tag" content="Hexadécimal">
+    <meta itemprop="name" content="Écrire un entier dans une base :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Énoncé au format pdf Objectif Comprendre comment un ordinateur, qui ne manipule que des 0 et des 1, écrit un nombre entier, et savoir passer de l’écriture en base 10 à l’écriture en base 2 ou en base 16, à la main puis avec Python.
+Q15. Un tee-shirt porte l’inscription : « Il y a 10 sortes de personnes : celles qui comprennent le binaire et les autres. » Combien de sortes de personnes la phrase énumère-t-elle vraiment ? Que peut bien valoir « 10 » pour que la phrase soit juste ?">
+    <meta itemprop="datePublished" content="2026-11-17T06:00:00+04:00">
+    <meta itemprop="dateModified" content="2026-11-17T06:00:00+04:00">
+    <meta itemprop="wordCount" content="2707">
+    <meta itemprop="keywords" content="Bit,Base 10,Base 2,Base 16,Binaire,Hexadécimal,Poids,Divisions Successives,Bin,Hex">
+    <title>Écrire un entier dans une base :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/premieres-nsi/chap-4/4-1-ecrire-entier-base/index.html" rel="canonical" type="text/html" title="Écrire un entier dans une base :: Physique, Chimie et Informatique">
+    <link href="/premieres-nsi/chap-4/4-1-ecrire-entier-base/index.xml" rel="alternate" type="application/rss&#43;xml" title="Écrire un entier dans une base :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.e732bbba73bf9e41e5adf06924af4a5ca88a0b828e4860c447d21788d54ede16.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/premieres-nsi/chap-4/4-1-ecrire-entier-base/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/premieres-nsi/chap-4/4-1-ecrire-entier-base/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#ce-que-lon-fait-sans-y-penser--la-base-10">Ce que l&rsquo;on fait sans y penser : la base 10</a></li>
+    <li><a href="#la-base-2--compter-avec-deux-chiffres">La base 2 : compter avec deux chiffres</a>
+      <ul>
+        <li><a href="#du-binaire-vers-le-décimal">Du binaire vers le décimal</a></li>
+        <li><a href="#du-décimal-vers-le-binaire">Du décimal vers le binaire</a></li>
+      </ul>
+    </li>
+    <li><a href="#la-base-16--une-écriture-plus-courte-du-binaire">La base 16 : une écriture plus courte du binaire</a>
+      <ul>
+        <li><a href="#passer-du-binaire-à-lhexadécimal">Passer du binaire à l&rsquo;hexadécimal</a></li>
+      </ul>
+    </li>
+    <li><a href="#programmer-les-conversions">Programmer les conversions</a>
+      <ul>
+        <li><a href="#du-binaire-vers-le-décimal-1">Du binaire vers le décimal</a></li>
+        <li><a href="#du-décimal-vers-le-binaire-1">Du décimal vers le binaire</a></li>
+        <li><a href="#vers-la-base-16">Vers la base 16</a></li>
+      </ul>
+    </li>
+    <li><a href="#bilan">Bilan</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Représentation et manipulation des nombres par un ordinateur">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/index.html"><span itemprop="name">1ère Spécialité NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/chap-4/index.html"><span itemprop="name">Représentation et manipulation des nombres par un ordinateur</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-4/4-1-ecrire-entier-base/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-4/index.html" title="Représentation et manipulation des nombres par un ordinateur (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-4/4-2-bits-entier/index.html" title="Combien de bits pour un entier ? (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable premieres-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Représentation et manipulation des nombres par un ordinateur</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/base-10/index.html">Base 10</a></li>
+    <li><a class="term-link" href="/tags/base-16/index.html">Base 16</a></li>
+    <li><a class="term-link" href="/tags/base-2/index.html">Base 2</a></li>
+    <li><a class="term-link" href="/tags/bin/index.html">Bin</a></li>
+    <li><a class="term-link" href="/tags/binaire/index.html">Binaire</a></li>
+    <li><a class="term-link" href="/tags/bit/index.html">Bit</a></li>
+    <li><a class="term-link" href="/tags/divisions-successives/index.html">Divisions Successives</a></li>
+    <li><a class="term-link" href="/tags/hex/index.html">Hex</a></li>
+    <li><a class="term-link" href="/tags/hexad%C3%A9cimal/index.html">Hexadécimal</a></li>
+    <li><a class="term-link" href="/tags/poids/index.html">Poids</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="écrire-un-entier-dans-une-base">Écrire un entier dans une base</h1>
+
+<ul>
+<li>
+<a class="remote" href="/premieres-nsi/chap-4/4-1/4-1-enonce.pdf" target="_blank">Énoncé au format pdf</a>
+
+</li>
+</ul>
+<div class="clue clue-goal" style="--accent: #e64553">
+  <div class="clue-header"><img class="clue-icon" src="/clues/flag.svg" alt="" aria-hidden="true"><span class="clue-title">Objectif</span></div>
+  <div class="clue-body">
+<p>Comprendre comment un ordinateur, qui ne manipule que des 0 et des 1, écrit un nombre entier, et savoir passer de l&rsquo;écriture en base 10 à l&rsquo;écriture en base 2 ou en base 16, à la main puis avec Python.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q15">
+  <div class="question-num">Q15.</div>
+  <div class="question-corps">
+<p>Un tee-shirt porte l&rsquo;inscription : « Il y a 10 sortes de personnes : celles qui comprennent le binaire et les autres. » Combien de sortes de personnes la phrase énumère-t-elle vraiment ? Que peut bien valoir « 10 » pour que la phrase soit juste ?</p>
+
+  </div>
+</div>
+
+
+<h2 id="ce-que-lon-fait-sans-y-penser--la-base-10">Ce que l&rsquo;on fait sans y penser : la base 10<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Un ordinateur est fait de circuits électroniques qui ne connaissent que deux états : le courant passe ou ne passe pas. On note ces deux états 0 et 1. Une information qui ne peut prendre que ces deux valeurs s&rsquo;appelle un <strong>bit</strong> (de l&rsquo;anglais <em>binary digit</em>, chiffre binaire). Pour écrire n&rsquo;importe quel nombre avec seulement deux chiffres, l&rsquo;ordinateur utilise la même idée que nous avec nos dix chiffres. Commençons donc par regarder de près ce que nous faisons tous les jours.</p>
+<p>Dans le nombre 2026, les deux chiffres 2 n&rsquo;ont pas la même valeur. Le premier compte pour deux milliers, le second pour deux unités. La valeur d&rsquo;un chiffre dépend de sa <strong>position</strong> dans l&rsquo;écriture :</p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>2026</mn><mo>&#61;</mo><mn>2</mn><mo>×</mo><mn>1000</mn><mo>&#43;</mo><mn>0</mn><mo>×</mo><mn>100</mn><mo>&#43;</mo><mn>2</mn><mo>×</mo><mn>10</mn><mo>&#43;</mo><mn>6</mn><mo>×</mo><mn>1</mn><mo>&#61;</mo><mn>2</mn><mo>×</mo><msup><mn>10</mn><mn>3</mn></msup><mo>&#43;</mo><mn>0</mn><mo>×</mo><msup><mn>10</mn><mn>2</mn></msup><mo>&#43;</mo><mn>2</mn><mo>×</mo><msup><mn>10</mn><mn>1</mn></msup><mo>&#43;</mo><mn>6</mn><mo>×</mo><msup><mn>10</mn><mn>0</mn></msup></mrow><annotation encoding="application/x-tex">2026 &#61; 2 &#92;times 1000 &#43; 0 &#92;times 100 &#43; 2 &#92;times 10 &#43; 6 &#92;times 1 &#61; 2 &#92;times 10&#94;3 &#43; 0 &#92;times 10&#94;2 &#43; 2 &#92;times 10&#94;1 &#43; 6 &#92;times 10&#94;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2026</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1000</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">100</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">10</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8641em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span></span><p>En base 10, on dispose de dix chiffres, de 0 à 9. Chaque position vaut dix fois plus que celle qui est à sa droite. On dit que le chiffre des milliers a un <strong>poids</strong> de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">10&#94;3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span>.</p>
+<div class="question-bloc" id="q16">
+  <div class="question-num">Q16.</div>
+  <div class="question-corps">
+<p>Écrire 7305 sous la forme d&rsquo;une somme de chiffres multipliés par des puissances de 10. Pourquoi a-t-on besoin d&rsquo;un chiffre 0 dans cette écriture ?</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-1-ecrire-entier-base/#5" data-s="W1swXSxbMF1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">2 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 2</div>
+      <div class="qcm-enonce"><p>Dans le nombre 4072, quel est le poids du chiffre 4 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q5-0" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">10&#94;3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q5-0" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">10&#94;4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q5-0" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Le 4 est en quatrième position en partant de la droite, dont le poids vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mn>3</mn></msup><mo>&#61;</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">10&#94;3 &#61; 1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1000</span></span></span></span></span> : il compte pour quatre milliers.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 2</div>
+      <div class="qcm-enonce"><p>À quoi sert le chiffre 0 dans l&rsquo;écriture 7305 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q5-1" value="0"> <span>À garder chaque chiffre à sa place : il indique qu&rsquo;il n&rsquo;y a aucune dizaine.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q5-1" value="1"> <span>À rien : 7305 et 735 désignent le même nombre.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q5-1" value="2"> <span>À indiquer que le nombre est pair.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>La valeur d&rsquo;un chiffre dépend de sa position. Sans le 0, le 3 et le 7 perdraient une position.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="la-base-2--compter-avec-deux-chiffres">La base 2 : compter avec deux chiffres<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<h3 id="du-binaire-vers-le-décimal">Du binaire vers le décimal<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>En base 2, on ne dispose que de deux chiffres, 0 et 1. Chaque position vaut deux fois plus que celle qui est à sa droite. Les poids sont donc, de droite à gauche, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>0</mn></msup><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2&#94;0 &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>1</mn></msup><mo>&#61;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2&#94;1 &#61; 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>2</mn></msup><mo>&#61;</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">2&#94;2 &#61; 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>3</mn></msup><mo>&#61;</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">2&#94;3 &#61; 8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>4</mn></msup><mo>&#61;</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">2&#94;4 &#61; 16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">16</span></span></span></span></span>, etc. Pour éviter toute confusion, on note la base en indice : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1101</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(1101)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1101</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> désigne l&rsquo;écriture en base 2, et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1101</mn></mrow><annotation encoding="application/x-tex">1101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1101</span></span></span></span></span> seul désigne le nombre mille cent un.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Exemple résolu : que vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1101</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(1101)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1101</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> ?</span></div>
+  <div class="clue-body">
+<p>On écrit les poids au-dessus de chaque chiffre, en partant de la droite :</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>poids</strong></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>3</mn></msup><mo>&#61;</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">2&#94;3 &#61; 8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>2</mn></msup><mo>&#61;</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">2&#94;2 &#61; 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>1</mn></msup><mo>&#61;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2&#94;1 &#61; 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>0</mn></msup><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2&#94;0 &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"><strong>chiffre</strong></td>
+      <td class="align-left">1</td>
+      <td class="align-left">1</td>
+      <td class="align-left">0</td>
+      <td class="align-left">1</td>
+    </tr>
+  </tbody>
+</table>
+<p>On additionne les poids des positions où se trouve un 1 :</p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mn>1101</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub><mo>&#61;</mo><mn>1</mn><mo>×</mo><mn>8</mn><mo>&#43;</mo><mn>1</mn><mo>×</mo><mn>4</mn><mo>&#43;</mo><mn>0</mn><mo>×</mo><mn>2</mn><mo>&#43;</mo><mn>1</mn><mo>×</mo><mn>1</mn><mo>&#61;</mo><mn>13</mn></mrow><annotation encoding="application/x-tex">(1101)&#95;2 &#61; 1 &#92;times 8 &#43; 1 &#92;times 4 &#43; 0 &#92;times 2 &#43; 1 &#92;times 1 &#61; 13</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1101</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">13</span></span></span></span></span></span><p>Les chiffres 0 ne comptent pas : ils servent seulement à garder les autres à leur place, comme en base 10.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q17">
+  <div class="question-num">Q17.</div>
+  <div class="question-corps">
+<p>En utilisant la même méthode, déterminer la valeur décimale de :</p>
+<ol>
+<li><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>10</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(10)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">10</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> ;</li>
+<li><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>101010</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(101010)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">101010</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> ;</li>
+<li><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>11111111</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(11111111)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">11111111</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>.</li>
+</ol>
+
+  </div>
+</div>
+
+
+<p>Python sait faire ce calcul. La fonction <code>int</code>, qui convertit une chaîne en entier, accepte un deuxième argument : la base dans laquelle la chaîne est écrite. On peut aussi écrire directement un nombre en binaire dans un programme en le faisant précéder de <code>0b</code>.</p>
+<div class="question-bloc" id="q18">
+  <div class="question-num">Q18.</div>
+  <div class="question-corps">
+<p>Dans la console de Thonny, vérifier les réponses de la question précédente :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&#34;101010&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&#34;11111111&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="mb">0b101010</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<h3 id="du-décimal-vers-le-binaire">Du décimal vers le binaire<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Pour passer dans l&rsquo;autre sens, on cherche à répondre à la question : quels poids faut-il additionner pour obtenir le nombre ? Une méthode systématique consiste à diviser le nombre par 2, encore et encore. On a déjà rencontré cette idée dans le Doc. 2,4 : <code>n % 10</code> donnait le chiffre des unités de <code>n</code> en base 10, et <code>n // 10</code> retirait ce chiffre. En base 2, on fait la même chose avec 2 à la place de 10.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Exemple résolu : écrire 13 en base 2</span></div>
+  <div class="clue-body">
+<p>On effectue des divisions euclidiennes successives par 2, jusqu&rsquo;à obtenir un quotient nul :</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>division</strong></th>
+      <th class="align-left"><strong>quotient</strong> (<code>n // 2</code>)</th>
+      <th class="align-left"><strong>reste</strong> (<code>n % 2</code>)</th>
+      <th class="align-left"><strong>ce que donne le reste</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>13</mn><mo>&#61;</mo><mn>2</mn><mo>×</mo><mn>6</mn><mo>&#43;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">13 &#61; 2 &#92;times 6 &#43; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">13</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></td>
+      <td class="align-left">6</td>
+      <td class="align-left"><strong>1</strong></td>
+      <td class="align-left">chiffre des unités (<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>0</mn></msup></mrow><annotation encoding="application/x-tex">2&#94;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span></span>)</td>
+    </tr>
+    <tr>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn><mo>&#61;</mo><mn>2</mn><mo>×</mo><mn>3</mn><mo>&#43;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">6 &#61; 2 &#92;times 3 &#43; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span></td>
+      <td class="align-left">3</td>
+      <td class="align-left"><strong>0</strong></td>
+      <td class="align-left">chiffre de poids <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>1</mn></msup></mrow><annotation encoding="application/x-tex">2&#94;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></td>
+    </tr>
+    <tr>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>&#61;</mo><mn>2</mn><mo>×</mo><mn>1</mn><mo>&#43;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">3 &#61; 2 &#92;times 1 &#43; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></td>
+      <td class="align-left">1</td>
+      <td class="align-left"><strong>1</strong></td>
+      <td class="align-left">chiffre de poids <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">2&#94;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></td>
+    </tr>
+    <tr>
+      <td class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&#61;</mo><mn>2</mn><mo>×</mo><mn>0</mn><mo>&#43;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1 &#61; 2 &#92;times 0 &#43; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></td>
+      <td class="align-left">0</td>
+      <td class="align-left"><strong>1</strong></td>
+      <td class="align-left">chiffre de poids <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">2&#94;3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span></td>
+    </tr>
+  </tbody>
+</table>
+<p>Le premier reste obtenu est le chiffre de droite. On lit donc les restes <strong>de bas en haut</strong> : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>13</mn><mo>&#61;</mo><mo stretchy="false">(</mo><mn>1101</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">13 &#61; (1101)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">13</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1101</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>. On vérifie : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>&#43;</mo><mn>4</mn><mo>&#43;</mo><mn>1</mn><mo>&#61;</mo><mn>13</mn></mrow><annotation encoding="application/x-tex">8 &#43; 4 &#43; 1 &#61; 13</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">13</span></span></span></span></span>.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q19">
+  <div class="question-num">Q19.</div>
+  <div class="question-corps">
+<p>Écrire 42 puis 100 en base 2 par la méthode des divisions successives. Vérifier ensuite avec la fonction <code>bin</code> de Python : <code>bin(42)</code> et <code>bin(100)</code>.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q20">
+  <div class="question-num">Q20.</div>
+  <div class="question-corps">
+<p>Un élève écrit 13 en base 2 et obtient <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1011</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(1011)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1011</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>. Il a pourtant fait toutes les divisions sans erreur. Quelle erreur a-t-il commise ? Comment aurait-il pu la repérer lui-même ?</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-1-ecrire-entier-base/#6" data-s="W1swXSxbMF0sWzAsMV1d">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Que vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1011</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(1011)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1011</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> en base 10 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-0" value="0"> <span>11</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-0" value="1"> <span>13</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q6-0" value="2"> <span>1011</span></label></li>
+        <li data-i="3"><label><input type="radio" name="q6-0" value="3"> <span>7</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>On additionne les poids des positions où se trouve un 1 : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn><mo>&#43;</mo><mn>2</mn><mo>&#43;</mo><mn>1</mn><mo>&#61;</mo><mn>11</mn></mrow><annotation encoding="application/x-tex">8 &#43; 2 &#43; 1 &#61; 11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11</span></span></span></span></span>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Les divisions successives de 6 par 2 donnent les restes 0, puis 1, puis 1. Quelle est l&rsquo;écriture de 6 en base 2 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-1" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>110</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(110)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">110</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-1" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>011</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(011)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">011</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q6-1" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>101</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(101)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">101</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Le premier reste obtenu est le chiffre des unités : on lit les restes de bas en haut. Vérification : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>&#43;</mo><mn>2</mn><mo>&#61;</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">4 &#43; 2 &#61; 6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">6</span></span></span></span></span>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="multiple" hidden>
+      <div class="qcm-num">Question 3 / 3 <em>(plusieurs réponses possibles)</em></div>
+      <div class="qcm-enonce"><p>Quelles instructions Python donnent l&rsquo;entier 5 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="checkbox" name="q6-2" value="0"> <span><code>int(&quot;101&quot;, 2)</code></span></label></li>
+        <li data-i="1"><label><input type="checkbox" name="q6-2" value="1"> <span><code>0b101</code></span></label></li>
+        <li data-i="2"><label><input type="checkbox" name="q6-2" value="2"> <span><code>bin(101)</code></span></label></li>
+        <li data-i="3"><label><input type="checkbox" name="q6-2" value="3"> <span><code>int(&quot;101&quot;)</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>bin</code> fait la conversion inverse et retourne une chaîne. <code>int(&quot;101&quot;)</code> lit la chaîne en base 10 et donne cent un.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="la-base-16--une-écriture-plus-courte-du-binaire">La base 16 : une écriture plus courte du binaire<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Les écritures binaires sont vite très longues : il faut 8 chiffres pour écrire 255, et 11 pour écrire 2026. Pour les écrire de façon plus compacte, les informaticiens utilisent la base 16, appelée <strong>hexadécimale</strong>.</p>
+<p>En base 16, il faut seize chiffres. On utilise les chiffres de 0 à 9, puis les lettres A, B, C, D, E et F pour les valeurs de 10 à 15 :</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>base 16</strong></th>
+      <th class="align-left">0</th>
+      <th class="align-left">1</th>
+      <th class="align-left">2</th>
+      <th class="align-left">3</th>
+      <th class="align-left">4</th>
+      <th class="align-left">5</th>
+      <th class="align-left">6</th>
+      <th class="align-left">7</th>
+      <th class="align-left">8</th>
+      <th class="align-left">9</th>
+      <th class="align-left">A</th>
+      <th class="align-left">B</th>
+      <th class="align-left">C</th>
+      <th class="align-left">D</th>
+      <th class="align-left">E</th>
+      <th class="align-left">F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"><strong>base 10</strong></td>
+      <td class="align-left">0</td>
+      <td class="align-left">1</td>
+      <td class="align-left">2</td>
+      <td class="align-left">3</td>
+      <td class="align-left">4</td>
+      <td class="align-left">5</td>
+      <td class="align-left">6</td>
+      <td class="align-left">7</td>
+      <td class="align-left">8</td>
+      <td class="align-left">9</td>
+      <td class="align-left">10</td>
+      <td class="align-left">11</td>
+      <td class="align-left">12</td>
+      <td class="align-left">13</td>
+      <td class="align-left">14</td>
+      <td class="align-left">15</td>
+    </tr>
+  </tbody>
+</table>
+<p>Les poids sont maintenant des puissances de 16 : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>16</mn><mn>0</mn></msup><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">16&#94;0 &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>16</mn><mn>1</mn></msup><mo>&#61;</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">16&#94;1 &#61; 16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">16</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>16</mn><mn>2</mn></msup><mo>&#61;</mo><mn>256</mn></mrow><annotation encoding="application/x-tex">16&#94;2 &#61; 256</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">256</span></span></span></span></span>, etc. Par exemple :</p>
+<span class="math"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mtext>2A</mtext><msub><mo stretchy="false">)</mo><mn>16</mn></msub><mo>&#61;</mo><mn>2</mn><mo>×</mo><mn>16</mn><mo>&#43;</mo><mn>10</mn><mo>×</mo><mn>1</mn><mo>&#61;</mo><mn>42</mn></mrow><annotation encoding="application/x-tex">(&#92;text{2A})&#95;{16} &#61; 2 &#92;times 16 &#43; 10 &#92;times 1 &#61; 42</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">2A</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">16</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">10</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">42</span></span></span></span></span></span><p>En Python, un nombre écrit en base 16 commence par <code>0x</code>, et la fonction <code>hex</code> donne l&rsquo;écriture hexadécimale d&rsquo;un entier.</p>
+<div class="question-bloc" id="q21">
+  <div class="question-num">Q21.</div>
+  <div class="question-corps">
+<ol>
+<li>Déterminer la valeur décimale de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>FF</mtext><msub><mo stretchy="false">)</mo><mn>16</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{FF})&#95;{16}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">FF</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> et de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>7E3</mtext><msub><mo stretchy="false">)</mo><mn>16</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{7E3})&#95;{16}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">7E3</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>.</li>
+<li>Vérifier avec Python : <code>0xFF</code>, <code>int(&quot;7E3&quot;, 16)</code> et <code>hex(42)</code>.</li>
+</ol>
+
+  </div>
+</div>
+
+
+<h3 id="passer-du-binaire-à-lhexadécimal">Passer du binaire à l&rsquo;hexadécimal<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Le grand intérêt de la base 16 vient de ce que <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn><mo>&#61;</mo><msup><mn>2</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">16 &#61; 2&#94;4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">16</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span></span>. Un chiffre hexadécimal, qui va de 0 à 15, correspond exactement à un paquet de 4 chiffres binaires, qui vont de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0000</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub><mo>&#61;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">(0000)&#95;2 &#61; 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0000</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span> à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1111</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub><mo>&#61;</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">(1111)&#95;2 &#61; 15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1111</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">15</span></span></span></span></span>.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Exemple résolu : écrire <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>10101101</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(10101101)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">10101101</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> en base 16</span></div>
+  <div class="clue-body">
+<p>On découpe l&rsquo;écriture binaire en paquets de 4 bits, <strong>en partant de la droite</strong> : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1010</mn><mtext>  </mtext><mn>1101</mn></mrow><annotation encoding="application/x-tex">1010 &#92;; 1101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1010</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">1101</span></span></span></span></span>.</p>
+<p>On convertit chaque paquet séparément : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1010</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub><mo>&#61;</mo><mn>8</mn><mo>&#43;</mo><mn>2</mn><mo>&#61;</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">(1010)&#95;2 &#61; 8 &#43; 2 &#61; 10</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1010</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span></span>, soit A, et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1101</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub><mo>&#61;</mo><mn>8</mn><mo>&#43;</mo><mn>4</mn><mo>&#43;</mo><mn>1</mn><mo>&#61;</mo><mn>13</mn></mrow><annotation encoding="application/x-tex">(1101)&#95;2 &#61; 8 &#43; 4 &#43; 1 &#61; 13</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1101</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">13</span></span></span></span></span>, soit D.</p>
+<p>On obtient <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>10101101</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub><mo>&#61;</mo><mo stretchy="false">(</mo><mtext>AD</mtext><msub><mo stretchy="false">)</mo><mn>16</mn></msub></mrow><annotation encoding="application/x-tex">(10101101)&#95;2 &#61; (&#92;text{AD})&#95;{16}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">10101101</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">AD</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>. Aucune division n&rsquo;a été nécessaire.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q22">
+  <div class="question-num">Q22.</div>
+  <div class="question-corps">
+<ol>
+<li>Écrire <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>11110000</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(11110000)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">11110000</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> en base 16.</li>
+<li>Écrire <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>3C</mtext><msub><mo stretchy="false">)</mo><mn>16</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{3C})&#95;{16}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">3C</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> en base 2.</li>
+<li>Pour écrire <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>110101</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(110101)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">110101</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> en base 16, un élève découpe <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1101</mn><mtext>  </mtext><mn>01</mn></mrow><annotation encoding="application/x-tex">1101 &#92;; 01</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1101</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">01</span></span></span></span></span> et obtient <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>D1</mtext><msub><mo stretchy="false">)</mo><mn>16</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{D1})&#95;{16}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">D1</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>. Que lui répondre ?</li>
+</ol>
+
+  </div>
+</div>
+
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Où rencontre-t-on la base 16 ?</span></div>
+  <div class="clue-body">
+<p>En HTML, une couleur s&rsquo;écrit souvent sous la forme <code>#FF8000</code> : trois nombres en base 16, de 00 à FF, donnent les quantités de rouge, de vert et de bleu. Ici, rouge 255, vert 128 et bleu 0 donnent de l&rsquo;orange.</p>
+
+  </div>
+</div>
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-1-ecrire-entier-base/#7" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Que vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>1F</mtext><msub><mo stretchy="false">)</mo><mn>16</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{1F})&#95;{16}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">1F</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> en base 10 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-0" value="0"> <span>31</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-0" value="1"> <span>25</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-0" value="2"> <span>115</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>×</mo><mn>16</mn><mo>&#43;</mo><mn>15</mn><mo>×</mo><mn>1</mn><mo>&#61;</mo><mn>31</mn></mrow><annotation encoding="application/x-tex">1 &#92;times 16 &#43; 15 &#92;times 1 &#61; 31</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">16</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">15</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">31</span></span></span></span></span>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Quelle est l&rsquo;écriture hexadécimale de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>11010110</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(11010110)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">11010110</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-1" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>D6</mtext><msub><mo stretchy="false">)</mo><mn>16</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{D6})&#95;{16}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">D6</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-1" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>6D</mtext><msub><mo stretchy="false">)</mo><mn>16</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{6D})&#95;{16}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">6D</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-1" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mtext>DB</mtext><msub><mo stretchy="false">)</mo><mn>16</mn></msub></mrow><annotation encoding="application/x-tex">(&#92;text{DB})&#95;{16}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">DB</span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>On découpe en paquets de 4 bits en partant de la droite : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1101</mn></mrow><annotation encoding="application/x-tex">1101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1101</span></span></span></span></span> donne D (13) et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0110</mn></mrow><annotation encoding="application/x-tex">0110</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0110</span></span></span></span></span> donne 6.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Pourquoi un chiffre hexadécimal correspond-il exactement à 4 bits ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-2" value="0"> <span>Parce que <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn><mo>&#61;</mo><msup><mn>2</mn><mn>4</mn></msup></mrow><annotation encoding="application/x-tex">16 &#61; 2&#94;4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">16</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span></span></span> : 4 bits permettent d&rsquo;écrire les entiers de 0 à 15.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-2" value="1"> <span>Parce qu&rsquo;un octet contient 4 bits.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-2" value="2"> <span>Parce que la base 16 utilise 4 lettres.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Un chiffre hexadécimal va de 0 à 15, comme une écriture binaire de 4 bits, de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0000</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(0000)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0000</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1111</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(1111)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1111</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>. Un octet contient 8 bits, soit deux chiffres hexadécimaux.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="programmer-les-conversions">Programmer les conversions<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Les fonctions <code>int</code>, <code>bin</code> et <code>hex</code> font déjà les conversions. Les programmer soi-même oblige à comprendre exactement ce qu&rsquo;elles font.</p>
+<h3 id="du-binaire-vers-le-décimal-1">Du binaire vers le décimal<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>Une chaîne de caractères se parcourt comme un tuple : <code>for chiffre in &quot;1101&quot;:</code> donne successivement les caractères <code>&quot;1&quot;</code>, <code>&quot;1&quot;</code>, <code>&quot;0&quot;</code> et <code>&quot;1&quot;</code>, de gauche à droite.</p>
+<p>Plutôt que de calculer chaque puissance de 2, on peut lire les chiffres de gauche à droite en appliquant une règle simple : à chaque nouveau chiffre, on multiplie le résultat par 2 (tout ce qui a déjà été lu monte d&rsquo;une position), puis on ajoute le chiffre.</p>
+<div class="question-bloc" id="q23">
+  <div class="question-num">Q23.</div>
+  <div class="question-corps">
+<p>Compléter le tableau d&rsquo;évolution de la variable <code>n</code> lorsqu&rsquo;on lit la chaîne <code>&quot;1101&quot;</code> en appliquant la règle <code>n = 2 * n + int(chiffre)</code>, avec <code>n</code> égal à 0 au départ.</p>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>étape</strong></th>
+      <th class="align-left"><strong>chiffre lu</strong></th>
+      <th class="align-left"><strong>n</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left">départ</td>
+      <td class="align-left"></td>
+      <td class="align-left">0</td>
+    </tr>
+    <tr>
+      <td class="align-left">1</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">2</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">3</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left">4</td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q24">
+  <div class="question-num">Q24.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>recompose</code> dont la spécification est :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">recompose</span><span class="p">(</span><span class="n">binaire</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne l&#39;entier dont binaire est l&#39;écriture en base 2.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; recompose(&#34;1101&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    13
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; recompose(&#34;11111111&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    255
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; recompose(&#34;0&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    0
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<h3 id="du-décimal-vers-le-binaire-1">Du décimal vers le binaire<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<div class="question-bloc" id="q25">
+  <div class="question-num">Q25.</div>
+  <div class="question-corps">
+<p>On veut écrire la fonction <code>decompose</code>, qui traduit en Python la méthode des divisions successives :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decompose</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne l&#39;écriture en base 2 de l&#39;entier positif n.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; decompose(13)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;1101&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; decompose(42)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;101010&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; decompose(0)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;0&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+<ol>
+<li>Le nombre de divisions n&rsquo;est pas connu à l&rsquo;avance. Quelle boucle faut-il utiliser ? Quelle est sa condition d&rsquo;arrêt ?</li>
+<li>Chaque reste doit être placé à gauche des chiffres déjà obtenus. Si <code>bits</code> est la chaîne déjà construite, quelle instruction ajoute le reste <code>n % 2</code> à sa gauche ?</li>
+<li>Écrire la fonction. Attention au cas <code>n = 0</code>.</li>
+</ol>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Coup de pouce</span></div>
+  <div class="clue-body">
+<ol>
+<li>Reprendre le tableau de l&rsquo;exemple résolu pour 13 : on s&rsquo;arrête quand le quotient devient nul.</li>
+<li>Une chaîne se construit par concaténation avec <code>+</code> ; l&rsquo;ordre des deux morceaux compte.</li>
+<li>Que fait la boucle quand <code>n</code> vaut 0 dès le départ ?</li>
+</ol>
+
+  </div>
+</div>
+
+
+<p>Dans un ordinateur, les nombres sont rangés dans des cases de taille fixe. Une case de 8 bits s&rsquo;appelle un <strong>octet</strong>. Pour écrire 13 sur un octet, on complète à gauche par des 0 : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00001101</mn></mrow><annotation encoding="application/x-tex">00001101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">00001101</span></span></span></span></span>. Ces 0 ne changent pas la valeur, comme 0042 vaut toujours 42.</p>
+<div class="question-bloc" id="q26">
+  <div class="question-num">Q26.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>octet</code>, qui doit utiliser <code>decompose</code> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">octet</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne l&#39;écriture en base 2 de l&#39;entier n sur 8 bits.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Précondition : 0 &lt;= n &lt;= 255.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; octet(13)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;00001101&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; octet(255)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;11111111&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<h3 id="vers-la-base-16">Vers la base 16<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
+<p>La méthode des divisions successives marche dans n&rsquo;importe quelle base : pour la base 16, on divise par 16. Il reste une difficulté : un reste peut valoir de 0 à 15, et il faut l&rsquo;écrire avec un seul chiffre. On range les seize chiffres hexadécimaux dans une chaîne, à la bonne place :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">CHIFFRES</span> <span class="o">=</span> <span class="s2">&#34;0123456789ABCDEF&#34;</span></span></span></code></pre></div>
+<p>Comme pour un tuple, <code>CHIFFRES[13]</code> est le caractère d&rsquo;indice 13, c&rsquo;est-à-dire <code>&quot;D&quot;</code>.</p>
+<div class="question-bloc" id="q27">
+  <div class="question-num">Q27.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>decompose_16</code> en s&rsquo;inspirant de <code>decompose</code> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decompose_16</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne l&#39;écriture en base 16 de l&#39;entier positif n.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; decompose_16(42)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;2A&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; decompose_16(255)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;FF&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; decompose_16(2019)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;7E3&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q28">
+  <div class="question-num">Q28.</div>
+  <div class="question-corps">
+<p>Sans écrire de nouvelle fonction, expliquer comment modifier <code>decompose_16</code> pour obtenir l&rsquo;écriture d&rsquo;un entier en base 8. Quels caractères de <code>CHIFFRES</code> seraient alors utilisés ?</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-1-ecrire-entier-base/#8" data-s="W1swXSxbMF0sWzBdLFswXV0=">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">4 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 4</div>
+      <div class="qcm-enonce"><p>On lit la chaîne <code>&quot;101&quot;</code> en appliquant <code>n = 2 * n + int(chiffre)</code>, avec <code>n</code> égal à 0 au départ. Quelles valeurs <code>n</code> prend-il successivement ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-0" value="0"> <span>1, puis 2, puis 5</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-0" value="1"> <span>1, puis 3, puis 5</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-0" value="2"> <span>1, puis 0, puis 1</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>0</mn><mo>&#43;</mo><mn>1</mn><mo>&#61;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2 &#92;times 0 &#43; 1 &#61; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, puis <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>1</mn><mo>&#43;</mo><mn>0</mn><mo>&#61;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">2 &#92;times 1 &#43; 0 &#61; 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span>, puis <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mo>×</mo><mn>2</mn><mo>&#43;</mo><mn>1</mn><mo>&#61;</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">2 &#92;times 2 &#43; 1 &#61; 5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span></span>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 4</div>
+      <div class="qcm-enonce"><p>Dans <code>decompose</code>, quelle instruction place le reste au bon endroit dans la chaîne <code>bits</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-1" value="0"> <span><code>bits = str(n % 2) + bits</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-1" value="1"> <span><code>bits = bits + str(n % 2)</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-1" value="2"> <span><code>bits = n % 2 + bits</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Chaque nouveau reste se place à gauche des chiffres déjà obtenus. La troisième proposition provoque une erreur <code>TypeError</code> : on ne peut pas additionner un entier et une chaîne.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 4</div>
+      <div class="qcm-enonce"><p>Que retournerait <code>decompose(0)</code> sans le cas particulier <code>if n == 0: return &quot;0&quot;</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-2" value="0"> <span>La chaîne vide <code>&quot;&quot;</code>.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-2" value="1"> <span><code>&quot;0&quot;</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-2" value="2"> <span>La fonction ne s&rsquo;arrêterait jamais.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>La condition <code>n &gt; 0</code> est fausse dès le premier test : la boucle ne s&rsquo;exécute pas et <code>bits</code> reste vide.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 4 / 4</div>
+      <div class="qcm-enonce"><p>Avec <code>CHIFFRES = &quot;0123456789ABCDEF&quot;</code>, que vaut <code>CHIFFRES[11]</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-3" value="0"> <span><code>&quot;B&quot;</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-3" value="1"> <span><code>&quot;A&quot;</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-3" value="2"> <span><code>&quot;11&quot;</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Les indices commencent à 0 : l&rsquo;indice 10 donne <code>&quot;A&quot;</code> et l&rsquo;indice 11 donne <code>&quot;B&quot;</code>, le chiffre hexadécimal qui vaut 11.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="bilan">Bilan<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À l&rsquo;issue de cette activité, je sais…</span></div>
+  <div class="clue-body">
+<ul>
+<li>expliquer que la valeur d&rsquo;un chiffre dépend de sa position, en base 10 comme en base 2 ou 16 ;</li>
+<li>calculer la valeur décimale d&rsquo;une écriture en base 2 ou en base 16 à l&rsquo;aide des poids ;</li>
+<li>écrire un entier en base 2 par la méthode des divisions successives, en lisant les restes dans le bon ordre ;</li>
+<li>passer de la base 2 à la base 16, et inversement, par paquets de 4 bits ;</li>
+<li>utiliser <code>int(..., 2)</code>, <code>int(..., 16)</code>, <code>bin</code>, <code>hex</code> et les préfixes <code>0b</code> et <code>0x</code> ;</li>
+<li>programmer les conversions de la base 2 vers la base 10 et de la base 10 vers les bases 2 et 16.</li>
+</ul>
+
+  </div>
+</div>
+
+<p>Dans le Doc. 4,2, on se demande combien de bits il faut pour écrire un entier donné, et ce qui se passe quand un résultat ne tient plus dans la place prévue.</p>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 17 nov. 2026
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/1%C3%A8re-sp%C3%A9-nsi/index.html">1ère Spé NSI</a></li>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+<script src="/js/qcm.js"></script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>

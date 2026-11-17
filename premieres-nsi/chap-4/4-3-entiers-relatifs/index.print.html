@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html id="R-html" lang="fr-FR" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="print">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="description" content="Énoncé au format pdf Objectif Comprendre comment un ordinateur écrit un entier négatif avec seulement des 0 et des 1, et utiliser pour cela le complément à 2.
+Q13. La mémoire d’un ordinateur ne contient que des 0 et des 1 : il n’y a pas de case pour le signe « −-− ». Proposer une idée pour écrire −5-5−5 sur 4 bits.
+Une fausse bonne idée : le bit de signe Essayons l’idée la plus naturelle. Sur 4 bits, on réserve le bit de gauche au signe (0 pour un nombre positif, 1 pour un nombre négatif) et les 3 autres bits à la valeur absolue. Ainsi, &#43;3&#43;3&#43;3 s’écrit 001100110011 et −3-3−3 s’écrit 101110111011.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Représenter les entiers relatifs :: Physique, Chimie et Informatique">
+    <meta name="twitter:description" content="Énoncé au format pdf Objectif Comprendre comment un ordinateur écrit un entier négatif avec seulement des 0 et des 1, et utiliser pour cela le complément à 2.
+Q13. La mémoire d’un ordinateur ne contient que des 0 et des 1 : il n’y a pas de case pour le signe « −-− ». Proposer une idée pour écrire −5-5−5 sur 4 bits.
+Une fausse bonne idée : le bit de signe Essayons l’idée la plus naturelle. Sur 4 bits, on réserve le bit de gauche au signe (0 pour un nombre positif, 1 pour un nombre négatif) et les 3 autres bits à la valeur absolue. Ainsi, &#43;3&#43;3&#43;3 s’écrit 001100110011 et −3-3−3 s’écrit 101110111011.">
+    <meta property="og:url" content="https://dlatreyte.github.io/premieres-nsi/chap-4/4-3-entiers-relatifs/index.html">
+    <meta property="og:site_name" content="Physique, Chimie et Informatique">
+    <meta property="og:title" content="Représenter les entiers relatifs :: Physique, Chimie et Informatique">
+    <meta property="og:description" content="Énoncé au format pdf Objectif Comprendre comment un ordinateur écrit un entier négatif avec seulement des 0 et des 1, et utiliser pour cela le complément à 2.
+Q13. La mémoire d’un ordinateur ne contient que des 0 et des 1 : il n’y a pas de case pour le signe « −-− ». Proposer une idée pour écrire −5-5−5 sur 4 bits.
+Une fausse bonne idée : le bit de signe Essayons l’idée la plus naturelle. Sur 4 bits, on réserve le bit de gauche au signe (0 pour un nombre positif, 1 pour un nombre négatif) et les 3 autres bits à la valeur absolue. Ainsi, &#43;3&#43;3&#43;3 s’écrit 001100110011 et −3-3−3 s’écrit 101110111011.">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="1ère Spécialité NSI">
+    <meta property="article:published_time" content="2026-11-17T06:00:00+04:00">
+    <meta property="article:modified_time" content="2026-11-17T06:00:00+04:00">
+    <meta property="article:tag" content="Entier Relatif">
+    <meta property="article:tag" content="Bit De Signe">
+    <meta property="article:tag" content="Bit De Poids Fort">
+    <meta property="article:tag" content="Complément À 1">
+    <meta property="article:tag" content="Complément À 2">
+    <meta property="article:tag" content="Addition Modulaire">
+    <meta itemprop="name" content="Représenter les entiers relatifs :: Physique, Chimie et Informatique">
+    <meta itemprop="description" content="Énoncé au format pdf Objectif Comprendre comment un ordinateur écrit un entier négatif avec seulement des 0 et des 1, et utiliser pour cela le complément à 2.
+Q13. La mémoire d’un ordinateur ne contient que des 0 et des 1 : il n’y a pas de case pour le signe « −-− ». Proposer une idée pour écrire −5-5−5 sur 4 bits.
+Une fausse bonne idée : le bit de signe Essayons l’idée la plus naturelle. Sur 4 bits, on réserve le bit de gauche au signe (0 pour un nombre positif, 1 pour un nombre négatif) et les 3 autres bits à la valeur absolue. Ainsi, &#43;3&#43;3&#43;3 s’écrit 001100110011 et −3-3−3 s’écrit 101110111011.">
+    <meta itemprop="datePublished" content="2026-11-17T06:00:00+04:00">
+    <meta itemprop="dateModified" content="2026-11-17T06:00:00+04:00">
+    <meta itemprop="wordCount" content="2039">
+    <meta itemprop="keywords" content="Entier Relatif,Bit De Signe,Bit De Poids Fort,Complément À 1,Complément À 2,Addition Modulaire,Plage De Valeurs">
+    <title>Représenter les entiers relatifs :: Physique, Chimie et Informatique</title>
+    <link href="https://dlatreyte.github.io/premieres-nsi/chap-4/4-3-entiers-relatifs/index.html" rel="canonical" type="text/html" title="Représenter les entiers relatifs :: Physique, Chimie et Informatique">
+    <link href="/premieres-nsi/chap-4/4-3-entiers-relatifs/index.xml" rel="alternate" type="application/rss&#43;xml" title="Représenter les entiers relatifs :: Physique, Chimie et Informatique">
+    <link href="/fonts/katex/katex.min.180c2d77d434d7da51d6625c50a964d4fd6fdbdb9bc8796a0a016c30c49931fb.css" rel="stylesheet">
+    <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
+    <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
+    <script type="application/json" id="R-search-config">{
+      "indexFile": "searchindex.fr.min.e732bbba73bf9e41e5adf06924af4a5ca88a0b828e4860c447d21788d54ede16.js"
+    }</script>
+    <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
+    <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
+    <link href="/css/format-print.min.3792e8ee0dffb739e57d2b695b129ab1513bd9e75268d054f8c3ba035458a65f.css" rel="stylesheet" id="R-format-style">
+    <script type="application/json" id="R-theme-config">{
+      "disableInlineCopyToClipboard": false,
+      "enableBlockCodeWrap": true,
+      "path": "/premieres-nsi/chap-4/4-3-entiers-relatifs/index.html",
+      "relBasePath": "../../..",
+      "relBaseUri": "../../..",
+      "themevariants": [
+        "zen-auto",
+        "relearn-auto",
+        "zen-light",
+        "zen-dark",
+        "relearn-light",
+        "relearn-dark"
+      ],
+      "translations": {
+        "Browser_unsupported_feature": "Ce navigateur ne prend pas en charge cette fonctionnalité",
+        "Change_sorting": "Modifier le tri",
+        "Close_graph": "Fermer le graphique agrandi",
+        "Copied_to_clipboard": "Texte copié dans le presse-papiers!",
+        "Copy_to_clipboard": "Copier le texte dans le presse-papiers",
+        "Deleted_text_end": "Fin du texte supprimé",
+        "Deleted_text_start": "Début du texte supprimé",
+        "Enlarge_graph": "Agrandir le graphique",
+        "History_cleared": "Historique supprimé",
+        "Inserted_text_end": "Fin du texte inséré",
+        "Inserted_text_start": "Début du texte inséré",
+        "Link_copied_to_clipboard": "Lien copié dans le presse-papiers!",
+        "N_matches_on_page": "{1} occurrences de \"{0}\" sur cette page",
+        "N_results_found": "{1} résultats trouvés pour \"{0}\"",
+        "No_results_found": "Aucun résultat trouvé pour \"{0}\"",
+        "Reset_sorting": "Réinitialiser le tri",
+        "Reset_view": "Réinitialiser la vue",
+        "Sort_key_ascending": "trié en position {0}, croissant",
+        "Sort_key_descending": "trié en position {0}, décroissant",
+        "Sortable_columns": "Les en-têtes de colonne avec des boutons permettent le tri.",
+        "Sorted_by_ascending": "Trié par \"{0}\", croissant",
+        "Sorted_by_descending": "Trié par \"{0}\", décroissant",
+        "Sorting_reset": "Tri réinitialisé!",
+        "Unsorted_by": "N'est plus trié par \"{0}\"",
+        "View_reset": "Vue réinitialisée!"
+      }
+    }</script>
+    <script src="/js/theme-head.min.3d5e855473ebe261a3d36bcf4b28cc534a5118418b9af3fa701c68e623d21a06.js"></script><link rel="stylesheet" href="/css/custom.css">
+<style>
+  #R-body-inner article { counter-reset: section; }
+  #R-body-inner article h2 { counter-reset: subsection; }
+  #R-body-inner article h2::before { counter-increment: section; content: counter(section) ". "; }
+  #R-body-inner article h3::before { counter-increment: subsection; content: counter(section) "." counter(subsection) ". "; }
+  #R-body-inner article .box h2::before, #R-body-inner article .box h3::before, #R-body-inner article .clue h2::before, #R-body-inner article .clue h3::before { content: none; counter-increment: none; }
+</style>
+
+  </head>
+  <body class="mobile-support print" data-origin="/premieres-nsi/chap-4/4-3-entiers-relatifs/index.html">
+    <a id="R-skiplink" href="#R-main">Aller au contenu principal</a>
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <header id="R-topbar" class="default-animation">
+        <div class="topbar-wrapper default-animation">
+          <div class="topbar-sidebar-divider default-animation"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar default-animation" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-nav" type="button" title="Menu (CTRL&#43;ALT&#43;n)" aria-expanded="false"><i class="fa-fw fas fa-bars" aria-hidden="true"></i> <span class="title">Menu</span></button></span>
+            </div>
+            <div class="topbar-button topbar-button-toc default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Table des matières (CTRL&#43;ALT&#43;t)" aria-expanded="false"><i class="fa-fw fas fa-table-list" aria-hidden="true"></i> <span class="title">Table des matières</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents" aria-label="Table des matières">
+  <ul>
+    <li><a href="#une-fausse-bonne-idée--le-bit-de-signe">Une fausse bonne idée : le bit de signe</a></li>
+    <li><a href="#lidée-du-compteur-kilométrique">L&rsquo;idée du compteur kilométrique</a></li>
+    <li><a href="#le-complément-à-2--une-méthode-rapide">Le complément à 2 : une méthode rapide</a></li>
+    <li><a href="#programmer-le-complément-à-2">Programmer le complément à 2</a></li>
+    <li><a href="#bilan">Bilan</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="topbar-area topbar-area-middle" data-area="middle">
+            <nav class="topbar-breadcrumbs breadcrumbs highlightable" aria-label="Fil d&#39;Ariane" data-overflow-title="Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Représentation et manipulation des nombres par un ordinateur">
+              <ol itemscope itemtype="http://schema.org/BreadcrumbList"><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/index.html"><span itemprop="name">Physique, Chimie et Informatique</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/index.html"><span itemprop="name">1ère Spécialité NSI</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement" class=""><a itemprop="item" href="/premieres-nsi/chap-4/index.html"><span itemprop="name">Représentation et manipulation des nombres par un ordinateur</span></a><meta itemprop="position" content="3"></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-print default-animation" data-content-empty="disable" data-width-s="area-more" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-4/4-3-entiers-relatifs/index.print.html" title="Imprimer le chapitre entier (CTRL&#43;ALT&#43;p)"><i class="fa-fw fas fa-print" aria-hidden="true"></i> <span class="title">Imprimer le chapitre entier</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-prev default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-4/4-2-bits-entier/index.html" title="Combien de bits pour un entier ? (🡐)"><i class="fa-fw fas fa-chevron-left" aria-hidden="true"></i> <span class="title">Page précédente</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-next default-animation" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><a href="/premieres-nsi/chap-4/4-4-booleens-addition/index.html" title="Booléens et addition binaire (🡒)"><i class="fa-fw fas fa-chevron-right" aria-hidden="true"></i> <span class="title">Page suivante</span></a></span>
+            </div>
+            <div class="topbar-button topbar-button-more default-animation" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show" data-title-width-s="hide" data-title-width-m="hide" data-title-width-l="hide">
+<span class="btn cstyle button link noborder interactive"><button data-button-action="toggle-flyout" type="button" title="Aller plus loin" aria-expanded="false"><i class="fa-fw fas fa-ellipsis-v" aria-hidden="true"></i> <span class="title">Aller plus loin</span></button></span>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a id="R-logo" class="R-default layout-sidebar-row" href="/index.html">
+          <span class="logo-title default-animation">Physique, Chimie et Informatique</span>
+        </a>
+      </header>
+      <div id="R-main-overlay"></div>
+      <main id="R-main" class="highlightable premieres-nsi">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <div class="article-breadcrumbs">Physique, Chimie et Informatique &gt; 1ère Spécialité NSI &gt; Représentation et manipulation des nombres par un ordinateur</div>
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags tags" title="Mots-clés">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/tags/addition-modulaire/index.html">Addition Modulaire</a></li>
+    <li><a class="term-link" href="/tags/bit-de-poids-fort/index.html">Bit De Poids Fort</a></li>
+    <li><a class="term-link" href="/tags/bit-de-signe/index.html">Bit De Signe</a></li>
+    <li><a class="term-link" href="/tags/compl%C3%A9ment-%C3%A0-1/index.html">Complément À 1</a></li>
+    <li><a class="term-link" href="/tags/compl%C3%A9ment-%C3%A0-2/index.html">Complément À 2</a></li>
+    <li><a class="term-link" href="/tags/entier-relatif/index.html">Entier Relatif</a></li>
+    <li><a class="term-link" href="/tags/plage-de-valeurs/index.html">Plage De Valeurs</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="représenter-les-entiers-relatifs">Représenter les entiers relatifs</h1>
+
+<ul>
+<li>
+<a class="remote" href="/premieres-nsi/chap-4/4-3/4-3-enonce.pdf" target="_blank">Énoncé au format pdf</a>
+
+</li>
+</ul>
+<div class="clue clue-goal" style="--accent: #e64553">
+  <div class="clue-header"><img class="clue-icon" src="/clues/flag.svg" alt="" aria-hidden="true"><span class="clue-title">Objectif</span></div>
+  <div class="clue-body">
+<p>Comprendre comment un ordinateur écrit un entier négatif avec seulement des 0 et des 1, et utiliser pour cela le complément à 2.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q13">
+  <div class="question-num">Q13.</div>
+  <div class="question-corps">
+<p>La mémoire d&rsquo;un ordinateur ne contient que des 0 et des 1 : il n&rsquo;y a pas de case pour le signe « <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo></mrow><annotation encoding="application/x-tex">-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">−</span></span></span></span></span> ». Proposer une idée pour écrire <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">5</span></span></span></span></span> sur 4 bits.</p>
+
+  </div>
+</div>
+
+
+<h2 id="une-fausse-bonne-idée--le-bit-de-signe">Une fausse bonne idée : le bit de signe<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Essayons l&rsquo;idée la plus naturelle. Sur 4 bits, on réserve le bit de gauche au signe (0 pour un nombre positif, 1 pour un nombre négatif) et les 3 autres bits à la valeur absolue. Ainsi, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#43;</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">&#43;3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">&#43;</span><span class="mord">3</span></span></span></span></span> s&rsquo;écrit <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0011</mn></mrow><annotation encoding="application/x-tex">0011</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0011</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">-3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">3</span></span></span></span></span> s&rsquo;écrit <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1011</mn></mrow><annotation encoding="application/x-tex">1011</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1011</span></span></span></span></span>.</p>
+<div class="question-bloc" id="q14">
+  <div class="question-num">Q14.</div>
+  <div class="question-corps">
+<p>Avec cette convention sur 4 bits :</p>
+<ol>
+<li>Écrire <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#43;</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">&#43;5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">&#43;</span><span class="mord">5</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">5</span></span></span></span></span>.</li>
+<li>Écrire <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#43;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">&#43;0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">&#43;</span><span class="mord">0</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">-0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">0</span></span></span></span></span>. Que remarque-t-on ?</li>
+<li>Poser l&rsquo;addition binaire des écritures de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&#43;</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">&#43;5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">&#43;</span><span class="mord">5</span></span></span></span></span> et de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">-3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">3</span></span></span></span></span>, en ne gardant que 4 bits. Quel nombre obtient-on ? Quel nombre devrait-on obtenir ?</li>
+</ol>
+
+  </div>
+</div>
+
+
+<p>Cette convention aurait donc un coût : il faudrait un circuit électronique pour additionner les nombres positifs et un autre, plus compliqué, pour les nombres de signes différents. On cherche une écriture des entiers négatifs avec laquelle l&rsquo;addition binaire ordinaire donne directement le bon résultat.</p>
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-3-entiers-relatifs/#5" data-s="W1swXSxbMCwxXV0=">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">2 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 2</div>
+      <div class="qcm-enonce"><p>Avec la convention du bit de signe sur 4 bits (bit de gauche pour le signe, 3 bits pour la valeur absolue), comment s&rsquo;écrit <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">-6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">6</span></span></span></span></span> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q5-0" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1110</mn></mrow><annotation encoding="application/x-tex">1110</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1110</span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q5-0" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0110</mn></mrow><annotation encoding="application/x-tex">0110</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0110</span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q5-0" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1010</mn></mrow><annotation encoding="application/x-tex">1010</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1010</span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Le bit de signe vaut 1 pour un nombre négatif, puis on écrit 6, soit <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>110</mn></mrow><annotation encoding="application/x-tex">110</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">110</span></span></span></span></span>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="multiple" hidden>
+      <div class="qcm-num">Question 2 / 2 <em>(plusieurs réponses possibles)</em></div>
+      <div class="qcm-enonce"><p>Quels sont les défauts de cette convention ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="checkbox" name="q5-1" value="0"> <span>Le nombre zéro a deux écritures, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn></mrow><annotation encoding="application/x-tex">0000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0000</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1000</mn></mrow><annotation encoding="application/x-tex">1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1000</span></span></span></span></span>.</span></label></li>
+        <li data-i="1"><label><input type="checkbox" name="q5-1" value="1"> <span>L&rsquo;addition binaire ordinaire ne donne plus le bon résultat pour des nombres de signes différents.</span></label></li>
+        <li data-i="2"><label><input type="checkbox" name="q5-1" value="2"> <span>On ne peut écrire aucun nombre négatif.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Par exemple, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0101</mn><mo>&#43;</mo><mn>1011</mn></mrow><annotation encoding="application/x-tex">0101 &#43; 1011</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0101</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1011</span></span></span></span></span> donne <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn></mrow><annotation encoding="application/x-tex">0000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0000</span></span></span></span></span> sur 4 bits, alors que <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>&#43;</mo><mo stretchy="false">(</mo><mo>−</mo><mn>3</mn><mo stretchy="false">)</mo><mo>&#61;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">5 &#43; (-3) &#61; 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">3</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span>.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="lidée-du-compteur-kilométrique">L&rsquo;idée du compteur kilométrique<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Un vieux compteur kilométrique de voiture n&rsquo;affiche que 4 chiffres. Lorsqu&rsquo;il indique 9999 et que la voiture parcourt encore un kilomètre, il affiche 0000 : le chiffre 1 de 10000 n&rsquo;a pas de place pour s&rsquo;afficher. C&rsquo;est le dépassement de capacité du Doc. 4,2.</p>
+<div class="question-bloc" id="q15">
+  <div class="question-num">Q15.</div>
+  <div class="question-corps">
+<p>Sur ce compteur à 4 chiffres, quel nombre faut-il ajouter à 0001 pour revenir à 0000 ? Quel nombre « joue le rôle » de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></span> ? Et de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">2</span></span></span></span></span> ?</p>
+
+  </div>
+</div>
+
+
+<p>Une case de 4 bits se comporte exactement comme ce compteur, mais en base 2. Après <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1111</mn></mrow><annotation encoding="application/x-tex">1111</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1111</span></span></span></span></span> vient <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn></mrow><annotation encoding="application/x-tex">0000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0000</span></span></span></span></span>, car <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1111</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub><mo>&#43;</mo><mn>1</mn><mo>&#61;</mo><mo stretchy="false">(</mo><mn>10000</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">(1111)&#95;2 &#43; 1 &#61; (10000)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1111</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">10000</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> et le cinquième bit est perdu. On peut donc décider que l&rsquo;écriture de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></span> est celle qui, ajoutée à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0001</mn></mrow><annotation encoding="application/x-tex">0001</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0001</span></span></span></span></span>, donne <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn></mrow><annotation encoding="application/x-tex">0000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0000</span></span></span></span></span>.</p>
+<div class="question-bloc" id="q16">
+  <div class="question-num">Q16.</div>
+  <div class="question-corps">
+<ol>
+<li>Quelle écriture sur 4 bits, ajoutée à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0001</mn></mrow><annotation encoding="application/x-tex">0001</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0001</span></span></span></span></span>, donne <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn></mrow><annotation encoding="application/x-tex">0000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0000</span></span></span></span></span> (en perdant la retenue finale) ? Quel entier positif représente-t-elle habituellement ?</li>
+<li>Même question pour l&rsquo;écriture de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">2</span></span></span></span></span>, qui ajoutée à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0010</mn></mrow><annotation encoding="application/x-tex">0010</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0010</span></span></span></span></span> doit donner <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn></mrow><annotation encoding="application/x-tex">0000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0000</span></span></span></span></span>.</li>
+<li>En observant ces deux exemples, quel entier positif <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span></span> faut-il écrire pour représenter un entier négatif <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">-x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord mathnormal">x</span></span></span></span></span> sur 4 bits ? Compléter le tableau.</li>
+</ol>
+<table>
+  <thead>
+    <tr>
+      <th class="align-left"><strong>entier</strong></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">2</span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">-3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">3</span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">-4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">4</span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">5</span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">-6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">6</span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">-7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">7</span></span></span></span></span></th>
+      <th class="align-left"><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">-8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">8</span></span></span></span></span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="align-left"><strong>entier positif <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span></span></strong></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+    <tr>
+      <td class="align-left"><strong>écriture sur 4 bits</strong></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+      <td class="align-left"></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Coup de pouce</span></div>
+  <div class="clue-body">
+<p>Sur le compteur kilométrique, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></span> était représenté par <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10000</mn><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">10000 - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">10000</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>. Sur 4 bits, le rôle de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10000</mn></mrow><annotation encoding="application/x-tex">10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">10000</span></span></span></span></span> est joué par <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>10000</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub><mo>&#61;</mo><msup><mn>2</mn><mn>4</mn></msup><mo>&#61;</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">(10000)&#95;2 &#61; 2&#94;4 &#61; 16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">10000</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">16</span></span></span></span></span>.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q17">
+  <div class="question-num">Q17.</div>
+  <div class="question-corps">
+<p>Avec cette nouvelle convention, poser l&rsquo;addition des écritures de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span></span> et de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">-3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">3</span></span></span></span></span> sur 4 bits, en perdant la retenue finale. Le résultat est-il juste ?</p>
+
+  </div>
+</div>
+
+
+<p>On écrit donc les entiers positifs de 0 à 7 comme d&rsquo;habitude, de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn></mrow><annotation encoding="application/x-tex">0000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0000</span></span></span></span></span> à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0111</mn></mrow><annotation encoding="application/x-tex">0111</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0111</span></span></span></span></span>, et les entiers négatifs de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">-8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">8</span></span></span></span></span> à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></span> par les écritures de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1000</mn></mrow><annotation encoding="application/x-tex">1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1000</span></span></span></span></span> à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1111</mn></mrow><annotation encoding="application/x-tex">1111</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1111</span></span></span></span></span>. On remarque que le bit de gauche, appelé <strong>bit de poids fort</strong>, vaut 0 pour les entiers positifs ou nuls et 1 pour les entiers négatifs. On retrouve l&rsquo;idée du bit de signe, mais sans ses défauts : zéro n&rsquo;a qu&rsquo;une seule écriture, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn></mrow><annotation encoding="application/x-tex">0000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0000</span></span></span></span></span>.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
+  <div class="clue-body">
+<p>Sur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> bits, on peut écrire les entiers relatifs compris entre <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">-2&#94;{n-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2&#94;{n-1} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span> :</p>
+<ul>
+<li>un entier <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span> positif ou nul (<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>≤</mo><mi>x</mi><mo>≤</mo><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0 &#92;leq  x &#92;leq  2&#94;{n-1} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>) s&rsquo;écrit comme d&rsquo;habitude ;</li>
+<li>un entier <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">-x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord mathnormal">x</span></span></span></span></span> négatif (<span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>≤</mo><mi>x</mi><mo>≤</mo><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">1 &#92;leq  x &#92;leq  2&#94;{n-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></span>) s&rsquo;écrit comme l&rsquo;entier positif <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">2&#94;n - x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span>.</li>
+</ul>
+<p>Le bit de poids fort vaut 1 pour les entiers négatifs et 0 pour les autres. Sur 8 bits, on écrit les entiers de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>128</mn></mrow><annotation encoding="application/x-tex">-128</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">128</span></span></span></span></span> à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>127</mn></mrow><annotation encoding="application/x-tex">127</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">127</span></span></span></span></span>.</p>
+
+  </div>
+</div>
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-3-entiers-relatifs/#6" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Sur 4 bits, quelle écriture représente <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></span>, c&rsquo;est-à-dire l&rsquo;écriture qui, ajoutée à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0001</mn></mrow><annotation encoding="application/x-tex">0001</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0001</span></span></span></span></span>, donne <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn></mrow><annotation encoding="application/x-tex">0000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0000</span></span></span></span></span> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-0" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1111</mn></mrow><annotation encoding="application/x-tex">1111</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1111</span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-0" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1001</mn></mrow><annotation encoding="application/x-tex">1001</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1001</span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q6-0" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1110</mn></mrow><annotation encoding="application/x-tex">1110</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1110</span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0001</mn><mo>&#43;</mo><mn>1111</mn><mo>&#61;</mo><mn>10000</mn></mrow><annotation encoding="application/x-tex">0001 &#43; 1111 &#61; 10000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0001</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1111</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">10000</span></span></span></span></span>, et il reste <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0000</mn></mrow><annotation encoding="application/x-tex">0000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0000</span></span></span></span></span> sur 4 bits : la retenue finale est perdue.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Sur 4 bits, quel entier positif <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span></span> s&rsquo;écrit comme l&rsquo;entier négatif <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">-3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">3</span></span></span></span></span> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-1" value="0"> <span>13</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-1" value="1"> <span>3</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q6-1" value="2"> <span>11</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>On écrit <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">-x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord mathnormal">x</span></span></span></span></span> comme l&rsquo;entier positif <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>4</mn></msup><mo>−</mo><mi>x</mi><mo>&#61;</mo><mn>16</mn><mo>−</mo><mn>3</mn><mo>&#61;</mo><mn>13</mn></mrow><annotation encoding="application/x-tex">2&#94;4 - x &#61; 16 - 3 &#61; 13</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">16</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">13</span></span></span></span></span>, soit <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1101</mn></mrow><annotation encoding="application/x-tex">1101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1101</span></span></span></span></span>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Quels entiers relatifs peut-on écrire sur 8 bits ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q6-2" value="0"> <span>Les entiers de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>128</mn></mrow><annotation encoding="application/x-tex">-128</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">128</span></span></span></span></span> à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>127</mn></mrow><annotation encoding="application/x-tex">127</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">127</span></span></span></span></span>.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q6-2" value="1"> <span>Les entiers de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>127</mn></mrow><annotation encoding="application/x-tex">-127</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">127</span></span></span></span></span> à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>127</mn></mrow><annotation encoding="application/x-tex">127</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">127</span></span></span></span></span>.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q6-2" value="2"> <span>Les entiers de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>255</mn></mrow><annotation encoding="application/x-tex">-255</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">255</span></span></span></span></span> à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>255</mn></mrow><annotation encoding="application/x-tex">255</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">255</span></span></span></span></span>.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Sur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> bits, on écrit les entiers de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">-2&#94;{n-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></span> à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2&#94;{n-1} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="le-complément-à-2--une-méthode-rapide">Le complément à 2 : une méthode rapide<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Calculer <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">2&#94;n - x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span> puis le convertir en binaire est un peu long. On observe sur le tableau de la partie précédente une méthode plus rapide, que l&rsquo;on appelle le <strong>complément à 2</strong>.</p>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Exemple résolu : écrire −5 sur 8 bits</span></div>
+  <div class="clue-body">
+<ol>
+<li>On écrit la valeur absolue 5 sur 8 bits : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00000101</mn></mrow><annotation encoding="application/x-tex">00000101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">00000101</span></span></span></span></span>.</li>
+<li>On inverse tous les bits (les 0 deviennent des 1 et les 1 des 0). On obtient le <strong>complément à 1</strong> : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11111010</mn></mrow><annotation encoding="application/x-tex">11111010</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11111010</span></span></span></span></span>.</li>
+<li>On ajoute 1 : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11111010</mn><mo>&#43;</mo><mn>1</mn><mo>&#61;</mo><mn>11111011</mn></mrow><annotation encoding="application/x-tex">11111010 &#43; 1 &#61; 11111011</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">11111010</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11111011</span></span></span></span></span>.</li>
+</ol>
+<p>On vérifie avec la règle de la partie précédente : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>−</mo><mn>5</mn><mo>&#61;</mo><mn>251</mn></mrow><annotation encoding="application/x-tex">2&#94;8 - 5 &#61; 251</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">251</span></span></span></span></span>, et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>251</mn><mo>&#61;</mo><mn>128</mn><mo>&#43;</mo><mn>64</mn><mo>&#43;</mo><mn>32</mn><mo>&#43;</mo><mn>16</mn><mo>&#43;</mo><mn>8</mn><mo>&#43;</mo><mn>2</mn><mo>&#43;</mo><mn>1</mn><mo>&#61;</mo><mo stretchy="false">(</mo><mn>11111011</mn><msub><mo stretchy="false">)</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">251 &#61; 128 &#43; 64 &#43; 32 &#43; 16 &#43; 8 &#43; 2 &#43; 1 &#61; (11111011)&#95;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">251</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">128</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">64</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">32</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">16</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">11111011</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>.</p>
+
+  </div>
+</div>
+
+<div class="question-bloc" id="q18">
+  <div class="question-num">Q18.</div>
+  <div class="question-corps">
+<p>Écrire sur 8 bits, à l&rsquo;aide du complément à 2 : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>56</mn></mrow><annotation encoding="application/x-tex">-56</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">56</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>128</mn></mrow><annotation encoding="application/x-tex">-128</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">128</span></span></span></span></span>. Vérifier chaque résultat en calculant <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">2&#94;8 - x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span>.</p>
+
+  </div>
+</div>
+
+
+<p>Pour lire un octet qui commence par 1, on applique la même méthode : le complément à 2 d&rsquo;un entier négatif donne l&rsquo;écriture de sa valeur absolue.</p>
+<div class="question-bloc" id="q19">
+  <div class="question-num">Q19.</div>
+  <div class="question-corps">
+<p>Quels entiers relatifs les octets suivants représentent-ils ? <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>01111111</mn></mrow><annotation encoding="application/x-tex">01111111</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">01111111</span></span></span></span></span>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11110000</mn></mrow><annotation encoding="application/x-tex">11110000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11110000</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10000001</mn></mrow><annotation encoding="application/x-tex">10000001</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">10000001</span></span></span></span></span>.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q20">
+  <div class="question-num">Q20.</div>
+  <div class="question-corps">
+<p>Un élève affirme que <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">5</span></span></span></span></span> s&rsquo;écrit <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10000101</mn></mrow><annotation encoding="application/x-tex">10000101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">10000101</span></span></span></span></span> sur 8 bits, « parce que le 1 de gauche indique le signe ». Expliquer son erreur en calculant la somme de son écriture et de celle de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span></span>.</p>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q21">
+  <div class="question-num">Q21.</div>
+  <div class="question-corps">
+<p>Écrire <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">5</span></span></span></span></span> sur 4 bits puis sur 8 bits. Pourquoi faut-il toujours préciser le nombre de bits avant de parler de complément à 2 ?</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-3-entiers-relatifs/#7" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Quelle est l&rsquo;écriture de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">-3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">3</span></span></span></span></span> sur 8 bits en complément à 2 ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-0" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11111101</mn></mrow><annotation encoding="application/x-tex">11111101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11111101</span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-0" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11111100</mn></mrow><annotation encoding="application/x-tex">11111100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11111100</span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-0" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10000011</mn></mrow><annotation encoding="application/x-tex">10000011</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">10000011</span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span></span> s&rsquo;écrit <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00000011</mn></mrow><annotation encoding="application/x-tex">00000011</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">00000011</span></span></span></span></span> ; inversé : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11111100</mn></mrow><annotation encoding="application/x-tex">11111100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11111100</span></span></span></span></span> ; plus 1 : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11111101</mn></mrow><annotation encoding="application/x-tex">11111101</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11111101</span></span></span></span></span>. Vérification : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>−</mo><mn>3</mn><mo>&#61;</mo><mn>253</mn></mrow><annotation encoding="application/x-tex">2&#94;8 - 3 &#61; 253</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">253</span></span></span></span></span>. La deuxième proposition est le complément à 1, la troisième utilise le bit de signe.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Quel entier relatif l&rsquo;octet <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11111110</mn></mrow><annotation encoding="application/x-tex">11111110</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11111110</span></span></span></span></span> représente-t-il ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-1" value="0"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">2</span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-1" value="1"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>254</mn></mrow><annotation encoding="application/x-tex">254</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">254</span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-1" value="2"> <span><span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>126</mn></mrow><annotation encoding="application/x-tex">-126</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">126</span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Il commence par 1 : il est négatif. Inversé : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00000001</mn></mrow><annotation encoding="application/x-tex">00000001</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">00000001</span></span></span></span></span>, plus 1 : <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00000010</mn><mo>&#61;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">00000010 &#61; 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">00000010</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span>. Il représente <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">2</span></span></span></span></span>.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>L&rsquo;écriture <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1011</mn></mrow><annotation encoding="application/x-tex">1011</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1011</span></span></span></span></span> représente-t-elle toujours le même entier ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q7-2" value="0"> <span>Non : elle représente <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">5</span></span></span></span></span> sur 4 bits, mais <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn></mrow><annotation encoding="application/x-tex">11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11</span></span></span></span></span> lue comme l&rsquo;octet <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>00001011</mn></mrow><annotation encoding="application/x-tex">00001011</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">00001011</span></span></span></span></span>.</span></label></li>
+        <li data-i="1"><label><input type="radio" name="q7-2" value="1"> <span>Oui : elle représente toujours <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">-5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">5</span></span></span></span></span>.</span></label></li>
+        <li data-i="2"><label><input type="radio" name="q7-2" value="2"> <span>Oui : elle représente toujours <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>11</mn></mrow><annotation encoding="application/x-tex">11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">11</span></span></span></span></span>.</span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Une écriture binaire ne veut rien dire tant qu&rsquo;on n&rsquo;a pas précisé le nombre de bits et la convention utilisée.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="programmer-le-complément-à-2">Programmer le complément à 2<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<p>Les fonctions suivantes, écrites dans le Doc. 4,1, sont à recopier en tête du programme :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decompose</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bits</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bits</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">bits</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">bits</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">octet</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bits</span> <span class="o">=</span> <span class="n">decompose</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bits</span> <span class="o">=</span> <span class="s2">&#34;0&#34;</span> <span class="o">+</span> <span class="n">bits</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">bits</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">recompose</span><span class="p">(</span><span class="n">binaire</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">chiffre</span> <span class="ow">in</span> <span class="n">binaire</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">chiffre</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">n</span></span></span></code></pre></div>
+<div class="question-bloc" id="q22">
+  <div class="question-num">Q22.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>complement_a_1</code>, qui inverse tous les bits d&rsquo;une chaîne :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">complement_a_1</span><span class="p">(</span><span class="n">bits</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne la chaîne obtenue en remplaçant chaque 0 de bits
+</span></span></span><span class="line"><span class="cl"><span class="s2">    par 1 et chaque 1 par 0.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; complement_a_1(&#34;00000101&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;11111010&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; complement_a_1(&#34;1011&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;0100&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<p>Ajouter 1 à une chaîne binaire demande de propager des retenues : on le programmera dans le Doc. 4,4. Pour l&rsquo;instant, on utilise la règle de la partie 2 : sur 8 bits, l&rsquo;entier négatif <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">-x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord mathnormal">x</span></span></span></span></span> s&rsquo;écrit comme l&rsquo;entier positif <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">2&#94;8 - x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span>.</p>
+<div class="question-bloc" id="q23">
+  <div class="question-num">Q23.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>relatif_vers_octet</code>, qui doit utiliser la fonction <code>octet</code> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">relatif_vers_octet</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne l&#39;écriture sur 8 bits de l&#39;entier relatif n,
+</span></span></span><span class="line"><span class="cl"><span class="s2">    en complément à 2.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Précondition : -128 &lt;= n &lt;= 127.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; relatif_vers_octet(5)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;00000101&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; relatif_vers_octet(-5)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;11111011&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; relatif_vers_octet(-128)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#39;10000000&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+
+<div class="question-bloc" id="q24">
+  <div class="question-num">Q24.</div>
+  <div class="question-corps">
+<p>Écrire la fonction <code>octet_vers_relatif</code>, qui fait le travail inverse. Choisir la méthode : on peut utiliser <code>recompose</code> et la règle <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>8</mn></msup><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">2&#94;8 - x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span>, ou <code>complement_a_1</code>.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">octet_vers_relatif</span><span class="p">(</span><span class="n">bits</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    Retourne l&#39;entier relatif écrit sur 8 bits par bits,
+</span></span></span><span class="line"><span class="cl"><span class="s2">    en complément à 2.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; octet_vers_relatif(&#34;01111111&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    127
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; octet_vers_relatif(&#34;11110000&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    -16
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &gt;&gt;&gt; octet_vers_relatif(&#34;10000000&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">    -128
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span></span></span></code></pre></div>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Coup de pouce</span></div>
+  <div class="clue-body">
+<p>Commencer par regarder le bit de poids fort <code>bits[0]</code>. S&rsquo;il vaut <code>&quot;1&quot;</code>, l&rsquo;octet lu comme un entier positif vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&#61;</mo><msup><mn>2</mn><mn>8</mn></msup><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">p &#61; 2&#94;8 - x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span> : comment retrouver <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">-x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord mathnormal">x</span></span></span></span></span> à partir de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span></span> ?</p>
+
+  </div>
+</div>
+
+
+<div class="qcm" data-qcm="/premieres-nsi/chap-4/4-3-entiers-relatifs/#8" data-s="W1swXSxbMF0sWzBdXQ==">
+  <div class="qcm-tete">
+    <span class="qcm-icone" aria-hidden="true">?</span>
+    <span class="qcm-titre">Vérifier ses acquis</span>
+    <span class="qcm-info">3 questions</span>
+  </div>
+  <div class="qcm-corps">
+    <div class="qcm-accueil">
+      <p>Répondez aux questions une par une ; le résultat s'affiche à la fin. Recommencez jusqu'à obtenir 100&nbsp;% : vous pouvez aussi afficher les réponses, mais vous ne pourrez alors plus retenter ce QCM.</p>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 1 / 3</div>
+      <div class="qcm-enonce"><p>Que retourne <code>complement_a_1(&quot;0110&quot;)</code> ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-0" value="0"> <span><code>'1001'</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-0" value="1"> <span><code>'0110'</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-0" value="2"> <span><code>'1010'</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Chaque 0 devient 1 et chaque 1 devient 0, dans le même ordre.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 2 / 3</div>
+      <div class="qcm-enonce"><p>Dans <code>relatif_vers_octet</code>, pour un entier <code>n</code> négatif, quel appel donne la bonne écriture ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-1" value="0"> <span><code>octet(2 ** 8 + n)</code></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-1" value="1"> <span><code>octet(2 ** 8 - n)</code></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-1" value="2"> <span><code>octet(-n)</code></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p><code>n</code> est déjà négatif : pour <code>n = -5</code>, <code>2 ** 8 + n</code> vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>256</mn><mo>−</mo><mn>5</mn><mo>&#61;</mo><mn>251</mn></mrow><annotation encoding="application/x-tex">256 - 5 &#61; 251</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">256</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">251</span></span></span></span></span>. <code>2 ** 8 - n</code> vaudrait 261.</p>
+</div>
+    </div>
+    <div class="qcm-q" data-type="unique" hidden>
+      <div class="qcm-num">Question 3 / 3</div>
+      <div class="qcm-enonce"><p>Dans <code>octet_vers_relatif</code>, l&rsquo;octet <code>&quot;11110000&quot;</code> se lit comme l&rsquo;entier positif <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&#61;</mo><mn>240</mn></mrow><annotation encoding="application/x-tex">p &#61; 240</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">240</span></span></span></span></span>. Quel calcul donne l&rsquo;entier relatif ?</p>
+</div>
+      <ul class="qcm-choix">
+        <li data-i="0"><label><input type="radio" name="q8-2" value="0"> <span><code>p - 2 ** 8</code>, qui vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>16</mn></mrow><annotation encoding="application/x-tex">-16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">16</span></span></span></span></span></span></label></li>
+        <li data-i="1"><label><input type="radio" name="q8-2" value="1"> <span><code>2 ** 8 - p</code>, qui vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn></mrow><annotation encoding="application/x-tex">16</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">16</span></span></span></span></span></span></label></li>
+        <li data-i="2"><label><input type="radio" name="q8-2" value="2"> <span><code>-p</code>, qui vaut <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>240</mn></mrow><annotation encoding="application/x-tex">-240</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">240</span></span></span></span></span></span></label></li>
+      </ul>
+      <div class="qcm-explication" hidden><p>Si <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&#61;</mo><msup><mn>2</mn><mn>8</mn></msup><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">p &#61; 2&#94;8 - x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span>, alors <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>x</mi><mo>&#61;</mo><mi>p</mi><mo>−</mo><msup><mn>2</mn><mn>8</mn></msup></mrow><annotation encoding="application/x-tex">-x &#61; p - 2&#94;8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span></span>.</p>
+</div>
+    </div>
+    <div class="qcm-bilan" hidden></div>
+  </div>
+  <div class="qcm-actions">
+    <button type="button" class="qcm-btn qcm-commencer">Commencer</button>
+    <button type="button" class="qcm-btn qcm-valider" hidden disabled>Valider</button>
+    <button type="button" class="qcm-btn qcm-recommencer" hidden>Recommencer</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-reveler" hidden>Voir les réponses</button>
+    <button type="button" class="qcm-btn qcm-secondaire qcm-revoir" hidden>Revoir les questions</button>
+  </div>
+</div>
+
+<h2 id="bilan">Bilan<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À l&rsquo;issue de cette activité, je sais…</span></div>
+  <div class="clue-body">
+<ul>
+<li>expliquer pourquoi un simple bit de signe ne convient pas (deux zéros, addition fausse) ;</li>
+<li>écrire un entier négatif sur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> bits comme l&rsquo;entier positif <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">2&#94;n - x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span></span> ;</li>
+<li>utiliser le complément à 2 (inverser les bits, puis ajouter 1) pour écrire un entier négatif ou pour lire un octet qui commence par 1 ;</li>
+<li>donner la plage des entiers relatifs écrits sur <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></span> bits, de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">-2&#94;{n-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></span> à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2&#94;{n-1} - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>, et en particulier de <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>128</mn></mrow><annotation encoding="application/x-tex">-128</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">128</span></span></span></span></span> à <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>127</mn></mrow><annotation encoding="application/x-tex">127</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">127</span></span></span></span></span> sur 8 bits ;</li>
+<li>expliquer pourquoi il faut toujours préciser le nombre de bits ;</li>
+<li>programmer le complément à 1 et les conversions entre un entier relatif et son octet.</li>
+</ul>
+
+  </div>
+</div>
+
+<p>Dans le Doc. 4,4, on programme l&rsquo;addition de deux octets. On pourra alors ajouter 1 à un complément à 1, et vérifier que l&rsquo;addition fonctionne aussi pour les entiers négatifs.</p>
+
+  <footer class="footline">
+              <i class='fa-fw fas fa-calendar-days' aria-hidden="true"></i> 17 nov. 2026
+<div class="R-taxonomy taxonomy-categories" title="Catégories">
+  <i class="fa-fw fas fa-layer-group" aria-hidden="true"></i>
+  <ul>
+    <li><a class="term-link" href="/categories/1%C3%A8re-sp%C3%A9-nsi/index.html">1ère Spé NSI</a></li>
+    <li><a class="term-link" href="/categories/informatique/index.html">Informatique</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <script src="/js/theme.min.5a920fa05aa9f8c01f48a220181456215837cab4848afd4b89241d1f9da5efe2.js" defer></script><script>
+(function () {
+  var zones = ['R-sidebar', 'R-topbar', 'R-body'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  var motif = /\$[^$\s][^$]*\$/;
+  function aRendre(zone) {
+    var w = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        return n.parentElement.closest('code, pre, script, style, textarea, .katex') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (w.nextNode()) { if (motif.test(w.currentNode.nodeValue)) return true; }
+    return false;
+  }
+  if (!zones.some(aRendre)) return;
+  var base = "/vendor/katex/";
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = base + 'katex.min.css';
+  document.head.appendChild(css);
+  function charger(src, suite) { var s = document.createElement('script'); s.src = base + src; s.onload = suite; document.head.appendChild(s); }
+  charger('katex.min.js', function () { charger('contrib/mhchem.min.js', function () { charger('contrib/auto-render.min.js', function () {
+    zones.forEach(function (zone) {
+      renderMathInElement(zone, {
+        delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+        ignoredClasses: ['katex'], throwOnError: false
+      });
+    });
+  }); }); });
+})();
+</script>
+<script src="/js/qcm.js"></script>
+
+    <div id="toast-container" role="status" aria-live="polite" aria-atomic="false" aria-label="Notifications" popover="manual"></div>
+  </body>
+</html>
