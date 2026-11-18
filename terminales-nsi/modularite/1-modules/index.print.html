@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta name="description" content="Ce chapitre se concentre sur les modules de Python et sur les modalités d’importation des données des modules dans l’environnement de travail.
-À retenir L’objectif de ce document est de souligner l’importance d’un code modulaire, c’est à dire d’un code qui :
-puisse être utilisé dans plusieurs programmes ; puisse être documenté précisément ; soit suffisamment compact pour être étudié avec soin et en particulier testé. Qu’est-ce qu’un module ? À retenir Un module permet d’organiser logiquement le code Python.">
+    <meta name="description" content="Objectif Organiser son code en modules, importer un module ou certains de ses objets en connaissant les conséquences sur les espaces de noms, et gérer les exceptions pour écrire des programmes robustes.
+Avant de commencer, prévoir ce qu’affiche ce programme, puis vérifier.
+x = 10 def f() -&gt; None: x = 5 print(x) f() print(x) Réponse Le programme affiche 5 puis 10. L’affectation x = 5 dans la fonction crée une variable locale x, différente de la variable globale x. Quand la fonction se termine, sa variable locale disparaît, et print(x) affiche la variable globale, qui n’a pas changé. Ce document explique ces règles de portée, et ce qu’elles deviennent quand on importe des modules.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Modules et exceptions :: Physique, Chimie et Informatique">
-    <meta name="twitter:description" content="Ce chapitre se concentre sur les modules de Python et sur les modalités d’importation des données des modules dans l’environnement de travail.
-À retenir L’objectif de ce document est de souligner l’importance d’un code modulaire, c’est à dire d’un code qui :
-puisse être utilisé dans plusieurs programmes ; puisse être documenté précisément ; soit suffisamment compact pour être étudié avec soin et en particulier testé. Qu’est-ce qu’un module ? À retenir Un module permet d’organiser logiquement le code Python.">
+    <meta name="twitter:description" content="Objectif Organiser son code en modules, importer un module ou certains de ses objets en connaissant les conséquences sur les espaces de noms, et gérer les exceptions pour écrire des programmes robustes.
+Avant de commencer, prévoir ce qu’affiche ce programme, puis vérifier.
+x = 10 def f() -&gt; None: x = 5 print(x) f() print(x) Réponse Le programme affiche 5 puis 10. L’affectation x = 5 dans la fonction crée une variable locale x, différente de la variable globale x. Quand la fonction se termine, sa variable locale disparaît, et print(x) affiche la variable globale, qui n’a pas changé. Ce document explique ces règles de portée, et ce qu’elles deviennent quand on importe des modules.">
     <meta property="og:url" content="https://dlatreyte.github.io/terminales-nsi/modularite/1-modules/index.html">
     <meta property="og:site_name" content="Physique, Chimie et Informatique">
     <meta property="og:title" content="Modules et exceptions :: Physique, Chimie et Informatique">
-    <meta property="og:description" content="Ce chapitre se concentre sur les modules de Python et sur les modalités d’importation des données des modules dans l’environnement de travail.
-À retenir L’objectif de ce document est de souligner l’importance d’un code modulaire, c’est à dire d’un code qui :
-puisse être utilisé dans plusieurs programmes ; puisse être documenté précisément ; soit suffisamment compact pour être étudié avec soin et en particulier testé. Qu’est-ce qu’un module ? À retenir Un module permet d’organiser logiquement le code Python.">
+    <meta property="og:description" content="Objectif Organiser son code en modules, importer un module ou certains de ses objets en connaissant les conséquences sur les espaces de noms, et gérer les exceptions pour écrire des programmes robustes.
+Avant de commencer, prévoir ce qu’affiche ce programme, puis vérifier.
+x = 10 def f() -&gt; None: x = 5 print(x) f() print(x) Réponse Le programme affiche 5 puis 10. L’affectation x = 5 dans la fonction crée une variable locale x, différente de la variable globale x. Quand la fonction se termine, sa variable locale disparaît, et print(x) affiche la variable globale, qui n’a pas changé. Ce document explique ces règles de portée, et ce qu’elles deviennent quand on importe des modules.">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Terminales Spé. NSI">
@@ -26,12 +26,12 @@ puisse être utilisé dans plusieurs programmes ; puisse être documenté préc
     <meta property="article:tag" content="Modules">
     <meta property="article:tag" content="Exceptions">
     <meta itemprop="name" content="Modules et exceptions :: Physique, Chimie et Informatique">
-    <meta itemprop="description" content="Ce chapitre se concentre sur les modules de Python et sur les modalités d’importation des données des modules dans l’environnement de travail.
-À retenir L’objectif de ce document est de souligner l’importance d’un code modulaire, c’est à dire d’un code qui :
-puisse être utilisé dans plusieurs programmes ; puisse être documenté précisément ; soit suffisamment compact pour être étudié avec soin et en particulier testé. Qu’est-ce qu’un module ? À retenir Un module permet d’organiser logiquement le code Python.">
+    <meta itemprop="description" content="Objectif Organiser son code en modules, importer un module ou certains de ses objets en connaissant les conséquences sur les espaces de noms, et gérer les exceptions pour écrire des programmes robustes.
+Avant de commencer, prévoir ce qu’affiche ce programme, puis vérifier.
+x = 10 def f() -&gt; None: x = 5 print(x) f() print(x) Réponse Le programme affiche 5 puis 10. L’affectation x = 5 dans la fonction crée une variable locale x, différente de la variable globale x. Quand la fonction se termine, sa variable locale disparaît, et print(x) affiche la variable globale, qui n’a pas changé. Ce document explique ces règles de portée, et ce qu’elles deviennent quand on importe des modules.">
     <meta itemprop="datePublished" content="2020-09-15T05:06:32+04:00">
     <meta itemprop="dateModified" content="2020-09-15T05:06:32+04:00">
-    <meta itemprop="wordCount" content="1893">
+    <meta itemprop="wordCount" content="2468">
     <meta itemprop="keywords" content="Modules,Exceptions">
     <title>Modules et exceptions :: Physique, Chimie et Informatique</title>
     <link href="https://dlatreyte.github.io/terminales-nsi/modularite/1-modules/index.html" rel="canonical" type="text/html" title="Modules et exceptions :: Physique, Chimie et Informatique">
@@ -40,7 +40,7 @@ puisse être utilisé dans plusieurs programmes ; puisse être documenté préc
     <link href="/css/search.19b8eb7faa53e727a407aa2d781e21185a35cfc9330628acc11df190f919f003.css" rel="stylesheet">
     <script src="/js/search.fr.1c9933c1b5caa31c51cd9fb87932c2dc6ffdacbddebf3bff82c157015cd46453.js" defer></script>
     <script type="application/json" id="R-search-config">{
-      "indexFile": "searchindex.fr.min.25350ece31115c596f3b5597de3309bce29102e11d70f8175e2c73ad2afac05e.js"
+      "indexFile": "searchindex.fr.min.032c886bfe877856290861ca42196f1b17431361364df8be429f178efba6b7bb.js"
     }</script>
     <link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet" media="print" class="R-async-style"><noscript><link href="/fonts/fontawesome/css/all.min.e0b69df26e19596d4b81bf7eb0c54b6047e7221ec18d5d4d40c11eefd3ef8a4b.css" rel="stylesheet"></noscript>
     <link href="/css/theme.min.c7e2448045595a9e9d80e156a76f29143495440ccbd2bf5c25115c55e2d67a36.css" rel="stylesheet">
@@ -133,6 +133,7 @@ puisse être utilisé dans plusieurs programmes ; puisse être documenté préc
       </ul>
     </li>
     <li><a href="#application">Application</a></li>
+    <li><a href="#bilan">Bilan</a></li>
   </ul>
 </nav>
                 </div>
@@ -187,13 +188,44 @@ puisse être utilisé dans plusieurs programmes ; puisse être documenté préc
 
 <h1 id="modules-et-exceptions">Modules et exceptions</h1>
 
+<div class="clue clue-goal" style="--accent: #e64553">
+  <div class="clue-header"><img class="clue-icon" src="/clues/flag.svg" alt="" aria-hidden="true"><span class="clue-title">Objectif</span></div>
+  <div class="clue-body">
+<p>Organiser son code en modules, importer un module ou certains de ses objets en connaissant les conséquences sur les espaces de noms, et gérer les exceptions pour écrire des programmes robustes.</p>
+
+  </div>
+</div>
+
+<p>Avant de commencer, prévoir ce qu&rsquo;affiche ce programme, puis vérifier.</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">f</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></span></span></code></pre></div>
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Réponse
+  </summary>
+  <div class="box-content">
+<p>Le programme affiche 5 puis 10. L&rsquo;affectation <code>x = 5</code> dans la fonction crée une <strong>variable locale</strong> <code>x</code>, différente de la variable globale <code>x</code>. Quand la fonction se termine, sa variable locale disparaît, et <code>print(x)</code> affiche la variable globale, qui n&rsquo;a pas changé. Ce document explique ces règles de portée, et ce qu&rsquo;elles deviennent quand on importe des modules.</p>
+  </div>
+</details>
 <p>Ce chapitre se concentre sur les modules de Python et sur les modalités
 d&rsquo;importation des données des modules dans l&rsquo;environnement de travail.</p>
 <div class="clue clue-success" style="--accent: #40a02b">
   <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
   <div class="clue-body">
 <p>L&rsquo;objectif de ce document est de souligner l&rsquo;importance d&rsquo;un <strong>code modulaire</strong>,
-c&rsquo;est à dire d&rsquo;un code qui :</p>
+c&rsquo;est-à-dire d&rsquo;un code qui :</p>
 <ul>
 <li>puisse être <em>utilisé dans plusieurs programmes</em> ;</li>
 <li>puisse être <em>documenté</em> précisément ;</li>
@@ -215,7 +247,7 @@ c&rsquo;est à dire d&rsquo;un code qui :</p>
 <ul>
 <li>Quand la taille du code augmente, il peut être pratique de le diviser en entités organisées qui
 peuvent continuer à interagir.</li>
-<li>Un module permet aussi de se créer une «  boite à outils » contenant des fonctions appelées depuis
+<li>Un module permet aussi de se créer une « boîte à outils » contenant des fonctions appelées depuis
 plusieurs programmes.</li>
 <li>Finalement, <em>un module permet de bénéficier du travail déjà effectué, maximisant ainsi la réutilisabilité du code</em>.</li>
 </ul>
@@ -236,29 +268,26 @@ auquel on ajoute l&rsquo;extension</em> <code>.py</code>.</p>
 <p>Un module peut contenir tout objet Python: <em>variables</em>, <em>fonctions</em>,
 <em>classes</em>, <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>…</mo></mrow><annotation encoding="application/x-tex">&#92;ldots</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.123em;"></span><span class="minner">…</span></span></span></span></span></p>
 <h2 id="chemin-de-recherche-et-recherche-de-fichiers">Chemin de recherche et recherche de fichiers<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
-<p>L&rsquo;importation de modules requiert un processus nommé <em>chemin de recherche</em> .
-C&rsquo;est une procédure de recherche dans un <em>ensemble de répertoires (dossiers) du système
-de fichiers</em> &mdash; le résultat de cette recherche dépend donc de l&rsquo;installation de Python et du système d&rsquo;exploitation utilisé &mdash; pour trouver le fichier module:</p>
+<p>L&rsquo;importation de modules s&rsquo;appuie sur le <em>chemin de recherche</em> :
+c&rsquo;est une liste de <em>répertoires (dossiers) du système de fichiers</em> dans lesquels Python cherche
+le fichier du module. Cette liste dépend de l&rsquo;installation de Python et du système d&rsquo;exploitation utilisé. Par exemple :</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">sys</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;/Users/mats/anaconda/lib/python35.zip&#39;</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5&#39;</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/plat-darwin&#39;</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/lib-dynload&#39;</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/site-packages&#39;</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/site-packages/Sphinx-1.3.1-py3.5.egg&#39;</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/site-packages/aeosa&#39;</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl"><span class="s1">&#39;/Users/mats/anaconda/lib/python3.5/site-packages/setuptools-19.4-py3.5.egg&#39;</span><span class="p">]</span></span></span></code></pre></div>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;/usr/lib/python312.zip&#39;</span><span class="p">,</span> <span class="s1">&#39;/usr/lib/python3.12&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;/usr/lib/python3.12/lib-dynload&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;/home/eleve/.local/lib/python3.12/site-packages&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;/usr/lib/python3/dist-packages&#39;</span><span class="p">]</span></span></span></code></pre></div>
+<p>La chaîne vide <code>''</code> désigne le répertoire courant.</p>
 <p>Dans le cas où la recherche d&rsquo;un module échoue, une exception est levée par
 l&rsquo;interpréteur :</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">xxx</span>
 </span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
 </span></span><span class="line"><span class="cl">  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="ne">ImportError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;xxx&#39;</span></span></span></code></pre></div>
+</span></span><span class="line"><span class="cl"><span class="ne">ModuleNotFoundError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;xxx&#39;</span></span></span></code></pre></div>
 <p>Puisque le <em>chemin de recherche</em> consiste à construire une liste de
-répertoires (dossiers), il est possible de la modifier. La méthode de liste <code>append()</code>
+répertoires (dossiers), il est possible de la modifier. Ajouter un répertoire à cette liste avec la méthode <code>append</code>
 permet d&rsquo;importer un module situé dans un répertoire absent du chemin de
-recherche:</p>
+recherche :</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;/home/utilisateur/dossier-modules&#39;</span><span class="p">)</span></span></span></code></pre></div>
 <div class="clue clue-warning" style="--accent: #df8e1d">
   <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
@@ -275,7 +304,7 @@ contenant le code qui importe le module.</p>
   <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
   <div class="clue-body">
 <p>La <em>portée</em> d&rsquo;un identificateur est la portion du programme à laquelle sa
-déclaration s&rsquo;applique. On emploie également le terme de <em>visibilité</em> .</p>
+déclaration s&rsquo;applique. On emploie également le terme de <em>visibilité</em>.</p>
 <p><em>Les variables définies dans une fonction ont une <strong>portée locale</strong>, celles
 définies au plus haut niveau d&rsquo;un module ont une <strong>portée globale</strong></em>.</p>
 
@@ -289,16 +318,17 @@ définies au plus haut niveau d&rsquo;un module ont une <strong>portée globale<
 qu&rsquo;elles n&rsquo;aient été détruites, leur durée de vie est égale à celle du
 script qui s&rsquo;exécute</em>. En revanche, les <strong>variables locales</strong>, comme le <strong>bloc de
 pile</strong> dans lequel elles résident, <em>sont temporaires et ne
-«  vivent » que le temps pendant lequel les fonctions dans
+« vivent » que le temps pendant lequel les fonctions dans
 lesquelles elles sont définies sont actives</em>.</p>
 
   </div>
 </div>
 
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">chaine_globale</span> <span class="o">=</span> <span class="s2">&#34;Salut&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">bonjour</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl"><span class="err">…</span>     <span class="n">chaine_locale</span> <span class="o">=</span> <span class="s2">&#34;la planète&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="err">…</span>     <span class="nb">print</span><span class="p">(</span><span class="n">chaine_globale</span> <span class="o">+</span> <span class="n">chaine_locale</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">bonjour</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>     <span class="n">chaine_locale</span> <span class="o">=</span> <span class="s2">&#34; la planète&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">chaine_globale</span> <span class="o">+</span> <span class="n">chaine_locale</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">bonjour</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="n">Salut</span> <span class="n">la</span> <span class="n">planète</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">chaine_locale</span><span class="p">)</span>
@@ -312,18 +342,21 @@ lesquelles elles sont définies sont actives</em>.</p>
   <div class="clue-body">
 <p>Dans le cas où une variable locale porte le même nom qu&rsquo;une variable
 globale, c&rsquo;est la variable locale qui est utilisée. <em>Python cherche d&rsquo;abord
-dans l&rsquo;espace de nom local avant de chercher dans l&rsquo;espace de nom global.</em></p>
+dans l&rsquo;espace de noms local avant de chercher dans l&rsquo;espace de noms global.</em></p>
 
   </div>
 </div>
 
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">chaine</span> <span class="o">=</span> <span class="s2">&#34;Bonjour&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">au_revoir</span><span class="p">():</span>
-</span></span><span class="line"><span class="cl"><span class="err">…</span>     <span class="n">chaine</span> <span class="o">=</span> <span class="s2">&#34;Au revoir&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="err">…</span>     <span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">au_revoir</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>     <span class="n">chaine</span> <span class="o">=</span> <span class="s2">&#34;Au revoir&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>     <span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">au_revoir</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="n">Au</span> <span class="n">revoir</span></span></span></code></pre></div>
-<p>Il est donc possible de «  masquer » une variable globale, en utilisant une
+</span></span><span class="line"><span class="cl"><span class="n">Au</span> <span class="n">revoir</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">chaine</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Bonjour</span></span></span></code></pre></div>
+<p>Il est donc possible de « masquer » une variable globale, en utilisant une
 variable locale de même nom.</p>
 <div class="clue clue-info" style="--accent: #04a5e5">
   <div class="clue-header"><img class="clue-icon" src="/clues/info.svg" alt="" aria-hidden="true"><span class="clue-title">Info</span></div>
@@ -357,7 +390,7 @@ portée est <strong>globale</strong>, s&rsquo;il se situe dans une fonction, sa 
 <div class="clue clue-warning" style="--accent: #df8e1d">
   <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
   <div class="clue-body">
-<p>L&rsquo;appel import amène le module dans l&rsquo;espace de nom, pas les objets qu&rsquo;il
+<p>L&rsquo;instruction <code>import</code> amène le module dans l&rsquo;espace de noms, pas les objets qu&rsquo;il
 contient. La notation <code>.</code> doit être utilisée afin d&rsquo;utiliser ces objets.</p>
 
   </div>
@@ -390,7 +423,7 @@ contient. La notation <code>.</code> doit être utilisée afin d&rsquo;utiliser 
 </div>
 
 <img src="/terminales-nsi/chap-2/fig-2-1-2.jpg" alt="" width="80%" />
-> Résultat de l'importation du module `os`. Aucune référence à l'attribut `name` n'existe dans l'espace de nom global.
+> Résultat de l'importation du module `os`. Aucune référence à l'attribut `name` n'existe dans l'espace de noms global.
 <h4 id="comment-obtenir-la-liste-de-tous-les-modules-importés-par-un-programme">Comment obtenir la liste de tous les modules importés par un programme ?<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">()</span></span></span></code></pre></div>
 <h3 id="lexpression-from--import">L&rsquo;expression from &hellip; import<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h3>
@@ -398,7 +431,7 @@ contient. La notation <code>.</code> doit être utilisée afin d&rsquo;utiliser 
   <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
   <div class="clue-body">
 <p>Il est possible d&rsquo;importer des objets particuliers d&rsquo;un module dans le
-programme. <strong>L&rsquo;objet appartient alors réellement à l&rsquo;espace de nom du
+programme. <strong>L&rsquo;objet appartient alors réellement à l&rsquo;espace de noms du
 programme</strong>.</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">name</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
@@ -410,19 +443,20 @@ programme</strong>.</p>
 <h4 id="remarque">Remarque<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
 <p>Ce type d&rsquo;import peut présenter de réels dangers dans un programme dont le nombre de lignes est important et dont le développement s&rsquo;effectue sur une longue durée. <em>Que se passe-t-il si, dans le programme principal, un attribut ou
 une fonction portent le même nom que l&rsquo;élément importé ?</em></p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">sinc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="o">...</span>     <span class="k">return</span> <span class="s1">&#39;coucou&#39;</span><span class="o">*</span><span class="n">x</span>
-</span></span><span class="line"><span class="cl"><span class="o">...</span> 
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">sinc</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>     <span class="k">return</span> <span class="s2">&#34;coucou&#34;</span> <span class="o">*</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">sinc</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="s1">&#39;coucoucoucoucoucou&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pylab</span> <span class="kn">import</span> <span class="n">sinc</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sinc</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">sinc</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="mf">3.8981718325193755e-17</span></span></span></code></pre></div>
+</span></span><span class="line"><span class="cl"><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="o">-</span><span class="mf">3.8981718325193755e-17</span><span class="p">)</span></span></span></code></pre></div>
+<p>La fonction <code>sinc</code> du programme a été remplacée, sans aucun message, par la fonction <code>sinc</code> du module <code>numpy</code>.</p>
 <h4 id="remarque-1">Remarque<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
 <p>Il existe une façon encore plus dangereuse d&rsquo;utiliser l&rsquo;expression <code>from ... import ...</code> :</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="o">*</span></span></span></code></pre></div>
-<p><em>Tous les objets contenus dans le module sont alors ajoutés à l&rsquo;espace de nom
-globale du programme.</em></p>
+<p><em>Tous les objets contenus dans le module sont alors ajoutés à l&rsquo;espace de noms
+global du programme.</em></p>
 <div class="clue clue-warning" style="--accent: #df8e1d">
   <div class="clue-header"><img class="clue-icon" src="/clues/warning.svg" alt="" aria-hidden="true"><span class="clue-title">Avertissement</span></div>
   <div class="clue-body">
@@ -442,8 +476,8 @@ et procéder ensuite comme avec le nom complet :</p>
 <div class="clue clue-success" style="--accent: #40a02b">
   <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
   <div class="clue-body">
-<p>Un module n&rsquo;est <em>incorporé dans l&rsquo;espace de nom global</em> qu&rsquo;une seule fois, quel que soit le nombre de fois
-où il est <em>importé</em>.</p>
+<p>Un module n&rsquo;est <em>chargé</em> (son code n&rsquo;est exécuté) qu&rsquo;une seule fois, quel que soit le nombre de fois
+où il est <em>importé</em>. Les importations suivantes réutilisent le module déjà chargé.</p>
 
   </div>
 </div>
@@ -456,31 +490,36 @@ où il est <em>importé</em>.</p>
 </span></span></span><span class="line"><span class="cl"><span class="s2">Un module de démonstration.
 </span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Fonctions du module</span>
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">b</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s2">    Affiche b.
-</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne la chaîne &#34;b&#34;.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;b&#34;</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">a</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Affiche a.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Retourne la chaîne &#34;a&#34;.&#34;&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;a&#34;</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Attributs (variables) du module</span>
 </span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="mi">2</span>
 </span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="mi">2</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>              <span class="c1"># test des fonctions du module</span>
-</span></span><span class="line"><span class="cl">    <span class="k">assert</span>  <span class="n">b</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&#34;b&#34;</span>                  <span class="c1"># place des assert</span></span></span></code></pre></div>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>  <span class="c1"># test des fonctions du module</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">b</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&#34;b&#34;</span>  <span class="c1"># place des assert</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">a</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&#34;a&#34;</span></span></span></code></pre></div>
 <ol start="2">
-<li>Dans l&rsquo;interpréteur intéractif, lancé depuis le dossier dans lequel on a enregistré le module <code>demo.py</code> :</li>
+<li>Dans l&rsquo;interpréteur interactif, lancé depuis le dossier dans lequel on a enregistré le module <code>demo.py</code> :</li>
 </ol>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">demo</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">b</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl"><span class="s2">&#34;b&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">demo</span><span class="o">.</span><span class="n">b</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;b&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">demo</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="mi">2</span></span></span></code></pre></div>
+<p>Quand on exécute <code>demo.py</code> directement, la variable <code>__name__</code> vaut <code>&quot;__main__&quot;</code> et les tests sont exécutés. Quand on importe le module, <code>__name__</code> vaut <code>&quot;demo&quot;</code> : les tests ne sont pas exécutés.</p>
 <h2 id="mécanisme-de-gestion-des-exceptions">Mécanisme de gestion des exceptions<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <p>Lorsqu&rsquo;un problème intervient lors de l&rsquo;exécution d&rsquo;un programme (division
 par zéro, tentative d&rsquo;ouverture d&rsquo;un fichier qui n&rsquo;existe pas, erreur de
@@ -488,28 +527,29 @@ syntaxe, etc.), l&rsquo;interpréteur passe dans un mode particulier dans lequel
 il stoppe l&rsquo;exécution du programme en cours et affiche une erreur :</p>
 <div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="mi">7</span> <span class="o">/</span> <span class="mi">0</span>
 </span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">integer</span> <span class="n">division</span> <span class="ow">or</span> <span class="n">modulo</span> <span class="n">by</span> <span class="n">zero</span>
+</span></span><span class="line"><span class="cl">  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;monfichier.txt&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;monfichier.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="ne">IOError</span><span class="p">:</span> <span class="p">[</span><span class="n">Errno</span> <span class="mi">2</span><span class="p">]</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span><span class="p">:</span> <span class="s1">&#39;monfichier.txt&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="ne">FileNotFoundError</span><span class="p">:</span> <span class="p">[</span><span class="n">Errno</span> <span class="mi">2</span><span class="p">]</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span><span class="p">:</span> <span class="s1">&#39;monfichier.txt&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">message</span>
 </span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;message&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="kc">True</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coucou !&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-</span></span><span class="line"><span class="cl"><span class="n">File</span> <span class="s2">&#34;tm_python&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="kc">True</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coucou !&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">                   <span class="o">^</span>
+</span></span><span class="line"><span class="cl">  <span class="n">File</span> <span class="s2">&#34;&lt;stdin&gt;&#34;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coucou !&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">               <span class="o">^^^^^</span>
 </span></span><span class="line"><span class="cl"><span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">syntax</span></span></span></code></pre></div>
 <div class="clue clue-success" style="--accent: #40a02b">
   <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Message d&rsquo;erreur</span></div>
   <div class="clue-body">
-<p>Le message affiché contient le <code>traceback</code>, c&rsquo;est à dire la pile d&rsquo;appel &mdash; le chemin parcouru par l&rsquo;interpréteur pour atteindre l&rsquo;erreur (soit la liste des fonctions traversées pour atteindre l&rsquo;erreur).<br>
-Ce message comporte le <strong>type d&rsquo;exception</strong> levée (<code>ZeroDivisionError</code>, <code>IOError</code>, <code>NameError</code>, <code>SyntaxError</code>, etc.)  et un <strong>message</strong> qui décrit le problème rencontré.</p>
+<p>Le message affiché contient le <code>traceback</code>, c&rsquo;est-à-dire la pile d&rsquo;appels : le chemin parcouru par l&rsquo;interpréteur pour atteindre l&rsquo;erreur (la liste des fonctions traversées pour atteindre l&rsquo;erreur).<br>
+Ce message comporte le <strong>type d&rsquo;exception</strong> levée (<code>ZeroDivisionError</code>, <code>FileNotFoundError</code>, <code>NameError</code>, <code>SyntaxError</code>, etc.) et un <strong>message</strong> qui décrit le problème rencontré.</p>
 
   </div>
 </div>
@@ -529,18 +569,18 @@ les exceptions</strong>.</p>
 </div>
 
 <h4 id="exemple-gestion-des-entrées-du-clavier">Exemple : Gestion des entrées du clavier<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrer un nombre entier :&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Entrer un nombre entier : &#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">        <span class="k">break</span>
 </span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Oups ! Ce n&#39;est pas un nombre. Nouvelle tentative&#34;</span><span class="p">)</span></span></span></code></pre></div>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Oups ! Ce n&#39;est pas un nombre entier. Nouvelle tentative.&#34;</span><span class="p">)</span></span></span></code></pre></div>
 <div class="clue clue-success" style="--accent: #40a02b">
   <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À retenir</span></div>
   <div class="clue-body">
-<p>Le gestion des exceptions repose sur quelques mots clés : <code>try</code>, <code>except</code>, <code>else</code>
+<p>La gestion des exceptions repose sur quelques mots clés : <code>try</code>, <code>except</code>, <code>else</code>
 et <code>finally</code> et sur une liste de types d&rsquo;exceptions dont la liste peut être
-consultée dans la <a href="https://docs.python.org/3.8/library/exceptions.html#bltin-exceptions" rel="external">documentation en ligne de Python</a> :</p>
+consultée dans la <a href="https://docs.python.org/fr/3/library/exceptions.html" rel="external">documentation en ligne de Python</a> :</p>
 <ul>
 <li><code>try</code> : le bloc de code qui suit ce mot clé est exécuté séquentiellement.
 En cas de problème, l&rsquo;exécution est interrompue et l&rsquo;interpréteur passe au
@@ -552,7 +592,7 @@ d&rsquo;indiquer le type de l&rsquo;erreur (tous les types sont alors traités d
 identique).</li>
 <li><code>else</code> : cette directive permet d&rsquo;isoler dans la partie try la ou les
 instructions qui peuvent poser problème. Toutes les instructions suivantes
-(qui ne doivent donc être exécutées que si aucun problème intervient)
+(qui ne doivent donc être exécutées que si aucun problème n&rsquo;intervient)
 peuvent être placées dans le bloc else.</li>
 <li><code>finally</code> : le bloc qui suit est exécuté dans tous les cas de figure, qu&rsquo;une
 exception ait été levée ou pas. C&rsquo;est donc ici que l&rsquo;on peut s&rsquo;assurer
@@ -564,43 +604,42 @@ arrive.</li>
 </div>
 
 <h4 id="exemple-prise-en-compte-de-plusieurs-erreurs">Exemple : Prise en compte de plusieurs erreurs<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">try</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;fichier.txt&#34;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I/O Erreur : </span><span class="si">{0}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;fichier.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Erreur d&#39;entrée-sortie : </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
 </span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je ne suis pas parvenu à convertir en entier la donnée.&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">finally</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></span></span></code></pre></div>
+<p>Le fichier n&rsquo;est fermé que s&rsquo;il a pu être ouvert : si <code>open</code> échoue, la variable <code>f</code> n&rsquo;existe pas, et <code>f.close()</code> provoquerait une nouvelle erreur. <code>OSError</code> regroupe les erreurs d&rsquo;entrée-sortie, dont <code>FileNotFoundError</code>.</p>
 <h4 id="utilisation-de-else">Utilisation de else<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">try</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;fichier.txt&#34;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">IOError</span><span class="o">&amp;</span><span class="n">nbsp</span><span class="p">;:</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je ne parviens pas à lire le fichier.&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Le fichier comporte </span><span class="si">{0}</span><span class="s2"> lignes.&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">    <span class="k">finally</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;fichier.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je ne parviens pas à lire le fichier.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lignes</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Le fichier comporte </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">lignes</span><span class="p">)</span><span class="si">}</span><span class="s2"> lignes.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></span></span></code></pre></div>
 <h4 id="les-exceptions-dans-la-définition-dune-fonction">Les exceptions dans la définition d&rsquo;une fonction<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h4>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">division</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">division</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">        <span class="n">resultat</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="n">y</span>
 </span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Division par zero !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Division par zéro !&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Le resultat est </span><span class="si">{0}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resultat</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Le résultat est </span><span class="si">{</span><span class="n">resultat</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="k">finally</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je suis toujours présent !&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">division</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">Le</span> <span class="n">resultat</span> <span class="n">est</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Je suis toujours présent !&#34;</span><span class="p">)</span></span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">division</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Le</span> <span class="n">résultat</span> <span class="n">est</span> <span class="mf">2.0</span>
 </span></span><span class="line"><span class="cl"><span class="n">Je</span> <span class="n">suis</span> <span class="n">toujours</span> <span class="n">présent</span> <span class="err">!</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">division</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">Division</span> <span class="n">par</span> <span class="n">zero</span> <span class="err">!</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">division</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Division</span> <span class="n">par</span> <span class="n">zéro</span> <span class="err">!</span>
 </span></span><span class="line"><span class="cl"><span class="n">Je</span> <span class="n">suis</span> <span class="n">toujours</span> <span class="n">présent</span> <span class="err">!</span></span></span></code></pre></div>
 <p>Tout fichier manipulé doit être correctement fermé. Il n&rsquo;est donc pas
 envisageable d&rsquo;utiliser la fonction <code>open</code> sans gérer les exceptions. Utiliser
@@ -608,21 +647,105 @@ les instructions <code>try</code>, <code>except</code> et <code>finally</code> p
 contre-productif (cela fait beaucoup de code pour une action courante). <code>with</code>
 permet de manipuler les fichiers en étant certain qu&rsquo;ils seront fermés
 correctement, <em>quoi qu&rsquo;il arrive</em>.</p>
-<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;fichier.txt&#34;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">ligne</span><span class="p">)</span></span></span></code></pre></div>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;fichier.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">ligne</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">ligne</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">)</span></span></span></code></pre></div>
+<p>Chaque ligne lue se termine déjà par un passage à la ligne : <code>end=&quot;&quot;</code> évite que <code>print</code> en ajoute un second.</p>
 <h2 id="application">Application<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
 <div class="clue clue-task" style="--accent: #8839ef">
   <div class="clue-header"><img class="clue-icon" src="/clues/task.svg" alt="" aria-hidden="true"><span class="clue-title">Exercice</span></div>
   <div class="clue-body">
 <ol>
 <li>
-<p>Écrire un module nommé <code>convert_temp</code> contenant les fonctions réalisant les conversions entre des températures exprimées en degrés Celsius, degrés Fahrenheit et Kelvin :  <code>C2F</code>, <code>F2C</code>, <code>C2K</code>, <code>K2C</code>, <code>F2K</code> and <code>K2F</code>.</p>
+<p>Écrire un module nommé <code>convert_temp</code> contenant les fonctions réalisant les conversions entre des températures exprimées en degrés Celsius, degrés Fahrenheit et kelvins : <code>c_vers_f</code>, <code>f_vers_c</code>, <code>c_vers_k</code>, <code>k_vers_c</code>, <code>f_vers_k</code> et <code>k_vers_f</code>. On rappelle que <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>θ</mi><mi>F</mi></msub><mo>&#61;</mo><mstyle scriptlevel="0" displaystyle="true"><mfrac><mn>9</mn><mn>5</mn></mfrac></mstyle><msub><mi>θ</mi><mi>C</mi></msub><mo>&#43;</mo><mn>32</mn></mrow><annotation encoding="application/x-tex">&#92;theta&#95;F &#61; &#92;dfrac{9}{5}&#92;theta&#95;C &#43; 32</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:2.0074em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">9</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">32</span></span></span></span></span> et <span class="math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>&#61;</mo><msub><mi>θ</mi><mi>C</mi></msub><mo>&#43;</mo><mtext>273,15</mtext></mrow><annotation encoding="application/x-tex">T &#61; &#92;theta&#95;C &#43; &#92;text{273,15}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">T</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&#61;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0715em;">C</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">&#43;</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord text"><span class="mord">273,15</span></span></span></span></span></span>.</p>
 </li>
 <li>
 <p>Appeler ces fonctions depuis un autre programme.</p>
 </li>
 </ol>
+
+  </div>
+</div>
+
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">Coup de pouce</span></div>
+  <div class="clue-body">
+<p>Deux formules suffisent. Pour passer des degrés Fahrenheit aux kelvins, on peut passer par les degrés Celsius : <code>f_vers_k</code> peut appeler <code>f_vers_c</code> puis <code>c_vers_k</code>.</p>
+
+  </div>
+</div>
+
+
+
+<details class="box cstyle callout grey expand">
+  <summary class="box-label">
+    <i class="expander-icon fa-fw fas fa-chevron-right" aria-hidden="true"></i> 
+    <i class="fa-fw fas fa-check" aria-hidden="true"></i> 
+    Solution
+  </summary>
+  <div class="box-content">
+<p>Fichier <code>convert_temp.py</code> :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Conversions entre degrés Celsius, degrés Fahrenheit et kelvins.
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">c_vers_f</span><span class="p">(</span><span class="n">theta_c</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Convertit une température en degrés Celsius en degrés Fahrenheit.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">9</span> <span class="o">/</span> <span class="mi">5</span> <span class="o">*</span> <span class="n">theta_c</span> <span class="o">+</span> <span class="mi">32</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">f_vers_c</span><span class="p">(</span><span class="n">theta_f</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Convertit une température en degrés Fahrenheit en degrés Celsius.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span> <span class="o">*</span> <span class="p">(</span><span class="n">theta_f</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">c_vers_k</span><span class="p">(</span><span class="n">theta_c</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Convertit une température en degrés Celsius en kelvins.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">theta_c</span> <span class="o">+</span> <span class="mf">273.15</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">k_vers_c</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Convertit une température en kelvins en degrés Celsius.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">t</span> <span class="o">-</span> <span class="mf">273.15</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">f_vers_k</span><span class="p">(</span><span class="n">theta_f</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Convertit une température en degrés Fahrenheit en kelvins.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">c_vers_k</span><span class="p">(</span><span class="n">f_vers_c</span><span class="p">(</span><span class="n">theta_f</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">k_vers_f</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Convertit une température en kelvins en degrés Fahrenheit.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">c_vers_f</span><span class="p">(</span><span class="n">k_vers_c</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">c_vers_f</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">==</span> <span class="mi">212</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="n">f_vers_c</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span> <span class="o">==</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">c_vers_k</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span> <span class="o">-</span> <span class="mf">298.15</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-9</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">f_vers_k</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="o">-</span> <span class="mf">273.15</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-9</span>
+</span></span><span class="line"><span class="cl">    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">k_vers_f</span><span class="p">(</span><span class="mf">273.15</span><span class="p">)</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-9</span></span></span></code></pre></div>
+<p>Programme qui utilise le module, enregistré dans le même dossier :</p>
+<div class="highlight actionbar-wrapper wrap-code" dir="auto"><pre class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">convert_temp</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">convert_temp</span><span class="o">.</span><span class="n">c_vers_f</span><span class="p">(</span><span class="mi">37</span><span class="p">))</span>  <span class="c1"># environ 98.6</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">convert_temp</span><span class="o">.</span><span class="n">k_vers_c</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>  <span class="c1"># -273.15</span></span></span></code></pre></div>
+  </div>
+</details>
+<h2 id="bilan">Bilan<span class="btn cstyle anchor copyanchor scrollanchor link noborder notitle interactive"><button type="button" title="Copier le lien dans le presse-papiers" aria-label="Copier le lien dans le presse-papiers"><i class="fa-fw fas fa-link fa-lg" aria-hidden="true"></i></button></span></h2>
+<div class="clue clue-success" style="--accent: #40a02b">
+  <div class="clue-header"><img class="clue-icon" src="/clues/checkbox.svg" alt="" aria-hidden="true"><span class="clue-title">À l&rsquo;issue de cette activité, je sais…</span></div>
+  <div class="clue-body">
+<ul>
+<li>expliquer ce qu&rsquo;est un module et pourquoi on découpe un programme en modules ;</li>
+<li>distinguer une variable locale d&rsquo;une variable globale, et prévoir laquelle est utilisée ;</li>
+<li>importer un module avec <code>import</code>, <code>from … import</code> ou <code>import … as</code>, et expliquer les risques de <code>from module import *</code> ;</li>
+<li>écrire un module, avec des tests placés sous <code>if __name__ == &quot;__main__&quot;:</code> ;</li>
+<li>lire un message d&rsquo;erreur : type d&rsquo;exception, message et pile d&rsquo;appels ;</li>
+<li>gérer une exception avec <code>try</code>, <code>except</code>, <code>else</code> et <code>finally</code> ;</li>
+<li>ouvrir un fichier avec <code>with</code> pour être sûr qu&rsquo;il sera fermé.</li>
+</ul>
 
   </div>
 </div>
